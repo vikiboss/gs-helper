@@ -19,8 +19,11 @@ const winOptions = {
 
 const createWindow = () => {
   win = new BrowserWindow(winOptions);
-  win.setMenuBarVisibility(false);
-  if (isDev) win.webContents.openDevTools({ mode: "detach" });
+  if (isDev) {
+    win.webContents.openDevTools({ mode: "detach" });
+  } else {
+    win.setMenuBarVisibility(false);
+  }
   win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 };
 
