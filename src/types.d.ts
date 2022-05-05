@@ -1,4 +1,4 @@
-import { EXPOSEd_API_FROM_ELECTRON } from "./constants";
+import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 export type AppInfo = {
   name: string;
@@ -10,4 +10,4 @@ export interface NativeApi {
 }
 
 export type ElectronWindow = Window &
-  typeof globalThis & { [EXPOSEd_API_FROM_ELECTRON]: NativeApi };
+  typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
