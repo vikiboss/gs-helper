@@ -1,8 +1,13 @@
-export type NativeApi = {
-  getAppInfo: () => Promise<{
-    name: string;
-    version: string;
-  }>;
+import { EXPOSEd_API_FROM_ELECTRON } from "./constants";
+
+export type AppInfo = {
+  name: string;
+  version: string;
 };
 
-export type ElectronWindow = Window & typeof globalThis & { NativeApi: NativeApi };
+export interface NativeApi {
+  getAppInfo: () => Promise<AppInfo>;
+}
+
+export type ElectronWindow = Window &
+  typeof globalThis & { [EXPOSEd_API_FROM_ELECTRON]: NativeApi };

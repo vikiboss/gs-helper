@@ -1,4 +1,5 @@
 import { app, BrowserWindow, ipcMain } from "electron";
+import { IPC_EVENTS } from "../constants";
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -48,7 +49,7 @@ if (isWinner) {
     if (noWindowExist) createWindow();
   });
 
-  ipcMain.handle("get-app-info", () => ({
+  ipcMain.handle(IPC_EVENTS.getAppInfo, () => ({
     name: app.getName(),
     version: app.getVersion()
   }));

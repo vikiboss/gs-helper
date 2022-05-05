@@ -1,7 +1,9 @@
-const { ipcRenderer, contextBridge } = require("electron");
+const { contextBridge } = require("electron");
 
-contextBridge.exposeInMainWorld("NativeApi", {
-  getAppInfo() {
-    return ipcRenderer.invoke("get-app-info");
-  }
+import { EXPOSEd_API_FROM_ELECTRON } from "../constants";
+
+import getAppInfo from "./getAppInfo";
+
+contextBridge.exposeInMainWorld(EXPOSEd_API_FROM_ELECTRON, {
+  getAppInfo
 });
