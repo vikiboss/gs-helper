@@ -1,14 +1,19 @@
 const rules = require("./rules");
 const plugins = require("./plugins");
 
-rules.push({
-  test: /\.css$/,
-  use: [{ loader: "style-loader" }, { loader: "css-loader" }]
-});
-
 module.exports = {
   module: {
-    rules
+    rules: [
+      ...rules,
+      {
+        test: /\.less$/i,
+        use: ["style-loader", "css-loader", "less-loader"]
+      },
+      {
+        test: /\.css$/,
+        use: [{ loader: "style-loader" }, { loader: "css-loader" }]
+      }
+    ]
   },
   plugins: plugins,
   resolve: {
