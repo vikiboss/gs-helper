@@ -1,9 +1,9 @@
 module.exports = {
-  entry: './main.ts',
+  entry: "./main.ts",
   module: {
-    rules: require('./rules'),
+    rules: require("./rules")
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
-  },
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".css", ".json"]
+  }
 };

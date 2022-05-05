@@ -2,40 +2,40 @@ module.exports = {
   packagerConfig: {},
   makers: [
     {
-      name: '@electron-forge/maker-squirrel',
+      name: "@electron-forge/maker-squirrel",
       config: {
-        name: 'genshin_helper',
-      },
+        name: "genshin_helper"
+      }
     },
     {
-      name: '@electron-forge/maker-zip',
-      platforms: ['darwin'],
+      name: "@electron-forge/maker-zip",
+      platforms: ["darwin"]
     },
     {
-      name: '@electron-forge/maker-deb',
-      config: {},
+      name: "@electron-forge/maker-deb",
+      config: {}
     },
     {
-      name: '@electron-forge/maker-rpm',
-      config: {},
-    },
+      name: "@electron-forge/maker-rpm",
+      config: {}
+    }
   ],
   plugins: [
     [
-      '@electron-forge/plugin-webpack',
+      "@electron-forge/plugin-webpack",
       {
-        mainConfig: './webpack/main.config.js',
+        mainConfig: "./webpack/main.config.js",
         renderer: {
-          config: './webpack/renderer.config.js',
+          config: "./webpack/renderer.config.js",
           entryPoints: [
             {
-              html: './index.html',
-              js: './src/index.tsx',
-              name: 'main_window',
-            },
-          ],
-        },
-      },
-    ],
-  ],
+              html: "./index.html",
+              js: "./src/index.tsx",
+              name: "main_window"
+            }
+          ]
+        }
+      }
+    ]
+  ]
 };
