@@ -11,7 +11,7 @@ if (require("electron-squirrel-startup")) {
 
 const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
-    width: 1200,
+    width: 970,
     height: 600,
     // frame: false,
     webPreferences: {
@@ -20,7 +20,7 @@ const createWindow = (): void => {
   });
 
   if (isDev) {
-    mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools({ mode: "detach" });
   }
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
