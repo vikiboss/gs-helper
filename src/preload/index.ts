@@ -1,6 +1,6 @@
 const { ipcRenderer, contextBridge } = require("electron");
 
-contextBridge.exposeInMainWorld("api", {
+contextBridge.exposeInMainWorld("NativeApi", {
   getAppInfo() {
     return ipcRenderer.invoke("get-app-info");
   }
