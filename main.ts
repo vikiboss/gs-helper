@@ -1,30 +1,31 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
 const isDev = !app.isPackaged;
 
-if (require("electron-squirrel-startup")) {
-  app.quit();
-}
+if (require("electron-squirrel-startup")) app.quit();
 
-const createWindow = (): void => {
-  const mainWindow = new BrowserWindow({
-    width: 970,
-    height: 600,
-    // frame: false,
-    webPreferences: {
-      preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
-    }
-  });
-
-  if (isDev) {
-    mainWindow.webContents.openDevTools({ mode: "detach" });
+const winOptions = {
+  width: 970,
+  height: 600,
+  // frame: false,
+  webPreferences: {
+    preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
   }
-
-  mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 };
+
+const createWindow = () => {
+  const win = new BrowserWindow(winOptions);
+  if (isDev) win.webContents.openDevTools({ mode: "detach" });
+  win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+};
+
+ipcMain.handle("get-app-info", () => ({
+  name: app.getName(),
+  version: app.getVersion()
+}));
 
 app.on("ready", createWindow);
 
