@@ -1,9 +1,17 @@
-const { contextBridge } = require("electron");
+const { contextBridge, ipcRenderer } = require("electron");
 
-import { EXPOSED_API_FROM_ELECTRON } from "../constants";
+import { AppInfo } from "../types";
+import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "../constants";
 
-import getAppInfo from "./getAppInfo";
+const getAppInfo = (): Promise<AppInfo> => {
+  return ipcRenderer.invoke(IPC_EVENTS.getAppInfo);
+};
+
+const closeApp = () => {
+  ipcRenderer.send(IPC_EVENTS.closeApp);
+};
 
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
+  closeApp,
   getAppInfo
 });

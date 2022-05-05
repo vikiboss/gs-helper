@@ -7,6 +7,7 @@ export type AppInfo = {
 
 export interface NativeApi {
   getAppInfo: () => Promise<AppInfo>;
+  closeApp: () => void;
 }
 
 export type ElectronWindow = Window &

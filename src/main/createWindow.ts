@@ -8,7 +8,7 @@ const isDev = !app.isPackaged;
 const winOptions = {
   width: 970,
   height: 600,
-  // frame: false,
+  frame: false,
   webPreferences: {
     preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
   }

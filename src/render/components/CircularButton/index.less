@@ -1,0 +1,67 @@
+@import "../../colors/default.less";
+
+@size-small: 24px;
+@size-middle: 36px;
+@size-large: 54px;
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+
+  .type {
+    height: 100%;
+    width: 100%;
+    border: 1px solid @btn-round-line;
+    background-color: @win-bar-text-focus-color;
+
+    &:hover {
+      border: none;
+    }
+
+    &:active {
+      background-color: @btn-actiove-bg;
+      border: none;
+    }
+
+    .icon {
+      color: @win-bar-bg-color;
+
+      &:active {
+        color: @color-bg;
+      }
+    }
+  }
+
+  &:hover {
+    border-color: @color-bg;
+  }
+
+  &:active {
+    background-color: @btn-actiove-bg;
+    border-color: @btn-actiove-bg;
+  }
+}
+
+.size-small {
+  border-radius: calc((@size-small + 6px) / 2);
+  border: 3px solid @btn-round-line;
+  width: @size-small;
+  height: @size-small;
+}
+
+.size-middle {
+  border-radius: calc((@size-middle + 8px) / 2);
+  border: 4px solid @btn-round-line;
+  width: @size-middle;
+  height: @size-middle;
+}
+
+.size-large {
+  border-radius: calc((@size-large + 10px) / 2);
+  border: 5px solid @btn-round-line;
+  width: @size-large;
+  height: @size-large;
+}
