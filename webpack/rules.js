@@ -1,5 +1,9 @@
 module.exports = [
   {
+    test: /\.less$/i,
+    use: ["style-loader", "css-loader", "less-loader"]
+  },
+  {
     test: /native_modules\/.+\.node$/,
     use: "node-loader"
   },
