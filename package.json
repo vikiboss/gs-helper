@@ -2,7 +2,7 @@
   "name": "genshin-helper",
   "productName": "genshin-helper",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Genshin Impact Helper",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
