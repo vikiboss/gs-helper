@@ -2,6 +2,6 @@
 
 English | [中文](README-zh-CN.md)
 
-A small tool for _Genshin Impact_ player, based on [`Electron`](https://reactjs.org/) and [`React`](https://www.electronjs.org/).
+A small tool written for _Genshin Impact_ player, based on [`Electron`](https://reactjs.org/) and [`React`](https://www.electronjs.org/).
 
-> [Genshin Impact](https://ys.mihoyo.com/) is a famous anime game developed by [miHoYo](https://www.mihoyo.com/).
+> [Genshin Impact](https://genshin.hoyoverse.com/en/) is a popular anime game which developed by [miHoYo](https://www.mihoyo.com/en/).
