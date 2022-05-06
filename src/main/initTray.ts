@@ -3,22 +3,28 @@ import { app, BrowserWindow, Menu, MenuItemConstructorOptions, Tray } from "elec
 
 import icon from "../assets/icon.ico";
 import { isDev } from "./createWindow";
+import { APP_NAME, MENU } from "../constants";
 
 const initTray = (window: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));
+
   const menus: MenuItemConstructorOptions[] = [
-    { label: "打开原神助手", click: () => window.show() },
+    { label: MENU.open, click: () => void window.show() },
     { type: "separator" },
-    { label: "退出", role: "close", click: () => app.quit() }
+    { label: MENU.quit, role: "close", click: () => void app.quit() }
   ];
   const devMenu: MenuItemConstructorOptions[] = [
-    { label: "Open DevTools", click: () => window.webContents.openDevTools() },
+    { label: MENU.openDevTools, click: () => void window.webContents.openDevTools() },
     { type: "separator" }
   ];
   if (isDev) menus.splice(2, 0, ...devMenu);
   const contextMenu = Menu.buildFromTemplate(menus);
-  tray.setToolTip(`原神助手 v${app.getVersion()}`);
+
+  tray.on("double-click", () => void (window.isVisible() ? window.hide() : window.show()));
+  tray.setToolTip(`${APP_NAME} v${app.getVersion()}`);
   tray.setContextMenu(contextMenu);
+
+  app.on("will-quit", () => void tray.destroy());
 };
 
 export default initTray;
