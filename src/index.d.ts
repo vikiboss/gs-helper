@@ -8,6 +8,8 @@ export type AppInfo = {
 export interface NativeApi {
   getAppInfo: () => Promise<AppInfo>;
   closeApp: () => void;
+  hideApp: () => void;
+  minimizeApp: () => void;
 }
 
 export type ElectronWindow = Window &

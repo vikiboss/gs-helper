@@ -19,7 +19,7 @@ const WindowFrame: React.FC<WindowFrameProp> = (props) => {
         <img className='win-icon' src={icon} alt='icon' />
         <div className='title'>{title}</div>
         <div className='btns'>
-          <CircularButton onClick={nativeApi.closeApp} />
+          <CircularButton onClick={nativeApi.hideApp} />
         </div>
       </div>
       {props.children}
