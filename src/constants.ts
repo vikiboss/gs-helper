@@ -7,12 +7,14 @@ export const MAIN_WINDOW_HEIGHT = 600;
 export const MENU: Record<string, string> = {
   quit: "退出程序",
   open: `打开${APP_NAME}`,
+  alwaysOnTop: "总在最前",
   openDevTools: "Open DevTools"
 };
 
 export const IPC_EVENTS: Record<string, string> = {
-  getAppInfo: "get-app-info",
-  closeApp: "close-app",
-  hideApp: "hide-app",
-  minimizeApp: "minimize-app"
+  closeApp: "CLOSE_APP",
+  getAppInfo: "GET_APP_INFO",
+  hideApp: "HIDE_APP",
+  newWindow: "NEW_WINDOW",
+  minimizeApp: "MONIMIZE_APP"
 };

@@ -1,22 +1,41 @@
 import path from "path";
-import { app, BrowserWindow, Menu, MenuItemConstructorOptions, Tray } from "electron";
+import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
 
 import icon from "../assets/icon.ico";
-import { isDev } from "./createWindow";
+import { isDev } from "./createMainWindow";
 import { APP_NAME, MENU } from "../constants";
 
 const initTray = (window: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));
 
   const menus: MenuItemConstructorOptions[] = [
-    { label: MENU.open, click: () => void window.show() },
+    { label: MENU.open, click: () => void window.show(), accelerator: "CommandOrControl+Q" },
+    {
+      label: MENU.alwaysOnTop,
+      type: "checkbox",
+      checked: window.isAlwaysOnTop(),
+      click: () => void window.setAlwaysOnTop(!window.isAlwaysOnTop())
+    },
     { type: "separator" },
-    { label: MENU.quit, role: "close", click: () => void app.quit() }
+    {
+      label: MENU.quit,
+      role: "close",
+      click: () => void app.quit(),
+      accelerator: "CommandOrControl+Alt+Q"
+    }
   ];
+  const web = window.webContents;
   const devMenu: MenuItemConstructorOptions[] = [
-    { label: MENU.openDevTools, click: () => void window.webContents.openDevTools() },
+    {
+      label: MENU.openDevTools,
+      checked: web.isDevToolsOpened(),
+      type: "checkbox",
+      accelerator: "F12",
+      click: () => (web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools())
+    },
     { type: "separator" }
   ];
+
   if (isDev) menus.splice(2, 0, ...devMenu);
   const contextMenu = Menu.buildFromTemplate(menus);
 
@@ -24,6 +43,7 @@ const initTray = (window: BrowserWindow) => {
   tray.setToolTip(`${APP_NAME} v${app.getVersion()}`);
   tray.setContextMenu(contextMenu);
 
+  // contextMenu.on("menu-will-show", () => tray.setContextMenu(contextMenu));
   app.on("will-quit", () => void tray.destroy());
 };
 

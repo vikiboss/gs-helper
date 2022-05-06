@@ -5,7 +5,7 @@
   "description": "Genshin Impact Helper",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "lint": "eslint --ext .ts,.tsx ."
@@ -36,6 +36,7 @@
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "node-loader": "^2.0.0",
+    "react-router-dom": "^6.3.0",
     "style-loader": "^3.0.0",
     "ts-loader": "^9.2.2",
     "typescript": "~4.5.4"

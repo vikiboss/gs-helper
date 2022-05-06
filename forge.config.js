@@ -20,7 +20,7 @@ module.exports = {
           config: "./webpack/renderer.config.js",
           entryPoints: [
             {
-              html: "./index.html",
+              html: "./src/render/index.html",
               js: "./src/render/index.tsx",
               name: "main_window",
               preload: {

@@ -1,4 +1,5 @@
 import { app, BrowserWindow } from "electron";
+
 import { MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT } from "../constants";
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -17,7 +18,7 @@ const winOptions = {
   }
 };
 
-const createWindow = () => {
+const createMainWindow = () => {
   const win = new BrowserWindow(winOptions);
 
   win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
@@ -27,4 +28,4 @@ const createWindow = () => {
   return win;
 };
 
-export default createWindow;
+export default createMainWindow;
