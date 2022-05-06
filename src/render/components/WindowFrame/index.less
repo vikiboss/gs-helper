@@ -3,6 +3,8 @@
 .frame {
   height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   background-color: @color-bg;
 
@@ -10,28 +12,39 @@
     height: 42px;
     width: 100vw;
     padding: 2px;
-    overflow: hidden;
     background-color: @win-bar-bg-color;
+    display: flex;
+    box-shadow: 0 0 10px 4px #ccc;
 
     &::before {
       content: "";
       -webkit-app-region: drag;
       position: fixed;
-      display: inline-block;
       width: calc(100vw - 6px);
       height: 40px;
       border: 1px solid @win-bar-bg-line-color;
       background-color: transparent;
+    }
+
+    .win-icon {
+      margin: 9px;
+      width: 24px;
+      height: 24px;
+    }
+
+    .title {
+      margin: 10px 10px 10px 0;
+      font-size: 20px;
+      color: @win-bar-text-focus-color;
     }
   }
 
   .btns {
     -webkit-app-region: no-drag;
     position: absolute;
-    display: flex;
-    z-index: 10;
     top: 0px;
-    right: 6px;
-    margin: 8px;
+    right: 8px;
+    display: flex;
+    padding: 8px;
   }
 }

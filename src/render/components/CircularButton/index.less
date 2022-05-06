@@ -10,29 +10,10 @@
   justify-content: center;
   overflow: hidden;
   transition: all 0.2s ease-in-out;
+  background-color: @win-bar-text-focus-color;
 
-  .type {
-    height: 100%;
-    width: 100%;
-    border: 1px solid @btn-round-line;
-    background-color: @win-bar-text-focus-color;
-
-    &:hover {
-      border: none;
-    }
-
-    &:active {
-      background-color: @btn-actiove-bg;
-      border: none;
-    }
-
-    .icon {
-      color: @win-bar-bg-color;
-
-      &:active {
-        color: @color-bg;
-      }
-    }
+  .icon {
+    color: @win-bar-bg-color;
   }
 
   &:hover {
@@ -42,6 +23,10 @@
   &:active {
     background-color: @btn-actiove-bg;
     border-color: @btn-actiove-bg;
+    background-color: @btn-actiove-bg;
+    .icon {
+      color: @color-bg;
+    }
   }
 }
 

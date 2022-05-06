@@ -2,7 +2,7 @@ module.exports = {
   packagerConfig: {
     appBundleId: "org.viki.genshin.helper",
     appCopyright: "Viki. MIT licese",
-    icon: "./assets/icon.ico"
+    icon: "icon.ico"
   },
   makers: [
     {

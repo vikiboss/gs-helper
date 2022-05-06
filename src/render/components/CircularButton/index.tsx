@@ -1,5 +1,5 @@
 import React from "react";
-import { IoClose } from "react-icons/io5";
+import { FaExpandArrowsAlt } from "react-icons/fa";
 
 import "./index.less";
 
@@ -11,18 +11,16 @@ type CircularButtonProp = {
 };
 
 const map = {
-  small: 24,
-  middle: 24,
-  large: 24
+  small: 16,
+  middle: 28,
+  large: 48
 };
 
 const CircularButton: React.FC<CircularButtonProp> = (props) => {
-  const { type = "close", onClick, className = "", size = "small" } = props;
+  const { onClick, className = "", size = "small" } = props;
   return (
     <div className={`btn size-${size} ${className}`} onClick={onClick}>
-      <div className={`type type-${type}`}>
-        <IoClose size={map[size]} className='icon' />
-      </div>
+      <FaExpandArrowsAlt size={map[size]} className='icon' />
     </div>
   );
 };
