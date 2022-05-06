@@ -1,5 +1,4 @@
 import { app, BrowserWindow } from "electron";
-import { v4 as uuid } from "uuid";
 
 import initTray from "./initTray";
 import bindIPC from "./bindIPC";

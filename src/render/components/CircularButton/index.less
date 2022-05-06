@@ -4,7 +4,7 @@
 @size-middle: 36px;
 @size-large: 54px;
 
-.btn {
+.cbtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,9 +12,10 @@
   transition: all 0.2s ease-in-out;
   background-color: @win-bar-text-focus-color;
 
-  .icon {
+  .cbtn-icon {
     color: @win-bar-bg-color;
-    .btn:active & {
+    transition: all 0.2s ease-in-out;
+    .cbtn:active & {
       color: @color-bg;
     }
   }
@@ -24,30 +25,30 @@
   }
 
   &:active {
-    background-color: @btn-actiove-bg;
-    border-color: @btn-actiove-bg;
-    background-color: @btn-actiove-bg;
+    background-color: @cbtn-actiove-bg;
+    border-color: @cbtn-actiove-bg;
+    background-color: @cbtn-actiove-bg;
   }
 }
 
-.size {
+.cbtn-size {
   &-small {
     border-radius: calc((@size-small + 6px) / 2);
-    border: 3px solid @btn-round-line;
+    border: 3px solid @cbtn-round-line;
     width: @size-small;
     height: @size-small;
   }
 
   &-middle {
     border-radius: calc((@size-middle + 8px) / 2);
-    border: 4px solid @btn-round-line;
+    border: 4px solid @cbtn-round-line;
     width: @size-middle;
     height: @size-middle;
   }
 
   &-large {
     border-radius: calc((@size-large + 10px) / 2);
-    border: 5px solid @btn-round-line;
+    border: 5px solid @cbtn-round-line;
     width: @size-large;
     height: @size-large;
   }

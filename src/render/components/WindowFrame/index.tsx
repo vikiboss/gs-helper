@@ -8,7 +8,7 @@ import "./index.less";
 
 type WindowFrameProp = {
   title?: string;
-  children?: React.ReactElement;
+  children?: React.ReactNode;
 };
 
 const WindowFrame: React.FC<WindowFrameProp> = (props) => {
@@ -19,8 +19,8 @@ const WindowFrame: React.FC<WindowFrameProp> = (props) => {
         <img className='win-icon' src={icon} alt='icon' />
         <div className='title'>{title}</div>
         <div className='btns'>
-          <CircularButton className='btn' onClick={nativeApi.minimizeApp} type='minimize' />
-          <CircularButton className='btn' onClick={nativeApi.hideApp} type='close' />
+          <CircularButton className='cbtn' onClick={nativeApi.minimizeApp} type='minimize' />
+          <CircularButton className='cbtn' onClick={nativeApi.hideApp} type='close' />
         </div>
       </div>
       {props.children}

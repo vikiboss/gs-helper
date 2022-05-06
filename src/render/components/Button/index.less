@@ -1,0 +1,79 @@
+@import "../../colors/default.less";
+
+@size-small: 30px;
+@size-middle: 42px;
+@size-large: 64px;
+
+.btn {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #b9b6b3;
+  background-color: @btn-bg-color;
+  transition: all 0.2s ease-in-out;
+
+  .btn-color {
+    &-confirm {
+      color: @btn-icon-yellow;
+    }
+    &-cancel {
+      color: @btn-icon-blue;
+    }
+  }
+
+  .btn {
+    &-icon {
+      margin-left: 4px;
+      padding: 4px;
+      border-radius: 50%;
+      transition: all 0.2s ease-in-out;
+      background-color: @btn-icon-bg-color;
+    }
+    &-text {
+      flex: 1;
+      text-align: center;
+      font-size: 16px;
+      color: @btn-text-color;
+    }
+  }
+
+  &:hover {
+    border-color: @btn-hover-border-color;
+  }
+
+  &:active {
+    border-color: @btn-active-border-color;
+    background-color: @btn-actiove-bg;
+    .btn {
+      &-icon {
+        background-color: @btn-icon-active-bg-color;
+      }
+      &-text {
+        color: @btn-text-active-color;
+      }
+    }
+  }
+}
+
+.btn-size {
+  &-small {
+    border-radius: calc((@size-small + 6px) / 2);
+    width: @size-small * 5;
+    height: @size-small;
+    padding-right: @size-small * 0.6;
+  }
+
+  &-middle {
+    border-radius: calc((@size-middle + 8px) / 2);
+    width: @size-middle * 5;
+    height: @size-middle;
+    padding-right: @size-middle * 0.6;
+  }
+
+  &-large {
+    border-radius: calc((@size-large + 10px) / 2);
+    width: @size-large * 5;
+    height: @size-large;
+    padding-right: @size-large * 0.6;
+  }
+}

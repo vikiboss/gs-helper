@@ -30,7 +30,6 @@ const initTray = (window: BrowserWindow) => {
       label: MENU.openDevTools,
       checked: web.isDevToolsOpened(),
       type: "checkbox",
-      accelerator: "F12",
       click: () => (web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools())
     },
     { type: "separator" }
@@ -43,7 +42,6 @@ const initTray = (window: BrowserWindow) => {
   tray.setToolTip(`${APP_NAME} v${app.getVersion()}`);
   tray.setContextMenu(contextMenu);
 
-  // contextMenu.on("menu-will-show", () => tray.setContextMenu(contextMenu));
   app.on("will-quit", () => void tray.destroy());
 };
 
