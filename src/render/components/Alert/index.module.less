@@ -1,0 +1,39 @@
+@import "../../utils/colors.less";
+
+.alert {
+  width: 100vw;
+  height: 42px;
+  position: absolute;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: @color-white;
+  font-size: 20px;
+  background-color: #3af;
+  transition: 0.3s all ease-in-out;
+}
+
+.info {
+  background-color: @alert-info-bg-color;
+}
+
+.warning {
+  background-color: @alert-warning-bg-color;
+}
+
+.success {
+  background-color: @alert-success-bg-color;
+}
+
+.faild {
+  background-color: @alert-faild-bg-color;
+}
+
+.hide {
+  top: 100vh;
+}
+
+.show {
+  top: calc(100vh - 42px);
+}
