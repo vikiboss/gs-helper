@@ -18,8 +18,7 @@ const isWinner = app.requestSingleInstanceLock();
 if (isWinner) {
   app.on("second-instance", () => {
     if (!mainWin) return;
-    if (mainWin.isMinimized()) mainWin.restore();
-    mainWin.focus();
+    mainWin.show();
   });
 
   app.on("ready", () => {
