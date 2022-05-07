@@ -1,6 +1,6 @@
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import RequireAuth from "./auth/AuthGuard";
+import Gacha from "./pages/Gacha";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,6 +12,7 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/gacha' element={<Gacha />} />
         <Route path='/setting' element={<Setting />} />
       </Routes>
     </HashRouter>

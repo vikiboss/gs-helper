@@ -7,8 +7,9 @@ import { BsXLg } from "react-icons/Bs";
 import styles from "./index.less";
 
 type ButtonProp = {
-  type: "confirm" | "cancel";
+  type?: "confirm" | "cancel";
   size?: "small" | "middle" | "large";
+  noIcon?: boolean;
   text: string;
   className?: string;
   onClick?: () => void;
@@ -26,11 +27,11 @@ const TYPE_MAP: Record<string, IconType> = {
 };
 
 const Button: React.FC<ButtonProp> = (props) => {
-  const { onClick = () => {}, className = "", size = "small", type, text } = props;
-  const Icon = TYPE_MAP[type];
+  const { onClick = () => {}, className = "", size = "small", type, text, noIcon = false } = props;
+  const Icon = noIcon ? null : TYPE_MAP[type];
   return (
     <div className={cn(styles.btn, styles[size], className)} onClick={onClick}>
-      <Icon size={SIZE_MAP[size]} className={cn(styles.icon, styles[type])} />
+      {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : "")} />}
       <div className={styles.text}>{text}</div>
     </div>
   );

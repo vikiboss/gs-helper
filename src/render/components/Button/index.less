@@ -11,6 +11,7 @@
   border: 1px solid #b9b6b3;
   background-color: @btn-bg-color;
   transition: all 0.2s ease-in-out;
+  position: relative;
 
   .confirm {
     color: @btn-icon-yellow;
@@ -21,6 +22,7 @@
   }
 
   .icon {
+    position: absolute;
     border-radius: 50%;
     transition: all 0.2s ease-in-out;
     background-color: @btn-icon-bg-color;
@@ -50,6 +52,7 @@
 
 .small {
   .icon {
+    left: @size-small * 0.16;
     padding: @size-small * 0.12;
   }
   .text {
@@ -58,11 +61,12 @@
   border-radius: calc((@size-small + 6px) / 2);
   width: @size-small * 3;
   height: @size-small;
-  padding: 0 @size-small * 0.6 0 @size-small * 0.14;
+  padding: 0 @size-small * 0.6;
 }
 
 .middle {
   .icon {
+    left: @size-middle * 0.16;
     padding: @size-middle * 0.12;
   }
   .text {
@@ -71,11 +75,12 @@
   border-radius: calc((@size-middle + 8px) / 2);
   width: @size-middle * 3;
   height: @size-middle;
-  padding: 0 @size-middle * 0.6 0 @size-middle * 0.14;
+  padding: 0 @size-middle * 0.6;
 }
 
 .large {
   .icon {
+    left: @size-large * 0.16;
     padding: @size-large * 0.12;
   }
   .text {
@@ -84,5 +89,5 @@
   border-radius: calc((@size-large + 10px) / 2);
   width: @size-large * 3;
   height: @size-large;
-  padding: 0 @size-large * 0.6 0 @size-large * 0.14;
+  padding: 0 @size-large * 0.6;
 }
