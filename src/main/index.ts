@@ -11,6 +11,8 @@ let mainWin: BrowserWindow = null;
 let store: Store;
 const windows: BrowserWindow[] = [];
 
+app.disableHardwareAcceleration();
+
 const isWinner = app.requestSingleInstanceLock();
 
 if (isWinner) {
