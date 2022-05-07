@@ -14,6 +14,8 @@ export const MENU: Record<string, string> = {
 
 export const IPC_EVENTS: Record<string, string> = {
   closeApp: "CLOSE_APP",
+  getStoreKey: "GET_STORE_KEY",
+  setStoreKey: "SET_STORE_KEY",
   getAppInfo: "GET_APP_INFO",
   hideApp: "HIDE_APP",
   newWindow: "NEW_WINDOW",

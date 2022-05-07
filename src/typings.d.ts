@@ -1,3 +1,4 @@
+import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 export type AppInfo = {
@@ -6,10 +7,13 @@ export type AppInfo = {
 };
 
 export interface NativeApi {
-  getAppInfo: () => Promise<AppInfo>;
   closeApp: () => void;
   hideApp: () => void;
   minimizeApp: () => void;
+
+  getAppInfo: () => Promise<AppInfo>;
+  getStoreKey(key: string): Promise<any>;
+  setStoreKey(key: string, value: any): Promise<any>;
 }
 
 export type ElectronWindow = Window &

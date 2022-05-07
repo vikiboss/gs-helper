@@ -1,12 +1,15 @@
 import { app, BrowserWindow } from "electron";
+import Store from "electron-store";
 
 import initTray from "./initTray";
+import initStore from "./initStore";
 import bindIPC from "./bindIPC";
 import createMainWindow from "./createMainWindow";
 import { registerHotkey, unregisterHotkey } from "./hotkeys";
 
 let mainWin: BrowserWindow = null;
-const windows = [];
+let store: Store;
+const windows: BrowserWindow[] = [];
 
 const isWinner = app.requestSingleInstanceLock();
 
@@ -19,6 +22,7 @@ if (isWinner) {
 
   app.on("ready", () => {
     mainWin = createMainWindow();
+    store = initStore();
     windows.push(mainWin);
     void initTray(mainWin);
     void registerHotkey(mainWin);
@@ -41,3 +45,5 @@ if (isWinner) {
 } else {
   app.quit();
 }
+
+export { windows, mainWin, store };

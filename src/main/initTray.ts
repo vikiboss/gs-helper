@@ -24,6 +24,7 @@ const initTray = (win: BrowserWindow) => {
       accelerator: "CommandOrControl+Alt+Q"
     }
   ];
+  
   const web = win.webContents;
   const devMenu: MenuItemConstructorOptions[] = [
     {
@@ -35,7 +36,8 @@ const initTray = (win: BrowserWindow) => {
     { type: "separator" }
   ];
 
-  if (isDev) menus.splice(2, 0, ...devMenu);
+  menus.splice(2, 0, ...devMenu);
+  // if (isDev) menus.splice(2, 0, ...devMenu);
   const contextMenu = Menu.buildFromTemplate(menus);
 
   tray.on("double-click", () => (win.isVisible() && win.isFocused() ? win.hide() : win.show()));
