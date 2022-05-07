@@ -1,5 +1,6 @@
 import React from "react";
 import cn from "classnames";
+
 import styles from "./index.less";
 
 export type AlertProp = {

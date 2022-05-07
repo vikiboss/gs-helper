@@ -1,28 +1,23 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { HashRouter, Routes, Route } from "react-router-dom";
 
+import { APP_NAME } from "../constants";
+import AppRouter from "./router";
 import nativeApi from "./utils/nativeApi";
 import WindowFrame from "./components/WindowFrame";
-import { APP_NAME } from "../constants";
-
-import Home from "./pages/Home";
-import Setting from "./pages/Setting";
 
 import "./index.less";
+import AuthProvider from "./auth/AuthProvider";
 
 const root = createRoot(document.getElementById("app"));
 
 const render = async () => {
-  const version = (await nativeApi.getAppInfo()).version;
+  const { version } = await nativeApi.getAppInfo();
   root.render(
     <WindowFrame title={`${APP_NAME} v${version}`}>
-      <HashRouter>
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/setting' element={<Setting />} />
-        </Routes>
-      </HashRouter>
+      <AuthProvider>
+        <AppRouter />
+      </AuthProvider>
     </WindowFrame>
   );
 };

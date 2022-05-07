@@ -2,7 +2,7 @@ import Store, { Schema } from "electron-store";
 
 const defaultData: any = {
   userData: {
-    uid: "",
+    buid: "",
     cookie: ""
   },
   gachaData: [],
@@ -13,7 +13,7 @@ const schema: Schema<typeof defaultData> = {
   userData: {
     type: "object",
     properties: {
-      uid: { type: "string", pattern: "^[0-9]{3,10}$" },
+      buid: { type: "string", pattern: "^[0-9]{3,10}$" },
       cookie: { type: "string" }
     }
   },

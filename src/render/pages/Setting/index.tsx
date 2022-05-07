@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import withAuth from "../../auth/AuthGuard";
 
 import styles from "./index.less";
 
@@ -12,4 +13,4 @@ const Setting: React.FC = () => {
   );
 };
 
-export default Setting;
+export default withAuth(Setting);

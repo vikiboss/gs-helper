@@ -8,7 +8,7 @@ import styles from "./index.less";
 
 type WindowFrameProp = {
   title?: string;
-  children?: React.ReactNode;
+  children?: JSX.Element;
 };
 
 
