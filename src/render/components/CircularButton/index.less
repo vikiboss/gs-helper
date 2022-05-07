@@ -1,13 +1,13 @@
 @import "../../utils/colors.less";
+@import "../../utils/util.less";
 
 @size-small: 24px;
 @size-middle: 36px;
 @size-large: 54px;
 
 .btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .flex-center();
+  
   overflow: hidden;
   transition: all 0.2s ease-in-out;
   background-color: @win-bar-text-focus-color;

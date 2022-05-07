@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import useAlert from "../../hooks/useAlert";
 
-import nativeApi from "../../nativeApi";
+import nativeApi from "../../utils/nativeApi";
 
 import style from "./index.less";
 

@@ -1,4 +1,5 @@
 @import "../../utils/colors.less";
+@import "../../utils/util.less";
 
 .frame {
   height: 100vh;
@@ -39,14 +40,14 @@
     }
 
     .btns {
+      .flex-center();
       -webkit-app-region: no-drag;
+
       position: absolute;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       top: 0px;
       right: 8px;
       padding: 8px;
+
       .btn {
         margin-left: 8px;
       }

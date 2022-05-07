@@ -1,7 +1,7 @@
 import React from "react";
 
 import icon from "../../../assets/icon.png";
-import nativeApi from "../../nativeApi";
+import nativeApi from "../../utils/nativeApi";
 import CircularButton from "../CircularButton";
 
 import styles from "./index.less";

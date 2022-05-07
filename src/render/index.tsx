@@ -2,14 +2,14 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-import nativeApi from "./nativeApi";
+import nativeApi from "./utils/nativeApi";
 import WindowFrame from "./components/WindowFrame";
 import { APP_NAME } from "../constants";
 
 import Home from "./pages/Home";
 import Setting from "./pages/Setting";
 
-import "./index.module.less";
+import "./index.less";
 
 const root = createRoot(document.getElementById("app"));
 
