@@ -1,3 +1,4 @@
+import { Cookies } from "electron";
 import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
@@ -6,14 +7,25 @@ export type AppInfo = {
   version: string;
 };
 
+export type LoginState = {
+  valid: boolean;
+  cookies: Cookies;
+};
+
+export type UserInfo = {
+  buid: string;
+  cookie: string;
+};
+
 export interface NativeApi {
   closeApp: () => void;
   hideApp: () => void;
   minimizeApp: () => void;
+  login: () => void;
 
   getAppInfo: () => Promise<AppInfo>;
-  getStoreKey(key: string): Promise<any>;
-  setStoreKey(key: string, value: any): Promise<any>;
+  getStoreKey: (key: string) => Promise<any>;
+  setStoreKey: (key: string, value: any) => Promise<any>;
 }
 
 export type ElectronWindow = Window &

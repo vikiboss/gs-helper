@@ -15,7 +15,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     })();
   }, []);
 
-  const login = (cookie: string, callback?: VoidFunction) => {
+  const login = (callback?: VoidFunction) => {
     setIsLogin(true);
     return callback && callback();
   };

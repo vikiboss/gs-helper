@@ -22,7 +22,8 @@ const initTray = (win: BrowserWindow) => {
       visible: isDev,
       checked: web.isDevToolsOpened(),
       type: "checkbox",
-      click: () => (web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools())
+      click: () =>
+        web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools({ mode: "detach" })
     },
     {
       label: MENU.quit,

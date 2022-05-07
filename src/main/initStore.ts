@@ -1,23 +1,23 @@
 import Store, { Schema } from "electron-store";
 
 const defaultData: any = {
-  userData: {
+  user: {
     buid: "",
     cookie: ""
   },
-  gachaData: [],
+  gacha: [],
   settings: {}
 };
 
 const schema: Schema<typeof defaultData> = {
-  userData: {
+  user: {
     type: "object",
     properties: {
-      buid: { type: "string", pattern: "^[0-9]{3,10}$" },
+      buid: { type: "string", pattern: "^[0-9]{0,10}$" },
       cookie: { type: "string" }
     }
   },
-  gachaData: {
+  gacha: {
     type: "array",
     items: {
       type: "object",
@@ -60,4 +60,4 @@ const schema: Schema<typeof defaultData> = {
   }
 };
 
-export default () => new Store({ schema });
+export default () => new Store({ schema, defaults: defaultData });
