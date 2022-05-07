@@ -1,5 +1,6 @@
-export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const APP_NAME = "原神助手";
+export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
+export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;

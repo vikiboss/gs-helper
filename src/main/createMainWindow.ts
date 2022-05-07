@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from "electron";
 
-import { MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT } from "../constants";
+import { MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, WINDOW_BACKGROUND_COLOR } from "../constants";
 
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
@@ -12,7 +12,7 @@ const winOptions = {
   height: MAIN_WINDOW_HEIGHT,
   frame: false,
   maximizable: false,
-  backgroundColor: "#ebe7df",
+  backgroundColor: WINDOW_BACKGROUND_COLOR,
   webPreferences: {
     preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY
   }
