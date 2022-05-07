@@ -4,12 +4,13 @@ import icon from "../../../assets/icon.png";
 import nativeApi from "../../nativeApi";
 import CircularButton from "../CircularButton";
 
-import styles from "./index.module.less";
+import styles from "./index.less";
 
 type WindowFrameProp = {
   title?: string;
   children?: React.ReactNode;
 };
+
 
 const WindowFrame: React.FC<WindowFrameProp> = (props) => {
   const { title = "" } = props;

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { IconType } from "react-icons";
 import { FaExpandArrowsAlt, FaMinus, FaRedo, FaReply, FaTrashAlt } from "react-icons/fa";
 
-import styles from "./index.module.less";
+import styles from "./index.less";
 
 type CircularButtonProp = {
   type: "close" | "minimize" | "delete" | "refresh" | "back";

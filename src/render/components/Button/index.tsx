@@ -4,7 +4,7 @@ import { IconType } from "react-icons";
 import { BiCircle } from "react-icons/Bi";
 import { BsXLg } from "react-icons/Bs";
 
-import styles from "./index.module.less";
+import styles from "./index.less";
 
 type ButtonProp = {
   type: "confirm" | "cancel";
