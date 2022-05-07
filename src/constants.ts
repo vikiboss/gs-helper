@@ -6,10 +6,10 @@ export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
 
 export const MENU: Record<string, string> = {
-  quit: "退出程序",
-  open: `打开${APP_NAME}`,
-  alwaysOnTop: "总在最前",
-  openDevTools: "Open DevTools"
+  quit: "退出",
+  open: `打开助手`,
+  alwaysOnTop: "置顶显示",
+  openDevTools: "DevTools"
 };
 
 export const IPC_EVENTS: Record<string, string> = {

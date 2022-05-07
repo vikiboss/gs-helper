@@ -3,10 +3,11 @@ import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "elec
 
 import icon from "../assets/icon.ico";
 import { APP_NAME, MENU } from "../constants";
-// import { isDev } from "./createMainWindow";
+import { isDev } from "./createMainWindow";
 
 const initTray = (win: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));
+  const web = win.webContents;
 
   const menus: MenuItemConstructorOptions[] = [
     { label: MENU.open, click: () => win.show(), accelerator: "CommandOrControl+Q" },
@@ -16,7 +17,13 @@ const initTray = (win: BrowserWindow) => {
       checked: win.isAlwaysOnTop(),
       click: () => win.setAlwaysOnTop(!win.isAlwaysOnTop())
     },
-    { type: "separator" },
+    {
+      label: MENU.openDevTools,
+      visible: isDev,
+      checked: web.isDevToolsOpened(),
+      type: "checkbox",
+      click: () => (web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools())
+    },
     {
       label: MENU.quit,
       role: "close",
@@ -24,24 +31,15 @@ const initTray = (win: BrowserWindow) => {
       accelerator: "CommandOrControl+Alt+Q"
     }
   ];
-  
-  const web = win.webContents;
-  const devMenu: MenuItemConstructorOptions[] = [
-    {
-      label: MENU.openDevTools,
-      checked: web.isDevToolsOpened(),
-      type: "checkbox",
-      click: () => (web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools())
-    },
-    { type: "separator" }
-  ];
 
-  menus.splice(2, 0, ...devMenu);
-  // if (isDev) menus.splice(2, 0, ...devMenu);
   const contextMenu = Menu.buildFromTemplate(menus);
 
-  tray.on("double-click", () => (win.isVisible() && win.isFocused() ? win.hide() : win.show()));
+  win.on("always-on-top-changed", (_, onTop) => (contextMenu.items[1].checked = onTop));
+  web.on("devtools-opened", () => (contextMenu.items[2].checked = true));
+  web.on("devtools-closed", () => (contextMenu.items[2].checked = false));
+
   tray.setToolTip(`${APP_NAME} v${app.getVersion()}`);
+  tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
   tray.setContextMenu(contextMenu);
 
   app.on("will-quit", () => tray.destroy());

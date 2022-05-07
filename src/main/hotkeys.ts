@@ -2,7 +2,7 @@ import { app, globalShortcut, BrowserWindow } from "electron";
 
 const registerHotkey = (win: BrowserWindow) => {
   globalShortcut.register("CommandOrControl+Q", () =>
-    win.isVisible() && win.isFocused() ? win.hide() : win.show()
+    win.isVisible() && !win.isMinimized() ? win.hide() : win.show()
   );
 
   globalShortcut.register("CommandOrControl+Alt+Q", () => void app.quit());
