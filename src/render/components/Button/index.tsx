@@ -1,9 +1,10 @@
 import React from "react";
+import cn from "classnames";
 import { IconType } from "react-icons";
 import { BiCircle } from "react-icons/Bi";
 import { BsXLg } from "react-icons/Bs";
 
-import "./index.less";
+import styles from "./index.module.less";
 
 type ButtonProp = {
   type: "confirm" | "cancel";
@@ -15,8 +16,8 @@ type ButtonProp = {
 
 const SIZE_MAP = {
   small: 12,
-  middle: 18,
-  large: 24
+  middle: 20,
+  large: 30
 };
 
 const TYPE_MAP: Record<string, IconType> = {
@@ -28,9 +29,9 @@ const Button: React.FC<ButtonProp> = (props) => {
   const { onClick = () => {}, className = "", size = "small", type, text } = props;
   const Icon = TYPE_MAP[type];
   return (
-    <div className={`btn btn-size-${size} ${className}`} onClick={onClick}>
-      <Icon size={SIZE_MAP[size]} className={`btn-icon btn-color-${type}`} />
-      <div className='btn-text'>{text}</div>
+    <div className={cn(styles.btn, styles[size], className)} onClick={onClick}>
+      <Icon size={SIZE_MAP[size]} className={cn(styles.icon, styles[type])} />
+      <div className={styles.text}>{text}</div>
     </div>
   );
 };

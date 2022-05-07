@@ -2,10 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 import nativeApi from "../../nativeApi";
-import CircularButton from "../../components/CircularButton";
 
-import "./index.less";
-import Button from "../../components/Button";
+import style from "./index.module.less";
 
 const Home: React.FC = () => {
   const handleClick = async () => {
@@ -13,11 +11,8 @@ const Home: React.FC = () => {
     console.log(appInfo);
   };
   return (
-    <div onClick={handleClick} className='desc'>
-      <CircularButton type='refresh' onClick={() => {}} />
+    <div onClick={handleClick} className={style.desc}>
       <div>暂无公告</div>
-      <Button type='confirm' onClick={() => {}} text="确认"/>
-      <Button type='cancel' onClick={() => {}} text="取消"/>
       <Link to='/setting'>去设置</Link>
     </div>
   );

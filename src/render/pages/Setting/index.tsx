@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import "./index.less";
+import styles from "./index.module.less";
 
 const Setting: React.FC = () => {
   return (
-    <div className='desc'>
+    <div className={styles.desc}>
       <div>暂无设置</div>
       <Link to='/'>去首页</Link>
     </div>

@@ -1,8 +1,9 @@
 import React from "react";
+import classnames from "classnames";
 import { IconType } from "react-icons";
 import { FaExpandArrowsAlt, FaMinus, FaRedo, FaReply, FaTrashAlt } from "react-icons/fa";
 
-import "./index.less";
+import styles from "./index.module.less";
 
 type CircularButtonProp = {
   type: "close" | "minimize" | "delete" | "refresh" | "back";
@@ -29,8 +30,8 @@ const CircularButton: React.FC<CircularButtonProp> = (props) => {
   const { onClick = () => {}, className = "", size = "small", type } = props;
   const Icon = TYPE_MAP[type];
   return (
-    <div className={`cbtn cbtn-size-${size} ${className}`} onClick={onClick}>
-      <Icon size={SIZE_MAP[size]} className='cbtn-icon' />
+    <div className={classnames(styles.btn, styles[size], className)} onClick={onClick}>
+      <Icon size={SIZE_MAP[size]} className={styles.icon} />
     </div>
   );
 };

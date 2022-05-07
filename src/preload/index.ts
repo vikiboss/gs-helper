@@ -1,6 +1,6 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
-import { AppInfo } from "..";
+import { AppInfo } from "../typings";
 import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "../constants";
 
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {

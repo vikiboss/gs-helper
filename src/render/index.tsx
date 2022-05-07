@@ -9,7 +9,7 @@ import { APP_NAME } from "../constants";
 import Home from "./pages/Home";
 import Setting from "./pages/Setting";
 
-import "./index.less";
+import "./index.module.less";
 
 const root = createRoot(document.getElementById("app"));
 

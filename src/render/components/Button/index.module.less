@@ -1,0 +1,88 @@
+@import "../../colors/default.less";
+
+@size-small: 30px;
+@size-middle: 42px;
+@size-large: 64px;
+
+.btn {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border: 1px solid #b9b6b3;
+  background-color: @btn-bg-color;
+  transition: all 0.2s ease-in-out;
+
+  .confirm {
+    color: @btn-icon-yellow;
+  }
+
+  .cancel {
+    color: @btn-icon-blue;
+  }
+
+  .icon {
+    border-radius: 50%;
+    transition: all 0.2s ease-in-out;
+    background-color: @btn-icon-bg-color;
+  }
+
+  .text {
+    flex: 1;
+    text-align: center;
+    color: @btn-text-color;
+  }
+
+  &:hover {
+    border-color: @btn-hover-border-color;
+  }
+
+  &:active {
+    border-color: @btn-active-border-color;
+    background-color: @btn-actiove-bg;
+    .icon {
+      background-color: @btn-icon-active-bg-color;
+    }
+    .text {
+      color: @btn-text-active-color;
+    }
+  }
+}
+
+.small {
+  .icon {
+    padding: @size-small * 0.12;
+  }
+  .text {
+    font-size: @size-small * 0.42;
+  }
+  border-radius: calc((@size-small + 6px) / 2);
+  width: @size-small * 5;
+  height: @size-small;
+  padding: 0 @size-small * 0.6 0 @size-small * 0.14;
+}
+
+.middle {
+  .icon {
+    padding: @size-middle * 0.12;
+  }
+  .text {
+    font-size: @size-middle * 0.42;
+  }
+  border-radius: calc((@size-middle + 8px) / 2);
+  width: @size-middle * 5;
+  height: @size-middle;
+  padding: 0 @size-middle * 0.6 0 @size-middle * 0.14;
+}
+
+.large {
+  .icon {
+    padding: @size-large * 0.12;
+  }
+  .text {
+    font-size: @size-large * 0.42;
+  }
+  border-radius: calc((@size-large + 10px) / 2);
+  width: @size-large * 5;
+  height: @size-large;
+  padding: 0 @size-large * 0.6 0 @size-large * 0.14;
+}
