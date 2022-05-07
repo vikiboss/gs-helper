@@ -1,4 +1,3 @@
-import Store from "electron-store";
 import { contextBridge, ipcRenderer } from "electron";
 
 import { AppInfo } from "../typings";

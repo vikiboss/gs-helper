@@ -2,8 +2,8 @@ import path from "path";
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
 
 import icon from "../assets/icon.ico";
-import { isDev } from "./createMainWindow";
 import { APP_NAME, MENU } from "../constants";
+// import { isDev } from "./createMainWindow";
 
 const initTray = (win: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));
