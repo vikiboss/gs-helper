@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
@@ -10,14 +10,27 @@ import icon from "../../../assets/icon.png";
 import styles from "./index.less";
 
 const Home: React.FC = () => {
+  const [nickname, setNickname] = useState<string>("");
+  const [uid, setUid] = useState<string>("");
+  const [sign, setSign] = useState<string>("");
+  const [avatar, setAvatar] = useState<string>(icon);
   const { success, holder } = useAlert();
   const { isLogin, logout } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLogin) {
-      const user = nativeApi.getStoreKey("user");
-    }
+    (async () => {
+      console.log(isLogin);
+      if (isLogin) {
+        const user = await nativeApi.getUserInfoByCookie();
+        console.log(user);
+        if (!user?.uid) return;
+        setNickname(user.nickname);
+        setUid(user.uid);
+        setSign(user.introduce);
+        setAvatar(user.avatar_url);
+      }
+    })();
   }, []);
 
   const handleLoginClick = () => {
@@ -33,17 +46,22 @@ const Home: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          <img
-            src={
-              "https://img-static.mihoyo.com/communityweb/upload/d51a7361bbf35342b43c7801d254d016.png"
-            }
-            alt='avatar'
-            className={styles.avatar}
-          />
-          <div className={styles.userInfo}>
-            <div className={styles.uid}>UID 226672853</div>
-            <div className={styles.greet}>晚上好，冒险者</div>
-          </div>
+          {nickname && (
+            <>
+              <img src={avatar} alt='avatar' className={styles.avatar} />
+              <div className={styles.userInfo}>
+                <div>
+                  昵称：<div className={styles.nickname}>{nickname || "获取中..."}</div>
+                </div>
+                <div>
+                  签名：<div className={styles.sign}>{sign || "这个人有点懒，什么也没有说"}</div>
+                </div>
+                <div>
+                  BID：<div className={styles.uid}>{uid || "获取中..."}</div>
+                </div>
+              </div>
+            </>
+          )}
         </div>
         <div className={styles.content}>
           <div>{isLogin ? "已登录，欢迎" : "请登录以使用全部功能"}</div>

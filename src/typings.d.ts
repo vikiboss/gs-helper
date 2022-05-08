@@ -14,6 +14,7 @@ export interface NativeApi {
   clearCookie: (domain?: string) => Promise<void>;
   getGachaUrl: () => Promise<string>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
+  getUserInfoByCookie: () => Promise<any>;
 }
 
 export type GachaItem = {

@@ -10,9 +10,9 @@
   .user {
     .flex-center-y();
 
-    height: 100px;
-    width: calc(100vw - 20px);
-    padding: 0 10px;
+    height: 120px;
+    width: calc(100vw - 40px);
+    padding: 12px 20px 0 20px;
     background-color: @color-bg-deep;
 
     .avatar {
@@ -27,24 +27,30 @@
       .flex-center-y-column();
 
       flex: 1;
-      margin-left: 10px;
+      margin-left: 20px;
 
-      .uid {
-        // color: @text-color;
+      .nickname {
+        padding: 2px 10px;
+        display: inline-block;
         color: @color-white;
         width: 148px;
-        display: inline-block;
+        border-radius: 16px;
         background-color: @text-color-orange;
         background: linear-gradient(to right, @text-color-orange, transparent);
-        border-radius: 14px;
-        padding: 4px 10px;
       }
 
-      .greet {
-        font-size: 20px;
-        margin-top: 10px;
+      .sign {
+        display: inline-block;
+        width: 148px;
+        color: @text-color;
+        padding: 2px 10px;
+      }
+
+      .uid {
+        display: inline-block;
+        width: 148px;
         color: @text-color-second;
-        padding: 4px 10px 4px 2px;
+        padding: 2px 10px;
       }
     }
   }

@@ -5,8 +5,14 @@ import AuthContext from "./AuthContext";
 
 const Provider = AuthContext.Provider;
 
-function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [isLogin, setIsLogin] = React.useState<boolean>(false);
+type AuthProviderProp = {
+  children: React.ReactNode;
+  isLogin: boolean;
+};
+
+const AuthProvider: React.FC<AuthProviderProp> = (props) => {
+  const { children, isLogin: logged } = props;
+  const [isLogin, setIsLogin] = React.useState<boolean>(logged);
 
   useEffect(() => {
     (async () => {
@@ -26,8 +32,7 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
     return callback ? callback() : true;
   };
 
-  const value = { isLogin, login, logout };
-  return <Provider value={value}>{children}</Provider>;
-}
+  return <Provider value={{ isLogin, login, logout }}>{children}</Provider>;
+};
 
 export default AuthProvider;

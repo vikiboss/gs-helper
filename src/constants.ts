@@ -8,7 +8,6 @@ export const GAME_NAME_EN = "Genshin Impact";
 export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
 
 export const API_WEB_BASE = "https://bbs-api.mihoyo.com/user/wapi";
-export const API_AUTH_BASE = "https://api-takumi.mihoyo.com/auth/api";
 export const API_GACHA_BASE = "https://hk4e-api.mihoyo.com/event/gacha_info/api";
 
 export const MAIN_WINDOW_WIDTH = 970;
@@ -38,5 +37,6 @@ export const IPC_EVENTS: Record<string, string> = {
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
-  setStoreKey: "SET_STORE_KEY"
+  setStoreKey: "SET_STORE_KEY",
+  getUserInfoByCookie: "GET_USER_INFO_BY_COOKIE"
 };
