@@ -14,8 +14,8 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   hideApp: () => {
     ipcRenderer.send(IPC_EVENTS.hideApp);
   },
-  login: () => {
-    ipcRenderer.send(IPC_EVENTS.login);
+  loginViaMihoyoBBS: () => {
+    ipcRenderer.send(IPC_EVENTS.loginViaMihoyoBBS);
   },
   getAppInfo: (): Promise<AppInfo> => {
     return ipcRenderer.invoke(IPC_EVENTS.getAppInfo);

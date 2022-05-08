@@ -5,7 +5,8 @@ import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
-import { UserInfo } from "../../../typings";
+
+import type { UserInfo } from "../../../typings";
 
 import styles from "./index.less";
 
@@ -29,7 +30,7 @@ const Login: React.FC<LoginProp> = (props) => {
   }, []);
 
   const handleLogin = () => {
-    nativeApi.login();
+    nativeApi.loginViaMihoyoBBS();
   };
 
   const handleRefresh = async () => {

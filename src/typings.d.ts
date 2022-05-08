@@ -7,7 +7,7 @@ export interface NativeApi {
   closeApp: () => void;
   hideApp: () => void;
   minimizeApp: () => void;
-  login: () => void;
+  loginViaMihoyoBBS: () => void;
   getAppInfo: () => Promise<AppInfo>;
   getStoreKey: (key: string) => Promise<any>;
   setStoreKey: (key: string, value: any) => Promise<void>;

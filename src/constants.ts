@@ -36,7 +36,7 @@ export const IPC_EVENTS: Record<string, string> = {
   getStoreKey: "GET_STORE_KEY",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   hideApp: "HIDE_APP",
-  login: "LOGIN_VIA_MIHOYO_BBS",
+  loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
   setStoreKey: "SET_STORE_KEY"
 };
