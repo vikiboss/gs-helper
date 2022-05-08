@@ -1,9 +1,10 @@
 import path from "path";
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
 
+import { store } from ".";
 import icon from "../assets/icon.ico";
-import { APP_NAME, MENU } from "../constants";
 import { isDev } from "./createMainWindow";
+import { APP_NAME, MENU } from "../constants";
 
 const initTray = (win: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));
@@ -15,7 +16,11 @@ const initTray = (win: BrowserWindow) => {
       label: MENU.alwaysOnTop,
       type: "checkbox",
       checked: win.isAlwaysOnTop(),
-      click: () => win.setAlwaysOnTop(!win.isAlwaysOnTop())
+      click: () => {
+        const targetValue = !win.isAlwaysOnTop();
+        store.set("settings.alwaysOnTop", targetValue);
+        win.setAlwaysOnTop(targetValue);
+      }
     },
     {
       label: MENU.openDevTools,

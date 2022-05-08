@@ -1,4 +1,6 @@
-import { app, globalShortcut, BrowserWindow } from "electron";
+import { app, globalShortcut } from "electron";
+
+import type { BrowserWindow } from "electron";
 
 const registerHotkey = (win: BrowserWindow) => {
   globalShortcut.register("CommandOrControl+Q", () =>

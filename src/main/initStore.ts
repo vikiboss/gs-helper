@@ -1,15 +1,17 @@
 import Store, { Schema } from "electron-store";
 
-const defaultData: any = {
+import { AppData } from "../typings";
+
+const defaultData: AppData = {
   user: {
     buid: "",
     cookie: ""
   },
   gacha: [],
-  settings: {}
+  settings: { alwaysOnTop: false }
 };
 
-const schema: Schema<typeof defaultData> = {
+const schema: Schema<AppData> = {
   user: {
     type: "object",
     properties: {
@@ -56,8 +58,12 @@ const schema: Schema<typeof defaultData> = {
   },
   settings: {
     type: "object",
-    properties: {}
+    properties: {
+      alwaysOnTop: {
+        type: "boolean"
+      }
+    }
   }
 };
 
-export default () => new Store({ schema, defaults: defaultData });
+export default () => new Store<AppData>({ schema, defaults: defaultData });

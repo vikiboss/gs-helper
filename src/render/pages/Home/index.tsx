@@ -26,7 +26,11 @@ const Home: React.FC = () => {
         <div>{isLogin ? "已登录，欢迎" : "请登录以使用全部功能"}</div>
         <Button text='抽卡分析' noIcon onClick={() => navigate("/gacha")} />
         <Button text='设置' noIcon onClick={() => navigate("/setting")} />
-        <Button noIcon text={isLogin ? "退出登录" : "登录"} onClick={handleLoginClick} />
+        <Button
+          type={isLogin ? "cancel" : "confirm"}
+          text={isLogin ? "退出登录" : "登录"}
+          onClick={handleLoginClick}
+        />
       </div>
       {holder}
     </>

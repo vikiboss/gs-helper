@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
 import { app } from "electron";
-import { GAME_NAME_ZH_CN, GAME_NAME_EN } from "../constants";
+
 import { isFileExist } from "../utils/readFileSystem";
+import { GAME_NAME_ZH_CN, GAME_NAME_EN } from "../constants";
 
 const getGachaUrl = async () => {
   const lang = app.getLocale();

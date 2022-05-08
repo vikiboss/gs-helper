@@ -2,9 +2,9 @@ import { app, BrowserWindow, ipcMain } from "electron";
 
 import { mainWin, store } from ".";
 import clearCookie from "./clearCookie";
+import getGachaUrl from "./getGachaUrl";
 import verifyCookie from "./verifyCookie";
 import { APP_USER_AGENT, IPC_EVENTS } from "../constants";
-import getGachaUrl from "./getGachaUrl";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));

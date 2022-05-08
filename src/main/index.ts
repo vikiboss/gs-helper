@@ -1,14 +1,17 @@
 import Store from "electron-store";
 import { app, BrowserWindow } from "electron";
 
+import bindIPC from "./bindIPC";
 import initTray from "./initTray";
 import initStore from "./initStore";
-import bindIPC from "./bindIPC";
+import restoreSettings from "./restoreSettings";
 import createMainWindow from "./createMainWindow";
 import { registerHotkey, unregisterHotkey } from "./hotkeys";
 
+import type { AppData } from "../typings";
+
 let mainWin: BrowserWindow = null;
-let store: Store;
+let store: Store<AppData>;
 
 app.disableHardwareAcceleration();
 
@@ -24,6 +27,7 @@ if (isWinner) {
     mainWin = createMainWindow();
     store = initStore();
     void initTray(mainWin);
+    void restoreSettings(mainWin);
     void registerHotkey(mainWin);
     void bindIPC(mainWin);
   });
