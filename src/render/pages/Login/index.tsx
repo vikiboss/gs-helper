@@ -1,12 +1,11 @@
-import { Cookies } from "electron";
 import React, { useEffect, useState } from "react";
-import { Link, Navigate, useLocation, useNavigate } from "react-router-dom";
-import { LoginState, UserInfo } from "../../../typings";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
-import Button from "../../components/Button";
 import useAlert from "../../hooks/useAlert";
 import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
+import Button from "../../components/Button";
+import { UserInfo } from "../../../typings";
 
 import styles from "./index.less";
 
@@ -15,9 +14,9 @@ type LoginProp = {
 };
 
 const Login: React.FC<LoginProp> = (props) => {
+  const navigate = useNavigate();
   const { isLogin, login } = useAuth();
   const [logged, setLogged] = useState<boolean>(isLogin);
-  const navigate = useNavigate();
   const { holder, success, faild } = useAlert();
 
   const naviProps = {
@@ -37,7 +36,7 @@ const Login: React.FC<LoginProp> = (props) => {
     const user: UserInfo = await nativeApi.getStoreKey("user");
     if (!user?.cookie) return faild({ message: "未检测到有效验证信息，请重新登录" });
     setLogged(true);
-    success({ message: "👋 登录成功~ 正在返回登录前页面" });
+    success({ message: "登录成功，正在前往登录前页面..." });
     setTimeout(() => login(), 1200);
   };
 
@@ -52,7 +51,7 @@ const Login: React.FC<LoginProp> = (props) => {
       <Button noIcon text='登录' onClick={handleLogin} />
       <Button noIcon text='刷新' onClick={handleRefresh} />
       <Button noIcon text='回首页' onClick={navigateToHomePage} />
-      {logged && <Link to={naviProps.to}>如果没有自动跳转，请点此处</Link>}
+      {logged && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
       {holder}
     </div>
   );

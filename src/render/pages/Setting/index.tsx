@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+
 import withAuth from "../../auth/AuthGuard";
 import Button from "../../components/Button";
-import useAuth from "../../hooks/useAuth";
 
 import styles from "./index.less";
 

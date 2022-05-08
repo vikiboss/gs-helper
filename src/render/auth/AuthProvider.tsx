@@ -17,12 +17,13 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = (callback?: VoidFunction) => {
     setIsLogin(true);
-    return callback && callback();
+    return callback ? callback() : true;
   };
 
-  const logout = (callback?: VoidFunction) => {
+  const logout = async (callback?: VoidFunction) => {
     setIsLogin(false);
-    return callback && callback();
+    await nativeApi.clearCookie();
+    return callback ? callback() : true;
   };
 
   const value = { isLogin, login, logout };

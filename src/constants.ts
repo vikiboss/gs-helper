@@ -23,6 +23,7 @@ export const IPC_EVENTS: Record<string, string> = {
   getStoreKey: "GET_STORE_KEY",
   setStoreKey: "SET_STORE_KEY",
   getAppInfo: "GET_APP_INFO",
+  clearCookie: "CLEAR_COOKIE",
   hideApp: "HIDE_APP",
   newWindow: "NEW_WINDOW",
   minimizeApp: "MONIMIZE_APP",

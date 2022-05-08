@@ -1,5 +1,6 @@
 import { Cookies } from "electron";
 import { Store } from "electron-store";
+
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 export type AppInfo = {
@@ -25,7 +26,8 @@ export interface NativeApi {
 
   getAppInfo: () => Promise<AppInfo>;
   getStoreKey: (key: string) => Promise<any>;
-  setStoreKey: (key: string, value: any) => Promise<any>;
+  setStoreKey: (key: string, value: any) => Promise<void>;
+  clearCookie: (domain?: string) => Promise<void>;
 }
 
 export type ElectronWindow = Window &
