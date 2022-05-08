@@ -2,6 +2,7 @@ import getUserInfoByToken from "../services/getUserInfoByToken";
 
 import type { Cookies } from "electron";
 
+// 
 const verifyCookie = async (cks: Cookies) => {
   const mihoyoCks = await cks.get({ domain: "mihoyo.com" });
   let cookie = "";

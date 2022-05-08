@@ -7,7 +7,7 @@ const defaultData: AppData = {
     buid: "",
     cookie: ""
   },
-  gacha: [],
+  gachas: [],
   settings: { alwaysOnTop: false }
 };
 
@@ -19,7 +19,7 @@ const schema: Schema<AppData> = {
       cookie: { type: "string" }
     }
   },
-  gacha: {
+  gachas: {
     type: "array",
     items: {
       type: "object",

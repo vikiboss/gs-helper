@@ -15,6 +15,11 @@ export type GachaItem = {
   uigf_gacha_type: string;
 };
 
+export type RawGachaItem = GachaItem & {
+  uid: string;
+  lang: string;
+};
+
 export type GachaData = {
   info: {
     uid: string;
@@ -33,7 +38,7 @@ export type AppData = {
     buid: string;
     cookie: string;
   };
-  gacha: GachaData[];
+  gachas: GachaData[];
   settings: { alwaysOnTop: boolean };
 };
 
@@ -63,7 +68,10 @@ export interface NativeApi {
   setStoreKey: (key: string, value: any) => Promise<void>;
   clearCookie: (domain?: string) => Promise<void>;
   getGachaUrl: () => Promise<string>;
+  getGachaListByUrl: (url: string) => Promise<GachaData>;
 }
 
 export type ElectronWindow = Window &
   typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
+
+declare module "axios/lib/adapters/http";

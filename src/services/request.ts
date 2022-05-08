@@ -2,7 +2,6 @@ import axios from "axios";
 
 import { APP_USER_AGENT } from "../constants";
 
-axios.defaults.adapter = require("axios/lib/adapters/http");
 axios.defaults.timeout = 6000;
 axios.defaults.headers.common["user-agent"] = APP_USER_AGENT;
 
@@ -18,7 +17,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    console.log(response);
+    console.log(response.status);
     return response;
   },
   (error) => {
