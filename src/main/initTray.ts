@@ -15,7 +15,7 @@ const initTray = (win: BrowserWindow) => {
     {
       label: MENU.alwaysOnTop,
       type: "checkbox",
-      checked: win.isAlwaysOnTop(),
+      checked: store.get("settings.alwaysOnTop"),
       click: () => {
         const targetValue = !win.isAlwaysOnTop();
         store.set("settings.alwaysOnTop", targetValue);
@@ -40,7 +40,11 @@ const initTray = (win: BrowserWindow) => {
 
   const contextMenu = Menu.buildFromTemplate(menus);
 
-  win.on("always-on-top-changed", (_, onTop) => (contextMenu.items[1].checked = onTop));
+  win.on("always-on-top-changed", (_, onTop) => {
+    contextMenu.items[1].checked = onTop;
+    store.set("settings.alwaysOnTop", onTop);
+  });
+
   web.on("devtools-opened", () => (contextMenu.items[2].checked = true));
   web.on("devtools-closed", () => (contextMenu.items[2].checked = false));
 
