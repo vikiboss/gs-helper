@@ -4,7 +4,31 @@
   align-items: center;
 }
 
+.flex-center-x {
+  display: flex;
+  justify-content: center;
+}
+
+.flex-center-y {
+  display: flex;
+  align-items: center;
+}
+
 .flex-center-column {
   .flex-center();
   flex-direction: column;
+}
+
+.flex-center-x-column {
+  .flex-center-y();
+  flex-direction: column;
+}
+
+.flex-center-y-column {
+  .flex-center-x();
+  flex-direction: column;
+}
+
+.shadow {
+  box-shadow: 1px 1px 16px 1px rgb(255, 228, 199);
 }

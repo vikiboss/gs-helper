@@ -2,12 +2,56 @@
 @import "../../utils/util.less";
 
 .container {
-  .flex-center-column();
+  .flex-center-x-column();
 
   flex: 1;
-  font-size: 32px;
   color: @win-bar-bg-color;
-  a {
-    font-size: 16px;
+
+  .user {
+    .flex-center-y();
+
+    height: 100px;
+    width: calc(100vw - 20px);
+    padding: 0 10px;
+    background-color: @color-bg-deep;
+
+    .avatar {
+      // .shadow();
+
+      width: 80px;
+      height: $width;
+      border-radius: 40px;
+    }
+
+    .user-info {
+      .flex-center-y-column();
+
+      flex: 1;
+      margin-left: 10px;
+
+      .uid {
+        // color: @text-color;
+        color: @color-white;
+        width: 148px;
+        display: inline-block;
+        background-color: @text-color-orange;
+        background: linear-gradient(to right, @text-color-orange, transparent);
+        border-radius: 14px;
+        padding: 4px 10px;
+      }
+
+      .greet {
+        font-size: 20px;
+        margin-top: 10px;
+        color: @text-color-second;
+        padding: 4px 10px 4px 2px;
+      }
+    }
+  }
+
+  .content {
+    .flex-center-column();
+
+    padding: 20px;
   }
 }
