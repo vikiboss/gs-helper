@@ -31,7 +31,7 @@ const Home: React.FC = () => {
         setAvatar(user.avatar_url);
       }
     })();
-  }, []);
+  }, [isLogin]);
 
   const handleLoginClick = () => {
     if (isLogin) {
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          {nickname && (
+          {isLogin ? (
             <>
               <img src={avatar} alt='avatar' className={styles.avatar} />
               <div className={styles.userInfo}>
@@ -54,24 +54,27 @@ const Home: React.FC = () => {
                   昵称：<div className={styles.nickname}>{nickname || "获取中..."}</div>
                 </div>
                 <div>
-                  签名：<div className={styles.sign}>{sign || "这个人有点懒，什么也没有说"}</div>
+                  签名：<div className={styles.sign}>{sign || "这个人有点懒"}</div>
                 </div>
                 <div>
                   BID：<div className={styles.uid}>{uid || "获取中..."}</div>
                 </div>
               </div>
             </>
+          ) : (
+            <div className={styles.noLoginContainer}>
+              <div className={styles.noLoginText}>
+                欢迎你，冒险者。👋
+                <br />
+                登录 「米游社」 账号以使用全部功能。
+              </div>
+              <Button text='登录米游社' size='middle' type='confirm' onClick={handleLoginClick} />
+            </div>
           )}
         </div>
         <div className={styles.content}>
-          <div>{isLogin ? "已登录，欢迎" : "请登录以使用全部功能"}</div>
           <Button text='抽卡分析' noIcon onClick={() => navigate("/gacha")} />
           <Button text='设置' noIcon onClick={() => navigate("/setting")} />
-          <Button
-            type={isLogin ? "cancel" : "confirm"}
-            text={isLogin ? "退出登录" : "登录"}
-            onClick={handleLoginClick}
-          />
         </div>
       </div>
       {holder}

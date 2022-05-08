@@ -34,6 +34,10 @@
     color: @btn-text-color;
   }
 
+  .with-icon {
+    position: relative;
+  }
+
   &:hover {
     border-color: @btn-hover-border-color;
   }
@@ -52,11 +56,14 @@
 
 .small {
   .icon {
-    left: @size-small * 0.16;
+    left: @size-small * 0.17;
     padding: @size-small * 0.12;
   }
   .text {
     font-size: @size-small * 0.42;
+  }
+  .with-icon {
+    left: @size-small * 0.16;
   }
   border-radius: calc((@size-small + 6px) / 2);
   width: @size-small * 3;
@@ -66,11 +73,14 @@
 
 .middle {
   .icon {
-    left: @size-middle * 0.16;
+    left: @size-middle * 0.17;
     padding: @size-middle * 0.12;
   }
   .text {
     font-size: @size-middle * 0.42;
+  }
+  .with-icon {
+    left: @size-small * 0.16;
   }
   border-radius: calc((@size-middle + 8px) / 2);
   width: @size-middle * 3;
@@ -80,11 +90,14 @@
 
 .large {
   .icon {
-    left: @size-large * 0.16;
+    left: @size-large * 0.17;
     padding: @size-large * 0.12;
   }
   .text {
     font-size: @size-large * 0.42;
+  }
+  .with-icon {
+    left: @size-small * 0.16;
   }
   border-radius: calc((@size-large + 10px) / 2);
   width: @size-large * 3;

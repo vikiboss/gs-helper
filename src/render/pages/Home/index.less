@@ -53,11 +53,25 @@
         padding: 2px 10px;
       }
     }
+
+    .noLoginContainer {
+      .flex-center-y();
+      height: 120px;
+      width: calc(100vw - 40px);
+      justify-content: space-between;
+      padding-right: 60px;
+
+      .no-login-text {
+        font-size: 28px;
+        padding-left: 32px;
+        line-height: 36px;
+      }
+    }
   }
 
   .content {
-    .flex-center-column();
+    .flex-center();
 
-    padding: 20px;
+    flex: 1;
   }
 }

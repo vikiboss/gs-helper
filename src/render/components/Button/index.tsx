@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProp> = (props) => {
   return (
     <div className={cn(styles.btn, styles[size], className)} onClick={onClick}>
       {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : "")} />}
-      <div className={styles.text}>{text}</div>
+      <div className={cn(styles.text, noIcon ? "" : styles.withIcon)}>{text}</div>
     </div>
   );
 };
