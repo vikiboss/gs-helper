@@ -3,6 +3,19 @@ import { Store } from "electron-store";
 
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
+export interface NativeApi {
+  closeApp: () => void;
+  hideApp: () => void;
+  minimizeApp: () => void;
+  login: () => void;
+  getAppInfo: () => Promise<AppInfo>;
+  getStoreKey: (key: string) => Promise<any>;
+  setStoreKey: (key: string, value: any) => Promise<void>;
+  clearCookie: (domain?: string) => Promise<void>;
+  getGachaUrl: () => Promise<string>;
+  getGachaListByUrl: (url: string) => Promise<GachaData>;
+}
+
 export type GachaItem = {
   gacha_type: string;
   item_id: string;
@@ -57,21 +70,5 @@ export type UserInfo = {
   cookie: string;
 };
 
-export interface NativeApi {
-  closeApp: () => void;
-  hideApp: () => void;
-  minimizeApp: () => void;
-  login: () => void;
-
-  getAppInfo: () => Promise<AppInfo>;
-  getStoreKey: (key: string) => Promise<any>;
-  setStoreKey: (key: string, value: any) => Promise<void>;
-  clearCookie: (domain?: string) => Promise<void>;
-  getGachaUrl: () => Promise<string>;
-  getGachaListByUrl: (url: string) => Promise<GachaData>;
-}
-
 export type ElectronWindow = Window &
   typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
-
-declare module "axios/lib/adapters/http";

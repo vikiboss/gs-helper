@@ -1,8 +1,8 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "../constants";
+import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
-import type { GachaData, AppInfo } from "./../typings";
+import type { GachaData, AppInfo } from "./typings";
 
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   closeApp: () => {
