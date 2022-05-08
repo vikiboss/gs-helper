@@ -27,5 +27,8 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   },
   clearCookie: (domain?: string): Promise<void> => {
     return ipcRenderer.invoke(IPC_EVENTS.clearCookie, domain);
+  },
+  getGachaUrl: (): Promise<string> => {
+    return ipcRenderer.invoke(IPC_EVENTS.getGachaUrl);
   }
 });

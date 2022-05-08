@@ -28,6 +28,7 @@ export interface NativeApi {
   getStoreKey: (key: string) => Promise<any>;
   setStoreKey: (key: string, value: any) => Promise<void>;
   clearCookie: (domain?: string) => Promise<void>;
+  getGachaUrl: () => Promise<string>;
 }
 
 export type ElectronWindow = Window &

@@ -4,6 +4,7 @@ import { mainWin, store } from ".";
 import clearCookie from "./clearCookie";
 import verifyCookie from "./verifyCookie";
 import { APP_USER_AGENT, IPC_EVENTS } from "../constants";
+import getGachaUrl from "./getGachaUrl";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
@@ -46,6 +47,8 @@ const bindIPC = (win: BrowserWindow) => {
   ipcMain.handle(IPC_EVENTS.clearCookie, (_, domain?: string) => {
     clearCookie(domain);
   });
+
+  ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
 };
 
 export default bindIPC;
