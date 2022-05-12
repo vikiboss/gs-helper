@@ -4,7 +4,7 @@ import { app, BrowserWindow } from "electron";
 import bindIPC from "./bindIPC";
 import initTray from "./initTray";
 import initStore from "./initStore";
-import restoreSettings from "./restoreSettings";
+import restoreSettings from "../utils/restoreSettings";
 import createMainWindow from "./createMainWindow";
 import { registerHotkey, unregisterHotkey } from "./hotkeys";
 

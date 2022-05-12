@@ -1,6 +1,6 @@
 import { session } from "electron";
 
-import { store } from ".";
+import { store } from "../main";
 
 const clearCookie = async (domain: string = "mihoyo.com") => {
   store.set("user", { buid: "", cookie: "" });

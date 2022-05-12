@@ -1,4 +1,4 @@
-import { store } from ".";
+import { store } from "../main";
 
 import type { BrowserWindow } from "electron";
 import type { AppData } from "../typings";

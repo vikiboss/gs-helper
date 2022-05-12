@@ -1,8 +1,8 @@
 import { app, BrowserWindow, ipcMain } from "electron";
 
 import { mainWin, store } from ".";
-import clearCookie from "./clearCookie";
-import getGachaUrl from "./getGachaUrl";
+import clearCookie from "../utils/clearCookie";
+import getGachaUrl from "../utils/getGachaUrl";
 import verifyCookie from "../utils/verifyCookie";
 import getGachaListByUrl from "../services/getGachaListByUrl";
 import { APP_USER_AGENT, IPC_EVENTS, LINK_MIHOYO_BBS_LOGIN } from "../constants";
