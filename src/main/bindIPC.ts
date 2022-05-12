@@ -8,16 +8,14 @@ import getGachaListByUrl from "../services/getGachaListByUrl";
 import { APP_USER_AGENT, IPC_EVENTS, LINK_MIHOYO_BBS_LOGIN } from "../constants";
 import updateStoreGachaList from "../utils/updateStoreGachaList";
 import getUserInfoByCookie from "../services/getUserInfoByCookie";
+import { defaultData } from "./initStore";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
   ipcMain.on(IPC_EVENTS.minimizeApp, () => win.minimize());
   ipcMain.on(IPC_EVENTS.hideApp, () => win.hide());
 
-  ipcMain.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => {
-    console.log(store.path);
-    store.set(key, value);
-  });
+  ipcMain.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => store.set(key, value));
 
   ipcMain.on(IPC_EVENTS.clearCookie, (_, domain?: string) => {
     clearCookie(domain);
@@ -38,8 +36,16 @@ const bindIPC = (win: BrowserWindow) => {
 
     bbsWin.on("close", async () => {
       const cookies = bbsWin.webContents.session.cookies;
-      const { valid, cookie, buid } = await verifyCookie(cookies);
-      store.set("user", valid ? { cookie, buid } : { cookie: "", buid: "" });
+      const { valid, cookie, info } = await verifyCookie(cookies);
+      if (!valid) {
+        store.set("user", defaultData.user);
+      } else {
+        store.set("user.buid", info.uid);
+        store.set("user.nickname", info.nickname);
+        store.set("user.introduce", info.introduce);
+        store.set("user.avatar", info.avatar_url);
+        store.set("user.cookie", cookie);
+      }
       mainWin.focus();
     });
   });
@@ -57,10 +63,6 @@ const bindIPC = (win: BrowserWindow) => {
     const data = await getGachaListByUrl(url);
     updateStoreGachaList(data);
     return data;
-  });
-
-  ipcMain.handle(IPC_EVENTS.getUserInfoByCookie, async (_, cookie?: string) => {
-    return await getUserInfoByCookie(cookie);
   });
 };
 

@@ -10,11 +10,10 @@ export interface NativeApi {
   loginViaMihoyoBBS: () => void;
   getAppInfo: () => Promise<AppInfo>;
   getStoreKey: (key: string) => Promise<any>;
-  setStoreKey: (key: string, value: any) => Promise<void>;
+  setStoreKey: (key: string, value: any) => void;
   clearCookie: (domain?: string) => Promise<void>;
   getGachaUrl: () => Promise<string>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
-  getUserInfoByCookie: () => Promise<any>;
 }
 
 export type GachaItem = {
@@ -50,6 +49,9 @@ export type GachaData = {
 export type AppData = {
   user: {
     buid: string;
+    nickname: string;
+    introduce: string;
+    avatar: string;
     cookie: string;
   };
   gachas: GachaData[];
@@ -64,11 +66,6 @@ export type AppInfo = {
 export type LoginState = {
   valid: boolean;
   cookies: Cookies;
-};
-
-export type UserInfo = {
-  buid: string;
-  cookie: string;
 };
 
 export type ElectronWindow = Window &

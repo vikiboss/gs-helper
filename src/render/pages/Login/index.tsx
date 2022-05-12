@@ -6,7 +6,7 @@ import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
 
-import type { UserInfo } from "../../../typings";
+import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
 
@@ -34,7 +34,7 @@ const Login: React.FC<LoginProp> = (props) => {
   };
 
   const handleRefresh = async () => {
-    const user: UserInfo = await nativeApi.getStoreKey("user");
+    const user: AppData["user"] = await nativeApi.getStoreKey("user");
     if (!user?.cookie) return faild({ message: "未检测到有效验证信息，请重新登录" });
     setLogged(true);
     success({ message: "登录成功，正在前往登录前页面..." });

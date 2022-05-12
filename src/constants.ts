@@ -37,6 +37,5 @@ export const IPC_EVENTS: Record<string, string> = {
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
-  setStoreKey: "SET_STORE_KEY",
-  getUserInfoByCookie: "GET_USER_INFO_BY_COOKIE"
+  setStoreKey: "SET_STORE_KEY"
 };

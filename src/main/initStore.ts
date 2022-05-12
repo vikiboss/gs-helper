@@ -2,9 +2,12 @@ import Store, { Schema } from "electron-store";
 
 import { AppData } from "../typings";
 
-const defaultData: AppData = {
+export const defaultData: AppData = {
   user: {
     buid: "",
+    nickname: "",
+    introduce: "",
+    avatar: "",
     cookie: ""
   },
   gachas: [],
@@ -16,6 +19,9 @@ const schema: Schema<AppData> = {
     type: "object",
     properties: {
       buid: { type: "string", pattern: "^[0-9]{0,10}$" },
+      nickname: { type: "string" },
+      introduce: { type: "string" },
+      avatar: { type: "string" },
       cookie: { type: "string" }
     }
   },

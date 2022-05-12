@@ -11,7 +11,7 @@ import styles from "./index.less";
 
 const Home: React.FC = () => {
   const [nickname, setNickname] = useState<string>("");
-  const [uid, setUid] = useState<string>("");
+  const [buid, setBuid] = useState<string>("");
   const [sign, setSign] = useState<string>("");
   const [avatar, setAvatar] = useState<string>(icon);
   const { success, holder } = useAlert();
@@ -20,16 +20,12 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      console.log(isLogin);
-      if (isLogin) {
-        const user = await nativeApi.getUserInfoByCookie();
-        console.log(user);
-        if (!user?.uid) return;
-        setNickname(user.nickname);
-        setUid(user.uid);
-        setSign(user.introduce);
-        setAvatar(user.avatar_url);
-      }
+      if (!isLogin) return;
+      const user = await nativeApi.getStoreKey("user");
+      setNickname(user.nickname);
+      setBuid(user.buid);
+      setSign(user.introduce);
+      setAvatar(user.avatar);
     })();
   }, [isLogin]);
 
@@ -57,7 +53,7 @@ const Home: React.FC = () => {
                   签名：<div className={styles.sign}>{sign || "这个人有点懒"}</div>
                 </div>
                 <div>
-                  BID：<div className={styles.uid}>{uid || "获取中..."}</div>
+                  BID：<div className={styles.uid}>{buid || "获取中..."}</div>
                 </div>
               </div>
             </>

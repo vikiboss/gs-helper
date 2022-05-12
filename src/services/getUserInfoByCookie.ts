@@ -3,7 +3,8 @@ import { store } from "../main";
 import { API_WEB_BASE } from "../constants";
 
 const getUserInfoByCookie = async (cookie?: string) => {
-  if (!cookie) cookie = store.get("user.cookie");
+  cookie = cookie || store.get("user.cookie");
+  if (!cookie) return null;
   const { data, status } = await request.get(`${API_WEB_BASE}/getUserFullInfo`, {
     params: { t: Date.now() },
     headers: { cookie }
