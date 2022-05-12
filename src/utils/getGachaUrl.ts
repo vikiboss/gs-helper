@@ -35,7 +35,6 @@ const getGachaUrl = async () => {
     console.log(url);
     return url;
   } catch (e) {
-    console.log(e);
     return "";
   }
 };
