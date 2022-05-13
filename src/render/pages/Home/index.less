@@ -46,7 +46,7 @@
         padding: 2px 10px;
       }
 
-      .uid {
+      .buid {
         display: inline-block;
         width: 148px;
         color: @text-color-second;
@@ -70,8 +70,67 @@
   }
 
   .content {
-    .flex-center();
+    .flex-center-column();
 
     flex: 1;
+
+    .title {
+      width: calc(100vw - 40px);
+      font-size: 32px;
+      padding: 20px 20px 0px 20px;
+    }
+
+    .ps {
+      color: @text-color-second;
+      width: calc(100vw - 40px);
+      padding-bottom: 12px;
+    }
+
+    .btn-list {
+      .flex-wrap();
+      align-content: flex-start;
+
+      flex: 1;
+      width: calc(100vw - 20px);
+
+      .btn {
+        .flex-center-column();
+
+        width: 196px;
+        height: 100px;
+        padding: 10px;
+        margin: 8px;
+        color: @home-btn-color;
+        cursor: pointer;
+        border-radius: 1px;
+        background-color: @btn-bg-color;
+        border: 2px solid @home-block-border-color;
+        transition: all 0.2s ease-in-out;
+
+        .btn-text {
+          margin-top: 12px;
+          font-size: 20px;
+        }
+
+        &:hover {
+          color: @home-btn-hover-color;
+          transform: scale(1.1);
+          border: 2px solid @home-block-hover-border-color;
+        }
+
+        &:active {
+          color: @btn-bg-color;
+          transform: scale(1);
+          background-color: @home-btn-hover-color;
+          border: 2px solid @home-block-active-border-color;
+        }
+      }
+    }
+
+    .btns {
+      .flex-center();
+
+      margin: 12px 0;
+    }
   }
 }
