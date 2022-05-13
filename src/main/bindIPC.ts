@@ -1,4 +1,9 @@
-import { app, BrowserWindow, ipcMain, shell } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions, ipcMain, shell } from "electron";
+
+const AppInfo = {
+  name: app.getName(),
+  version: app.getVersion()
+};
 
 import { mainWin, store } from ".";
 import { defaultData } from "./initStore";
@@ -7,7 +12,14 @@ import getGachaUrl from "../utils/getGachaUrl";
 import verifyCookie from "../utils/verifyCookie";
 import getGachaListByUrl from "../services/getGachaListByUrl";
 import updateStoreGachaList from "../utils/updateStoreGachaList";
-import { APP_USER_AGENT, IPC_EVENTS, LINK_MIHOYO_BBS_LOGIN } from "../constants";
+import {
+  IPC_EVENTS,
+  APP_USER_AGENT_MOBILE,
+  APP_USER_AGENT_DESKTOP,
+  LINK_MIHOYO_BBS_LOGIN,
+  SCRIPT_REFINE_BBS,
+  WINDOW_BACKGROUND_COLOR
+} from "../constants";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
@@ -21,40 +33,69 @@ const bindIPC = (win: BrowserWindow) => {
     const bbsWin = new BrowserWindow({
       width: 400,
       height: 700,
+      show: false,
       modal: true,
       parent: mainWin,
+      resizable: false,
+      maximizable: false,
       alwaysOnTop: true,
-      autoHideMenuBar: true
+      fullscreenable: false,
+      backgroundColor: WINDOW_BACKGROUND_COLOR
     });
+    bbsWin.removeMenu();
+    bbsWin.once("ready-to-show", () => bbsWin.show());
 
-    bbsWin.webContents.setUserAgent(APP_USER_AGENT);
-    bbsWin.webContents.loadURL(LINK_MIHOYO_BBS_LOGIN);
+    const dom = bbsWin.webContents;
+    dom.setWindowOpenHandler(() => ({ action: "deny" }));
+    dom.setUserAgent(APP_USER_AGENT_MOBILE);
+    dom.on("did-finish-load", () => dom.executeJavaScript(SCRIPT_REFINE_BBS));
+    dom.loadURL(LINK_MIHOYO_BBS_LOGIN);
 
     bbsWin.on("close", async () => {
-      const cookies = bbsWin.webContents.session.cookies;
+      const cookies = dom.session.cookies;
       const { valid, cookie, info } = await verifyCookie(cookies);
-      if (!valid) {
-        store.set("user", defaultData.user);
-      } else {
-        store.set("user.buid", info.uid);
-        store.set("user.nickname", info.nickname);
-        store.set("user.introduce", info.introduce);
-        store.set("user.avatar", info.avatar_url);
-        store.set("user.cookie", cookie);
-      }
+      const user = valid
+        ? {
+            buid: info.uid,
+            nickname: info.nickname,
+            introduce: info.introduce,
+            avatar: info.avatar_url,
+            cookie: cookie
+          }
+        : defaultData.user;
+      store.set("user", user);
       mainWin.focus();
     });
   });
 
-  ipcMain.handle(IPC_EVENTS.getAppInfo, () => ({
-    name: app.getName(),
-    version: app.getVersion()
-  }));
+  ipcMain.on(
+    IPC_EVENTS.openWindow,
+    async (_, url: string, options: BrowserWindowConstructorOptions = {}, UA?: string) => {
+      const newWin = new BrowserWindow({
+        width: 1680,
+        height: 900,
+        show: false,
+        backgroundColor: WINDOW_BACKGROUND_COLOR,
+        ...options
+      });
+      newWin.removeMenu();
+      newWin.once("ready-to-show", () => newWin.show());
+      const dom = newWin.webContents;
 
+      dom.setWindowOpenHandler((details) => {
+        dom.loadURL(details.url);
+        return { action: "deny" };
+      });
+
+      dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);
+      dom.on("did-finish-load", () => dom.executeJavaScript(SCRIPT_REFINE_BBS));
+      dom.loadURL(url);
+    }
+  );
+
+  ipcMain.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
   ipcMain.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
-
   ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
-
   ipcMain.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
     updateStoreGachaList(data);

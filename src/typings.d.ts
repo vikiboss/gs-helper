@@ -8,6 +8,7 @@ export interface NativeApi {
   hideApp: () => void;
   minimizeApp: () => void;
   openLink: (url: string) => void;
+  openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => void;
   loginViaMihoyoBBS: () => void;
   getAppInfo: () => Promise<AppInfo>;
   getStoreKey: (key: string) => Promise<any>;

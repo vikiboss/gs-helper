@@ -1,9 +1,9 @@
 import axios from "axios";
 
-import { APP_USER_AGENT } from "../constants";
+import { APP_USER_AGENT_MOBILE } from "../constants";
 
 axios.defaults.timeout = 6000;
-axios.defaults.headers.common["user-agent"] = APP_USER_AGENT;
+axios.defaults.headers.common["user-agent"] = APP_USER_AGENT_MOBILE;
 
 axios.interceptors.request.use(
   (config) => config,

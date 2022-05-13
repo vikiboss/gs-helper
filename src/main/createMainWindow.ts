@@ -1,4 +1,4 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions, shell } from "electron";
 
 import { MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, WINDOW_BACKGROUND_COLOR } from "../constants";
 
@@ -10,7 +10,9 @@ export const isDev = !app.isPackaged;
 const winOptions: BrowserWindowConstructorOptions = {
   width: MAIN_WINDOW_WIDTH,
   height: MAIN_WINDOW_HEIGHT,
+  show: false,
   frame: false,
+  resizable: false,
   maximizable: false,
   fullscreenable: false,
   backgroundColor: WINDOW_BACKGROUND_COLOR,
@@ -21,11 +23,14 @@ const winOptions: BrowserWindowConstructorOptions = {
 
 const createMainWindow = () => {
   const win = new BrowserWindow(winOptions);
-
+  win.removeMenu();
+  win.once("ready-to-show", () => win.show());
+  win.once("system-context-menu", (e) => e.preventDefault());
+  win.webContents.setWindowOpenHandler((details) => {
+    shell.openExternal(details.url);
+    return { action: "deny" };
+  });
   win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
-  win.setMenuBarVisibility(false);
-  win.setResizable(false);
-
   return win;
 };
 

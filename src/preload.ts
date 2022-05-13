@@ -1,4 +1,4 @@
-import { contextBridge, ipcRenderer } from "electron";
+import { BrowserWindowConstructorOptions, contextBridge, ipcRenderer } from "electron";
 
 import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
@@ -16,6 +16,9 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   },
   openLink: (url: string) => {
     ipcRenderer.send(IPC_EVENTS.openLink, url);
+  },
+  openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => {
+    ipcRenderer.send(IPC_EVENTS.openWindow, url, options, UA);
   },
   loginViaMihoyoBBS: () => {
     ipcRenderer.send(IPC_EVENTS.loginViaMihoyoBBS);

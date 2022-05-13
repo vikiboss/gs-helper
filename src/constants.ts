@@ -1,13 +1,19 @@
 export const APP_NAME = "原神助手";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
-export const APP_USER_AGENT = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
+export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0`;
+export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/1.0.0`;
+export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/2.27.1`;
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
-export const REPO_URL = "https://github.com/vikiboss/genshin-helper";
 export const ANNUCEMENT = "本工具使用 MIT 协议开源，仅供学习交流。";
 
+export const DOMAIN_MIHOYO = "mihoyo.com";
+
+export const LINK_GITHUB_REPO = "https://github.com/vikiboss/genshin-helper";
 export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
+export const LINK_GENSHIN_MAP = "https://webstatic.mihoyo.com/ys/app/interactive-map";
+export const LINK_BBS_YS_OBC = "https://bbs.mihoyo.com/ys/obc/";
 
 export const API_WEB_BASE = "https://bbs-api.mihoyo.com/user/wapi";
 export const API_GACHA_BASE = "https://hk4e-api.mihoyo.com/event/gacha_info/api";
@@ -33,6 +39,7 @@ export const IPC_EVENTS: Record<string, string> = {
   clearCookie: "CLEAR_COOKIE",
   closeApp: "CLOSE_APP",
   openLink: "OPEN_LINK",
+  openWindow: "OPEN_WINDOW",
   getAppInfo: "GET_APP_INFO",
   getGachaUrl: "GET_GACHA_URL",
   getStoreKey: "GET_STORE_KEY",
@@ -42,3 +49,11 @@ export const IPC_EVENTS: Record<string, string> = {
   minimizeApp: "MONIMIZE_APP",
   setStoreKey: "SET_STORE_KEY"
 };
+
+export const SCRIPT_REFINE_BBS = `
+var items = ["mhy-bbs-app-header", "header-bar", "bbs-qr"];
+for (const item of items) {
+  const elements = document.getElementsByClassName(item);
+  if (elements.length) elements[0].style.display = "none";
+}
+`;

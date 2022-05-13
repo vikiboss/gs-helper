@@ -14,7 +14,13 @@ import icon from "../../../assets/icon.png";
 import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
-import { ANNUCEMENT, REPO_URL } from "../../../constants";
+import {
+  ANNUCEMENT,
+  APP_USER_AGENT_BBS,
+  LINK_BBS_YS_OBC,
+  LINK_GENSHIN_MAP,
+  LINK_GITHUB_REPO
+} from "../../../constants";
 
 const Home: React.FC = () => {
   const [user, setUser] = useState<Partial<AppData["user"]>>({});
@@ -42,11 +48,6 @@ const Home: React.FC = () => {
     if (path === "/gacha") return navigate("/gacha");
     if (!isLogin) return warning({ message: "请先登录米游社" });
     navigate(path);
-  };
-
-  const handleLinkClick: MouseEventHandler = (e) => {
-    e.preventDefault();
-    nativeApi.openLink(REPO_URL);
   };
 
   const handleTip = () => {
@@ -77,12 +78,12 @@ const Home: React.FC = () => {
     {
       name: "提瓦特地图",
       Icon: FaRegMap,
-      handler: () => {}
+      handler: () => nativeApi.openWindow(LINK_GENSHIN_MAP)
     },
     {
       name: "观测枢·攻略",
       Icon: FaRegCompass,
-      handler: () => {}
+      handler: () => nativeApi.openWindow(LINK_BBS_YS_OBC)
     }
   ];
 
@@ -128,7 +129,10 @@ const Home: React.FC = () => {
             ))}
           </div>
           <div className={styles.footer}>
-            {ANNUCEMENT}源码：<a onClick={handleLinkClick}>GitHub</a>
+            {ANNUCEMENT}源码：
+            <a href={LINK_GITHUB_REPO} target='_blank'>
+              GitHub
+            </a>
           </div>
         </div>
       </div>
