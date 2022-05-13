@@ -86,13 +86,13 @@
       .title {
         width: 100%;
         font-size: 32px;
-        padding: 20px 8px 8px;
+        padding: 20px 8px 8px 8px;
       }
 
       .ps {
         color: @text-color-second;
         width: 100%;
-        padding-bottom: 16px;
+        padding: 0 8px 0px 8px;
       }
 
       .btn {
@@ -105,7 +105,7 @@
         color: @home-btn-color;
         cursor: pointer;
         border-radius: 1px;
-        background-color: @btn-bg-color;
+        background-color: @home-btn-bg-color;
         border: 2px solid @home-block-border-color;
         transition: all 0.2s ease-in-out;
 
@@ -122,7 +122,7 @@
         }
 
         &:active {
-          color: @btn-bg-color;
+          color: @home-btn-bg-color;
           transform: scale(1);
           background-color: @home-btn-hover-color;
           border: 2px solid @home-block-active-border-color;
@@ -133,12 +133,6 @@
     .footer {
       color: @text-color-second;
       margin-bottom: 12px;
-    }
-
-    .btns {
-      .flex-center();
-
-      margin: 12px 0;
     }
   }
 }

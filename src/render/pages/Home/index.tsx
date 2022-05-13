@@ -46,7 +46,7 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     if (path === "/gacha") return navigate("/gacha");
-    if (!isLogin) return warning({ message: "请先登录米游社" });
+    if (!isLogin) return warning({ message: "请先登录 「米游社」 账号" });
     navigate(path);
   };
 
