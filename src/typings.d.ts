@@ -16,7 +16,7 @@ export interface NativeApi {
   getGachaListByUrl: (url: string) => Promise<GachaData>;
 }
 
-export type GachaItem = {
+export type GachaItem = {00
   gacha_type: string;
   item_id: string;
   count: string;

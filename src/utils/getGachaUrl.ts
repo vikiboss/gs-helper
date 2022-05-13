@@ -30,7 +30,7 @@ const getGachaUrl = async () => {
   try {
     const logPath = getLogPath(isLocaleEdition);
     const logContent = await fs.promises.readFile(logPath, { encoding: "utf-8" });
-    const urlReg = /^OnGetWebViewPageFinish:(https?:\/\/.+\?.+?(#.+)?)$/gm;
+    const urlReg = /^OnGetWebViewPageFinish:(.+)#\/log$/gm;
     const url = urlReg.exec(logContent)[1];
     console.log(url);
     return url;

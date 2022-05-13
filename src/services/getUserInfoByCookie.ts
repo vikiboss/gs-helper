@@ -1,4 +1,4 @@
-import request from "./request";
+import request from "../utils/request";
 import { store } from "../main";
 import { API_WEB_BASE } from "../constants";
 

@@ -1,6 +1,6 @@
 import { app } from "electron";
 
-import request from "./request";
+import request from "../utils/request";
 import wait from "../utils/wait";
 import { APP_NAME, API_GACHA_BASE, GACHA_TYPES } from "../constants";
 
@@ -37,10 +37,14 @@ const getGachaListByUrl = async (url: string) => {
     urlParams.set("end_id", "0");
 
     // 用于判断是否获取完成的标志
-    let hasMore = true;
+    let [hasMore, times] = [true, 0];
 
     // do while 循环，不断加载这个类型每一页的数据
     do {
+      if (times > 0) {
+        console.log(`开始重试第 ${times} 次...`);
+      }
+
       // 拼接每一页数据的 URL
       const url = `${API_GACHA_BASE}/getGachaLog?${urlParams.toString()}`;
       const { data, status } = await request.get(url);
@@ -73,13 +77,14 @@ const getGachaListByUrl = async (url: string) => {
         urlParams.set("page", String(Number(urlParams.get("page")) + 1));
         urlParams.set("end_id", data.data.list.pop().id);
       } else {
+        times++;
         console.log(data.data, status);
         console.log("获取", GACHA_TYPES[type], "第", urlParams.get("page"), "页失败");
       }
 
       // 每加载一次数据，等待 300 毫秒，减轻米哈游服务器负担
       await wait(300);
-    } while (hasMore);
+    } while (hasMore && times <= 3);
   }
 
   // 返回新获取的数据
