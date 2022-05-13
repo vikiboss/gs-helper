@@ -51,7 +51,7 @@ export const IPC_EVENTS: Record<string, string> = {
 };
 
 export const SCRIPT_REFINE_BBS = `
-var items = ["mhy-bbs-app-header", "header-bar", "bbs-qr"];
+var items = ["mhy-bbs-app-header", "app-guide", "header-bar", "bbs-qr"];
 for (const item of items) {
   const elements = document.getElementsByClassName(item);
   if (elements.length) elements[0].style.display = "none";
