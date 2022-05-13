@@ -73,32 +73,34 @@
     .flex-center-column();
 
     flex: 1;
-
-    .title {
-      width: calc(100vw - 40px);
-      font-size: 32px;
-      padding: 20px 20px 4px 20px;
-    }
-
-    .ps {
-      color: @text-color-second;
-      width: calc(100vw - 40px);
-      padding-bottom: 16px;
-    }
+    width: 100vw;
 
     .btn-list {
       .flex-wrap();
       align-content: flex-start;
 
       flex: 1;
-      width: calc(100vw - 20px);
+      width: calc(100vw - 64px);
+      padding: 0 32px;
+
+      .title {
+        width: 100%;
+        font-size: 32px;
+        padding: 20px 8px 8px;
+      }
+
+      .ps {
+        color: @text-color-second;
+        width: 100%;
+        padding-bottom: 16px;
+      }
 
       .btn {
         .flex-center-column();
 
-        width: 196px;
+        width: 100%;
+        width: calc((100% - 80px) / 4);
         height: 100px;
-        padding: 10px;
         margin: 8px;
         color: @home-btn-color;
         cursor: pointer;
@@ -113,6 +115,7 @@
         }
 
         &:hover {
+          // border-radius: 20px;
           color: @home-btn-hover-color;
           transform: scale(1.1);
           border: 2px solid @home-block-hover-border-color;

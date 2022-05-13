@@ -1,9 +1,8 @@
 import React, { MouseEventHandler, useEffect, useState } from "react";
 import { BiNotepad } from "react-icons/Bi";
-import { FaMapSigns } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { IoTelescopeOutline } from "react-icons/io5";
 import { MdOutlineAccountBox } from "react-icons/md";
+import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 
 import Button from "../../components/Button";
@@ -54,6 +53,39 @@ const Home: React.FC = () => {
     success({ message: "👋 测试文本 👨‍💻" });
   };
 
+  const btns = [
+    {
+      name: "祈愿分析",
+      Icon: HiOutlineChartPie,
+      handler: () => handlePageSwitch("/gacha")
+    },
+    {
+      name: "旅行者札记",
+      Icon: BiNotepad,
+      handler: () => handlePageSwitch("/note")
+    },
+    {
+      name: "角色详情",
+      Icon: MdOutlineAccountBox,
+      handler: () => handlePageSwitch("/hero")
+    },
+    {
+      name: "游戏数据",
+      Icon: HiCubeTransparent,
+      handler: () => handlePageSwitch("/game")
+    },
+    {
+      name: "提瓦特地图",
+      Icon: FaRegMap,
+      handler: () => {}
+    },
+    {
+      name: "观测枢·攻略",
+      Icon: FaRegCompass,
+      handler: () => {}
+    }
+  ];
+
   return (
     <>
       <div className={styles.container}>
@@ -85,43 +117,19 @@ const Home: React.FC = () => {
           )}
         </div>
         <div className={styles.content}>
-          <div className={styles.title}>{"= 旅行者工具 🛠️ ="}</div>
-          {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>}
           <div className={styles.btnList}>
-            <div className={styles.btn} onClick={() => handlePageSwitch("/gacha")}>
-              <HiOutlineChartPie size={42} />
-              <span className={styles.btnText}>祈愿分析</span>
-            </div>
-
-            <div className={styles.btn} onClick={() => handlePageSwitch("/note")}>
-              <BiNotepad size={42} />
-              <span className={styles.btnText}>旅行者札记</span>
-            </div>
-            <div className={styles.btn} onClick={() => handlePageSwitch("/hero")}>
-              <MdOutlineAccountBox size={42} />
-              <span className={styles.btnText}>角色详情</span>
-            </div>
-            <div className={styles.btn} onClick={() => handlePageSwitch("/game")}>
-              <HiCubeTransparent size={42} />
-              <span className={styles.btnText}>游戏数据</span>
-            </div>
-            <div className={styles.btn}>
-              <FaMapSigns size={42} />
-              <span className={styles.btnText}>提瓦特地图</span>
-            </div>
-            <div className={styles.btn}>
-              <IoTelescopeOutline size={42} />
-              <span className={styles.btnText}>观测枢·百科攻略</span>
-            </div>
+            <div className={styles.title}>{"= 旅行者工具 🛠️ ="}</div>
+            {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>}
+            {btns.map(({ name, handler, Icon }) => (
+              <div className={styles.btn} onClick={handler}>
+                <Icon size={42} />
+                <span className={styles.btnText}>{name}</span>
+              </div>
+            ))}
           </div>
           <div className={styles.footer}>
             {ANNUCEMENT}源码：<a onClick={handleLinkClick}>GitHub</a>
           </div>
-          {/* <div className={styles.btns}>
-            <Button text='抽卡分析' noIcon onClick={() => navigate("/gacha")} />
-            <Button text='设置' noIcon onClick={() => navigate("/setting")} />
-            <Button text='测试弹窗' noIcon onClick={handleTip} />
-          </div> */}
         </div>
       </div>
       {holder}
