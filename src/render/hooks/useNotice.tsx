@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import Alert, { AlertProp } from "../components/Alert";
 
 export type AlertOptions = {
+  autoHide?: boolean;
   duration?: number;
   message: string;
   type?: AlertProp["type"];
@@ -15,17 +16,21 @@ const useAlert = () => {
   const [visible, setVisible] = useState<boolean>(false);
 
   const showAlert = (optons: AlertOptions) => {
-    const { duration = 1200, type, message } = optons;
+    const { duration = 1200, type, message, autoHide = true } = optons;
     setType(type);
     setMessage(message);
     setVisible(true);
     if (timer) clearTimeout(timer);
+    if (!autoHide) return;
     setTimer(setTimeout(() => setVisible(false), duration));
   };
 
   return {
     show(optons: AlertOptions) {
       showAlert(optons);
+    },
+    hide() {
+      setVisible(false);
     },
     info(optons: AlertOptions) {
       showAlert({ ...optons, type: "info" });

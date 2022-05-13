@@ -1,4 +1,4 @@
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BiNotepad } from "react-icons/Bi";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineAccountBox } from "react-icons/md";
@@ -6,27 +6,26 @@ import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 
 import Button from "../../components/Button";
-import useAlert from "../../hooks/useAlert";
+import useNotice from "../../hooks/useNotice";
 import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
-import icon from "../../../assets/icon.png";
-
-import type { AppData } from "../../../typings";
-
-import styles from "./index.less";
 import {
   ANNUCEMENT,
-  APP_USER_AGENT_BBS,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
   LINK_GITHUB_REPO
 } from "../../../constants";
 
+import type { AppData } from "../../../typings";
+
+import icon from "../../../assets/icon.png";
+import styles from "./index.less";
+
 const Home: React.FC = () => {
-  const [user, setUser] = useState<Partial<AppData["user"]>>({});
-  const { success, warning, holder } = useAlert();
-  const { isLogin, logout } = useAuth();
+  const notice = useNotice();
   const navigate = useNavigate();
+  const { isLogin, logout } = useAuth();
+  const [user, setUser] = useState<Partial<AppData["user"]>>({});
 
   useEffect(() => {
     (async () => {
@@ -38,7 +37,7 @@ const Home: React.FC = () => {
   const handleLoginClick = () => {
     if (isLogin) {
       logout();
-      success({ message: "您已成功退出登录" });
+      notice.success({ message: "您已成功退出登录" });
     } else {
       navigate("/login");
     }
@@ -46,12 +45,8 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     if (path === "/gacha") return navigate("/gacha");
-    if (!isLogin) return warning({ message: "请先登录 「米游社」 账号" });
+    if (!isLogin) return notice.warning({ message: "请先登录 「米游社」 账号" });
     navigate(path);
-  };
-
-  const handleTip = () => {
-    success({ message: "👋 测试文本 👨‍💻" });
   };
 
   const btns = [
@@ -136,7 +131,7 @@ const Home: React.FC = () => {
           </div>
         </div>
       </div>
-      {holder}
+      {notice.holder}
     </>
   );
 };
