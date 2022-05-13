@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+
   background-color: @color-bg;
 
   .top-bar {
@@ -16,6 +17,7 @@
     background-color: @win-bar-bg-color;
     display: flex;
     box-shadow: 0 0 10px 4px #ccc;
+    z-index: 999999999;
 
     &::before {
       content: "";

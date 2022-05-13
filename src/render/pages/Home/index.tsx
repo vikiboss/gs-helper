@@ -87,7 +87,7 @@ const Home: React.FC = () => {
       <div className={styles.container}>
         <div className={styles.user}>
           {isLogin ? (
-            <>
+            <div className={styles.userCard}>
               <img src={user.avatar || icon} alt='avatar' className={styles.avatar} />
               <div className={styles.userInfo}>
                 <div>
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
                   BID：<div className={styles.buid}>{user.buid}</div>
                 </div>
               </div>
-            </>
+            </div>
           ) : (
             <div className={styles.noLoginContainer}>
               <div className={styles.noLoginText}>
