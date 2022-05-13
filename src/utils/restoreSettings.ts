@@ -5,7 +5,7 @@ import type { AppData } from "../typings";
 
 const restoreSettings = (win: BrowserWindow) => {
   const settins = store.get("settings") as AppData["settings"];
-  console.log(settins);
+  // console.log(settins);
   const { alwaysOnTop } = settins;
   win.setAlwaysOnTop(alwaysOnTop);
 };
