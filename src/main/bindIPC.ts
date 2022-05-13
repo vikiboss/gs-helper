@@ -6,6 +6,7 @@ const AppInfo = {
 };
 
 import { mainWin, store } from ".";
+import { isDev } from "./createMainWindow";
 import { defaultData } from "./initStore";
 import clearCookie from "../utils/clearCookie";
 import getGachaUrl from "../utils/getGachaUrl";
@@ -40,15 +41,22 @@ const bindIPC = (win: BrowserWindow) => {
       maximizable: false,
       alwaysOnTop: true,
       fullscreenable: false,
+      autoHideMenuBar: true,
       backgroundColor: WINDOW_BACKGROUND_COLOR
     });
-    bbsWin.removeMenu();
+    if (!isDev) bbsWin.removeMenu();
     bbsWin.once("ready-to-show", () => bbsWin.show());
 
     const dom = bbsWin.webContents;
+    dom.on("did-finish-load", () => {
+      try {
+        dom.executeJavaScript(SCRIPT_REFINE_BBS);
+      } catch (e) {
+        console.log(e);
+      }
+    });
     dom.setWindowOpenHandler(() => ({ action: "deny" }));
     dom.setUserAgent(APP_USER_AGENT_MOBILE);
-    dom.on("did-finish-load", () => dom.executeJavaScript(SCRIPT_REFINE_BBS));
     dom.loadURL(LINK_MIHOYO_BBS_LOGIN);
 
     bbsWin.on("close", async () => {
@@ -75,10 +83,11 @@ const bindIPC = (win: BrowserWindow) => {
         width: 1680,
         height: 900,
         show: false,
+        autoHideMenuBar: true,
         backgroundColor: WINDOW_BACKGROUND_COLOR,
         ...options
       });
-      newWin.removeMenu();
+      if (!isDev) newWin.removeMenu();
       newWin.once("ready-to-show", () => newWin.show());
       const dom = newWin.webContents;
 
@@ -86,9 +95,14 @@ const bindIPC = (win: BrowserWindow) => {
         dom.loadURL(details.url);
         return { action: "deny" };
       });
-
+      dom.on("did-finish-load", () => {
+        try {
+          dom.executeJavaScript(SCRIPT_REFINE_BBS);
+        } catch (e) {
+          console.log(e);
+        }
+      });
       dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);
-      dom.on("did-finish-load", () => dom.executeJavaScript(SCRIPT_REFINE_BBS));
       dom.loadURL(url);
     }
   );
