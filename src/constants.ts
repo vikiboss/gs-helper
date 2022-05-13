@@ -4,6 +4,8 @@ export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
 export const APP_USER_AGENT = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
+export const REPO_URL = "https://github.com/vikiboss/genshin-helper";
+export const ANNUCEMENT = "本工具使用 MIT 协议开源，仅供学习交流。";
 
 export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
 
@@ -30,6 +32,7 @@ export const GACHA_TYPES: Record<string, string> = {
 export const IPC_EVENTS: Record<string, string> = {
   clearCookie: "CLEAR_COOKIE",
   closeApp: "CLOSE_APP",
+  openLink: "OPEN_LINK",
   getAppInfo: "GET_APP_INFO",
   getGachaUrl: "GET_GACHA_URL",
   getStoreKey: "GET_STORE_KEY",

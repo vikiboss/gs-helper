@@ -1,6 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEventHandler, useEffect, useState } from "react";
+import { BiNotepad } from "react-icons/Bi";
+import { FaMapSigns } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { VscPieChart } from "react-icons/vsc";
+import { IoTelescopeOutline } from "react-icons/io5";
+import { MdOutlineAccountBox } from "react-icons/md";
+import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 
 import Button from "../../components/Button";
 import useAlert from "../../hooks/useAlert";
@@ -11,6 +15,7 @@ import icon from "../../../assets/icon.png";
 import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
+import { ANNUCEMENT, REPO_URL } from "../../../constants";
 
 const Home: React.FC = () => {
   const [user, setUser] = useState<Partial<AppData["user"]>>({});
@@ -32,6 +37,11 @@ const Home: React.FC = () => {
     } else {
       navigate("/login");
     }
+  };
+
+  const handleLinkClick: MouseEventHandler = (e) => {
+    e.preventDefault();
+    nativeApi.openLink(REPO_URL);
   };
 
   const handleTip = () => {
@@ -73,37 +83,33 @@ const Home: React.FC = () => {
           {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>}
           <div className={styles.btnList}>
             <div className={styles.btn}>
-              <VscPieChart size={42} />
+              <HiOutlineChartPie size={42} />
               <span className={styles.btnText}>祈愿分析</span>
             </div>
+
             <div className={styles.btn}>
-              <VscPieChart size={42} />
+              <BiNotepad size={42} />
               <span className={styles.btnText}>旅行者札记</span>
             </div>
             <div className={styles.btn}>
-              <VscPieChart size={42} />
-              <span className={styles.btnText}>提瓦特地图</span>
-            </div>
-            <div className={styles.btn}>
-              <VscPieChart size={42} />
+              <MdOutlineAccountBox size={42} />
               <span className={styles.btnText}>角色详情</span>
             </div>
             <div className={styles.btn}>
-              <VscPieChart size={42} />
+              <HiCubeTransparent size={42} />
               <span className={styles.btnText}>游戏数据</span>
             </div>
             <div className={styles.btn}>
-              <VscPieChart size={42} />
-              <span className={styles.btnText}>抽卡分析</span>
+              <FaMapSigns size={42} />
+              <span className={styles.btnText}>提瓦特地图</span>
             </div>
             <div className={styles.btn}>
-              <VscPieChart size={42} />
-              <span className={styles.btnText}>抽卡分析</span>
+              <IoTelescopeOutline size={42} />
+              <span className={styles.btnText}>观测枢·百科攻略</span>
             </div>
-            <div className={styles.btn}>
-              <VscPieChart size={42} />
-              <span className={styles.btnText}>抽卡分析</span>
-            </div>
+          </div>
+          <div className={styles.footer}>
+            {ANNUCEMENT}源码：<a onClick={handleLinkClick}>GitHub</a>
           </div>
           {/* <div className={styles.btns}>
             <Button text='抽卡分析' noIcon onClick={() => navigate("/gacha")} />

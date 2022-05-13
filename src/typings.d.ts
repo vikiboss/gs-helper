@@ -7,6 +7,7 @@ export interface NativeApi {
   closeApp: () => void;
   hideApp: () => void;
   minimizeApp: () => void;
+  openLink: (url: string) => void;
   loginViaMihoyoBBS: () => void;
   getAppInfo: () => Promise<AppInfo>;
   getStoreKey: (key: string) => Promise<any>;
@@ -16,7 +17,8 @@ export interface NativeApi {
   getGachaListByUrl: (url: string) => Promise<GachaData>;
 }
 
-export type GachaItem = {00
+export type GachaItem = {
+  00;
   gacha_type: string;
   item_id: string;
   count: string;
