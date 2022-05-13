@@ -1,9 +1,12 @@
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Gacha from "./pages/Gacha";
+import Game from "./pages/Game";
+import Hero from "./pages/Hero";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import Note from "./pages/Note";
 import Setting from "./pages/Setting";
 
 const AppRouter: React.FC = () => {
@@ -13,6 +16,9 @@ const AppRouter: React.FC = () => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/gacha' element={<Gacha />} />
+        <Route path='/note' element={<Note />} />
+        <Route path='/hero' element={<Hero />} />
+        <Route path='/game' element={<Game />} />
         <Route path='/setting' element={<Setting />} />
       </Routes>
     </HashRouter>

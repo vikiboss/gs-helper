@@ -9,6 +9,7 @@ import styles from "./index.less";
 type ButtonProp = {
   type?: "confirm" | "cancel";
   size?: "small" | "middle" | "large";
+  theme?: "light" | "dark";
   noIcon?: boolean;
   text: string;
   className?: string;
@@ -27,7 +28,15 @@ const TYPE_MAP: Record<string, IconType> = {
 };
 
 const Button: React.FC<ButtonProp> = (props) => {
-  const { onClick = () => {}, className = "", size = "small", type, text, noIcon = false } = props;
+  const {
+    onClick = () => {},
+    className = "",
+    size = "small",
+    theme = "dark",
+    noIcon = false,
+    type,
+    text
+  } = props;
   const Icon = noIcon ? null : TYPE_MAP[type];
   return (
     <div className={cn(styles.btn, styles[size], className)} onClick={onClick}>

@@ -19,7 +19,7 @@ import { ANNUCEMENT, REPO_URL } from "../../../constants";
 
 const Home: React.FC = () => {
   const [user, setUser] = useState<Partial<AppData["user"]>>({});
-  const { success, holder } = useAlert();
+  const { success, warning, holder } = useAlert();
   const { isLogin, logout } = useAuth();
   const navigate = useNavigate();
 
@@ -37,6 +37,12 @@ const Home: React.FC = () => {
     } else {
       navigate("/login");
     }
+  };
+
+  const handlePageSwitch = (path: string) => {
+    if (path === "/gacha") return navigate("/gacha");
+    if (!isLogin) return warning({ message: "请先登录米游社" });
+    navigate(path);
   };
 
   const handleLinkClick: MouseEventHandler = (e) => {
@@ -82,20 +88,20 @@ const Home: React.FC = () => {
           <div className={styles.title}>{"= 旅行者工具 🛠️ ="}</div>
           {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>}
           <div className={styles.btnList}>
-            <div className={styles.btn}>
+            <div className={styles.btn} onClick={() => handlePageSwitch("/gacha")}>
               <HiOutlineChartPie size={42} />
               <span className={styles.btnText}>祈愿分析</span>
             </div>
 
-            <div className={styles.btn}>
+            <div className={styles.btn} onClick={() => handlePageSwitch("/note")}>
               <BiNotepad size={42} />
               <span className={styles.btnText}>旅行者札记</span>
             </div>
-            <div className={styles.btn}>
+            <div className={styles.btn} onClick={() => handlePageSwitch("/hero")}>
               <MdOutlineAccountBox size={42} />
               <span className={styles.btnText}>角色详情</span>
             </div>
-            <div className={styles.btn}>
+            <div className={styles.btn} onClick={() => handlePageSwitch("/game")}>
               <HiCubeTransparent size={42} />
               <span className={styles.btnText}>游戏数据</span>
             </div>

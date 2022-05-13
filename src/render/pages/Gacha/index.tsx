@@ -24,7 +24,7 @@ const Gocha: React.FC = () => {
   return (
     <>
       <div className={styles.desc}>
-        <div>抽卡分析页</div>
+        <div>抽卡分析</div>
         {gacha.list && <div>共计抽卡：{gacha.list.length}次</div>}
         <Button noIcon text='请求数据' onClick={getUrl} />
         <Button noIcon text='回首页' onClick={() => navigate("/")} />
