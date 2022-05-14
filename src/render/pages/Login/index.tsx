@@ -61,8 +61,9 @@ const Login: React.FC<LoginProp> = (props) => {
   return (
     <>
       <div className={styles.bg}>
-        <Button noIcon text='登录' onClick={handleLogin} />
-        <Button noIcon text='刷新' onClick={handleRefresh} />
+        <h1>登录流程</h1>
+        <Button noIcon text='登录米游社' onClick={handleLogin} />
+        <Button noIcon text='刷新状态' onClick={handleRefresh} />
         {logged && !isSwitching && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
         <CircleButton
           Icon={TiArrowBack}
