@@ -11,6 +11,7 @@ import { TiArrowBack } from "react-icons/ti";
 import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
+import { LOGIN_GUIDES } from "../../../constants";
 
 type LoginProp = {
   from?: string;
@@ -45,15 +46,11 @@ const Login: React.FC<LoginProp> = (props) => {
     if (!user?.cookie)
       return notice.faild({ message: "未检测到有效验证信息，请重新登录", duration: 3000 });
     setLogged(true);
-    notice.success({ message: "登录成功，正在前往登录前页面..." });
+    notice.success({ message: "登录成功，正在返回登录前页面..." });
     setTimeout(() => {
       setIsSwitching(false);
       login();
     }, 1200);
-  };
-
-  const navigateToHomePage = () => {
-    navigate("/");
   };
 
   if (isLogin && !isSwitching) return <Navigate {...naviProps} />;
@@ -61,9 +58,17 @@ const Login: React.FC<LoginProp> = (props) => {
   return (
     <>
       <div className={styles.bg}>
-        <h1>登录流程</h1>
-        <Button noIcon text='登录米游社' onClick={handleLogin} />
-        <Button noIcon text='刷新状态' onClick={handleRefresh} />
+        <div className={styles.title}>登录 「米游社」 账号</div>
+        <div>
+          <div className={styles.desc}>操作步骤：</div>
+          {LOGIN_GUIDES.map((e) => (
+            <div className={styles.step}>{e}</div>
+          ))}
+        </div>
+        <div className={styles.btns}>
+          <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
+          <Button type='confirm' size='middle' text='刷新状态' onClick={handleRefresh} />
+        </div>
         {logged && !isSwitching && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
         <CircleButton
           Icon={TiArrowBack}

@@ -12,6 +12,13 @@ export const ANNUCEMENT =
 export const WELCOME_TIP = "欢迎你，旅行者。👋";
 export const LOGIN_TIP = "建议登录 「米游社」 账号以获得最佳使用体验。";
 
+export const LOGIN_GUIDES = [
+  "① 点击 「登录米游社」 按钮打开登录窗口",
+  "② 在登录窗口中登录 「米游社」 账号",
+  "③ 完成登录后关闭登录窗口",
+  "④ 点击 「刷新状态」 按钮完成登录"
+];
+
 export const DOMAIN_MIHOYO = "mihoyo.com";
 
 export const LINK_BBS_REFERER = "https://webstatic.mihoyo.com";
