@@ -7,7 +7,6 @@ const AppInfo = {
 
 import { mainWin, store } from ".";
 import { isDev } from "./createMainWindow";
-import { defaultData } from "./initStore";
 import clearCookie from "../utils/clearCookie";
 import getGachaUrl from "../utils/getGachaUrl";
 import verifyCookie from "../utils/verifyCookie";
@@ -19,7 +18,8 @@ import {
   APP_USER_AGENT_DESKTOP,
   LINK_MIHOYO_BBS_LOGIN,
   SCRIPT_REFINE_BBS,
-  WINDOW_BACKGROUND_COLOR
+  WINDOW_BACKGROUND_COLOR,
+  defaultData
 } from "../constants";
 import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
 import { AppData, DailyNotesData } from "../typings";

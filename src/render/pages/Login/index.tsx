@@ -69,7 +69,7 @@ const Login: React.FC<LoginProp> = (props) => {
           <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
           <Button type='confirm' size='middle' text='刷新状态' onClick={handleRefresh} />
         </div>
-        {logged && !isSwitching && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
+        {logged && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

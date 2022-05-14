@@ -1,4 +1,4 @@
-import { DailyNotesData } from "./typings.d";
+import { AppData, DailyNotesData } from "./typings.d";
 export const APP_NAME = "原神助手";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
@@ -64,6 +64,19 @@ export const IPC_EVENTS: Record<string, string> = {
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
   setStoreKey: "SET_STORE_KEY"
+};
+
+export const defaultData: AppData = {
+  user: {
+    uid: "000000000",
+    nickname: "旅行者",
+    level: 1,
+    isOfficial: true,
+    regionName: "天空岛",
+    cookie: ""
+  },
+  gachas: [],
+  settings: { alwaysOnTop: false }
 };
 
 export const defaultNotes: DailyNotesData = {

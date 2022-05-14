@@ -1,19 +1,7 @@
 import Store, { Schema } from "electron-store";
 
+import { defaultData } from "../constants";
 import { AppData } from "../typings";
-
-export const defaultData: AppData = {
-  user: {
-    uid: "",
-    nickname: "",
-    level: 0,
-    isOfficial: true,
-    regionName: "",
-    cookie: ""
-  },
-  gachas: [],
-  settings: { alwaysOnTop: false }
-};
 
 const schema: Schema<AppData> = {
   user: {

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";
-import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
+
 import { IoMdRefresh } from "react-icons/io";
-import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
+import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
 import { FaRegMap, FaRegCompass, FaGithub } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
+import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 
 import Button from "../../components/Button";
 import useNotice from "../../hooks/useNotice";
@@ -15,6 +16,7 @@ import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import {
   ANNUCEMENT,
+  defaultData,
   defaultNotes,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
@@ -25,15 +27,14 @@ import {
 
 import type { AppData, DailyNotesData } from "../../../typings";
 
+import avatar from "../../../assets/icon.png";
 import resinIcon from "../../../assets/resin.png";
 import homeIcon from "../../../assets/home.png";
 import taskIcon from "../../../assets/task.png";
 import discountIcon from "../../../assets/discount.png";
 import transformerIcon from "../../../assets/transformer.png";
 
-import avatar from "../../../assets/icon.png";
 import styles from "./index.less";
-import CircleButton from "../../components/CircleButton";
 
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds}秒`;
@@ -47,7 +48,7 @@ const Home: React.FC = () => {
   const auth = useAuth();
   const notice = useNotice();
   const navigate = useNavigate();
-  const [user, setUser] = useState<Partial<AppData["user"]>>({});
+  const [user, setUser] = useState<Partial<AppData["user"]>>(defaultData["user"]);
   const [note, setNotesData] = useState<Partial<DailyNotesData>>(defaultNotes);
 
   useEffect(() => {

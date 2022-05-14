@@ -1,7 +1,7 @@
-import { defaultData } from "./../main/initStore";
 import { session } from "electron";
 
 import { store } from "../main";
+import { defaultData } from "../constants";
 
 const clearCookie = async (domain: string = "mihoyo.com") => {
   store.set("user", defaultData["user"]);
