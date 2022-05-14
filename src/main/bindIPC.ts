@@ -64,10 +64,11 @@ const bindIPC = (win: BrowserWindow) => {
       const { valid, cookie, info } = await verifyCookie(cookies);
       const user = valid
         ? {
-            buid: info.uid,
+            uid: info.game_uid,
             nickname: info.nickname,
-            introduce: info.introduce,
-            avatar: info.avatar_url,
+            level: info.level,
+            isOfficial: info.is_official,
+            regionName: info.region_name,
             cookie: cookie
           }
         : defaultData.user;

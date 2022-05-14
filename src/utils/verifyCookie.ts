@@ -1,6 +1,6 @@
 import type { Cookies } from "electron";
 
-import getUserInfoByCookie from "../services/getUserInfoByCookie";
+import getRoleInfoByCookie from "../services/getUserInfoByCookie";
 
 const verifyCookie = async (cks: Cookies) => {
   const mihoyoCks = await cks.get({ domain: "mihoyo.com" });
@@ -13,8 +13,8 @@ const verifyCookie = async (cks: Cookies) => {
   if (!hasLtoken) return { valid: false, cookie: "", info: {} };
   cookie = cookie.trim();
   // console.log(cookie);
-  const info = await getUserInfoByCookie(cookie);
-  return { valid: Boolean(info?.uid), cookie, info };
+  const info = await getRoleInfoByCookie(cookie);
+  return { valid: Boolean(info?.game_uid), cookie, info };
 };
 
 export default verifyCookie;

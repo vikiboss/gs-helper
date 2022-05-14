@@ -4,10 +4,11 @@ import { AppData } from "../typings";
 
 export const defaultData: AppData = {
   user: {
-    buid: "",
+    uid: "",
     nickname: "",
-    introduce: "",
-    avatar: "",
+    level: 0,
+    isOfficial: true,
+    regionName: "",
     cookie: ""
   },
   gachas: [],
@@ -18,10 +19,11 @@ const schema: Schema<AppData> = {
   user: {
     type: "object",
     properties: {
-      buid: { type: "string", pattern: "^[0-9]{0,10}$" },
+      uid: { type: "string", pattern: "^[0-9]{0,10}$" },
       nickname: { type: "string" },
-      introduce: { type: "string" },
-      avatar: { type: "string" },
+      level: { type: "number" },
+      isOfficial: { type: "boolean" },
+      regionName: { type: "string" },
       cookie: { type: "string" }
     }
   },

@@ -7,6 +7,7 @@ export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
 export const ANNUCEMENT = "本工具使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流，开源地址：";
+export const LOGIN_TIP = "欢迎你，冒险者。👋\n登录 「米游社」 账号以获取最佳体验。";
 
 export const DOMAIN_MIHOYO = "mihoyo.com";
 
@@ -15,8 +16,10 @@ export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
 export const LINK_GENSHIN_MAP = "https://webstatic.mihoyo.com/ys/app/interactive-map";
 export const LINK_BBS_YS_OBC = "https://bbs.mihoyo.com/ys/obc/";
 
-export const API_WEB_BASE = "https://bbs-api.mihoyo.com/user/wapi";
+export const API_BBS_BASE = "https://api-takumi.mihoyo.com/binding/api";
+export const API_RECORD_BASE = "https://api-takumi-record.mihoyo.com/game_record/app";
 export const API_GACHA_BASE = "https://hk4e-api.mihoyo.com/event/gacha_info/api";
+export const API_HK4E_BASE = "https://hk4e-api.mihoyo.com";
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
@@ -51,7 +54,7 @@ export const IPC_EVENTS: Record<string, string> = {
 };
 
 export const SCRIPT_REFINE_BBS = `
-var items = ["mhy-bbs-app-header", "mhy-button", "app-guide", "header-bar", "bbs-qr"];
+var items = ["mhy-bbs-app-header", "mhy-button", "header-bar", "bbs-qr"];
 for (const item of items) {
   const els = document.getElementsByClassName(item);
   if (els.length) Array.from(els).forEach((e) => (e.style.display = "none"));

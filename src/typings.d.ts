@@ -19,7 +19,6 @@ export interface NativeApi {
 }
 
 export type GachaItem = {
-  00;
   gacha_type: string;
   item_id: string;
   count: string;
@@ -51,10 +50,11 @@ export type GachaData = {
 
 export type AppData = {
   user: {
-    buid: string;
+    uid: string;
     nickname: string;
-    introduce: string;
-    avatar: string;
+    level: number;
+    isOfficial: boolean;
+    regionName: string;
     cookie: string;
   };
   gachas: GachaData[];

@@ -30,17 +30,15 @@
     .flex-center-y();
 
     height: 150px;
-    width: calc(100vw - 40px);
-    padding: 12px 20px 0 20px;
+    width: calc(100vw - 80px);
+    padding: 12px 40px 0;
     // background-color: @color-bg-deep;
 
-    .userCard {
+    .user-card {
       .flex-center-y();
 
       height: 120px;
-      width: 320px;
-      padding: 0 16px;
-      margin-left: 20px;
+      width: 360px;
       // background-color: @btn-actiove-bg;
       // border: 1px solid @btn-active-border-color;
       // border-radius: 12px;
@@ -48,9 +46,9 @@
       .avatar {
         // .shadow();
 
-        width: 80px;
+        width: 90px;
         height: $width;
-        border-radius: 40px;
+        border-radius: 50px;
       }
 
       .user-info {
@@ -60,32 +58,58 @@
         margin-left: 20px;
 
         .nickname {
-          padding: 2px 10px;
+          padding: 4px 10px;
           display: inline-block;
           color: @color-white;
-          width: 148px;
+          width: 170px;
           border-radius: 16px;
-          background-color: @text-color-orange;
-          background: linear-gradient(to right, @text-color-orange, transparent);
+          background-color: @color-accent;
+          background: linear-gradient(to right, @color-accent, transparent);
         }
 
         .sign {
           display: inline-block;
-          width: 148px;
+          width: 170px;
           color: @text-color;
-          padding: 2px 10px;
+          padding: 4px 10px;
         }
 
-        .buid {
+        .uid {
           display: inline-block;
-          width: 148px;
-          color: @text-color-orange;
-          padding: 2px 10px;
+          width: 170px;
+          color: @text-color;
+          padding: 4px 10px;
         }
       }
     }
 
-    .noLoginContainer {
+    .note-card {
+      .flex-wrap();
+
+      flex: 1;
+      height: 90px;
+      margin: 0 40px;
+      // background-color: @color-bg-deep;
+
+      .note-item {
+        .flex-center-y();
+        height: 30px;
+        width: 50%;
+
+        .note-icon {
+          height: 24px;
+          margin-right: 4px;
+          width: $height;
+        }
+
+        .note-detail {
+          height: 30px;
+          line-height: 30px;
+        }
+      }
+    }
+
+    .no-login-container {
       .flex-center-y();
       height: 120px;
       width: calc(100vw - 40px);
