@@ -9,6 +9,7 @@ import Hero from "./pages/Hero";
 import Game from "./pages/Game";
 import Query from "./pages/Query";
 import Setting from "./pages/Setting";
+import About from "./pages/About";
 
 const AppRouter: React.FC = () => {
   return (
@@ -22,6 +23,7 @@ const AppRouter: React.FC = () => {
         <Route path='/game' element={<Game />} />
         <Route path='/query' element={<Query />} />
         <Route path='/setting' element={<Setting />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </HashRouter>
   );

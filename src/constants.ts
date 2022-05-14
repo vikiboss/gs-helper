@@ -7,8 +7,10 @@ export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
 export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
-export const ANNUCEMENT = "本软件使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流使用。";
-export const LOGIN_TIP = "欢迎你，冒险者。👋\n登录 「米游社」 账号以获取最佳体验。";
+export const ANNUCEMENT =
+  "本软件使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流使用。数据可能存在延迟，请以游戏内数据为准。";
+export const WELCOME_TIP = "欢迎你，旅行者。👋";
+export const LOGIN_TIP = "建议登录 「米游社」 账号以获得最佳使用体验。";
 
 export const DOMAIN_MIHOYO = "mihoyo.com";
 

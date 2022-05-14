@@ -1,9 +1,10 @@
+import { defaultData } from "./../main/initStore";
 import { session } from "electron";
 
 import { store } from "../main";
 
 const clearCookie = async (domain: string = "mihoyo.com") => {
-  store.set("user", { buid: "", cookie: "" });
+  store.set("user", defaultData["user"]);
   const ses = session.defaultSession;
   const mihoyoCks = await ses.cookies.get({ domain });
   for (const ck of mihoyoCks) {

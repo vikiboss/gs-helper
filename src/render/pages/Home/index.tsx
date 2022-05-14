@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
 import { useNavigate } from "react-router-dom";
-import { BiNotepad } from "react-icons/Bi";
+import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
 import { IoMdRefresh } from "react-icons/io";
+import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
 import { FaRegMap, FaRegCompass, FaGithub } from "react-icons/fa";
@@ -18,7 +19,8 @@ import {
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
   LINK_GITHUB_REPO,
-  LOGIN_TIP
+  LOGIN_TIP,
+  WELCOME_TIP
 } from "../../../constants";
 
 import type { AppData, DailyNotesData } from "../../../typings";
@@ -36,8 +38,9 @@ import CircleButton from "../../components/CircleButton";
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds}秒`;
   if (seconds <= 3600) return `${Math.ceil(seconds / 60)}分钟`;
-  if (seconds <= 86400) return `${Math.ceil(seconds / 3600)}小时`;
-  return `${Math.ceil(seconds / 86400)}天${Math.ceil((seconds % 86400) / 3600)}小时`;
+  if (seconds <= 86400)
+    return `${Math.floor(seconds / 3600)}小时${Math.ceil((seconds % 3600) / 60)}分钟`;
+  return `${Math.floor(seconds / 86400)}天${Math.ceil((seconds % 86400) / 3600)}小时`;
 };
 
 const Home: React.FC = () => {
@@ -50,8 +53,14 @@ const Home: React.FC = () => {
   useEffect(() => {
     (async () => {
       if (!auth.isLogin) return;
-      setUser(await nativeApi.getStoreKey("user"));
-      setNotesData(await nativeApi.getDailyNotes());
+      const user = await nativeApi.getStoreKey("user");
+      const note = await nativeApi.getDailyNotes();
+      if (!user || !note) {
+        auth.logout();
+        return navigate("/login", { state: { isExpired: true } });
+      }
+      setUser(user);
+      setNotesData(note);
     })();
   }, [auth.isLogin]);
 
@@ -67,11 +76,22 @@ const Home: React.FC = () => {
 
   const handleRefresh = async () => {
     if (!auth.isLogin) return;
-    notice.info({ message: "数据刷新中..." });
-    const user = await nativeApi.refreshUserInfo();
-    setUser(user);
-    setNotesData(await nativeApi.getDailyNotes());
-    notice.success({ message: "已获取最新数据" });
+    notice.info({ message: "正在获取最新数据...", autoHide: false });
+    const [user, note] = await Promise.all([
+      nativeApi.refreshUserInfo(),
+      nativeApi.getDailyNotes()
+    ]);
+    if (user?.uid) {
+      setUser(user);
+    } else {
+      notice.faild({ message: "角色信息更新失败" });
+    }
+    if (note?.max_resin) {
+      setNotesData(note);
+    } else {
+      notice.faild({ message: "游戏数据更新失败" });
+    }
+    notice.success({ message: "数据更新成功" });
   };
 
   const info = [
@@ -116,8 +136,8 @@ const Home: React.FC = () => {
     "本周 「树脂减半次数」 " +
     (isDiscountDone ? "已用尽" : `还剩${note.remain_resin_discount_num}次`);
 
-  const hasTransformer = note.transformer.obtained;
-  const _ = note.transformer.recovery_time;
+  const hasTransformer = note?.transformer?.obtained;
+  const _ = note?.transformer?.recovery_time;
   const transformerTime = _.Day * 86400 + _.Hour * 3600 + _.Minute * 60 + _.Second;
   const isTransformerReady = transformerTime === 0;
   const transformerStatus = hasTransformer
@@ -253,15 +273,13 @@ const Home: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              <div className={styles.refresh} onClick={handleRefresh}>
-                <IoMdRefresh size={20} />
-                <span>刷新</span>
-              </div>
             </>
           ) : (
             <div className={styles.noLoginContainer}>
-              <div className={styles.noLoginText}>{LOGIN_TIP}</div>
+              <div className={styles.noLoginText}>
+                <span>{WELCOME_TIP}</span>
+                <span>{LOGIN_TIP}</span>
+              </div>
               <Button
                 text='登录米游社'
                 size='middle'
@@ -270,6 +288,43 @@ const Home: React.FC = () => {
               />
             </div>
           )}
+          <div className={styles.topBtns}>
+            {auth.isLogin && (
+              <>
+                <div className={styles.topBtn} onClick={handleRefresh}>
+                  <IoMdRefresh size={20} />
+                  <span>刷新</span>
+                </div>
+                |
+              </>
+            )}
+            <div
+              className={styles.topBtn}
+              onClick={() => navigate("/login", { state: { changeAccount: auth.isLogin } })}
+            >
+              {auth.isLogin ? (
+                <>
+                  <AiOutlineUserSwitch size={20} />
+                  <span>切换账号</span>
+                </>
+              ) : (
+                <>
+                  <AiOutlineUserAdd size={20} />
+                  <span>登录米游社</span>
+                </>
+              )}
+            </div>
+            |
+            <div className={styles.topBtn} onClick={() => navigate("/setting")}>
+              <IoSettingsOutline size={20} />
+              <span>设置</span>
+            </div>
+            |
+            <div className={styles.topBtn} onClick={() => navigate("/about")}>
+              <BiInfoCircle size={20} />
+              <span>关于</span>
+            </div>
+          </div>
         </div>
         <div className={styles.content}>
           <div className={styles.btnList}>
