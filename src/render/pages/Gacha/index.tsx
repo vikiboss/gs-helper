@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { TiArrowBack } from "react-icons/ti";
 import Button from "../../components/Button";
 import useNotice from "../../hooks/useNotice";
 import nativeApi from "../../utils/nativeApi";
+import CircleButton from "../../components/CircleButton";
 
 import type { GachaData } from "../../../typings";
 
@@ -49,7 +51,12 @@ const Gocha: React.FC = () => {
         {gacha.list && <div>共计抽卡：{gacha.list.length}次</div>}
         <Button noIcon text='请求数据' onClick={getUrl} />
         <Button noIcon text='测试' onClick={test} />
-        <Button noIcon text='回首页' onClick={() => navigate("/")} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate("/")}
+        />
       </div>
       {notice.holder}
     </>

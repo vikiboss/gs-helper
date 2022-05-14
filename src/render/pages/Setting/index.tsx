@@ -1,8 +1,9 @@
 import React from "react";
+import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 
 import withAuth from "../../auth/withAuth";
-import Button from "../../components/Button";
+import CircleButton from "../../components/CircleButton";
 
 import styles from "./index.less";
 
@@ -11,7 +12,12 @@ const Setting: React.FC = () => {
   return (
     <div className={styles.desc}>
       <div>暂无设置</div>
-      <Button noIcon text='去首页' onClick={() => navigate("/")} />
+      <CircleButton
+        Icon={TiArrowBack}
+        size='middle'
+        className={styles.backBtn}
+        onClick={() => navigate("/")}
+      />
     </div>
   );
 };

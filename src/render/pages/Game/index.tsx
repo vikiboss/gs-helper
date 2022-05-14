@@ -1,8 +1,9 @@
 import React from "react";
+import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
-import withAuth from "../../auth/withAuth";
 
-import Button from "../../components/Button";
+import CircleButton from "../../components/CircleButton";
+import withAuth from "../../auth/withAuth";
 import styles from "./index.less";
 
 const Game: React.FC = () => {
@@ -11,7 +12,12 @@ const Game: React.FC = () => {
   return (
     <div className={styles.desc}>
       <div>游戏数据</div>
-      <Button noIcon text='回首页' onClick={() => navigate("/")} />
+      <CircleButton
+        Icon={TiArrowBack}
+        size='middle'
+        className={styles.backBtn}
+        onClick={() => navigate("/")}
+      />
     </div>
   );
 };

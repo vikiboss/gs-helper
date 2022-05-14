@@ -5,6 +5,8 @@ import useNotice from "../../hooks/useNotice";
 import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
+import CircleButton from "../../components/CircleButton";
+import { TiArrowBack } from "react-icons/ti";
 
 import type { AppData } from "../../../typings";
 
@@ -57,13 +59,20 @@ const Login: React.FC<LoginProp> = (props) => {
   if (isLogin && !isSwitching) return <Navigate {...naviProps} />;
 
   return (
-    <div className={styles.bg}>
-      <Button noIcon text='登录' onClick={handleLogin} />
-      <Button noIcon text='刷新' onClick={handleRefresh} />
-      <Button noIcon text='回首页' onClick={navigateToHomePage} />
-      {logged && !isSwitching && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
+    <>
+      <div className={styles.bg}>
+        <Button noIcon text='登录' onClick={handleLogin} />
+        <Button noIcon text='刷新' onClick={handleRefresh} />
+        {logged && !isSwitching && <Link to={naviProps.to}>如果没有自动跳转，请点此手动跳转</Link>}
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate("/")}
+        />
+      </div>
       {notice.holder}
-    </div>
+    </>
   );
 };
 
