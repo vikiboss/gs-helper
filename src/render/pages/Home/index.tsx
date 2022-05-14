@@ -153,7 +153,7 @@ const Home: React.FC = () => {
             <div className={styles.title}>{"= 旅行者工具 ="}</div>
             {/* {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
             {btns.map(({ name, handler, Icon }) => (
-              <div className={styles.btn} onClick={handler}>
+              <div className={styles.btn} onClick={handler} key={name}>
                 <Icon size={42} />
                 <span className={styles.btnText}>{name}</span>
               </div>
