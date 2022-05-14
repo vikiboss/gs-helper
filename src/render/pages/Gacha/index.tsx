@@ -42,9 +42,9 @@ const Gocha: React.FC = () => {
   return (
     <>
       <div className={styles.desc}>
-        <div>🏗️ 抽卡分析页，还在施工中</div>
-        {gacha.list && <div>共计抽卡：{gacha.list.length}次</div>}
-        <Button noIcon text='请求数据' onClick={getUrl} />
+        <div className={styles.title}>🏗️ 抽卡分析页，还在施工中</div>
+        {gacha.list && <div className={styles.sum}>共计抽卡：{gacha.list.length}次</div>}
+        <Button noIcon text='更新抽卡数据' onClick={getUrl} />
         <CircleButton
           Icon={TiArrowBack}
           size='middle'
