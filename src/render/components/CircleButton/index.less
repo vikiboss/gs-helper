@@ -11,7 +11,7 @@
   overflow: hidden;
   transition: all 0.1s ease-in-out;
   background-color: @cbtn-bg-color;
-  box-shadow: 1px 1px 6px 10px rbga(180, 180, 180, 0.2);
+  // box-shadow: 1px 1px 10px 10px rgba(220, 220, 220, 0.4);
 
   .icon {
     color: @win-bar-bg-color;
@@ -21,14 +21,14 @@
   &:hover {
     border-color: @cbtn-hover-round-line;
     background-color: @cbtn-hover-bg-color;
-    box-shadow: none;
+    // box-shadow: none;
   }
 
   &:active {
     .icon {
-      color: @color-white;
+      color: @text-color-second;
     }
-    box-shadow: none;
+    // box-shadow: none;
     border-color: @cbtn-active-round-line;
     background-color: @cbtn-active-bg-color;
   }
