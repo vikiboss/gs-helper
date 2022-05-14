@@ -1,12 +1,12 @@
 export const APP_NAME = "原神助手";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
-export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0`;
-export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/1.0.0`;
-export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/2.27.1`;
+export const APP_USER_AGENT_MOBILE = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
+export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
+export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
-export const ANNUCEMENT = "本工具使用 MIT 协议开源，仅供学习交流。";
+export const ANNUCEMENT = "本工具使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流，开源地址：";
 
 export const DOMAIN_MIHOYO = "mihoyo.com";
 
@@ -23,7 +23,7 @@ export const MAIN_WINDOW_HEIGHT = 600;
 
 export const MENU: Record<string, string> = {
   alwaysOnTop: "置顶显示",
-  open: `打开助手`,
+  open: "打开助手",
   openDevTools: "DevTools",
   quit: "退出"
 };

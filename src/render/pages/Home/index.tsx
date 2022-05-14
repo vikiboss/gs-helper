@@ -124,7 +124,7 @@ const Home: React.FC = () => {
             ))}
           </div>
           <div className={styles.footer}>
-            {ANNUCEMENT}源码：
+            {ANNUCEMENT}
             <a href={LINK_GITHUB_REPO} target='_blank'>
               GitHub
             </a>
