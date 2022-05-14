@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { app } from "electron";
 
-import { isFileExist } from "../utils/readFileSystem";
+import { isFileExist } from "./fileSystem";
 import { GAME_NAME_ZH_CN, GAME_NAME_EN } from "../constants";
 
 const getGachaUrl = async () => {

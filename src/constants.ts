@@ -11,15 +11,16 @@ export const LOGIN_TIP = "欢迎你，冒险者。👋\n登录 「米游社」 �
 
 export const DOMAIN_MIHOYO = "mihoyo.com";
 
+export const LINK_BBS_REFERER = "https://webstatic.mihoyo.com";
 export const LINK_GITHUB_REPO = "https://github.com/vikiboss/genshin-helper";
 export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
-export const LINK_GENSHIN_MAP = "https://webstatic.mihoyo.com/ys/app/interactive-map";
+export const LINK_GENSHIN_MAP = `${LINK_BBS_REFERER}/ys/app/interactive-map`;
 export const LINK_BBS_YS_OBC = "https://bbs.mihoyo.com/ys/obc/";
 
 export const API_BBS_BASE = "https://api-takumi.mihoyo.com/binding/api";
 export const API_RECORD_BASE = "https://api-takumi-record.mihoyo.com/game_record/app";
-export const API_GACHA_BASE = "https://hk4e-api.mihoyo.com/event/gacha_info/api";
 export const API_HK4E_BASE = "https://hk4e-api.mihoyo.com";
+export const API_GACHA_BASE = `${API_HK4E_BASE}/event/gacha_info/api`;
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
@@ -47,6 +48,7 @@ export const IPC_EVENTS: Record<string, string> = {
   getGachaUrl: "GET_GACHA_URL",
   getStoreKey: "GET_STORE_KEY",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
+  getDailyNotes: "GET_DAILY_NOTES",
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",

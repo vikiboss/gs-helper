@@ -21,6 +21,7 @@ import {
   SCRIPT_REFINE_BBS,
   WINDOW_BACKGROUND_COLOR
 } from "../constants";
+import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
@@ -116,6 +117,10 @@ const bindIPC = (win: BrowserWindow) => {
     updateStoreGachaList(data);
     return data;
   });
+  ipcMain.handle(
+    IPC_EVENTS.getDailyNotes,
+    async () => await getDailyNotesByCookie(store.get("user.cookie"))
+  );
 };
 
 export default bindIPC;

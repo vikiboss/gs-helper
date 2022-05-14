@@ -36,12 +36,19 @@ const Gocha: React.FC = () => {
     }
     setLoading(false);
   };
+
+  const test = async () => {
+    const res = await nativeApi.getDailyNotes();
+    console.log(res);
+  };
+
   return (
     <>
       <div className={styles.desc}>
         <div>抽卡分析</div>
         {gacha.list && <div>共计抽卡：{gacha.list.length}次</div>}
         <Button noIcon text='请求数据' onClick={getUrl} />
+        <Button noIcon text='测试' onClick={test} />
         <Button noIcon text='回首页' onClick={() => navigate("/")} />
       </div>
       {notice.holder}

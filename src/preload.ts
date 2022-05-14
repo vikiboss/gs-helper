@@ -41,5 +41,8 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   },
   getGachaListByUrl: (url: string): Promise<GachaData> => {
     return ipcRenderer.invoke(IPC_EVENTS.getGachaListByUrl, url);
+  },
+  getDailyNotes: (): Promise<any> => {
+    return ipcRenderer.invoke(IPC_EVENTS.getDailyNotes);
   }
 });
