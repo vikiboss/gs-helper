@@ -7,6 +7,43 @@
   flex: 1;
   position: relative;
 
+  .title {
+    font-size: 32px;
+    margin: 20px;
+  }
+
+  .declaration {
+    width: 70%;
+    margin: 20px;
+    line-height: 1.6rem;
+    text-indent: 2rem;
+  }
+
+  .bottom {
+    .flex-center-y();
+
+    width: 60%;
+    justify-content: space-between;
+
+    .items {
+      .flex-center-y-column();
+
+      .item {
+        margin: 4px;
+      }
+    }
+    .reward {
+      .flex-center-column();
+
+      .reward-code {
+        width: 120px;
+        height: $width;
+        border-radius: 4px;
+        margin-bottom: 12px;
+      }
+    }
+  }
+
   .back-btn {
     position: absolute;
     left: 20px;
