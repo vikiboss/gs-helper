@@ -11,7 +11,7 @@ const Game: React.FC = () => {
 
   return (
     <div className={styles.desc}>
-      <div>游戏数据</div>
+      <div>🏗️ 游戏数据页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}
         size='middle'

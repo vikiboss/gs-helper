@@ -12,7 +12,7 @@ const Query: React.FC = () => {
 
   return (
     <div className={styles.desc}>
-      <div>UID 查询</div>
+      <div>🏗️ UID 查询页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}
         size='middle'

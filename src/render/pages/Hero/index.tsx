@@ -12,7 +12,7 @@ const Hero: React.FC = () => {
 
   return (
     <div className={styles.desc}>
-      <div>角色展示</div>
+      <div>🏗️ 角色详情页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}
         size='middle'

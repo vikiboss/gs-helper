@@ -12,7 +12,7 @@ const Note: React.FC = () => {
 
   return (
     <div className={styles.desc}>
-      <div>旅行者札记</div>
+      <div>🏗️ 旅行者札记页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}
         size='middle'

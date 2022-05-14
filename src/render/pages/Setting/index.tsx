@@ -11,7 +11,7 @@ const Setting: React.FC = () => {
   const navigate = useNavigate();
   return (
     <div className={styles.desc}>
-      <div>暂无设置</div>
+      <div>🏗️ 设置页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}
         size='middle'
