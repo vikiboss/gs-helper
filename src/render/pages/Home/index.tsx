@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { IoSearch } from "react-icons/io5";
 import { BiNotepad } from "react-icons/Bi";
 import { useNavigate } from "react-router-dom";
 import { MdOutlineAccountBox } from "react-icons/md";
@@ -56,6 +57,16 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/gacha")
     },
     {
+      name: "提瓦特地图",
+      Icon: FaRegMap,
+      handler: () => nativeApi.openWindow(LINK_GENSHIN_MAP)
+    },
+    {
+      name: "观测枢·攻略",
+      Icon: FaRegCompass,
+      handler: () => nativeApi.openWindow(LINK_BBS_YS_OBC)
+    },
+    {
       name: "旅行者札记",
       Icon: BiNotepad,
       handler: () => handlePageSwitch("/note")
@@ -71,14 +82,9 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/game")
     },
     {
-      name: "提瓦特地图",
-      Icon: FaRegMap,
-      handler: () => nativeApi.openWindow(LINK_GENSHIN_MAP)
-    },
-    {
-      name: "观测枢·攻略",
-      Icon: FaRegCompass,
-      handler: () => nativeApi.openWindow(LINK_BBS_YS_OBC)
+      name: "查询 UID",
+      Icon: IoSearch,
+      handler: () => handlePageSwitch("/query")
     }
   ];
 
@@ -115,7 +121,7 @@ const Home: React.FC = () => {
         <div className={styles.content}>
           <div className={styles.btnList}>
             <div className={styles.title}>{"= 旅行者工具 🛠️ ="}</div>
-            {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>}
+            {/* {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
             {btns.map(({ name, handler, Icon }) => (
               <div className={styles.btn} onClick={handler}>
                 <Icon size={42} />
