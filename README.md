@@ -30,10 +30,10 @@
 ### 进度展示：
 
 - 首页展示：
-  ![home]('./docs/home.png')
+  ![home](docs/home.png)
 
 - 首页展示（未登录）：
-  ![no-login]('./docs/no-login.png')
+  ![no-login](docs/no-login.png)
 
 ### Licence
 
