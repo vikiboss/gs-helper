@@ -21,30 +21,31 @@ import {
 
 import type { AppData } from "../../../typings";
 
-import resin from "../../../assets/resin.png";
-import home from "../../../assets/home.png";
-import task from "../../../assets/task.png";
-import discount from "../../../assets/discount.png";
-import transformer from "../../../assets/transformer.png";
-import icon from "../../../assets/icon.png";
+import resinIcon from "../../../assets/resin.png";
+import homeIcon from "../../../assets/home.png";
+import taskIcon from "../../../assets/task.png";
+import discountIcon from "../../../assets/discount.png";
+import transformerIcon from "../../../assets/transformer.png";
+
+import avatar from "../../../assets/icon.png";
 import styles from "./index.less";
 
 const Home: React.FC = () => {
+  const auth = useAuth();
   const notice = useNotice();
   const navigate = useNavigate();
-  const { isLogin, logout } = useAuth();
   const [user, setUser] = useState<Partial<AppData["user"]>>({});
 
   useEffect(() => {
     (async () => {
-      if (!isLogin) return;
+      if (!auth.isLogin) return;
       setUser(await nativeApi.getStoreKey("user"));
     })();
-  }, [isLogin]);
+  }, [auth.isLogin]);
 
   const handleLoginClick = () => {
-    if (isLogin) {
-      logout();
+    if (auth.isLogin) {
+      auth.logout();
       notice.success({ message: "您已成功退出登录" });
     } else {
       navigate("/login");
@@ -53,9 +54,55 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     if (path === "/gacha") return navigate("/gacha");
-    if (!isLogin) return notice.warning({ message: "请先登录 「米游社」 账号" });
+    if (!auth.isLogin) return notice.warning({ message: "请先登录 「米游社」 账号" });
     navigate(path);
   };
+
+  const info = [
+    {
+      key: "nickname",
+      name: "昵称",
+      content: user.nickname
+    },
+    {
+      key: "level",
+      name: "等级",
+      content: `Lv.${user.level} （${user.isOfficial ? "官服" : "渠道服"}）`
+    },
+    {
+      key: "uid",
+      name: "UID",
+      content: user.uid
+    }
+  ];
+
+  const notes = [
+    {
+      detail: "原粹树脂 42/160",
+      icon: resinIcon,
+      name: "resin"
+    },
+    {
+      detail: "洞天宝钱 265/900",
+      icon: homeIcon,
+      name: "home"
+    },
+    {
+      detail: "每日委托 4/4（已完成）",
+      icon: taskIcon,
+      name: "task"
+    },
+    {
+      detail: "周本次数 0/3（已完成）",
+      icon: discountIcon,
+      name: "discount"
+    },
+    {
+      detail: "参量质变仪 已就绪",
+      icon: transformerIcon,
+      name: "transformer"
+    }
+  ];
 
   const btns = [
     {
@@ -99,46 +146,26 @@ const Home: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          {isLogin ? (
+          {auth.isLogin ? (
             <>
               <div className={styles.userCard}>
-                <img src={icon} alt='avatar' className={styles.avatar} />
+                <img src={avatar} alt='avatar' className={styles.avatar} />
                 <div className={styles.userInfo}>
-                  <div>
-                    昵称：<div className={styles.nickname}>{user.nickname}</div>
-                  </div>
-                  <div>
-                    等级：
-                    <div className={styles.sign}>
-                      Lv.{user.level} （{user.isOfficial ? "官服" : "渠道服"}）
+                  {info.map((e) => (
+                    <div key={e.key}>
+                      <span>{e.name}：</span>
+                      <div className={styles[e.key]}>{e.content}</div>
                     </div>
-                  </div>
-                  <div>
-                    UID：<div className={styles.uid}>{user.uid}</div>
-                  </div>
+                  ))}
                 </div>
               </div>
               <div className={styles.noteCard}>
-                <div className={styles.noteItem}>
-                  <img src={resin} className={cn(styles.noteIcon, styles.resin)} />
-                  <div className={styles.noteDetail}>原粹树脂 42/160</div>
-                </div>
-                <div className={styles.noteItem}>
-                  <img src={home} className={cn(styles.noteIcon, styles.home)} />
-                  <div className={styles.noteDetail}>洞天宝钱 265/900</div>
-                </div>
-                <div className={styles.noteItem}>
-                  <img src={task} className={cn(styles.noteIcon, styles.task)} />
-                  <div className={styles.noteDetail}>每日委托 4/4（已完成）</div>
-                </div>
-                <div className={styles.noteItem}>
-                  <img src={discount} className={cn(styles.noteIcon, styles.discount)} />
-                  <div className={styles.noteDetail}>周本次数 0/3（已完成）</div>
-                </div>
-                <div className={styles.noteItem}>
-                  <img src={transformer} className={cn(styles.noteIcon, styles.transformer)} />
-                  <div className={styles.noteDetail}>参量质变仪 已就绪</div>
-                </div>
+                {notes.map((e) => (
+                  <div className={styles.noteItem} key={e.name}>
+                    <img src={e.icon} className={cn(styles.noteIcon, styles[e.name])} />
+                    <div className={styles.noteDetail}>{e.detail}</div>
+                  </div>
+                ))}
               </div>
             </>
           ) : (
@@ -151,7 +178,7 @@ const Home: React.FC = () => {
         <div className={styles.content}>
           <div className={styles.btnList}>
             <div className={styles.title}>{"= 旅行者工具 ="}</div>
-            {/* {!isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
+            {/* {!auth.isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
             {btns.map(({ name, handler, Icon }) => (
               <div className={styles.btn} onClick={handler} key={name}>
                 <Icon size={42} />
