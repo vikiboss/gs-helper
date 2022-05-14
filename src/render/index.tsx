@@ -5,7 +5,7 @@ import AppRouter from "./router";
 import { APP_NAME } from "../constants";
 import nativeApi from "./utils/nativeApi";
 import AuthProvider from "./auth/AuthProvider";
-import WindowFrame from "./components/WindowFrame";
+import WinFrame from "./components/WinFrame";
 
 import "./index.less";
 
@@ -15,11 +15,11 @@ const render = async () => {
   const { version } = await nativeApi.getAppInfo();
   const isLogin = Boolean(await nativeApi.getStoreKey("user.cookie"));
   root.render(
-    <WindowFrame title={`${APP_NAME} v${version}`}>
+    <WinFrame title={`${APP_NAME} v${version}`}>
       <AuthProvider isLogin={isLogin}>
         <AppRouter />
       </AuthProvider>
-    </WindowFrame>
+    </WinFrame>
   );
 };
 

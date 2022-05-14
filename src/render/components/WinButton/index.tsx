@@ -1,32 +1,28 @@
 import React from "react";
 import classnames from "classnames";
 import { IconType } from "react-icons";
-import { FaExpandArrowsAlt, FaMinus, FaRedo, FaReply, FaTrashAlt } from "react-icons/fa";
-
+import { FaExpandArrowsAlt, FaMinus } from "react-icons/fa";
 import styles from "./index.less";
 
-type CircularButtonProp = {
-  type: "close" | "minimize" | "delete" | "refresh" | "back";
+type WinButtonProp = {
+  type: "close" | "minimize";
   size?: "small" | "middle" | "large";
   className?: string;
   onClick?: () => void;
 };
 
 const SIZE_MAP = {
-  small: 16,
-  middle: 28,
-  large: 48
+  small: 12,
+  middle: 24,
+  large: 42
 };
 
 const TYPE_MAP: Record<string, IconType> = {
   close: FaExpandArrowsAlt,
-  minimize: FaMinus,
-  delete: FaTrashAlt,
-  refresh: FaRedo,
-  back: FaReply
+  minimize: FaMinus
 };
 
-const CircularButton: React.FC<CircularButtonProp> = (props) => {
+const WinButton: React.FC<WinButtonProp> = (props) => {
   const { onClick = () => {}, className = "", size = "small", type } = props;
   const Icon = TYPE_MAP[type];
   return (
@@ -36,4 +32,4 @@ const CircularButton: React.FC<CircularButtonProp> = (props) => {
   );
 };
 
-export default CircularButton;
+export default WinButton;

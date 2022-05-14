@@ -1,0 +1,56 @@
+@import "../../utils/colors.less";
+@import "../../utils/util.less";
+
+@size-small: 24px;
+@size-middle: 36px;
+@size-large: 54px;
+
+.btn {
+  .flex-center();
+
+  overflow: hidden;
+  transition: all 0.1s ease-in-out;
+  background-color: @cbtn-bg-color;
+  box-shadow: 1px 1px 6px 10px rbga(180, 180, 180, 0.2);
+
+  .icon {
+    color: @win-bar-bg-color;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &:hover {
+    border-color: @cbtn-hover-round-line;
+    background-color: @cbtn-hover-bg-color;
+    box-shadow: none;
+  }
+
+  &:active {
+    .icon {
+      color: @color-white;
+    }
+    box-shadow: none;
+    border-color: @cbtn-active-round-line;
+    background-color: @cbtn-active-bg-color;
+  }
+}
+
+.small {
+  border-radius: calc((@size-small + 6px) / 2);
+  border: 3px solid @cbtn-round-line;
+  width: @size-small;
+  height: @size-small;
+}
+
+.middle {
+  border-radius: calc((@size-middle + 8px) / 2);
+  border: 3px solid @cbtn-round-line;
+  width: @size-middle;
+  height: @size-middle;
+}
+
+.large {
+  border-radius: calc((@size-large + 10px) / 2);
+  border: 3px solid @cbtn-round-line;
+  width: @size-large;
+  height: @size-large;
+}

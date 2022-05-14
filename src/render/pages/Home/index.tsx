@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import cn from "classnames";
-import { IoSearch } from "react-icons/io5";
-import { BiNotepad } from "react-icons/Bi";
 import { useNavigate } from "react-router-dom";
+import { BiNotepad } from "react-icons/Bi";
 import { MdOutlineAccountBox } from "react-icons/md";
-import { FaRegMap, FaRegCompass } from "react-icons/fa";
+import { FaRegMap, FaRegCompass, FaGithub } from "react-icons/fa";
+import { IoSearch, IoSettingsOutline } from "react-icons/io5";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 
 import Button from "../../components/Button";
@@ -29,6 +29,7 @@ import transformerIcon from "../../../assets/transformer.png";
 
 import avatar from "../../../assets/icon.png";
 import styles from "./index.less";
+import CircleButton from "../../components/CircleButton";
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -177,7 +178,17 @@ const Home: React.FC = () => {
         </div>
         <div className={styles.content}>
           <div className={styles.btnList}>
-            <div className={styles.title}>{"= 旅行者工具 ="}</div>
+            <div className={styles.titleZone}>
+              <div className={styles.title}>{"= 旅行者工具 ="}</div>
+              <div className={styles.titleBtns}>
+                <CircleButton
+                  Icon={IoSettingsOutline}
+                  size='middle'
+                  tip='设置'
+                  onClick={() => handlePageSwitch("/setting")}
+                />
+              </div>
+            </div>
             {/* {!auth.isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
             {btns.map(({ name, handler, Icon }) => (
               <div className={styles.btn} onClick={handler} key={name}>
@@ -187,10 +198,10 @@ const Home: React.FC = () => {
             ))}
           </div>
           <div className={styles.footer}>
-            {ANNUCEMENT}
             <a href={LINK_GITHUB_REPO} target='_blank'>
-              GitHub
+              <FaGithub color='#fff' size={20} title='GitHub' />
             </a>
+            <span>{ANNUCEMENT}</span>
           </div>
         </div>
       </div>

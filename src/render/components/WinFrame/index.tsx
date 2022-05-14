@@ -2,17 +2,16 @@ import React from "react";
 
 import icon from "../../../assets/icon.png";
 import nativeApi from "../../utils/nativeApi";
-import CircularButton from "../CircularButton";
+import CircularButton from "../WinButton";
 
 import styles from "./index.less";
 
-type WindowFrameProp = {
+type WinFrameProp = {
   title?: string;
   children?: JSX.Element;
 };
 
-
-const WindowFrame: React.FC<WindowFrameProp> = (props) => {
+const WinFrame: React.FC<WinFrameProp> = (props) => {
   const { title = "" } = props;
   return (
     <div className={styles.frame}>
@@ -29,4 +28,4 @@ const WindowFrame: React.FC<WindowFrameProp> = (props) => {
   );
 };
 
-export default WindowFrame;
+export default WinFrame;

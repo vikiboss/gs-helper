@@ -6,7 +6,7 @@ export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
 export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
 export const GAME_NAME_ZH_CN = "原神";
 export const GAME_NAME_EN = "Genshin Impact";
-export const ANNUCEMENT = "本工具使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流，开源地址：";
+export const ANNUCEMENT = "本软件使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流使用。";
 export const LOGIN_TIP = "欢迎你，冒险者。👋\n登录 「米游社」 账号以获取最佳体验。";
 
 export const DOMAIN_MIHOYO = "mihoyo.com";
