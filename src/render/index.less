@@ -5,23 +5,26 @@
   src: url("../assets/HanYiBlack.woff2");
 }
 
-body {
-  font-size: 16px;
+:root {
   user-select: none;
   -webkit-user-select: none;
   font-family: HanYiBlack;
+}
+
+body {
+  font-size: 16px;
   overflow: hidden;
-  cursor: url("../assets/cursor.cur") auto;
+  cursor: url("../assets/cursor.cur"), default;
 }
 
 a {
   color: @color-accent;
+  outline: none;
+  transition: 0.2s all ease-in-out;
+
   // padding: 2px 8px;
   // text-decoration: none;
-  border-radius: 4px;
   // background-color: @link-bg-color;
-  transition: 0.2s all ease-in-out;
-  cursor: pointer;
 
   &:hover {
     color: @link-hover-color;
