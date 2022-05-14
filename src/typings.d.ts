@@ -16,7 +16,8 @@ export interface NativeApi {
   clearCookie: (domain?: string) => Promise<void>;
   getGachaUrl: () => Promise<string>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
-  getDailyNotes: () => Promise<any>;
+  getDailyNotes: () => Promise<DailyNotesData>;
+  refreshUserInfo: () => Promise<AppData["user"]>;
 }
 
 export type GachaItem = {
@@ -74,3 +75,30 @@ export type LoginState = {
 
 export type ElectronWindow = Window &
   typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
+
+export type DispatchItem = {
+  avatar_side_icon: string;
+  status: string;
+  remained_time: string;
+};
+
+export type DailyNotesData = {
+  current_resin: number;
+  max_resin: number;
+  resin_recovery_time: string;
+  finished_task_num: number;
+  total_task_num: number;
+  is_extra_task_reward_received: boolean;
+  remain_resin_discount_num: number;
+  resin_discount_num_limit: number;
+  current_expedition_num: number;
+  max_expedition_num: number;
+  expeditions: DispatchItem[];
+  current_home_coin: number;
+  max_home_coin: number;
+  home_coin_recovery_time: string;
+  transformer: {
+    obtained: boolean;
+    recovery_time: { Day: number; Hour: number; Minute: number; Second: number; reached: true };
+  };
+};

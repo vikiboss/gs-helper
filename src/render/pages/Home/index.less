@@ -29,15 +29,16 @@
   .user {
     .flex-center-y();
 
-    height: 150px;
+    height: 180px;
     width: calc(100vw - 80px);
     padding: 12px 40px 0;
+    position: relative;
     // background-color: @color-bg-deep;
 
     .user-card {
       .flex-center-y();
 
-      height: 120px;
+      height: 150px;
       width: 360px;
       // background-color: @btn-actiove-bg;
       // border: 1px solid @btn-active-border-color;
@@ -46,39 +47,44 @@
       .avatar {
         // .shadow();
 
-        width: 90px;
+        width: 120px;
         height: $width;
-        border-radius: 50px;
+        border-radius: 60px;
+        transition: all 0.2s ease-in-out;
+
+        &:active {
+          transform: scale(0.2);
+        }
       }
 
       .user-info {
         .flex-center-y-column();
 
-        flex: 1;
-        margin-left: 20px;
+        .info-item {
+          .flex-center-y();
 
-        .nickname {
-          padding: 4px 10px;
-          display: inline-block;
-          color: @color-white;
-          width: 170px;
-          border-radius: 16px;
-          background-color: @color-accent;
-          background: linear-gradient(to right, @color-accent, transparent);
-        }
+          flex: 1;
+          margin-left: 20px;
+          width: 100%;
 
-        .level {
-          display: inline-block;
-          width: 170px;
-          color: @text-color;
-          padding: 4px 10px;
-        }
+          .nickname {
+            flex: 1;
+            padding: 4px 10px;
+            display: inline-block;
+            color: @color-white;
+            border-radius: 16px;
+            background-color: @color-accent;
+            background: linear-gradient(to right, @color-accent, transparent);
+          }
 
-        .uid {
-          display: inline-block;
-          width: 170px;
-          color: @text-color;
-          padding: 4px 10px;
+          .level,
+          .region,
+          .uid {
+            flex: 1;
+            display: inline-block;
+            color: @text-color;
+            padding: 4px 10px;
+          }
         }
       }
     }
@@ -103,9 +109,45 @@
         }
 
         .note-detail {
-          height: 30px;
-          line-height: 30px;
+          .flex-center-y();
+          height: 26px;
+          line-height: 26px;
+
+          .dispatch-border {
+            .flex-center();
+
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid @text-color;
+            margin-right: 8px;
+
+            .dispatch-avatar {
+              height: 24px;
+            }
+          }
+
+          .done {
+            border-color: @color-accent;
+          }
         }
+      }
+    }
+
+    .refresh {
+      .flex-center-y();
+
+      color: @text-color;
+      margin: 16px 32px;
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      &:active {
+        color: @text-color-second;
+      }
+
+      span {
+        margin-left: 6px;
       }
     }
 
@@ -175,7 +217,7 @@
         border-radius: 1px;
         background-color: @home-btn-bg-color;
         border: 2px solid @home-block-border-color;
-        transition: all 0.1s ease-in-out;
+        transition: all 0.2s ease-in-out;
 
         .btn-text {
           margin-top: 12px;

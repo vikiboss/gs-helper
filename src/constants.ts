@@ -1,3 +1,4 @@
+import { DailyNotesData } from "./typings.d";
 export const APP_NAME = "原神助手";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
@@ -49,10 +50,32 @@ export const IPC_EVENTS: Record<string, string> = {
   getStoreKey: "GET_STORE_KEY",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getDailyNotes: "GET_DAILY_NOTES",
+  refreshUserInfo: "REFRESH_USER_INFO",
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
   setStoreKey: "SET_STORE_KEY"
+};
+
+export const defaultNotes: DailyNotesData = {
+  current_resin: 160,
+  max_resin: 160,
+  resin_recovery_time: "0",
+  finished_task_num: 0,
+  total_task_num: 4,
+  is_extra_task_reward_received: false,
+  remain_resin_discount_num: 3,
+  resin_discount_num_limit: 3,
+  current_expedition_num: 0,
+  max_expedition_num: 5,
+  expeditions: [],
+  current_home_coin: 900,
+  max_home_coin: 900,
+  home_coin_recovery_time: "0",
+  transformer: {
+    obtained: false,
+    recovery_time: { Day: 0, Hour: 0, Minute: 0, Second: 0, reached: true }
+  }
 };
 
 export const SCRIPT_REFINE_BBS = `

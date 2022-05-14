@@ -12,7 +12,7 @@ const verifyCookie = async (cks: Cookies) => {
   }
   if (!hasLtoken) return { valid: false, cookie: "", info: {} };
   cookie = cookie.trim();
-  // console.log(cookie);
+  console.log(cookie);
   const info = await getRoleInfoByCookie(cookie);
   return { valid: Boolean(info?.game_uid), cookie, info };
 };

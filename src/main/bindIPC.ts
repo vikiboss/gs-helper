@@ -22,6 +22,8 @@ import {
   WINDOW_BACKGROUND_COLOR
 } from "../constants";
 import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
+import { AppData, DailyNotesData } from "../typings";
+import getRoleInfoByCookie from "../services/getUserInfoByCookie";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
@@ -121,6 +123,21 @@ const bindIPC = (win: BrowserWindow) => {
     IPC_EVENTS.getDailyNotes,
     async () => await getDailyNotesByCookie(store.get("user.cookie"))
   );
+  ipcMain.handle(IPC_EVENTS.refreshUserInfo, async () => {
+    const info = await getRoleInfoByCookie();
+    const user: AppData["user"] = info?.game_uid
+      ? {
+          uid: info.game_uid,
+          nickname: info.nickname,
+          level: info.level,
+          isOfficial: info.is_official,
+          regionName: info.region_name,
+          cookie: store.get("user.cookie")
+        }
+      : defaultData.user;
+    store.set("user", user);
+    return user;
+  });
 };
 
 export default bindIPC;

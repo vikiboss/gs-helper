@@ -9,7 +9,7 @@ const getRoleInfoByCookie = async (cookie?: string) => {
     params: { game_biz: "hk4e_cn" },
     headers: { cookie }
   });
-  console.log(data?.data?.list);
+  console.log(data?.data?.list[0]);
   if (status === 200 && data?.retcode === 0) return data?.data?.list[0];
   return null;
 };

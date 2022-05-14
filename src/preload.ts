@@ -1,3 +1,4 @@
+import { AppData, DailyNotesData } from "./typings.d";
 import { BrowserWindowConstructorOptions, contextBridge, ipcRenderer } from "electron";
 
 import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "./constants";
@@ -29,11 +30,14 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   clearCookie: (domain?: string) => {
     ipcRenderer.send(IPC_EVENTS.clearCookie, domain);
   },
+  refreshUserInfo: (): Promise<AppData["user"]> => {
+    return ipcRenderer.invoke(IPC_EVENTS.refreshUserInfo);
+  },
 
   getAppInfo: (): Promise<AppInfo> => {
     return ipcRenderer.invoke(IPC_EVENTS.getAppInfo);
   },
-  getStoreKey: (key: string): Promise<void> => {
+  getStoreKey: (key: string): Promise<any> => {
     return ipcRenderer.invoke(IPC_EVENTS.getStoreKey, key);
   },
   getGachaUrl: (): Promise<string> => {
@@ -42,7 +46,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getGachaListByUrl: (url: string): Promise<GachaData> => {
     return ipcRenderer.invoke(IPC_EVENTS.getGachaListByUrl, url);
   },
-  getDailyNotes: (): Promise<any> => {
+  getDailyNotes: (): Promise<DailyNotesData> => {
     return ipcRenderer.invoke(IPC_EVENTS.getDailyNotes);
   }
 });
