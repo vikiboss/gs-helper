@@ -2,6 +2,8 @@
 
 [中文](README.md) | English
 
+> 🚧 Please note: This project is still under development.
+
 ### Introduction
 
 A small tool written for _Genshin Impact_ player, based on [`Electron`](https://www.electronjs.org/) and [`React`](https://reactjs.org/).

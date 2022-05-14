@@ -2,6 +2,8 @@
 
 中文 | [English](README-en.md)
 
+> 🚧 请注意：本项目仍在开发中。
+
 ### 介绍
 
 一个为 _原神_ 玩家编写的小工具，基于 [`Electron`](https://www.electronjs.org/) 和 [`React`](https://reactjs.org/)。
