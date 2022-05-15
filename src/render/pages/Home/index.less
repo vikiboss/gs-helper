@@ -46,15 +46,23 @@
       // border-radius: 12px;
 
       .avatar {
-        // .shadow();
+        .flex-center();
 
-        width: 120px;
+        width: 140px;
         height: $width;
-        border-radius: 60px;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.1s ease-in-out;
+        background-image: url("../../../assets/avatar-border-hover.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        .avatar-image {
+          width: 100px;
+          height: $width;
+          border-radius: 50px;
+        }
 
         &:active {
-          transform: scale(0.2);
+          transform: scale(0.8);
         }
       }
 
@@ -211,11 +219,37 @@
         display: flex;
 
         .title {
+          .flex-center();
+
           color: @color-white;
           width: 100%;
           text-align: center;
           font-size: 32px;
           padding: 8px;
+
+          .arrow {
+            content: "";
+            display: inline-block;
+            width: 24px;
+            margin: 0 20px;
+            height: $width;
+            background-repeat: no-repeat;
+            background-size: $width $height;
+          }
+
+          span::before {
+            .arrow();
+            .ani-slide-left();
+
+            background-image: url("../../../assets/arrow-left.png");
+          }
+
+          span::after {
+            .arrow();
+            .ani-slide-right();
+
+            background-image: url("../../../assets/arrow-right.png");
+          }
         }
 
         .title-btns {

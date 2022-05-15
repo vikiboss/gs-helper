@@ -267,12 +267,9 @@ const Home: React.FC = () => {
           {auth.isLogin ? (
             <>
               <div className={styles.userCard}>
-                <img
-                  src={avatar}
-                  alt='avatar'
-                  className={styles.avatar}
-                  onClick={handleAvatarClick}
-                />
+                <div className={styles.avatar} onClick={handleAvatarClick}>
+                  <img src={avatar} alt='avatar' className={styles.avatarImage} />
+                </div>
                 <div className={styles.userInfo}>
                   {info.length &&
                     info.map((e) => (
@@ -377,7 +374,9 @@ const Home: React.FC = () => {
         <div className={styles.content}>
           <div className={styles.btnList}>
             <div className={styles.titleZone}>
-              <div className={styles.title}>{"= 旅行者工具 ="}</div>
+              <div className={styles.title}>
+                <span>旅行者工具</span>
+              </div>
               {/* <div className={styles.titleBtns}>
                 <CircleButton
                   Icon={IoSettingsOutline}
