@@ -28,6 +28,7 @@
 
   .user {
     .flex-center-y();
+    .ani-show-top();
 
     height: 180px;
     width: calc(100vw - 80px);
@@ -234,6 +235,7 @@
 
       .btn {
         .flex-center-column();
+        .ani-show-bottom();
 
         width: 100%;
         width: calc((100% - 80px) / 4);
@@ -248,7 +250,6 @@
         background-repeat: no-repeat;
         border: 2px solid @home-block-border-color;
         transition: all 0.2s ease-in-out;
-        animation: show-bottom 0.6s cubic-bezier(0.17, 0.89, 0.45, 1.18);
 
         .btn-text {
           margin-top: 12px;
