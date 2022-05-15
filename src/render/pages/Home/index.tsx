@@ -33,6 +33,7 @@ import homeIcon from "../../../assets/home.png";
 import taskIcon from "../../../assets/task.png";
 import discountIcon from "../../../assets/discount.png";
 import transformerIcon from "../../../assets/transformer.png";
+import prestigeIcon from "../../../assets/prestige.png";
 
 import styles from "./index.less";
 
@@ -118,24 +119,39 @@ const Home: React.FC = () => {
     }
   ];
 
-  const resinStatus = `${note.current_resin}/${note.max_resin}`;
-  const resinTitle = `树脂 「全部恢复」 预计需要${formatTime(Number(note.resin_recovery_time))}`;
+  const isResinOk = note?.current_resin === note?.max_resin;
+  const resinStatus = `${note?.current_resin}/${note?.max_resin}`;
+  const resinTitle = isResinOk
+    ? "树脂已全部恢复完毕，点击打开日历，查看今日可刷取材料"
+    : `树脂 「全部恢复」 预计需要${formatTime(Number(note?.resin_recovery_time))}`;
 
-  const homeStatus = `${note.current_home_coin}/${note.max_home_coin}`;
-  const homeTitle = `达 「储存上限」 预计需要${formatTime(Number(note.home_coin_recovery_time))}`;
+  const isHomeOk = note?.max_home_coin !== 0;
+  const homeStatus = isHomeOk ? `${note?.current_home_coin}/${note?.max_home_coin}` : "暂未开启";
+  const homeTitle = isHomeOk
+    ? `达 「储存上限」 预计需要${formatTime(Number(note?.home_coin_recovery_time))}`
+    : " 「尘歌壶」 相关功能暂未解锁或开启";
 
-  const taskStatus = `${note.finished_task_num}/${note.total_task_num}`;
-  const isTaskDone = note.finished_task_num === note.total_task_num;
-  const hasReceived = note.is_extra_task_reward_received;
+  const hasReceivedTask = note?.total_task_num !== 0;
+  const taskStatus = hasReceivedTask
+    ? `${note?.finished_task_num}/${note?.total_task_num}`
+    : "尚未接取";
+  const isTaskDone = note?.finished_task_num === note?.total_task_num;
+  const hasReceivedReward = note?.is_extra_task_reward_received;
   const taskTitle =
     "今日 「每日委托任务」 " +
-    (isTaskDone ? (hasReceived ? "已完成，奖励已领取" : "已做完，但尚未领取奖励") : "待完成");
+    (hasReceivedTask
+      ? isTaskDone
+        ? hasReceivedReward
+          ? "已完成，奖励已领取"
+          : "已完成，但尚未领取奖励"
+        : "待完成"
+      : "尚未接取");
 
-  const discountStatus = `${note.remain_resin_discount_num}/${note.resin_discount_num_limit}`;
-  const isDiscountDone = note.remain_resin_discount_num === 0;
+  const discountStatus = `${note?.remain_resin_discount_num}/${note?.resin_discount_num_limit}`;
+  const isDiscountDone = note?.remain_resin_discount_num === 0;
   const discountTitle =
     "本周 「树脂减半次数」 " +
-    (isDiscountDone ? "已达上限" : `还剩${note.remain_resin_discount_num}次`);
+    (isDiscountDone ? "已达上限" : `还剩${note?.remain_resin_discount_num}次`);
 
   const hasTransformer = note?.transformer?.obtained;
   const _ = note?.transformer?.recovery_time;
@@ -147,12 +163,12 @@ const Home: React.FC = () => {
       : "冷却中"
     : "暂未获得";
   const transformerTitle =
-    "参量质变仪 " +
+    "参量质变仪" +
     (hasTransformer
       ? isTransformerReady
         ? "已就绪"
         : `冷却中，距离冷却结束还剩${formatTime(transformerTime)}`
-      : "暂未获得");
+      : "暂未获得，点击查看什么是 「参量质变仪」");
 
   const notes = [
     {
@@ -187,7 +203,7 @@ const Home: React.FC = () => {
     }
   ];
 
-  const dispatchs = (note.expeditions || []).map((e) => {
+  const dispatchs = (note?.expeditions || []).map((e) => {
     const done = e.status === "Finished";
     return {
       done,
@@ -197,6 +213,9 @@ const Home: React.FC = () => {
         : `探险中，距离探险完成还剩${formatTime(Number(e.remained_time))}`
     };
   });
+  const dispatchDetail = dispatchs.length
+    ? `探索派遣 ${dispatchs.length}/${note?.max_expedition_num}`
+    : "探索派遣 暂未派遣任何角色";
 
   const btns = [
     {
@@ -245,32 +264,42 @@ const Home: React.FC = () => {
               <div className={styles.userCard}>
                 <img src={avatar} alt='avatar' className={styles.avatar} />
                 <div className={styles.userInfo}>
-                  {info.map((e) => (
-                    <div className={styles.infoItem} key={e.key}>
-                      <span>{e.name}：</span>
-                      <div className={styles[e.key]}>{e.content}</div>
-                    </div>
-                  ))}
+                  {info.length &&
+                    info.map((e) => (
+                      <div className={styles.infoItem} key={e.key}>
+                        <span>{e.name}：</span>
+                        <div className={styles[e.key]}>{e.content}</div>
+                      </div>
+                    ))}
                 </div>
               </div>
               <div className={styles.noteCard}>
-                {notes.map((e) => (
-                  <div className={styles.noteItem} key={e.name} title={e.title}>
-                    <img src={e.icon} className={cn(styles.noteIcon, styles[e.name])} />
-                    <div className={styles.noteDetail}>{e.detail}</div>
+                {notes.length &&
+                  notes.map((e) => (
+                    <div className={styles.noteItem} key={e.name} title={e.title}>
+                      <img src={e.icon} className={cn(styles.noteIcon, styles[e.name])} />
+                      <div className={styles.noteDetail}>{e.detail}</div>
+                    </div>
+                  ))}
+                <div className={styles.noteItem} title={dispatchDetail}>
+                  <div className={styles.noteDetail}>
+                    <img src={prestigeIcon} className={cn(styles.noteIcon)} />
+                    {dispatchDetail}
                   </div>
-                ))}
+                </div>
                 <div className={styles.noteItem}>
                   <div className={styles.noteDetail}>
-                    {dispatchs.map((e) => (
-                      <div
-                        className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
-                        title={e.title}
-                        key={e.avatar}
-                      >
-                        <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
-                      </div>
-                    ))}
+                    {dispatchs.length
+                      ? dispatchs.map((e) => (
+                          <div
+                            className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
+                            title={e.title}
+                            key={e.avatar}
+                          >
+                            <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
+                          </div>
+                        ))
+                      : "探索派遣：暂未派遣任何角色"}
                   </div>
                 </div>
               </div>
@@ -341,12 +370,13 @@ const Home: React.FC = () => {
               </div> */}
             </div>
             {/* {!auth.isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
-            {btns.map(({ name, handler, Icon }) => (
-              <div className={styles.btn} onClick={handler} key={name}>
-                <Icon size={42} />
-                <span className={styles.btnText}>{name}</span>
-              </div>
-            ))}
+            {btns.length &&
+              btns.map(({ name, handler, Icon }) => (
+                <div className={styles.btn} onClick={handler} key={name}>
+                  <Icon size={42} />
+                  <span className={styles.btnText}>{name}</span>
+                </div>
+              ))}
           </div>
           <div className={styles.footer}>
             <a href={LINK_GITHUB_REPO} target='_blank'>

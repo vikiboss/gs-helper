@@ -102,6 +102,10 @@
         height: 30px;
         width: 50%;
 
+        &:active {
+          color: @text-color-second;
+        }
+
         .note-icon {
           height: 24px;
           margin-right: 4px;
@@ -225,11 +229,15 @@
 
         width: 100%;
         width: calc((100% - 80px) / 4);
-        height: 110px;
+        height: 105px;
         margin: 8px;
         color: @home-btn-color;
-        border-radius: 1px;
+        border-radius: 2px;
+        overflow: hidden;
         background-color: @home-btn-bg-color;
+        background-image: url("../../../assets/btn-border.png");
+        background-size: contain;
+        background-repeat: no-repeat;
         border: 2px solid @home-block-border-color;
         transition: all 0.2s ease-in-out;
 
@@ -242,7 +250,7 @@
           // border-radius: 20px;
           color: @home-btn-hover-color;
           transform: scale(1.08);
-          border: 2px solid @home-block-hover-border-color;
+          // border: 2px solid @home-block-hover-border-color;
         }
 
         &:active {
