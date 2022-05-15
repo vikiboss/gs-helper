@@ -36,7 +36,7 @@ const GachaTypeMap = {
   newer: "100"
 };
 
-const transformGachaType = (type: FilterType["gachaType"]): string[] => {
+const transformGachaType = (type: FilterType["gacha"]): string[] => {
   switch (type) {
     case "all":
       return ["100", "200", "301", "302"];
@@ -47,7 +47,7 @@ const transformGachaType = (type: FilterType["gachaType"]): string[] => {
 
 const transformGachaDataType = (list: GachaData["list"], type: FilterType) => {
   [n5, n4, n3].forEach((e) => (e.value = 0));
-  const { itemType, gachaType } = type;
+  const { item: itemType, gacha: gachaType } = type;
   list = list.filter((e) => ItemTypeMap[itemType].includes(e.item_type));
   list = list.filter((e) => transformGachaType(gachaType).includes(e.gacha_type));
   for (const item of list) {
