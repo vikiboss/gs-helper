@@ -62,7 +62,9 @@ const Login: React.FC<LoginProp> = (props) => {
         <div>
           <div className={styles.desc}>操作步骤：</div>
           {LOGIN_GUIDES.map((e) => (
-            <div className={styles.step}>{e}</div>
+            <div className={styles.step} key={e}>
+              {e}
+            </div>
           ))}
         </div>
         <div className={styles.btns}>
