@@ -289,17 +289,15 @@ const Home: React.FC = () => {
                 </div>
                 <div className={styles.noteItem}>
                   <div className={styles.noteDetail}>
-                    {dispatchs.length
-                      ? dispatchs.map((e) => (
-                          <div
-                            className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
-                            title={e.title}
-                            key={e.avatar}
-                          >
-                            <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
-                          </div>
-                        ))
-                      : "探索派遣：暂未派遣任何角色"}
+                    {dispatchs.map((e) => (
+                      <div
+                        className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
+                        title={e.title}
+                        key={e.avatar}
+                      >
+                        <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

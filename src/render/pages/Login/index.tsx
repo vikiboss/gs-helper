@@ -34,7 +34,7 @@ const Login: React.FC<LoginProp> = (props) => {
   useEffect(() => {
     if (props?.from) notice.faild({ message: "请登录以使用全部功能", duration: 3000 });
     if (isExpired) notice.faild({ message: "验证信息已过期，请重新登录", duration: 3000 });
-    if (isSwitching) notice.info({ message: "请登录新的账号以切换账号", duration: 3000 });
+    if (isSwitching) notice.info({ message: "请登录 「新的账号」 以切换账号", duration: 3000 });
   }, []);
 
   const handleLogin = () => {

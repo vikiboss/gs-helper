@@ -12,10 +12,11 @@ import "./index.less";
 const root = createRoot(document.getElementById("app"));
 
 const render = async () => {
-  const { version } = await nativeApi.getAppInfo();
+  // const { version } = await nativeApi.getAppInfo();
   const isLogin = Boolean(await nativeApi.getStoreKey("user.cookie"));
+  // const title = `${APP_NAME} v${version}`;
   root.render(
-    <WinFrame title={`${APP_NAME} v${version}`}>
+    <WinFrame title={APP_NAME}>
       <AuthProvider isLogin={isLogin}>
         <AppRouter />
       </AuthProvider>
