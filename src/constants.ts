@@ -35,6 +35,13 @@ export const API_GACHA_BASE = `${API_HK4E_BASE}/event/gacha_info/api`;
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
 
+export const COLORS = {
+  blue: "#73abcd",
+  purple: "#9779c2",
+  golden: "#da9559",
+  red: "#da4e55"
+};
+
 export const MENU: Record<string, string> = {
   alwaysOnTop: "置顶显示",
   open: "打开助手",

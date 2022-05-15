@@ -59,6 +59,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           const list = data.data.list.map((e: RawGachaItem) => {
             if (e?.uid) delete e.uid;
             if (e?.lang) delete e.lang;
+            e.uigf_gacha_type = type;
             return e;
           });
 

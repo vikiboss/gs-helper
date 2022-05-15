@@ -8,7 +8,6 @@ const transformGachaDataDate = (gacha: GachaData) => {
   }
   const res = [] as { day: string; value: number }[];
   dateMap.forEach((v, k) => res.push({ day: k, value: v }));
-  console.log(res);
   return res;
 };
 
