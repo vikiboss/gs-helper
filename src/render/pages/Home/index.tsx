@@ -154,7 +154,7 @@ const Home: React.FC = () => {
   const isDiscountDone = note?.remain_resin_discount_num === 0;
   const discountTitle =
     "本周树脂减半次数" +
-    (isDiscountDone ? " 「已达上限」 " : `还剩 「${note?.remain_resin_discount_num}」 次`);
+    (isDiscountDone ? " 「已达上限」" : `还剩 「${note?.remain_resin_discount_num}」 次`);
 
   const hasTransformer = note?.transformer?.obtained;
   const _ = note?.transformer?.recovery_time;
@@ -170,7 +170,7 @@ const Home: React.FC = () => {
     (hasTransformer
       ? isTransformerReady
         ? "已就绪"
-        : `冷却中，还剩${formatTime(transformerTime)}`
+        : `冷却中，还剩 「${formatTime(transformerTime)}」`
       : "暂未获得") +
     "」";
 
