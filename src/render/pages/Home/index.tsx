@@ -16,7 +16,7 @@ import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import {
   ANNUCEMENT,
-  defaultData,
+  defaultAppData,
   defaultNotes,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
@@ -49,7 +49,7 @@ const Home: React.FC = () => {
   const auth = useAuth();
   const notice = useNotice();
   const navigate = useNavigate();
-  const [user, setUser] = useState<Partial<AppData["user"]>>(defaultData["user"]);
+  const [user, setUser] = useState<Partial<AppData["user"]>>(defaultAppData["user"]);
   const [note, setNotesData] = useState<Partial<DailyNotesData>>(defaultNotes);
 
   useEffect(() => {

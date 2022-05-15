@@ -10,6 +10,7 @@ type ButtonProp = {
   type?: "confirm" | "cancel";
   size?: "small" | "middle" | "large";
   theme?: "light" | "dark";
+  style?: React.CSSProperties;
   noIcon?: boolean;
   text: string;
   className?: string;
@@ -34,12 +35,13 @@ const Button: React.FC<ButtonProp> = (props) => {
     size = "small",
     theme = "dark",
     noIcon = false,
+    style = {},
     type,
     text
   } = props;
   const Icon = noIcon ? null : TYPE_MAP[type];
   return (
-    <div className={cn(styles.btn, styles[size], className)} onClick={onClick}>
+    <div style={style} className={cn(styles.btn, styles[size], className)} onClick={onClick}>
       {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : "")} />}
       <div className={cn(styles.text, noIcon ? "" : styles.withIcon)}>{text}</div>
     </div>

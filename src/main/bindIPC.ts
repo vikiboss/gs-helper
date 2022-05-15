@@ -7,23 +7,25 @@ const AppInfo = {
 
 import { mainWin, store } from ".";
 import { isDev } from "./createMainWindow";
+import deepClone from "../utils/deepClone";
 import clearCookie from "../utils/clearCookie";
 import getGachaUrl from "../utils/getGachaUrl";
 import verifyCookie from "../utils/verifyCookie";
 import getGachaListByUrl from "../services/getGachaListByUrl";
+import getRoleInfoByCookie from "../services/getUserInfoByCookie";
 import updateStoreGachaList from "../utils/updateStoreGachaList";
+import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
 import {
   IPC_EVENTS,
-  APP_USER_AGENT_MOBILE,
-  APP_USER_AGENT_DESKTOP,
-  LINK_MIHOYO_BBS_LOGIN,
+  defaultAppData,
   SCRIPT_REFINE_BBS,
-  WINDOW_BACKGROUND_COLOR,
-  defaultData
+  APP_USER_AGENT_MOBILE,
+  LINK_MIHOYO_BBS_LOGIN,
+  APP_USER_AGENT_DESKTOP,
+  WINDOW_BACKGROUND_COLOR
 } from "../constants";
-import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
-import { AppData, DailyNotesData } from "../typings";
-import getRoleInfoByCookie from "../services/getUserInfoByCookie";
+
+import type { AppData } from "../typings";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
@@ -74,7 +76,7 @@ const bindIPC = (win: BrowserWindow) => {
             regionName: info.region_name,
             cookie: cookie
           }
-        : defaultData.user;
+        : deepClone(defaultAppData.user);
       store.set("user", user);
       mainWin.focus();
     });
@@ -116,13 +118,15 @@ const bindIPC = (win: BrowserWindow) => {
   ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
   ipcMain.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
-    updateStoreGachaList(data);
+    if (data.list.length > 0) updateStoreGachaList(data);
     return data;
   });
+
   ipcMain.handle(
     IPC_EVENTS.getDailyNotes,
     async () => await getDailyNotesByCookie(store.get("user.cookie"))
   );
+
   ipcMain.handle(IPC_EVENTS.refreshUserInfo, async () => {
     const info = await getRoleInfoByCookie();
     const user: AppData["user"] = info?.game_uid
@@ -134,7 +138,7 @@ const bindIPC = (win: BrowserWindow) => {
           regionName: info.region_name,
           cookie: store.get("user.cookie")
         }
-      : defaultData.user;
+      : deepClone(defaultAppData.user);
     store.set("user", user);
     return user;
   });

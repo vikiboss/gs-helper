@@ -1,4 +1,4 @@
-import { AppData, DailyNotesData } from "./typings.d";
+import { AppData, DailyNotesData, GachaData } from "./typings.d";
 export const APP_NAME = "原神助手";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
@@ -66,7 +66,7 @@ export const IPC_EVENTS: Record<string, string> = {
   setStoreKey: "SET_STORE_KEY"
 };
 
-export const defaultData: AppData = {
+export const defaultAppData: AppData = {
   user: {
     uid: "000000000",
     nickname: "旅行者",
@@ -77,6 +77,115 @@ export const defaultData: AppData = {
   },
   gachas: [],
   settings: { alwaysOnTop: false }
+};
+
+export const defaultGachaData: GachaData = {
+  info: {
+    uid: "",
+    lang: "zh-cn",
+    export_app: APP_NAME,
+    export_app_version: "1.0.0",
+    export_time: "",
+    export_timestamp: "",
+    uigf_version: "v2.2"
+  },
+  list: []
+};
+
+export const CHART_THEME = {
+  background: "#f9f6f2",
+  textColor: "#333333",
+  fontSize: 11,
+  axis: {
+    domain: {
+      line: {
+        stroke: "#777777",
+        strokeWidth: 1
+      }
+    },
+    legend: {
+      text: {
+        fontSize: 12,
+        fill: "#333333"
+      }
+    },
+    ticks: {
+      line: {
+        stroke: "#777777",
+        strokeWidth: 1
+      },
+      text: {
+        fontSize: 11,
+        fill: "#333333"
+      }
+    }
+  },
+  grid: {
+    line: {
+      stroke: "#dddddd",
+      strokeWidth: 1
+    }
+  },
+  legends: {
+    title: {
+      text: {
+        fontSize: 12,
+        fill: "#3b4354"
+      }
+    },
+    text: {
+      fontSize: 11,
+      fill: "#3b4354"
+    },
+    ticks: {
+      line: {},
+      text: {
+        fontSize: 10,
+        fill: "#333333"
+      }
+    }
+  },
+  annotations: {
+    text: {
+      fontSize: 13,
+      fill: "#333333",
+      outlineWidth: 2,
+      outlineColor: "#f9f6f2",
+      outlineOpacity: 1
+    },
+    link: {
+      stroke: "#000000",
+      strokeWidth: 1,
+      outlineWidth: 2,
+      outlineColor: "#ffffff",
+      outlineOpacity: 1
+    },
+    outline: {
+      stroke: "#000000",
+      strokeWidth: 2,
+      outlineWidth: 2,
+      outlineColor: "#ffffff",
+      outlineOpacity: 1
+    },
+    symbol: {
+      fill: "#000000",
+      outlineWidth: 2,
+      outlineColor: "#ffffff",
+      outlineOpacity: 1
+    }
+  },
+  tooltip: {
+    container: {
+      background: "#f9f6f2",
+      color: "#3b4354",
+      fontSize: 12
+    },
+    basic: {},
+    chip: {},
+    table: {},
+    tableCell: {},
+    tableCellValue: {}
+  }
 };
 
 export const defaultNotes: DailyNotesData = {

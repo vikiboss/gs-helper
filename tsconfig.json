@@ -9,6 +9,7 @@
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "downlevelIteration": true,
     "jsx": "react",
     "paths": {
       "*": ["./node_modules/*"]

@@ -1,10 +1,11 @@
 import { session } from "electron";
 
 import { store } from "../main";
-import { defaultData } from "../constants";
+import deepClone from "./deepClone";
+import { defaultAppData } from "../constants";
 
 const clearCookie = async (domain: string = "mihoyo.com") => {
-  store.set("user", defaultData["user"]);
+  store.set("user", deepClone(defaultAppData["user"]));
   const ses = session.defaultSession;
   const mihoyoCks = await ses.cookies.get({ domain });
   for (const ck of mihoyoCks) {

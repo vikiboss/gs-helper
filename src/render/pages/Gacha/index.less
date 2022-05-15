@@ -2,15 +2,49 @@
 @import "../../utils/util.less";
 
 .desc {
-  .flex-center-column();
+  .flex-center-x-column();
   .ani-show-bottom();
 
   flex: 1;
   position: relative;
 
-  .title,
+  .title {
+    margin: 20px 0;
+    height: 42px;
+    font-size: 32px;
+    line-height: 42px;
+  }
+
+  .input-zone {
+    .flex-center-y();
+
+    input {
+      color: @text-color-second;
+      background-color: @color-white;
+      font-weight: bold;
+      height: 26px;
+      font-size: 18px;
+      width: 360px;
+      border: none;
+      padding: 2px 12px;
+      border-radius: 16px;
+      outline: none;
+      border: 2px solid transparent;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        border-color: @text-color-second;
+      }
+    }
+  }
+
   .sum {
-    margin-bottom: 20px;
+    margin: 10px 0;
+  }
+
+  .view {
+    height: 160px;
+    width: 800px;
   }
 
   .back-btn {
