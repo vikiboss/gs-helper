@@ -377,16 +377,7 @@ const Home: React.FC = () => {
               <div className={styles.title}>
                 <span>旅行者工具</span>
               </div>
-              {/* <div className={styles.titleBtns}>
-                <CircleButton
-                  Icon={IoSettingsOutline}
-                  size='middle'
-                  tip='设置'
-                  onClick={() => handlePageSwitch("/setting")}
-                />
-              </div> */}
             </div>
-            {/* {!auth.isLogin && <div className={styles.ps}>{"※ 部分工具需要登录才能使用。"}</div>} */}
             {btns.length &&
               btns.map(({ name, handler, Icon }) => (
                 <div className={styles.btn} onClick={handler} key={name}>

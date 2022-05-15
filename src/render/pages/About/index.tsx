@@ -52,15 +52,15 @@ const About: React.FC = () => {
         <div className={styles.items}>
           <div className={styles.item}>
             <div className={styles.field}>
-              开发者：
+            ※ 开发者：
               <a href={githubLink} target='_blank'>
                 Viki
               </a>
             </div>
-            <div className={styles.field}>当前版本：{vsersion}</div>
+            <div className={styles.field}>※ 当前版本：{vsersion}</div>
           </div>
           <div className={styles.item}>
-            源码：
+          ※ 源码：
             <a href={LINK_GITHUB_REPO} target='_blank'>
               {" GitHub "}
             </a>
@@ -68,7 +68,7 @@ const About: React.FC = () => {
           </div>
           <div className={styles.item}>
             <div className={styles.field}>
-              交流群：
+            ※ 交流群：
               <a href={groupLink} target='_blank'>
                 176593098
               </a>
