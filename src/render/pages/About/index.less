@@ -22,13 +22,14 @@
       margin: 10px 0;
     }
   }
-  
+
   .thank {
     color: @text-color-second;
   }
 
   .bottom {
-    .flex-center-y();
+    display: flex;
+    align-items: flex-end;
 
     width: 70%;
     justify-content: space-between;
@@ -36,9 +37,12 @@
     .items {
       .flex-center-y-column();
 
+      margin-bottom: 20px;
+
       .item {
         .flex-center-y();
-        margin: 4px;
+
+        margin: 6px 0;
 
         .field {
           margin-right: 20px;
