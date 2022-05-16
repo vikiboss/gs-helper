@@ -1,4 +1,11 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions, ipcMain, shell } from "electron";
+import {
+  app,
+  BrowserWindow,
+  BrowserWindowConstructorOptions,
+  clipboard,
+  ipcMain,
+  shell
+} from "electron";
 
 const AppInfo = {
   name: app.getName(),
@@ -26,14 +33,21 @@ import {
 } from "../constants";
 
 import type { AppData } from "../typings";
+import sortGachaList from "../utils/sortGachaList";
 
 const bindIPC = (win: BrowserWindow) => {
+  ipcMain.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
   ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
-  ipcMain.on(IPC_EVENTS.minimizeApp, () => win.minimize());
   ipcMain.on(IPC_EVENTS.hideApp, () => win.hide());
+  ipcMain.on(IPC_EVENTS.minimizeApp, () => win.minimize());
   ipcMain.on(IPC_EVENTS.openLink, (_, url: string) => shell.openExternal(url));
   ipcMain.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => store.set(key, value));
-  ipcMain.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
+  ipcMain.on(IPC_EVENTS.writeClipboardText, (_, text: string) => clipboard.writeText(text));
+
+  ipcMain.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
+  ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
+  ipcMain.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
+  ipcMain.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
 
   ipcMain.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
     const bbsWin = new BrowserWindow({
@@ -113,12 +127,12 @@ const bindIPC = (win: BrowserWindow) => {
     }
   );
 
-  ipcMain.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
-  ipcMain.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
-  ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
   ipcMain.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
-    if (data.list.length > 0) updateStoreGachaList(data);
+    if (data.list.length > 0) {
+      data.list = sortGachaList(data.list);
+      updateStoreGachaList(data);
+    }
     return data;
   });
 

@@ -5,19 +5,19 @@
   .flex-center-x-column();
   .ani-show-bottom();
 
-  flex: 1;
+  flex    : 1;
   position: relative;
 
   .title {
-    margin: 20px 0;
-    height: 42px;
-    font-size: 32px;
+    margin     : 20px 0 10px 0;
+    height     : 42px;
+    font-size  : 32px;
     line-height: 42px;
   }
 
   .align-left {
     align-self: flex-start;
-    margin: 0 0 12px 40px;
+    margin    : 0 0 12px 40px;
   }
 
   .sub-title {
@@ -35,32 +35,37 @@
   .input-zone {
     .flex-center-y();
 
-    width: 880px;
-    justify-content: space-between;
-    border-bottom: 1px solid @input-border-color;
+    border-bottom : 1px solid @input-border-color;
     padding-bottom: 12px;
+    width         : 880px;
+
 
     input {
       background-color: @input-bg-color;
-      border-radius: 16px;
-      border: 2px solid @input-border-color;
-      color: @input-text-color;
-      flex: 1;
-      font-size: 18px;
-      font-weight: bold;
-      height: 26px;
-      outline: none;
-      padding: 2px 12px;
-      transition: all 0.2s ease-in-out;
-      margin-right: 12px;
+      border          : 2px solid @input-border-color;
+      border-radius   : 16px;
+      color           : @text-color-second;
+      font-size       : 18px;
+      font-weight     : bold;
+      height          : 26px;
+      margin-right    : 12px;
+      outline         : none;
+      padding         : 2px 12px;
+      text-overflow   : ellipsis;
+      transition      : all 0.6s cubic-bezier(0.36, 0.79, 0.68, 0.99);
+      will-change     : "contents";
+
+      &:focus {
+        flex: 1;
+      }
 
       &::placeholder {
         color: @input-border-color;
-        transition: all 0.2s ease-in-out;
       }
 
       &:hover {
         border-color: @input-border-hover-color;
+        color       : @text-color;
 
         &::placeholder {
           color: @input-border-hover-color;
@@ -75,12 +80,12 @@
 
   .view {
     height: 160px;
-    width: 800px;
+    width : 800px;
   }
 
   .back-btn {
     position: absolute;
-    left: 20px;
-    top: 20px;
+    left    : 20px;
+    top     : 20px;
   }
 }

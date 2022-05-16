@@ -4,20 +4,22 @@ import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 export interface NativeApi {
+  clearCookie: (domain?: string) => Promise<void>;
   closeApp: () => void;
+  getAppInfo: () => Promise<AppInfo>;
+  getDailyNotes: () => Promise<DailyNotesData>;
+  getGachaListByUrl: (url: string) => Promise<GachaData>;
+  getGachaUrl: () => Promise<string>;
+  getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
+  loginViaMihoyoBBS: () => void;
   minimizeApp: () => void;
   openLink: (url: string) => void;
   openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => void;
-  loginViaMihoyoBBS: () => void;
-  getAppInfo: () => Promise<AppInfo>;
-  getStoreKey: (key: string) => Promise<any>;
-  setStoreKey: (key: string, value: any) => void;
-  clearCookie: (domain?: string) => Promise<void>;
-  getGachaUrl: () => Promise<string>;
-  getGachaListByUrl: (url: string) => Promise<GachaData>;
-  getDailyNotes: () => Promise<DailyNotesData>;
+  readClipboardText: () => Promise<string>;
   refreshUserInfo: () => Promise<AppData["user"]>;
+  setStoreKey: (key: string, value: any) => void;
+  writeClipboardText: (text: string) => void;
 }
 
 export type GachaItem = {

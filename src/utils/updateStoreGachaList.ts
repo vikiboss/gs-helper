@@ -12,13 +12,13 @@ const updateStoreGachaList = (gacha: GachaData) => {
   const preList = gachas.filter((e) => e.info.uid === gacha.info.uid);
 
   // 如果存在这个账号的旧数据，进行合并操作,如果不存在，直接返回抽卡数据
-  const res = preList[0] ? mergeGachaList(preList[0], gacha) : gacha;
+  const list = preList[0].list.length ? mergeGachaList(preList[0].list, gacha.list) : gacha.list;
 
   // 删除旧数据
   gachas = gachas.filter((e) => e.info.uid !== gacha.info.uid);
 
   // 插入并保存新的数据
-  gachas.push(res);
+  gachas.push({ info: gacha.info, list });
   store.set("gachas", gachas);
 };
 

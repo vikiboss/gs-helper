@@ -3,6 +3,7 @@ import cn from "classnames";
 import { useNavigate } from "react-router-dom";
 
 import { IoMdRefresh } from "react-icons/io";
+import { RiCalendarCheckFill } from "react-icons/ri";
 import { MdOutlineAccountBox } from "react-icons/md";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
@@ -260,6 +261,11 @@ const Home: React.FC = () => {
       name: "查询 UID",
       Icon: IoSearch,
       handler: () => handlePageSwitch("/query")
+    },
+    {
+      name: "米游社签到",
+      Icon: RiCalendarCheckFill,
+      handler: () => notice.info({ message: "你点了签到" })
     }
   ];
 
@@ -313,7 +319,14 @@ const Home: React.FC = () => {
                         className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
                         title={e.title}
                         key={e.avatar}
-                        onClick={() => notice.info({ message: `角色 ${i + 1} ${e.title}` })}
+                        onClick={() => {
+                          const args = { message: `角色 ${i + 1} ${e.title}` };
+                          if (e.done) {
+                            notice.success(args);
+                          } else {
+                            notice.info(args);
+                          }
+                        }}
                       >
                         <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
                       </div>

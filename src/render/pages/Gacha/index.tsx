@@ -48,10 +48,8 @@ const Gocha: React.FC = () => {
 
     if (!link) return notice.faild({ message: "请先获取 「本地祈愿链接」 或手动输入祈愿链接" });
 
-    if (!link.match(/^https?:\/\/webstatic.mihoyo.com/)) {
-      return notice.faild({
-        message: "输入的链接无效，请修改后重试"
-      });
+    if (!link.match(/^https?:\/\//)) {
+      return notice.faild({ message: "输入内容无效，请输入有效的链接后重试" });
     }
 
     setLoading(true);
@@ -92,18 +90,20 @@ const Gocha: React.FC = () => {
     setPieFilter({ gacha: pieFilter.gacha, item: target });
   };
 
-  const handleInputClick: React.MouseEventHandler<HTMLInputElement> = (e) => {
+  const copyLink = () => {
     if (link) {
-      e.currentTarget.select();
+      nativeApi.writeClipboardText(link);
+      notice.success({ message: "已将 「祈愿记录链接」 复制到剪切板" });
+    } else {
+      notice.faild({ message: " 「祈愿记录链接」 为空" });
     }
   };
-
-  const copyLink = () => {};
 
   const getLocalGachaUrl = async (isUserTrriger: boolean = false) => {
     const url = await nativeApi.getGachaUrl();
     if (url) {
       setLink(url);
+      if (isUserTrriger) notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
     } else {
       if (isUserTrriger) {
         notice.faild({
@@ -118,6 +118,7 @@ const Gocha: React.FC = () => {
   const now = new Date();
   const year = now.getFullYear();
   const defaultRange = [`${year}-01-01`, now];
+  console.log(gacha.list.length, gacha.list, gacha.list[gacha.list.length - 1]);
   const lastDate = gacha.list.length ? gacha.list[gacha.list.length - 1].time : "";
 
   return (
@@ -133,18 +134,17 @@ const Gocha: React.FC = () => {
         <div className={styles.inputZone}>
           <input
             value={link}
-            style={{ flex: 1 }}
             onBlur={(e) => setLink(e.target.value.trim())}
             onChange={(e) => setLink(e.target.value)}
             placeholder='祈愿记录链接'
-            onClick={handleInputClick}
           />
           <Button
-            text={link ? "复制链接" : "获取本地链接"}
+            noIcon
+            text={link ? "复制" : "获取本地链接"}
             onClick={link ? copyLink : getLocalGachaUrl.bind(null, true)}
             style={{ marginRight: "12px" }}
           />
-          <Button type='confirm' text='分析数据' onClick={updateGachaData} />
+          <Button type='confirm' text='更新数据' onClick={updateGachaData} />
         </div>
 
         <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
@@ -171,7 +171,7 @@ const Gocha: React.FC = () => {
         {gacha.list.length && (
           <span
             className={styles.dateTip}
-          >{`※ 最新数据截至：${lastDate} （数据同步存在大约一小时延迟）`}</span>
+          >{`※ 当前数据截至：${lastDate} （数据同步存在大约一小时延迟）`}</span>
         )}
       </div>
       {notice.holder}

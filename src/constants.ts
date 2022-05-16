@@ -59,18 +59,20 @@ export const GACHA_TYPES: Record<string, string> = {
 export const IPC_EVENTS: Record<string, string> = {
   clearCookie: "CLEAR_COOKIE",
   closeApp: "CLOSE_APP",
-  openLink: "OPEN_LINK",
-  openWindow: "OPEN_WINDOW",
   getAppInfo: "GET_APP_INFO",
+  getDailyNotes: "GET_DAILY_NOTES",
+  getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
   getStoreKey: "GET_STORE_KEY",
-  getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
-  getDailyNotes: "GET_DAILY_NOTES",
-  refreshUserInfo: "REFRESH_USER_INFO",
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
   minimizeApp: "MONIMIZE_APP",
-  setStoreKey: "SET_STORE_KEY"
+  openLink: "OPEN_LINK",
+  openWindow: "OPEN_WINDOW",
+  readClipboardText: "READ_CLIPBOARD_TEXT",
+  refreshUserInfo: "REFRESH_USER_INFO",
+  setStoreKey: "SET_STORE_KEY",
+  writeClipboardText: "WRITE_CLIPBOARD_TEXT"
 };
 
 export const defaultAppData: AppData = {
