@@ -29,10 +29,11 @@
   .input-zone {
     .flex-center-y();
 
-    border-bottom: 1px solid @input-border-color;
-    margin       : 20px 0 0 0;
-    padding      : 4px 40px 20px 80px;
-    width        : calc(100vw - 40px - 80px);
+    justify-content: flex-start;
+    border-bottom  : 1px solid @input-border-color;
+    margin         : 20px 0 0 0;
+    padding        : 4px 40px 20px 80px;
+    width          : calc(100vw - 40px - 80px);
 
     input {
       background-color: @input-bg-color;
@@ -51,7 +52,13 @@
 
       &:focus {
         flex: 1;
+
+        // 通用兄弟选择器：同一层级后面的所有元素都会被选中
+        &~.title {
+          color: transparent;
+        }
       }
+
 
       &::placeholder {
         color: @input-border-color;
@@ -66,15 +73,20 @@
         }
       }
     }
-  }
 
-  .sum {
-    margin: 10px 0;
-  }
+    .title {
+      height     : 42px;
+      line-height: 42px;
+      opacity    : 1;
+      position   : absolute;
+      right      : 40px;
+      top        : 20px;
+      transition : all 0.6s cubic-bezier(0.36, 0.79, 0.68, 0.99);
+    }
 
-  .view {
-    height: 160px;
-    width : 800px;
+    input:focus span {
+      opacity: 0;
+    }
   }
 
   .back-btn {

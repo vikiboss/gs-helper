@@ -144,6 +144,7 @@ const Gocha: React.FC = () => {
             style={{ marginRight: "12px" }}
           />
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
+          <span className={styles.title}>祈愿记录 「数据可视化」 分析</span>
         </div>
 
         <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
