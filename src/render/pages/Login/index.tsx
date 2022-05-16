@@ -32,9 +32,9 @@ const Login: React.FC<LoginProp> = (props) => {
   };
 
   useEffect(() => {
-    if (props?.from) notice.faild({ message: "请登录以使用全部功能", duration: 3000 });
-    if (isExpired) notice.faild({ message: "验证信息已过期，请重新登录", duration: 3000 });
-    if (isSwitching) notice.info({ message: "请登录 「新的账号」 以切换账号", duration: 3000 });
+    if (props?.from) notice.faild({ message: "请登录以使用全部功能" });
+    if (isExpired) notice.faild({ message: "验证信息已过期，请重新登录" });
+    if (isSwitching) notice.info({ message: "请登录 「新的账号」 以切换账号" });
   }, []);
 
   const handleLogin = () => {
@@ -43,8 +43,7 @@ const Login: React.FC<LoginProp> = (props) => {
 
   const handleRefresh = async () => {
     const user: AppData["user"] = await nativeApi.getStoreKey("user");
-    if (!user?.cookie)
-      return notice.faild({ message: "未检测到有效验证信息，请重新登录", duration: 3000 });
+    if (!user?.cookie) return notice.faild({ message: "未检测到有效验证信息，请重新登录" });
     setLogged(true);
     notice.success({ message: "登录成功，正在返回登录前页面..." });
     setTimeout(() => {

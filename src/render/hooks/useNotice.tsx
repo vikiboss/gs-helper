@@ -16,7 +16,7 @@ const useAlert = () => {
   const [visible, setVisible] = useState<boolean>(false);
 
   const showAlert = (optons: AlertOptions) => {
-    const { duration = 1200, type, message, autoHide = true } = optons;
+    const { duration = 3000, type, message, autoHide = true } = optons;
     setType(type);
     setMessage(message);
     setVisible(true);

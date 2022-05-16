@@ -31,36 +31,36 @@ const Gocha: React.FC = () => {
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [pieFilter, setPieFilter] = useState<FilterType>(defaultFilter);
-  const [placeholder, setPlaceholder] = useState<string>("");
   const [gacha, setGacha] = useState<GachaData>(defaultGachaData);
+
+  useEffect(() => {
+    (async () => {
+      const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
+      const uid: string = await nativeApi.getStoreKey("user.uid");
+      await getLocalGachaUrl();
+      for (const gacha of gachas) if (gacha.info.uid === uid) setGacha(gacha);
+      if (gachas.length && !gacha.list.length) setGacha(gachas[0]);
+    })();
+  }, []);
 
   const updateGachaData = async () => {
     if (loading) return;
-    setLoading(true);
 
-    if (!link) {
-      const url = await nativeApi.getGachaUrl();
-      if (url) {
-        setLink(url);
-      } else {
-        return notice.faild({
-          message: "未找到有效的 URL，请先在游戏内打开 「祈愿历史记录」 后再尝试获取",
-          duration: 3000
-        });
-      }
-    }
+    if (!link) return notice.faild({ message: "请先获取 「本地祈愿链接」 或手动输入祈愿链接" });
 
     if (!link.match(/^https?:\/\/webstatic.mihoyo.com/)) {
       return notice.faild({
-        message: "输入的链接无效，请修改后重试",
-        duration: 3000
+        message: "输入的链接无效，请修改后重试"
       });
     }
+
+    setLoading(true);
 
     notice.info({
       message: "正在拼命获取最新数据，请耐心等待操作完成，预计不到半分钟...",
       autoHide: false
     });
+
     const data = await nativeApi.getGachaListByUrl(link);
     console.log(data?.list?.length);
 
@@ -92,26 +92,33 @@ const Gocha: React.FC = () => {
     setPieFilter({ gacha: pieFilter.gacha, item: target });
   };
 
-  useEffect(() => {
-    (async () => {
-      const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
-      const uid: string = await nativeApi.getStoreKey("user.uid");
-      const url: string = await nativeApi.getGachaUrl();
-      if (url) {
-        setLink(url);
-      } else {
-        notice.warning({ message: "本地祈愿历史记录链接不存在", duration: 3000 });
-        setPlaceholder("请先在游戏内打开 「祈愿历史记录」 后再尝试获取");
+  const handleInputClick: React.MouseEventHandler<HTMLInputElement> = (e) => {
+    if (link) {
+      e.currentTarget.select();
+    }
+  };
+
+  const copyLink = () => {};
+
+  const getLocalGachaUrl = async (isUserTrriger: boolean = false) => {
+    const url = await nativeApi.getGachaUrl();
+    if (url) {
+      setLink(url);
+    } else {
+      if (isUserTrriger) {
+        notice.faild({
+          message: "本地日志中不存在有效链接，请先在游戏内打开 「祈愿历史记录」 后再尝试获取"
+        });
       }
-      for (const gacha of gachas) if (gacha.info.uid === uid) setGacha(gacha);
-      if (gachas.length && !gacha.list.length) setGacha(gachas[0]);
-    })();
-  }, []);
+    }
+    return !!url;
+  };
 
   const dates = transformGachaDataDate(gacha);
   const now = new Date();
   const year = now.getFullYear();
   const defaultRange = [`${year}-01-01`, now];
+  const lastDate = gacha.list.length ? gacha.list[gacha.list.length - 1].time : "";
 
   return (
     <>
@@ -124,20 +131,22 @@ const Gocha: React.FC = () => {
         />
         <div className={styles.title}>祈愿数据 「可视化分析」 </div>
         <div className={styles.inputZone}>
-          <span>祈愿记录链接：</span>
           <input
             value={link}
+            style={{ flex: 1 }}
             onBlur={(e) => setLink(e.target.value.trim())}
             onChange={(e) => setLink(e.target.value)}
-            placeholder={placeholder}
+            placeholder='祈愿记录链接'
+            onClick={handleInputClick}
           />
-          <Button text='复制链接' style={{ width: "54px", margin: "0 12px" }} />
-          <Button type='confirm' text='请求链接数据' onClick={updateGachaData} />
+          <Button
+            text={link ? "复制链接" : "获取本地链接"}
+            onClick={link ? copyLink : getLocalGachaUrl.bind(null, true)}
+            style={{ marginRight: "12px" }}
+          />
+          <Button type='confirm' text='分析数据' onClick={updateGachaData} />
         </div>
-        <TimesCalendar
-          data={dates}
-          range={dates.length ? [dates[0]?.day, dates[dates.length - 1]?.day] : defaultRange}
-        />
+
         <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
         <div>
           <span>物品筛选：</span>
@@ -153,8 +162,18 @@ const Gocha: React.FC = () => {
           <button onClick={() => toggleGachaType("weapon")}>武器池</button>
           <button onClick={() => toggleGachaType("newer")}>新手池</button>
         </div>
-      </div>
 
+        <div className={styles.subTitle}>祈愿次数一览表</div>
+        <TimesCalendar
+          data={dates}
+          range={dates.length ? [dates[0]?.day, dates[dates.length - 1]?.day] : defaultRange}
+        />
+        {gacha.list.length && (
+          <span
+            className={styles.dateTip}
+          >{`※ 最新数据截至：${lastDate} （数据同步存在大约一小时延迟）`}</span>
+        )}
+      </div>
       {notice.holder}
     </>
   );

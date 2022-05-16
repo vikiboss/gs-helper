@@ -15,25 +15,56 @@
     line-height: 42px;
   }
 
+  .align-left {
+    align-self: flex-start;
+    margin: 0 0 12px 40px;
+  }
+
+  .sub-title {
+    .align-left();
+
+    font-size: 20px;
+  }
+
+  .date-tip {
+    .align-left();
+
+    color: @text-color-second;
+  }
+
   .input-zone {
     .flex-center-y();
 
+    width: 880px;
+    justify-content: space-between;
+    border-bottom: 1px solid @input-border-color;
+    padding-bottom: 12px;
+
     input {
-      color: @text-color-second;
-      background-color: @color-white;
+      background-color: @input-bg-color;
+      border-radius: 16px;
+      border: 2px solid @input-border-color;
+      color: @input-text-color;
+      flex: 1;
+      font-size: 18px;
       font-weight: bold;
       height: 26px;
-      font-size: 18px;
-      width: 360px;
-      border: none;
-      padding: 2px 12px;
-      border-radius: 16px;
       outline: none;
-      border: 2px solid transparent;
+      padding: 2px 12px;
       transition: all 0.2s ease-in-out;
+      margin-right: 12px;
+
+      &::placeholder {
+        color: @input-border-color;
+        transition: all 0.2s ease-in-out;
+      }
 
       &:hover {
-        border-color: @text-color-second;
+        border-color: @input-border-hover-color;
+
+        &::placeholder {
+          color: @input-border-hover-color;
+        }
       }
     }
   }

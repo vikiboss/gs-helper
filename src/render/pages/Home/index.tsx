@@ -221,6 +221,9 @@ const Home: React.FC = () => {
   const dispatchDetail = dispatchs.length
     ? `探索派遣 ${dispatchs.length}/${note?.max_expedition_num}`
     : "探索派遣 暂未派遣任何角色";
+  const dispatcTitle = dispatchs.length
+    ? `探索派遣 「${dispatchs.length}/${note?.max_expedition_num}」`
+    : "探索派遣 暂未派遣任何角色";
 
   const btns = [
     {
@@ -246,7 +249,7 @@ const Home: React.FC = () => {
     {
       name: "角色详情",
       Icon: MdOutlineAccountBox,
-      handler: () => handlePageSwitch("/hero")
+      handler: () => handlePageSwitch("/role")
     },
     {
       name: "游戏数据",
@@ -295,8 +298,8 @@ const Home: React.FC = () => {
                   ))}
                 <div
                   className={styles.noteItem}
-                  title={dispatchDetail}
-                  onClick={() => notice.info({ message: dispatchDetail })}
+                  title={dispatcTitle}
+                  onClick={() => notice.info({ message: dispatcTitle })}
                 >
                   <div className={styles.noteDetail}>
                     <img src={prestigeIcon} className={cn(styles.noteIcon)} />

@@ -4,6 +4,8 @@
 .container {
   .flex-center-x-column();
 
+  flex: 1;
+  color: @win-bar-bg-color;
   z-index: 0;
   overflow: hidden;
 
@@ -22,9 +24,6 @@
     // background-repeat: no-repeat;
     // background-size: cover;
   }
-
-  flex: 1;
-  color: @win-bar-bg-color;
 
   .user {
     .flex-center-y();
@@ -283,7 +282,7 @@
         background-size: contain;
         background-repeat: no-repeat;
         border: 2px solid @home-block-border-color;
-        transition: all 0.2s ease-in-out;
+        transition: all 0.3s ease-in-out;
 
         .btn-text {
           margin-top: 12px;

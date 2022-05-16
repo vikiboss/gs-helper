@@ -7,7 +7,7 @@ import CircleButton from "../../components/CircleButton";
 
 import styles from "./index.less";
 
-const Hero: React.FC = () => {
+const Role: React.FC = () => {
   const navigate = useNavigate();
 
   return (
@@ -23,4 +23,4 @@ const Hero: React.FC = () => {
   );
 };
 
-export default withAuth(Hero);
+export default withAuth(Role);
