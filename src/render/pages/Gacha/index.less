@@ -8,12 +8,6 @@
   flex    : 1;
   position: relative;
 
-  .title {
-    margin     : 20px 0 10px 0;
-    height     : 42px;
-    font-size  : 32px;
-    line-height: 42px;
-  }
 
   .align-left {
     align-self: flex-start;
@@ -35,10 +29,10 @@
   .input-zone {
     .flex-center-y();
 
-    border-bottom : 1px solid @input-border-color;
-    padding-bottom: 12px;
-    width         : 880px;
-
+    border-bottom: 1px solid @input-border-color;
+    margin       : 20px 0 0 0;
+    padding      : 4px 40px 20px 80px;
+    width        : calc(100vw - 40px - 80px);
 
     input {
       background-color: @input-bg-color;

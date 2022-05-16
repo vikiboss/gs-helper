@@ -130,7 +130,6 @@ const Gocha: React.FC = () => {
           className={styles.backBtn}
           onClick={() => navigate("/")}
         />
-        <div className={styles.title}>祈愿数据 「可视化分析」 </div>
         <div className={styles.inputZone}>
           <input
             value={link}
