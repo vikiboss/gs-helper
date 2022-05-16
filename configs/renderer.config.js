@@ -6,7 +6,7 @@ module.exports = {
     rules: [
       ...rules,
       {
-        test: /\.(svg|jpg|jpeg|png|ico|gif)$/i,
+        test: /\.(svg|jpg|jpeg|png|ico|gif|woff2)$/i,
         type: "asset/inline"
       },
       {
