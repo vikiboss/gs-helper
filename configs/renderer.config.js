@@ -6,6 +6,10 @@ module.exports = {
     rules: [
       ...rules,
       {
+        test: /\.(svg|jpg|jpeg|png|ico|gif)$/i,
+        type: "asset/inline"
+      },
+      {
         test: /\.less$/i,
         use: [
           "style-loader",
