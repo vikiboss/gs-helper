@@ -21,8 +21,11 @@ const getDailyNotesByCookie = async (cookie: string): Promise<DailyNotesData | n
     }
   };
   const res = await request.get(url, config);
-  if (res.status === 200 && res.data?.retcode === 0) return res.data?.data;
-  return null;
+  if (res.status !== 200 || res.data?.retcode !== 0) {
+    console.log("getDailyNotesByCookie: ", res.data);
+    return null;
+  }
+  return res.data?.data;
 };
 
 export default getDailyNotesByCookie;

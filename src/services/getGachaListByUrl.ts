@@ -41,6 +41,9 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
         const url = `${API_GACHA_BASE}/getGachaLog?${urlParams.toString()}`;
         const { data, status } = await request.get(url);
 
+        // 如果返回状态异常，打印返回的内容
+        if (data?.retcode !== 0) console.log("getGachaListByUrl: ", data);
+
         // 如果返回状态正常
         if (status === 200 && data?.retcode === 0) {
           // 如果返回列表为空，继续下一个类型的获取

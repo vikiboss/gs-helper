@@ -18,6 +18,7 @@ const doBBSSign = async (act_id: string): Promise<boolean> => {
   };
   const url = `${LINK_BBS_REFERER}/event/bbs_sign_reward/sign`;
   const res = await request.post(url, postData, config);
+  if (res.data?.retcode !== 0) console.log("doBBSSign: ", res.data);
   return res.status === 200 && res.data?.retcode === 0;
 };
 
