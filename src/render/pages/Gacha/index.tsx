@@ -1,3 +1,4 @@
+import D from "dayjs";
 import React, { useEffect, useState } from "react";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +8,7 @@ import RolePie from "./Charts/RolePie";
 import useNotice from "../../hooks/useNotice";
 import nativeApi from "../../utils/nativeApi";
 import CircleButton from "../../components/CircleButton";
-import TimesCalendar from "./Charts/TimesCalendar";
+import DateRange from "./Charts/DateRange";
 import { DEFAULT_GACHA_DATA } from "../../../constants";
 import transformGachaDataDate from "../../../utils/transformGachaDataDate";
 import transformGachaDataType from "../../../utils/transformGachaDataType";
@@ -116,9 +117,12 @@ const Gocha: React.FC = () => {
 
   const dates = transformGachaDataDate(gacha);
   const now = new Date();
-  const year = now.getFullYear();
-  const defaultRange = [`${year}-01-01`, now];
+  const dateRange = [D(now).subtract(6, "M").toDate(), now];
+
+  const firsteDate = gacha.list.length ? gacha.list[0].time : "";
   const lastDate = gacha.list.length ? gacha.list[gacha.list.length - 1].time : "";
+  const dateRangeText = `${firsteDate} ~ ${lastDate}`;
+  const tip = `※ 共获取到 ${gacha.list.length} 条祈愿数据，覆盖时间范围：${dateRangeText}`;
 
   return (
     <>
@@ -167,17 +171,16 @@ const Gocha: React.FC = () => {
           <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
         </div>
 
-        {/* <div className={styles.subTitle}>祈愿次数一览表</div> */}
+        <div className={styles.subTitle}>近半年祈愿日历</div>
 
-        <TimesCalendar
+        <DateRange
           data={dates}
-          range={dates.length ? [dates[0]?.day, dates[dates.length - 1]?.day] : defaultRange}
+          className={styles.timeRange}
+          range={dateRange}
+          width='480px'
+          height='160px'
         />
-        {gacha.list.length && (
-          <span
-            className={styles.dateTip}
-          >{`※ 当前数据截至：${lastDate} （数据同步存在大约一小时延迟）`}</span>
-        )}
+        {gacha.list.length && <span className={styles.dateTip}>{tip}</span>}
       </div>
       {notice.holder}
     </>
