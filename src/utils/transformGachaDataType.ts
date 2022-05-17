@@ -55,7 +55,6 @@ const transformGachaDataType = (list: GachaData["list"], type: FilterType) => {
     if (item.rank_type === "4") n4.value++;
     if (item.rank_type === "3") n3.value++;
   }
-  console.log([n3, n4, n5]);
   return [n3, n4, n5];
 };
 
