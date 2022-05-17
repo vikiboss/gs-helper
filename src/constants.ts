@@ -50,10 +50,10 @@ export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
 export const LINK_GENSHIN_MAP = `${LINK_BBS_REFERER}/ys/app/interactive-map`;
 export const LINK_BBS_YS_OBC = "https://bbs.mihoyo.com/ys/obc/";
 
-export const API_BBS_BASE = "https://api-takumi.mihoyo.com/binding/api";
-export const API_RECORD_BASE = "https://api-takumi-record.mihoyo.com/game_record/app";
-export const API_HK4E_BASE = "https://hk4e-api.mihoyo.com";
-export const API_GACHA_BASE = `${API_HK4E_BASE}/event/gacha_info/api`;
+export const API_BBS = "https://bbs-api.mihoyo.com";
+export const API_TAKUMI = "https://api-takumi.mihoyo.com";
+export const API_TAKUMI_RECORD = "https://api-takumi-record.mihoyo.com";
+export const API_HK4E = "https://hk4e-api.mihoyo.com";
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;

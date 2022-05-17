@@ -1,4 +1,4 @@
-import { API_RECORD_BASE, LINK_BBS_REFERER } from "../constants";
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from "../constants";
 import { store } from "../main";
 import getDS from "../utils/getDS";
 import getServerByUid from "../utils/getServerByUid";
@@ -36,7 +36,7 @@ const getDailyNotesByCookie = async (cookie: string): Promise<DailyNotesData | n
   cookie = cookie || store.get("user.cookie");
   if (!cookie) return null;
   const uid = store.get("user.uid") as string;
-  const url = `${API_RECORD_BASE}/genshin/api/dailyNote`;
+  const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`;
   const params = { role_id: uid, server: getServerByUid(uid) };
   const config = {
     params,

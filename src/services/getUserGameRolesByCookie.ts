@@ -1,4 +1,4 @@
-import { API_BBS_BASE, GAME_BIZ } from "../constants";
+import { API_TAKUMI, GAME_BIZ } from "../constants";
 import { store } from "../main";
 import request, { BaseRes } from "../utils/request";
 
@@ -17,11 +17,10 @@ export type GameRolesData = {
   list: GameRole[];
 };
 
-
 const getUserGameRolesByCookie = async (cookie?: string): Promise<GameRole[]> => {
   cookie = cookie || store.get("user.cookie");
   if (!cookie) return null;
-  const url = `${API_BBS_BASE}/getUserGameRolesByCookie`;
+  const url = `${API_TAKUMI}/binding/api/getUserGameRolesByCookie`;
   const { data, status } = await request.get<BaseRes<GameRolesData>>(url, {
     params: { game_biz: GAME_BIZ },
     headers: { cookie }

@@ -1,6 +1,6 @@
 import { app } from "electron";
 
-import { DEFAULT_GACHA_DATA, API_GACHA_BASE, GACHA_TYPES } from "../constants";
+import { DEFAULT_GACHA_DATA, API_HK4E, GACHA_TYPES } from "../constants";
 import deepClone from "../utils/deepClone";
 import request, { BaseRes } from "../utils/request";
 import wait from "../utils/wait";
@@ -46,7 +46,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
         }
 
         // 拼接每一页数据的 URL
-        const url = `${API_GACHA_BASE}/getGachaLog?${urlParams.toString()}`;
+        const url = `${API_HK4E}/event/gacha_info/api/getGachaLog?${urlParams.toString()}`;
         const { data, status } = await request.get<BaseRes<RawGachaData>>(url);
 
         // 如果返回状态异常，打印返回的内容

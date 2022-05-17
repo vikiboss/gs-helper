@@ -1,4 +1,4 @@
-import { LINK_BBS_REFERER } from "../constants";
+import { API_TAKUMI, LINK_BBS_REFERER } from "../constants";
 import { store } from "../main";
 import getBBSSignActId from "./getBBSSignActId";
 import getDS from "../utils/getDS";
@@ -23,7 +23,7 @@ const doBBSSign = async (): Promise<boolean> => {
       DS: getDS()
     }
   };
-  const url = `${LINK_BBS_REFERER}/event/bbs_sign_reward/sign`;
+  const url = `${API_TAKUMI}/event/bbs_sign_reward/sign`;
   const { status, data } = await request.post<BaseRes<DoSignData>>(url, postData, config);
   if (status !== 200 || data.retcode !== 0) console.log("doBBSSign: ", data);
   return status === 200 && data.retcode === 0;

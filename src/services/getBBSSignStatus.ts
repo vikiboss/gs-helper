@@ -1,4 +1,4 @@
-import { LINK_BBS_REFERER } from "../constants";
+import { API_TAKUMI, LINK_BBS_REFERER } from "../constants";
 import { store } from "../main";
 import getServerByUid from "../utils/getServerByUid";
 import request, { BaseRes } from "../utils/request";
@@ -26,7 +26,7 @@ const getBBSSignStatus = async (): Promise<SignInfo | null> => {
       Cookie: cookie
     }
   };
-  const url = `${LINK_BBS_REFERER}/event/bbs_sign_reward/info`;
+  const url = `${API_TAKUMI}/event/bbs_sign_reward/info`;
   const { data, status } = await request.get<BaseRes<SignInfo>>(url, config);
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignStatus: ", data);
   return data.data || null;

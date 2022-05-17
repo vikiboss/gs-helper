@@ -76,10 +76,13 @@ const Home: React.FC = () => {
     if (!auth.isLogin) return;
     if (isUserTrriger) notice.info({ message: "正在获取最新数据...", autoHide: false });
 
-    const [user, note] = await Promise.all([
+    const [user, note, sign] = await Promise.all([
       nativeApi.refreshUserInfo(),
-      nativeApi.getDailyNotes()
+      nativeApi.getDailyNotes(),
+      nativeApi.getBBSSignStatus()
     ]);
+
+    console.log(sign);
 
     if (!user?.uid || !note?.max_resin) {
       auth.logout();

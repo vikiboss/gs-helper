@@ -1,4 +1,4 @@
-import { LINK_BBS_REFERER } from "../constants";
+import { API_BBS, LINK_BBS_REFERER } from "./../constants";
 import { store } from "../main";
 import request from "../utils/request";
 
@@ -32,11 +32,11 @@ const getBBSSignActId = async (): Promise<string> => {
       Cookie: cookie
     }
   };
-  const url = `${LINK_BBS_REFERER}/apihub/api/home/new?gids=2`;
+  const url = `${API_BBS}/apihub/api/home/new?gids=2`;
   const { status, data } = await request.get<BaseRes<BBSHomeData>>(url, config);
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignActId: ", data);
   const signPageUrl =
-    data.data.navigator.filter((e: any) => e.name.contains("签到"))[0].app_path || "";
+    data.data.navigator.filter((e: any) => e.name.includes("签到"))[0].app_path || "";
   const params = new URLSearchParams(signPageUrl.split("?").reverse()[0]);
   console.log("getBBSSignActId: ", params.get("act_id"));
   return params.get("act_id") || "e202009291139501";
