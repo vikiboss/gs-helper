@@ -4,60 +4,53 @@
 .container {
   .flex-center-x-column();
 
-  flex    : 1;
   color   : @win-bar-bg-color;
-  z-index : 0;
+  flex    : 1;
   overflow: hidden;
+  z-index : 0;
 
   &::before {
-    content               : "";
-    position              : absolute;
-    top                   : 0;
-    right                 : 0;
-    bottom                : 0;
-    left                  : 0;
-    z-index               : -1;
-    filter                : blur(8px) brightness(1.2);
-    transform             : scale(1.1);
-    background            : url("../../../assets/bg.jpg") fixed 0 / cover;
-    // background-position: 0 0;
-    // background-repeat: no-repeat;
-    // background-size: cover;
+    background: url("../../../assets/bg.jpg") fixed 0 / cover;
+    bottom    : 0;
+    content   : "";
+    filter    : blur(8px) brightness(1.2);
+    left      : 0;
+    position  : absolute;
+    right     : 0;
+    top       : 0;
+    transform : scale(1.1);
+    z-index   : -1;
   }
 
   .user {
-    .flex-center-y();
     .ani-show-top();
+    .flex-center-y();
 
-    height             : 180px;
-    width              : calc(100vw - 80px);
-    padding            : 32px 40px 0;
-    position           : relative;
-    // background-color: @color-bg-deep;
+    height  : 180px;
+    padding : 32px 40px 0;
+    position: relative;
+    width   : calc(100vw - 80px);
 
     .user-card {
       .flex-center-y();
 
-      height             : 150px;
-      width              : 360px;
-      // background-color: @btn-actiove-bg;
-      // border: 1px solid @btn-active-border-color;
-      // border-radius: 12px;
+      height: 150px;
+      width : 360px;
 
       .avatar {
         .flex-center();
 
-        width            : 140px;
+        background-image : url("../../../assets/avatar-border-hover.png");
+        background-repeat: no-repeat;
+        background-size  : contain;
         height           : $width;
         transition       : all 0.1s ease-in-out;
-        background-image : url("../../../assets/avatar-border-hover.png");
-        background-size  : contain;
-        background-repeat: no-repeat;
+        width            : 140px;
 
         .avatar-image {
-          width        : 100px;
-          height       : $width;
           border-radius: 50px;
+          height       : $width;
+          width        : 100px;
         }
 
         &:active {
@@ -76,21 +69,21 @@
           width      : 100%;
 
           .nickname {
+            background      : linear-gradient(to right, @color-accent, transparent);
+            background-color: @color-accent;
+            border-radius   : 16px;
+            color           : @color-white;
+            display         : inline-block;
             flex            : 1;
             padding         : 4px 10px;
-            display         : inline-block;
-            color           : @color-white;
-            border-radius   : 16px;
-            background-color: @color-accent;
-            background      : linear-gradient(to right, @color-accent, transparent);
           }
 
           .level,
           .region,
           .uid {
-            flex   : 1;
-            display: inline-block;
             color  : @text-color;
+            display: inline-block;
+            flex   : 1;
             padding: 4px 10px;
           }
         }
@@ -100,13 +93,13 @@
     .note-card {
       .flex-column-wrap();
 
-      flex               : 1;
-      height             : 120px;
-      margin-left        : 60px;
-      // background-color: @color-bg-deep;
+      flex       : 1;
+      height     : 120px;
+      margin-left: 60px;
 
       .note-item {
         .flex-center-y();
+
         height: 30px;
         width : 50%;
 
@@ -129,10 +122,10 @@
           .dispatch-border {
             .flex-center();
 
-            border-radius: 15px;
-            overflow     : hidden;
             border       : 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
             margin-right : 8px;
+            overflow     : hidden;
             transition   : all 0.1s ease-in-out;
 
             .dispatch-avatar {
@@ -157,8 +150,8 @@
       color   : @text-color;
       margin  : 16px;
       position: absolute;
-      top     : 0;
       right   : 0;
+      top     : 0;
 
       .top-btn {
         .flex-center-y();
@@ -178,19 +171,20 @@
 
     .no-login-container {
       .flex-center-y();
+
+      border-bottom  : 2px solid @color-white;
       height         : 150px;
-      width          : calc(100vw - 40px);
       justify-content: space-between;
       padding-right  : 60px;
-      border-bottom  : 2px solid @color-white;
+      width          : calc(100vw - 40px);
 
       .no-login-text {
         .flex-center-y-column();
 
-        height      : 80%;
         font-size   : 28px;
-        padding-left: 32px;
+        height      : 80%;
         line-height : 36px;
+        padding-left: 32px;
 
         span {
           margin: 6px;
@@ -207,11 +201,11 @@
 
     .btn-list {
       .flex-wrap();
-      align-content: flex-start;
 
-      flex   : 1;
-      width  : calc(100vw - 64px);
-      padding: 0 32px;
+      align-content: flex-start;
+      flex         : 1;
+      padding      : 0 32px;
+      width        : calc(100vw - 64px);
 
       .title-zone {
         width  : 100%;
@@ -221,31 +215,31 @@
           .flex-center();
 
           color     : @color-white;
-          width     : 100%;
-          text-align: center;
           font-size : 32px;
           padding   : 8px;
+          text-align: center;
+          width     : 100%;
 
           .arrow {
-            content          : "";
-            display          : inline-block;
-            width            : 24px;
-            margin           : 0 20px;
-            height           : $width;
             background-repeat: no-repeat;
             background-size  : $width $height;
+            content          : "";
+            display          : inline-block;
+            height           : $width;
+            margin           : 0 20px;
+            width            : 24px;
           }
 
           span::before {
-            .arrow();
             .ani-slide-left();
+            .arrow();
 
             background-image: url("../../../assets/arrow-left.png");
           }
 
           span::after {
-            .arrow();
             .ani-slide-right();
+            .arrow();
 
             background-image: url("../../../assets/arrow-right.png");
           }
@@ -253,10 +247,10 @@
 
         .title-btns {
           .flex-center-y();
-          flex               : 1;
-          justify-content    : flex-end;
-          margin-right       : 8px;
-          // background-color: #3af;
+
+          flex           : 1;
+          justify-content: flex-end;
+          margin-right   : 8px;
         }
       }
 

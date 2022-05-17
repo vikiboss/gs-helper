@@ -2,53 +2,52 @@
 @import "../../utils/util.less";
 
 .frame {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-
   background-color: @color-bg;
+  display         : flex;
+  flex-direction  : column;
+  height          : 100vh;
+  overflow        : hidden;
+  width           : 100vw;
 
   .top-bar {
-    height: 42px;
-    width: 100vw;
-    padding: 2px;
     background-color: @win-bar-bg-color;
-    display: flex;
-    box-shadow: 0 0 10px 4px #ccc;
-    z-index: 999999999;
+    box-shadow      : 0 0 10px 4px #ccc;
+    display         : flex;
+    height          : 42px;
+    padding         : 2px;
+    width           : 100vw;
+    z-index         : 999999999;
 
     &::before {
-      content: "";
       -webkit-app-region: drag;
-      position: fixed;
-      width: calc(100vw - 6px);
-      height: 40px;
-      border: 1px solid @win-bar-bg-line-color;
-      background-color: transparent;
+      background-color  : transparent;
+      border            : 1px solid @win-bar-bg-line-color;
+      content           : "";
+      height            : 40px;
+      position          : fixed;
+      width             : calc(100vw - 6px);
     }
 
     .icon {
-      margin: 9px;
-      width: 24px;
       height: 24px;
+      margin: 9px;
+      width : 24px;
     }
 
     .title {
-      margin: 10px 10px 10px 0;
+      color    : @win-bar-text-focus-color;
       font-size: 20px;
-      color: @win-bar-text-focus-color;
+      margin   : 10px 10px 10px 0;
     }
 
     .btns {
       .flex-center();
-      -webkit-app-region: no-drag;
 
-      position: absolute;
-      top: 0px;
-      right: 8px;
-      padding: 8px;
+      -webkit-app-region: no-drag;
+      padding           : 8px;
+      position          : absolute;
+      right             : 8px;
+      top               : 0px;
 
       .btn {
         margin-left: 8px;

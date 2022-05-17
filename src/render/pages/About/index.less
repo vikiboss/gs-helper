@@ -5,21 +5,22 @@
   .flex-center-column();
   .ani-show-bottom();
 
-  flex: 1;
+  flex    : 1;
   position: relative;
 
   .title {
     font-size: 32px;
-    margin: 20px;
+    margin   : 20px;
   }
 
   .declaration {
-    width: 70%;
-    margin: 10px;
     line-height: 1.6rem;
+    margin     : 10px;
+    width      : 70%;
+
     p {
       text-indent: 2rem;
-      margin: 10px 0;
+      margin     : 10px 0;
     }
   }
 
@@ -28,11 +29,10 @@
   }
 
   .bottom {
-    display: flex;
-    align-items: flex-end;
-
-    width: 70%;
+    align-items    : flex-end;
+    display        : flex;
     justify-content: space-between;
+    width          : 70%;
 
     .items {
       .flex-center-y-column();
@@ -53,21 +53,22 @@
         }
       }
     }
+
     .reward {
       .flex-center-column();
 
       .reward-code {
-        width: 120px;
-        height: $width;
         border-radius: 4px;
+        height       : $width;
         margin-bottom: 12px;
+        width        : 120px;
       }
     }
   }
 
   .back-btn {
+    left    : 20px;
     position: absolute;
-    left: 20px;
-    top: 20px;
+    top     : 20px;
   }
 }

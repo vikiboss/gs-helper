@@ -1,17 +1,17 @@
 @import "../../utils/colors.less";
 
-@size-small: 30px;
+@size-small : 30px;
 @size-middle: 42px;
-@size-large: 64px;
+@size-large : 64px;
 
 .btn {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  border: 2px solid #b9b6b3;
+  align-items     : center;
   background-color: @btn-bg-color;
-  transition: all 0.2s ease-in-out;
-  position: relative;
+  border          : 2px solid #b9b6b3;
+  display         : flex;
+  overflow        : hidden;
+  position        : relative;
+  transition      : all 0.2s ease-in-out;
 
   .confirm {
     color: @btn-icon-yellow;
@@ -22,16 +22,16 @@
   }
 
   .icon {
-    position: absolute;
-    border-radius: 50%;
-    transition: all 0.2s ease-in-out;
     background-color: @btn-icon-bg-color;
+    border-radius   : 50%;
+    position        : absolute;
+    transition      : all 0.2s ease-in-out;
   }
 
   .text {
-    flex: 1;
+    color     : @btn-text-color;
+    flex      : 1;
     text-align: center;
-    color: @btn-text-color;
   }
 
   .with-icon {
@@ -43,11 +43,13 @@
   }
 
   &:active {
-    border-color: @btn-active-border-color;
     background-color: @btn-actiove-bg;
+    border-color    : @btn-active-border-color;
+
     .icon {
       background-color: @btn-icon-active-bg-color;
     }
+
     .text {
       color: @btn-text-active-color;
     }
@@ -55,49 +57,58 @@
 }
 
 .small {
+  border-radius: calc((@size-small + 6px) / 2);
+  height       : @size-small;
+  padding      : 0 @size-small * 0.8;
+
   .icon {
-    left: @size-small * 0.17;
+    left   : @size-small * 0.17;
     padding: @size-small * 0.12;
   }
+
   .text {
     font-size: @size-small * 0.42;
   }
+
   .with-icon {
     left: @size-small * 0.16;
   }
-  border-radius: calc((@size-small + 6px) / 2);
-  height: @size-small;
-  padding: 0 @size-small * 0.8;
 }
 
 .middle {
+  border-radius: calc((@size-middle + 8px) / 2);
+  height       : @size-middle;
+  padding      : 0 @size-middle * 0.8;
+
   .icon {
-    left: @size-middle * 0.17;
+    left   : @size-middle * 0.17;
     padding: @size-middle * 0.12;
   }
+
   .text {
     font-size: @size-middle * 0.42;
   }
+
   .with-icon {
     left: @size-small * 0.16;
   }
-  border-radius: calc((@size-middle + 8px) / 2);
-  height: @size-middle;
-  padding: 0 @size-middle * 0.8;
 }
 
 .large {
+  border-radius: calc((@size-large + 10px) / 2);
+  height       : @size-large;
+  padding      : 0 @size-large * 0.8;
+
   .icon {
-    left: @size-large * 0.17;
+    left   : @size-large * 0.17;
     padding: @size-large * 0.12;
   }
+
   .text {
     font-size: @size-large * 0.42;
   }
+
   .with-icon {
     left: @size-small * 0.16;
   }
-  border-radius: calc((@size-large + 10px) / 2);
-  height: @size-large;
-  padding: 0 @size-large * 0.8;
 }

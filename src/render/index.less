@@ -2,20 +2,20 @@
 
 @font-face {
   font-family: HanYiBlack;
-  src: url("../assets/HanYiBlack.woff2");
+  src        : url("../assets/HanYiBlack.woff2");
 }
 
 :root {
-  user-select: none;
   -webkit-user-select: none;
-  font-family: HanYiBlack;
-  color: @color-primary;
+  color              : @color-primary;
+  font-family        : HanYiBlack;
+  user-select        : none;
 }
 
 body {
   font-size: 16px;
-  overflow: hidden;
-  cursor: url("../assets/cursor.cur"), default;
+  overflow : hidden;
+  cursor   : url("../assets/cursor.cur"), default;
 }
 
 img {
@@ -23,13 +23,9 @@ img {
 }
 
 a {
-  color: @color-accent;
-  outline: none;
+  color     : @color-accent;
+  outline   : none;
   transition: 0.2s all ease-in-out;
-
-  // padding: 2px 8px;
-  // text-decoration: none;
-  // background-color: @link-bg-color;
 
   &:hover {
     color: @color-accent-second;
