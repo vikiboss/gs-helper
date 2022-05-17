@@ -1,3 +1,4 @@
+import { SignInfo } from "./services/getBBSSignStatus";
 import { DailyNotesData } from "./services/getDailyNotesByCookie";
 import { GameRole } from "./services/getUserGameRolesByCookie";
 import type { AppData, GachaData } from "./typings.d";
@@ -251,4 +252,14 @@ export const DEFAULT_GAME_ROLE: GameRole = {
   region_name: "",
   game_uid: "",
   is_chosen: false
+};
+
+export const DEFAULT_SIGN_INFO: SignInfo = {
+  total_sign_day: 0,
+  today: "2022-01-01",
+  is_sign: false,
+  first_bind: false,
+  is_sub: false,
+  month_first: false,
+  sign_cnt_missed: 0
 };

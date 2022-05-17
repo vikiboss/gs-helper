@@ -3,7 +3,7 @@ import {
   BrowserWindow,
   BrowserWindowConstructorOptions,
   clipboard,
-  ipcMain,
+  ipcMain as IPC,
   shell
 } from "electron";
 
@@ -37,21 +37,21 @@ import sortGachaList from "../utils/sortGachaList";
 import getBBSSignStatus from "../services/getBBSSignStatus";
 
 const bindIPC = (win: BrowserWindow) => {
-  ipcMain.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
-  ipcMain.on(IPC_EVENTS.closeApp, () => app.exit(0));
-  ipcMain.on(IPC_EVENTS.hideApp, () => win.hide());
-  ipcMain.on(IPC_EVENTS.minimizeApp, () => win.minimize());
-  ipcMain.on(IPC_EVENTS.openLink, (_, url: string) => shell.openExternal(url));
-  ipcMain.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => store.set(key, value));
-  ipcMain.on(IPC_EVENTS.writeClipboardText, (_, text: string) => clipboard.writeText(text));
+  IPC.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
+  IPC.on(IPC_EVENTS.closeApp, () => app.exit(0));
+  IPC.on(IPC_EVENTS.hideApp, () => win.hide());
+  IPC.on(IPC_EVENTS.minimizeApp, () => win.minimize());
+  IPC.on(IPC_EVENTS.openLink, (_, url: string) => shell.openExternal(url));
+  IPC.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => store.set(key, value));
+  IPC.on(IPC_EVENTS.writeClipboardText, (_, text: string) => clipboard.writeText(text));
 
-  ipcMain.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
-  ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
-  ipcMain.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
-  ipcMain.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
-  ipcMain.handle(IPC_EVENTS.getBBSSignStatus, async () => await getBBSSignStatus());
+  IPC.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
+  IPC.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
+  IPC.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
+  IPC.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
+  IPC.handle(IPC_EVENTS.getBBSSignStatus, async () => await getBBSSignStatus());
 
-  ipcMain.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
+  IPC.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
     const bbsWin = new BrowserWindow({
       width: 400,
       height: 700,
@@ -98,7 +98,7 @@ const bindIPC = (win: BrowserWindow) => {
     });
   });
 
-  ipcMain.on(
+  IPC.on(
     IPC_EVENTS.openWindow,
     async (_, url: string, options: BrowserWindowConstructorOptions = {}, UA?: string) => {
       const newWin = new BrowserWindow({
@@ -129,7 +129,7 @@ const bindIPC = (win: BrowserWindow) => {
     }
   );
 
-  ipcMain.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
+  IPC.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
     if (data.list.length > 0) {
       data.list = sortGachaList(data.list);
@@ -138,12 +138,12 @@ const bindIPC = (win: BrowserWindow) => {
     return data;
   });
 
-  ipcMain.handle(
+  IPC.handle(
     IPC_EVENTS.getDailyNotes,
     async () => await getDailyNotesByCookie(store.get("user.cookie"))
   );
 
-  ipcMain.handle(IPC_EVENTS.refreshUserInfo, async () => {
+  IPC.handle(IPC_EVENTS.refreshUserInfo, async () => {
     const roles = await getRoleInfoByCookie();
     const user: AppData["user"] = roles[0]?.game_uid
       ? {

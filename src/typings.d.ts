@@ -4,6 +4,7 @@ import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions } from "electron";
+import type { SignInfo } from "./services/getBBSSignStatus";
 
 export interface NativeApi {
   clearCookie: (domain?: string) => Promise<void>;
@@ -15,7 +16,7 @@ export interface NativeApi {
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
   loginViaMihoyoBBS: () => void;
-  getBBSSignStatus: () => void;
+  getBBSSignStatus: () => Promise<SignInfo>;
   minimizeApp: () => void;
   openLink: (url: string) => void;
   openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => void;

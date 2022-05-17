@@ -17,8 +17,9 @@ import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
 import {
   ANNUCEMENT,
-  DEFAULT_NOTES,
   DEFAULT_APP_DATA,
+  DEFAULT_NOTES,
+  DEFAULT_SIGN_INFO,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
   LOGIN_TIP,
@@ -35,9 +36,10 @@ import taskIcon from "../../../assets/task.png";
 import transformerIcon from "../../../assets/transformer.png";
 
 import type { AppData } from "../../../typings";
+import type { DailyNotesData } from "../../../services/getDailyNotesByCookie";
+import type { SignInfo } from "../../../services/getBBSSignStatus";
 
 import styles from "./index.less";
-import { DailyNotesData } from "../../../services/getDailyNotesByCookie";
 
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds}秒`;
@@ -53,7 +55,8 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
   const [user, setUser] = useState<Partial<AppData["user"]>>(DEFAULT_APP_DATA["user"]);
-  const [note, setNotesData] = useState<Partial<DailyNotesData>>(DEFAULT_NOTES);
+  const [sign, setSign] = useState<SignInfo>(DEFAULT_SIGN_INFO);
+  const [note, setNotesData] = useState<DailyNotesData>(DEFAULT_NOTES);
 
   useEffect(() => {
     (async () => {
@@ -82,9 +85,7 @@ const Home: React.FC = () => {
       nativeApi.getBBSSignStatus()
     ]);
 
-    console.log(sign);
-
-    if (!user?.uid || !note?.max_resin) {
+    if (!user?.uid || !note?.max_resin || !sign.today) {
       auth.logout();
       return navigate("/login", { state: { isExpired: true } });
     }
@@ -93,6 +94,7 @@ const Home: React.FC = () => {
 
     setUser(user);
     setNotesData(note);
+    setSign(sign);
   };
 
   const handlePageSwitch = (path: string) => {
@@ -183,6 +185,9 @@ const Home: React.FC = () => {
       : "暂未获得") +
     "」";
 
+  const signStatus = sign.is_sign ? "已签到" : "未签到";
+  const signTitle = `本月共签到 ${sign.total_sign_day} 天，漏签 ${sign.sign_cnt_missed} 天`;
+
   const notes = [
     {
       detail: `原粹树脂 ${resinStatus}`,
@@ -215,10 +220,10 @@ const Home: React.FC = () => {
       name: "transformer"
     },
     {
-      detail: `米游社 ${"今日已签"}`,
+      detail: `米游社 ${signStatus}`,
       icon: bbsIcon,
-      title: "",
-      name: "transformer"
+      title: signTitle,
+      name: "sign"
     }
   ];
 
