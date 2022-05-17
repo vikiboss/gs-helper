@@ -405,12 +405,7 @@ const Home: React.FC = () => {
                 </div>
               ))}
           </div>
-          <div className={styles.footer}>
-            <a href={LINK_GITHUB_REPO} target='_blank'>
-              <FaGithub color='#fff' size={20} title='GitHub' />
-            </a>
-            <span>{ANNUCEMENT}</span>
-          </div>
+          <div className={styles.footer}>{ANNUCEMENT}</div>
         </div>
       </div>
       {notice.holder}
