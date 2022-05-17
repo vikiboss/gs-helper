@@ -15,7 +15,7 @@ const TimesCalendar: React.FC<TimesCalendarProp> = (props) => {
       dayBorderWidth={2}
       emptyColor='#efefef'
       from={range[0]}
-      height={120}
+      height={150}
       margin={{ top: 20, right: 20, bottom: 0, left: 20 }}
       monthBorderColor='#fafafa'
       theme={CHART_THEME}

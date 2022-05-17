@@ -146,24 +146,30 @@ const Gocha: React.FC = () => {
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <span className={styles.title}>祈愿记录 「数据可视化」 分析</span>
         </div>
-
-        <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
-        <div>
-          <span>物品筛选：</span>
-          <button onClick={() => toggleItemType("all")}>所有</button>
-          <button onClick={() => toggleItemType("role")}>角色</button>
-          <button onClick={() => toggleItemType("weapon")}>武器</button>
+        <div className={styles.pieChart}>
+          <div className={styles.filterBtns}>
+            <div>
+              <span>按物品类型筛选：</span>
+              <button onClick={() => toggleItemType("all")}>所有</button>
+              <button onClick={() => toggleItemType("role")}>角色</button>
+              <button onClick={() => toggleItemType("weapon")}>武器</button>
+            </div>
+            <div>
+              <span>按祈愿类型筛选：</span>
+              <button onClick={() => setPieFilter({ item: pieFilter.item, gacha: "all" })}>
+                所有
+              </button>
+              <button onClick={() => toggleGachaType("normal")}>常驻池</button>
+              <button onClick={() => toggleGachaType("activity")}>活动池</button>
+              <button onClick={() => toggleGachaType("weapon")}>武器池</button>
+              <button onClick={() => toggleGachaType("newer")}>新手池</button>
+            </div>
+          </div>
+          <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
         </div>
-        <div>
-          <span>祈愿池筛选：</span>
-          <button onClick={() => setPieFilter({ item: pieFilter.item, gacha: "all" })}>所有</button>
-          <button onClick={() => toggleGachaType("normal")}>常驻池</button>
-          <button onClick={() => toggleGachaType("activity")}>活动池</button>
-          <button onClick={() => toggleGachaType("weapon")}>武器池</button>
-          <button onClick={() => toggleGachaType("newer")}>新手池</button>
-        </div>
 
-        <div className={styles.subTitle}>祈愿次数一览表</div>
+        {/* <div className={styles.subTitle}>祈愿次数一览表</div> */}
+
         <TimesCalendar
           data={dates}
           range={dates.length ? [dates[0]?.day, dates[dates.length - 1]?.day] : defaultRange}
