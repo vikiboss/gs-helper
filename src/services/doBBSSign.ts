@@ -4,10 +4,17 @@ import getDS from "../utils/getDS";
 import getServerByUid from "../utils/getServerByUid";
 import request from "../utils/request";
 
+// {
+//   "retcode": 0,
+//   "message": "OK",
+//   "data": {
+//     "code": "ok"
+//   }
+// }
+
 const doBBSSign = async (act_id: string): Promise<boolean> => {
-  const cookie = store.get("user.cookie") as string;
+  const { cookie, uid } = store.get("user");
   if (!cookie) return null;
-  const uid = store.get("user.uid") as string;
   const postData = { act_id, uid, region: getServerByUid(uid) };
   const config = {
     headers: {
@@ -17,9 +24,9 @@ const doBBSSign = async (act_id: string): Promise<boolean> => {
     }
   };
   const url = `${LINK_BBS_REFERER}/event/bbs_sign_reward/sign`;
-  const res = await request.post(url, postData, config);
-  if (res.data?.retcode !== 0) console.log("doBBSSign: ", res.data);
-  return res.status === 200 && res.data?.retcode === 0;
+  const { status, data } = await request.post(url, postData, config);
+  if (status !== 200 || data?.retcode !== 0) console.log("doBBSSign: ", data);
+  return status === 200 && data?.retcode === 0;
 };
 
 export default doBBSSign;

@@ -34,6 +34,7 @@ import {
 
 import type { AppData } from "../typings";
 import sortGachaList from "../utils/sortGachaList";
+import getBBSSignStatus from "../services/getBBSSignStatus";
 
 const bindIPC = (win: BrowserWindow) => {
   ipcMain.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
@@ -140,6 +141,11 @@ const bindIPC = (win: BrowserWindow) => {
     IPC_EVENTS.getDailyNotes,
     async () => await getDailyNotesByCookie(store.get("user.cookie"))
   );
+
+  // ipcMain.handle(
+  //   IPC_EVENTS.getBBSSignStatus,
+  //   async () => await getBBSSignStatus(store.get("user.cookie"))
+  // );
 
   ipcMain.handle(IPC_EVENTS.refreshUserInfo, async () => {
     const info = await getRoleInfoByCookie();
