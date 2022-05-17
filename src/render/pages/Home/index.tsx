@@ -203,13 +203,13 @@ const Home: React.FC = () => {
       name: "home"
     },
     {
-      detail: `今日委托任务 ${taskStatus}`,
+      detail: `今日委托 ${taskStatus}`,
       icon: taskIcon,
       title: taskTitle,
       name: "task"
     },
     {
-      detail: `本周树脂减半次数 ${discountStatus}`,
+      detail: `周本次数 ${discountStatus}`,
       icon: discountIcon,
       title: discountTitle,
       name: "discount"
