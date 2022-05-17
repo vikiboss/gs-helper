@@ -1,10 +1,10 @@
-import path from "path";
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
+import path from "path";
 
+import { APP_NAME, MENU } from "../constants";
+import { isDev } from "./createMainWindow";
 import { store } from ".";
 import icon from "../assets/icon.ico";
-import { isDev } from "./createMainWindow";
-import { APP_NAME, MENU } from "../constants";
 
 const initTray = (win: BrowserWindow) => {
   const tray = new Tray(path.join(__dirname, icon));

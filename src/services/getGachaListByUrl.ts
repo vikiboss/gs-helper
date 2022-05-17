@@ -1,11 +1,19 @@
 import { app } from "electron";
 
-import { defaultGachaData, API_GACHA_BASE, GACHA_TYPES } from "../constants";
+import { DEFAULT_GACHA_DATA, API_GACHA_BASE, GACHA_TYPES } from "../constants";
 import deepClone from "../utils/deepClone";
-import request from "../utils/request";
+import request, { BaseRes } from "../utils/request";
 import wait from "../utils/wait";
 
-import type { GachaData, RawGachaItem } from "../typings";
+import type { GachaData, GachaItem, RawGachaItem } from "../typings";
+
+type RawGachaData = {
+  page: string;
+  size: string;
+  total: string;
+  list: RawGachaItem[];
+  region: string;
+};
 
 const getGachaListByUrl = async (url: string): Promise<GachaData> => {
   try {
@@ -13,7 +21,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     const urlParams = new URLSearchParams(/\?(.*?)(#.+)?$/i.exec(url)[1]);
 
     // 默认的空数据
-    const gacha: GachaData = deepClone(defaultGachaData);
+    const gacha: GachaData = deepClone(DEFAULT_GACHA_DATA);
     gacha.info.export_app_version = app.getVersion();
 
     // 是否已获取 UID
@@ -39,7 +47,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
 
         // 拼接每一页数据的 URL
         const url = `${API_GACHA_BASE}/getGachaLog?${urlParams.toString()}`;
-        const { data, status } = await request.get(url);
+        const { data, status } = await request.get<BaseRes<RawGachaData>>(url);
 
         // 如果返回状态异常，打印返回的内容
         if (data?.retcode !== 0) console.log("getGachaListByUrl: ", data);
@@ -59,11 +67,10 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           }
 
           // 对返回的 list 列表进行数据处理（删除 uid 和 lang 字段）
-          const list = data.data.list.map((e: RawGachaItem) => {
+          const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
             if (e?.uid) delete e.uid;
             if (e?.lang) delete e.lang;
-            e.uigf_gacha_type = type;
-            return e;
+            return Object.assign(e, { uigf_gacha_type: type });
           });
 
           // 将 获取并处理过的列表数据 合并到 待返回的数据 里
@@ -86,7 +93,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     // 返回新获取的数据
     return gacha;
   } catch {
-    return defaultGachaData;
+    return DEFAULT_GACHA_DATA;
   }
 };
 

@@ -19,12 +19,12 @@ import clearCookie from "../utils/clearCookie";
 import getGachaUrl from "../utils/getGachaUrl";
 import verifyCookie from "../utils/verifyCookie";
 import getGachaListByUrl from "../services/getGachaListByUrl";
-import getRoleInfoByCookie from "../services/getUserInfoByCookie";
+import getRoleInfoByCookie from "../services/getUserGameRolesByCookie";
 import updateStoreGachaList from "../utils/updateStoreGachaList";
 import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
 import {
   IPC_EVENTS,
-  defaultAppData,
+  DEFAULT_APP_DATA,
   SCRIPT_REFINE_BBS,
   APP_USER_AGENT_MOBILE,
   LINK_MIHOYO_BBS_LOGIN,
@@ -49,6 +49,7 @@ const bindIPC = (win: BrowserWindow) => {
   ipcMain.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
   ipcMain.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
   ipcMain.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
+  ipcMain.handle(IPC_EVENTS.getBBSSignStatus, async () => await getBBSSignStatus());
 
   ipcMain.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
     const bbsWin = new BrowserWindow({
@@ -91,7 +92,7 @@ const bindIPC = (win: BrowserWindow) => {
             regionName: info.region_name,
             cookie: cookie
           }
-        : deepClone(defaultAppData.user);
+        : deepClone(DEFAULT_APP_DATA.user);
       store.set("user", user);
       mainWin.focus();
     });
@@ -142,23 +143,18 @@ const bindIPC = (win: BrowserWindow) => {
     async () => await getDailyNotesByCookie(store.get("user.cookie"))
   );
 
-  // ipcMain.handle(
-  //   IPC_EVENTS.getBBSSignStatus,
-  //   async () => await getBBSSignStatus(store.get("user.cookie"))
-  // );
-
   ipcMain.handle(IPC_EVENTS.refreshUserInfo, async () => {
-    const info = await getRoleInfoByCookie();
-    const user: AppData["user"] = info?.game_uid
+    const roles = await getRoleInfoByCookie();
+    const user: AppData["user"] = roles[0]?.game_uid
       ? {
-          uid: info.game_uid,
-          nickname: info.nickname,
-          level: info.level,
-          isOfficial: info.is_official,
-          regionName: info.region_name,
+          uid: roles[0].game_uid,
+          nickname: roles[0].nickname,
+          level: roles[0].level,
+          isOfficial: roles[0].is_official,
+          regionName: roles[0].region_name,
           cookie: store.get("user.cookie")
         }
-      : deepClone(defaultAppData.user);
+      : deepClone(DEFAULT_APP_DATA.user);
     store.set("user", user);
     return user;
   });

@@ -1,25 +1,23 @@
 import { LINK_BBS_REFERER } from "../constants";
 import { store } from "../main";
 import getServerByUid from "../utils/getServerByUid";
-import request from "../utils/request";
+import request, { BaseRes } from "../utils/request";
+import getBBSSignActId from "./getBBSSignActId";
 
-// {
-//   "retcode": 0,
-//   "message": "OK",
-//   "data": {
-//     "total_sign_day": 14,
-//     "today": "2022-05-17",
-//     "is_sign": false,
-//     "first_bind": false,
-//     "is_sub": true,
-//     "month_first": false,
-//     "sign_cnt_missed": 2
-//   }
-// }
+export type SignInfo = {
+  total_sign_day: number;
+  today: string;
+  is_sign: boolean;
+  first_bind: boolean;
+  is_sub: boolean;
+  month_first: boolean;
+  sign_cnt_missed: number;
+};
 
-const getBBSSignStatus = async (act_id: string) => {
+const getBBSSignStatus = async (): Promise<SignInfo | null> => {
   const { cookie, uid } = store.get("user");
   if (!cookie) return null;
+  const act_id = await getBBSSignActId();
   const params = { act_id, uid, region: getServerByUid(uid) };
   const config = {
     params,
@@ -29,9 +27,9 @@ const getBBSSignStatus = async (act_id: string) => {
     }
   };
   const url = `${LINK_BBS_REFERER}/event/bbs_sign_reward/info`;
-  const { data, status } = await request.get(url, config);
-  if (status !== 200 || data?.retcode !== 0) console.log("getBBSSignStatus: ", data);
-  return data?.data || null;
+  const { data, status } = await request.get<BaseRes<SignInfo>>(url, config);
+  if (status !== 200 || data.retcode !== 0) console.log("getBBSSignStatus: ", data);
+  return data.data || null;
 };
 
 export default getBBSSignStatus;

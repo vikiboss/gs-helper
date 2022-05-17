@@ -3,6 +3,8 @@ import { Store } from "electron-store";
 
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
+import type { BrowserWindowConstructorOptions } from "electron";
+
 export interface NativeApi {
   clearCookie: (domain?: string) => Promise<void>;
   closeApp: () => void;
@@ -13,6 +15,7 @@ export interface NativeApi {
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
   loginViaMihoyoBBS: () => void;
+  getBBSSignStatus: () => void;
   minimizeApp: () => void;
   openLink: (url: string) => void;
   openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => void;
@@ -34,10 +37,13 @@ export type GachaItem = {
   uigf_gacha_type: string;
 };
 
-export type RawGachaItem = GachaItem & {
-  uid: string;
-  lang: string;
-};
+export type RawGachaItem = Omit<
+  GachaItem & {
+    uid: string;
+    lang: string;
+  },
+  "uigf_gacha_type"
+>;
 
 export type GachaData = {
   info: {
@@ -70,37 +76,5 @@ export type AppInfo = {
   version: string;
 };
 
-export type LoginState = {
-  valid: boolean;
-  cookies: Cookies;
-};
-
 export type ElectronWindow = Window &
   typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
-
-export type DispatchItem = {
-  avatar_side_icon: string;
-  status: string;
-  remained_time: string;
-};
-
-export type DailyNotesData = {
-  current_resin: number;
-  max_resin: number;
-  resin_recovery_time: string;
-  finished_task_num: number;
-  total_task_num: number;
-  is_extra_task_reward_received: boolean;
-  remain_resin_discount_num: number;
-  resin_discount_num_limit: number;
-  current_expedition_num: number;
-  max_expedition_num: number;
-  expeditions: DispatchItem[];
-  current_home_coin: number;
-  max_home_coin: number;
-  home_coin_recovery_time: string;
-  transformer: {
-    obtained: boolean;
-    recovery_time: { Day: number; Hour: number; Minute: number; Second: number; reached: true };
-  };
-};

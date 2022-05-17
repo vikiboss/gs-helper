@@ -1,8 +1,13 @@
 import type { Cookies } from "electron";
 
-import getRoleInfoByCookie from "../services/getUserInfoByCookie";
+import { DEFAULT_GAME_ROLE } from "../constants";
+import getUserGameRolesByCookie from "../services/getUserGameRolesByCookie";
 
-const verifyCookie = async (cks: Cookies) => {
+import type { GameRole } from "../services/getUserGameRolesByCookie";
+
+type AuthResState = { cookie: string; valid: boolean; info: GameRole };
+
+const verifyCookie = async (cks: Cookies): Promise<AuthResState> => {
   const mihoyoCks = await cks.get({ domain: "mihoyo.com" });
   let cookie = "";
   let hasLtoken = false;
@@ -10,11 +15,12 @@ const verifyCookie = async (cks: Cookies) => {
     if (ck.name === "ltoken") hasLtoken = true;
     cookie += `${ck.name}=${ck.value}; `;
   }
-  if (!hasLtoken) return { valid: false, cookie: "", info: {} };
+  if (!hasLtoken) return { valid: false, cookie: "", info: DEFAULT_GAME_ROLE };
   cookie = cookie.trim();
-  console.log(cookie);
-  const info = await getRoleInfoByCookie(cookie);
-  return { valid: Boolean(info?.game_uid), cookie, info };
+  const roles = await getUserGameRolesByCookie(cookie);
+  const valid = Boolean(roles[0]?.game_uid);
+  if (!valid) console.log("verifyCookie: ", cookie);
+  return { valid, cookie, info: roles[0] };
 };
 
 export default verifyCookie;

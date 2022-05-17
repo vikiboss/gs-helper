@@ -1,12 +1,12 @@
-import Store from "electron-store";
 import { app, BrowserWindow } from "electron";
+import Store from "electron-store";
 
-import bindIPC from "./bindIPC";
-import initTray from "./initTray";
-import initStore from "./initStore";
-import restoreSettings from "../utils/restoreSettings";
-import createMainWindow from "./createMainWindow";
 import { registerHotkey, unregisterHotkey } from "./hotkeys";
+import bindIPC from "./bindIPC";
+import createMainWindow from "./createMainWindow";
+import initStore from "./initStore";
+import initTray from "./initTray";
+import restoreSettings from "../utils/restoreSettings";
 
 import type { AppData } from "../typings";
 

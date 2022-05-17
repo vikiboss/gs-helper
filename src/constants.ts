@@ -1,16 +1,41 @@
-import { AppData, DailyNotesData, GachaData } from "./typings.d";
+import { DailyNotesData } from "./services/getDailyNotesByCookie";
+import { GameRole } from "./services/getUserGameRolesByCookie";
+import type { AppData, GachaData } from "./typings.d";
+
+// main 进程 与 render 进程进行 IPC 通信的事件常量
+export const IPC_EVENTS: Record<string, string> = {
+  clearCookie: "CLEAR_COOKIE",
+  closeApp: "CLOSE_APP",
+  getAppInfo: "GET_APP_INFO",
+  getBBSSignStatus: "GET_BBS_SIGN_STATUS",
+  getDailyNotes: "GET_DAILY_NOTES",
+  getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
+  getGachaUrl: "GET_GACHA_URL",
+  getStoreKey: "GET_STORE_KEY",
+  hideApp: "HIDE_APP",
+  loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
+  minimizeApp: "MONIMIZE_APP",
+  openLink: "OPEN_LINK",
+  openWindow: "OPEN_WINDOW",
+  readClipboardText: "READ_CLIPBOARD_TEXT",
+  refreshUserInfo: "REFRESH_USER_INFO",
+  setStoreKey: "SET_STORE_KEY",
+  writeClipboardText: "WRITE_CLIPBOARD_TEXT"
+};
+
+export const ANNUCEMENT = "本软件使用 MIT 协议开源，仅供学习交流。数据可能存在延迟。";
 export const APP_NAME = "原神助手";
-export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
-export const WINDOW_BACKGROUND_COLOR = "#f9f6f2";
-export const APP_USER_AGENT_MOBILE = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
-export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
 export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
-export const GAME_NAME_ZH_CN = "原神";
+export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
+export const APP_USER_AGENT_MOBILE = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
+export const DOMAIN_MIHOYO = "mihoyo.com";
+export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
+export const GAME_BIZ = "hk4e_cn";
 export const GAME_NAME_EN = "Genshin Impact";
-export const ANNUCEMENT =
-  "本软件使用 MIT 协议开源，部分内容来源于米游社，仅供学习交流使用。数据可能存在延迟，请以游戏内数据为准。";
-export const WELCOME_TIP = "欢迎你，旅行者。👋";
+export const GAME_NAME_ZH_CN = "原神";
 export const LOGIN_TIP = "建议登录 「米游社」 账号以获得最佳使用体验。";
+export const WELCOME_TIP = "欢迎你，旅行者。👋";
+export const WINDOW_BACKGROUND_COLOR = "#F9F6F2";
 
 export const LOGIN_GUIDES = [
   "① 点击 「登录米游社」 按钮打开登录窗口",
@@ -18,8 +43,6 @@ export const LOGIN_GUIDES = [
   "③ 完成登录后关闭登录窗口",
   "④ 点击 「刷新状态」 按钮完成登录"
 ];
-
-export const DOMAIN_MIHOYO = "mihoyo.com";
 
 export const LINK_BBS_REFERER = "https://webstatic.mihoyo.com";
 export const LINK_GITHUB_REPO = "https://github.com/vikiboss/genshin-helper";
@@ -35,14 +58,14 @@ export const API_GACHA_BASE = `${API_HK4E_BASE}/event/gacha_info/api`;
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
 
-export const COLORS = {
+export const COLORS: Record<string, string> = {
   blue: "#73abcd",
   purple: "#9779c2",
   golden: "#da9559",
   red: "#da4e55"
 };
 
-export const SERVERS = [
+export const SERVERS: string[] = [
   "cn_gf01", // 1 开头，国区官服-天空岛
   "cn_gf01", // 2 开头，国区官服-天空岛
   "cn_gf01", // 3 开头，国区官服-天空岛
@@ -68,26 +91,7 @@ export const GACHA_TYPES: Record<string, string> = {
   "100": "新手祈愿"
 };
 
-export const IPC_EVENTS: Record<string, string> = {
-  clearCookie: "CLEAR_COOKIE",
-  closeApp: "CLOSE_APP",
-  getAppInfo: "GET_APP_INFO",
-  getDailyNotes: "GET_DAILY_NOTES",
-  getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
-  getGachaUrl: "GET_GACHA_URL",
-  getStoreKey: "GET_STORE_KEY",
-  hideApp: "HIDE_APP",
-  loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
-  minimizeApp: "MONIMIZE_APP",
-  openLink: "OPEN_LINK",
-  openWindow: "OPEN_WINDOW",
-  readClipboardText: "READ_CLIPBOARD_TEXT",
-  refreshUserInfo: "REFRESH_USER_INFO",
-  setStoreKey: "SET_STORE_KEY",
-  writeClipboardText: "WRITE_CLIPBOARD_TEXT"
-};
-
-export const defaultAppData: AppData = {
+export const DEFAULT_APP_DATA: AppData = {
   user: {
     uid: "000000000",
     nickname: "旅行者",
@@ -100,7 +104,7 @@ export const defaultAppData: AppData = {
   settings: { alwaysOnTop: false }
 };
 
-export const defaultGachaData: GachaData = {
+export const DEFAULT_GACHA_DATA: GachaData = {
   info: {
     uid: "",
     lang: "zh-cn",
@@ -209,7 +213,15 @@ export const CHART_THEME = {
   }
 };
 
-export const defaultNotes: DailyNotesData = {
+export const SCRIPT_REFINE_BBS = `
+var items = ["mhy-bbs-app-header", "mhy-button", "header-bar", "bbs-qr"];
+for (const item of items) {
+  const els = document.getElementsByClassName(item);
+  if (els.length) Array.from(els).forEach((e) => (e.style.display = "none"));
+}
+`;
+
+export const DEFAULT_NOTES: DailyNotesData = {
   current_resin: 160,
   max_resin: 160,
   resin_recovery_time: "0",
@@ -230,10 +242,13 @@ export const defaultNotes: DailyNotesData = {
   }
 };
 
-export const SCRIPT_REFINE_BBS = `
-var items = ["mhy-bbs-app-header", "mhy-button", "header-bar", "bbs-qr"];
-for (const item of items) {
-  const els = document.getElementsByClassName(item);
-  if (els.length) Array.from(els).forEach((e) => (e.style.display = "none"));
-}
-`;
+export const DEFAULT_GAME_ROLE: GameRole = {
+  region: "",
+  game_biz: "",
+  nickname: "",
+  level: 0,
+  is_official: true,
+  region_name: "",
+  game_uid: "",
+  is_chosen: false
+};

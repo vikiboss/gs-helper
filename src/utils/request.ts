@@ -2,6 +2,12 @@ import axios from "axios";
 
 import { APP_USER_AGENT_BBS } from "../constants";
 
+export type BaseRes<T> = {
+  retcode: number;
+  data: T;
+  message: string;
+};
+
 axios.defaults.timeout = 6000;
 axios.defaults.headers.common["user-agent"] = APP_USER_AGENT_BBS;
 // axios.defaults.headers.common["x-rpc-device_id"] = "";

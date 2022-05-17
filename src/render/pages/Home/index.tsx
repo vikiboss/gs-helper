@@ -17,11 +17,10 @@ import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
 import {
   ANNUCEMENT,
-  defaultAppData,
-  defaultNotes,
+  DEFAULT_NOTES,
+  DEFAULT_APP_DATA,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
-  LINK_GITHUB_REPO,
   LOGIN_TIP,
   WELCOME_TIP
 } from "../../../constants";
@@ -35,9 +34,10 @@ import resinIcon from "../../../assets/resin.png";
 import taskIcon from "../../../assets/task.png";
 import transformerIcon from "../../../assets/transformer.png";
 
-import type { AppData, DailyNotesData } from "../../../typings";
+import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
+import { DailyNotesData } from "../../../services/getDailyNotesByCookie";
 
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds}秒`;
@@ -52,8 +52,8 @@ const Home: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
-  const [user, setUser] = useState<Partial<AppData["user"]>>(defaultAppData["user"]);
-  const [note, setNotesData] = useState<Partial<DailyNotesData>>(defaultNotes);
+  const [user, setUser] = useState<Partial<AppData["user"]>>(DEFAULT_APP_DATA["user"]);
+  const [note, setNotesData] = useState<Partial<DailyNotesData>>(DEFAULT_NOTES);
 
   useEffect(() => {
     (async () => {

@@ -8,7 +8,7 @@ import useNotice from "../../hooks/useNotice";
 import nativeApi from "../../utils/nativeApi";
 import CircleButton from "../../components/CircleButton";
 import TimesCalendar from "./Charts/TimesCalendar";
-import { defaultGachaData } from "../../../constants";
+import { DEFAULT_GACHA_DATA } from "../../../constants";
 import transformGachaDataDate from "../../../utils/transformGachaDataDate";
 import transformGachaDataType from "../../../utils/transformGachaDataType";
 
@@ -31,7 +31,7 @@ const Gocha: React.FC = () => {
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [pieFilter, setPieFilter] = useState<FilterType>(defaultFilter);
-  const [gacha, setGacha] = useState<GachaData>(defaultGachaData);
+  const [gacha, setGacha] = useState<GachaData>(DEFAULT_GACHA_DATA);
 
   useEffect(() => {
     (async () => {
