@@ -1,6 +1,6 @@
-import request from "../utils/request";
-import { store } from "../main";
 import { API_BBS_BASE } from "../constants";
+import { store } from "../main";
+import request from "../utils/request";
 
 const getRoleInfoByCookie = async (cookie?: string) => {
   cookie = cookie || store.get("user.cookie");

@@ -1,10 +1,10 @@
+import { API_RECORD_BASE, LINK_BBS_REFERER } from "../constants";
 import { DailyNotesData } from "./../typings.d";
 import { store } from "../main";
-import request from "../utils/request";
-import { API_RECORD_BASE, LINK_BBS_REFERER } from "../constants";
-import getServerByUid from "../utils/getServerByUid";
 import getDS from "../utils/getDS";
+import getServerByUid from "../utils/getServerByUid";
 import qs from "../utils/qs";
+import request from "../utils/request";
 
 const getDailyNotesByCookie = async (cookie: string): Promise<DailyNotesData | null> => {
   cookie = cookie || store.get("user.cookie");

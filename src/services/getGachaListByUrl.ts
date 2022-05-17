@@ -1,11 +1,11 @@
 import { app } from "electron";
 
+import { defaultGachaData, API_GACHA_BASE, GACHA_TYPES } from "../constants";
+import deepClone from "../utils/deepClone";
 import request from "../utils/request";
 import wait from "../utils/wait";
-import { defaultGachaData, API_GACHA_BASE, GACHA_TYPES } from "../constants";
 
 import type { GachaData, RawGachaItem } from "../typings";
-import deepClone from "../utils/deepClone";
 
 const getGachaListByUrl = async (url: string): Promise<GachaData> => {
   try {
