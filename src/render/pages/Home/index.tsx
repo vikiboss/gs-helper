@@ -268,7 +268,7 @@ const Home: React.FC = () => {
     {
       name: "米游社签到",
       Icon: RiCalendarCheckFill,
-      handler: () => notice.info({ message: "你点了签到" })
+      handler: () => handlePageSwitch("/sign")
     }
   ];
 
