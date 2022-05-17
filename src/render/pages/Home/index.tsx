@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from "react";
+import { NavigateOptions, useNavigate } from "react-router-dom";
 import cn from "classnames";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
-import { IoMdRefresh } from "react-icons/io";
-import { RiCalendarCheckFill } from "react-icons/ri";
-import { MdOutlineAccountBox } from "react-icons/md";
+import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
-import { IoSearch, IoSettingsOutline } from "react-icons/io5";
 import { FaRegMap, FaRegCompass, FaGithub } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
-import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
+import { IoMdRefresh } from "react-icons/io";
+import { IoSearch, IoSettingsOutline } from "react-icons/io5";
+import { MdOutlineAccountBox } from "react-icons/md";
+import { RiCalendarCheckFill } from "react-icons/ri";
 
 import Button from "../../components/Button";
-import useNotice from "../../hooks/useNotice";
-import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
+import useAuth from "../../hooks/useAuth";
+import useNotice from "../../hooks/useNotice";
 import {
   ANNUCEMENT,
   defaultAppData,
@@ -26,16 +26,16 @@ import {
   WELCOME_TIP
 } from "../../../constants";
 
-import type { AppData, DailyNotesData } from "../../../typings";
-
 import avatar from "../../../assets/icon.png";
 import bbsIcon from "../../../assets/bbs.png";
-import resinIcon from "../../../assets/resin.png";
-import homeIcon from "../../../assets/home.png";
-import taskIcon from "../../../assets/task.png";
 import discountIcon from "../../../assets/discount.png";
-import transformerIcon from "../../../assets/transformer.png";
+import homeIcon from "../../../assets/home.png";
 import prestigeIcon from "../../../assets/prestige.png";
+import resinIcon from "../../../assets/resin.png";
+import taskIcon from "../../../assets/task.png";
+import transformerIcon from "../../../assets/transformer.png";
+
+import type { AppData, DailyNotesData } from "../../../typings";
 
 import styles from "./index.less";
 
@@ -51,47 +51,55 @@ const Home: React.FC = () => {
   const auth = useAuth();
   const notice = useNotice();
   const navigate = useNavigate();
+  const [heart, setHeart] = useState<NodeJS.Timer>(null);
   const [user, setUser] = useState<Partial<AppData["user"]>>(defaultAppData["user"]);
   const [note, setNotesData] = useState<Partial<DailyNotesData>>(defaultNotes);
 
   useEffect(() => {
     (async () => {
-      if (!auth.isLogin) return;
-      const user = await nativeApi.getStoreKey("user");
-      const note = await nativeApi.getDailyNotes();
-      if (!user || !note) {
-        auth.logout();
-        return navigate("/login", { state: { isExpired: true } });
-      }
-      setUser(user);
-      setNotesData(note);
+      updateInfo(false);
+      setHeart(setInterval(() => updateInfo(false), 60000));
     })();
-  }, [auth.isLogin]);
+    return () => {
+      clearInterval(heart);
+      setHeart(null);
+    };
+  }, []);
 
-  const handlePageSwitch = (path: string) => {
-    if (path === "/gacha") return navigate("/gacha");
-    if (!auth.isLogin) return notice.warning({ message: "请先登录 「米游社」 账号" });
-    navigate(path);
+  const safelyNavigate = (path: string, options?: NavigateOptions) => {
+    clearInterval(heart);
+    setHeart(null);
+    navigate(path, options);
   };
 
-  const handleRefresh = async () => {
+  const updateInfo = async (isUserTrriger: boolean = true) => {
     if (!auth.isLogin) return;
-    notice.info({ message: "正在获取最新数据...", autoHide: false });
+    if (isUserTrriger) notice.info({ message: "正在获取最新数据...", autoHide: false });
+
     const [user, note] = await Promise.all([
       nativeApi.refreshUserInfo(),
       nativeApi.getDailyNotes()
     ]);
-    if (user?.uid) {
-      setUser(user);
-    } else {
-      notice.faild({ message: "角色信息更新失败" });
+
+    if (!user?.uid || !note?.max_resin) {
+      auth.logout();
+      return navigate("/login", { state: { isExpired: true } });
     }
-    if (note?.max_resin) {
-      setNotesData(note);
-    } else {
-      notice.faild({ message: "游戏数据更新失败" });
-    }
-    notice.success({ message: "数据更新成功" });
+
+    if (isUserTrriger) notice.success({ message: "数据更新成功" });
+
+    setUser(user);
+    setNotesData(note);
+  };
+
+  const handlePageSwitch = (path: string) => {
+    const noAuth = !auth.isLogin && path !== "/gacha";
+    if (noAuth) return notice.warning({ message: "请先登录 「米游社」 账号" });
+    safelyNavigate(path);
+  };
+
+  const handleWindowOpen = (link: string) => {
+    nativeApi.openWindow(link);
   };
 
   const handleAvatarClick = () => notice.info({ message: "不准点派蒙！" });
@@ -238,12 +246,12 @@ const Home: React.FC = () => {
     {
       name: "提瓦特地图",
       Icon: FaRegMap,
-      handler: () => nativeApi.openWindow(LINK_GENSHIN_MAP)
+      handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },
     {
       name: "观测枢·攻略",
       Icon: FaRegCompass,
-      handler: () => nativeApi.openWindow(LINK_BBS_YS_OBC)
+      handler: () => handleWindowOpen(LINK_BBS_YS_OBC)
     },
     {
       name: "旅行者札记",
@@ -348,14 +356,14 @@ const Home: React.FC = () => {
                 text='登录米游社'
                 size='middle'
                 type='confirm'
-                onClick={() => navigate("/login")}
+                onClick={() => safelyNavigate("/login")}
               />
             </div>
           )}
           <div className={styles.topBtns}>
             {auth.isLogin && (
               <>
-                <div className={styles.topBtn} onClick={handleRefresh}>
+                <div className={styles.topBtn} onClick={() => updateInfo()}>
                   <IoMdRefresh size={20} />
                   <span>刷新</span>
                 </div>
@@ -364,7 +372,7 @@ const Home: React.FC = () => {
             )}
             <div
               className={styles.topBtn}
-              onClick={() => navigate("/login", { state: { changeAccount: auth.isLogin } })}
+              onClick={() => safelyNavigate("/login", { state: { changeAccount: auth.isLogin } })}
             >
               {auth.isLogin ? (
                 <>
@@ -379,12 +387,12 @@ const Home: React.FC = () => {
               )}
             </div>
             |
-            <div className={styles.topBtn} onClick={() => navigate("/setting")}>
+            <div className={styles.topBtn} onClick={() => safelyNavigate("/setting")}>
               <IoSettingsOutline size={20} />
               <span>设置</span>
             </div>
             |
-            <div className={styles.topBtn} onClick={() => navigate("/about")}>
+            <div className={styles.topBtn} onClick={() => safelyNavigate("/about")}>
               <BiInfoCircle size={20} />
               <span>关于</span>
             </div>
