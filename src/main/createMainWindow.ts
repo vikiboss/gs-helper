@@ -10,7 +10,6 @@ export const isDev = !app.isPackaged;
 const winOptions: BrowserWindowConstructorOptions = {
   width: MAIN_WINDOW_WIDTH,
   height: MAIN_WINDOW_HEIGHT,
-  show: false,
   frame: false,
   resizable: false,
   maximizable: false,
@@ -24,7 +23,6 @@ const winOptions: BrowserWindowConstructorOptions = {
 const createMainWindow = () => {
   const win = new BrowserWindow(winOptions);
   win.removeMenu();
-  win.once("ready-to-show", () => win.show());
   win.once("system-context-menu", (e) => e.preventDefault());
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
