@@ -24,7 +24,8 @@ export const IPC_EVENTS: Record<string, string> = {
   writeClipboardText: "WRITE_CLIPBOARD_TEXT"
 };
 
-export const ANNUCEMENT = "本软件使用 MIT 协议开源，仅供学习交流。数据可能存在延迟。";
+export const ANNUCEMENT_OPEN_SOURCE = "本软件使用 MIT 协议开源，仅供学习交流使用。";
+export const ANNUCEMENT_DATA_DELAY = "数据可能存在延迟，请以游戏内的实时数据为准。";
 export const APP_NAME = "原神助手";
 export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
 export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";

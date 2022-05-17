@@ -16,7 +16,8 @@ import nativeApi from "../../utils/nativeApi";
 import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
 import {
-  ANNUCEMENT,
+  ANNUCEMENT_OPEN_SOURCE,
+  ANNUCEMENT_DATA_DELAY,
   DEFAULT_APP_DATA,
   DEFAULT_NOTES,
   DEFAULT_SIGN_INFO,
@@ -421,7 +422,7 @@ const Home: React.FC = () => {
                 </div>
               ))}
           </div>
-          <div className={styles.footer}>{ANNUCEMENT}</div>
+          <div className={styles.footer}>{ANNUCEMENT_OPEN_SOURCE + ANNUCEMENT_DATA_DELAY}</div>
         </div>
       </div>
       {notice.holder}
