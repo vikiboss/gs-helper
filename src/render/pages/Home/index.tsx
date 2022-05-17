@@ -29,6 +29,7 @@ import {
 import type { AppData, DailyNotesData } from "../../../typings";
 
 import avatar from "../../../assets/icon.png";
+import bbsIcon from "../../../assets/bbs.png";
 import resinIcon from "../../../assets/resin.png";
 import homeIcon from "../../../assets/home.png";
 import taskIcon from "../../../assets/task.png";
@@ -66,10 +67,6 @@ const Home: React.FC = () => {
       setNotesData(note);
     })();
   }, [auth.isLogin]);
-
-  const handleSwitchAccount = () => {
-    navigate("/login");
-  };
 
   const handlePageSwitch = (path: string) => {
     if (path === "/gacha") return navigate("/gacha");
@@ -204,6 +201,12 @@ const Home: React.FC = () => {
       detail: `参量质变仪 ${transformerStatus}`,
       icon: transformerIcon,
       title: transformerTitle,
+      name: "transformer"
+    },
+    {
+      detail: `米游社 ${"今日已签"}`,
+      icon: bbsIcon,
+      title: "",
       name: "transformer"
     }
   ];
