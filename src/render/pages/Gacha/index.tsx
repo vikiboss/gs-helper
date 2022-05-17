@@ -60,7 +60,7 @@ const Gocha: React.FC = () => {
     });
 
     const data = await nativeApi.getGachaListByUrl(link);
-    console.log(data?.list?.length);
+    console.log("updateGachaData: ", data?.list?.length);
 
     if (data?.list?.length) {
       notice.success({ message: `祈愿数据更新完毕，共获取到 ${data?.list?.length} 条数据` });
@@ -118,7 +118,6 @@ const Gocha: React.FC = () => {
   const now = new Date();
   const year = now.getFullYear();
   const defaultRange = [`${year}-01-01`, now];
-  console.log(gacha.list.length, gacha.list, gacha.list[gacha.list.length - 1]);
   const lastDate = gacha.list.length ? gacha.list[gacha.list.length - 1].time : "";
 
   return (

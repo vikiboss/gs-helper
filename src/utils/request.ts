@@ -19,10 +19,7 @@ axios.defaults.headers.common["x-rpc-client_type"] = "5";
 // 5:  Mobile Web
 
 axios.interceptors.request.use(
-  (config) => {
-    console.log(`${config.method.toUpperCase()}: /${config.url.split("/").reverse()[0]}`);
-    return config;
-  },
+  (config) => config,
   (error) => {
     console.log(error);
     return Promise.reject(error);
@@ -31,7 +28,8 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (response) => {
-    console.log(`StatusCode: ${response.status}`);
+    const { url, method } = response.config;
+    console.log(`${method.toUpperCase()}: ${response.status} /${url.split("/").reverse()[0]}`);
     return response;
   },
   (error) => {

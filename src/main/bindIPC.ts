@@ -73,7 +73,7 @@ const bindIPC = (win: BrowserWindow) => {
       try {
         dom.executeJavaScript(SCRIPT_REFINE_BBS);
       } catch (e) {
-        console.log(e);
+        console.log("loginViaMihoyoBBS: ", e);
       }
     });
     dom.setWindowOpenHandler(() => ({ action: "deny" }));
@@ -121,7 +121,7 @@ const bindIPC = (win: BrowserWindow) => {
         try {
           dom.executeJavaScript(SCRIPT_REFINE_BBS);
         } catch (e) {
-          console.log(e);
+          console.log("openWindow: ", e);
         }
       });
       dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);

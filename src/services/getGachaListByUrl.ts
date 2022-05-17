@@ -42,7 +42,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
       // do while 循环，不断加载这个类型每一页的数据
       do {
         if (times > 0) {
-          console.log(`开始重试第 ${times} 次...`);
+          console.log("getGachaListByUrl: ", `开始重试第 ${times} 次...`);
         }
 
         // 拼接每一页数据的 URL
@@ -81,8 +81,11 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           urlParams.set("end_id", data.data.list.pop().id);
         } else {
           times++;
-          console.log(data.data, status);
-          console.log("获取", GACHA_TYPES[type], "第", urlParams.get("page"), "页失败");
+          console.log("getGachaListByUrl: ", data.data, status);
+          console.log(
+            "getGachaListByUrl: ",
+            `获取${GACHA_TYPES[type]}第${urlParams.get("page")}页失败`
+          );
         }
 
         // 每加载一次数据，等待 300 毫秒，减轻米哈游服务器负担
