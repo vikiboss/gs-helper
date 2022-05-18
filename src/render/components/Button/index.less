@@ -5,13 +5,13 @@
 @size-large : 64px;
 
 .btn {
-  align-items     : center;
-  background-color: @btn-bg-color;
-  border          : 2px solid #b9b6b3;
-  display         : flex;
-  overflow        : hidden;
-  position        : relative;
-  transition      : all 0.2s ease-in-out;
+  align-items: center;
+  border     : 1px solid transparent;
+  display    : flex;
+  overflow   : hidden;
+  position   : relative;
+  transition : all 0.2s ease-in-out;
+  box-shadow : 1px 1px 4px 4px rgba(220, 220, 220, 0.3);
 
   .confirm {
     color: @btn-icon-yellow;
@@ -29,17 +29,12 @@
   }
 
   .text {
-    color     : @btn-text-color;
     flex      : 1;
     text-align: center;
   }
 
   .with-icon {
     position: relative;
-  }
-
-  &:hover {
-    border-color: @btn-hover-border-color;
   }
 
   &:active {
@@ -54,6 +49,22 @@
       color: @btn-text-active-color;
     }
   }
+
+  &:hover {
+    border-color: @btn-hover-border-color;
+  }
+}
+
+.dark {
+  color           : @btn-text-color;
+  background-color: @btn-bg-color;
+  border-color    : @text-color-second;
+}
+
+.light {
+  color           : @text-color;
+  background-color: @color-bg-orange;
+  border-color    : @color-white;
 }
 
 .small {

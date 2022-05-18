@@ -141,7 +141,7 @@ const Gocha: React.FC = () => {
             placeholder='祈愿记录链接'
           />
           <Button
-            noIcon
+            theme='light'
             text={link ? "复制" : "获取本地链接"}
             onClick={link ? copyLink : getLocalGachaUrl.bind(null, true)}
             style={{ marginRight: "12px" }}
