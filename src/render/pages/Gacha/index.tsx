@@ -152,13 +152,13 @@ const Gocha: React.FC = () => {
         <div className={styles.pieChart}>
           <div className={styles.filterBtns}>
             <div>
-              <span>按物品类型筛选：</span>
+              <span>物品类型：</span>
               <button onClick={() => toggleItemType("all")}>所有</button>
               <button onClick={() => toggleItemType("role")}>角色</button>
               <button onClick={() => toggleItemType("weapon")}>武器</button>
             </div>
             <div>
-              <span>按祈愿类型筛选：</span>
+              <span>祈愿类型：</span>
               <button onClick={() => setPieFilter({ item: pieFilter.item, gacha: "all" })}>
                 所有
               </button>
