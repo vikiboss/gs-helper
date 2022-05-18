@@ -9,7 +9,7 @@ export type AlertOptions = {
   type?: AlertProp["type"];
 };
 
-const useAlert = () => {
+const useNotice = () => {
   const [message, setMessage] = useState<string>("");
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [type, setType] = useState<AlertProp["type"]>("info");
@@ -48,4 +48,4 @@ const useAlert = () => {
   };
 };
 
-export default useAlert;
+export default useNotice;

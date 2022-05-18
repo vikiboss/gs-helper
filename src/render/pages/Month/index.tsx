@@ -11,17 +11,25 @@ import type { MonthInfo } from "../../../services/getMonthInfo";
 
 import styles from "./index.less";
 import Loading from "../../components/Loading";
+import useNotice from "../../hooks/useNotice";
 
 const Month: React.FC = () => {
   const navigate = useNavigate();
+  const notice = useNotice();
   const [monthInfo, setMonthInfo] = useState<MonthInfo>(DEFAULT_MONTH_INFO);
 
-  useEffect(() => {
-    (async () => {
-      const res = await nativeApi.getMonthInfo();
-      console.log(res);
+  const updateInfo = async (month: number = 0, isUserTrigger: boolean = true) => {
+    const res = await nativeApi.getMonthInfo(month);
+    if (res.account_id) {
       setMonthInfo(res);
-    })();
+      if (isUserTrigger) notice.success({ message: "数据获取成功" });
+    } else {
+      notice.faild({ message: "网络好像出了点问题，稍后再试试吧 ~" });
+    }
+  };
+
+  useEffect(() => {
+    (async () => updateInfo(0, false))();
   }, []);
 
   const dayData = monthInfo.day_data;
@@ -33,6 +41,15 @@ const Month: React.FC = () => {
         {monthInfo.account_id ? (
           <>
             <div className={styles.title}>旅行者札记</div>
+            <div>
+              <span>按月份查看</span>
+              {monthInfo.optional_month.map((e) => (
+                <button key={e} onClick={() => updateInfo(e)}>
+                  {e}
+                </button>
+              ))}
+              <button onClick={() => updateInfo(0)}>回到本月</button>
+            </div>
             <div style={{ display: "flex" }}>
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div>旅行者：{monthInfo.nickname}</div>
@@ -80,6 +97,7 @@ const Month: React.FC = () => {
           onClick={() => navigate("/")}
         />
       </div>
+      {notice.holder}
     </>
   );
 };

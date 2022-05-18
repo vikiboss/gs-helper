@@ -48,10 +48,10 @@ export type MonthInfo = {
   lantern: boolean;
 };
 
-const getMonthInfo = async (): Promise<MonthInfo | null> => {
+const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
   const { cookie, uid } = store.get<string, AppData["user"]>("user", DEFAULT_APP_DATA["user"]);
   const url = `${API_HK4E}/event/ys_ledger/monthInfo`;
-  const params = { month: 0, bind_uid: uid, bind_region: getServerByUid(uid) };
+  const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };
   const config = {
     params,
     headers: {

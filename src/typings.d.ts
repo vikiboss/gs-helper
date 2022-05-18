@@ -17,7 +17,7 @@ export interface NativeApi {
   getBBSSignData: () => Promise<SignData | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
   getDailyNotes: () => Promise<DailyNotesData | null>;
-  getMonthInfo: () => Promise<MonthInfo | null>;
+  getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
   getStoreKey: (key: string) => Promise<any>;

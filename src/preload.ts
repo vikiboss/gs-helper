@@ -19,7 +19,6 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPC_EVENTS.getBBSSignInfo),
   getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPC_EVENTS.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPC_EVENTS.getGachaUrl),
-  getMonthInfo: (): Promise<MonthInfo | null> => IPC.invoke(IPC_EVENTS.getMonthInfo),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPC_EVENTS.getStoreKey, key),
   hideApp: () => IPC.send(IPC_EVENTS.hideApp),
   loginViaMihoyoBBS: () => IPC.send(IPC_EVENTS.loginViaMihoyoBBS),
@@ -32,6 +31,9 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
 
   openWindow: (url: string, options?: WinOptions, UA?: string) => {
     IPC.send(IPC_EVENTS.openWindow, url, options, UA);
+  },
+  getMonthInfo: (month?: number): Promise<MonthInfo | null> => {
+    return IPC.invoke(IPC_EVENTS.getMonthInfo, month);
   },
   getGachaListByUrl: (url: string): Promise<GachaData> => {
     return IPC.invoke(IPC_EVENTS.getGachaListByUrl, url);
