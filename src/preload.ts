@@ -6,18 +6,20 @@ import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "./constants";
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
+import type { MonthInfo } from "./services/getMonthInfo";
+import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
-import { SignData } from "./services/getBBSSignData";
 
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   clearCookie: (domain?: string) => IPC.send(IPC_EVENTS.clearCookie, domain),
   closeApp: () => IPC.send(IPC_EVENTS.closeApp),
   doBBSSign: (): Promise<boolean> => IPC.invoke(IPC_EVENTS.doBBSSign),
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPC_EVENTS.getAppInfo),
-  getBBSSignData: (): Promise<SignData> => IPC.invoke(IPC_EVENTS.getBBSSignData),
-  getBBSSignInfo: (): Promise<SignInfo> => IPC.invoke(IPC_EVENTS.getBBSSignInfo),
-  getDailyNotes: (): Promise<DailyNotesData> => IPC.invoke(IPC_EVENTS.getDailyNotes),
+  getBBSSignData: (): Promise<SignData | null> => IPC.invoke(IPC_EVENTS.getBBSSignData),
+  getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPC_EVENTS.getBBSSignInfo),
+  getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPC_EVENTS.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPC_EVENTS.getGachaUrl),
+  getMonthInfo: (): Promise<MonthInfo | null> => IPC.invoke(IPC_EVENTS.getMonthInfo),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPC_EVENTS.getStoreKey, key),
   hideApp: () => IPC.send(IPC_EVENTS.hideApp),
   loginViaMihoyoBBS: () => IPC.send(IPC_EVENTS.loginViaMihoyoBBS),

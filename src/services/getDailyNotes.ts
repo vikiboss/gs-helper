@@ -4,7 +4,7 @@ import { store } from "../main";
 import getDS from "../utils/getDS";
 import getServerByUid from "../utils/getServerByUid";
 import qs from "../utils/qs";
-import request from "../utils/request";
+import request, { BaseRes } from "../utils/request";
 
 import type { AppData } from "./../typings.d";
 
@@ -47,7 +47,7 @@ const getDailyNotes = async (): Promise<DailyNotesData | null> => {
       cookie
     }
   };
-  const { status, data } = await request.get(url, config);
+  const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, config);
   const faild = status !== 200 || data.retcode !== 0;
   if (faild) console.log("getDailyNotesByCookie: ", data);
   return data?.data;

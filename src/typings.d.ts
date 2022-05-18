@@ -4,18 +4,20 @@ import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
-import type { SignInfo } from "./services/getBBSSignInfo";
-import type { SignData } from "./services/getBBSSignData";
 import type { DailyNotesData } from "./services/getDailyNotes";
+import type { MonthInfo } from "./services/getMonthInfo";
+import type { SignData } from "./services/getBBSSignData";
+import type { SignInfo } from "./services/getBBSSignInfo";
 
 export interface NativeApi {
   clearCookie: (domain?: string) => void;
   closeApp: () => void;
   doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
-  getBBSSignData: () => Promise<SignData>;
-  getBBSSignInfo: () => Promise<SignInfo>;
-  getDailyNotes: () => Promise<DailyNotesData>;
+  getBBSSignData: () => Promise<SignData | null>;
+  getBBSSignInfo: () => Promise<SignInfo | null>;
+  getDailyNotes: () => Promise<DailyNotesData | null>;
+  getMonthInfo: () => Promise<MonthInfo | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
   getStoreKey: (key: string) => Promise<any>;

@@ -1,14 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 
 import withAuth from "../../auth/withAuth";
 import CircleButton from "../../components/CircleButton";
+import nativeApi from "../../utils/nativeApi";
 
 import styles from "./index.less";
 
-const Note: React.FC = () => {
+const Month: React.FC = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const res = await nativeApi.getMonthInfo();
+      console.log(res);
+    })();
+  }, []);
 
   return (
     <div className={styles.desc}>
@@ -23,4 +31,4 @@ const Note: React.FC = () => {
   );
 };
 
-export default withAuth(Note);
+export default withAuth(Month);

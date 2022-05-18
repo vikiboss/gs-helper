@@ -20,7 +20,7 @@ export type GameRolesData = {
   list: GameRole[];
 };
 
-const getUserGameRolesByCookie = async (cookie: string = ""): Promise<GameRole[]> => {
+const getUserGameRolesByCookie = async (cookie: string = ""): Promise<GameRole[] | null> => {
   cookie = cookie || store.get<string, string>("user.cookie", "");
   const url = `${API_TAKUMI}/binding/api/getUserGameRolesByCookie`;
   const config = { params: { game_biz: GAME_BIZ }, headers: { referer: LINK_BBS_REFERER, cookie } };

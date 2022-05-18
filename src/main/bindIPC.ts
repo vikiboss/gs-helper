@@ -35,6 +35,7 @@ import {
 import doBBSSign from "../services/doBBSSign";
 import getBBSSignData from "../services/getBBSSignData";
 import getBBSSignInfo from "../services/getBBSSignInfo";
+import getMonthInfo from "../services/getMonthInfo";
 import sortGachaList from "../utils/sortGachaList";
 
 import type { AppData } from "../typings";
@@ -53,6 +54,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPC_EVENTS.getBBSSignInfo, async () => await getBBSSignInfo());
   IPC.handle(IPC_EVENTS.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
+  IPC.handle(IPC_EVENTS.getMonthInfo, async () => await getMonthInfo());
   IPC.handle(IPC_EVENTS.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));
   IPC.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
 

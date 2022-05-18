@@ -4,7 +4,7 @@ import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Gacha from "./pages/Gacha";
-import Note from "./pages/Note";
+import Month from "./pages/Month";
 import Role from "./pages/Role";
 import Game from "./pages/Game";
 import Query from "./pages/Query";
@@ -19,7 +19,7 @@ const AppRouter: React.FC = () => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/gacha' element={<Gacha />} />
-        <Route path='/note' element={<Note />} />
+        <Route path='/month' element={<Month />} />
         <Route path='/role' element={<Role />} />
         <Route path='/game' element={<Game />} />
         <Route path='/query' element={<Query />} />
