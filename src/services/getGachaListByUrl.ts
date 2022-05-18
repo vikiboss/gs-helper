@@ -50,10 +50,10 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
         const { data, status } = await request.get<BaseRes<RawGachaData>>(url);
 
         // 如果返回状态异常，打印返回的内容
-        if (data?.retcode !== 0) console.log("getGachaListByUrl: ", data);
+        if (data.retcode !== 0) console.log("getGachaListByUrl: ", data);
 
         // 如果返回状态正常
-        if (status === 200 && data?.retcode === 0) {
+        if (status === 200 && data.retcode === 0) {
           // 如果返回列表为空，继续下一个类型的获取
           if (data.data.list.length === 0) break;
 
@@ -68,8 +68,8 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
 
           // 对返回的 list 列表进行数据处理（删除 uid 和 lang 字段）
           const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
-            if (e?.uid) delete e.uid;
-            if (e?.lang) delete e.lang;
+            if (e.uid) delete e.uid;
+            if (e.lang) delete e.lang;
             return Object.assign(e, { uigf_gacha_type: type });
           });
 
