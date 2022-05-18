@@ -29,8 +29,8 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   (response) => {
     const { url, method } = response.config;
-    const path =  `/${url.split("/").reverse()[0].split("?").reverse()[0]}`
-    console.log(`${method.toUpperCase()}: ${response.status} ${path}}`);
+    const path =  `/${url.split("/").reverse()[0].split("?")[0]}`
+    console.log(`${method.toUpperCase()}: ${response.status} ${path}`);
     return response;
   },
   (error) => {

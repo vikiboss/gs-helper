@@ -131,6 +131,7 @@ const bindIPC = (win: BrowserWindow) => {
 
   IPC.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
+    console.log(data);
     if (data.list.length > 0) {
       data.list = sortGachaList(data.list);
       updateStoreGachaList(data);
