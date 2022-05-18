@@ -137,13 +137,13 @@ const Home: React.FC = () => {
   const resinStatus = `${note?.current_resin}/${note?.max_resin}`;
   const resinTitle = isResinOk
     ? "树脂已全部恢复完毕"
-    : `树脂全部恢复预计需要 「${formatTime(Number(note?.resin_recovery_time))}」 `;
+    : `树脂全部恢复预计需要${formatTime(Number(note?.resin_recovery_time))}`;
 
   const isHomeOk = note?.max_home_coin !== 0;
   const homeStatus = isHomeOk ? `${note?.current_home_coin}/${note?.max_home_coin}` : "暂未开启";
   const homeTitle = isHomeOk
-    ? `达储存上限预计需要 「${formatTime(Number(note?.home_coin_recovery_time))}」 `
-    : " 「尘歌壶」 相关功能暂未解锁或开启";
+    ? `达储存上限预计需要${formatTime(Number(note?.home_coin_recovery_time))}`
+    : "尘歌壶相关功能暂未解锁或开启";
 
   const hasReceivedTask = note?.total_task_num !== 0;
   const taskStatus = hasReceivedTask
@@ -152,21 +152,19 @@ const Home: React.FC = () => {
   const isTaskDone = note?.finished_task_num === note?.total_task_num;
   const hasReceivedReward = note?.is_extra_task_reward_received;
   const taskTitle =
-    "每日委托任务 「" +
+    "每日委托任务" +
     (hasReceivedTask
       ? isTaskDone
         ? hasReceivedReward
           ? "已完成，奖励已领取"
           : "已完成，奖励未领取"
         : "待完成"
-      : "尚未接取") +
-    "」";
-
+      : "尚未接取");
   const discountStatus = `${note?.remain_resin_discount_num}/${note?.resin_discount_num_limit}`;
   const isDiscountDone = note?.remain_resin_discount_num === 0;
   const discountTitle =
     "本周树脂减半次数" +
-    (isDiscountDone ? " 「已达上限」" : `还剩 「${note?.remain_resin_discount_num}」 次`);
+    (isDiscountDone ? " 已达上限" : `还剩${note?.remain_resin_discount_num}次`);
 
   const hasTransformer = note?.transformer?.obtained;
   const _ = note?.transformer?.recovery_time;
@@ -178,16 +176,15 @@ const Home: React.FC = () => {
       : "冷却中"
     : "暂未获得";
   const transformerTitle =
-    "参量质变仪 「" +
+    "参量质变仪" +
     (hasTransformer
       ? isTransformerReady
         ? "已就绪"
         : `冷却中，还剩 「${formatTime(transformerTime)}」`
-      : "暂未获得") +
-    "」";
+      : "暂未获得");
 
-  const signStatus = sign.is_sign ? "已签到" : "未签到";
-  const signTitle = `本月共签到 ${sign.total_sign_day} 天，漏签 ${sign.sign_cnt_missed} 天`;
+  const signStatus = `${sign.is_sign ? "已签" : "未签"}，本月累计${sign.total_sign_day}天`;
+  const signTitle = `本月累计签到 ${sign.total_sign_day} 天，错过 ${sign.sign_cnt_missed} 天`;
 
   const notes = [
     {
