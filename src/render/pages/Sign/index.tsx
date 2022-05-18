@@ -5,11 +5,10 @@ import React, { useEffect, useState } from "react";
 
 import { DEFAULT_SIGN_DATA, DEFAULT_SIGN_INFO } from "../../../constants";
 import CircleButton from "../../components/CircleButton";
+import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
 import useNotice from "../../hooks/useNotice";
 import withAuth from "../../auth/withAuth";
-
-import paimon from "../../../assets/paimon.gif";
 
 import type { SignData } from "../../../services/getBBSSignData";
 import type { SignInfo } from "../../../services/getBBSSignInfo";
@@ -83,10 +82,7 @@ const Sign: React.FC = () => {
             </div>
           </>
         ) : (
-          <>
-            <img src={paimon} alt='派蒙' style={{ width: "120px" }} />
-            <div>小派蒙正在努力加载中...</div>
-          </>
+          <Loading />
         )}
         <CircleButton
           Icon={TiArrowBack}
