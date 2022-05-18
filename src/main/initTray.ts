@@ -15,6 +15,7 @@ const initTray = (win: BrowserWindow) => {
     {
       label: MENU.alwaysOnTop,
       type: "checkbox",
+      visible: isDev,
       checked: store.get("settings.alwaysOnTop"),
       click: () => {
         const targetValue = !win.isAlwaysOnTop();
