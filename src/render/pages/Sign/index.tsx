@@ -62,7 +62,7 @@ const Sign: React.FC = () => {
           <>
             <div
               className={styles.title}
-            >{`米游社 ${signData.month} 月签到日历，本月累计签到 ${signInfo.total_sign_day} 天，错过 ${signInfo.sign_cnt_missed} 天`}</div>
+            >{`米游社原神 ${signData.month} 月签到日历，本月累计签到 ${signInfo.total_sign_day} 天，错过 ${signInfo.sign_cnt_missed} 天`}</div>
             <div className={styles.signTable}>
               {signData.awards.slice(0, 27).map((e, i) => {
                 const signedClass = i + 1 <= signInfo.total_sign_day ? styles.signed : "";

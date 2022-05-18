@@ -262,7 +262,7 @@ const Home: React.FC = () => {
     {
       name: "旅行者札记",
       Icon: BiNotepad,
-      handler: () => handlePageSwitch("/note")
+      handler: () => handlePageSwitch("/month")
     },
     {
       name: "角色详情",

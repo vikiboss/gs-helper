@@ -3,6 +3,7 @@ import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GameRole } from "./services/getUserGameRolesByCookie";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SignData } from "./services/getBBSSignData";
+import { MonthInfo } from "./services/getMonthInfo";
 
 // main 进程 与 render 进程进行 IPC 通信的事件常量
 export const IPC_EVENTS: Record<string, string> = {
@@ -276,4 +277,33 @@ export const DEFAULT_SIGN_DATA: SignData = {
   month: 1,
   awards: [],
   resign: true
+};
+
+export const DEFAULT_MONTH_INFO: MonthInfo = {
+  uid: 0,
+  region: "cn_gf01",
+  account_id: 0,
+  nickname: "旅行者",
+  date: "2022-01-01",
+  month: 1,
+  optional_month: [],
+  data_month: 1,
+  data_last_month: 12,
+  day_data: {
+    current_primogems: 0,
+    current_mora: 0,
+    last_primogems: 0,
+    last_mora: 0
+  },
+  month_data: {
+    current_primogems: 0,
+    current_mora: 0,
+    last_primogems: 0,
+    last_mora: 0,
+    current_primogems_level: 0,
+    primogems_rate: 0,
+    mora_rate: 0,
+    group_by: []
+  },
+  lantern: false
 };
