@@ -3,23 +3,27 @@ import { Store } from "electron-store";
 
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
-import type { BrowserWindowConstructorOptions } from "electron";
-import type { SignInfo } from "./services/getBBSSignStatus";
+import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
+import type { SignInfo } from "./services/getBBSSignInfo";
+import type { SignData } from "./services/getBBSSignData";
+import type { DailyNotesData } from "./services/getDailyNotes";
 
 export interface NativeApi {
-  clearCookie: (domain?: string) => Promise<void>;
+  clearCookie: (domain?: string) => void;
   closeApp: () => void;
+  doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
+  getBBSSignData: () => Promise<SignData>;
+  getBBSSignInfo: () => Promise<SignInfo>;
   getDailyNotes: () => Promise<DailyNotesData>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
   loginViaMihoyoBBS: () => void;
-  getBBSSignStatus: () => Promise<SignInfo>;
   minimizeApp: () => void;
   openLink: (url: string) => void;
-  openWindow: (url: string, options?: BrowserWindowConstructorOptions, UA?: string) => void;
+  openWindow: (url: string, options?: WinOptions, UA?: string) => void;
   readClipboardText: () => Promise<string>;
   refreshUserInfo: () => Promise<AppData["user"]>;
   setStoreKey: (key: string, value: any) => void;
@@ -27,14 +31,14 @@ export interface NativeApi {
 }
 
 export type GachaItem = {
-  gacha_type: string;
-  item_id: string;
   count: string;
-  time: string;
-  name: string;
-  item_type: string;
-  rank_type: string;
+  gacha_type: string;
   id: string;
+  item_id: string;
+  item_type: string;
+  name: string;
+  rank_type: string;
+  time: string;
   uigf_gacha_type: string;
 };
 
@@ -48,12 +52,12 @@ export type RawGachaItem = Omit<
 
 export type GachaData = {
   info: {
-    uid: string;
-    lang: string;
-    export_app: string;
     export_app_version: string;
+    export_app: string;
     export_time: string;
     export_timestamp: string;
+    lang: string;
+    uid: string;
     uigf_version: string;
   };
   list: GachaItem[];
@@ -61,15 +65,15 @@ export type GachaData = {
 
 export type AppData = {
   user: {
-    uid: string;
-    nickname: string;
-    level: number;
-    isOfficial: boolean;
-    regionName: string;
     cookie: string;
+    isOfficial: boolean;
+    level: number;
+    nickname: string;
+    regionName: string;
+    uid: string;
   };
   gachas: GachaData[];
-  settings: { alwaysOnTop: boolean };
+  settings: { alwaysOnTop: boolean; deviceId: string };
 };
 
 export type AppInfo = {

@@ -2,9 +2,10 @@ import { app } from "electron";
 
 import { DEFAULT_GACHA_DATA, API_HK4E, GACHA_TYPES } from "../constants";
 import deepClone from "../utils/deepClone";
-import request, { BaseRes } from "../utils/request";
+import request from "../utils/request";
 import wait from "../utils/wait";
 
+import type { BaseRes } from "../utils/request";
 import type { GachaData, GachaItem, RawGachaItem } from "../typings";
 
 type RawGachaData = {

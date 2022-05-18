@@ -1,14 +1,17 @@
-import { SignInfo } from "./services/getBBSSignStatus";
-import { DailyNotesData } from "./services/getDailyNotesByCookie";
-import { GameRole } from "./services/getUserGameRolesByCookie";
-import type { AppData, GachaData } from "./typings.d";
+import type { AppData, GachaData } from "./typings";
+import type { DailyNotesData } from "./services/getDailyNotes";
+import type { GameRole } from "./services/getUserGameRolesByCookie";
+import type { SignInfo } from "./services/getBBSSignInfo";
+import type { SignData } from "./services/getBBSSignData";
 
 // main 进程 与 render 进程进行 IPC 通信的事件常量
 export const IPC_EVENTS: Record<string, string> = {
   clearCookie: "CLEAR_COOKIE",
   closeApp: "CLOSE_APP",
+  doBBSSign: "DO_BBS_SIGN",
   getAppInfo: "GET_APP_INFO",
-  getBBSSignStatus: "GET_BBS_SIGN_STATUS",
+  getBBSSignInfo: "GET_BBS_SIGN_INFO",
+  getBBSSignData: "GET_BBS_SIGN_DATA",
   getDailyNotes: "GET_DAILY_NOTES",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
@@ -24,20 +27,23 @@ export const IPC_EVENTS: Record<string, string> = {
   writeClipboardText: "WRITE_CLIPBOARD_TEXT"
 };
 
-export const ANNUCEMENT_OPEN_SOURCE = "本软件使用 MIT 协议开源，仅供学习交流使用。";
 export const ANNUCEMENT_DATA_DELAY = "数据可能存在延迟，请以游戏内的实时数据为准。";
+export const ANNUCEMENT_OPEN_SOURCE = "本软件使用 MIT 协议开源，仅供学习交流使用。";
 export const APP_NAME = "原神助手";
-export const APP_USER_AGENT_BBS = "Mozilla/5.0 miHoYoBBS/2.27.1";
-export const APP_USER_AGENT_DESKTOP = "Mozilla/5.0 GenshinHelper/1.0.0";
-export const APP_USER_AGENT_MOBILE = "Mozilla/5.0 Mobile/15E148 GenshinHelper/1.0.0";
-export const DOMAIN_MIHOYO = "mihoyo.com";
-export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
-export const GAME_BIZ = "hk4e_cn";
 export const GAME_NAME_EN = "Genshin Impact";
 export const GAME_NAME_ZH_CN = "原神";
 export const LOGIN_TIP = "建议登录 「米游社」 账号以获得最佳使用体验。";
 export const WELCOME_TIP = "欢迎你，旅行者。👋";
 export const WINDOW_BACKGROUND_COLOR = "#F9F6F2";
+
+export const APP_VERSION = "1.0.0";
+export const APP_VERSION_BBS = "2.28.1";
+export const APP_USER_AGENT_BBS = `Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${APP_VERSION_BBS}`;
+export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/${APP_VERSION}`;
+export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/${APP_VERSION}`;
+export const DOMAIN_MIHOYO = "mihoyo.com";
+export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
+export const GAME_BIZ = "hk4e_cn";
 
 export const LOGIN_GUIDES = [
   "① 点击 「登录米游社」 按钮打开登录窗口",
@@ -103,7 +109,7 @@ export const DEFAULT_APP_DATA: AppData = {
     cookie: ""
   },
   gachas: [],
-  settings: { alwaysOnTop: false }
+  settings: { alwaysOnTop: false, deviceId: "" }
 };
 
 export const DEFAULT_GACHA_DATA: GachaData = {
@@ -263,4 +269,10 @@ export const DEFAULT_SIGN_INFO: SignInfo = {
   is_sub: false,
   month_first: false,
   sign_cnt_missed: 0
+};
+
+export const DEFAULT_SIGN_DATA: SignData = {
+  month: 1,
+  awards: [],
+  resign: true
 };

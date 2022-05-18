@@ -1,7 +1,7 @@
 import type { Cookies } from "electron";
 
 import { DEFAULT_GAME_ROLE } from "../constants";
-import getUserGameRolesByCookie from "../services/getUserGameRolesByCookie";
+import getUserGameRoles from "../services/getUserGameRolesByCookie";
 
 import type { GameRole } from "../services/getUserGameRolesByCookie";
 
@@ -17,7 +17,7 @@ const verifyCookie = async (cks: Cookies): Promise<AuthResState> => {
   }
   if (!hasLtoken) return { valid: false, cookie: "", info: DEFAULT_GAME_ROLE };
   cookie = cookie.trim();
-  const roles = await getUserGameRolesByCookie(cookie);
+  const roles = await getUserGameRoles(cookie);
   const valid = Boolean(roles[0]?.game_uid);
   if (!valid) console.log("verifyCookie: ", cookie);
   return { valid, cookie, info: roles[0] };

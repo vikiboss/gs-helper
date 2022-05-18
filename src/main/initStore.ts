@@ -60,6 +60,9 @@ const schema: Schema<AppData> = {
     properties: {
       alwaysOnTop: {
         type: "boolean"
+      },
+      deviceId: {
+        type: "string"
       }
     }
   }

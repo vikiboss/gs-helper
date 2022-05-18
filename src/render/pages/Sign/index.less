@@ -8,6 +8,71 @@
   flex    : 1;
   position: relative;
 
+  .title {
+    margin-top: 40px;
+    font-size : 24px;
+  }
+
+  .sign-table {
+    .flex-wrap();
+
+    margin: 12px 0;
+    width : 882px;
+
+
+
+    .sign-item {
+      .flex-column();
+
+      background-image : url("../../../assets/sign-item-bg.png");
+      background-repeat: no-repeat;
+      background-size  : contain;
+      border           : 1px solid @text-color-second;
+      border-radius    : 4px;
+      height           : 100px;
+      margin           : 3px;
+      transition      : all 0.2s ease-in-out;
+      width            : 78px;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      img {
+        width : 64px;
+        margin: calc((78px - $width) / 2);
+        height: $width;
+      }
+
+      div {
+        text-align : center;
+        line-height: 20px;
+        font-size  : 10px;
+      }
+    }
+
+    .today {
+      background-image: url("../../../assets/sign-item-bg-today.png");
+      cursor          : pointer;
+    
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .signed {
+      &::before {
+        background     : no-repeat url("../../../assets/sign-item-signed.png");
+        background-size: contain;
+        content        : "";
+        height         : 100px;
+        position       : absolute;
+        width          : 78px;
+      }
+    }
+  }
+
   .back-btn {
     left    : 20px;
     position: absolute;

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
-import { FaRegMap, FaRegCompass, FaGithub } from "react-icons/fa";
+import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 import { IoMdRefresh } from "react-icons/io";
 import { IoSearch, IoSettingsOutline } from "react-icons/io5";
@@ -16,8 +16,8 @@ import nativeApi from "../../utils/nativeApi";
 import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
 import {
-  ANNUCEMENT_OPEN_SOURCE,
   ANNUCEMENT_DATA_DELAY,
+  ANNUCEMENT_OPEN_SOURCE,
   DEFAULT_APP_DATA,
   DEFAULT_NOTES,
   DEFAULT_SIGN_INFO,
@@ -37,8 +37,8 @@ import taskIcon from "../../../assets/task.png";
 import transformerIcon from "../../../assets/transformer.png";
 
 import type { AppData } from "../../../typings";
-import type { DailyNotesData } from "../../../services/getDailyNotesByCookie";
-import type { SignInfo } from "../../../services/getBBSSignStatus";
+import type { DailyNotesData } from "../../../services/getDailyNotes";
+import type { SignInfo } from "../../../services/getBBSSignInfo";
 
 import styles from "./index.less";
 
@@ -83,7 +83,7 @@ const Home: React.FC = () => {
     const [user, note, sign] = await Promise.all([
       nativeApi.refreshUserInfo(),
       nativeApi.getDailyNotes(),
-      nativeApi.getBBSSignStatus()
+      nativeApi.getBBSSignInfo()
     ]);
 
     if (!user?.uid || !note?.max_resin || !sign.today) {

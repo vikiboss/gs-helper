@@ -1,35 +1,32 @@
 import { API_TAKUMI, GAME_BIZ } from "../constants";
+import { LINK_BBS_REFERER } from "./../constants";
 import { store } from "../main";
-import request, { BaseRes } from "../utils/request";
+import request from "../utils/request";
+
+import type { BaseRes } from "../utils/request";
 
 export type GameRole = {
-  region: string;
   game_biz: string;
-  nickname: string;
-  level: number;
-  is_official: boolean;
-  region_name: string;
   game_uid: string;
   is_chosen: boolean;
+  is_official: boolean;
+  level: number;
+  nickname: string;
+  region_name: string;
+  region: string;
 };
 
 export type GameRolesData = {
   list: GameRole[];
 };
 
-const getUserGameRolesByCookie = async (cookie?: string): Promise<GameRole[]> => {
-  cookie = cookie || store.get("user.cookie");
-  if (!cookie) return null;
+const getUserGameRolesByCookie = async (cookie: string = ""): Promise<GameRole[]> => {
+  cookie = cookie || store.get<string, string>("user.cookie", "");
   const url = `${API_TAKUMI}/binding/api/getUserGameRolesByCookie`;
-  const { data, status } = await request.get<BaseRes<GameRolesData>>(url, {
-    params: { game_biz: GAME_BIZ },
-    headers: { cookie }
-  });
-  if (status !== 200 || data.retcode !== 0) {
-    console.log("getUserGameRolesByCookie: ", data);
-    return null;
-  }
-  return data.data.list;
+  const config = { params: { game_biz: GAME_BIZ }, headers: { referer: LINK_BBS_REFERER, cookie } };
+  const { data, status } = await request.get<BaseRes<GameRolesData>>(url, config);
+  if (status !== 200 || data.retcode !== 0) console.log("getUserGameRolesByCookie: ", data);
+  return data?.data?.list;
 };
 
 export default getUserGameRolesByCookie;

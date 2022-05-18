@@ -1,39 +1,31 @@
 import { API_BBS, LINK_BBS_REFERER } from "./../constants";
-import { store } from "../main";
 import request from "../utils/request";
 
 import type { BaseRes } from "../utils/request";
 
 type Navigator = {
+  app_path: string;
+  icon: string;
   id: number;
   name: string;
-  icon: string;
-  app_path: string;
   reddot_online_time: string;
 };
 
 type BBSHomeData = {
-  navigator: Navigator[];
-  discussion: any;
   background: any;
-  official: any;
   carousels: any;
-  hot_topics: any;
+  discussion: any;
   game_receptions: any[];
+  hot_topics: any;
+  navigator: Navigator[];
+  official: any;
   posts: any[];
 };
 
 const getBBSSignActId = async (): Promise<string> => {
-  const { cookie } = store.get("user");
-  if (!cookie) return null;
-  const config = {
-    headers: {
-      Referer: LINK_BBS_REFERER,
-      Cookie: cookie
-    }
-  };
+  const headers = { referer: LINK_BBS_REFERER };
   const url = `${API_BBS}/apihub/api/home/new?gids=2`;
-  const { status, data } = await request.get<BaseRes<BBSHomeData>>(url, config);
+  const { status, data } = await request.get<BaseRes<BBSHomeData>>(url, { headers });
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignActId: ", data);
   const signPageUrl =
     data.data.navigator.filter((e: any) => e.name.includes("签到"))[0].app_path || "";

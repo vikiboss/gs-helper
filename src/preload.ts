@@ -4,15 +4,18 @@ import { contextBridge, ipcRenderer as IPC } from "electron";
 import { IPC_EVENTS, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
-import type { DailyNotesData } from "./services/getDailyNotesByCookie";
+import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
-import type { SignInfo } from "./services/getBBSSignStatus";
+import type { SignInfo } from "./services/getBBSSignInfo";
+import { SignData } from "./services/getBBSSignData";
 
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   clearCookie: (domain?: string) => IPC.send(IPC_EVENTS.clearCookie, domain),
   closeApp: () => IPC.send(IPC_EVENTS.closeApp),
+  doBBSSign: (): Promise<boolean> => IPC.invoke(IPC_EVENTS.doBBSSign),
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPC_EVENTS.getAppInfo),
-  getBBSSignStatus: (): Promise<SignInfo> => IPC.invoke(IPC_EVENTS.getBBSSignStatus),
+  getBBSSignData: (): Promise<SignData> => IPC.invoke(IPC_EVENTS.getBBSSignData),
+  getBBSSignInfo: (): Promise<SignInfo> => IPC.invoke(IPC_EVENTS.getBBSSignInfo),
   getDailyNotes: (): Promise<DailyNotesData> => IPC.invoke(IPC_EVENTS.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPC_EVENTS.getGachaUrl),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPC_EVENTS.getStoreKey, key),

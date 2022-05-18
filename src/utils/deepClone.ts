@@ -1,4 +1,4 @@
-const deepClone = (obj: any) => {
+const deepClone = <T>(obj: T): T => {
   const getType = (e: any) => Object.prototype.toString.call(e).slice(8, -1);
   const isValid = (e: any) => getType(e) === "Object" || getType(e) === "Array";
   if (!isValid(obj)) return obj;

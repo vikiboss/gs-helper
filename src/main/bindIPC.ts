@@ -12,29 +12,32 @@ const AppInfo = {
   version: app.getVersion()
 };
 
-import { mainWin, store } from ".";
 import { isDev } from "./createMainWindow";
-import deepClone from "../utils/deepClone";
+import { mainWin, store } from ".";
 import clearCookie from "../utils/clearCookie";
-import getGachaUrl from "../utils/getGachaUrl";
-import verifyCookie from "../utils/verifyCookie";
+import deepClone from "../utils/deepClone";
+import getDailyNotes from "../services/getDailyNotes";
 import getGachaListByUrl from "../services/getGachaListByUrl";
+import getGachaUrl from "../utils/getGachaUrl";
 import getRoleInfoByCookie from "../services/getUserGameRolesByCookie";
 import updateStoreGachaList from "../utils/updateStoreGachaList";
-import getDailyNotesByCookie from "../services/getDailyNotesByCookie";
+import verifyCookie from "../utils/verifyCookie";
 import {
-  IPC_EVENTS,
-  DEFAULT_APP_DATA,
-  SCRIPT_REFINE_BBS,
-  APP_USER_AGENT_MOBILE,
-  LINK_MIHOYO_BBS_LOGIN,
   APP_USER_AGENT_DESKTOP,
+  APP_USER_AGENT_MOBILE,
+  DEFAULT_APP_DATA,
+  IPC_EVENTS,
+  LINK_MIHOYO_BBS_LOGIN,
+  SCRIPT_REFINE_BBS,
   WINDOW_BACKGROUND_COLOR
 } from "../constants";
 
-import type { AppData } from "../typings";
+import doBBSSign from "../services/doBBSSign";
+import getBBSSignData from "../services/getBBSSignData";
+import getBBSSignInfo from "../services/getBBSSignInfo";
 import sortGachaList from "../utils/sortGachaList";
-import getBBSSignStatus from "../services/getBBSSignStatus";
+
+import type { AppData } from "../typings";
 
 const bindIPC = (win: BrowserWindow) => {
   IPC.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
@@ -42,14 +45,20 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.on(IPC_EVENTS.hideApp, () => win.hide());
   IPC.on(IPC_EVENTS.minimizeApp, () => win.minimize());
   IPC.on(IPC_EVENTS.openLink, (_, url: string) => shell.openExternal(url));
-  IPC.on(IPC_EVENTS.setStoreKey, (_, key: string, value: any) => store.set(key, value));
   IPC.on(IPC_EVENTS.writeClipboardText, (_, text: string) => clipboard.writeText(text));
 
+  IPC.handle(IPC_EVENTS.doBBSSign, async () => await doBBSSign());
   IPC.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
+  IPC.handle(IPC_EVENTS.getBBSSignData, async () => await getBBSSignData());
+  IPC.handle(IPC_EVENTS.getBBSSignInfo, async () => await getBBSSignInfo());
+  IPC.handle(IPC_EVENTS.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
-  IPC.handle(IPC_EVENTS.getStoreKey, (_, key: string) => store.get(key));
+  IPC.handle(IPC_EVENTS.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));
   IPC.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
-  IPC.handle(IPC_EVENTS.getBBSSignStatus, async () => await getBBSSignStatus());
+
+  IPC.on(IPC_EVENTS.setStoreKey, (_, key: keyof AppData, value: any) =>
+    store.set<keyof AppData>(key, value)
+  );
 
   IPC.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
     const bbsWin = new BrowserWindow({
@@ -83,7 +92,7 @@ const bindIPC = (win: BrowserWindow) => {
     bbsWin.on("close", async () => {
       const cookies = dom.session.cookies;
       const { valid, cookie, info } = await verifyCookie(cookies);
-      const user = valid
+      const user: AppData["user"] = valid
         ? {
             uid: info.game_uid,
             nickname: info.nickname,
@@ -92,8 +101,8 @@ const bindIPC = (win: BrowserWindow) => {
             regionName: info.region_name,
             cookie: cookie
           }
-        : deepClone(DEFAULT_APP_DATA.user);
-      store.set("user", user);
+        : deepClone<AppData["user"]>(DEFAULT_APP_DATA.user);
+      store.set<keyof AppData>("user", user);
       mainWin.focus();
     });
   });
@@ -138,24 +147,19 @@ const bindIPC = (win: BrowserWindow) => {
     return data;
   });
 
-  IPC.handle(
-    IPC_EVENTS.getDailyNotes,
-    async () => await getDailyNotesByCookie(store.get("user.cookie"))
-  );
-
   IPC.handle(IPC_EVENTS.refreshUserInfo, async () => {
     const roles = await getRoleInfoByCookie();
-    const user: AppData["user"] = roles[0]?.game_uid
+    const user: AppData["user"] = roles[0].game_uid
       ? {
           uid: roles[0].game_uid,
           nickname: roles[0].nickname,
           level: roles[0].level,
           isOfficial: roles[0].is_official,
           regionName: roles[0].region_name,
-          cookie: store.get("user.cookie")
+          cookie: store.get<string, AppData["user"]["cookie"]>("user.cookie")
         }
-      : deepClone(DEFAULT_APP_DATA.user);
-    store.set("user", user);
+      : deepClone<AppData["user"]>(DEFAULT_APP_DATA.user);
+    store.set<keyof AppData>("user", user);
     return user;
   });
 };
