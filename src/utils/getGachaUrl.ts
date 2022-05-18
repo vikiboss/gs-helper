@@ -32,7 +32,7 @@ const getGachaUrl = async () => {
     const logContent = await fs.promises.readFile(logPath, { encoding: "utf-8" });
     const urlReg = /^OnGetWebViewPageFinish:(.+#\/log)$/gm;
     const url = urlReg.exec(logContent)[1];
-    console.log("getGachaUrl: ", url.slice(0, 80));
+    console.log("getGachaUrl: ", url.split("?")[0] + "?...");
     return url;
   } catch (e) {
     return "";
