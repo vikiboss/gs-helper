@@ -10,6 +10,7 @@ const Loading: React.FC<LoadingProp> = (props) => {
   return (
     <div
       style={{
+        flex: 1,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",

@@ -64,7 +64,7 @@ export type Constellation = {
   pos: number;
 };
 
-// 角色图标
+// 衣装
 export type Costume = {
   id: number;
   name: string;

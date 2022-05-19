@@ -76,6 +76,15 @@ export const COLORS: Record<string, string> = {
   red: "#da4e55"
 };
 
+export const ElementTypes: Record<string, string> = {
+  Cryo: "冰",
+  Electro: "雷",
+  Pyro: "火",
+  Anemo: "风",
+  Geo: "岩",
+  Hydro: "水"
+};
+
 export const SERVERS: string[] = [
   "cn_gf01", // 1 开头，国区官服-天空岛
   "cn_gf01", // 2 开头，国区官服-天空岛

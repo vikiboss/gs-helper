@@ -23,7 +23,7 @@ const WinFrame: React.FC<WinFrameProp> = (props) => {
           <CircularButton className={styles.btn} onClick={nativeApi.hideApp} type='close' />
         </div>
       </div>
-      {props.children}
+      <div className={styles.content}>{props.children}</div>
     </div>
   );
 };

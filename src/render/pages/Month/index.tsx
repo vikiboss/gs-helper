@@ -19,11 +19,11 @@ const Month: React.FC = () => {
   const [monthInfo, setMonthInfo] = useState<MonthInfo>(DEFAULT_MONTH_INFO);
 
   const updateInfo = async (month: number = 0, isUserTrigger: boolean = true) => {
+    setMonthInfo(DEFAULT_MONTH_INFO);
     const res = await nativeApi.getMonthInfo(month);
     console.log(res);
     if (res?.account_id) {
       setMonthInfo(res);
-      if (isUserTrigger) notice.success({ message: "数据获取成功" });
     } else {
       notice.faild({ message: "网络好像出了点问题，稍后再试试吧 ~" });
     }
