@@ -16,6 +16,7 @@ export const IPC_EVENTS: Record<string, string> = {
   getDailyNotes: "GET_DAILY_NOTES",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
+  getOwnedRoles: "GET_OWNED_ROLES",
   getMonthInfo: "GET_MONTH_INFO",
   getStoreKey: "GET_STORE_KEY",
   hideApp: "HIDE_APP",

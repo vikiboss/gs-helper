@@ -32,7 +32,6 @@ axios.interceptors.request.use(
       store.set("settings.deviceId", deviceId);
     }
     Object.assign(config.headers.common, { "x-rpc-device_id": deviceId });
-    console.log(config.headers);
     return config;
   },
   (error) => {

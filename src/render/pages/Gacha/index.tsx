@@ -16,6 +16,7 @@ import transformGachaDataType from "../../../utils/transformGachaDataType";
 import type { GachaData } from "../../../typings";
 
 import styles from "./index.less";
+import Loading from "../../components/Loading";
 
 type GachaType = "activity" | "normal" | "weapon" | "newer";
 
@@ -149,38 +150,46 @@ const Gocha: React.FC = () => {
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <span className={styles.title}>祈愿记录 「数据可视化」 分析</span>
         </div>
-        <div className={styles.pieChart}>
-          <div className={styles.filterBtns}>
-            <div>
-              <span>物品类型：</span>
-              <button onClick={() => toggleItemType("all")}>所有</button>
-              <button onClick={() => toggleItemType("role")}>角色</button>
-              <button onClick={() => toggleItemType("weapon")}>武器</button>
+        {gacha.list.length ? (
+          <>
+            <div className={styles.pieChart}>
+              <div className={styles.filterBtns}>
+                <div>
+                  <span>物品类型：</span>
+                  <button onClick={() => toggleItemType("all")}>所有</button>
+                  <button onClick={() => toggleItemType("role")}>角色</button>
+                  <button onClick={() => toggleItemType("weapon")}>武器</button>
+                </div>
+                <div>
+                  <span>祈愿类型：</span>
+                  <button onClick={() => setPieFilter({ item: pieFilter.item, gacha: "all" })}>
+                    所有
+                  </button>
+                  <button onClick={() => toggleGachaType("normal")}>常驻池</button>
+                  <button onClick={() => toggleGachaType("activity")}>活动池</button>
+                  <button onClick={() => toggleGachaType("weapon")}>武器池</button>
+                  <button onClick={() => toggleGachaType("newer")}>新手池</button>
+                </div>
+              </div>
+              <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
             </div>
-            <div>
-              <span>祈愿类型：</span>
-              <button onClick={() => setPieFilter({ item: pieFilter.item, gacha: "all" })}>
-                所有
-              </button>
-              <button onClick={() => toggleGachaType("normal")}>常驻池</button>
-              <button onClick={() => toggleGachaType("activity")}>活动池</button>
-              <button onClick={() => toggleGachaType("weapon")}>武器池</button>
-              <button onClick={() => toggleGachaType("newer")}>新手池</button>
-            </div>
+
+            <div className={styles.subTitle}>近半年祈愿日历</div>
+
+            <DateRange
+              data={dates}
+              className={styles.timeRange}
+              range={dateRange}
+              width='480px'
+              height='160px'
+            />
+            {gacha.list.length && <span className={styles.dateTip}>{tip}</span>}
+          </>
+        ) : (
+          <div style={{ display: "flex", flex: 1 }}>
+            <Loading text='本地数据为空' />
           </div>
-          <RolePie data={transformGachaDataType(gacha.list, pieFilter)} />
-        </div>
-
-        <div className={styles.subTitle}>近半年祈愿日历</div>
-
-        <DateRange
-          data={dates}
-          className={styles.timeRange}
-          range={dateRange}
-          width='480px'
-          height='160px'
-        />
-        {gacha.list.length && <span className={styles.dateTip}>{tip}</span>}
+        )}
       </div>
       {notice.holder}
     </>

@@ -101,6 +101,8 @@ const Home: React.FC = () => {
   const handlePageSwitch = (path: string) => {
     const noAuth = !auth.isLogin && path !== "/gacha";
     if (noAuth) return notice.warning({ message: "请先登录 「米游社」 账号" });
+    const monthNotOpen = path === "/month" && user.level < 10;
+    if (monthNotOpen) return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
     safelyNavigate(path);
   };
 

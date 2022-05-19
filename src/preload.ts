@@ -7,6 +7,7 @@ import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
 import type { MonthInfo } from "./services/getMonthInfo";
+import type { Role } from "./services/getOwnedRoles";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 
@@ -19,6 +20,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPC_EVENTS.getBBSSignInfo),
   getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPC_EVENTS.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPC_EVENTS.getGachaUrl),
+  getOwnedRoles: (): Promise<Role[]> => IPC.invoke(IPC_EVENTS.getOwnedRoles),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPC_EVENTS.getStoreKey, key),
   hideApp: () => IPC.send(IPC_EVENTS.hideApp),
   loginViaMihoyoBBS: () => IPC.send(IPC_EVENTS.loginViaMihoyoBBS),

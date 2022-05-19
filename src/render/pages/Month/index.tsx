@@ -20,7 +20,8 @@ const Month: React.FC = () => {
 
   const updateInfo = async (month: number = 0, isUserTrigger: boolean = true) => {
     const res = await nativeApi.getMonthInfo(month);
-    if (res.account_id) {
+    console.log(res);
+    if (res?.account_id) {
       setMonthInfo(res);
       if (isUserTrigger) notice.success({ message: "数据获取成功" });
     } else {

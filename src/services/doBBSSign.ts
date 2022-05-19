@@ -21,7 +21,7 @@ type DoSignData = {
 const doBBSSign = async (): Promise<boolean> => {
   const { cookie, uid } = store.get<string, AppData["user"]>("user", DEFAULT_APP_DATA["user"]);
   const act_id = await getBBSSignActId();
-  const postData = JSON.stringify({ act_id, region: getServerByUid(uid), uid });
+  const postData = { act_id, region: getServerByUid(uid), uid };
   const headers = {
     referer: LINK_BBS_REFERER,
     "x-rpc-app_version": "2.3.0",

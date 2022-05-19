@@ -6,6 +6,7 @@ import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { MonthInfo } from "./services/getMonthInfo";
+import type { Role } from "./services/getOwnedRoles";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 
@@ -20,6 +21,7 @@ export interface NativeApi {
   getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
+  getOwnedRoles: () => Promise<Role[]>;
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
   loginViaMihoyoBBS: () => void;
