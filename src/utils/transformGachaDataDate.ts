@@ -1,8 +1,12 @@
-import { GachaData } from "../typings";
+import filterGachaList from "./filterGachaList";
 
-const transformGachaDataDate = (gacha: GachaData) => {
+import type { FilterType } from "./../render/pages/Gacha/index";
+import type { GachaData } from "../typings";
+
+const transformGachaDataDate = (list: GachaData["list"], type: FilterType) => {
+  list = filterGachaList(list, type);
   const dateMap = new Map<string, number>();
-  for (const item of gacha.list) {
+  for (const item of list) {
     const date = item.time.slice(0, 10);
     dateMap.set(date, dateMap.has(date) ? dateMap.get(date) + 1 : 1);
   }

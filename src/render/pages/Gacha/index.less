@@ -95,11 +95,55 @@
     margin-bottom: 20px;
     margin-top   : 12px;
 
-    .filter-btns {
-      margin-left: 20px;
+    .filter-zone {
+      .flex-column();
 
-      div {
-        margin: 12px 0;
+      .filter-btns {
+        display: flex;
+
+        .btn {
+          background-color: @color-bg;
+          border          : 1px solid @color-primary;
+          border-radius   : 4px;
+          cursor          : pointer;
+          height          : 20px;
+          margin          : 4px;
+          padding         : 2px 4px;
+          text-align      : center;
+          transition      : all 0.2s ease-in-out;
+        }
+
+        .active {
+          color: @color-white;
+        }
+
+        .btn-active {
+          .active();
+
+          background-color: @color-accent;
+          border-color    : @color-accent-second;
+        }
+
+        .select {
+          .btn();
+
+          position    : relative;
+          margin-right: 16px;
+
+          &::before {
+            color   : @color-primary;
+            content : "|";
+            left    : 48px;
+            position: absolute;
+          }
+        }
+
+        .select-all {
+          .active();
+
+          background-color: @color-primary;
+          border-color    : @color-primary;
+        }
       }
     }
   }

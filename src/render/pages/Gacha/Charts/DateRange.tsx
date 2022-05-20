@@ -38,10 +38,9 @@ const DateRange: React.FC<DateRangeProp> = (props) => {
         from={range[0]}
         legends={legends}
         margin={{ top: 30 }}
-        monthLegend={(_, __, date) => `${D(date).format("YYYY/M")}`}
         theme={CHART_THEME}
         to={range[1]}
-        weekdayTicks={[]}
+        weekdayTicks={[1, 3, 5]}
       />
     </div>
   );

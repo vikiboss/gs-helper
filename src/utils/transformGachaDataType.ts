@@ -1,6 +1,8 @@
-import { FilterType } from "./../render/pages/Gacha/index";
 import { COLORS } from "../constants";
-import { GachaData } from "../typings";
+import filterGachaList from "./filterGachaList";
+
+import type { FilterType } from "./../render/pages/Gacha/index";
+import type { GachaData } from "../typings";
 
 const n5 = {
   id: "五星",
@@ -23,33 +25,9 @@ const n3 = {
   color: COLORS.blue
 };
 
-const ItemTypeMap = {
-  all: ["角色", "武器"],
-  weapon: ["武器"],
-  role: ["角色"]
-};
-
-const GachaTypeMap = {
-  weapon: "302",
-  activity: "301",
-  normal: "200",
-  newer: "100"
-};
-
-const transformGachaType = (type: FilterType["gacha"]): string[] => {
-  switch (type) {
-    case "all":
-      return ["100", "200", "301", "302"];
-    default:
-      return type.map((e) => GachaTypeMap[e]);
-  }
-};
-
 const transformGachaDataType = (list: GachaData["list"], type: FilterType) => {
+  list = filterGachaList(list, type);
   [n5, n4, n3].forEach((e) => (e.value = 0));
-  const { item: itemType, gacha: gachaType } = type;
-  list = list.filter((e) => ItemTypeMap[itemType].includes(e.item_type));
-  list = list.filter((e) => transformGachaType(gachaType).includes(e.gacha_type));
   for (const item of list) {
     if (item.rank_type === "5") n5.value++;
     if (item.rank_type === "4") n4.value++;
