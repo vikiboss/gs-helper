@@ -1,90 +1,95 @@
 @import "../../utils/colors.less";
 @import "../../utils/util.less";
 
-.role-list-container {
-  .flex-center();
-  .ani-show-bottom();
-
-  max-height: 462px;
-  width     : calc(970px - 40px * 2);
-  overflow  : auto;
-  padding   : 72px 20px 20px 20px;
-  position  : relative;
-
-  .left {
-    .flex-column();
-
-    background-color: @color-bg-deep;
-    border-radius   : 3px;
-    height          : 462px;
-    max-height      : 462px;
-    min-width       : 70px;
-    overflow        : auto;
-    width           : 70px;
+.slide {
+  .ani-show-left();
 
 
-    div {
-      width        : 64px;
-      height       : 64px;
-      margin       : 3px;
-      padding      : 3px 0;
-      border-radius: 4px;
-      transition   : all 0.2s ease-in-out;
+  .role-list-container {
+    .ani-show-right();
+    .flex-center();
+
+    max-height: 462px;
+    width     : calc(970px - 40px * 2);
+    overflow  : auto;
+    padding   : 72px 20px 20px 20px;
+    position  : relative;
+
+    .left {
+      .flex-column();
+
+      background-color: @color-bg-deep;
+      border-radius   : 3px;
+      height          : 462px;
+      max-height      : 462px;
+      min-width       : 70px;
+      overflow        : auto;
+      width           : 70px;
+
+
+      div {
+        width        : 64px;
+        height       : 64px;
+        margin       : 3px;
+        padding      : 3px 0;
+        border-radius: 4px;
+        transition   : all 0.2s ease-in-out;
+      }
+
+      div:hover {
+        background-color: @color-accent-second;
+      }
+
+      .now {
+        background-color: @color-accent-second;
+      }
     }
 
-    div:hover {
-      background-color: @color-accent-second;
+    .right {
+      flex        : 1;
+      max-height  : 422px;
+      height      : 422px;
+      overflow    : auto;
+      padding-left: 20px;
+
+      .role-info {
+
+        .name {
+          font-size: 32px
+        }
+      }
     }
 
-    .now {
-      background-color: @color-accent-second;
-    }
-  }
+    .constellation-container {
+      .flex-center-y-column();
 
-  .right {
-    flex        : 1;
-    max-height  : 422px;
-    height      : 422px;
-    overflow    : auto;
-    padding-left: 20px;
+      height         : 360px;
+      justify-content: space-evenly;
+      width          : 40px;
 
-    .role-info {
+      .constellation {
+        border-radius   : (($width + 4px) / 2);
+        border          : 2px solid rgba(160, 160, 160);
+        height          : 36px;
+        width           : 36px;
+        overflow        : hidden;
+        background-color: rgba(100, 100, 100, 0.8);
+        z-index         : 1;
 
-      .name {
-        font-size: 32px
+        img {
+          height: 36px;
+          width : 36px;
+        }
       }
     }
   }
 
-  .constellation-container {
-    .flex-center-y-column();
 
-    height         : 360px;
-    justify-content: space-evenly;
-    width          : 40px;
+  .back-btn {
+    .ani-show-right();
 
-    .constellation {
-      border-radius   : (($width + 4px) / 2);
-      border          : 2px solid rgba(160, 160, 160);
-      height          : 36px;
-      width           : 36px;
-      overflow        : hidden;
-      background-color: rgba(100, 100, 100, 0.8);
-      z-index         : 1;
-
-      img {
-        height: 36px;
-        width : 36px;
-      }
-    }
+    left    : 20px;
+    position: absolute;
+    top     : 20px;
   }
-}
-
-
-.back-btn {
-  .ani-show-bottom();
-
-  left    : 20px;
-  position: absolute;
-  top     : 20px;
 }

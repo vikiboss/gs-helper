@@ -1,27 +1,25 @@
 @import "../../utils/colors.less";
 @import "../../utils/util.less";
 
-.desc {
+.container {
   .flex-center-x-column();
-  .ani-show-bottom();
+  .ani-show-left();
 
   flex    : 1;
-  height  : 100vw;
   position: relative;
+  height  : 100%;
 
 
-  .align-left {
+  .align-center {
     align-self: flex-start;
-    margin    : 0 0 12px 40px;
+    margin    : 12px 40px;
   }
 
   .sub-title {
-    .align-left();
+    .align-center();
 
     font-size: 20px;
   }
-
-
 
   .input-zone {
     .flex-center-y();
@@ -50,7 +48,7 @@
       &:focus {
         flex: 1;
 
-        // 通用兄弟选择器：同一层级后面的所有元素都会被选中
+        // 通用兄弟选择器：同一层级后面所有含有 .title 类的元素都会被选中
         &~.title {
           color: transparent;
         }
@@ -88,64 +86,159 @@
 
   }
 
-  .pie-chart {
-    .align-left();
+  .content {
+    .ani-show-left();
+    .align-center();
 
-    display      : flex;
-    margin-bottom: 20px;
-    margin-top   : 12px;
+    display        : flex;
+    flex           : 1;
+    justify-content: space-between;
+    width          : calc(100vw - 40px * 2);
 
-    .filter-zone {
+    .pie-name {
+      font-size : 18px;
+      margin    : 20px 0;
+      text-align: center;
+    }
+
+    .pie-chart {
       .flex-column();
 
-      .filter-btns {
-        display: flex;
+      // padding-right: 90px;
+      // border-right: 2px dashed @text-color-second;
+      z-index: 10;
 
-        .btn {
-          background-color: @color-bg;
-          border          : 1px solid @color-primary;
-          border-radius   : 4px;
-          cursor          : pointer;
-          height          : 20px;
-          margin          : 4px;
-          padding         : 2px 4px;
-          text-align      : center;
-          transition      : all 0.2s ease-in-out;
-        }
 
-        .active {
-          color: @color-white;
-        }
 
-        .btn-active {
-          .active();
+      .filter-zone {
+        .flex-column();
 
-          background-color: @color-accent;
-          border-color    : @color-accent-second;
-        }
+        .filter-btns {
+          display: flex;
 
-        .select {
-          .btn();
-
-          position    : relative;
-          margin-right: 16px;
-
-          &::before {
-            color   : @color-primary;
-            content : "|";
-            left    : 48px;
-            position: absolute;
+          .btn {
+            background-color: @color-bg;
+            border          : 1px solid @text-color-second;
+            border-radius   : 4px;
+            color           : @text-color-second;
+            cursor          : pointer;
+            font-size       : 14px;
+            height          : 18px;
+            margin          : 2px;
+            padding         : 1px 6px;
+            text-align      : center;
+            transition      : all 0.2s ease-in-out;
           }
-        }
 
-        .select-all {
-          .active();
+          .active {
+            color: @color-white;
+          }
 
-          background-color: @color-primary;
-          border-color    : @color-primary;
+          .btn-active {
+            .active();
+
+            background-color: @color-star-3;
+            border-color    : @color-star-3;
+          }
+
+          .select {
+            .btn();
+
+            margin-right: 14px;
+            position    : relative;
+
+            &::before {
+              color   : @text-color-second;
+              content : "|";
+              left    : 46px;
+              position: absolute;
+            }
+          }
+
+          .select-all {
+            .active();
+
+            background-color: @color-primary;
+            border-color    : @color-primary;
+          }
+
+          .btn-5 {
+            .active();
+
+            border-color    : @color-star-5;
+            background-color: @color-star-5;
+          }
+
+          .btn-4 {
+            .active();
+
+            border-color    : @color-star-4;
+            background-color: @color-star-4;
+          }
+
+          .btn-3 {
+            .active();
+
+            border-color    : @color-star-3;
+            background-color: @color-star-3;
+          }
         }
       }
     }
+
+    .time-range-container {
+      display        : flex;
+      max-width      : 520px;
+      justify-content: flex-end;
+    }
+
+    .detail-data {
+      .flex-center-y-column();
+
+      .detail-title {
+        height     : 26px;
+        line-height: 26px;
+      }
+    }
+
+    .detail-table {
+      .flex-center-y-column();
+
+
+      &>div {
+        display: flex;
+
+        div {
+          border     : 1px solid @text-color-second;
+          font-size  : 14px;
+          height     : 24px;
+          line-height: $height;
+          margin     : 1px;
+          text-align : center;
+          width      : 100px;
+        }
+      }
+    }
+
+
+    .table-name {
+      font-size : 18px;
+      text-align: center;
+      margin    : 16px 0 4px 0;
+    }
+
+  }
+
+  .star-5 {
+    color: @color-star-5
+  }
+
+  .star-4 {
+    color: @color-star-4
+  }
+
+  .star-3 {
+    color: @color-star-3
   }
 
   .date-tip {
@@ -156,11 +249,9 @@
     position    : absolute;
   }
 
-  .time-range {
-    .align-left();
-  }
-
   .back-btn {
+    .ani-show-left();
+
     left    : 20px;
     position: absolute;
     top     : 20px;

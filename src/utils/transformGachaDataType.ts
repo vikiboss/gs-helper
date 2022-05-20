@@ -1,32 +1,29 @@
 import { COLORS } from "../constants";
-import filterGachaList from "./filterGachaList";
 
-import type { FilterType } from "./../render/pages/Gacha/index";
 import type { GachaData } from "../typings";
 
 const n5 = {
-  id: "五星",
-  label: "五星",
+  id: "5星",
+  label: "5星",
   value: 0,
   color: COLORS.golden
 };
 
 const n4 = {
-  id: "四星",
-  label: "四星",
+  id: "4星",
+  label: "4星",
   value: 0,
   color: COLORS.purple
 };
 
 const n3 = {
-  id: "三星",
-  label: "三星",
+  id: "3星",
+  label: "3星",
   value: 0,
   color: COLORS.blue
 };
 
-const transformGachaDataType = (list: GachaData["list"], type: FilterType) => {
-  list = filterGachaList(list, type);
+const transformGachaDataType = (list: GachaData["list"]) => {
   [n5, n4, n3].forEach((e) => (e.value = 0));
   for (const item of list) {
     if (item.rank_type === "5") n5.value++;

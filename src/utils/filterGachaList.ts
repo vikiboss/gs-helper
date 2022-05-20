@@ -1,7 +1,7 @@
 import { FilterType } from "./../render/pages/Gacha/index";
 import { GachaData } from "../typings";
 
-const GachaTypeMap = {
+export const GachaTypeMap: Record<string, string> = {
   weapon: "302",
   activity: "301",
   normal: "200",
@@ -28,7 +28,7 @@ const transformStarType = (type: FilterType["star"]): string[] => {
 const filterGachaList = (list: GachaData["list"], type: FilterType) => {
   const { item: itemType, gacha: gachaType, star: starType } = type;
   list = list.filter((e) => transformItemType(itemType).includes(e.item_type));
-  list = list.filter((e) => transformGachaType(gachaType).includes(e.gacha_type));
+  list = list.filter((e) => transformGachaType(gachaType).includes(e.uigf_gacha_type));
   list = list.filter((e) => transformStarType(starType).includes(e.rank_type));
   return list;
 };

@@ -28,6 +28,7 @@ const Role: React.FC = () => {
 
   return (
     <div
+      className={styles.slide}
       style={{
         alignItems: "center",
         display: "flex",
