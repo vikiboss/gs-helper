@@ -45,9 +45,14 @@ import styles from "./index.less";
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds}秒`;
   if (seconds <= 3600) return `${Math.ceil(seconds / 60)}分钟`;
-  if (seconds <= 86400)
-    return `${Math.floor(seconds / 3600)}小时${Math.ceil((seconds % 3600) / 60)}分钟`;
-  return `${Math.floor(seconds / 86400)}天${Math.ceil((seconds % 86400) / 3600)}小时`;
+  if (seconds <= 86400) {
+    const hour = `${Math.floor(seconds / 3600)}小时`;
+    const minute = Math.ceil((seconds % 3600) / 60);
+    return hour + (minute ? minute + "分钟" : "");
+  }
+  const day = `${Math.floor(seconds / 86400)}天`;
+  const hour = Math.ceil((seconds % 86400) / 3600);
+  return day + (hour ? hour + "小时" : "");
 };
 
 const Home: React.FC = () => {

@@ -42,6 +42,8 @@ import sortGachaList from "../utils/sortGachaList";
 import type { AppData } from "../typings";
 
 const bindIPC = (win: BrowserWindow) => {
+  const wins = new Map<string, BrowserWindow>();
+
   IPC.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
   IPC.on(IPC_EVENTS.closeApp, () => app.exit(0));
   IPC.on(IPC_EVENTS.hideApp, () => win.hide());
@@ -114,31 +116,37 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.on(
     IPC_EVENTS.openWindow,
     async (_, url: string, options: BrowserWindowConstructorOptions = {}, UA?: string) => {
-      const newWin = new BrowserWindow({
-        width: 1680,
-        height: 900,
-        show: false,
-        autoHideMenuBar: true,
-        backgroundColor: WINDOW_BACKGROUND_COLOR,
-        ...options
-      });
-      if (!isDev) newWin.removeMenu();
-      newWin.once("ready-to-show", () => newWin.show());
-      const dom = newWin.webContents;
+      if (wins.has(url)) {
+        wins.get(url).show();
+      } else {
+        const win = new BrowserWindow({
+          width: 1680,
+          height: 900,
+          show: false,
+          autoHideMenuBar: true,
+          backgroundColor: WINDOW_BACKGROUND_COLOR,
+          ...options
+        });
+        if (!isDev) win.removeMenu();
+        wins.set(url, win);
+        win.once("ready-to-show", () => win.show());
+        win.on("close", () => wins.delete(url));
+        const dom = win.webContents;
 
-      dom.setWindowOpenHandler((details) => {
-        dom.loadURL(details.url);
-        return { action: "deny" };
-      });
-      dom.on("did-finish-load", () => {
-        try {
-          dom.executeJavaScript(SCRIPT_REFINE_BBS);
-        } catch (e) {
-          console.log("openWindow: ", e);
-        }
-      });
-      dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);
-      dom.loadURL(url);
+        dom.setWindowOpenHandler((details) => {
+          dom.loadURL(details.url);
+          return { action: "deny" };
+        });
+        dom.on("did-finish-load", () => {
+          try {
+            dom.executeJavaScript(SCRIPT_REFINE_BBS);
+          } catch (e) {
+            console.log("openWindow: ", e);
+          }
+        });
+        dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);
+        dom.loadURL(url);
+      }
     }
   );
 
