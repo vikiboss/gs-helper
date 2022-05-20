@@ -177,7 +177,7 @@ const Gocha: React.FC = () => {
   const format = (str: string) => D(str).format("YYYY/M/D HH:mm");
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`;
 
-  const getGachaStatictic = (type: string) => {
+  const getGachaStatictics = (type: string) => {
     // 获取响应祈愿分类的所有数据
     const list = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[type]);
     // 存放所有5星的索引（1 开始）
@@ -190,9 +190,16 @@ const Gocha: React.FC = () => {
     return { all: list.length, times, unluckyDays };
   };
 
-  const activityData = getGachaStatictic("activity");
-  const weaponData = getGachaStatictic("weapon");
-  const normalData = getGachaStatictic("normal");
+  const getGachaNumsAndRates = (rank: "3" | "4" | "5", gachaType: GachaType) => {
+    const star_l = gacha.list.filter((e) => e.rank_type === rank);
+    const gacha_l = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
+    const item_l = star_l.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
+    return `${item_l.length} / ${((item_l.length * 100) / (gacha_l.length || 1)).toFixed(2)}%`;
+  };
+
+  const activityData = getGachaStatictics("activity");
+  const weaponData = getGachaStatictics("weapon");
+  const normalData = getGachaStatictics("normal");
 
   const loadingText = loading ? "派蒙努力加载中，预计半分钟..." : "派蒙没有找到任何数据";
   const tip = `※ 共读取到 ${gacha.list.length} 条数据，时间范围：${dateRangeText}，数据可能存在延迟，请以实际为准。`;
@@ -301,24 +308,24 @@ const Gocha: React.FC = () => {
                 </div>
                 <div>
                   <div>5星</div>
-                  <div className={styles.star5}>3 / 10%</div>
-                  <div className={styles.star5}>3 / 10%</div>
-                  <div className={styles.star5}>3 / 10%</div>
-                  <div className={styles.star5}>3 / 10%</div>
+                  <div className={styles.star5}>{getGachaNumsAndRates("5", "activity")}</div>
+                  <div className={styles.star5}>{getGachaNumsAndRates("5", "weapon")}</div>
+                  <div className={styles.star5}>{getGachaNumsAndRates("5", "normal")}</div>
+                  <div className={styles.star5}>{getGachaNumsAndRates("5", "newer")}</div>
                 </div>
                 <div>
                   <div>4星</div>
-                  <div className={styles.star4}>4 / 12%</div>
-                  <div className={styles.star4}>4 / 12%</div>
-                  <div className={styles.star4}>4 / 12%</div>
-                  <div className={styles.star4}>4 / 12%</div>
+                  <div className={styles.star4}>{getGachaNumsAndRates("4", "activity")}</div>
+                  <div className={styles.star4}>{getGachaNumsAndRates("4", "weapon")}</div>
+                  <div className={styles.star4}>{getGachaNumsAndRates("4", "normal")}</div>
+                  <div className={styles.star4}>{getGachaNumsAndRates("4", "newer")}</div>
                 </div>
                 <div>
                   <div>3星</div>
-                  <div className={styles.star3}>200 / 80%</div>
-                  <div className={styles.star3}>200 / 80%</div>
-                  <div className={styles.star3}>200 / 80%</div>
-                  <div className={styles.star3}>200 / 80%</div>
+                  <div className={styles.star3}>{getGachaNumsAndRates("3", "activity")}</div>
+                  <div className={styles.star3}>{getGachaNumsAndRates("3", "weapon")}</div>
+                  <div className={styles.star3}>{getGachaNumsAndRates("3", "normal")}</div>
+                  <div className={styles.star3}>{getGachaNumsAndRates("3", "newer")}</div>
                 </div>
               </div>
               <div className={styles.tableName}>次数分布筛选结果 / 日历图</div>
