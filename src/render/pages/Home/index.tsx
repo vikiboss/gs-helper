@@ -169,9 +169,10 @@ const Home: React.FC = () => {
   const taskTitle = `每日委托任务${doneText}，额外奖励${extraText}`;
 
   // 处理周本数据
-  const discountStatus = `${note?.remain_resin_discount_num}/${note?.resin_discount_num_limit}`;
-  const isDiscountDone = note?.remain_resin_discount_num === 0;
-  const discountText = isDiscountDone ? "已达上限" : `还剩 ${note?.remain_resin_discount_num} 次`;
+  const { remain_resin_discount_num: remain, resin_discount_num_limit: limit } = note;
+  const discountStatus = `${limit - remain}/${limit}`;
+  const isDiscountDone = remain === 0;
+  const discountText = isDiscountDone ? "已达上限" : `还剩 ${remain} 次`;
   const discountTitle = "本周树脂减半次数" + discountText;
 
   // 处理参量质变仪数据
@@ -187,7 +188,7 @@ const Home: React.FC = () => {
   const transformerTitle = `距下次可用还剩 ${formatTime(transformerTime)}`;
 
   // 处理签到数据
-  const signStatus = `${sign.is_sign ? "已签" : "未签"}，累计${sign.total_sign_day}天`;
+  const signStatus = `${sign.is_sign ? "已签到" : "未签到"}`;
   const signTitle = `本月累计签到 ${sign.total_sign_day} 天，错过 ${sign.sign_cnt_missed} 天`;
 
   const notes = [
@@ -210,7 +211,7 @@ const Home: React.FC = () => {
       name: "task"
     },
     {
-      detail: `周本次数 ${discountStatus}`,
+      detail: `周本进度 ${discountStatus}`,
       icon: discountIcon,
       title: discountTitle,
       name: "discount"
@@ -222,7 +223,7 @@ const Home: React.FC = () => {
       name: "transformer"
     },
     {
-      detail: `米游社 ${signStatus}`,
+      detail: `米游社签到 ${signStatus}`,
       icon: bbsIcon,
       title: signTitle,
       name: "sign"
@@ -238,10 +239,8 @@ const Home: React.FC = () => {
     return { done, avatar, title };
   });
 
-  const dispatchDetail = dispatchs.length
-    ? `探索派遣 ${dispatchs.length}/${note?.max_expedition_num}`
-    : "探索派遣 暂未派遣任何角色";
-  const dispatcTitle = dispatchDetail;
+  const dispatchDetail = `探索派遣 ${dispatchs.length}/${note?.max_expedition_num}`;
+  const dispatcTitle = dispatchs.length > 0 ? dispatchDetail : "暂未派遣任何角色";
 
   const btns = [
     {
