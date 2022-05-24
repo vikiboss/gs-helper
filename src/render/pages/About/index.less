@@ -25,24 +25,27 @@
   }
 
   .thank {
-    color: @text-color-second;
+    margin-top: 20px;
+    color     : @text-color-second;
   }
 
   .bottom {
     align-items    : flex-end;
     display        : flex;
+    height         : 160px;
     justify-content: space-between;
     width          : 70%;
 
     .items {
-      .flex-center-y-column();
+      .flex-column();
 
-      margin-bottom: 20px;
+      height            : 100%;
+      // width          : 260px;
+      flex              : 1.6;
+      justify-content   : space-evenly;
 
       .item {
         .flex-center-y();
-
-        margin: 6px 0;
 
         .field {
           margin-right: 20px;
@@ -54,14 +57,29 @@
       }
     }
 
-    .reward {
+    .code-zone {
       .flex-center-column();
 
-      .reward-code {
-        border-radius: 4px;
+      flex: 1;
+
+      .code {
+        border       : 1px solid rgba(200, 200, 200, 0.3);
+        border-radius: 8px;
         height       : $width;
         margin-bottom: 12px;
+        transition   : all 0.5s cubic-bezier(0.18, 0.6, 0.27, 1);
         width        : 120px;
+
+        &:hover {
+          .shadow();
+
+          transform: scale(1.5);
+        }
+      }
+
+      div {
+        font-size: 12px;
+        color    : @text-color-second;
       }
     }
   }
