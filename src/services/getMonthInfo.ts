@@ -1,5 +1,5 @@
 import { API_HK4E, LINK_BBS_REFERER } from "../constants";
-import { DEFAULT_APP_DATA } from "./../constants";
+import { DefaultAppData } from "./../constants";
 import { store } from "../main";
 
 import getServerByUid from "../utils/getServerByUid";
@@ -49,7 +49,7 @@ export type MonthInfo = {
 };
 
 const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
-  const { cookie, uid } = store.get<string, AppData["user"]>("user", DEFAULT_APP_DATA["user"]);
+  const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
   const url = `${API_HK4E}/event/ys_ledger/monthInfo`;
   const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };
   const config = {

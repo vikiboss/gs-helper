@@ -1,7 +1,7 @@
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
 import path from "path";
 
-import { APP_NAME, MENU } from "../constants";
+import { APP_NAME, Menus } from "../constants";
 import { isDev } from "./createMainWindow";
 import { store } from ".";
 import icon from "../assets/icon.ico";
@@ -11,9 +11,9 @@ const initTray = (win: BrowserWindow) => {
   const web = win.webContents;
 
   const menus: MenuItemConstructorOptions[] = [
-    { label: MENU.open, click: () => win.show(), accelerator: "CommandOrControl+Q" },
+    { label: Menus.open, click: () => win.show(), accelerator: "CommandOrControl+Q" },
     {
-      label: MENU.alwaysOnTop,
+      label: Menus.alwaysOnTop,
       type: "checkbox",
       visible: isDev,
       checked: store.get("settings.alwaysOnTop"),
@@ -24,7 +24,7 @@ const initTray = (win: BrowserWindow) => {
       }
     },
     {
-      label: MENU.openDevTools,
+      label: Menus.openDevTools,
       visible: isDev,
       checked: web.isDevToolsOpened(),
       type: "checkbox",
@@ -32,7 +32,7 @@ const initTray = (win: BrowserWindow) => {
         web.isDevToolsOpened() ? web.closeDevTools() : web.openDevTools({ mode: "detach" })
     },
     {
-      label: MENU.quit,
+      label: Menus.quit,
       role: "close",
       click: () => app.quit(),
       accelerator: "CommandOrControl+Alt+Q"

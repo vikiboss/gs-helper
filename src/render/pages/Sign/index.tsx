@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
-import { DEFAULT_SIGN_DATA, DEFAULT_SIGN_INFO } from "../../../constants";
+import { DefaultSignData, DefaultSignInfo } from "../../../constants";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
@@ -18,8 +18,8 @@ import styles from "./index.less";
 const Sign: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [signInfo, setSignInfo] = useState<SignInfo>(DEFAULT_SIGN_INFO);
-  const [signData, setSignData] = useState<SignData>(DEFAULT_SIGN_DATA);
+  const [signInfo, setSignInfo] = useState<SignInfo>(DefaultSignInfo);
+  const [signData, setSignData] = useState<SignData>(DefaultSignData);
 
   useEffect(() => {
     (async () => await updateInfo())();

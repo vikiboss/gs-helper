@@ -25,10 +25,10 @@ import verifyCookie from "../utils/verifyCookie";
 import {
   APP_USER_AGENT_DESKTOP,
   APP_USER_AGENT_MOBILE,
-  DEFAULT_APP_DATA,
-  IPC_EVENTS,
+  DefaultAppData,
+  IPCEvents,
   LINK_MIHOYO_BBS_LOGIN,
-  SCRIPT_REFINE_BBS,
+  ScriptRefineBBS,
   WINDOW_BACKGROUND_COLOR
 } from "../constants";
 
@@ -44,29 +44,29 @@ import type { AppData } from "../typings";
 const bindIPC = (win: BrowserWindow) => {
   const wins = new Map<string, BrowserWindow>();
 
-  IPC.on(IPC_EVENTS.clearCookie, (_, domain?: string) => clearCookie(domain));
-  IPC.on(IPC_EVENTS.closeApp, () => app.exit(0));
-  IPC.on(IPC_EVENTS.hideApp, () => win.hide());
-  IPC.on(IPC_EVENTS.minimizeApp, () => win.minimize());
-  IPC.on(IPC_EVENTS.openLink, (_, url: string) => shell.openExternal(url));
-  IPC.on(IPC_EVENTS.writeClipboardText, (_, text: string) => clipboard.writeText(text));
+  IPC.on(IPCEvents.clearCookie, (_, domain?: string) => clearCookie(domain));
+  IPC.on(IPCEvents.closeApp, () => app.exit(0));
+  IPC.on(IPCEvents.hideApp, () => win.hide());
+  IPC.on(IPCEvents.minimizeApp, () => win.minimize());
+  IPC.on(IPCEvents.openLink, (_, url: string) => shell.openExternal(url));
+  IPC.on(IPCEvents.writeClipboardText, (_, text: string) => clipboard.writeText(text));
 
-  IPC.handle(IPC_EVENTS.doBBSSign, async () => await doBBSSign());
-  IPC.handle(IPC_EVENTS.getAppInfo, () => AppInfo);
-  IPC.handle(IPC_EVENTS.getBBSSignData, async () => await getBBSSignData());
-  IPC.handle(IPC_EVENTS.getBBSSignInfo, async () => await getBBSSignInfo());
-  IPC.handle(IPC_EVENTS.getDailyNotes, async () => await getDailyNotes());
-  IPC.handle(IPC_EVENTS.getGachaUrl, async () => await getGachaUrl());
-  IPC.handle(IPC_EVENTS.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
-  IPC.handle(IPC_EVENTS.getOwnedRoles, async () => await getOwnedRoles());
-  IPC.handle(IPC_EVENTS.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));
-  IPC.handle(IPC_EVENTS.readClipboardText, () => clipboard.readText());
+  IPC.handle(IPCEvents.doBBSSign, async () => await doBBSSign());
+  IPC.handle(IPCEvents.getAppInfo, () => AppInfo);
+  IPC.handle(IPCEvents.getBBSSignData, async () => await getBBSSignData());
+  IPC.handle(IPCEvents.getBBSSignInfo, async () => await getBBSSignInfo());
+  IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
+  IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
+  IPC.handle(IPCEvents.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
+  IPC.handle(IPCEvents.getOwnedRoles, async () => await getOwnedRoles());
+  IPC.handle(IPCEvents.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));
+  IPC.handle(IPCEvents.readClipboardText, () => clipboard.readText());
 
-  IPC.on(IPC_EVENTS.setStoreKey, (_, key: keyof AppData, value: any) =>
+  IPC.on(IPCEvents.setStoreKey, (_, key: keyof AppData, value: any) =>
     store.set<keyof AppData>(key, value)
   );
 
-  IPC.on(IPC_EVENTS.loginViaMihoyoBBS, async () => {
+  IPC.on(IPCEvents.loginViaMihoyoBBS, async () => {
     const bbsWin = new BrowserWindow({
       width: 400,
       height: 700,
@@ -86,7 +86,7 @@ const bindIPC = (win: BrowserWindow) => {
     const dom = bbsWin.webContents;
     dom.on("did-finish-load", () => {
       try {
-        dom.executeJavaScript(SCRIPT_REFINE_BBS);
+        dom.executeJavaScript(ScriptRefineBBS);
       } catch (e) {
         console.log("loginViaMihoyoBBS: ", e);
       }
@@ -107,14 +107,14 @@ const bindIPC = (win: BrowserWindow) => {
             regionName: info.region_name,
             cookie: cookie
           }
-        : deepClone<AppData["user"]>(DEFAULT_APP_DATA.user);
+        : deepClone<AppData["user"]>(DefaultAppData.user);
       store.set<keyof AppData>("user", user);
       mainWin.focus();
     });
   });
 
   IPC.on(
-    IPC_EVENTS.openWindow,
+    IPCEvents.openWindow,
     async (_, url: string, options: BrowserWindowConstructorOptions = {}, UA?: string) => {
       if (wins.has(url)) {
         wins.get(url).show();
@@ -139,7 +139,7 @@ const bindIPC = (win: BrowserWindow) => {
         });
         dom.on("did-finish-load", () => {
           try {
-            dom.executeJavaScript(SCRIPT_REFINE_BBS);
+            dom.executeJavaScript(ScriptRefineBBS);
           } catch (e) {
             console.log("openWindow: ", e);
           }
@@ -150,7 +150,7 @@ const bindIPC = (win: BrowserWindow) => {
     }
   );
 
-  IPC.handle(IPC_EVENTS.getGachaListByUrl, async (_, url: string) => {
+  IPC.handle(IPCEvents.getGachaListByUrl, async (_, url: string) => {
     const data = await getGachaListByUrl(url);
     if (data.list.length > 0) {
       data.list = sortGachaList(data.list);
@@ -159,7 +159,7 @@ const bindIPC = (win: BrowserWindow) => {
     return data;
   });
 
-  IPC.handle(IPC_EVENTS.refreshUserInfo, async () => {
+  IPC.handle(IPCEvents.refreshUserInfo, async () => {
     const roles = await getRoleInfoByCookie();
     const user: AppData["user"] = roles[0].game_uid
       ? {
@@ -170,7 +170,7 @@ const bindIPC = (win: BrowserWindow) => {
           regionName: roles[0].region_name,
           cookie: store.get<string, AppData["user"]["cookie"]>("user.cookie")
         }
-      : deepClone<AppData["user"]>(DEFAULT_APP_DATA.user);
+      : deepClone<AppData["user"]>(DefaultAppData.user);
     store.set<keyof AppData>("user", user);
     return user;
   });

@@ -1,6 +1,6 @@
 import Store from "electron-store";
 
-import { DEFAULT_APP_DATA } from "../constants";
+import { DefaultAppData } from "../constants";
 import deepClone from "../utils/deepClone";
 
 import type { Schema } from "electron-store";
@@ -68,4 +68,4 @@ const schema: Schema<AppData> = {
   }
 };
 
-export default () => new Store<AppData>({ schema, defaults: deepClone(DEFAULT_APP_DATA) });
+export default () => new Store<AppData>({ schema, defaults: deepClone(DefaultAppData) });

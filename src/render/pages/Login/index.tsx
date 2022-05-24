@@ -8,7 +8,7 @@ import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
-import { LOGIN_GUIDES } from "../../../constants";
+import { LoginGuids } from "../../../constants";
 
 import type { AppData } from "../../../typings";
 
@@ -59,7 +59,7 @@ const Login: React.FC<LoginProp> = (props) => {
         <div className={styles.title}>登录 「米游社」 账号</div>
         <div style={{ marginBottom: "20px" }}>
           <div className={styles.desc}>操作步骤：</div>
-          {LOGIN_GUIDES.map((e) => (
+          {LoginGuids.map((e) => (
             <div className={styles.step} key={e}>
               {e}
             </div>

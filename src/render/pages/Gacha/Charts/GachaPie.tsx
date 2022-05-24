@@ -1,7 +1,7 @@
 import React from "react";
 import { CommonPieProps, MouseEventHandler, ResponsivePie } from "@nivo/pie";
 
-import { CHART_THEME, COLORS } from "../../../../constants";
+import { ChartTheme, Colors } from "../../../../constants";
 
 type GachaPieProp = {
   width: React.CSSProperties["width"];
@@ -84,7 +84,7 @@ const GachaPie: React.FC<GachaPieProp> = (props) => {
         arcLinkLabelsThickness={2}
         borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
         borderWidth={1}
-        colors={Object.values(COLORS)}
+        colors={Object.values(Colors)}
         cornerRadius={3}
         data={data}
         defs={defs}
@@ -93,7 +93,7 @@ const GachaPie: React.FC<GachaPieProp> = (props) => {
         legends={legends}
         margin={{ top: 20, right: 40, bottom: 80, left: 40 }}
         padAngle={0.7}
-        theme={CHART_THEME}
+        theme={ChartTheme}
       />
     </div>
   );

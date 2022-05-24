@@ -1,4 +1,4 @@
-import { COLORS } from "../constants";
+import { Colors } from "../constants";
 
 import type { GachaData } from "../typings";
 
@@ -6,21 +6,21 @@ const n5 = {
   id: "5星",
   label: "5星",
   value: 0,
-  color: COLORS.golden
+  color: Colors.golden
 };
 
 const n4 = {
   id: "4星",
   label: "4星",
   value: 0,
-  color: COLORS.purple
+  color: Colors.purple
 };
 
 const n3 = {
   id: "3星",
   label: "3星",
   value: 0,
-  color: COLORS.blue
+  color: Colors.blue
 };
 
 const transformGachaDataType = (list: GachaData["list"]) => {

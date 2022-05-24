@@ -1,4 +1,4 @@
-import { API_TAKUMI, DEFAULT_APP_DATA, LINK_BBS_REFERER } from "../constants";
+import { API_TAKUMI, DefaultAppData, LINK_BBS_REFERER } from "../constants";
 import { store } from "../main";
 import getBBSSignActId from "./getBBSSignActId";
 import getServerByUid from "../utils/getServerByUid";
@@ -18,7 +18,7 @@ export type SignInfo = {
 };
 
 const getBBSSignInfo = async (): Promise<SignInfo | null> => {
-  const { cookie, uid } = store.get<string, AppData["user"]>("user", DEFAULT_APP_DATA["user"]);
+  const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
   const act_id = await getBBSSignActId();
   const params = { act_id, uid, region: getServerByUid(uid) };
   const config = { params, headers: { referer: LINK_BBS_REFERER, cookie } };

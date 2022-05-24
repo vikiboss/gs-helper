@@ -1,12 +1,12 @@
-import type { AppData, GachaData } from "./typings";
+import type { AppData, GachaData, GachaType } from "./typings";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GameRole } from "./services/getUserGameRolesByCookie";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SignData } from "./services/getBBSSignData";
-import { MonthInfo } from "./services/getMonthInfo";
+import type { MonthInfo } from "./services/getMonthInfo";
 
 // main 进程 与 render 进程进行 IPC 通信的事件常量
-export const IPC_EVENTS: Record<string, string> = {
+export const IPCEvents: Record<string, string> = {
   clearCookie: "CLEAR_COOKIE",
   closeApp: "CLOSE_APP",
   doBBSSign: "DO_BBS_SIGN",
@@ -48,7 +48,7 @@ export const DOMAIN_MIHOYO = "mihoyo.com";
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const GAME_BIZ = "hk4e_cn";
 
-export const LOGIN_GUIDES = [
+export const LoginGuids = [
   "① 点击 「登录米游社」 按钮打开登录窗口",
   "② 在登录窗口中登录 「米游社」 账号",
   "③ 完成登录后关闭登录窗口",
@@ -69,7 +69,14 @@ export const API_HK4E = "https://hk4e-api.mihoyo.com";
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;
 
-export const COLORS: Record<string, string> = {
+export const GachaMap: Record<GachaType, string> = {
+  activity: "活动祈愿",
+  weapon: "武器祈愿",
+  normal: "常驻祈愿",
+  newer: "新手祈愿"
+};
+
+export const Colors: Record<string, string> = {
   blue: "#73abcd",
   purple: "#9779c2",
   golden: "#da9559",
@@ -85,7 +92,7 @@ export const ElementTypes: Record<string, string> = {
   Hydro: "水"
 };
 
-export const SERVERS: string[] = [
+export const Servers: string[] = [
   "cn_gf01", // 1 开头，国区官服-天空岛
   "cn_gf01", // 2 开头，国区官服-天空岛
   "cn_gf01", // 3 开头，国区官服-天空岛
@@ -97,21 +104,21 @@ export const SERVERS: string[] = [
   "os_cht" // 9 开头，港澳台服
 ];
 
-export const MENU: Record<string, string> = {
+export const Menus: Record<string, string> = {
   alwaysOnTop: "置顶显示",
   open: "打开助手",
   openDevTools: "DevTools",
   quit: "退出"
 };
 
-export const GACHA_TYPES: Record<string, string> = {
+export const GachaTypeMap: Record<string, string> = {
   "301": "角色活动祈愿",
   "302": "武器活动祈愿",
   "200": "常驻祈愿",
   "100": "新手祈愿"
 };
 
-export const DEFAULT_APP_DATA: AppData = {
+export const DefaultAppData: AppData = {
   user: {
     uid: "000000000",
     nickname: "旅行者",
@@ -124,7 +131,7 @@ export const DEFAULT_APP_DATA: AppData = {
   settings: { alwaysOnTop: false, deviceId: "" }
 };
 
-export const DEFAULT_GACHA_DATA: GachaData = {
+export const DefaultGachaData: GachaData = {
   info: {
     uid: "",
     lang: "zh-cn",
@@ -137,7 +144,7 @@ export const DEFAULT_GACHA_DATA: GachaData = {
   list: []
 };
 
-export const CHART_THEME = {
+export const ChartTheme = {
   background: "#f9f6f2",
   textColor: "#333333",
   fontSize: 11,
@@ -233,7 +240,7 @@ export const CHART_THEME = {
   }
 };
 
-export const SCRIPT_REFINE_BBS = `
+export const ScriptRefineBBS = `
 var items = ["mhy-bbs-app-header", "mhy-button", "header-bar", "bbs-qr"];
 for (const item of items) {
   const els = document.getElementsByClassName(item);
@@ -241,7 +248,7 @@ for (const item of items) {
 }
 `;
 
-export const DEFAULT_NOTES: DailyNotesData = {
+export const DefaultNotes: DailyNotesData = {
   current_resin: 160,
   max_resin: 160,
   resin_recovery_time: "0",
@@ -262,7 +269,7 @@ export const DEFAULT_NOTES: DailyNotesData = {
   }
 };
 
-export const DEFAULT_GAME_ROLE: GameRole = {
+export const DefaultGameData: GameRole = {
   region: "",
   game_biz: "",
   nickname: "",
@@ -273,7 +280,7 @@ export const DEFAULT_GAME_ROLE: GameRole = {
   is_chosen: false
 };
 
-export const DEFAULT_SIGN_INFO: SignInfo = {
+export const DefaultSignInfo: SignInfo = {
   total_sign_day: 0,
   today: "2022-01-01",
   is_sign: false,
@@ -283,13 +290,13 @@ export const DEFAULT_SIGN_INFO: SignInfo = {
   sign_cnt_missed: 0
 };
 
-export const DEFAULT_SIGN_DATA: SignData = {
+export const DefaultSignData: SignData = {
   month: 1,
   awards: [],
   resign: true
 };
 
-export const DEFAULT_MONTH_INFO: MonthInfo = {
+export const DefaultMonthInfo: MonthInfo = {
   uid: 0,
   region: "cn_gf01",
   account_id: 0,

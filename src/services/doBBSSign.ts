@@ -2,7 +2,7 @@ import {
   API_TAKUMI,
   APP_USER_AGENT_BBS,
   APP_VERSION_BBS,
-  DEFAULT_APP_DATA,
+  DefaultAppData,
   LINK_BBS_REFERER
 } from "../constants";
 import { store } from "../main";
@@ -19,7 +19,7 @@ type DoSignData = {
 };
 
 const doBBSSign = async (): Promise<boolean> => {
-  const { cookie, uid } = store.get<string, AppData["user"]>("user", DEFAULT_APP_DATA["user"]);
+  const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
   const act_id = await getBBSSignActId();
   const postData = { act_id, region: getServerByUid(uid), uid };
   const headers = {

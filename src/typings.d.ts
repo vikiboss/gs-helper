@@ -34,6 +34,10 @@ export interface NativeApi {
   writeClipboardText: (text: string) => void;
 }
 
+export type GachaType = "activity" | "normal" | "weapon" | "newer";
+export type ItemType = "weapon" | "role";
+export type StarType = 3 | 4 | 5;
+
 export type GachaItem = {
   count: string;
   gacha_type: string;

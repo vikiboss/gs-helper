@@ -4,7 +4,7 @@ import cn from "classnames";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
-import { DEFAULT_GACHA_DATA } from "../../../constants";
+import { DefaultGachaData, GachaMap } from "../../../constants";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import DateRange from "./Charts/DateRange";
@@ -16,19 +16,10 @@ import transformGachaDataDate from "../../../utils/transformGachaDataDate";
 import transformGachaDataType from "../../../utils/transformGachaDataType";
 import useNotice from "../../hooks/useNotice";
 
-import type { GachaData } from "../../../typings";
+import type { GachaData, GachaType, ItemType, StarType } from "../../../typings";
 
 import styles from "./index.less";
-
-type GachaType = "activity" | "normal" | "weapon" | "newer";
-type ItemType = "weapon" | "role";
-type StarType = 3 | 4 | 5;
-
-export type FilterType = {
-  gacha: GachaType[];
-  item: ItemType[];
-  star: StarType[];
-};
+import { TimeRangeDayData } from "@nivo/calendar";
 
 type FilterBtn = { name: string; type: StarType | GachaType | ItemType };
 
@@ -37,7 +28,11 @@ type FilterLine = {
   btns: FilterBtn[];
 };
 
-type FiterLines = FilterLine[];
+export type FilterType = {
+  gacha: GachaType[];
+  item: ItemType[];
+  star: StarType[];
+};
 
 const defaultFilters: FilterType = {
   gacha: ["activity", "normal", "weapon", "newer"],
@@ -45,17 +40,11 @@ const defaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
-const rankMap: Record<string, string> = {
-  "3": "3星",
-  "4": "4星",
-  "5": "5星"
-};
-
 const Gocha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [filter, setfilter] = useState<FilterType>(defaultFilters);
-  const [gacha, setGacha] = useState<GachaData>(DEFAULT_GACHA_DATA);
+  const [gacha, setGacha] = useState<GachaData>(DefaultGachaData);
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -64,8 +53,12 @@ const Gocha: React.FC = () => {
       const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
       const uid: string = await nativeApi.getStoreKey("user.uid");
       await getLocalGachaUrl();
-      for (const gacha of gachas) if (gacha.info.uid === uid) setGacha(gacha);
-      if (gachas.length && !gacha.list.length) setGacha(gachas[0]);
+      const loggedUidGachaData = gachas.filter((e) => e.info.uid === uid)[0];
+      if (loggedUidGachaData) {
+        setGacha(loggedUidGachaData);
+      } else if (gachas.length) {
+        setGacha(gachas[0]);
+      }
     })();
   }, []);
 
@@ -132,16 +125,16 @@ const Gocha: React.FC = () => {
     const w_4 = weapons.filter((item) => item.rank_type === "4");
     const w_3 = weapons.filter((item) => item.rank_type === "3");
     let message = "";
-    if (r_5.length) message += `5星角色 ${r_5.length} ：${r_5.join("、")} / `;
-    if (r_4.length) message += `4星角色 ${r_4.length} / `;
-    if (w_5.length) message += `5星武器 ${w_5.length} ：${w_5.join("、")} / `;
-    if (w_4.length) message += `4星武器 ${w_4.length} / `;
-    if (w_3.length) message += `3星武器 ${w_3.length} / `;
+    if (r_5.length) message += `5星角色数：${r_5.length}（${r_5.join("、")}） & `;
+    if (r_4.length) message += `4星角色数：${r_4.length} & `;
+    if (w_5.length) message += `5星武器数：${w_5.length}（${w_5.join("、")}） & `;
+    if (w_4.length) message += `4星武器数：${w_4.length} & `;
+    if (w_3.length) message += `3星武器数：${w_3.length} & `;
     message = message.slice(0, message.length - 2).trim();
     return message;
   };
 
-  const filterLines: FiterLines = [
+  const filterLines: FilterLine[] = [
     {
       type: "item",
       btns: [
@@ -177,17 +170,22 @@ const Gocha: React.FC = () => {
   const format = (str: string) => D(str).format("YYYY/M/D HH:mm");
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`;
 
-  const getGachaStatictics = (type: string) => {
-    // 获取响应祈愿分类的所有数据
-    const list = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[type]);
-    // 存放所有5星的索引（1 开始）
-    const i_5 = [];
-    for (const [i, e] of list.entries()) if (e.rank_type === "5") i_5.push(i + 1);
-    // 5星平均出货次数
-    const times = i_5.length ? Math.floor(i_5[i_5.length - 1] / i_5.length) : 0;
-    // 累计未出5星的次数
-    const unluckyDays = list.length - (i_5.length ? i_5[i_5.length - 1] : 0);
-    return { all: list.length, times, unluckyDays };
+  const getGachaStatictics = () => {
+    const map = Object.keys(GachaMap).filter((e) => e !== "newer") as GachaType[];
+    const res: { all: number; times: number; unluckyDays: number; name: string }[] = [];
+    for (const type of map) {
+      // 获取响应祈愿分类的所有数据
+      const list = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[type]);
+      // 存放所有5星的索引（1 开始）
+      const i_5 = [];
+      for (const [i, e] of list.entries()) if (e.rank_type === "5") i_5.push(i + 1);
+      // 5星平均出货次数
+      const times = i_5.length ? Math.floor(i_5[i_5.length - 1] / i_5.length) : 0;
+      // 累计未出5星的次数
+      const unluckyDays = list.length - (i_5.length ? i_5[i_5.length - 1] : 0);
+      res.push({ all: list.length, times, unluckyDays, name: GachaMap[type] });
+    }
+    return res;
   };
 
   const getGachaNumsAndRates = (rank: "3" | "4" | "5", gachaType: GachaType) => {
@@ -197,12 +195,34 @@ const Gocha: React.FC = () => {
     return `${item_l.length} / ${((item_l.length * 100) / (gacha_l.length || 1)).toFixed(2)}%`;
   };
 
-  const activityData = getGachaStatictics("activity");
-  const weaponData = getGachaStatictics("weapon");
-  const normalData = getGachaStatictics("normal");
-
+  const statictics = getGachaStatictics();
   const loadingText = loading ? "派蒙努力加载中，预计半分钟..." : "派蒙没有找到任何数据";
-  const tip = `※ 共读取到 ${gacha.list.length} 条数据，时间范围：${dateRangeText}，数据可能存在延迟，请以实际为准。`;
+  const tip = `※ 共加载了 ${gacha.list.length} 条数据（${dateRangeText}），可能存在延迟，请以实际为准。`;
+
+  const pieProps = {
+    data: transformGachaDataType(list),
+    height: 268,
+    style: { alignSelf: "center" },
+    width: 268,
+    onClick: (e: { id: string | number; value: number }) => {
+      const limitedList = list.filter((item) => `${item.rank_type}星` === e.id);
+      const message = getListTypeInfo(limitedList);
+      if (message) notice.info({ message });
+    }
+  };
+
+  const rangeProps = {
+    className: styles.timeRange,
+    data: transformGachaDataDate(list),
+    height: 168,
+    range: dateRange,
+    width: 600,
+    onClick: (e: TimeRangeDayData) => {
+      const limitedList = list.filter((item) => item.time.slice(0, 10) === e.day);
+      const message = getListTypeInfo(limitedList);
+      if (message) notice.info({ message });
+    }
+  };
 
   return (
     <>
@@ -228,7 +248,7 @@ const Gocha: React.FC = () => {
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <span className={styles.title}>祈愿记录 「数据可视化」 分析</span>
         </div>
-        {gacha.list.length && !loading ? (
+        {gacha.list.length > 0 && !loading ? (
           <div className={styles.content}>
             <div className={styles.pieChart}>
               <div className={styles.filterZone}>
@@ -258,44 +278,20 @@ const Gocha: React.FC = () => {
                 })}
               </div>
               <div className={styles.pieName}>星级筛选结果 / 环形图</div>
-              <GachaPie
-                style={{ alignSelf: "center" }}
-                data={transformGachaDataType(list)}
-                height={268}
-                width={268}
-                onClick={(e) => {
-                  const limitedList = list.filter((item) => rankMap[item.rank_type] === e.id);
-                  const message = getListTypeInfo(limitedList);
-                  if (message) notice.info({ message });
-                }}
-              />
+              <GachaPie {...pieProps} />
             </div>
             <div>
               <div className={styles.detailData}>
-                <div className={styles.detailTitle}>
-                  {`※ 活动祈愿共计`}
-                  <span className={styles.star3}> {activityData.all} </span>
-                  {`次，已累计`}
-                  <span className={styles.star5}> {activityData.unluckyDays} </span>
-                  {`次未出5星，平均5星出货次数：`}
-                  <span className={styles.star4}> {activityData.times} </span>
-                </div>
-                <div className={styles.detailTitle}>
-                  {`※ 武器祈愿共计`}
-                  <span className={styles.star3}> {weaponData.all} </span>
-                  {`次，已累计`}
-                  <span className={styles.star5}> {weaponData.unluckyDays} </span>
-                  {`次未出5星，平均5星出货次数：`}
-                  <span className={styles.star4}> {weaponData.times} </span>
-                </div>
-                <div className={styles.detailTitle}>
-                  {`※ 常驻祈愿共计`}
-                  <span className={styles.star3}> {normalData.all} </span>
-                  {`次，已累计`}
-                  <span className={styles.star5}> {normalData.unluckyDays} </span>
-                  {`次未出5星，平均5星出货次数：`}
-                  <span className={styles.star4}> {normalData.times} </span>
-                </div>
+                {statictics.map((e) => (
+                  <div className={styles.detailTitle} key={e.name}>
+                    {`※ ${e.name}共计`}
+                    <span className={styles.star3}> {e.all} </span>
+                    {`次，已累计`}
+                    <span className={styles.star5}> {e.unluckyDays} </span>
+                    {`次未出5星，平均5星出货次数：`}
+                    <span className={styles.star4}> {e.times} </span>
+                  </div>
+                ))}
               </div>
               <div className={styles.tableName}>星级出货数、出货率 / 一览表</div>
               <div className={styles.detailTable}>
@@ -306,42 +302,20 @@ const Gocha: React.FC = () => {
                   <div>常驻池</div>
                   <div>新手池</div>
                 </div>
-                <div>
-                  <div>5星</div>
-                  <div className={styles.star5}>{getGachaNumsAndRates("5", "activity")}</div>
-                  <div className={styles.star5}>{getGachaNumsAndRates("5", "weapon")}</div>
-                  <div className={styles.star5}>{getGachaNumsAndRates("5", "normal")}</div>
-                  <div className={styles.star5}>{getGachaNumsAndRates("5", "newer")}</div>
-                </div>
-                <div>
-                  <div>4星</div>
-                  <div className={styles.star4}>{getGachaNumsAndRates("4", "activity")}</div>
-                  <div className={styles.star4}>{getGachaNumsAndRates("4", "weapon")}</div>
-                  <div className={styles.star4}>{getGachaNumsAndRates("4", "normal")}</div>
-                  <div className={styles.star4}>{getGachaNumsAndRates("4", "newer")}</div>
-                </div>
-                <div>
-                  <div>3星</div>
-                  <div className={styles.star3}>{getGachaNumsAndRates("3", "activity")}</div>
-                  <div className={styles.star3}>{getGachaNumsAndRates("3", "weapon")}</div>
-                  <div className={styles.star3}>{getGachaNumsAndRates("3", "normal")}</div>
-                  <div className={styles.star3}>{getGachaNumsAndRates("3", "newer")}</div>
-                </div>
+                {["5", "4", "3"].map((e: "3" | "4" | "5") => (
+                  <div>
+                    <div key={e}>{e}星</div>
+                    {Object.keys(GachaMap).map((f: GachaType) => (
+                      <div className={styles[`star${e}`]} key={f}>
+                        {getGachaNumsAndRates(e, f)}
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
-              <div className={styles.tableName}>次数分布筛选结果 / 日历图</div>
+              <div className={styles.tableName}>祈愿次数分布筛选结果 / 日历图</div>
               <div className={styles.timeRangeContainer}>
-                <DateRange
-                  onClick={(e) => {
-                    const limitedList = list.filter((item) => item.time.slice(0, 10) === e.day);
-                    const message = getListTypeInfo(limitedList);
-                    if (message) notice.info({ message });
-                  }}
-                  data={transformGachaDataDate(list)}
-                  className={styles.timeRange}
-                  range={dateRange}
-                  width={600}
-                  height={168}
-                />
+                <DateRange {...rangeProps} />
               </div>
             </div>
           </div>
@@ -350,7 +324,7 @@ const Gocha: React.FC = () => {
             <Loading text={loadingText} />
           </div>
         )}
-        {gacha.list.length > 0 && <span className={styles.dateTip}>{tip}</span>}
+        {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}
       </div>
       {notice.holder}
     </>

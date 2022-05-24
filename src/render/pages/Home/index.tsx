@@ -18,9 +18,9 @@ import useNotice from "../../hooks/useNotice";
 import {
   ANNUCEMENT_DATA_DELAY,
   ANNUCEMENT_OPEN_SOURCE,
-  DEFAULT_APP_DATA,
-  DEFAULT_NOTES,
-  DEFAULT_SIGN_INFO,
+  DefaultAppData,
+  DefaultNotes,
+  DefaultSignInfo,
   LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
   LOGIN_TIP,
@@ -60,9 +60,9 @@ const Home: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
-  const [user, setUser] = useState<Partial<AppData["user"]>>(DEFAULT_APP_DATA["user"]);
-  const [sign, setSign] = useState<SignInfo>(DEFAULT_SIGN_INFO);
-  const [note, setNotesData] = useState<DailyNotesData>(DEFAULT_NOTES);
+  const [user, setUser] = useState<Partial<AppData["user"]>>(DefaultAppData["user"]);
+  const [sign, setSign] = useState<SignInfo>(DefaultSignInfo);
+  const [note, setNotesData] = useState<DailyNotesData>(DefaultNotes);
 
   useEffect(() => {
     (async () => {

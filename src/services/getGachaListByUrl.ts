@@ -1,6 +1,6 @@
 import { app } from "electron";
 
-import { DEFAULT_GACHA_DATA, API_HK4E, GACHA_TYPES } from "../constants";
+import { DefaultGachaData, API_HK4E, GachaTypeMap } from "../constants";
 import deepClone from "../utils/deepClone";
 import request from "../utils/request";
 import wait from "../utils/wait";
@@ -22,14 +22,14 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     const urlParams = new URLSearchParams(/\?(.*?)(#.+)?$/i.exec(url)[1]);
 
     // 默认的空数据
-    const gacha: GachaData = deepClone(DEFAULT_GACHA_DATA);
+    const gacha: GachaData = deepClone(DefaultGachaData);
     gacha.info.export_app_version = app.getVersion();
 
     // 是否已获取 UID
     let hasUid = false;
 
     // 依次按类型获取每类祈愿的数据
-    for (const type of Object.keys(GACHA_TYPES)) {
+    for (const type of Object.keys(GachaTypeMap)) {
       // 拼接每个类型的起始 URL 参数
       urlParams.set("game_biz", "hk4e_cn");
       urlParams.set("size", "20");
@@ -85,7 +85,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           console.log("getGachaListByUrl: ", data.data, status);
           console.log(
             "getGachaListByUrl: ",
-            `获取${GACHA_TYPES[type]}第${urlParams.get("page")}页失败`
+            `获取${GachaTypeMap[type]}第${urlParams.get("page")}页失败`
           );
         }
 
@@ -97,7 +97,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     // 返回新获取的数据
     return gacha;
   } catch {
-    return DEFAULT_GACHA_DATA;
+    return DefaultGachaData;
   }
 };
 

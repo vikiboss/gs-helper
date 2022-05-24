@@ -2,7 +2,7 @@ import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
-import { DEFAULT_MONTH_INFO } from "../../../constants";
+import { DefaultMonthInfo } from "../../../constants";
 import CircleButton from "../../components/CircleButton";
 import nativeApi from "../../utils/nativeApi";
 import withAuth from "../../auth/withAuth";
@@ -16,10 +16,10 @@ import useNotice from "../../hooks/useNotice";
 const Month: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [monthInfo, setMonthInfo] = useState<MonthInfo>(DEFAULT_MONTH_INFO);
+  const [monthInfo, setMonthInfo] = useState<MonthInfo>(DefaultMonthInfo);
 
   const updateInfo = async (month: number = 0, isUserTrigger: boolean = true) => {
-    setMonthInfo(DEFAULT_MONTH_INFO);
+    setMonthInfo(DefaultMonthInfo);
     const res = await nativeApi.getMonthInfo(month);
     console.log(res);
     if (res?.account_id) {

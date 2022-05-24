@@ -6,7 +6,7 @@ import {
   TimeRangeDayData
 } from "@nivo/calendar";
 
-import { CHART_THEME } from "../../../../constants";
+import { ChartTheme } from "../../../../constants";
 
 type DateRangeProp = {
   width: React.CSSProperties["width"];
@@ -49,7 +49,7 @@ const DateRange: React.FC<DateRangeProp> = (props) => {
         emptyColor='#efefef'
         from={range[0]}
         legends={legends}
-        theme={CHART_THEME}
+        theme={ChartTheme}
         to={range[1]}
         weekdayTicks={[]}
       />
