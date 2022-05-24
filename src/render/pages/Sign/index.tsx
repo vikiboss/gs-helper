@@ -21,6 +21,9 @@ const Sign: React.FC = () => {
   const [signInfo, setSignInfo] = useState<SignInfo>(DefaultSignInfo);
   const [signData, setSignData] = useState<SignData>(DefaultSignData);
 
+  const { month } = signData;
+  const { total_sign_day: total, sign_cnt_missed: missed } = signInfo;
+
   useEffect(() => {
     (async () => await updateInfo())();
   }, []);
@@ -39,7 +42,7 @@ const Sign: React.FC = () => {
     if (signInfo.is_sign) {
       notice.warning({ message: "今天已经签过到啦~ 不要重复签到哦" });
     } else if (signInfo.first_bind) {
-      notice.warning({ message: "旅行者是第一次绑定米游社，请先到米游社手动签到一次吧~" });
+      notice.warning({ message: "旅行者是第一次绑定游戏账号，请先到米游社手动签到一次吧~" });
     } else {
       const isSignDone = await nativeApi.doBBSSign();
       if (isSignDone) {
@@ -54,25 +57,37 @@ const Sign: React.FC = () => {
     }
   };
 
+  const handleInfo = (i: number) => {
+    const signed = i + 1 <= total;
+    const signText = signed ? "奖励已领取" : "未达到领取要求";
+    const message = `本月累签 ${i + 1} 天可领取，当前 ${total} 天，${signText}`;
+    notice[signed ? "success" : "faild"]({ message: message });
+  };
+
   return (
     <>
-      <div className={styles.desc}>
+      <div className={styles.container}>
         {signData.awards.length ? (
           <div className={styles.signContainer}>
-            <div
-              className={styles.title}
-            >{`米游社原神 ${signData.month} 月签到日历，本月累计签到 ${signInfo.total_sign_day} 天，错过 ${signInfo.sign_cnt_missed} 天`}</div>
+            <div className={styles.title}>{`米游社·原神 ${month} 月签到日历`}</div>
+            <div className={styles.tip}>
+              {month} 月签到进度：{total}/{signData.awards.length}
+              {missed
+                ? `，错过 ${missed} 天。冒险再忙，也要记得签到哦~`
+                : "，太勤奋啦，一天都没有漏呢！"}
+            </div>
             <div className={styles.signTable}>
               {signData.awards.map((e, i) => {
-                const signedClass = i + 1 <= signInfo.total_sign_day ? styles.signed : "";
+                const signedClass = i + 1 <= total ? styles.signed : "";
                 const todayNum = signInfo.is_sign ? i + 1 : i;
-                const isToday = todayNum === signInfo.total_sign_day;
+                const isToday = todayNum === total;
                 const todayClass = isToday ? styles.today : "";
                 return (
                   <div
-                    key={`${i}${e.name}`}
+                    title={`本月累签 ${i + 1} 天可领取，当前 ${total} 天`}
+                    key={e.name}
                     className={cn(styles.signItem, signedClass, todayClass)}
-                    onClick={isToday ? handleSign : null}
+                    onClick={isToday ? handleSign : handleInfo.bind(null, i)}
                   >
                     <img src={e.icon} alt={e.name} />
                     <div>{`${e.name}x${e.cnt}`}</div>
@@ -88,7 +103,7 @@ const Sign: React.FC = () => {
           Icon={TiArrowBack}
           size='middle'
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={navigate.bind(null, "/")}
         />
       </div>
       {notice.holder}

@@ -1,33 +1,30 @@
 @import "../../utils/colors.less";
 @import "../../utils/util.less";
 
-.desc {
+.container {
   .ani-show-right();
-  .flex-center();
+  .flex-center-x();
 
-  align-items    : center;
-  display        : flex;
-  flex           : 1;
-  justify-content: center;
-  position       : relative;
+  flex    : 1;
+  position: relative;
 
   .signContainer {
     .ani-show-right();
-    .flex-center-column();
+    .flex-center-x-column();
 
     .title {
-      margin-top: 40px;
-      font-size : 24px;
+      font-size  : 24px;
+      line-height: 42px;
+      margin-top : 20px;
     }
 
     .sign-table {
-
       .flex-wrap();
-      align-content: flex-start;
 
-      margin: 12px 0;
-      width : 860px;
-      height: 432px;
+      align-content: flex-start;
+      height       : 432px;
+      margin       : 16px 0;
+      width        : 860px;
 
       .sign-item {
         .flex-column();
@@ -79,6 +76,10 @@
           width          : 78px;
         }
       }
+    }
+
+    .tip {
+      color: @text-color-second;
     }
   }
 
