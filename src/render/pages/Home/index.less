@@ -29,7 +29,7 @@
     padding : 32px 40px 0;
     position: relative;
     width   : calc(100vw - 80px);
-    z-index: 1;
+    z-index : 1;
 
     .user-card {
       .flex-center-y();
@@ -84,6 +84,10 @@
             display: inline-block;
             flex   : 1;
             padding: 4px 10px;
+
+            &:active {
+              color: @text-color-second;
+            }
           }
         }
       }
@@ -194,9 +198,9 @@
   .content {
     .flex-center-column();
 
-    flex : 1;
+    flex   : 1;
     z-index: 1;
-    width: 100vw;
+    width  : 100vw;
 
     .btn-list {
       .flex-wrap();
