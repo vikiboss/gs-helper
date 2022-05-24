@@ -84,7 +84,7 @@ const Home: React.FC = () => {
 
   const updateInfo = async (isUserTrriger: boolean = true) => {
     if (!auth.isLogin) return;
-    if (isUserTrriger) notice.info({ message: "正在获取最新数据...", autoHide: false });
+    if (isUserTrriger) notice.info({ message: "小派蒙正在努力获取最新数据...", autoHide: false });
 
     const [user, note, sign] = await Promise.all([
       nativeApi.refreshUserInfo(),
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
       return navigate("/login", { state: { isExpired: true } });
     }
 
-    if (isUserTrriger) notice.success({ message: "数据更新成功" });
+    if (isUserTrriger) notice.success({ message: "更新成功" });
 
     setUser(user);
     setNotesData(note);
@@ -106,7 +106,7 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     const noAuth = !auth.isLogin && path !== "/gacha";
-    if (noAuth) return notice.warning({ message: "请先登录 「米游社」 账号" });
+    if (noAuth) return notice.warning({ message: "这个功能需要登录才能正常使用" });
     const monthNotOpen = path === "/month" && user.level < 10;
     if (monthNotOpen) return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
     safelyNavigate(path);
