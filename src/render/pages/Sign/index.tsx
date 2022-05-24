@@ -71,10 +71,10 @@ const Sign: React.FC = () => {
           <div className={styles.signContainer}>
             <div className={styles.title}>{`米游社·原神 ${month} 月签到日历`}</div>
             <div className={styles.tip}>
-              {month} 月签到进度：{total}/{signData.awards.length}
+              签到进度：{total}/{signData.awards.length}
               {missed
                 ? `，错过 ${missed} 天。冒险再忙，也要记得签到哦~`
-                : "，太勤奋啦，一天都没有漏呢！"}
+                : "。冒险者太勤奋啦，一天都没有漏呢！"}
             </div>
             <div className={styles.signTable}>
               {signData.awards.map((e, i) => {
