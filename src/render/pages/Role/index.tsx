@@ -1,16 +1,22 @@
-import React, { useEffect, useState } from "react";
+import { EffectCards } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
+import cn from "classnames";
 
-import withAuth from "../../auth/withAuth";
+import React, { useEffect, useState } from "react";
+
+import { ElementTypes } from "../../../constants";
 import CircleButton from "../../components/CircleButton";
+import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
+import withAuth from "../../auth/withAuth";
 
 import type { Role as RoleInfo } from "../../../services/getOwnedRoles";
 
 import styles from "./index.less";
-import Loading from "../../components/Loading";
-import { ElementTypes } from "../../../constants";
+
+import "swiper/css";
 
 const Role: React.FC = () => {
   const navigate = useNavigate();
@@ -27,25 +33,28 @@ const Role: React.FC = () => {
   }, []);
 
   return (
-    <div
-      className={styles.slide}
-      style={{
-        alignItems: "center",
-        display: "flex",
-        flex: 1,
-        justifyContent: "center",
-        position: "relative",
-        overflow: "hidden"
-      }}
-    >
+    <div className={styles.container}>
+      <div className={styles.topZone}></div>
+
       {roles.length ? (
         <div className={styles.roleListContainer}>
           <div className={styles.left}>
-            {roles.map((e, i) => (
-              <div key={e.id} onClick={() => setIndex(i)} className={i === index ? styles.now : ""}>
-                <img src={e.icon} alt='icon' style={{ width: "64px" }} />
-              </div>
-            ))}
+            <Swiper
+              modules={[EffectCards]}
+              // cardsEffect={}
+              className={styles.swiper}
+              effect='cards'
+              onSwiper={(e) => setIndex(e.activeIndex)}
+              onSlideChange={(e) => setIndex(e.activeIndex)}
+            >
+              {roles.map((e, i) => (
+                <SwiperSlide key={e.id}>
+                  <div className={cn(styles.roleBtn, styles[`star${e.rarity > 5 ? 6 : e.rarity}`])}>
+                    <img src={e.icon} alt='icon' />
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
           </div>
           <div className={styles.right}>
             <div className={styles.roleInfo}>
@@ -106,14 +115,14 @@ const Role: React.FC = () => {
                 )}
               </div>
             </div>
-          </div>
-          <img src={roles[index].image} alt='image' style={{ height: "462px" }} />
-          <div className={styles.constellationContainer}>
-            {roles[index].constellations.map((e) => (
-              <div key={e.id} className={styles.constellation}>
-                <img src={e.icon} alt='icon' title={`命座${e.pos}：${e.name}\n${e.effect}`} />
-              </div>
-            ))}
+            <img src={roles[index].image} alt='image' style={{ height: "320px" }} />
+            <div className={styles.constellationContainer}>
+              {roles[index].constellations.map((e) => (
+                <div key={e.id} className={styles.constellation}>
+                  <img src={e.icon} alt='icon' title={`命座${e.pos}：${e.name}\n${e.effect}`} />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       ) : (
