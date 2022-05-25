@@ -12,43 +12,149 @@
   position : relative;
 
   .top-zone {
-    .flex-center();
+    align-items    : flex-end;
+    display        : flex;
+    height         : 62px;
+    justify-content: center;
+    padding        : 0 20px;
+    width          : calc(100vw - 2 * 20px);
+    position       : relative;
 
-    border-bottom: 1px solid @input-border-color;
-    height       : 82px;
-    min-height   : 82px;
-    max-height   : 82px;
-    width        : 100vw;
+    &>span {
+      font-size: 28px;
+    }
+
+    &>div {
+      position: absolute;
+      right   : 20px;
+      bottom  : 0;
+    }
   }
 
-  .role-list-container {
+  .star-4 {
+    background-size  : cover;
+    background-repeat: no-repeat;
+    background-image : url("../../../assets/item-bg-4.png");
+  }
+
+  .star-5 {
+    background-size  : cover;
+    background-repeat: no-repeat;
+    background-image : url("../../../assets/item-bg-5.png");
+  }
+
+  .star-6 {
+    background-size  : cover;
+    background-repeat: no-repeat;
+    background-image : url("../../../assets/item-bg-6.png");
+  }
+
+  .role-table {
+    .ani-show-left();
+    .flex-center-y();
+
+    flex-wrap: wrap;
+    overflow : auto;
+    padding  : 12px;
+    width    : 100vw;
+
+    .role-item {
+      .flex-center-column();
+
+      margin    : 4px;
+      width     : calc((100vw - 24px - 8 * 2 * $margin) / 8);
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &>div {
+        .shadow();
+        .flex-center-column();
+
+        height       : 121px;
+        margin-bottom: 3px;
+        position     : relative;
+        width        : 100px;
+        border-radius: 6px;
+        border       : 1px solid @input-border-color;
+
+        // 角色头图
+        img:nth-child(1) {
+          width : 100px;
+          height: 100px;
+        }
+
+        // 星级 icon
+        img:nth-child(2) {
+          bottom  : 16px;
+          position: absolute;
+          height  : 24px;
+        }
+
+        // 元素 icon
+        img:nth-child(3) {
+          left    : 2px;
+          position: absolute;
+          top     : 2px;
+          width   : 20px;
+        }
+
+        // 命座数
+        &>div {
+          .flex-center();
+          background-color         : rgba(64, 64, 64, 0.6);
+          border-bottom-left-radius: 6px;
+          color                    : @text-color-white;
+          height                   : 22px;
+          font-size                : 12px;
+          position                 : absolute;
+          right                    : 0px;
+          top                      : 0px;
+          width                    : 22px;
+        }
+
+        span {
+          font-size  : 14px;
+          line-height: 22px;
+        }
+      }
+
+      &>span {
+        font-size    : 16px;
+        color        : #564c4a;
+        margin-bottom: 2px;
+      }
+    }
+  }
+
+  .role-list {
     .ani-show-right();
 
-    display        : flex;
-    flex           : 1;
-    margin         : 20px;
-    overflow       : auto;
-    position       : relative;
-    scroll-behavior: smooth;
+    display : flex;
+    flex    : 1;
+    margin  : 20px;
+    overflow: hidden;
+    position: relative;
 
-    .left {
+    .right {
+      .flex-center();
+
+      width : 116px;
+      height: 108px;
+
       .swiper {
-        width: 80px;
+        width : 74px;
+        height: 82px;
 
-        .star4 {
-          background-color: @color-star-4;
-        }
-
-        .star5 {
-          background-color: @color-star-5;
-        }
 
         .role-btn {
           width        : 64px;
           height       : 64px;
-          padding      : 4px 2px;
+          padding      : 8px 4px;
           border       : 1px solid @text-color-second;
-          border-radius: 6px;
+          border-radius: 4px;
 
           img {
             height: 64px;
@@ -58,11 +164,10 @@
       }
     }
 
-    .right {
+    .left {
       display        : flex;
       flex           : 1;
       justify-content: space-between;
-      padding-left   : 20px;
 
       .role-info {
 

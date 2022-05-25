@@ -89,6 +89,7 @@ export const ElementTypes: Record<string, string> = {
   Pyro: "火",
   Anemo: "风",
   Geo: "岩",
+  Dendro: "草",
   Hydro: "水"
 };
 
