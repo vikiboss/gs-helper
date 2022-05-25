@@ -192,7 +192,7 @@ const Gocha: React.FC = () => {
     const star_l = gacha.list.filter((e) => e.rank_type === rank);
     const gacha_l = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
     const item_l = star_l.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
-    return `${item_l.length} / ${((item_l.length * 100) / (gacha_l.length || 1)).toFixed(2)}%`;
+    return `${item_l.length}/${((item_l.length * 100) / (gacha_l.length || 1)).toFixed(2)}%`;
   };
 
   const statictics = getGachaStatictics();
@@ -306,7 +306,7 @@ const Gocha: React.FC = () => {
                   <div>
                     <div key={e}>{e}星</div>
                     {Object.keys(GachaMap).map((f: GachaType) => (
-                      <div className={styles[`star${e}`]} key={f}>
+                      <div className={cn(styles[`star${e}`], styles.star)} key={f}>
                         {getGachaNumsAndRates(e, f)}
                       </div>
                     ))}
