@@ -1,5 +1,9 @@
 @import "../../utils/colors.less";
-@import "../../utils/util.less";
+@import "../../utils/utils.less";
+
+@win-bar-bg-color      : #454d5c;
+@win-bar-bg-line-color : #515a6a;
+@win-bar-title-color    : #ece5d8;
 
 .frame {
   background-color: @color-bg;
@@ -35,7 +39,7 @@
     }
 
     .title {
-      color    : @win-bar-text-focus-color;
+      color    : @win-bar-title-color;
       font-size: 20px;
       margin   : 10px 10px 10px 0;
     }
@@ -60,6 +64,6 @@
 
     height          : calc(100vh - 42px);
     background-color: transparent;
-    overflow: hidden;
+    overflow        : hidden;
   }
 }

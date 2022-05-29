@@ -2,7 +2,7 @@ import React from "react";
 
 import icon from "../../../assets/icon.png";
 import nativeApi from "../../utils/nativeApi";
-import CircularButton from "../WinButton";
+import WinButton from "./WinButton";
 
 import styles from "./index.less";
 
@@ -19,8 +19,8 @@ const WinFrame: React.FC<WinFrameProp> = (props) => {
         <img className={styles.icon} src={icon} alt='icon' />
         <div className={styles.title}>{title}</div>
         <div className={styles.btns}>
-          <CircularButton className={styles.btn} onClick={nativeApi.minimizeApp} type='minimize' />
-          <CircularButton className={styles.btn} onClick={nativeApi.hideApp} type='close' />
+          <WinButton className={styles.btn} onClick={nativeApi.minimizeApp} type='minimize' />
+          <WinButton className={styles.btn} onClick={nativeApi.hideApp} type='close' />
         </div>
       </div>
       <div className={styles.content}>{props.children}</div>

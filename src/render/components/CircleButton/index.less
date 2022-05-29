@@ -1,9 +1,18 @@
 @import "../../utils/colors.less";
-@import "../../utils/util.less";
+@import "../../utils/utils.less";
 
 @size-small : 24px;
 @size-middle: 36px;
 @size-large : 54px;
+
+@win-bar-bg-color : #454d5c;
+
+@cbtn-active-bg-color  : #f5f4ee;
+@cbtn-active-round-line: #e5e5e5;
+@cbtn-bg-color         : #ffffff;
+@cbtn-hover-bg-color   : #f9f6f2;
+@cbtn-hover-round-line : #9f9f9f;
+@cbtn-round-line       : #454d5c;
 
 .btn {
   .flex-center();
@@ -13,8 +22,9 @@
   transition      : all 0.2s ease-in-out;
 
   .icon {
+    .transition();
+    
     color     : @win-bar-bg-color;
-    transition: all 0.2s ease-in-out;
   }
 
   &:hover {
@@ -27,7 +37,7 @@
     border-color    : @cbtn-active-round-line;
 
     .icon {
-      color: @text-color-second;
+      color: @color-second;
     }
   }
 }

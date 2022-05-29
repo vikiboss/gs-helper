@@ -1,5 +1,5 @@
 @import "../../utils/colors.less";
-@import "../../utils/util.less";
+@import "../../utils/utils.less";
 
 .container {
   .ani-show-left();
@@ -59,11 +59,11 @@
     width    : 100vw;
 
     .role-item {
+      .transition();
       .flex-center-column();
 
-      margin    : 4px;
-      width     : calc((100vw - 24px - 8 * 2 * $margin) / 8);
-      transition: all 0.2s ease-in-out;
+      margin: 4px;
+      width : calc((100vw - 24px - 8 * 2 * $margin) / 8);
 
       &:hover {
         transform: scale(1.05);
@@ -78,7 +78,7 @@
         position     : relative;
         width        : 100px;
         border-radius: 6px;
-        border       : 1px solid @input-border-color;
+        border       : 1px solid #d6d6d6;
 
         // 角色头图
         img:nth-child(1) {
@@ -106,7 +106,7 @@
           .flex-center();
           background-color         : rgba(64, 64, 64, 0.6);
           border-bottom-left-radius: 6px;
-          color                    : @text-color-white;
+          color                    : @color-white;
           height                   : 22px;
           font-size                : 12px;
           position                 : absolute;
@@ -153,7 +153,7 @@
           width        : 64px;
           height       : 64px;
           padding      : 8px 4px;
-          border       : 1px solid @text-color-second;
+          border       : 1px solid @color-second;
           border-radius: 4px;
 
           img {

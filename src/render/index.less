@@ -1,4 +1,5 @@
 @import "./utils/colors.less";
+@import "./utils/utils.less";
 
 @font-face {
   font-family: HanYiBlack;
@@ -17,7 +18,6 @@ body {
   font-size: 16px;
   overflow : hidden;
   cursor   : url("../assets/cursor.cur"), default;
-
 }
 
 input::selection {
@@ -30,15 +30,16 @@ img {
 }
 
 a {
-  color     : @color-accent;
-  outline   : none;
-  transition: 0.2s all ease-in-out;
+  .transition();
+
+  color  : @color-accent;
+  outline: none;
 
   &:hover {
-    color: @color-accent-second;
+    color: @color-accent-light;
   }
 
   &:active {
-    color: @text-color-second;
+    color: @color-second;
   }
 }

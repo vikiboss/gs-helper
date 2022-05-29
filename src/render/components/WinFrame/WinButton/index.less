@@ -1,0 +1,43 @@
+@import "../../../utils/colors.less";
+@import "../../../utils/utils.less";
+@import "../index.less";
+
+@size: 24px;
+
+@wbtn-actiove-bg: #9b947f;
+@wbtn-round-line: #878d8d;
+
+.btn {
+  .transition();
+  .flex-center();
+
+  background-color: @win-bar-title-color;
+  overflow        : hidden;
+
+  .icon {
+    .transition();
+
+    color: @win-bar-bg-color;
+  }
+
+  &:hover {
+    border-color: @color-bg;
+  }
+
+  &:active {
+    background-color: @wbtn-actiove-bg;
+    background-color: @wbtn-actiove-bg;
+    border-color    : @wbtn-actiove-bg;
+
+    .icon {
+      color: @color-bg;
+    }
+  }
+}
+
+.size {
+  border-radius: calc((@size + 6px) / 2);
+  border       : 3px solid @wbtn-round-line;
+  width        : @size;
+  height       : @size;
+}

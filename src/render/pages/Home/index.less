@@ -1,5 +1,15 @@
 @import "../../utils/colors.less";
-@import "../../utils/util.less";
+@import "../../utils/utils.less";
+
+@win-bar-bg-color : #454d5c;
+
+@home-block-active-border-color: #ecebeb;
+@home-block-border-color       : #6a6e75;
+@home-block-hover-border-color : #fee6b3;
+@home-btn-bg-color             : #586171;
+@home-btn-color                : #ebe4d7;
+@home-btn-hover-color          : #f8f6f4;
+@home-btn-list-bg-color        : #e6e1d5;
 
 .container {
   .flex-center-x-column();
@@ -80,13 +90,13 @@
           .level,
           .region,
           .uid {
-            color  : @text-color;
+            color  : @color-primary;
             display: inline-block;
             flex   : 1;
             padding: 4px 10px;
 
             &:active {
-              color: @text-color-second;
+              color: @color-second;
             }
           }
         }
@@ -107,7 +117,7 @@
         width : 50%;
 
         &:active {
-          color: @text-color-second;
+          color: @color-second;
         }
 
         .note-icon {
@@ -125,7 +135,7 @@
           .dispatch-border {
             .flex-center();
 
-            border       : 2px solid @text-color-white;
+            border       : 2px solid @color-white;
             border-radius: 15px;
             margin-right : 8px;
             overflow     : hidden;
@@ -136,7 +146,7 @@
             }
 
             &:active {
-              border-color: @text-color-second;
+              border-color: @color-second;
             }
           }
 
@@ -150,7 +160,7 @@
     .top-btns {
       .flex-center-y();
 
-      color   : @text-color;
+      color   : @color-primary;
       margin  : 16px;
       position: absolute;
       right   : 0;
@@ -158,12 +168,12 @@
 
       .top-btn {
         .flex-center-y();
+        .transition-quick();
 
-        margin    : 0 16px;
-        transition: all 0.1s ease-in-out;
+        margin: 0 16px;
 
         &:active {
-          color: @text-color-second;
+          color: @color-second;
         }
 
         span {
@@ -305,7 +315,7 @@
     .footer {
       .flex-center-y();
 
-      color    : @text-color-white;
+      color    : @color-white;
       font-size: 12px;
       margin   : 12px 0;
     }
