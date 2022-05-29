@@ -10,7 +10,7 @@ import styles from "./index.less";
 const Daily: React.FC = () => {
   const navigate = useNavigate();
   return (
-    <div className={styles.desc}>
+    <div className={styles.container}>
       <div>🏗️ 今日页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}

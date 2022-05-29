@@ -11,7 +11,7 @@ const Query: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className={styles.desc}>
+    <div className={styles.container}>
       <div>🏗️ UID 查询页，还在施工中</div>
       <CircleButton
         Icon={TiArrowBack}

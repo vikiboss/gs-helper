@@ -38,7 +38,7 @@ const Month: React.FC = () => {
 
   return (
     <>
-      <div className={styles.desc}>
+      <div className={styles.container}>
         {monthInfo.account_id ? (
           <>
             <div className={styles.title}>旅行者札记</div>

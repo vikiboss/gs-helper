@@ -23,7 +23,7 @@ const About: React.FC = () => {
   const groupLink = "https://jq.qq.com/?_wv=1027&k=InHF9niP";
 
   return (
-    <div className={styles.desc}>
+    <div className={styles.container}>
       <div className={styles.title}>关于 / About</div>
       <div className={styles.declaration}>
         <p>
