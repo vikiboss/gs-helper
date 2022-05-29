@@ -120,28 +120,32 @@ const Home: React.FC = () => {
     nativeApi.openWindow(link);
   };
 
-  const handleAvatarClick = () => notice.info({ message: "不准点派蒙！" });
+  const handleAvatarClick = async () => {
+    const hitokoto = await nativeApi.getHitokoto();
+    const error = hitokoto.includes("出错啦");
+    notice[error ? "warning" : "info"]({ message: hitokoto });
+  };
 
   const info = [
     {
       key: "nickname",
       name: "昵称",
-      content: (user.nickname || "").substring(0, 10)
+      content: user.nickname.substring(0, 10)
     },
     {
       key: "level",
       name: "等级",
-      content: `Lv.${user.level || ""} `
+      content: `Lv.${user.level} `
     },
     {
       key: "region",
       name: "区服",
-      content: `${user.regionName || ""} （${user.isOfficial ? "官服" : "渠道服"}）`
+      content: `${user.regionName} （${user.isOfficial ? "官服" : "渠道服"}）`
     },
     {
       key: "uid",
       name: "UID",
-      content: user.uid || ""
+      content: user.uid
     }
   ];
 
@@ -174,10 +178,10 @@ const Home: React.FC = () => {
 
   // 处理周本数据
   const { remain_resin_discount_num: remain, resin_discount_num_limit: limit } = note;
-  const discountStatus = `${limit - remain}/${limit}`;
+  const discountStatus = `${remain}/${limit}`;
   const isDiscountDone = remain === 0;
   const discountText = isDiscountDone ? "已达上限" : `还剩 ${remain} 次`;
-  const discountTitle = "本周树脂减半次数" + discountText;
+  const discountTitle = "本周树脂消耗减半次数" + discountText;
 
   // 处理参量质变仪数据
   const hasTransformer = note?.transformer?.obtained;
@@ -209,13 +213,13 @@ const Home: React.FC = () => {
       name: "home"
     },
     {
-      detail: `今日委托 ${taskStatus}`,
+      detail: `每日委托任务 ${taskStatus}`,
       icon: taskIcon,
       title: taskTitle,
       name: "task"
     },
     {
-      detail: `周本进度 ${discountStatus}`,
+      detail: `值得铭记的强敌 ${discountStatus}`,
       icon: discountIcon,
       title: discountTitle,
       name: "discount"

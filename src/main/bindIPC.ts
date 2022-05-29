@@ -40,6 +40,7 @@ import getOwnedRoles from "../services/getOwnedRoles";
 import sortGachaList from "../utils/sortGachaList";
 
 import type { AppData } from "../typings";
+import getHitokoto from "../services/getHitokoto";
 
 const bindIPC = (win: BrowserWindow) => {
   const wins = new Map<string, BrowserWindow>();
@@ -57,6 +58,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getBBSSignInfo, async () => await getBBSSignInfo());
   IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
+  IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());
   IPC.handle(IPCEvents.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
   IPC.handle(IPCEvents.getOwnedRoles, async () => await getOwnedRoles());
   IPC.handle(IPCEvents.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));

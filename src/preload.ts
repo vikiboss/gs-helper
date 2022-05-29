@@ -20,6 +20,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPCEvents.getBBSSignInfo),
   getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPCEvents.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
+  getHitokoto: (): Promise<string> => IPC.invoke(IPCEvents.getHitokoto),
   getOwnedRoles: (): Promise<Role[]> => IPC.invoke(IPCEvents.getOwnedRoles),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
   hideApp: () => IPC.send(IPCEvents.hideApp),
