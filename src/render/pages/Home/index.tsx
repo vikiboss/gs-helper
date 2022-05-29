@@ -3,6 +3,7 @@ import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
+import { MdOutlineNoteAlt } from "react-icons/md";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
 import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
@@ -105,7 +106,7 @@ const Home: React.FC = () => {
   };
 
   const handlePageSwitch = (path: string) => {
-    const noAuth = !auth.isLogin && path !== "/gacha";
+    const noAuth = !auth.isLogin && !(path === "/gacha" || path === "strategy");
     if (noAuth) return notice.warning({ message: "这个功能需要登录才能正常使用" });
     const monthNotOpen = path === "/month" && user.level < 10;
     if (monthNotOpen) return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
@@ -249,18 +250,29 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/gacha")
     },
     {
+      name: "今日素材",
+      Icon: BiNotepad,
+      handler: () => handlePageSwitch("/daily")
+    },
+    {
+      name: "原神攻略",
+      Icon: FaRegCompass,
+      handler: () => handlePageSwitch("/strategy")
+      // handler: () => handleWindowOpen(LINK_BBS_YS_OBC)
+    },
+    {
       name: "提瓦特地图",
       Icon: FaRegMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },
     {
-      name: "观测枢·攻略",
-      Icon: FaRegCompass,
-      handler: () => handleWindowOpen(LINK_BBS_YS_OBC)
+      name: "米游社签到",
+      Icon: RiCalendarCheckFill,
+      handler: () => handlePageSwitch("/sign")
     },
     {
-      name: "旅行者札记",
-      Icon: BiNotepad,
+      name: "冒险札记",
+      Icon: MdOutlineNoteAlt,
       handler: () => handlePageSwitch("/month")
     },
     {
@@ -272,17 +284,12 @@ const Home: React.FC = () => {
       name: "游戏数据",
       Icon: HiCubeTransparent,
       handler: () => handlePageSwitch("/game")
-    },
-    {
-      name: "查询 UID",
-      Icon: IoSearch,
-      handler: () => handlePageSwitch("/query")
-    },
-    {
-      name: "米游社签到",
-      Icon: RiCalendarCheckFill,
-      handler: () => handlePageSwitch("/sign")
     }
+    // {
+    //   name: "查询 UID",
+    //   Icon: IoSearch,
+    //   handler: () => handlePageSwitch("/query")
+    // },
   ];
 
   const handleUidClick = (uid: string) => {
