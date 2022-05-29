@@ -40,25 +40,31 @@ const defaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
-const Gocha: React.FC = () => {
+const Gacha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
+  const [uid, setUid] = useState<string>("");
   const [filter, setfilter] = useState<FilterType>(defaultFilters);
-  const [gacha, setGacha] = useState<GachaData>(DefaultGachaData);
+  const [gachas, setGachas] = useState<GachaData[]>([DefaultGachaData]);
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
+  const initGachaData = async () => {
+    const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
+    setGachas(gachas);
+    const uid: string = await nativeApi.getStoreKey("user.uid");
+    const loggedUidGachaData = gachas.filter((e) => e.info.uid === uid)[0];
+    if (loggedUidGachaData) {
+      setUid(uid);
+    } else if (gachas.length) {
+      setUid(gachas[0].info.uid);
+    }
+  };
+
   useEffect(() => {
     (async () => {
-      const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
-      const uid: string = await nativeApi.getStoreKey("user.uid");
+      await initGachaData();
       await getLocalGachaUrl();
-      const loggedUidGachaData = gachas.filter((e) => e.info.uid === uid)[0];
-      if (loggedUidGachaData) {
-        setGacha(loggedUidGachaData);
-      } else if (gachas.length) {
-        setGacha(gachas[0]);
-      }
     })();
   }, []);
 
@@ -69,11 +75,11 @@ const Gocha: React.FC = () => {
 
     setLoading(true);
     const data = await nativeApi.getGachaListByUrl(link);
-    console.log("updateGachaData: ", data?.list?.length);
+    console.log("updateGachaData: ", data.list.length);
 
-    if (data?.list?.length) {
-      notice.success({ message: `更新完毕，共获取到 ${data?.list?.length} 条数据` });
-      setGacha(data);
+    if (data.list.length) {
+      notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
+      await initGachaData();
     } else {
       notice.faild({ message: "数据异常，请尝试重新获取 「最新链接」 后再试" });
     }
@@ -161,8 +167,8 @@ const Gocha: React.FC = () => {
     }
   ];
 
+  const gacha = gachas.filter((e) => e.info.uid === uid)[0] || DefaultGachaData;
   const list = filterGachaList(gacha.list, filter);
-
   const now = new Date();
   const dateRange = [D(now).subtract(8, "M").toDate(), now];
   const firsteDate = gacha.list.length ? gacha.list[0].time : "";
@@ -246,7 +252,19 @@ const Gocha: React.FC = () => {
             style={{ marginRight: "12px" }}
           />
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
-          <span className={styles.title}>祈愿记录 「数据可视化」 分析</span>
+          <div className={styles.selectZone}>
+            <label htmlFor='uid'>UID：</label>
+            <select name='UID' id='uid' onChange={(e) => setUid(e.target.value)}>
+              {gachas.map((e) => (
+                <option key={e.info.uid} value={e.info.uid} selected={e.info.uid === uid}>
+                  {e.info.uid}
+                </option>
+              ))}
+            </select>
+          </div>
+          <Button text='导入JSON' />
+          <Button text='导出JSON' />
+          {/* <span className={styles.title}>祈愿记录 「可视化」 分析</span> */}
         </div>
         {gacha.list.length > 0 && !loading ? (
           <div className={styles.content}>
@@ -303,8 +321,8 @@ const Gocha: React.FC = () => {
                   <div>新手池</div>
                 </div>
                 {["5", "4", "3"].map((e: "3" | "4" | "5") => (
-                  <div>
-                    <div key={e}>{e}星</div>
+                  <div key={e}>
+                    <div>{e}星</div>
                     {Object.keys(GachaMap).map((f: GachaType) => (
                       <div className={cn(styles[`star${e}`], styles.star)} key={f}>
                         {getGachaNumsAndRates(e, f)}
@@ -331,4 +349,4 @@ const Gocha: React.FC = () => {
   );
 };
 
-export default Gocha;
+export default Gacha;

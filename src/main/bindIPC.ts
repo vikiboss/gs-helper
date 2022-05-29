@@ -157,6 +157,7 @@ const bindIPC = (win: BrowserWindow) => {
     if (data.list.length > 0) {
       data.list = sortGachaList(data.list);
       updateStoreGachaList(data);
+      return store.get("gachas").filter((e) => (e.info.uid = data.info.uid))[0];
     }
     return data;
   });
