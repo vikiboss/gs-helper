@@ -1,4 +1,5 @@
 @import "../../utils/colors.less";
+@import "../../utils/utils.less";
 
 @size-small : 30px;
 @size-middle: 42px;
@@ -16,12 +17,13 @@
 @btn-text-color          : #ece5d8;
 
 .btn {
+  .transition();
+
   align-items: center;
   border     : 1px solid transparent;
   display    : flex;
   overflow   : hidden;
   position   : relative;
-  transition : all 0.2s ease-in-out;
   box-shadow : 1px 1px 4px 4px rgba(220, 220, 220, 0.3);
 
   .confirm {
@@ -33,10 +35,11 @@
   }
 
   .icon {
+    .transition();
+
     background-color: @btn-icon-bg-color;
     border-radius   : 50%;
     position        : absolute;
-    transition      : all 0.2s ease-in-out;
   }
 
   .text {

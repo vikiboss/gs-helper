@@ -61,6 +61,7 @@ const Home: React.FC = () => {
   const auth = useAuth();
   const notice = useNotice();
   const navigate = useNavigate();
+  const [loading, setLoading] = useState<boolean>(false);
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
   const [user, setUser] = useState<Partial<AppData["user"]>>(DefaultAppData["user"]);
   const [sign, setSign] = useState<SignInfo>(DefaultSignInfo);
@@ -85,6 +86,7 @@ const Home: React.FC = () => {
 
   const updateInfo = async (isUserTrriger: boolean = true) => {
     if (!auth.isLogin) return;
+    setLoading(true);
     if (isUserTrriger) notice.info({ message: "小派蒙正在努力获取最新数据...", autoHide: false });
 
     const [user, note, sign] = await Promise.all([
@@ -100,6 +102,7 @@ const Home: React.FC = () => {
 
     if (isUserTrriger) notice.success({ message: "更新成功" });
 
+    setLoading(false);
     setUser(user);
     setNotesData(note);
     setSign(sign);
@@ -240,8 +243,10 @@ const Home: React.FC = () => {
     return { done, avatar, title };
   });
 
-  const dispatchDetail = `探索派遣 ${dispatchs.length}/${note?.max_expedition_num}`;
-  const dispatcTitle = dispatchs.length > 0 ? dispatchDetail : "暂未派遣任何角色";
+  const doneNum = dispatchs.filter((e) => e.done).length;
+  const dispatchDetail = `探索派遣 ${doneNum}/${dispatchs.length}`;
+  const dispatcTitleText = `${dispatchDetail}，共派遣 ${dispatchs.length} 个角色，${doneNum} 个已完成`;
+  const dispatcTitle = dispatchs.length > 0 ? dispatcTitleText : "暂未派遣任何角色";
 
   const btns = [
     {
@@ -310,7 +315,11 @@ const Home: React.FC = () => {
                 <div className={styles.userInfo}>
                   {info.length &&
                     info.map((e) => (
-                      <div className={styles.infoItem} key={e.key}>
+                      <div
+                        className={styles.infoItem}
+                        key={e.key}
+                        title={e.key === "uid" ? "点击复制 UID 到剪切板" : e.content}
+                      >
                         <span>{e.name}：</span>
                         <div
                           className={styles[e.key]}
@@ -347,19 +356,12 @@ const Home: React.FC = () => {
                 </div>
                 <div className={styles.noteItem}>
                   <div className={styles.noteDetail}>
-                    {dispatchs.map((e, i) => (
+                    {dispatchs.map((e) => (
                       <div
                         className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
                         title={e.title}
                         key={e.avatar}
-                        onClick={() => {
-                          const args = { message: `角色 ${i + 1} ${e.title}` };
-                          if (e.done) {
-                            notice.success(args);
-                          } else {
-                            notice.info(args);
-                          }
-                        }}
+                        onClick={() => notice[e.done ? "success" : "warning"]({ message: e.title })}
                       >
                         <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
                       </div>
@@ -386,8 +388,8 @@ const Home: React.FC = () => {
             {auth.isLogin && (
               <>
                 <div className={styles.topBtn} onClick={() => updateInfo()}>
-                  <IoMdRefresh size={20} />
-                  <span>刷新</span>
+                  <IoMdRefresh size={20} className={loading ? styles.loading : ""} />
+                  <span>{loading ? "正在更新" : "更新数据"}</span>
                 </div>
                 |
               </>

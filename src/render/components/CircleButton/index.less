@@ -15,16 +15,16 @@
 @cbtn-round-line       : #454d5c;
 
 .btn {
+  .transition();
   .flex-center();
 
   background-color: @cbtn-bg-color;
   overflow        : hidden;
-  transition      : all 0.2s ease-in-out;
 
   .icon {
     .transition();
-    
-    color     : @win-bar-bg-color;
+
+    color: @win-bar-bg-color;
   }
 
   &:hover {

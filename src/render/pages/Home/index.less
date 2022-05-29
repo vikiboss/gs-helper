@@ -48,13 +48,13 @@
       width : 360px;
 
       .avatar {
+        .transition-quick();
         .flex-center();
 
         background-image : url("../../../assets/avatar-border-hover.png");
         background-repeat: no-repeat;
         background-size  : contain;
         height           : $width;
-        transition       : all 0.1s ease-in-out;
         width            : 140px;
 
         .avatar-image {
@@ -127,19 +127,20 @@
         }
 
         .note-detail {
+          .transition-quick();
           .flex-center-y();
+
           height     : 26px;
           line-height: 26px;
-          transition : all 0.1s ease-in-out;
 
           .dispatch-border {
+            .transition-quick();
             .flex-center();
 
-            border       : 2px solid @color-white;
+            border       : 2px solid @color-accent;
             border-radius: 15px;
             margin-right : 8px;
             overflow     : hidden;
-            transition   : all 0.1s ease-in-out;
 
             .dispatch-avatar {
               height: 24px;
@@ -151,7 +152,7 @@
           }
 
           .done {
-            border-color: @color-accent;
+            border-color: @color-success;
           }
         }
       }
@@ -171,6 +172,10 @@
         .transition-quick();
 
         margin: 0 16px;
+
+        .loading {
+          .rotate();
+        }
 
         &:active {
           color: @color-second;
@@ -274,8 +279,9 @@
       }
 
       .btn {
-        .flex-center-column();
         .ani-show-bottom();
+        .flex-center-column();
+        .transition-slow();
 
         width            : 100%;
         width            : calc((100% - 80px) / 4);
@@ -289,7 +295,6 @@
         background-size  : contain;
         background-repeat: no-repeat;
         border           : 2px solid @home-block-border-color;
-        transition       : all 0.3s ease-in-out;
 
         .btn-text {
           margin-top: 12px;
