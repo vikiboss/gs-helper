@@ -157,6 +157,34 @@
   }
 }
 
+@keyframes slide-top {
+  0% {
+    transform: translateY(-12px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes slide-bottom {
+  0% {
+    transform: translateY(12px);
+  }
+
+  50% {
+    transform: translateY(0px);
+  }
+
+  100% {
+    transform: translateY(12px);
+  }
+}
+
 @keyframes rotate360 {
   from {
     transform: rotate(0deg);
@@ -193,4 +221,12 @@
 
 .ani-slide-right {
   animation: slide-right 2s ease-in-out infinite;
+}
+
+.ani-slide-top {
+  animation: slide-top 2s ease-in-out infinite;
+}
+
+.ani-slide-bottom {
+  animation: slide-bottom 2s ease-in-out infinite;
 }
