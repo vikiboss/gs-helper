@@ -1,8 +1,10 @@
+import { BiImport, BiExport } from "react-icons/Bi";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
+import { TimeRangeDayData } from "@nivo/calendar";
 
 import { DefaultGachaData, GachaMap } from "../../../constants";
 import Button from "../../components/Button";
@@ -19,7 +21,6 @@ import useNotice from "../../hooks/useNotice";
 import type { GachaData, GachaType, ItemType, StarType } from "../../../typings";
 
 import styles from "./index.less";
-import { TimeRangeDayData } from "@nivo/calendar";
 
 type FilterBtn = { name: string; type: StarType | GachaType | ItemType };
 
@@ -203,7 +204,7 @@ const Gacha: React.FC = () => {
 
   const statictics = getGachaStatictics();
   const loadingText = loading ? "派蒙努力加载中，预计半分钟..." : "派蒙没有找到任何数据";
-  const tip = `※ 共加载了 ${gacha.list.length} 条数据（${dateRangeText}），可能存在延迟，请以实际为准。`;
+  const tip = `※ 共加载了 ${gacha.list.length} 条数据（${dateRangeText}），数据同步存在延迟，请以游戏内为准。`;
 
   const pieProps = {
     data: transformGachaDataType(list),
@@ -239,7 +240,7 @@ const Gacha: React.FC = () => {
           className={styles.backBtn}
           onClick={() => navigate("/")}
         />
-        <div className={styles.inputZone}>
+        <div className={styles.topZone}>
           <input
             value={link}
             onBlur={(e) => setLink(e.target.value.trim())}
@@ -252,21 +253,32 @@ const Gacha: React.FC = () => {
             style={{ marginRight: "12px" }}
           />
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
-          <div className={styles.selectZone}>
-            <label htmlFor='uid'>UID：</label>
-            <select name='UID' id='uid' onChange={(e) => setUid(e.target.value)}>
-              {gachas.map((e) => (
-                <option key={e.info.uid} value={e.info.uid} selected={e.info.uid === uid}>
-                  {e.info.uid}
-                </option>
-              ))}
-            </select>
+          <div className={styles.rightZone}>
+            <div className={styles.icon} title='导入 JSON 数据'>
+              <BiImport size={20} />
+            </div>
+            <div className={styles.icon} title='导出 JSON 数据'>
+              <BiExport size={20} />
+            </div>
+            {gachas.length >= 1 && uid && (
+              <div className={styles.selectZone}>
+                <select
+                  name='UID'
+                  id='uid'
+                  onChange={(e) => setUid(e.target.value)}
+                  defaultValue={uid}
+                >
+                  {gachas.map((e) => (
+                    <option key={e.info.uid} value={e.info.uid}>
+                      {e.info.uid}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            )}
           </div>
-          <Button text='导入JSON' />
-          <Button text='导出JSON' />
-          {/* <span className={styles.title}>祈愿记录 「可视化」 分析</span> */}
         </div>
-        {gacha.list.length > 0 && !loading ? (
+        {gacha.info.uid && !loading ? (
           <div className={styles.content}>
             <div className={styles.pieChart}>
               <div className={styles.filterZone}>
@@ -339,7 +351,7 @@ const Gacha: React.FC = () => {
           </div>
         ) : (
           <div style={{ display: "flex", flex: 1 }}>
-            <Loading text={loadingText} />
+            <Loading text={loadingText} isEmpty={!loading && !gacha.info.uid} />
           </div>
         )}
         {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}

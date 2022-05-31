@@ -39,7 +39,11 @@ const Button: React.FC<ButtonProp> = (props) => {
   } = props;
   const Icon = type ? TYPE_MAP[type] : null;
   return (
-    <div style={style} className={cn(styles.btn, styles[theme],styles[size], className)} onClick={onClick}>
+    <div
+      style={{ zIndex: 1, ...style }}
+      className={cn(styles.btn, styles[theme], styles[size], className)}
+      onClick={onClick}
+    >
       {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : "")} />}
       <div className={cn(styles.text, Icon ? styles.withIcon : styles.noIcon)}>{text}</div>
     </div>
