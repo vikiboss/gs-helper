@@ -122,18 +122,22 @@
       }
 
       .icon {
-        .transition-slow();
+        .transition();
         .flex-center();
 
         border-radius: 20px;
         height       : 32px;
         margin-left  : 12px;
-        padding      : 4px;
+        padding      : 2px;
         position     : relative;
         width        : 32px;
 
+        svg {
+          .transition-quick();
+        }
+
         &::before {
-          border       : 2px solid transparent;
+          // border       : 2px solid transparent;
           border-radius: 20px;
           content      : " ";
           height       : 32px;
@@ -148,9 +152,13 @@
           background-color: @color-primary;
           color           : @color-white;
 
-          &::before {
-            border-color: @color-white;
+          svg {
+            transform: scale(1.1);
           }
+
+          // &::before {
+            // border-color: @color-white;
+          // }
         }
       }
     }
