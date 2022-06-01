@@ -304,7 +304,7 @@ export const DefaultMonthInfo: MonthInfo = {
   account_id: 0,
   nickname: "旅行者",
   date: "2022-01-01",
-  month: 1,
+  month: 0,
   optional_month: [],
   data_month: 1,
   data_last_month: 12,

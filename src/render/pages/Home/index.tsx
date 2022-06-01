@@ -282,7 +282,7 @@ const Home: React.FC = () => {
     {
       name: "冒险札记",
       Icon: MdOutlineNoteAlt,
-      handler: () => handlePageSwitch("/month")
+      handler: () => handlePageSwitch("/note")
     },
     {
       name: "角色详情",

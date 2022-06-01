@@ -7,7 +7,7 @@ import Gacha from "./pages/Gacha";
 import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Month from "./pages/Month";
+import Note from "./pages/Note";
 import Query from "./pages/Query";
 import Role from "./pages/Role";
 import Setting from "./pages/Setting";
@@ -24,7 +24,7 @@ const AppRouter: React.FC = () => {
         <Route path='/gacha' element={<Gacha />} />
         <Route path='/game' element={<Game />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/month' element={<Month />} />
+        <Route path='/note' element={<Note />} />
         <Route path='/query' element={<Query />} />
         <Route path='/role' element={<Role />} />
         <Route path='/setting' element={<Setting />} />

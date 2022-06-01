@@ -8,7 +8,7 @@ import request, { BaseRes } from "../utils/request";
 
 import { AppData } from "../typings";
 
-export type DayData = {
+type DayData = {
   current_primogems: number;
   current_mora: number;
   last_primogems: number;
@@ -22,7 +22,7 @@ type GroupBy = {
   percent: number;
 };
 
-export type MonthData = {
+type MonthData = {
   current_primogems: number;
   current_mora: number;
   last_primogems: number;
