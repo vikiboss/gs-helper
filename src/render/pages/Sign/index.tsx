@@ -85,7 +85,7 @@ const Sign: React.FC = () => {
                 return (
                   <div
                     title={`本月累签 ${i + 1} 天可领取，当前 ${total} 天`}
-                    key={e.name}
+                    key={e.name + i}
                     className={cn(styles.signItem, signedClass, todayClass)}
                     onClick={isToday ? handleSign : handleInfo.bind(null, i)}
                   >
