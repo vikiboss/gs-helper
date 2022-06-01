@@ -126,17 +126,19 @@ const Gacha: React.FC = () => {
   const getListTypeInfo = (list: GachaData["list"]) => {
     const roles = list.filter((item) => item.item_type === "角色");
     const weapons = list.filter((item) => item.item_type === "武器");
-    const r_5 = roles.filter((item) => item.rank_type === "5").map((e) => e.name);
-    const r_4 = roles.filter((item) => item.rank_type === "4").map((e) => e.name);
+    const r_5 = roles.filter((item) => item.rank_type === "5");
+    const r_4 = roles.filter((item) => item.rank_type === "4");
     const w_5 = weapons.filter((item) => item.rank_type === "5");
     const w_4 = weapons.filter((item) => item.rank_type === "4");
     const w_3 = weapons.filter((item) => item.rank_type === "3");
     let message = "";
-    if (r_5.length) message += `5星角色数：${r_5.length}（${r_5.join("、")}） & `;
-    if (r_4.length) message += `4星角色数：${r_4.length} & `;
-    if (w_5.length) message += `5星武器数：${w_5.length}（${w_5.join("、")}） & `;
-    if (w_4.length) message += `4星武器数：${w_4.length} & `;
-    if (w_3.length) message += `3星武器数：${w_3.length} & `;
+    message += r_5.length ? `5星角色${r_5.length}个 & ` : "";
+    // message += r_5.length ? `5星角色${r_5.length}个（${r_5.join("、")}） & ` : "";
+    message += r_4.length ? `4星角色${r_4.length}个 & ` : "";
+    message += w_5.length ? `5星武器${w_5.length}个 & ` : "";
+    // message += w_5.length ? `5星武器${w_5.length}个（${w_5.join("、")}） & ` : "";
+    message += w_4.length ? `4星武器${w_4.length}个 & ` : "";
+    message += w_3.length ? `3星武器${w_3.length}个 & ` : "";
     message = message.slice(0, message.length - 2).trim();
     return message;
   };
@@ -181,7 +183,7 @@ const Gacha: React.FC = () => {
     const map = Object.keys(GachaMap).filter((e) => e !== "newer") as GachaType[];
     const res: { all: number; times: number; unluckyDays: number; name: string }[] = [];
     for (const type of map) {
-      // 获取响应祈愿分类的所有数据
+      // 获取相应祈愿分类的所有数据
       const list = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[type]);
       // 存放所有5星的索引（1 开始）
       const i_5 = [];
@@ -200,6 +202,16 @@ const Gacha: React.FC = () => {
     const gacha_l = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
     const item_l = star_l.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
     return `${item_l.length}/${((item_l.length * 100) / (gacha_l.length || 1)).toFixed(2)}%`;
+  };
+
+  const handleImport = () => notice.warning({ message: "导入功能暂未开放" });
+  const handleExport = () => notice.warning({ message: "导出功能暂未开放" });
+  const handleBack = () => {
+    if (loading) {
+      notice.warning({ message: "请耐心等待数据加载完成" });
+    } else {
+      navigate("/");
+    }
   };
 
   const statictics = getGachaStatictics();
@@ -238,7 +250,7 @@ const Gacha: React.FC = () => {
           Icon={TiArrowBack}
           size='middle'
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={handleBack}
         />
         <div className={styles.topZone}>
           <input
@@ -254,10 +266,10 @@ const Gacha: React.FC = () => {
           />
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <div className={styles.rightZone}>
-            <div className={styles.icon} title='导入 JSON 数据'>
+            <div className={styles.icon} title='导入 JSON 数据' onClick={handleImport}>
               <BiImport size={20} />
             </div>
-            <div className={styles.icon} title='导出 JSON 数据'>
+            <div className={styles.icon} title='导出 JSON 数据' onClick={handleExport}>
               <BiExport size={20} />
             </div>
             {gachas.length >= 1 && uid && (
