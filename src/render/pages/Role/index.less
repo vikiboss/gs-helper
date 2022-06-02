@@ -2,7 +2,7 @@
 @import "../../utils/utils.less";
 
 .container {
-  .ani-show-left();
+  .ani-show-right();
   .flex-column();
 
   flex     : 1;
@@ -50,7 +50,7 @@
   }
 
   .role-table {
-    .ani-show-left();
+    .ani-show-right();
     .flex-center-y();
 
     flex-wrap: wrap;
@@ -59,8 +59,8 @@
     width    : 100vw;
 
     .role-item {
-      .transition();
       .flex-center-column();
+      .transition();
 
       margin: 4px;
       width : calc((100vw - 24px - 8 * 2 * $margin) / 8);
@@ -70,8 +70,8 @@
       }
 
       &>div {
-        .shadow();
         .flex-center-column();
+        .shadow();
 
         height       : 121px;
         margin-bottom: 3px;
@@ -203,8 +203,6 @@
 
 
   .back-btn {
-    .ani-show-right();
-
     left    : 20px;
     position: absolute;
     top     : 20px;
