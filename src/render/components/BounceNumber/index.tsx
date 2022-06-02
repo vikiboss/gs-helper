@@ -28,7 +28,15 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
   };
 
   return (
-    <div style={{ ...wrapperStyle, display: "flex", overflow: "hidden" }}>
+    <div
+      style={{
+        ...wrapperStyle,
+        display: "flex",
+        overflow: "hidden",
+        fontFamily: "arial",
+        fontWeight: "bold"
+      }}
+    >
       {numbers.map((e, i) => {
         return (
           <div key={`${e}${i}`} style={{ ...numsStyle, transform: transforms[i] || "none" }}>
