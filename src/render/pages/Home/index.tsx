@@ -330,8 +330,9 @@ const Home: React.FC = () => {
                         <div
                           className={styles[e.key]}
                           onClick={
-                            e.key === "uid" &&
-                            handleCopy.bind(null, e.content, "已将 UID 复制到剪切板")
+                            e.key === "uid"
+                              ? handleCopy.bind(null, e.content, "已将 UID 复制到剪切板")
+                              : null
                           }
                         >
                           {e.content}
