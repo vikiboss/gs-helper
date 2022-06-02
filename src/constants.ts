@@ -32,7 +32,7 @@ export const IPCEvents: Record<string, string> = {
 };
 
 export const ANNUCEMENT_DATA_DELAY = "数据可能存在延迟，请以游戏内的实时数据为准。";
-export const ANNUCEMENT_OPEN_SOURCE = "本软件使用 MIT 协议开源，仅供学习交流使用。";
+export const ANNUCEMENT_OPEN_SOURCE = "本工具使用 MIT 协议在 GitHub 上开源，仅供个人学习交流使用。";
 export const APP_NAME = "原神助手";
 export const GAME_NAME_EN = "Genshin Impact";
 export const GAME_NAME_ZH_CN = "原神";
@@ -139,7 +139,7 @@ export const GachaTypeMap: Record<string, string> = {
 
 export const DefaultAppData: AppData = {
   user: {
-    uid: "000000000",
+    uid: "00000000",
     nickname: "旅行者",
     level: 1,
     isOfficial: true,
