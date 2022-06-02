@@ -69,12 +69,12 @@ const Month: React.FC = () => {
                   <img src={primogem} alt='原石' />
                   <BounceNumber
                     number={initData.day_data.current_primogems}
-                    wrapperStyle={{ width: "54px" }}
+                    wrapperStyle={{ width: "40px" }}
                   />
                   <img src={mora} alt='摩拉' />
                   <BounceNumber
                     number={initData.day_data.current_mora}
-                    wrapperStyle={{ width: "88px" }}
+                    wrapperStyle={{ width: "80px" }}
                   />
                 </div>
               </div>
@@ -84,12 +84,12 @@ const Month: React.FC = () => {
                   <img src={primogem} alt='原石' />
                   <BounceNumber
                     number={initData.day_data.last_primogems}
-                    wrapperStyle={{ width: "54px" }}
+                    wrapperStyle={{ width: "40px" }}
                   />
                   <img src={mora} alt='摩拉' />
                   <BounceNumber
                     number={initData.day_data.last_mora}
-                    wrapperStyle={{ width: "88px" }}
+                    wrapperStyle={{ width: "80px" }}
                   />
                 </div>
               </div>
@@ -117,7 +117,7 @@ const Month: React.FC = () => {
                   <img src={primogem} alt='原石' />
                   <BounceNumber
                     number={monthData.current_primogems}
-                    wrapperStyle={{ width: "100px" }}
+                    wrapperStyle={{ width: "80px" }}
                   />
                   <span>
                     相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
@@ -127,7 +127,7 @@ const Month: React.FC = () => {
                 </div>
                 <div className={styles.monthItem}>
                   <img src={mora} alt='摩拉' />
-                  <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: "100px" }} />
+                  <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: "80px" }} />
                   {monthData.last_mora > 0 && (
                     <span>
                       相比上月 {mSign ? "+" : "-"}
@@ -149,7 +149,7 @@ const Month: React.FC = () => {
             </div>
             <div className={styles.tip}>
               ※ 仅统计 「充值途径」
-              之外获取的资源，暂只支持查询近三个月的数据，可能存在延迟，请以游戏内为准，此处仅供参考。
+              之外获取的资源，支持查询近三个月的数据，可能存在延迟，请以游戏内为准，此处仅供参考。
             </div>
           </div>
         ) : (

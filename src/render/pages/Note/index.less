@@ -27,7 +27,7 @@
 
       // align-self: center;
       color    : @color-primary;
-      font-size: 20px;
+      font-size: 24px;
     }
 
     .today {
@@ -47,20 +47,20 @@
         background-size  : 100% 100%;
         height           : 36px;
         padding          : 0 24px 0 32px;
+
+        .item {
+          .flex-center-y();
+
+          &>img {
+            margin-left: 6px;
+            width      : 32px;
+            height     : 32px;
+          }
+        }
       }
 
       &>div:nth-child(2) {
         margin-left: 20px;
-      }
-
-      .item {
-        .flex-center-y();
-
-        &>img {
-          margin-left: 6px;
-          width      : 32px;
-          height     : 32px;
-        }
       }
     }
 
