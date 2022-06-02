@@ -21,31 +21,44 @@ const About: React.FC = () => {
   const licenceLink = "https://github.com/Vikiboss/genshin-helper/blob/master/LICENCE";
   const githubLink = "https://github.com/vikiboss";
   const groupLink = "https://jq.qq.com/?_wv=1027&k=InHF9niP";
+  const ElectronLink = "https://www.electronjs.org";
+  const packageLink = "https://github.com/Vikiboss/genshin-helper/blob/master/package.json"
+  const ReactLink = "https://reactjs.org";
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>关于 / About</div>
+      <div className={styles.title}>关于</div>
       <div className={styles.declaration}>
         <p>
-          「原神助手」 完全免费，使用
+          「原神助手」 小工具完全由个人独立开发，基于
+          <a href={ElectronLink} target='_blank'>
+            {" Electron "}
+          </a>
+          与
+          <a href={ReactLink} target='_blank'>
+            {" React "}
+          </a>
+          ，使用
           <a href={licenceLink} target='_blank'>
             {" MIT "}
           </a>
-          协议开放源代码，仅供个人学习交流使用，
-          <b>请勿用于任何商业或违法违规用途</b>
-          ，二次修改请自觉遵守该协议的相关约定。
+          协议开放源代码，仅供个人学习交流使用，完全免费，
+          <b>请勿用于任何商业或违法违规用途</b>。
         </p>
 
         <p>
-          开发初衷是将原神玩家所需要的多数功能整合到一起，提升玩家的游戏效率和体验。首页数据（角色信息与便签状态）会自动定时更新（1次/分钟），可能存在延迟，请以游戏内的实时数据为准。
+          本小工具的开发初衷是：将原神玩家所需要的多数功能整合到一起，提升游戏效率和游戏体验。首页
+          「角色信息与便签状态」 数据采取自动更新的策略，频率为 1 次/分钟，
+          <b>数据可能存在延迟，请以游戏内的实时数据为准，此处仅供参考</b>。
         </p>
 
         <p>
-          软件内的部分内容来源于 「米游社」 和互联网，版权归
+          软件界面设计参考了原神游戏本体及米游社，大部分内容与素材来源于 「米游社」，版权归
           <a href='https://www.mihoyo.com/' target='_blank'>
             {" 「米哈游」 "}
           </a>
-          或 「原作者」 所有。如有发现任何侵权行为，并持有有效证明，请联系开发者对相关内容进行删除。
+          或 「原作者」 所有，仅用于学习交流使用。
+          <b>如有发现任何实质性的侵权行为，请附带相关证据联系开发者对相关内容进行删除</b>。
         </p>
       </div>
 
@@ -66,6 +79,13 @@ const About: React.FC = () => {
               {" GitHub "}
             </a>
             <span>（欢迎 star）</span>
+          </div>
+          <div className={styles.item}>
+            ※ 用到的开源库：
+            <a href={packageLink} target='_blank'>
+              {" package.json "}
+            </a>
+            <span></span>
           </div>
           <div className={styles.item}>
             <div className={styles.field}>
