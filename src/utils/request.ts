@@ -10,7 +10,7 @@ export type BaseRes<T> = {
   message: string;
 };
 
-axios.defaults.timeout = 6000;
+axios.defaults.timeout = 3000;
 
 Object.assign(axios.defaults.headers.common, {
   "user-agent": APP_USER_AGENT_BBS,

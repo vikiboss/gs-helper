@@ -5,6 +5,8 @@ import { MAIN_WINDOW_WIDTH, MAIN_WINDOW_HEIGHT, WINDOW_BACKGROUND_COLOR } from "
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
+import icon from "../assets/icon.ico";
+
 export const isDev = !app.isPackaged;
 
 const winOptions: BrowserWindowConstructorOptions = {
@@ -13,6 +15,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   show: false,
   frame: false,
   resizable: false,
+  icon: icon,
   maximizable: false,
   fullscreenable: false,
   backgroundColor: WINDOW_BACKGROUND_COLOR,
