@@ -66,10 +66,13 @@ const Home: React.FC = () => {
   const [user, setUser] = useState<Partial<AppData["user"]>>(DefaultAppData["user"]);
   const [sign, setSign] = useState<SignInfo>(DefaultSignInfo);
   const [note, setNotesData] = useState<DailyNotesData>(DefaultNotes);
+  const [hitokoto, setHitokoto] = useState<string>("loading...");
 
   useEffect(() => {
     (async () => {
       updateInfo(false);
+      const hitokoto = await nativeApi.getHitokoto();
+      setHitokoto(hitokoto);
       setHeart(setInterval(() => updateInfo(false), 60000));
     })();
     return () => {
@@ -100,7 +103,7 @@ const Home: React.FC = () => {
       return navigate("/login", { state: { isExpired: true } });
     }
 
-    if (isUserTrriger) notice.success({ message: "更新成功" });
+    if (isUserTrriger) notice.success({ message: "游戏状态更新成功" });
 
     setLoading(false);
     setUser(user);
@@ -130,7 +133,7 @@ const Home: React.FC = () => {
     {
       key: "nickname",
       name: "昵称",
-      content: user.nickname.substring(0, 10)
+      content: user.nickname
     },
     {
       key: "level",
@@ -301,9 +304,9 @@ const Home: React.FC = () => {
     // },
   ];
 
-  const handleUidClick = (uid: string) => {
-    nativeApi.writeClipboardText(uid);
-    notice.success({ message: "已将 UID 复制到剪切板" });
+  const handleCopy = (str: string, msg: string) => {
+    nativeApi.writeClipboardText(str);
+    notice.success({ message: msg });
   };
 
   return (
@@ -327,7 +330,10 @@ const Home: React.FC = () => {
                         <span>{e.name}：</span>
                         <div
                           className={styles[e.key]}
-                          onClick={e.key === "uid" ? handleUidClick.bind(null, e.content) : null}
+                          onClick={
+                            e.key === "uid" &&
+                            handleCopy.bind(null, e.content, "已将 UID 复制到剪切板")
+                          }
                         >
                           {e.content}
                         </div>
@@ -388,6 +394,9 @@ const Home: React.FC = () => {
               />
             </div>
           )}
+          <div className={styles.topGreeting} onClick={handleCopy.bind(null, hitokoto, "复制成功")}>
+            {hitokoto}
+          </div>
           <div className={styles.topBtns}>
             {auth.isLogin && (
               <>

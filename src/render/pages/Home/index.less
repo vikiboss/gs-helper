@@ -158,7 +158,26 @@
       }
     }
 
+    .top-greeting {
+      .ani-show-left();
+
+      color        : @color-primary;
+      left         : 0;
+      margin       : 16px 16px 16px 40px;
+      overflow     : hidden;
+      position     : absolute;
+      text-overflow: ellipsis;
+      top          : 0;
+      white-space  : nowrap;
+      width        : 500px;
+
+      &:active {
+        color: @color-second;
+      }
+    }
+
     .top-btns {
+      .ani-show-right();
       .flex-center-y();
 
       color   : @color-primary;
