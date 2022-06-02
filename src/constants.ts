@@ -60,7 +60,24 @@ export const LINK_BBS_REFERER = "https://webstatic.mihoyo.com";
 export const LINK_GITHUB_REPO = "https://github.com/vikiboss/genshin-helper";
 export const LINK_MIHOYO_BBS_LOGIN = "https://m.bbs.mihoyo.com/ys/#/login";
 export const LINK_GENSHIN_MAP = `${LINK_BBS_REFERER}/ys/app/interactive-map`;
-export const LINK_BBS_YS_OBC = "https://bbs.mihoyo.com/ys/obc/";
+
+export const LINK_BBS_ABYSS = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/46";
+export const LINK_BBS_ACTIVITY = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/48";
+export const LINK_BBS_ANIMAL = "https://bbs.mihoyo.com/ys/obc/channel/map/189/49";
+export const LINK_BBS_BOSS = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/43";
+export const LINK_BBS_ELEMENT = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/41";
+export const LINK_BBS_FOOD = "https://bbs.mihoyo.com/ys/obc/channel/map/189/21";
+export const LINK_BBS_MATERIAL = "https://bbs.mihoyo.com/ys/obc/channel/map/189/13";
+export const LINK_BBS_MYSTERY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/54";
+export const LINK_BBS_NEWER = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/38";
+export const LINK_BBS_OBC = "https://bbs.mihoyo.com/ys/obc";
+export const LINK_BBS_RELIQUARY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/218";
+export const LINK_BBS_ROLE = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/39";
+export const LINK_BBS_STRATEGY = "https://bbs.mihoyo.com/ys/strategy";
+export const LINK_BBS_TASK = "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231";
+export const LINK_BBS_TEAM = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/40";
+export const LINK_BBS_VERSION = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233";
+export const LINK_BBS_WEAPON = "https://bbs.mihoyo.com/ys/obc/channel/map/189/5";
 
 export const API_BBS = "https://bbs-api.mihoyo.com";
 export const API_TAKUMI = "https://api-takumi.mihoyo.com";

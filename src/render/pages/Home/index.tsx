@@ -22,7 +22,6 @@ import {
   DefaultAppData,
   DefaultNotes,
   DefaultSignInfo,
-  LINK_BBS_YS_OBC,
   LINK_GENSHIN_MAP,
   LOGIN_TIP,
   WELCOME_TIP

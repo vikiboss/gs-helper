@@ -122,8 +122,8 @@ const bindIPC = (win: BrowserWindow) => {
         wins.get(url).show();
       } else {
         const win = new BrowserWindow({
-          width: 1680,
-          height: 900,
+          width: 1300,
+          height: 803,
           show: false,
           autoHideMenuBar: true,
           backgroundColor: WINDOW_BACKGROUND_COLOR,
