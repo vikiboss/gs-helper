@@ -2,25 +2,27 @@ import React from "react";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 
-import withAuth from "../../auth/withAuth";
 import CircleButton from "../../components/CircleButton";
+import nativeApi from "../../utils/nativeApi";
+import withAuth from "../../auth/withAuth";
 
 import abyss from "../../../assets/icon-abyss.png";
 import activity from "../../../assets/icon-activity.png";
 import animal from "../../../assets/icon-animal.png";
 import boss from "../../../assets/icon-boss.png";
 import element from "../../../assets/icon-element.png";
-import weapon from "../../../assets/icon-weapon.png";
 import food from "../../../assets/icon-food.png";
 import material from "../../../assets/icon-material.png";
 import mystery from "../../../assets/icon-mystery.png";
 import newer from "../../../assets/icon-newer.png";
+import PV from "../../../assets/icon-PV.png";
 import reliquary from "../../../assets/icon-reliquary.png";
 import role from "../../../assets/icon-role.png";
 import strategy from "../../../assets/icon-strategy.png";
 import task from "../../../assets/icon-task.png";
 import team from "../../../assets/icon-team.png";
 import version from "../../../assets/icon-version.png";
+import weapon from "../../../assets/icon-weapon.png";
 import wiki from "../../../assets/icon-wiki.png";
 
 import {
@@ -34,6 +36,7 @@ import {
   LINK_BBS_MYSTERY,
   LINK_BBS_NEWER,
   LINK_BBS_OBC,
+  LINK_BBS_PV,
   LINK_BBS_RELIQUARY,
   LINK_BBS_ROLE,
   LINK_BBS_STRATEGY,
@@ -44,7 +47,6 @@ import {
 } from "../../../constants";
 
 import styles from "./index.less";
-import nativeApi from "../../utils/nativeApi";
 
 const btns = [
   {
@@ -131,6 +133,11 @@ const btns = [
     name: "深渊螺旋",
     icon: abyss,
     link: LINK_BBS_ABYSS
+  },
+  {
+    name: "PV合辑",
+    icon: PV,
+    link: LINK_BBS_PV
   }
 ];
 

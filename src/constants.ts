@@ -72,6 +72,7 @@ export const LINK_BBS_MATERIAL = "https://bbs.mihoyo.com/ys/obc/channel/map/189/
 export const LINK_BBS_MYSTERY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/54";
 export const LINK_BBS_NEWER = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/38";
 export const LINK_BBS_OBC = "https://bbs.mihoyo.com/ys/obc";
+export const LINK_BBS_PV = "https://bbs.mihoyo.com/ys/obc/channel/map/80";
 export const LINK_BBS_RELIQUARY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/218";
 export const LINK_BBS_ROLE = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/39";
 export const LINK_BBS_STRATEGY = "https://bbs.mihoyo.com/ys/strategy";
