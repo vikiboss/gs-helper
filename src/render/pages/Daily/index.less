@@ -45,9 +45,10 @@
     .content-top {
       .flex-center-y();
 
-      width          : 100%;
       justify-content: space-between;
       margin-bottom  : 8px;
+      // padding        : 0px 10px;
+      width          : calc(100% - 20px);
 
       &>div {
         .flex-center-y();
@@ -56,6 +57,11 @@
           color : @color-second;
           margin: 0 6px;
         }
+      }
+
+      &>span {
+        font-size: 14px;
+        color    : @color-second;
       }
     }
 
@@ -72,16 +78,21 @@
 
       &>div {
         .flex-center-x-column();
-        
+        .transition();
+
         font-size      : 14px;
         height         : 110px;
         justify-content: space-around;
         margin         : 4px 3px;
         width          : 96px;
-        
+
+        &:hover {
+          transform: scale(1.05);
+        }
+
         img {
           .shadow();
-          
+
           width           : 84px;
           height          : 84px;
           border-radius   : 6px;
