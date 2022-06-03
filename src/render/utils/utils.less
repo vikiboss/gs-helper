@@ -2,14 +2,15 @@
   display: flex;
 }
 
-.flex-column {
-  display       : flex;
-  flex-direction: column;
-}
-
 .flex-wrap {
   display  : flex;
   flex-wrap: wrap;
+}
+
+.flex-center {
+  align-items    : center;
+  display        : flex;
+  justify-content: center;
 }
 
 .flex-center-wrap {
@@ -17,6 +18,11 @@
   display        : flex;
   flex-wrap      : wrap;
   justify-content: center;
+}
+
+.flex-column {
+  display       : flex;
+  flex-direction: column;
 }
 
 .flex-column-wrap {
@@ -33,20 +39,26 @@
   justify-content: center;
 }
 
-.flex-center {
-  align-items    : center;
+.flex-center-x {
   display        : flex;
   justify-content: center;
 }
 
-.flex-center-x {
+.flex-center-x-wrap {
   display        : flex;
+  flex-wrap      : wrap;
   justify-content: center;
 }
 
 .flex-center-y {
   align-items: center;
   display    : flex;
+}
+
+.flex-center-y-wrap {
+  align-items: center;
+  display    : flex;
+  flex-wrap  : wrap;
 }
 
 .flex-center-column {
@@ -61,10 +73,24 @@
   flex-direction: column;
 }
 
+.flex-center-x-column-wrap {
+  .flex-center-y();
+
+  flex-direction: column;
+  flex-wrap     : wrap;
+}
+
 .flex-center-y-column {
   .flex-center-x();
 
   flex-direction: column;
+}
+
+.flex-center-y-column-wrap {
+  .flex-center-x();
+
+  flex-direction: column;
+  flex-wrap     : wrap;
 }
 
 .shadow {
@@ -83,9 +109,47 @@
   transition: all 0.3s ease-in-out;
 }
 
+
+.rotate {
+  animation: rotate360 infinite linear 0.6s;
+}
+
+.ani-show-top {
+  animation: show-top 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
+}
+
+.ani-show-bottom {
+  animation: show-bottom 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
+}
+
+.ani-show-left {
+  animation: show-left 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
+}
+
+.ani-show-right {
+  animation: show-right 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
+}
+
+.ani-slide-left {
+  animation: slide-left 2s ease-in-out infinite;
+}
+
+.ani-slide-right {
+  animation: slide-right 2s ease-in-out infinite;
+}
+
+.ani-slide-top {
+  animation: slide-top 2s ease-in-out infinite;
+}
+
+.ani-slide-bottom {
+  animation: slide-bottom 2s ease-in-out infinite;
+}
+
+
 @keyframes show-bottom {
   from {
-    opacity  : 0;
+    opacity  : 0.3;
     transform: translateY(32px);
   }
 
@@ -96,7 +160,7 @@
 
 @keyframes show-top {
   from {
-    opacity  : 0;
+    opacity  : 0.3;
     transform: translateY(-32px);
   }
 
@@ -107,7 +171,7 @@
 
 @keyframes show-left {
   from {
-    opacity  : 0;
+    opacity  : 0.3;
     transform: translateX(-32px);
   }
 
@@ -118,7 +182,7 @@
 
 @keyframes show-right {
   from {
-    opacity  : 0;
+    opacity  : 0.3;
     transform: translateX(32px);
   }
 
@@ -197,40 +261,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.rotate {
-  animation: rotate360 infinite linear 0.6s;
-}
-
-.ani-show-top {
-  animation: show-top 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
-}
-
-.ani-show-bottom {
-  animation: show-bottom 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
-}
-
-.ani-show-left {
-  animation: show-left 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
-}
-
-.ani-show-right {
-  animation: show-right 0.6s cubic-bezier(0.18, 0.6, 0.27, 1);
-}
-
-.ani-slide-left {
-  animation: slide-left 2s ease-in-out infinite;
-}
-
-.ani-slide-right {
-  animation: slide-right 2s ease-in-out infinite;
-}
-
-.ani-slide-top {
-  animation: slide-top 2s ease-in-out infinite;
-}
-
-.ani-slide-bottom {
-  animation: slide-bottom 2s ease-in-out infinite;
 }
