@@ -16,10 +16,11 @@
   .content {
     .flex-center-x-column();
 
-    padding : 0 24px 24px 24px;
-    width   : calc(100vw - 48px);
-    height  : 450px;
+    height  : 440px;
     overflow: hidden;
+    padding : 0 24px 24px 24px;
+    position: relative;
+    width   : calc(100vw - 48px);
 
     .btn {
       .transition();
@@ -47,7 +48,6 @@
 
       justify-content: space-between;
       margin-bottom  : 8px;
-      // padding        : 0px 10px;
       width          : calc(100% - 20px);
 
       &>div {
@@ -57,11 +57,6 @@
           color : @color-second;
           margin: 0 6px;
         }
-      }
-
-      &>span {
-        font-size: 14px;
-        color    : @color-second;
       }
     }
 
@@ -93,14 +88,20 @@
         img {
           .shadow();
 
-          width           : 84px;
-          height          : 84px;
-          border-radius   : 6px;
-          object-fit      : cover;
-          // margin-bottom: 2px;
+          width        : 84px;
+          height       : 84px;
+          border-radius: 6px;
+          object-fit   : cover;
         }
       }
+    }
 
+    .tip {
+      bottom   : 0;
+      color    : @color-second;
+      font-size: 14px;
+      left     : 30px;
+      position : absolute;
     }
   }
 
