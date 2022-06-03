@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 
 import CircleButton from "../../components/CircleButton";
 import nativeApi from "../../utils/nativeApi";
-import withAuth from "../../auth/withAuth";
 
 import abyss from "../../../assets/icon-abyss.png";
 import activity from "../../../assets/icon-activity.png";
@@ -165,4 +164,4 @@ const Setting: React.FC = () => {
   );
 };
 
-export default withAuth(Setting);
+export default Setting;

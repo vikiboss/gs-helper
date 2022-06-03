@@ -7,7 +7,6 @@ import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
 import useNotice from "../../hooks/useNotice";
-import withAuth from "../../auth/withAuth";
 
 import type { CalenderEvent } from "../../../services/getCalenderList";
 
@@ -174,4 +173,4 @@ const Daily: React.FC = () => {
   );
 };
 
-export default withAuth(Daily);
+export default Daily;

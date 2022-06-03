@@ -2,7 +2,6 @@ import React from "react";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 
-import withAuth from "../../auth/withAuth";
 import CircleButton from "../../components/CircleButton";
 
 import styles from "./index.less";
@@ -22,4 +21,4 @@ const Setting: React.FC = () => {
   );
 };
 
-export default withAuth(Setting);
+export default Setting;
