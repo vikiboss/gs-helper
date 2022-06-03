@@ -5,20 +5,25 @@
   .ani-show-right();
   .flex-column();
 
-  flex     : 1;
-  width    : 100vw;
-  max-width: 100vw;
-  overflow : hidden;
-  position : relative;
+  flex          : 1;
+  max-width     : 100vw;
+  overflow      : hidden;
+  padding-bottom: 20px;
+  position      : relative;
+  width         : 100vw;
+
+  .ani {
+    .ani-show-right();
+  }
 
   .top-zone {
     align-items    : flex-end;
     display        : flex;
-    height         : 62px;
+    height         : 60px;
     justify-content: center;
-    padding        : 0 20px;
-    width          : calc(100vw - 2 * 20px);
+    padding        : 0 20px 4px 20px;
     position       : relative;
+    width          : calc(100vw - 2 * 20px);
 
     &>span {
       font-size: 28px;
@@ -27,7 +32,7 @@
     &>div {
       position: absolute;
       right   : 20px;
-      bottom  : 0;
+      bottom  : 4px;
     }
   }
 
@@ -53,9 +58,11 @@
     .ani-show-right();
     .flex-center-y();
 
+    flex     : 1;
     flex-wrap: wrap;
+    height   : calc(100vh - 100px);
     overflow : auto;
-    padding  : 12px;
+    padding  : 4px 12px;
     width    : 100vw;
 
     .role-item {
@@ -104,11 +111,13 @@
         // 命座数
         &>div {
           .flex-center();
+
           background-color         : rgba(64, 64, 64, 0.6);
           border-bottom-left-radius: 6px;
+          border-top-right-radius  : 6px;
           color                    : @color-white;
-          height                   : 22px;
           font-size                : 12px;
+          height                   : 22px;
           position                 : absolute;
           right                    : 0px;
           top                      : 0px;
