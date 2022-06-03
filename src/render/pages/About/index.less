@@ -3,19 +3,19 @@
 
 .container {
   .ani-show-right();
-  .flex-center-column();
+  .flex-center-x-column();
 
   flex    : 1;
   position: relative;
 
   .title {
     font-size: 32px;
-    margin   : 20px;
+    margin   : 28px 0;
   }
 
   .declaration {
     line-height: 1.6rem;
-    width      : 70%;
+    width      : 86%;
 
     p {
       text-indent: 2rem;
@@ -24,16 +24,17 @@
   }
 
   .thank {
-    margin-top: 20px;
-    color     : @color-second;
+    margin: 20px;
+    color : @color-second;
   }
 
   .bottom {
+    // height         : 160px;
     align-items    : flex-end;
     display        : flex;
-    // height         : 160px;
     justify-content: space-between;
-    width          : 70%;
+    margin         : 28px 0;
+    width          : 86%;
 
     .items {
       .flex-column();
