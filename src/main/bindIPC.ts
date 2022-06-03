@@ -7,21 +7,6 @@ import {
   shell
 } from "electron";
 
-const AppInfo = {
-  name: app.getName(),
-  version: app.getVersion()
-};
-
-import { isDev } from "./createMainWindow";
-import { mainWin, store } from ".";
-import clearCookie from "../utils/clearCookie";
-import deepClone from "../utils/deepClone";
-import getDailyNotes from "../services/getDailyNotes";
-import getGachaListByUrl from "../services/getGachaListByUrl";
-import getGachaUrl from "../utils/getGachaUrl";
-import getRoleInfoByCookie from "../services/getUserGameRolesByCookie";
-import updateStoreGachaList from "../utils/updateStoreGachaList";
-import verifyCookie from "../utils/verifyCookie";
 import {
   APP_USER_AGENT_DESKTOP,
   APP_USER_AGENT_MOBILE,
@@ -32,15 +17,30 @@ import {
   WINDOW_BACKGROUND_COLOR
 } from "../constants";
 
+import { isDev } from "./createMainWindow";
+import { mainWin, store } from ".";
+
+import clearCookie from "../utils/clearCookie";
+import deepClone from "../utils/deepClone";
+import sortGachaList from "../utils/sortGachaList";
+import updateStoreGachaList from "../utils/updateStoreGachaList";
+import verifyCookie from "../utils/verifyCookie";
+
 import doBBSSign from "../services/doBBSSign";
 import getBBSSignData from "../services/getBBSSignData";
 import getBBSSignInfo from "../services/getBBSSignInfo";
+import getCalenderList from "../services/getCalenderList";
+import getDailyNotes from "../services/getDailyNotes";
+import getGachaListByUrl from "../services/getGachaListByUrl";
+import getGachaUrl from "../utils/getGachaUrl";
+import getHitokoto from "../services/getHitokoto";
 import getMonthInfo from "../services/getMonthInfo";
 import getOwnedRoles from "../services/getOwnedRoles";
-import sortGachaList from "../utils/sortGachaList";
+import getRoleInfoByCookie from "../services/getUserGameRolesByCookie";
 
 import type { AppData } from "../typings";
-import getHitokoto from "../services/getHitokoto";
+
+const AppInfo = { name: app.getName(), version: app.getVersion() };
 
 const bindIPC = (win: BrowserWindow) => {
   const wins = new Map<string, BrowserWindow>();
@@ -56,6 +56,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getAppInfo, () => AppInfo);
   IPC.handle(IPCEvents.getBBSSignData, async () => await getBBSSignData());
   IPC.handle(IPCEvents.getBBSSignInfo, async () => await getBBSSignInfo());
+  IPC.handle(IPCEvents.getCalenderList, async () => await getCalenderList());
   IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());

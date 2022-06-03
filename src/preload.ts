@@ -4,6 +4,7 @@ import { contextBridge, ipcRenderer as IPC } from "electron";
 import { IPCEvents, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
+import type { CalenderEvent } from "./services/getCalenderList";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
 import type { MonthInfo } from "./services/getMonthInfo";
@@ -18,6 +19,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPCEvents.getAppInfo),
   getBBSSignData: (): Promise<SignData | null> => IPC.invoke(IPCEvents.getBBSSignData),
   getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPCEvents.getBBSSignInfo),
+  getCalenderList: (): Promise<CalenderEvent[] | null> => IPC.invoke(IPCEvents.getCalenderList),
   getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPCEvents.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
   getHitokoto: (): Promise<string> => IPC.invoke(IPCEvents.getHitokoto),

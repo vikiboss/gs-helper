@@ -14,6 +14,7 @@ export const IPCEvents: Record<string, string> = {
   getBBSSignData: "GET_BBS_SIGN_DATA",
   getBBSSignInfo: "GET_BBS_SIGN_INFO",
   getDailyNotes: "GET_DAILY_NOTES",
+  getCalenderList: "GET_CALENDER_LIST",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
   getHitokoto: "GET_HITOKOTO",
@@ -83,6 +84,7 @@ export const API_BBS = "https://bbs-api.mihoyo.com";
 export const API_TAKUMI = "https://api-takumi.mihoyo.com";
 export const API_TAKUMI_RECORD = "https://api-takumi-record.mihoyo.com";
 export const API_HK4E = "https://hk4e-api.mihoyo.com";
+export const API_STATIC = "https://api-static.mihoyo.com";
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;

@@ -4,7 +4,9 @@ import { Store } from "electron-store";
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
+import type { CalenderEvent } from "./services/getCalenderList";
 import type { DailyNotesData } from "./services/getDailyNotes";
+import type { GachaData, AppInfo } from "./typings";
 import type { MonthInfo } from "./services/getMonthInfo";
 import type { Role } from "./services/getOwnedRoles";
 import type { SignData } from "./services/getBBSSignData";
@@ -16,6 +18,7 @@ export interface NativeApi {
   doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
   getBBSSignData: () => Promise<SignData | null>;
+  getCalenderList: () => Promise<CalenderEvent[] | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
