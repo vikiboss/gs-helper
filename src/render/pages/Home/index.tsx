@@ -261,7 +261,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/gacha")
     },
     {
-      name: "今日素材",
+      name: "原神日历",
       Icon: BiNotepad,
       handler: () => handlePageSwitch("/daily")
     },
