@@ -1,8 +1,8 @@
 {
   "name": "genshin-helper",
-  "productName": "genshin-helper",
+  "productName": "原神助手",
   "version": "1.0.0",
-  "description": "Genshin Impact Helper",
+  "description": "原神助手",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start --inspect-electron",
