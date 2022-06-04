@@ -1,10 +1,11 @@
-import { FiHeart } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 
 import React, { useEffect, useState } from "react";
 
+import { ElementTypes } from "../../../constants";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
@@ -186,10 +187,11 @@ const Role: React.FC = () => {
                     <img src={getStarImage(currentRole.rarity)} alt='star' />
                     <div className={styles.roleAttr}>
                       <span>Lv. {currentRole.level}</span>
+                      <span>{ElementTypes[currentRole.element]}</span>
                       {!currentRole.name.includes("旅行者") && (
                         <>
                           {/* <span>生日：{D(currentRole.startTime).format("M月D日")}</span> */}
-                          <FiHeart size={16} />
+                          <FaHeart size={16} />
                           <span>{currentRole.fetter}</span>
                         </>
                       )}
@@ -254,7 +256,7 @@ const Role: React.FC = () => {
                                 ))}
                               </>
                             ) : (
-                              <div>未装配圣遗物</div>
+                              <div>未装配任何圣遗物</div>
                             )}
                           </div>
                         )}
