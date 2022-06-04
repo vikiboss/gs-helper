@@ -25,7 +25,7 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   const url = `${API_TAKUMI}/event/bbs_sign_reward/info`;
   const { data, status } = await request.get<BaseRes<SignInfo>>(url, config);
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
-  return data?.data;
+  return data?.data || null;
 };
 
 export default getBBSSignInfo;

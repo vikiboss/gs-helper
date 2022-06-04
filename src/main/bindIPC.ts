@@ -35,8 +35,9 @@ import getGachaListByUrl from "../services/getGachaListByUrl";
 import getGachaUrl from "../utils/getGachaUrl";
 import getHitokoto from "../services/getHitokoto";
 import getMonthInfo from "../services/getMonthInfo";
-import getOwnedRoles from "../services/getOwnedRoles";
-import getRoleInfoByCookie from "../services/getUserGameRolesByCookie";
+import getOwnedRoleList from "../services/getOwnedRoleList";
+import getPublicRoleList from "../services/getPublicRoleList";
+import getRoleInfoByCookie from "../services/getUserRolesByCookie";
 
 import type { AppData } from "../typings";
 
@@ -61,7 +62,8 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());
   IPC.handle(IPCEvents.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
-  IPC.handle(IPCEvents.getOwnedRoles, async () => await getOwnedRoles());
+  IPC.handle(IPCEvents.getOwnedRoleList, async () => await getOwnedRoleList());
+  IPC.handle(IPCEvents.getPublicRoleList, async () => await getPublicRoleList());
   IPC.handle(IPCEvents.getStoreKey, (_, key: keyof AppData) => store.get<string, any>(key));
   IPC.handle(IPCEvents.readClipboardText, () => clipboard.readText());
 

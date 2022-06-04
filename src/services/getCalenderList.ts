@@ -62,7 +62,7 @@ const getCalenderList = async (): Promise<CalenderEvent[] | null> => {
     params: { app_sn: "ys_obc" }
   });
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
-  return data?.data?.list;
+  return data?.data?.list || null;
 };
 
 export default getCalenderList;

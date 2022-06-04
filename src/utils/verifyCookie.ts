@@ -1,9 +1,9 @@
 import type { Cookies } from "electron";
 
 import { DefaultGameData } from "../constants";
-import getUserGameRoles from "../services/getUserGameRolesByCookie";
+import getUserGameRoles from "../services/getUserRolesByCookie";
 
-import type { GameRole } from "../services/getUserGameRolesByCookie";
+import type { GameRole } from "../services/getUserRolesByCookie";
 
 type AuthResState = { cookie: string; valid: boolean; info: GameRole };
 

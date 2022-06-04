@@ -1,6 +1,6 @@
 import type { AppData, GachaData, GachaType } from "./typings";
 import type { DailyNotesData } from "./services/getDailyNotes";
-import type { GameRole } from "./services/getUserGameRolesByCookie";
+import type { GameRole } from "./services/getUserRolesByCookie";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SignData } from "./services/getBBSSignData";
 import type { MonthInfo } from "./services/getMonthInfo";
@@ -19,7 +19,8 @@ export const IPCEvents: Record<string, string> = {
   getGachaUrl: "GET_GACHA_URL",
   getHitokoto: "GET_HITOKOTO",
   getMonthInfo: "GET_MONTH_INFO",
-  getOwnedRoles: "GET_OWNED_ROLES",
+  getOwnedRoleList: "GET_OWNED_ROLE_LIST",
+  getPublicRoleList: "GET_PUBLIC_ROLE_LIST",
   getStoreKey: "GET_STORE_KEY",
   hideApp: "HIDE_APP",
   loginViaMihoyoBBS: "LOGIN_VIA_MIHOYO_BBS",
@@ -86,6 +87,7 @@ export const API_TAKUMI = "https://api-takumi.mihoyo.com";
 export const API_TAKUMI_RECORD = "https://api-takumi-record.mihoyo.com";
 export const API_HK4E = "https://hk4e-api.mihoyo.com";
 export const API_STATIC = "https://api-static.mihoyo.com";
+export const API_YS_CONTENT = "https://ys.mihoyo.com/content";
 
 export const MAIN_WINDOW_WIDTH = 970;
 export const MAIN_WINDOW_HEIGHT = 600;

@@ -8,7 +8,8 @@ import type { CalenderEvent } from "./services/getCalenderList";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
 import type { MonthInfo } from "./services/getMonthInfo";
-import type { Role } from "./services/getOwnedRoles";
+import type { PublicRole } from "./services/getPublicRoleList";
+import type { Role } from "./services/getOwnedRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 
@@ -23,7 +24,8 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPCEvents.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
   getHitokoto: (): Promise<string> => IPC.invoke(IPCEvents.getHitokoto),
-  getOwnedRoles: (): Promise<Role[]> => IPC.invoke(IPCEvents.getOwnedRoles),
+  getOwnedRoleList: (): Promise<Role[] | null> => IPC.invoke(IPCEvents.getOwnedRoleList),
+  getPublicRoleList: (): Promise<PublicRole[] | null> => IPC.invoke(IPCEvents.getPublicRoleList),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
   hideApp: () => IPC.send(IPCEvents.hideApp),
   loginViaMihoyoBBS: () => IPC.send(IPCEvents.loginViaMihoyoBBS),

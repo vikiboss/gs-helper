@@ -6,10 +6,11 @@ import paimon2 from "../../../assets/paimon2.gif";
 type LoadingProp = {
   text?: string;
   isEmpty?: boolean;
+  className?: React.HTMLAttributes<HTMLDivElement>["className"];
 };
 
 const Loading: React.FC<LoadingProp> = (props) => {
-  const { isEmpty = false } = props;
+  const { isEmpty = false, className } = props;
   const text = isEmpty ? "没有内容" : "小派蒙正在努力加载中...";
   const style: React.CSSProperties = {
     flex: 1,
@@ -21,7 +22,7 @@ const Loading: React.FC<LoadingProp> = (props) => {
     justifySelf: "center"
   };
   return (
-    <div style={style}>
+    <div style={style} className={className}>
       <img
         src={isEmpty ? paimon2 : paimon}
         alt='派蒙'

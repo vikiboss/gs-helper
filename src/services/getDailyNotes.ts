@@ -50,7 +50,7 @@ const getDailyNotes = async (): Promise<DailyNotesData | null> => {
   const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, config);
   const faild = status !== 200 || data.retcode !== 0;
   if (faild) console.log("getDailyNotesByCookie: ", data);
-  return data?.data;
+  return data?.data || null;
 };
 
 export default getDailyNotes;

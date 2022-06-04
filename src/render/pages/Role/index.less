@@ -1,63 +1,6 @@
 @import "../../utils/colors.less";
 @import "../../utils/utils.less";
 
-.bg-ani {
-  .opacity-show();
-}
-
-.detail-mode {
-  .transition();
-
-  color: @color-white;
-}
-
-
-.pyro {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-pyro, @color-pyro-deep);
-}
-
-.hydro {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-hydro, @color-hydro-deep);
-}
-
-.anemo {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-anemo, @color-anemo-deep);
-}
-
-.electro {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-electro, @color-electro-deep);
-}
-
-.geo {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-geo, @color-geo-deep);
-}
-
-.cryo {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-cryo, @color-cryo-deep);
-}
-
-.dendro {
-  .detail-mode();
-
-  background-image: radial-gradient(circle, @color-dendro, @color-dendro-deep);
-}
-
-.ani {
-  .opacity-show();
-}
-
 .container {
   .flex-column();
   .transition();
@@ -230,6 +173,18 @@
       .ani-show-right-far();
     }
 
+    .mask {
+      background-color: rgba(255, 255, 255, 0.4);
+      height          : 555px;
+      position        : absolute;
+      right           : -160px;
+      top             : 0;
+      transform       : skewX(-30deg);
+      width           : 380px;
+      z-index         : 0;
+    }
+
+
     .constellation-container {
       .flex-center-y-column();
 
@@ -261,6 +216,10 @@
     position: absolute;
     top     : calc(45vh - 80px);
     width   : $height;
+  }
+
+  .element-ani {
+    .ani-show-top-no-opacity();
   }
 
   .arrow {
@@ -304,4 +263,64 @@
     position: absolute;
     top     : 20px;
   }
+
+  .loading {
+    .ani-show-bottom();
+  }
+}
+
+.bg-ani {
+  .opacity-show();
+}
+
+.detail-mode {
+  .transition();
+
+  color: @color-white;
+}
+
+.pyro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-pyro, @color-pyro-deep);
+}
+
+.hydro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-hydro, @color-hydro-deep);
+}
+
+.anemo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-anemo, @color-anemo-deep);
+}
+
+.electro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-electro, @color-electro-deep);
+}
+
+.geo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-geo, @color-geo-deep);
+}
+
+.cryo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-cryo, @color-cryo-deep);
+}
+
+.dendro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-dendro, @color-dendro-deep);
+}
+
+.ani {
+  .opacity-show();
 }

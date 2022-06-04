@@ -8,7 +8,8 @@ import type { CalenderEvent } from "./services/getCalenderList";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GachaData, AppInfo } from "./typings";
 import type { MonthInfo } from "./services/getMonthInfo";
-import type { Role } from "./services/getOwnedRoles";
+import type { PublicRole } from "./services/getPublicRoleList";
+import type { Role } from "./services/getOwnedRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 
@@ -18,14 +19,15 @@ export interface NativeApi {
   doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
   getBBSSignData: () => Promise<SignData | null>;
-  getCalenderList: () => Promise<CalenderEvent[] | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
+  getCalenderList: () => Promise<CalenderEvent[] | null>;
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
   getHitokoto: () => Promise<string>;
   getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
-  getOwnedRoles: () => Promise<Role[]>;
+  getOwnedRoleList: () => Promise<Role[]>;
+  getPublicRoleList: () => Promise<PublicRole[]>;
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
   loginViaMihoyoBBS: () => void;

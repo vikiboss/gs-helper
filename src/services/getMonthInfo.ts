@@ -62,7 +62,7 @@ const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
   const { status, data } = await request.get<BaseRes<MonthInfo>>(url, config);
   const faild = status !== 200 || data.retcode !== 0;
   if (faild) console.log("getMonthInfo: ", data);
-  return data?.data;
+  return data?.data || null;
 };
 
 export default getMonthInfo;

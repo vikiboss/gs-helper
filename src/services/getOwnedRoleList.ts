@@ -1,5 +1,5 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from "../constants";
-import { DefaultAppData } from "./../constants";
+import { DefaultAppData } from "../constants";
 import { store } from "../main";
 
 import getServerByUid from "../utils/getServerByUid";
@@ -84,7 +84,7 @@ export type Affixes = {
   effect: string;
 };
 
-const getOwnedRoles = async (): Promise<Role[]> => {
+const getOwnedRoleList = async (): Promise<Role[] | null> => {
   const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/character`;
   const postData = { role_id: uid, server: getServerByUid(uid) };
@@ -97,8 +97,8 @@ const getOwnedRoles = async (): Promise<Role[]> => {
   };
   const { status, data } = await request.post<BaseRes<RoleData>>(url, postData, config);
   const faild = status !== 200 || data.retcode !== 0;
-  if (faild) console.log("getOwnedRoles: ", data);
-  return data?.data?.avatars || [];
+  if (faild) console.log("getOwnedRoleList: ", data);
+  return data?.data?.avatars  || null;
 };
 
-export default getOwnedRoles;
+export default getOwnedRoleList;
