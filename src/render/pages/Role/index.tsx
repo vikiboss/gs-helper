@@ -1,10 +1,10 @@
+import { FiHeart } from "react-icons/fi";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 
 import React, { useEffect, useState } from "react";
 
-import { ElementTypes } from "../../../constants";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
@@ -12,6 +12,9 @@ import nativeApi from "../../utils/nativeApi";
 import useNotice from "../../hooks/useNotice";
 import withAuth from "../../auth/withAuth";
 
+import star1 from "../../../assets/star1.png";
+import star2 from "../../../assets/star2.png";
+import star3 from "../../../assets/star3.png";
 import star4 from "../../../assets/star4.png";
 import star5 from "../../../assets/star5.png";
 
@@ -28,17 +31,47 @@ import type { Role as RoleInfo } from "../../../services/getOwnedRoleList";
 
 import styles from "./index.less";
 
-const StarImgs: string[] = [star4, star5];
+type RenderRoleInfo = RoleInfo & PublicRole;
+type TabType = "weapon" | "reliquary" | "constellation" | "profile";
+
+const StarImgs: string[] = [star1, star2, star3, star4, star5];
 const ElementImgs: Record<string, string> = { Pyro, Hydro, Anemo, Electro, Geo, Cryo, Dendro };
+const tabs: TabType[] = ["weapon", "reliquary", "constellation", "profile"];
+const TabMap: Record<TabType, string> = {
+  weapon: "武器",
+  reliquary: "圣遗物",
+  constellation: "命座",
+  profile: "简介"
+};
 
 const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`];
-const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 4];
-
-type RenderRoleInfo = RoleInfo & PublicRole;
+const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1];
 
 const getFullRoleInfo = (roles: RoleInfo[], publickRoles: PublicRole[]): RenderRoleInfo[] => {
   const res = [];
   for (const role of roles) {
+    if (role.name === "旅行者") {
+      res.push({
+        ...role,
+        name: role.image.includes("Girl") ? "旅行者·荧" : "旅行者·空",
+        introduction: "从世界之外漂流而来的旅行者，被神带走血亲，自此踏上寻找七神之路",
+        startTime: "2020-09-28 00:00:00",
+        line: "",
+        CVs: [
+          {
+            name: role.image.includes("Girl") ? "宴宁" : "鹿喑",
+            type: "中",
+            vos: []
+          },
+          {
+            name: role.image.includes("Girl") ? "悠木碧" : "堀江瞬",
+            type: "日",
+            vos: []
+          }
+        ]
+      });
+      continue;
+    }
     for (const publickRole of publickRoles) {
       if (role.name === publickRole.name) {
         res.push({ ...role, ...publickRole });
@@ -51,10 +84,11 @@ const getFullRoleInfo = (roles: RoleInfo[], publickRoles: PublicRole[]): RenderR
 const Role: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
+  const [infoTab, setInfoTab] = useState<TabType>("weapon");
   const [publicRoles, setPublicRolos] = useState<PublicRole[]>([]);
   const [index, setIndex] = useState<number>(0);
   const [isRoleChanging, setIsRoleChanging] = useState<boolean>(true);
-  const [mode, setMode] = useState<"detail" | "list">("detail");
+  const [mode, setMode] = useState<"detail" | "list">("list");
   const [roles, setRoles] = useState<RoleInfo[]>([]);
 
   useEffect(() => {
@@ -91,12 +125,11 @@ const Role: React.FC = () => {
   const isDetail = mode === "detail" && _roles.length > 0;
   const currentRole = _roles[index];
 
-  console.log(currentRole);
-
   const toggleMode = () => setMode(isDetail ? "list" : "detail");
+
   const handleArrowClick = (direction: "left" | "right") => {
     const isLeft = direction === "left";
-    const i = (index + (isLeft ? -1 : 1) + roles.length) % roles.length;
+    const i = (index + (isLeft ? -1 : 1) + _roles.length) % _roles.length;
     setIndex(i);
     setIsRoleChanging(false);
     setTimeout(() => setIsRoleChanging(true), 0);
@@ -116,14 +149,14 @@ const Role: React.FC = () => {
             {isDetail ? "角色详情" : "所有获得的角色"}
           </span>
           {isDetail && (
-            <Button text='总览' theme='light' onClick={toggleMode} className={styles.ani} />
+            <Button text='所有角色' theme='light' onClick={toggleMode} className={styles.ani} />
           )}
         </div>
         {roles.length > 0 ? (
           <>
             {!isDetail && (
               <div className={styles.roleTable}>
-                {roles.map((e, i) => (
+                {_roles.map((e, i) => (
                   <div
                     key={e.name + i}
                     className={styles.roleItem}
@@ -136,7 +169,7 @@ const Role: React.FC = () => {
                       <img src={e.icon} alt='icon' />
                       <img src={getStarImage(e.rarity)} alt='star' />
                       <img src={ElementImgs[e.element]} alt='element' />
-                      <span>Lv.{e.level}</span>
+                      <span>Lv. {e.level}</span>
                       {e.actived_constellation_num > 0 && <div>{e.actived_constellation_num}</div>}
                     </div>
                     <span>{e.name}</span>
@@ -144,53 +177,103 @@ const Role: React.FC = () => {
                 ))}
               </div>
             )}
+            {/* 渲染角色详情页 */}
             {isDetail && (
               <div className={styles.roleDetail}>
                 <div className={cn(styles.detailContent, isRoleChanging ? styles.contentAni : "")}>
                   <div className={styles.roleInfo}>
                     <div className={cn(styles.name)}>{currentRole.name}</div>
-                    <div>
-                      {currentRole.rarity}星 | Lv.{currentRole.level} |
-                      {ElementTypes[currentRole.element]} | 好感度:{currentRole.fetter} | 命座数:
-                      {currentRole.actived_constellation_num}
-                    </div>
-                    <div>
-                      <div>武器：</div>
-                      <img
-                        src={currentRole.weapon.icon}
-                        alt='icon'
-                        style={{ height: "42px" }}
-                        title={currentRole.weapon.desc}
-                      />
-                      <div>
-                        {currentRole.weapon.name} | Lv.{currentRole.weapon.level} |
-                        {currentRole.weapon.rarity}星 | 精炼
-                        {currentRole.weapon.affix_level}阶 | 突破
-                        {currentRole.weapon.promote_level}阶 | {currentRole.weapon.type_name}(
-                        {currentRole.weapon.type})
-                      </div>
-                    </div>
-                    <div>
-                      <div>圣遗物：</div>
-                      {currentRole.reliquaries.length ? (
-                        currentRole.reliquaries.map((e) => (
-                          <div key={e.id} style={{ display: "flex" }}>
-                            <div>{e.pos_name}：</div>
-                            <img
-                              src={e.icon}
-                              alt='icon'
-                              style={{ height: "24px", backgroundColor: "#aaa" }}
-                              title={e.set.affixes.reduce(
-                                (p, n) => p + `${n.activation_number}件套：${n.effect}\n`,
-                                ""
-                              )}
-                            />
-                            {e.rarity}星 / {e.name} | Lv.{e.level}|{e.set.name}
-                          </div>
-                        ))
-                      ) : (
-                        <div>未装配圣遗物</div>
+                    <img src={getStarImage(currentRole.rarity)} alt='star' />
+                    <div className={styles.roleAttr}>
+                      <span>Lv. {currentRole.level}</span>
+                      {!currentRole.name.includes("旅行者") && (
+                        <>
+                          {/* <span>生日：{D(currentRole.startTime).format("M月D日")}</span> */}
+                          <FiHeart size={16} />
+                          <span>{currentRole.fetter}</span>
+                        </>
                       )}
+                    </div>
+                    <div className={styles.tabContainer}>
+                      <div className={styles.tab}>
+                        {tabs.map((e) => (
+                          <div
+                            className={e === infoTab ? styles.tabActive : ""}
+                            key={e}
+                            onClick={() => setInfoTab(e)}
+                          >
+                            {TabMap[e]}
+                          </div>
+                        ))}
+                      </div>
+                      {/* 渲染角色详情的 Tab */}
+                      <div className={styles.tabContent}>
+                        {/* 渲染武器 Tab */}
+                        {infoTab === "weapon" && (
+                          <div className={styles.weapon}>
+                            <div className={styles[`star-${currentRole.weapon.rarity}`]}>
+                              <img src={currentRole.weapon.icon} alt='icon' />
+                              <img src={getStarImage(currentRole.weapon.rarity)} alt='star' />
+                              {currentRole.weapon.affix_level > 1 && (
+                                <span>{currentRole.weapon.affix_level}</span>
+                              )}
+                              <span>{currentRole.weapon.name}</span>
+                            </div>
+                            <div>
+                              <span>
+                                {currentRole.weapon.name} / {currentRole.weapon.type_name}
+                              </span>
+                              <span>{currentRole.weapon.desc}</span>
+                              <span>
+                                Lv.{currentRole.weapon.level}
+                                {currentRole.weapon.promote_level >= 1
+                                  ? ` / 突破${currentRole.weapon.promote_level}阶`
+                                  : ""}
+                                {currentRole.weapon.affix_level > 1
+                                  ? ` / 精炼${currentRole.weapon.affix_level}阶`
+                                  : ""}
+                              </span>
+                            </div>
+                          </div>
+                        )}
+                        {/* 渲染圣遗物 Tab */}
+                        {infoTab === "reliquary" && (
+                          <div className={styles.reliquary}>
+                            {currentRole.reliquaries.length ? (
+                              currentRole.reliquaries.map((e) => (
+                                <div key={e.id} style={{ display: "flex" }}>
+                                  <div>{e.pos_name}：</div>
+                                  <img
+                                    src={e.icon}
+                                    alt='icon'
+                                    style={{ height: "24px", backgroundColor: "#aaa" }}
+                                    title={e.set.affixes.reduce(
+                                      (p, n) => p + `${n.activation_number}件套：${n.effect}\n`,
+                                      ""
+                                    )}
+                                  />
+                                  {e.rarity}星 / {e.name} | Lv.{e.level}|{e.set.name}
+                                </div>
+                              ))
+                            ) : (
+                              <div>未装配圣遗物</div>
+                            )}
+                          </div>
+                        )}
+                        {/* 渲染命座 Tab */}
+                        {infoTab === "constellation" && (
+                          <div className={styles.constellation}>命座</div>
+                        )}
+                        {/* 渲染简介 Tab */}
+                        {infoTab === "profile" && (
+                          <div className={styles.profile}>
+                            <span className={styles.introduction}>{currentRole.introduction}</span>
+                            <span className={styles.CV}>
+                              CV：{currentRole.CVs.map((e) => e.name + `(${e.type})`).join("、")}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -200,6 +283,9 @@ const Role: React.FC = () => {
                   src={currentRole.image}
                   alt={currentRole.name}
                 />
+                <div className={cn(styles.extInfo, isRoleChanging ? styles.imgAni : "")}>
+                  {currentRole.line && <img src={currentRole.line} alt='' />}
+                </div>
               </div>
             )}
           </>

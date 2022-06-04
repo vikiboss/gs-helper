@@ -29,10 +29,29 @@
     }
 
     &>div {
+      left    : 20px;
       position: absolute;
-      right   : 20px;
-      bottom  : 4px;
+      top     : 20px;
+      z-index : 10;
     }
+  }
+
+  .star-1 {
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-1.png");
+  }
+
+  .star-2 {
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-2.png");
+  }
+
+  .star-3 {
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-3.png");
   }
 
   .star-4 {
@@ -140,8 +159,9 @@
   .role-detail {
     display : flex;
     flex    : 1;
-    margin  : 20px 80px 0 60px;
+    margin  : 20px 80px 0 20px;
     overflow: hidden;
+    z-index : 1;
 
     .detail-content {
       color          : @color-white;
@@ -150,8 +170,185 @@
       width          : 100%;
 
       .role-info {
+        width: 600px;
+
         .name {
-          font-size: 32px;
+          margin-left: 40px;
+          line-height: 40px;
+          font-size  : 36px;
+        }
+
+        &>img:nth-child(2) {
+          margin-left: 40px;
+          height     : 24px;
+        }
+
+        .role-attr {
+          .flex-center-y();
+
+          margin-left: 44px;
+
+          span:not(:last-child) {
+            margin-right: 12px;
+          }
+
+          span:not(:nth-child(1)) {
+            margin-left: 4px;
+          }
+        }
+
+        .tab-container {
+          .flex();
+
+          margin-top : 20px;
+          margin-left: 20px;
+          height     : 300px;
+
+          .tab {
+            .flex-column();
+
+            flex: 1;
+
+            &>div {
+              .transition();
+
+              border-top-left-radius   : 16px;
+              border-bottom-left-radius: 16px;
+              height                   : 28px;
+              line-height              : 28px;
+              margin                   : 2px 6px 2px 24px;
+              padding-left             : 12px;
+
+              &:hover {
+                background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+              }
+            }
+
+            .tab-active {
+              position  : relative;
+              background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+
+              &::before {
+                .ani-slide-right();
+
+                content  : "▶";
+                font-size: 14px;
+                left     : -24px;
+                position : absolute;
+              }
+            }
+          }
+
+          .tab-content {
+            flex      : 3;
+            margin-top: 6px;
+            position  : relative;
+            right     : 16px;
+
+            &>div {
+              .ani-show-right();
+            }
+
+            // 武器 tab 页
+            .weapon {
+              .flex();
+
+
+              // 武器背景容器
+              &>div:nth-child(1) {
+                .flex-center-x-column();
+                .shadow();
+
+                border         : 1px solid rbga(255, 255, 255, 0.3);
+                border-radius  : 6px;
+                height         : 126px;
+                justify-content: space-between;
+                position       : relative;
+                width          : 100px;
+
+                // 武器图片
+                img {
+                  height    : 100px;
+                  margin-top: 2px;
+                  width     : $height;
+                }
+
+                // 武器星级 icon
+                img:nth-child(2) {
+                  bottom  : 16px;
+                  position: absolute;
+                  height  : 24px;
+                  width   : auto;
+                }
+
+                // 武器精炼等级
+                &>span:not(:last-child) {
+                  .flex-center();
+
+                  background-color          : rgba(64, 64, 64, 0.6);
+                  border-bottom-right-radius: 6px;
+                  border-top-left-radius    : 6px;
+                  color                     : @color-accent;
+                  font-size                 : 12px;
+                  height                    : 24px;
+                  position                  : absolute;
+                  left                      : 0px;
+                  top                       : 0px;
+                  width                     : 24px;
+                }
+
+                // 武器名称
+                &>span:last-child {
+                  color      : @color-primary;
+                  font-size  : 14px;
+                  line-height: 20px;
+                }
+              }
+
+
+              // 武器等级、类型、介绍
+              &>div:nth-child(2) {
+                .flex-column();
+
+                justify-content: space-between;
+                margin-left    : 20px;
+
+                // 武器名称、类型
+                &>span:nth-child(1) {
+                  color        : @color-white;
+                  font-size    : 24px;
+                  margin-bottom: 4px;
+                }
+
+                // 武器简介
+                &>span:nth-child(2) {
+                  text-indent: 2em
+                }
+              }
+
+            }
+
+            // 简介 tab 页
+            .profile {
+              .flex-center-x-column();
+
+              // 介绍文字
+              .introduction {
+                align-self : flex-start;
+                text-indent: 2em;
+              }
+
+              // CV 文字
+              .CV {
+                align-self: flex-end;
+                margin-top: 12px;
+              }
+            }
+          }
+        }
+
+        .introduction {
+          text-indent: 2em;
         }
       }
     }
@@ -184,27 +381,17 @@
       z-index         : 0;
     }
 
+    .ext-info {
+      .flex-center-column();
 
-    .constellation-container {
-      .flex-center-y-column();
+      bottom  : 24px;
+      color   : @color-white;
+      position: absolute;
+      right   : 24px;
+      width   : 412px;
 
-      // height         : 360px;
-      justify-content: space-evenly;
-      width          : 40px;
-
-      .constellation {
-        border-radius   : (($width + 4px) / 2);
-        border          : 2px solid rgba(160, 160, 160);
-        height          : 36px;
-        width           : 36px;
-        overflow        : hidden;
-        background-color: rgba(100, 100, 100, 0.8);
-        z-index         : 1;
-
-        img {
-          height: 36px;
-          width : 36px;
-        }
+      img {
+        width: 320px;
       }
     }
   }
@@ -216,6 +403,7 @@
     position: absolute;
     top     : calc(45vh - 80px);
     width   : $height;
+    z-index : 0;
   }
 
   .element-ani {
@@ -230,6 +418,7 @@
     height  : 28px;
     width   : $height;
     top     : calc(45vh - ($height) / 2);
+    z-index : 10;
   }
 
   .arrow-left {
