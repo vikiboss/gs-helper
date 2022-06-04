@@ -1,9 +1,66 @@
 @import "../../utils/colors.less";
 @import "../../utils/utils.less";
 
+.bg-ani {
+  .opacity-show();
+}
+
+.detail-mode {
+  .transition();
+
+  color: @color-white;
+}
+
+
+.pyro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-pyro, @color-pyro-deep);
+}
+
+.hydro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-hydro, @color-hydro-deep);
+}
+
+.anemo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-anemo, @color-anemo-deep);
+}
+
+.electro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-electro, @color-electro-deep);
+}
+
+.geo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-geo, @color-geo-deep);
+}
+
+.cryo {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-cryo, @color-cryo-deep);
+}
+
+.dendro {
+  .detail-mode();
+
+  background-image: radial-gradient(circle, @color-dendro, @color-dendro-deep);
+}
+
+.ani {
+  .opacity-show();
+}
+
 .container {
-  .ani-show-right();
   .flex-column();
+  .transition();
 
   flex          : 1;
   max-width     : 100vw;
@@ -12,11 +69,10 @@
   position      : relative;
   width         : 100vw;
 
-  .ani {
-    .ani-show-right();
-  }
-
   .top-zone {
+    .ani-show-top();
+    .transition();
+
     align-items    : flex-end;
     display        : flex;
     height         : 60px;
@@ -25,7 +81,7 @@
     position       : relative;
     width          : calc(100vw - 2 * 20px);
 
-    &>span {
+    .title {
       font-size: 28px;
     }
 
@@ -37,21 +93,21 @@
   }
 
   .star-4 {
-    background-size  : cover;
-    background-repeat: no-repeat;
-    background-image : url("../../../assets/item-bg-4.png");
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-4.png");
   }
 
   .star-5 {
-    background-size  : cover;
-    background-repeat: no-repeat;
-    background-image : url("../../../assets/item-bg-5.png");
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-5.png");
   }
 
   .star-6 {
-    background-size  : cover;
-    background-repeat: no-repeat;
-    background-image : url("../../../assets/item-bg-6.png");
+    .bg-image-cover-no-repeat();
+
+    background-image: url("../../../assets/item-bg-6.png");
   }
 
   .role-table {
@@ -69,6 +125,7 @@
       .flex-center-column();
       .transition();
 
+      color : #564c4a;
       margin: 4px;
       width : calc((100vw - 24px - 8 * 2 * $margin) / 8);
 
@@ -80,12 +137,12 @@
         .flex-center-column();
         .shadow();
 
+        border       : 1px solid #d6d6d6;
+        border-radius: 6px;
         height       : 121px;
         margin-bottom: 3px;
         position     : relative;
         width        : 100px;
-        border-radius: 6px;
-        border       : 1px solid #d6d6d6;
 
         // 角色头图
         img:nth-child(1) {
@@ -132,58 +189,45 @@
 
       &>span {
         font-size    : 16px;
-        color        : #564c4a;
         margin-bottom: 2px;
       }
     }
   }
 
-  .role-list {
-    .ani-show-right();
-
+  .role-detail {
     display : flex;
     flex    : 1;
-    margin  : 20px;
+    margin  : 20px 80px 0 60px;
     overflow: hidden;
-    position: relative;
 
-    .right {
-      .flex-center();
+    .detail-content {
+      color          : @color-white;
+      display        : flex;
+      justify-content: space-between;
+      width          : 100%;
 
-      width : 116px;
-      height: 108px;
-
-      .swiper {
-        width : 74px;
-        height: 82px;
-
-
-        .role-btn {
-          width        : 64px;
-          height       : 64px;
-          padding      : 8px 4px;
-          border       : 1px solid @color-second;
-          border-radius: 4px;
-
-          img {
-            height: 64px;
-            width : $height;
-          }
+      .role-info {
+        .name {
+          font-size: 32px;
         }
       }
     }
 
-    .left {
-      display        : flex;
-      flex           : 1;
-      justify-content: space-between;
+    .content-ani {
+      .ani-show-bottom();
+    }
 
-      .role-info {
+    .img {
+      .transition();
 
-        .name {
-          font-size: 32px
-        }
-      }
+      height  : 555px;
+      position: absolute;
+      right   : 20px;
+      top     : 0;
+    }
+
+    .img-ani {
+      .ani-show-right-far();
     }
 
     .constellation-container {
@@ -210,8 +254,52 @@
     }
   }
 
+  .bg-element {
+    height  : 160px;
+    left    : calc(50vw - 80px);
+    opacity : 0.4;
+    position: absolute;
+    top     : calc(45vh - 80px);
+    width   : $height;
+  }
+
+  .arrow {
+    .transition();
+
+    opacity : 0.7;
+    position: absolute;
+    height  : 28px;
+    width   : $height;
+    top     : calc(45vh - ($height) / 2);
+  }
+
+  .arrow-left {
+    .arrow();
+    .bg-image-cover-no-repeat();
+
+    left            : 18px;
+    background-image: url("../../../assets/arrow-left.png");
+
+    &:hover {
+      .ani-slide-right();
+    }
+  }
+
+  .arrow-right {
+    .arrow();
+    .bg-image-cover-no-repeat();
+
+    right           : 18px;
+    background-image: url("../../../assets/arrow-right.png");
+
+    &:hover {
+      .ani-slide-left();
+    }
+  }
 
   .back-btn {
+    .ani-show-right();
+
     left    : 20px;
     position: absolute;
     top     : 20px;

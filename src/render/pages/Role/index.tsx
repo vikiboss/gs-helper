@@ -37,7 +37,8 @@ const Role: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
   const [index, setIndex] = useState<number>(0);
-  const [mode, setMode] = useState<"single" | "list">("list");
+  const [isRoleChanging, setIsRoleChanging] = useState<boolean>(true);
+  const [mode, setMode] = useState<"detail" | "list">("list");
   const [roles, setRoles] = useState<RoleInfo[]>([]);
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const Role: React.FC = () => {
   const updateInfo = async () => {
     try {
       const roles = await nativeApi.getOwnedRoles();
-      // 角色排序，排序的先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
+      // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
       roles.sort((p, n) => {
         return (
           n.level - p.level ||
@@ -64,18 +65,37 @@ const Role: React.FC = () => {
     }
   };
 
-  const toggleMode = () => setMode(mode === "list" ? "single" : "list");
+  const isDetail = mode === "detail" && roles.length > 0;
+
+  const toggleMode = () => setMode(isDetail ? "list" : "detail");
+  const handleArrowClick = (direction: "left" | "right") => {
+    const isLeft = direction === "left";
+    const i = (index + (isLeft ? -1 : 1) + roles.length) % roles.length;
+    setIndex(i);
+    setIsRoleChanging(false);
+    setTimeout(() => setIsRoleChanging(true), 0);
+  };
 
   return (
     <>
-      <div className={styles.container}>
+      <div
+        className={cn(
+          styles.container,
+          isDetail ? styles[roles[index].element.toLowerCase()] : "",
+          isDetail && isRoleChanging ? styles.bgAni : ""
+        )}
+      >
         <div className={styles.topZone}>
-          <span>{mode === "list" ? "所有获得的角色" : "角色详情"}</span>
-          {mode === "single" && <Button text='总览' onClick={toggleMode} />}
+          <span className={cn(styles.title, isDetail ? styles.detailMode : "")}>
+            {isDetail ? "角色详情" : "所有获得的角色"}
+          </span>
+          {isDetail && (
+            <Button text='总览' theme='light' onClick={toggleMode} className={styles.ani} />
+          )}
         </div>
-        {roles.length ? (
+        {roles.length > 0 ? (
           <>
-            {mode === "list" && (
+            {!isDetail && (
               <div className={styles.roleTable}>
                 {roles.map((e, i) => (
                   <div
@@ -83,7 +103,7 @@ const Role: React.FC = () => {
                     className={styles.roleItem}
                     onClick={() => {
                       setIndex(i);
-                      setMode("single");
+                      setMode("detail");
                     }}
                   >
                     <div className={getStarClass(e.rarity)}>
@@ -98,11 +118,11 @@ const Role: React.FC = () => {
                 ))}
               </div>
             )}
-            {mode === "single" && (
-              <div className={styles.roleList}>
-                <div className={styles.left}>
+            {isDetail && (
+              <div className={styles.roleDetail}>
+                <div className={cn(styles.detailContent, isRoleChanging ? styles.contentAni : "")}>
                   <div className={styles.roleInfo}>
-                    <div className={styles.name}>{roles[index].name}</div>
+                    <div className={cn(styles.name)}>{roles[index].name}</div>
                     <div>
                       {roles[index].rarity}星 | Lv.{roles[index].level} |
                       {ElementTypes[roles[index].element]} | 好感度:{roles[index].fetter} | 命座数:
@@ -147,19 +167,23 @@ const Role: React.FC = () => {
                       )}
                     </div>
                   </div>
-                  <img src={roles[index].image} alt='image' style={{ height: "320px" }} />
-                  <div className={styles.constellationContainer}>
+                  {/* <div className={styles.constellationContainer}>
                     {roles[index].constellations.map((e) => (
                       <div key={e.id} className={styles.constellation}>
-                        <img
-                          src={e.icon}
-                          alt='icon'
-                          title={`命座${e.pos}：${e.name}\n${e.effect}`}
-                        />
+                      <img
+                      src={e.icon}
+                      alt='icon'
+                      title={`命座${e.pos}：${e.name}\n${e.effect}`}
+                      />
                       </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div> */}
                 </div>
+                <img
+                  className={cn(styles.img, isRoleChanging ? styles.imgAni : "")}
+                  src={roles[index].image}
+                  alt={roles[index].name}
+                />
               </div>
             )}
           </>
@@ -167,12 +191,26 @@ const Role: React.FC = () => {
           <Loading />
         )}
 
-        <CircleButton
-          Icon={TiArrowBack}
-          size='middle'
-          className={styles.backBtn}
-          onClick={() => navigate("/")}
-        />
+        {!isDetail && (
+          <CircleButton
+            Icon={TiArrowBack}
+            size='middle'
+            className={styles.backBtn}
+            onClick={() => navigate("/")}
+          />
+        )}
+
+        {isDetail && (
+          <>
+            <img
+              className={styles.bgElement}
+              src={ElementImgs[roles[index].element]}
+              alt='element'
+            />
+            <div className={styles.arrowLeft} onClick={handleArrowClick.bind(null, "left")} />
+            <div className={styles.arrowRight} onClick={handleArrowClick.bind(null, "right")} />
+          </>
+        )}
       </div>
       {notice.holder}
     </>
