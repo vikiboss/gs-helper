@@ -84,11 +84,11 @@ const getFullRoleInfo = (roles: RoleInfo[], publickRoles: PublicRole[]): RenderR
 const Role: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [infoTab, setInfoTab] = useState<TabType>("weapon");
-  const [publicRoles, setPublicRolos] = useState<PublicRole[]>([]);
   const [index, setIndex] = useState<number>(0);
+  const [infoTab, setInfoTab] = useState<TabType>("reliquary");
   const [isRoleChanging, setIsRoleChanging] = useState<boolean>(true);
-  const [mode, setMode] = useState<"detail" | "list">("list");
+  const [mode, setMode] = useState<"detail" | "list">("detail");
+  const [publicRoles, setPublicRolos] = useState<PublicRole[]>([]);
   const [roles, setRoles] = useState<RoleInfo[]>([]);
 
   useEffect(() => {
@@ -240,21 +240,19 @@ const Role: React.FC = () => {
                         {infoTab === "reliquary" && (
                           <div className={styles.reliquary}>
                             {currentRole.reliquaries.length ? (
-                              currentRole.reliquaries.map((e) => (
-                                <div key={e.id} style={{ display: "flex" }}>
-                                  <div>{e.pos_name}：</div>
-                                  <img
-                                    src={e.icon}
-                                    alt='icon'
-                                    style={{ height: "24px", backgroundColor: "#aaa" }}
-                                    title={e.set.affixes.reduce(
-                                      (p, n) => p + `${n.activation_number}件套：${n.effect}\n`,
-                                      ""
-                                    )}
-                                  />
-                                  {e.rarity}星 / {e.name} | Lv.{e.level}|{e.set.name}
-                                </div>
-                              ))
+                              <>
+                                {currentRole.reliquaries.map((e) => (
+                                  <div
+                                    className={cn(styles.reliquaryItem, styles[`star-${e.rarity}`])}
+                                    key={e.pos}
+                                  >
+                                    <img src={e.icon} alt='icon' />
+                                    <img src={getStarImage(e.rarity)} alt='star' />
+                                    <span>{e.level}</span>
+                                    <span>{e.name}</span>
+                                  </div>
+                                ))}
+                              </>
                             ) : (
                               <div>未装配圣遗物</div>
                             )}

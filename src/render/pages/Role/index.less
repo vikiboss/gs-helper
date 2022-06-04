@@ -240,7 +240,7 @@
           }
 
           .tab-content {
-            flex      : 3;
+            flex      : 4;
             margin-top: 6px;
             position  : relative;
             right     : 16px;
@@ -258,13 +258,18 @@
               &>div:nth-child(1) {
                 .flex-center-x-column();
                 .shadow();
+                .transition();
 
-                border         : 1px solid rbga(255, 255, 255, 0.3);
+                border         : 1px solid rgba(255, 255, 255, 0.3);
                 border-radius  : 6px;
                 height         : 126px;
                 justify-content: space-between;
                 position       : relative;
                 width          : 100px;
+
+                &:hover {
+                  transform: scale(1.05);
+                }
 
                 // 武器图片
                 img {
@@ -301,7 +306,7 @@
                 &>span:last-child {
                   color      : @color-primary;
                   font-size  : 14px;
-                  line-height: 20px;
+                  line-height: 18px;
                 }
               }
 
@@ -314,15 +319,77 @@
                 margin-left    : 20px;
 
                 // 武器名称、类型
-                &>span:nth-child(1) {
+                span:nth-child(1) {
                   color        : @color-white;
                   font-size    : 24px;
                   margin-bottom: 4px;
                 }
 
                 // 武器简介
-                &>span:nth-child(2) {
+                span:nth-child(2) {
                   text-indent: 2em
+                }
+              }
+
+            }
+
+            // 圣遗物 tab 页
+            .reliquary {
+              .flex-wrap();
+
+              // 圣遗物背景容器
+              .reliquary-item {
+                .flex-center-x-column();
+                .shadow();
+                .transition();
+
+                border-radius  : 6px;
+                height         : 126px;
+                justify-content: space-between;
+                margin         : 0 0 12px 12px;
+                position       : relative;
+                width          : 100px;
+
+                &:hover {
+                  transform: scale(1.05);
+                }
+
+                // 圣遗物图片
+                img {
+                  height    : 100px;
+                  margin-top: 2px;
+                  width     : $height;
+                }
+
+                // 武器星级 icon
+                img:nth-child(2) {
+                  bottom  : 16px;
+                  position: absolute;
+                  height  : 24px;
+                  width   : auto;
+                }
+
+                // 等级
+                span:not(:last-child) {
+                  .flex-center();
+
+                  background-color          : rgba(64, 64, 64, 0.6);
+                  border-bottom-right-radius: 6px;
+                  border-top-left-radius    : 6px;
+                  color                     : @color-white;
+                  font-size                 : 12px;
+                  height                    : 24px;
+                  position                  : absolute;
+                  left                      : 0px;
+                  top                       : 0px;
+                  width                     : 24px;
+                }
+
+                // 圣遗物名称
+                span:last-child {
+                  color      : @color-primary;
+                  font-size  : 14px;
+                  line-height: 18px;
                 }
               }
 
