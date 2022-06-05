@@ -1,17 +1,17 @@
-import { API_BBS, LINK_BBS_REFERER } from "./../constants";
-import request from "../utils/request";
+import { API_BBS, LINK_BBS_REFERER } from "../constants";
+import request from "./request";
 
-import type { BaseRes } from "../utils/request";
+import type { BaseRes } from "../typings";
 
-type Navigator = {
+interface Navigator {
   app_path: string;
   icon: string;
   id: number;
   name: string;
   reddot_online_time: string;
-};
+}
 
-type BBSHomeData = {
+interface BBSHomeData {
   background: any;
   carousels: any;
   discussion: any;
@@ -20,7 +20,7 @@ type BBSHomeData = {
   navigator: Navigator[];
   official: any;
   posts: any[];
-};
+}
 
 const getBBSSignActId = async (): Promise<string> => {
   const headers = { referer: LINK_BBS_REFERER };

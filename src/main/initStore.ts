@@ -1,4 +1,5 @@
 import Store from "electron-store";
+import { v4 as uuid } from "uuid";
 
 import { DefaultAppData } from "../constants";
 import deepClone from "../utils/deepClone";
@@ -6,52 +7,27 @@ import deepClone from "../utils/deepClone";
 import type { Schema } from "electron-store";
 import type { AppData } from "../typings";
 
+/** 初始化 Store */
+const initStore = () => {
+  const options = { schema, defaults: deepClone(DefaultAppData) };
+  const store = new Store<AppData>(options);
+  // 初始化 device id
+  const deviceId = store.get("settings.deviceId", "");
+  // 没有 device id 则随机生成并写入配置
+  if (!deviceId) store.set("settings.deviceId", uuid().replace("-", "").toUpperCase());
+  return store;
+};
+
+/** 定义 Store 的 JSON schema */
 const schema: Schema<AppData> = {
-  user: {
-    type: "object",
-    properties: {
-      uid: { type: "string", pattern: "^[0-9]{0,10}$" },
-      nickname: { type: "string" },
-      level: { type: "number" },
-      isOfficial: { type: "boolean" },
-      regionName: { type: "string" },
-      cookie: { type: "string" }
-    }
-  },
-  gachas: {
+  currentUid: { type: "string" },
+  users: {
     type: "array",
     items: {
       type: "object",
       properties: {
-        info: {
-          type: "object",
-          properties: {
-            uid: { type: "string", pattern: "^[0-9]{3,10}$" },
-            lang: { type: "string" },
-            export_app: { type: "string" },
-            export_app_version: { type: "string" },
-            export_time: { type: "string" },
-            export_timestamp: { type: "string" },
-            uigf_version: { type: "string" }
-          }
-        },
-        list: {
-          type: "array",
-          items: {
-            type: "object",
-            properties: {
-              gacha_type: { type: "string" },
-              item_id: { type: "string" },
-              count: { type: "string" },
-              time: { type: "string" },
-              name: { type: "string" },
-              item_type: { type: "string" },
-              rank_type: { type: "string" },
-              id: { type: "string" },
-              uigf_gacha_type: { type: "string" }
-            }
-          }
-        }
+        uid: { type: "string", pattern: "^[0-9]{0,10}$" },
+        cookie: { type: "string" }
       }
     }
   },
@@ -68,4 +44,4 @@ const schema: Schema<AppData> = {
   }
 };
 
-export default () => new Store<AppData>({ schema, defaults: deepClone(DefaultAppData) });
+export default initStore;

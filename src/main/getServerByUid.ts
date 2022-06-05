@@ -1,4 +1,4 @@
-import { Servers } from "./../constants";
+import { Servers } from "../constants";
 
 const getServerByUid = (uid: string): string => {
   // 通过正则表达式过滤掉无效的 UID，合法的 UID 须是以数字 1-9 开头

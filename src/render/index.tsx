@@ -13,7 +13,7 @@ const root = createRoot(document.getElementById("app"));
 
 const render = async () => {
   // const { version } = await nativeApi.getAppInfo();
-  const isLogin = Boolean(await nativeApi.getStoreKey("user.cookie"));
+  const isLogin = Boolean(await nativeApi.getStoreKey("currentUid"));
   // const title = `${APP_NAME} v${version}`;
   root.render(
     <WinFrame title={APP_NAME}>

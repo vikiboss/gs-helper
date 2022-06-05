@@ -1,6 +1,6 @@
-import { Colors } from "../constants";
+import { Colors } from "../../../../constants";
 
-import type { GachaData } from "../typings";
+import type { GachaData } from "../../../../typings";
 
 const n5 = {
   id: "5星",

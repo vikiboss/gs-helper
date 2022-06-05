@@ -5,7 +5,7 @@ const GreetingMsgMap: Record<string, string> = {
   forenoon: "上午好，打起精神来！",
   noon: "中午好，记得按时吃饭。",
   afternoon: "下午好，今天也要充满干劲呢！",
-  dusk: "到饭点了，吃饭了吗？没吃吃我一拳",
+  dusk: "到饭点了，吃饭了吗？没吃吃我一拳（",
   night: "晚上好，今天又到哪去冒险了呢？",
   midnight: "夜深了，晚安喵，又是充实的一天呢！",
   unknown: "很高兴见到你。"
@@ -24,6 +24,7 @@ const GreetingShortMsgMap: Record<string, string> = {
   unknown: "你好"
 };
 
+/** 按小时获取时间段 */
 const getPeriodByHour = (hour: number) => {
   if (hour >= 1 && hour < 5) {
     return "wee";
@@ -46,6 +47,7 @@ const getPeriodByHour = (hour: number) => {
   }
 };
 
+/** 按时间获取当前时间段的打招呼消息 */
 const getGreetingMsg = (date: Date = new Date(), short: boolean = false) => {
   const hour = date.getHours();
   const period = getPeriodByHour(hour);

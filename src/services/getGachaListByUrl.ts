@@ -1,20 +1,20 @@
 import { app } from "electron";
+import D from "dayjs";
 
-import { DefaultGachaData, API_HK4E, GachaTypeMap } from "../constants";
+import { API_HK4E, GachaTypeMap, DefaultGachaData } from "../constants";
 import deepClone from "../utils/deepClone";
-import request from "../utils/request";
+import request from "./request";
 import wait from "../utils/wait";
 
-import type { BaseRes } from "../utils/request";
-import type { GachaData, GachaItem, RawGachaItem } from "../typings";
+import type { BaseRes, GachaData, GachaItem, RawGachaItem } from "../typings";
 
-type RawGachaData = {
+interface RawGachaData {
   page: string;
   size: string;
   total: string;
   list: RawGachaItem[];
   region: string;
-};
+}
 
 const getGachaListByUrl = async (url: string): Promise<GachaData> => {
   try {
@@ -23,6 +23,9 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
 
     // 默认的空数据
     const gacha: GachaData = deepClone(DefaultGachaData);
+
+    // 填充基本的信息
+    gacha.info.update_time = D(new Date()).format("YYYY-MM-DD HH:mm:ss");
     gacha.info.export_app_version = app.getVersion();
 
     // 是否已获取 UID
@@ -82,11 +85,10 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           urlParams.set("end_id", data.data.list.pop().id);
         } else {
           times++;
+          // 出错时打印异常
           console.log("getGachaListByUrl: ", data.data, status);
-          console.log(
-            "getGachaListByUrl: ",
-            `获取${GachaTypeMap[type]}第${urlParams.get("page")}页失败`
-          );
+          const error = `获取${GachaTypeMap[type]}第${urlParams.get("page")}页失败`;
+          console.log("getGachaListByUrl: ", error);
         }
 
         // 每加载一次数据，等待 300 毫秒，减轻米哈游服务器负担

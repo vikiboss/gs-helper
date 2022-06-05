@@ -3,21 +3,51 @@ import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
-import { DefaultMonthInfo } from "../../../constants";
 import BounceNumber from "../../components/BounceNumber";
 import CircleButton from "../../components/CircleButton";
 import getGreetingMsg from "../../../utils/getGreetingMsg";
 import Loading from "../../components/Loading";
-import mora from "../../../assets/mora.png";
-import nativeApi from "../../utils/nativeApi";
 import Pie from "./Pie";
-import primogem from "../../../assets/primogem.png";
-import styles from "./index.less";
 import useNotice from "../../hooks/useNotice";
+import wait from "../../../utils/wait";
 import withAuth from "../../auth/withAuth";
 
+import mora from "../../../assets/mora.png";
+import primogem from "../../../assets/primogem.png";
+import nativeApi from "../../utils/nativeApi";
+
 import type { MonthInfo } from "../../../services/getMonthInfo";
-import wait from "../../../utils/wait";
+
+import styles from "./index.less";
+
+export const DefaultMonthInfo: MonthInfo = {
+  uid: 0,
+  region: "cn_gf01",
+  account_id: 0,
+  nickname: "旅行者",
+  date: "2022-01-01",
+  month: 0,
+  optional_month: [],
+  data_month: 1,
+  data_last_month: 12,
+  day_data: {
+    current_primogems: 0,
+    current_mora: 0,
+    last_primogems: 0,
+    last_mora: 0
+  },
+  month_data: {
+    current_primogems: 0,
+    current_mora: 0,
+    last_primogems: 0,
+    last_mora: 0,
+    current_primogems_level: 0,
+    primogems_rate: 0,
+    mora_rate: 0,
+    group_by: []
+  },
+  lantern: false
+};
 
 const Month: React.FC = () => {
   const navigate = useNavigate();

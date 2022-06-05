@@ -16,8 +16,8 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
 
   useEffect(() => {
     (async () => {
-      const cookie = await nativeApi.getStoreKey("user.cookie");
-      setIsLogin(Boolean(cookie));
+      const uid = await nativeApi.getStoreKey("currentUid");
+      setIsLogin(Boolean(uid));
     })();
   }, []);
 
@@ -26,9 +26,9 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
     return callback ? callback() : true;
   };
 
-  const logout = async (callback?: VoidFunction) => {
+  const logout = async (uid?: string, callback?: VoidFunction) => {
     setIsLogin(false);
-    await nativeApi.clearCookie();
+    nativeApi.deleteUser(uid);
     return callback ? callback() : true;
   };
 

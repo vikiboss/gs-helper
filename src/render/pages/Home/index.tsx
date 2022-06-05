@@ -3,28 +3,27 @@ import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
-import { MdOutlineNoteAlt } from "react-icons/md";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
 import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 import { IoMdRefresh } from "react-icons/io";
-import { IoSearch, IoSettingsOutline } from "react-icons/io5";
+import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineAccountBox } from "react-icons/md";
+import { MdOutlineNoteAlt } from "react-icons/md";
 import { RiCalendarCheckFill } from "react-icons/ri";
 
-import Button from "../../components/Button";
-import nativeApi from "../../utils/nativeApi";
-import useAuth from "../../hooks/useAuth";
-import useNotice from "../../hooks/useNotice";
 import {
   ANNUCEMENT,
-  DefaultAppData,
-  DefaultNotes,
-  DefaultSignInfo,
+  DefaultGameRole,
   LINK_GENSHIN_MAP,
   LOGIN_TIP,
   WELCOME_TIP
 } from "../../../constants";
+import { DefaultSignInfo } from "../Sign";
+import Button from "../../components/Button";
+import nativeApi from "../../utils/nativeApi";
+import useAuth from "../../hooks/useAuth";
+import useNotice from "../../hooks/useNotice";
 
 import avatar from "../../../assets/icon.png";
 import bbsIcon from "../../../assets/bbs.png";
@@ -35,11 +34,32 @@ import resinIcon from "../../../assets/resin.png";
 import taskIcon from "../../../assets/task.png";
 import transformerIcon from "../../../assets/transformer.png";
 
-import type { AppData } from "../../../typings";
 import type { DailyNotesData } from "../../../services/getDailyNotes";
 import type { SignInfo } from "../../../services/getBBSSignInfo";
+import type { GameRole } from "../../../typings";
 
 import styles from "./index.less";
+
+export const DefaultNotes: DailyNotesData = {
+  current_resin: 160,
+  max_resin: 160,
+  resin_recovery_time: "0",
+  finished_task_num: 0,
+  total_task_num: 4,
+  is_extra_task_reward_received: false,
+  remain_resin_discount_num: 3,
+  resin_discount_num_limit: 3,
+  current_expedition_num: 0,
+  max_expedition_num: 5,
+  expeditions: [],
+  current_home_coin: 900,
+  max_home_coin: 900,
+  home_coin_recovery_time: "0",
+  transformer: {
+    obtained: false,
+    recovery_time: { Day: 0, Hour: 0, Minute: 0, Second: 0, reached: true }
+  }
+};
 
 const formatTime = (seconds: number) => {
   if (seconds <= 60) return `${seconds} 秒 `;
@@ -61,7 +81,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
-  const [user, setUser] = useState<Partial<AppData["user"]>>(DefaultAppData["user"]);
+  const [user, setUser] = useState<GameRole>(DefaultGameRole);
   const [sign, setSign] = useState<SignInfo>(DefaultSignInfo);
   const [note, setNotesData] = useState<DailyNotesData>(DefaultNotes);
   const [hitokoto, setHitokoto] = useState<string>("loading...");
@@ -91,13 +111,14 @@ const Home: React.FC = () => {
     if (isUserTrriger) notice.info({ message: "小派蒙正在努力获取最新数据...", autoHide: false });
 
     const [user, note, sign] = await Promise.all([
-      nativeApi.refreshUserInfo(),
+      nativeApi.getGameRoleInfo(),
       nativeApi.getDailyNotes(),
       nativeApi.getBBSSignInfo()
     ]);
 
-    if (!user?.uid || !note?.max_resin || !sign.today) {
-      auth.logout();
+    if (!user?.game_uid || !note?.max_resin || !sign.today) {
+      const currentUser = await nativeApi.getCurrentUser();
+      auth.logout(currentUser.uid);
       return navigate("/login", { state: { isExpired: true } });
     }
 
@@ -110,7 +131,8 @@ const Home: React.FC = () => {
   };
 
   const handlePageSwitch = (path: string) => {
-    const noAuth = !auth.isLogin && !(path === "/gacha" || path === "strategy");
+    const noAuth =
+      !auth.isLogin && !(path === "/gacha" || path === "/strategy" || path === "/daily");
     if (noAuth) return notice.warning({ message: "这个功能需要登录才能正常使用" });
     const monthNotOpen = path === "/month" && user.level < 10;
     if (monthNotOpen) return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
@@ -141,12 +163,12 @@ const Home: React.FC = () => {
     {
       key: "region",
       name: "区服",
-      content: `${user.regionName} （${user.isOfficial ? "官服" : "渠道服"}）`
+      content: `${user.region_name} （${user.is_official ? "官服" : "渠道服"}）`
     },
     {
       key: "uid",
       name: "UID",
-      content: user.uid
+      content: user.game_uid
     }
   ];
 

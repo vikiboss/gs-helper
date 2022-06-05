@@ -1,50 +1,52 @@
-import { Cookies } from "electron";
-import { Store } from "electron-store";
-
 import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
+import type { AxiosRequestConfig as Config, AxiosResponse } from "axios";
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
-import type { CalenderEvent } from "./services/getCalenderList";
-import type { DailyNotesData } from "./services/getDailyNotes";
+import type { Cookies } from "electron";
 import type { GachaData, AppInfo } from "./typings";
-import type { MonthInfo } from "./services/getMonthInfo";
-import type { PublicRole } from "./services/getPublicRoleList";
-import type { Role } from "./services/getOwnedRoleList";
-import type { SignData } from "./services/getBBSSignData";
-import type { SignInfo } from "./services/getBBSSignInfo";
+import type { Store } from "electron-store";
 
 export interface NativeApi {
-  clearCookie: (domain?: string) => void;
   closeApp: () => void;
+  deleteUser: (uid?: string) => void;
   doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
   getBBSSignData: () => Promise<SignData | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
   getCalenderList: () => Promise<CalenderEvent[] | null>;
+  getCurrentUser: () => Promise<UserData | null>;
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
+  getGameRoleInfo: () => Promise<GameRole | null>;
   getHitokoto: () => Promise<string>;
   getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
-  getOwnedRoleList: () => Promise<Role[]>;
-  getPublicRoleList: () => Promise<PublicRole[]>;
+  getOwnedRoleList: () => Promise<Role[] | null>;
+  getPublicRoleList: () => Promise<PublicRole[] | null>;
+  getLocalGachaDatas: () => Promise<GachaData[]>;
   getStoreKey: (key: string) => Promise<any>;
+  getUserRole: () => Promise<GameRole | null>;
   hideApp: () => void;
-  loginViaMihoyoBBS: () => void;
+  loginByBBS: () => void;
   minimizeApp: () => void;
   openLink: (url: string) => void;
   openWindow: (url: string, options?: WinOptions, UA?: string) => void;
   readClipboardText: () => Promise<string>;
-  refreshUserInfo: () => Promise<AppData["user"]>;
+  request: <T>(config: Config) => Promise<AxiosResponse<T>>;
   setStoreKey: (key: string, value: any) => void;
   writeClipboardText: (text: string) => void;
 }
 
 export type GachaType = "activity" | "normal" | "weapon" | "newer";
-export type ItemType = "weapon" | "role";
-export type StarType = 3 | 4 | 5;
+export type GachaItemType = "weapon" | "role";
+export type StarType = 1 | 2 | 3 | 4 | 5;
 
-export type GachaItem = {
+export interface AppInfo {
+  name: string;
+  version: string;
+}
+
+export interface GachaItem {
   count: string;
   gacha_type: string;
   id: string;
@@ -54,7 +56,7 @@ export type GachaItem = {
   rank_type: string;
   time: string;
   uigf_gacha_type: string;
-};
+}
 
 export type RawGachaItem = Omit<
   GachaItem & {
@@ -63,37 +65,51 @@ export type RawGachaItem = Omit<
   },
   "uigf_gacha_type"
 >;
-
-export type GachaData = {
+export interface GachaData {
   info: {
     export_app_version: string;
     export_app: string;
     export_time: string;
     export_timestamp: string;
+    update_time: string;
     lang: string;
     uid: string;
     uigf_version: string;
   };
   list: GachaItem[];
-};
+}
 
-export type AppData = {
-  user: {
-    cookie: string;
-    isOfficial: boolean;
-    level: number;
-    nickname: string;
-    regionName: string;
-    uid: string;
-  };
-  gachas: GachaData[];
+export interface BaseRes<T> {
+  retcode: number;
+  data: T | null;
+  message: string;
+}
+
+export interface GameRole {
+  game_biz: string;
+  game_uid: string;
+  is_chosen: boolean;
+  is_official: boolean;
+  level: number;
+  nickname: string;
+  region_name: string;
+  region: string;
+}
+
+export interface GameRolesData {
+  list: GameRole[];
+}
+
+export interface UserData {
+  cookie: string;
+  uid: string;
+}
+
+export interface AppData {
+  currentUid: string;
+  users: UserData[];
   settings: { alwaysOnTop: boolean; deviceId: string };
-};
-
-export type AppInfo = {
-  name: string;
-  version: string;
-};
+}
 
 export type ElectronWindow = Window &
   typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };

@@ -8,15 +8,19 @@ import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
-import { LoginGuids } from "../../../constants";
-
-import type { AppData } from "../../../typings";
 
 import styles from "./index.less";
 
 type LoginProp = {
   from?: string;
 };
+
+const LoginGuids = [
+  "① 点击 「登录米游社」 按钮打开登录窗口",
+  "② 在登录窗口中登录 「米游社」 账号",
+  "③ 完成登录后关闭登录窗口",
+  "④ 点击 「刷新状态」 按钮完成登录"
+];
 
 const Login: React.FC<LoginProp> = (props) => {
   const notice = useNotice();
@@ -38,11 +42,11 @@ const Login: React.FC<LoginProp> = (props) => {
   }, []);
 
   const handleLogin = () => {
-    nativeApi.loginViaMihoyoBBS();
+    nativeApi.loginByBBS();
   };
 
   const handleRefresh = async () => {
-    const user: AppData["user"] = await nativeApi.getStoreKey("user");
+    const user = await nativeApi.getCurrentUser();
     if (!user?.cookie) return notice.faild({ message: "未检测到有效验证信息，请重新登录" });
     notice.success({ message: "登录成功，正在返回登录前页面..." });
     setTimeout(() => {

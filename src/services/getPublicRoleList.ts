@@ -1,7 +1,7 @@
 import { API_YS_CONTENT } from "../constants";
-import request from "../utils/request";
+import request from "./request";
 
-import type { BaseRes } from "../utils/request";
+import type { BaseRes } from "../typings";
 
 interface PublicRoleListData {
   total: number;
@@ -121,8 +121,8 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
 
 const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
   const url = `${API_YS_CONTENT}/ysCn/getContentList`;
-  const config = { params: { pageSize: 1000, pageNum: 1, channelId: 152 } };
-  const { data, status } = await request.get<BaseRes<PublicRoleListData>>(url, config);
+  const params = { pageSize: 1000, pageNum: 1, channelId: 152 };
+  const { status, data } = await request.get<BaseRes<PublicRoleListData>>(url, { params });
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
   const res = getNeededRoleInfo(data?.data?.list);
   return res.length ? res : null;

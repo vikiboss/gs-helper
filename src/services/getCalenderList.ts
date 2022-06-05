@@ -1,7 +1,7 @@
 import { API_STATIC } from "../constants";
-import request from "../utils/request";
+import request from "./request";
 
-import type { BaseRes } from "../utils/request";
+import type { BaseRes } from "../typings";
 
 export interface CalenderData {
   list: CalenderEvent[];
@@ -58,7 +58,7 @@ export interface ContentSource {
 
 const getCalenderList = async (): Promise<CalenderEvent[] | null> => {
   const url = `${API_STATIC}/common/blackboard/ys_obc/v1/get_activity_calendar`;
-  const { data, status } = await request.get<BaseRes<CalenderData>>(url, {
+  const { status, data } = await request.get<BaseRes<CalenderData>>(url, {
     params: { app_sn: "ys_obc" }
   });
   if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);

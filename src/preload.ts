@@ -1,46 +1,39 @@
-import { AppData } from "./typings.d";
 import { contextBridge, ipcRenderer as IPC } from "electron";
-
 import { IPCEvents, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
-import type { CalenderEvent } from "./services/getCalenderList";
-import type { DailyNotesData } from "./services/getDailyNotes";
-import type { GachaData, AppInfo } from "./typings";
-import type { MonthInfo } from "./services/getMonthInfo";
-import type { PublicRole } from "./services/getPublicRoleList";
-import type { Role } from "./services/getOwnedRoleList";
-import type { SignData } from "./services/getBBSSignData";
-import type { SignInfo } from "./services/getBBSSignInfo";
+import type { GachaData, AppInfo, UserData } from "./typings";
 
+// 通过 IPC 实现 main 进程与 render 进程相互通信
+// 通过 contextBridge 将 API 安全的挂载到 render 进程的全局变量 window 中
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
-  clearCookie: (domain?: string) => IPC.send(IPCEvents.clearCookie, domain),
   closeApp: () => IPC.send(IPCEvents.closeApp),
-  doBBSSign: (): Promise<boolean> => IPC.invoke(IPCEvents.doBBSSign),
+  deleteUser: (uid?: string) => IPC.send(IPCEvents.deleteUser, uid),
+  doBBSSign: () => IPC.invoke(IPCEvents.doBBSSign),
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPCEvents.getAppInfo),
-  getBBSSignData: (): Promise<SignData | null> => IPC.invoke(IPCEvents.getBBSSignData),
-  getBBSSignInfo: (): Promise<SignInfo | null> => IPC.invoke(IPCEvents.getBBSSignInfo),
-  getCalenderList: (): Promise<CalenderEvent[] | null> => IPC.invoke(IPCEvents.getCalenderList),
-  getDailyNotes: (): Promise<DailyNotesData | null> => IPC.invoke(IPCEvents.getDailyNotes),
+  getBBSSignData: () => IPC.invoke(IPCEvents.getBBSSignData),
+  getBBSSignInfo: () => IPC.invoke(IPCEvents.getBBSSignInfo),
+  getCalenderList: () => IPC.invoke(IPCEvents.getCalenderList),
+  getCurrentUser: (): Promise<UserData | null> => IPC.invoke(IPCEvents.getCurrentUser),
+  getDailyNotes: () => IPC.invoke(IPCEvents.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
-  getHitokoto: (): Promise<string> => IPC.invoke(IPCEvents.getHitokoto),
-  getOwnedRoleList: (): Promise<Role[] | null> => IPC.invoke(IPCEvents.getOwnedRoleList),
-  getPublicRoleList: (): Promise<PublicRole[] | null> => IPC.invoke(IPCEvents.getPublicRoleList),
+  getGameRoleInfo: () => IPC.invoke(IPCEvents.getGameRoleInfo),
+  getHitokoto: () => IPC.invoke(IPCEvents.getHitokoto),
+  getMonthInfo: (month?: number) => IPC.invoke(IPCEvents.getMonthInfo, month),
+  getOwnedRoleList: () => IPC.invoke(IPCEvents.getOwnedRoleList),
+  getPublicRoleList: () => IPC.invoke(IPCEvents.getPublicRoleList),
+  getLocalGachaDatas: () => IPC.invoke(IPCEvents.getLocalGachaDatas),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
+  getUserRole: () => IPC.invoke(IPCEvents.getUserRole),
   hideApp: () => IPC.send(IPCEvents.hideApp),
-  loginViaMihoyoBBS: () => IPC.send(IPCEvents.loginViaMihoyoBBS),
+  loginByBBS: () => IPC.send(IPCEvents.loginByBBS),
   minimizeApp: () => IPC.send(IPCEvents.minimizeApp),
   openLink: (url: string) => IPC.send(IPCEvents.openLink, url),
   readClipboardText: (): Promise<string> => IPC.invoke(IPCEvents.readClipboardText),
-  refreshUserInfo: (): Promise<AppData["user"]> => IPC.invoke(IPCEvents.refreshUserInfo),
   setStoreKey: (key: string, value: any) => IPC.send(IPCEvents.setStoreKey, key, value),
   writeClipboardText: (text: string) => IPC.send(IPCEvents.writeClipboardText, text),
-
   openWindow: (url: string, options?: WinOptions, UA?: string) => {
     IPC.send(IPCEvents.openWindow, url, options, UA);
-  },
-  getMonthInfo: (month?: number): Promise<MonthInfo | null> => {
-    return IPC.invoke(IPCEvents.getMonthInfo, month);
   },
   getGachaListByUrl: (url: string): Promise<GachaData> => {
     return IPC.invoke(IPCEvents.getGachaListByUrl, url);

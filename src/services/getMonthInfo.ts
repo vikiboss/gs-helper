@@ -1,28 +1,25 @@
 import { API_HK4E, LINK_BBS_REFERER } from "../constants";
-import { DefaultAppData } from "./../constants";
-import { store } from "../main";
+import getCurrentUser from "../main/ipcHandlers/getCurrentUser";
+import getServerByUid from "../main/getServerByUid";
+import request from "./request";
 
-import getServerByUid from "../utils/getServerByUid";
+import type { BaseRes } from "../typings";
 
-import request, { BaseRes } from "../utils/request";
-
-import { AppData } from "../typings";
-
-type DayData = {
+interface DayData {
   current_primogems: number;
   current_mora: number;
   last_primogems: number;
   last_mora: number;
-};
+}
 
-type GroupBy = {
+interface GroupBy {
   action_id: number;
   action: string;
   num: number;
   percent: number;
-};
+}
 
-type MonthData = {
+interface MonthData {
   current_primogems: number;
   current_mora: number;
   last_primogems: number;
@@ -31,9 +28,9 @@ type MonthData = {
   primogems_rate: number;
   mora_rate: number;
   group_by: GroupBy[];
-};
+}
 
-export type MonthInfo = {
+export interface MonthInfo {
   uid: number;
   region: string;
   account_id: number;
@@ -46,20 +43,15 @@ export type MonthInfo = {
   day_data: DayData;
   month_data: MonthData;
   lantern: boolean;
-};
+}
 
 const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
-  const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
+  const currentUser = getCurrentUser();
+  const { cookie, uid } = currentUser;
   const url = `${API_HK4E}/event/ys_ledger/monthInfo`;
   const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };
-  const config = {
-    params,
-    headers: {
-      referer: LINK_BBS_REFERER,
-      cookie
-    }
-  };
-  const { status, data } = await request.get<BaseRes<MonthInfo>>(url, config);
+  const headers = { referer: LINK_BBS_REFERER, cookie };
+  const { status, data } = await request.get<BaseRes<MonthInfo>>(url, { params, headers });
   const faild = status !== 200 || data.retcode !== 0;
   if (faild) console.log("getMonthInfo: ", data);
   return data?.data || null;

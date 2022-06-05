@@ -1,7 +1,7 @@
 import { GachaData } from "../typings";
 import sortGachaList from "./sortGachaList";
 
-// 新旧数据合并算法
+// 新旧祈愿数据列表合并算法
 const mergeGachaList = (pre: GachaData["list"], list: GachaData["list"]) => {
   // 先把新旧数据合并到同一个数组
   pre = pre.concat(list);

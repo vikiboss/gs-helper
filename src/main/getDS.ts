@@ -1,7 +1,8 @@
-import qs from "./qs";
-import md5 from "./md5";
-import random from "./random";
+import qs from "../utils/qs";
+import md5 from "../utils/md5";
+import random from "../utils/random";
 
+/** 获取指定位数只包含数字与字母的随机字符串 */
 const getRandomStr = (n: number) => {
   const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
   let str = "";
@@ -24,6 +25,7 @@ const getDS = (query: string = "", body: string = "") => {
   return DS;
 };
 
+// 米游社签到 DS 算法
 // 目前只在 GitHub 上找到 2.3.0 版本的签到 DS 算法
 export const getSignDS = () => {
   const params = {

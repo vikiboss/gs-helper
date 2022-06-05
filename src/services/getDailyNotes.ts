@@ -1,12 +1,11 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from "../constants";
-import { DefaultAppData } from "./../constants";
-import { store } from "../main";
-import getDS from "../utils/getDS";
-import getServerByUid from "../utils/getServerByUid";
+import getCurrentUser from "../main/ipcHandlers/getCurrentUser";
+import getDS from "../main/getDS";
+import getServerByUid from "../main/getServerByUid";
 import qs from "../utils/qs";
-import request, { BaseRes } from "../utils/request";
+import request from "./request";
 
-import type { AppData } from "./../typings.d";
+import type { BaseRes } from "../typings";
 
 export type DispatchItem = {
   avatar_side_icon: string;
@@ -36,18 +35,12 @@ export type DailyNotesData = {
 };
 
 const getDailyNotes = async (): Promise<DailyNotesData | null> => {
-  const { cookie, uid } = store.get<string, AppData["user"]>("user", DefaultAppData["user"]);
+  const currentUser = getCurrentUser();
+  const { cookie, uid } = currentUser;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`;
   const params = { role_id: uid, server: getServerByUid(uid) };
-  const config = {
-    params,
-    headers: {
-      referer: LINK_BBS_REFERER,
-      DS: getDS(qs(params)),
-      cookie
-    }
-  };
-  const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, config);
+  const headers = { referer: LINK_BBS_REFERER, cookie, DS: getDS(qs(params)) };
+  const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, { params, headers });
   const faild = status !== 200 || data.retcode !== 0;
   if (faild) console.log("getDailyNotesByCookie: ", data);
   return data?.data || null;

@@ -1,5 +1,5 @@
-import { FilterType } from "./../render/pages/Gacha/index";
-import { GachaData } from "../typings";
+import { FilterType } from "../index";
+import { GachaData } from "../../../../typings";
 
 export const GachaTypeMap: Record<string, string> = {
   weapon: "302",

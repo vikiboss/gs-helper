@@ -1,3 +1,4 @@
+/** 对象深拷贝的函数 */
 const deepClone = <T>(obj: T): T => {
   const getType = (e: any) => Object.prototype.toString.call(e).slice(8, -1);
   const isValid = (e: any) => getType(e) === "Object" || getType(e) === "Array";

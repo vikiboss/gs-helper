@@ -1,28 +1,28 @@
 import { BiImport, BiExport } from "react-icons/Bi";
 import { TiArrowBack } from "react-icons/ti";
+import { TimeRangeDayData } from "@nivo/calendar";
 import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
-import { TimeRangeDayData } from "@nivo/calendar";
 
 import { DefaultGachaData, GachaMap } from "../../../constants";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import DateRange from "./Charts/DateRange";
-import filterGachaList, { GachaTypeMap } from "../../../utils/filterGachaList";
+import filterGachaList, { GachaTypeMap } from "./utils/filterGachaList";
 import GachaPie from "./Charts/GachaPie";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
-import transformGachaDataDate from "../../../utils/transformGachaDataDate";
-import transformGachaDataType from "../../../utils/transformGachaDataType";
+import transformGachaDataDate from "./utils/transformGachaDataDate";
+import transformGachaDataType from "./utils/transformGachaDataType";
 import useNotice from "../../hooks/useNotice";
 
-import type { GachaData, GachaType, ItemType, StarType } from "../../../typings";
+import type { GachaData, GachaType, GachaItemType, StarType } from "../../../typings";
 
 import styles from "./index.less";
 
-type FilterBtn = { name: string; type: StarType | GachaType | ItemType };
+type FilterBtn = { name: string; type: StarType | GachaType | GachaItemType };
 
 type FilterLine = {
   type: keyof FilterType;
@@ -31,11 +31,11 @@ type FilterLine = {
 
 export type FilterType = {
   gacha: GachaType[];
-  item: ItemType[];
+  item: GachaItemType[];
   star: StarType[];
 };
 
-const defaultFilters: FilterType = {
+const DefaultFilters: FilterType = {
   gacha: ["activity", "normal", "weapon", "newer"],
   item: ["weapon", "role"],
   star: [3, 4, 5]
@@ -45,15 +45,15 @@ const Gacha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [uid, setUid] = useState<string>("");
-  const [filter, setfilter] = useState<FilterType>(defaultFilters);
-  const [gachas, setGachas] = useState<GachaData[]>([DefaultGachaData]);
+  const [filter, setfilter] = useState<FilterType>(DefaultFilters);
+  const [gachas, setGachas] = useState<GachaData[]>([]);
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
   const initGachaData = async () => {
-    const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
+    const gachas: GachaData[] = await nativeApi.getLocalGachaDatas();
     setGachas(gachas);
-    const _uid: string = await nativeApi.getStoreKey("user.uid");
+    const _uid: string = await nativeApi.getStoreKey("currentUid");
     const loggedUidGachaData = gachas.filter((e) => e.info.uid === _uid)[0];
     if (loggedUidGachaData) {
       if (!uid) setUid(_uid);
@@ -62,7 +62,7 @@ const Gacha: React.FC = () => {
       if (Number(_uid)) {
         notice.warning({ message: "当前已登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
       } else {
-        notice.warning({ message: "未登录米游社账号，UID 不存在，已自动选择本地首个账号的数据" });
+        notice.warning({ message: "未登录米游社账号，已自动选择本地首个账号的数据" });
       }
       if (!uid) setUid(gachas[0].info.uid);
     }
@@ -96,7 +96,7 @@ const Gacha: React.FC = () => {
 
   const toggleFilter = (type: keyof FilterType, target?: any) => {
     if (!target) {
-      const defaultFilter = defaultFilters[type];
+      const defaultFilter = DefaultFilters[type];
       const isAll = filter[type].length === defaultFilter.length;
       const res = isAll ? [] : defaultFilter;
       setfilter({ ...filter, [type]: res });
@@ -304,8 +304,8 @@ const Gacha: React.FC = () => {
             <div className={styles.pieChart}>
               <div className={styles.filterZone}>
                 {filterLines.map((line, i) => {
-                  const filters: (StarType | GachaType | ItemType)[] = filter[line.type];
-                  const defaultArr = defaultFilters[line.type];
+                  const filters: (StarType | GachaType | GachaItemType)[] = filter[line.type];
+                  const defaultArr = DefaultFilters[line.type];
                   const isAll = filters.length === defaultArr.length;
                   const selectClass = cn(styles.select, isAll ? styles.selectAll : "");
                   return (

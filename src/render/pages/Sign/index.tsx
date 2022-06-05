@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
-import { DefaultSignData, DefaultSignInfo } from "../../../constants";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
@@ -14,6 +13,22 @@ import type { SignData } from "../../../services/getBBSSignData";
 import type { SignInfo } from "../../../services/getBBSSignInfo";
 
 import styles from "./index.less";
+
+export const DefaultSignData: SignData = {
+  month: 1,
+  awards: [],
+  resign: true
+};
+
+export const DefaultSignInfo: SignInfo = {
+  total_sign_day: 0,
+  today: "2022-01-01",
+  is_sign: false,
+  first_bind: false,
+  is_sub: false,
+  month_first: false,
+  sign_cnt_missed: 0
+};
 
 const Sign: React.FC = () => {
   const navigate = useNavigate();
