@@ -44,8 +44,8 @@
     .user-card {
       .flex-center-y();
 
-      height       : 150px;
-      width        : 360px;
+      height          : 150px;
+      width           : 360px;
       // padding-right: 20px;
       // border-right : 1px solid @color-primary;
 
@@ -358,10 +358,17 @@
 
     .footer {
       .flex-center-y();
+      .transition();
+      .text-shadow();
 
       color    : @color-white;
       font-size: 12px;
       margin   : 12px 0;
+      opacity  : 0.6;
+
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }

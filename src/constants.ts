@@ -33,8 +33,8 @@ export const IPCEvents: Record<string, string> = {
   writeClipboardText: "WRITE_CLIPBOARD_TEXT"
 };
 
-export const ANNUCEMENT_DATA_DELAY = "数据可能存在延迟，请以游戏内的实时数据为准。";
-export const ANNUCEMENT_OPEN_SOURCE = "本工具使用 MIT 协议在 GitHub 上开源，仅供个人学习交流使用。";
+export const ANNUCEMENT =
+  "「原神助手」 使用 MIT 协议开源，软件内的数据与素材主要来源于 「米游社」。数据可能存在延迟，请以游戏内的实时数据为准，详情请参阅 「关于」 页面。";
 export const APP_NAME = "原神助手";
 export const GAME_NAME_EN = "Genshin Impact";
 export const GAME_NAME_ZH_CN = "原神";
