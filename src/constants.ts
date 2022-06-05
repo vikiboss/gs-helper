@@ -102,7 +102,7 @@ export const GachaMap: Record<GachaType, string> = {
 export const Colors: Record<string, string> = {
   blue: "#73abcd",
   purple: "#9779c2",
-  golden: "#da9559",
+  golden: "#ffa564",
   red: "#da4e55"
 };
 

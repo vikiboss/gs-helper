@@ -53,12 +53,15 @@ const Gacha: React.FC = () => {
   const initGachaData = async () => {
     const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
     setGachas(gachas);
-    const uid: string = await nativeApi.getStoreKey("user.uid");
+    const _uid: string = await nativeApi.getStoreKey("user.uid");
     const loggedUidGachaData = gachas.filter((e) => e.info.uid === uid)[0];
     if (loggedUidGachaData) {
-      setUid(uid);
+      if (!uid) setUid(_uid);
     } else if (gachas.length) {
-      setUid(gachas[0].info.uid);
+      if (!uid) {
+        notice.warning({ message: "当前登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
+        setUid(gachas[0].info.uid);
+      }
     }
   };
 
@@ -81,6 +84,7 @@ const Gacha: React.FC = () => {
     if (data.list.length) {
       notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
       await initGachaData();
+      setUid(data.info.uid);
     } else {
       notice.faild({ message: "数据异常，请尝试重新获取 「最新链接」 后再试" });
     }
@@ -243,6 +247,8 @@ const Gacha: React.FC = () => {
     }
   };
 
+  const uids = gachas.map((e) => e.info.uid).sort((p, n) => Number(p) - Number(n));
+
   return (
     <>
       <div className={styles.container}>
@@ -272,7 +278,7 @@ const Gacha: React.FC = () => {
             <div className={styles.icon} title='导出 JSON 数据' onClick={handleExport}>
               <BiExport size={20} />
             </div>
-            {gachas.length >= 1 && uid && (
+            {uids.length > 0 && uid && (
               <div className={styles.selectZone}>
                 <select
                   name='UID'
@@ -280,9 +286,9 @@ const Gacha: React.FC = () => {
                   onChange={(e) => setUid(e.target.value)}
                   defaultValue={uid}
                 >
-                  {gachas.map((e) => (
-                    <option key={e.info.uid} value={e.info.uid}>
-                      {e.info.uid}
+                  {uids.map((e) => (
+                    <option key={e} value={e}>
+                      {e}
                     </option>
                   ))}
                 </select>
