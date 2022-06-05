@@ -54,14 +54,17 @@ const Gacha: React.FC = () => {
     const gachas: GachaData[] = await nativeApi.getStoreKey("gachas");
     setGachas(gachas);
     const _uid: string = await nativeApi.getStoreKey("user.uid");
-    const loggedUidGachaData = gachas.filter((e) => e.info.uid === uid)[0];
+    const loggedUidGachaData = gachas.filter((e) => e.info.uid === _uid)[0];
     if (loggedUidGachaData) {
       if (!uid) setUid(_uid);
     } else if (gachas.length) {
-      if (!uid) {
-        notice.warning({ message: "当前登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
-        setUid(gachas[0].info.uid);
+      console.log(_uid);
+      if (Number(_uid)) {
+        notice.warning({ message: "当前已登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
+      } else {
+        notice.warning({ message: "未登录米游社账号，UID 不存在，已自动选择本地首个账号的数据" });
       }
+      if (!uid) setUid(gachas[0].info.uid);
     }
   };
 

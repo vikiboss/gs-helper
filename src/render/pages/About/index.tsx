@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 
 import CircleButton from "../../components/CircleButton";
-import rewardWXCode from "../../../assets/reward.jpg";
+import wxRewardCode from "../../../assets/wx-reward.jpg";
+import aliPayCode from "../../../assets/ali-pay.png";
 import groupQRCode from "../../../assets/group-qrcode.png";
 import { LINK_GITHUB_REPO } from "../../../constants";
 import nativeApi from "../../utils/nativeApi";
@@ -22,7 +23,7 @@ const About: React.FC = () => {
   const githubLink = "https://github.com/vikiboss";
   const groupLink = "https://jq.qq.com/?_wv=1027&k=InHF9niP";
   const ElectronLink = "https://www.electronjs.org";
-  const packageLink = "https://github.com/Vikiboss/genshin-helper/blob/master/package.json"
+  const packageLink = "https://github.com/Vikiboss/genshin-helper/blob/master/package.json";
   const ReactLink = "https://reactjs.org";
 
   return (
@@ -85,7 +86,6 @@ const About: React.FC = () => {
             <a href={packageLink} target='_blank'>
               {" package.json "}
             </a>
-            <span></span>
           </div>
           <div className={styles.item}>
             <div className={styles.field}>
@@ -96,13 +96,20 @@ const About: React.FC = () => {
             </div>
           </div>
         </div>
-        <div className={styles.codeZone}>
-          <img className={styles.code} src={groupQRCode} alt='交流群' />
-          <div>「原神助手」 交流群</div>
-        </div>
-        <div className={styles.codeZone}>
-          <img className={styles.code} src={rewardWXCode} alt='微信赞赏码' />
-          <div>Viki の 微信赞赏码</div>
+        <div className={styles.codeZones}>
+          <div className={styles.codeZone}>
+            <img className={styles.code} src={groupQRCode} alt='交流群' />
+            <div>「原神助手」 交流群</div>
+          </div>
+          <div className={styles.codeZone}>
+            <img className={styles.code} src={aliPayCode} alt='支付宝收款码' />
+            <div>Viki の 支付宝收款码</div>
+          </div>
+          <div className={styles.codeZone}>
+            <img className={styles.code} src={wxRewardCode} alt='微信赞赏码' />
+            <div>Viki の 微信赞赏码</div>
+          </div>
+          <div className={styles.mask} />
         </div>
       </div>
       <div className={styles.thank}>{"※ 开发不易 ❤ 感谢支持 ※"}</div>
