@@ -5,12 +5,18 @@
   "description": "原神助手",
   "main": ".webpack/main",
   "scripts": {
-    "start": "electron-forge start --inspect-electron",
+    "start": "electron-forge start",
+    "start:watch": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "lint": "eslint --ext .ts,.tsx ."
   },
-  "keywords": [],
+  "keywords": [
+    "electron",
+    "react",
+    "typescript",
+    "tool"
+  ],
   "author": {
     "name": "Viki",
     "email": "vikiboss@qq.com"
@@ -23,23 +29,14 @@
     "@electron-forge/cli": "^6.0.0-beta.63",
     "@electron-forge/maker-zip": "^6.0.0-beta.63",
     "@electron-forge/plugin-webpack": "6.0.0-beta.63",
-    "@emotion/react": "^11.9.0",
-    "@nivo/bar": "^0.79.1",
-    "@nivo/calendar": "^0.79.1",
-    "@nivo/core": "^0.79.0",
-    "@nivo/pie": "^0.79.1",
-    "@types/react": "^18.0.8",
     "@types/react-dom": "^18.0.3",
+    "@types/react": "^18.0.8",
     "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "@vercel/webpack-asset-relocator-loader": "1.7.0",
-    "axios": "^0.27.2",
-    "classnames": "^2.3.1",
     "css-loader": "^6.0.0",
-    "dayjs": "^1.11.2",
     "electron": "18.2.0",
-    "electron-store": "^8.0.1",
     "eslint": "^8.0.1",
     "eslint-plugin-import": "^2.25.0",
     "fork-ts-checker-webpack-plugin": "^6.0.1",
@@ -47,15 +44,23 @@
     "less-loader": "^10.2.0",
     "node-loader": "^2.0.0",
     "prop-types": "^15.8.1",
+    "style-loader": "^3.0.0",
+    "ts-loader": "^9.2.2",
+    "typescript": "~4.5.4"
+  },
+  "dependencies": {
+    "@nivo/bar": "^0.79.1",
+    "@nivo/calendar": "^0.79.1",
+    "@nivo/core": "^0.79.0",
+    "@nivo/pie": "^0.79.1",
+    "axios": "^0.27.2",
+    "classnames": "^2.3.1",
+    "dayjs": "^1.11.2",
+    "electron-store": "^8.0.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.3.0",
-    "style-loader": "^3.0.0",
-    "swiper": "^8.1.5",
-    "ts-loader": "^9.2.2",
-    "typescript": "~4.5.4",
     "uuid": "^8.3.2"
-  },
-  "dependencies": {}
+  }
 }
