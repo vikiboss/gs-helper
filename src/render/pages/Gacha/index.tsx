@@ -20,6 +20,7 @@ import useNotice from "../../hooks/useNotice";
 import type { GachaData, GachaType, GachaItemType, StarType } from "../../../typings";
 
 import styles from "./index.less";
+import Select from "../../components/Select";
 
 const DefaultGachaData: GachaData = {
   info: {
@@ -304,16 +305,12 @@ const Gacha: React.FC = () => {
               <BiExport size={20} />
             </div>
             {uids.length > 0 && uid && (
-              <div className={styles.selectZone}>
-                <label htmlFor='uid'>UID</label>
-                <select name='UID' id='uid' value={uid} onChange={(e) => setUid(e.target.value)}>
-                  {uids.map((e) => (
-                    <option key={e} value={e}>
-                      {e}
-                    </option>
-                  ))}
-                </select>
-              </div>
+              <Select
+                name='UID'
+                value={uid}
+                onChange={(e) => setUid(e.target.value)}
+                options={uids.map((e) => ({ value: e, label: e }))}
+              />
             )}
           </div>
         </div>
