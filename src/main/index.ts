@@ -1,8 +1,8 @@
 import { app, BrowserWindow } from "electron";
 import Store from "electron-store";
 
-import { registerHotkey, unregisterHotkey } from "./hotkeys";
-import bindIPC from "./bindIPC";
+import { registerHotkey, unregisterHotkey } from "./handleHotkeys";
+import bindIPC from "./IPC";
 import createMainWindow from "./createMainWindow";
 import initStore from "./initStore";
 import initTray from "./initTray";

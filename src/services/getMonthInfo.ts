@@ -1,7 +1,7 @@
 import { API_HK4E, LINK_BBS_REFERER } from "../constants";
-import getCurrentUser from "../main/ipcHandlers/getCurrentUser";
-import getServerByUid from "../main/getServerByUid";
-import request from "./request";
+import getCurrentUser from "../main/IPC/getCurrentUser";
+import getServerByUid from "../utils/getServerByUid";
+import request from "../utils/request";
 
 import type { BaseRes } from "../typings";
 

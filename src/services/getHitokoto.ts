@@ -1,4 +1,4 @@
-import request from "./request";
+import request from "../utils/request";
 
 const HitokotoApi = "https://v1.hitokoto.cn/";
 

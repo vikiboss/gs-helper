@@ -1,6 +1,6 @@
 import { API_TAKUMI, LINK_BBS_REFERER } from "../constants";
 import getBBSSignActId from "./getBBSSignActId";
-import request from "./request";
+import request from "../utils/request";
 
 import type { BaseRes } from "../typings";
 

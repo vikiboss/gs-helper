@@ -21,7 +21,6 @@ export const IPCEvents: Record<string, string> = {
   getOwnedRoleList: "GET_OWNED_ROLE_LIST",
   getPublicRoleList: "GET_PUBLIC_ROLE_LIST",
   getStoreKey: "GET_STORE_KEY",
-  getUserRole: "GET_USER_ROLE",
   hideApp: "HIDE_APP",
   loginByBBS: "LOGIN_BY_BBS",
   minimizeApp: "MONIMIZE_APP",

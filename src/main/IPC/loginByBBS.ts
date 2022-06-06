@@ -4,7 +4,7 @@ import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
 import { isDev } from "../createMainWindow";
 import { mainWin, store } from "..";
 import { ScriptRefineBBS } from "./openWindow";
-import verifyCookie from "../verifyCookie";
+import verifyCookie from "../../utils/verifyCookie";
 
 import type { UserData } from "../../typings";
 

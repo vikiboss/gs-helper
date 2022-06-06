@@ -1,4 +1,4 @@
-import getCurrentUser from "../main/ipcHandlers/getCurrentUser";
+import getCurrentUser from "../main/IPC/getCurrentUser";
 import getUserRolesByCookie from "./getUserRoleListByCookie";
 
 import type { GameRole } from "../typings";

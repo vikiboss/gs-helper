@@ -2,7 +2,7 @@ import Store from "electron-store";
 import { v4 as uuid } from "uuid";
 
 import { DefaultAppData } from "../constants";
-import deepClone from "../utils/deepClone";
+import { deepClone } from "../utils/utils";
 
 import type { Schema } from "electron-store";
 import type { AppData } from "../typings";

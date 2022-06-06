@@ -25,7 +25,6 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getOwnedRoleList: () => IPC.invoke(IPCEvents.getOwnedRoleList),
   getPublicRoleList: () => IPC.invoke(IPCEvents.getPublicRoleList),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
-  getUserRole: () => IPC.invoke(IPCEvents.getUserRole),
   hideApp: () => IPC.send(IPCEvents.hideApp),
   loginByBBS: () => IPC.send(IPCEvents.loginByBBS),
   minimizeApp: () => IPC.send(IPCEvents.minimizeApp),

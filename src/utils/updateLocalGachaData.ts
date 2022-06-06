@@ -3,7 +3,7 @@ import path from "path";
 import { app } from "electron";
 
 import { DefaultGachaData } from "../constants";
-import { isDirExist, isFileExist } from "../utils/fsUtils";
+import { isDirExist, isFileExist } from "./nodeUtils";
 import mergeGachaList from "./mergeGachaList";
 
 import type { GachaData } from "../typings";

@@ -1,8 +1,8 @@
 import { API_TAKUMI, LINK_BBS_REFERER } from "../constants";
 import getBBSSignActId from "./getBBSSignActId";
-import getCurrentUser from "../main/ipcHandlers/getCurrentUser";
-import getServerByUid from "../main/getServerByUid";
-import request from "./request";
+import getCurrentUser from "../main/IPC/getCurrentUser";
+import getServerByUid from "../utils/getServerByUid";
+import request from "../utils/request";
 
 import type { BaseRes } from "../typings";
 

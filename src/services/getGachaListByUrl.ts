@@ -2,9 +2,8 @@ import { app } from "electron";
 import D from "dayjs";
 
 import { API_HK4E, GachaTypeMap, DefaultGachaData } from "../constants";
-import deepClone from "../utils/deepClone";
-import request from "./request";
-import wait from "../utils/wait";
+import { deepClone, wait } from "../utils/utils";
+import request from "../utils/request";
 
 import type { BaseRes, GachaData, GachaItem, RawGachaItem } from "../typings";
 

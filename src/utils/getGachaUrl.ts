@@ -3,7 +3,7 @@ import path from "path";
 import { app } from "electron";
 
 import { GAME_NAME } from "../constants";
-import { isDev } from "./createMainWindow";
+import { isDev } from "../main/createMainWindow";
 
 /** 获取原神游戏在本地日志里的祈愿记录链接，只有在游戏里打开过祈愿记录页面，日志里才会有祈愿链接 */
 const getGachaUrl = async () => {

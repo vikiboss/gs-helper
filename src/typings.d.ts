@@ -2,8 +2,14 @@ import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { AxiosRequestConfig as Config, AxiosResponse } from "axios";
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
+import type { CalenderEvent } from "./services/getCalenderList";
 import type { Cookies } from "electron";
-import type { GachaData, AppInfo } from "./typings";
+import type { DailyNotesData } from "./services/getDailyNotes";
+import type { GameRole } from "./services/getGameRoleInfo";
+import type { MonthInfo } from "./services/getMonthInfo";
+import type { SignData } from "./services/getBBSSignData";
+import type { SignInfo } from "./services/getBBSSignInfo";
+import type { PublicRole } from "./services/getPublicRoleList";
 import type { Store } from "electron-store";
 
 export interface NativeApi {
@@ -26,7 +32,6 @@ export interface NativeApi {
   getOwnedRoleList: () => Promise<Role[] | null>;
   getPublicRoleList: () => Promise<PublicRole[] | null>;
   getStoreKey: (key: string) => Promise<any>;
-  getUserRole: () => Promise<GameRole | null>;
   hideApp: () => void;
   loginByBBS: () => void;
   minimizeApp: () => void;

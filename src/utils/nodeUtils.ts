@@ -1,7 +1,10 @@
 import fs from "fs";
+import crypto from "crypto";
 
-// 一系列方便文件系统操作的函数
+// MD5 加密算法
+export const md5 = (value: string) => crypto.createHash("md5").update(value).digest("hex");
 
+// 文件是否存在
 export function isFileExist(filePath: string): boolean {
   try {
     return fs.statSync(filePath).isFile();
@@ -10,6 +13,7 @@ export function isFileExist(filePath: string): boolean {
   }
 }
 
+// 文件夹是否存在
 export function isDirExist(dirPath: string): boolean {
   try {
     return fs.statSync(dirPath).isDirectory();

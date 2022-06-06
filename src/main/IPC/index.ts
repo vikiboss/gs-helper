@@ -1,29 +1,27 @@
 import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from "electron";
 
-import { IPCEvents } from "../constants";
-import { store } from ".";
-import changeUser from "./changeUser";
-import deleteUser from "./deleteUser";
-import getCurrentUser from "./ipcHandlers/getCurrentUser";
-import getGachaUrl from "./getGachaUrl";
-import getLocalGachaDatas from "./getLocalGachaDatas";
-import getUserRole from "./ipcHandlers/getUserRole";
-import handleGetGachaListByUrl from "./ipcHandlers/getGachaListByUrl";
-import loginViaBBS from "./ipcHandlers/loginByBBS";
-import openWindow from "./ipcHandlers/openWindow";
+import { IPCEvents } from "../../constants";
+import { store } from "..";
+import { changeUser, deleteUser } from "../handleUsers";
+import getCurrentUser from "./getCurrentUser";
+import getGachaUrl from "../../utils/getGachaUrl";
+import getLocalGachaDatas from "../../utils/getLocalGachaDatas";
+import handleGetGachaListByUrl from "./getGachaListByUrl";
+import loginViaBBS from "./loginByBBS";
+import openWindow from "./openWindow";
 
-import doBBSSign from "../services/doBBSSign";
-import getBBSSignData from "../services/getBBSSignData";
-import getBBSSignInfo from "../services/getBBSSignInfo";
-import getCalenderList from "../services/getCalenderList";
-import getDailyNotes from "../services/getDailyNotes";
-import getGameRoleInfo from "../services/getGameRoleInfo";
-import getHitokoto from "../services/getHitokoto";
-import getMonthInfo from "../services/getMonthInfo";
-import getOwnedRoleList from "../services/getOwnedRoleList";
-import getPublicRoleList from "../services/getPublicRoleList";
+import doBBSSign from "../../services/doBBSSign";
+import getBBSSignData from "../../services/getBBSSignData";
+import getBBSSignInfo from "../../services/getBBSSignInfo";
+import getCalenderList from "../../services/getCalenderList";
+import getDailyNotes from "../../services/getDailyNotes";
+import getGameRoleInfo from "../../services/getGameRoleInfo";
+import getHitokoto from "../../services/getHitokoto";
+import getMonthInfo from "../../services/getMonthInfo";
+import getOwnedRoleList from "../../services/getOwnedRoleList";
+import getPublicRoleList from "../../services/getPublicRoleList";
 
-import type { AppInfo } from "../typings";
+import type { AppInfo } from "../../typings";
 
 const AppicationInfo: AppInfo = { name: app.getName(), version: app.getVersion() };
 
@@ -54,7 +52,6 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getOwnedRoleList, async () => await getOwnedRoleList());
   IPC.handle(IPCEvents.getPublicRoleList, async () => await getPublicRoleList());
   IPC.handle(IPCEvents.getStoreKey, (_, key: string) => store.get(key));
-  IPC.handle(IPCEvents.getUserRole, async () => await getUserRole());
   IPC.handle(IPCEvents.readClipboardText, () => clipboard.readText());
   IPC.handle(
     IPCEvents.getGachaListByUrl,

@@ -1,5 +1,5 @@
 import getGachaListByUrl from "../../services/getGachaListByUrl";
-import updateLocalGachaData from "../updateLocalGachaData";
+import updateLocalGachaData from "../../utils/updateLocalGachaData";
 
 import type { GachaData } from "../../typings";
 

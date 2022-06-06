@@ -1,6 +1,5 @@
-import qs from "../utils/qs";
-import md5 from "../utils/md5";
-import random from "../utils/random";
+import { md5 } from "./nodeUtils";
+import { qs, random } from "./utils";
 
 /** 获取指定位数只包含数字与字母的随机字符串 */
 const getRandomStr = (n: number) => {

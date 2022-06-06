@@ -1,5 +1,5 @@
 import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from "../constants";
-import request from "./request";
+import request from "../utils/request";
 
 import type { GameRole, BaseRes, GameRolesData } from "../typings";
 

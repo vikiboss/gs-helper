@@ -1,5 +1,5 @@
 import { API_YS_CONTENT } from "../constants";
-import request from "./request";
+import request from "../utils/request";
 
 import type { BaseRes } from "../typings";
 

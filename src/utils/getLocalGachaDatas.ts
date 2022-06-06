@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { app } from "electron";
 
-import { isDirExist } from "../utils/fsUtils";
+import { isDirExist } from "./nodeUtils";
 
 import type { GachaData } from "../typings";
 

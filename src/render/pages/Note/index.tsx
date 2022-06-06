@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
+import { wait } from "../../../utils/utils";
 import BounceNumber from "../../components/BounceNumber";
 import CircleButton from "../../components/CircleButton";
 import getGreetingMsg from "../../../utils/getGreetingMsg";
 import Loading from "../../components/Loading";
 import Pie from "./Pie";
 import useNotice from "../../hooks/useNotice";
-import wait from "../../../utils/wait";
 import withAuth from "../../auth/withAuth";
 
 import mora from "../../../assets/mora.png";
