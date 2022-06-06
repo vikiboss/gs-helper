@@ -33,6 +33,7 @@ import type { PublicRole } from "../../../services/getPublicRoleList";
 import type { Reliquarie, Role as RoleInfo } from "../../../services/getOwnedRoleList";
 
 import styles from "./index.less";
+import Select from "../../components/Select";
 
 type RenderRoleInfo = RoleInfo & PublicRole;
 type TabType = "weapon" | "reliquary" | "constellation" | "profile";
@@ -117,9 +118,71 @@ const getReliquaryEffects = (reliquaries: Reliquarie[]): ReliquaryEffect[] => {
   return effects;
 };
 
+const ElementOptions = [
+  {
+    value: "all",
+    label: "所有元素"
+  },
+  {
+    value: "Pyro",
+    label: "火元素"
+  },
+  {
+    value: "Electro",
+    label: "雷元素"
+  },
+  {
+    value: "Geo",
+    label: "岩元素"
+  },
+  {
+    value: "Cryo",
+    label: "冰元素"
+  },
+  {
+    value: "Anemo",
+    label: "风元素"
+  },
+  {
+    value: "Hydro",
+    label: "水元素"
+  },
+  {
+    value: "Dendro",
+    label: "草元素"
+  }
+];
+
+const WeaponOptions = [
+  {
+    value: 0,
+    label: "所有武器"
+  },
+  {
+    value: 1,
+    label: "单手剑"
+  },
+  {
+    value: 11,
+    label: "双手剑"
+  },
+  {
+    value: 12,
+    label: "弓"
+  },
+  {
+    value: 13,
+    label: "长柄武器"
+  },
+  {
+    value: 10,
+    label: "法器"
+  }
+];
 const Role: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
+  const [filters, setFilters] = useState<[string, number]>(["all", 0]);
   const [index, setIndex] = useState<number>(0);
   const [constellIndex, setConstellIndex] = useState<number>(0);
   const [infoTab, setInfoTab] = useState<TabType>("weapon");
@@ -158,7 +221,11 @@ const Role: React.FC = () => {
     }
   };
 
-  const _roles = getFullRoleInfo(roles, publicRoles);
+  const _roles = getFullRoleInfo(roles, publicRoles).filter((e) => {
+    const isElementOK = filters[0] === "all" || e.element === filters[0];
+    const isWeaponOK = filters[1] === 0 || e.weapon.type === filters[1];
+    return isElementOK && isWeaponOK;
+  });
   const isDetail = mode === "detail" && _roles.length > 0;
   const currentRole = _roles[index];
   const reliquaryEffects = isDetail ? getReliquaryEffects(_roles[index].reliquaries) : [];
@@ -186,14 +253,49 @@ const Role: React.FC = () => {
           <span className={cn(styles.title, isDetail ? styles.detailMode : "")}>
             {isDetail ? "角色详情" : "所有获得的角色"}
           </span>
+          {!isDetail && roles.length > 0 && (
+            <div className={styles.selects}>
+              <Select
+                name='elementFilter'
+                value={filters[0]}
+                onChange={(e) => {
+                  setFilters([e.target.value, filters[1]]);
+                  setIsRoleChanging(false);
+                  setTimeout(() => {
+                    setIsRoleChanging(true);
+                  }, 0);
+                }}
+                defaultValue={"level"}
+                options={ElementOptions}
+              />
+              <Select
+                name='weaponFilter'
+                value={filters[1]}
+                onChange={(e) => {
+                  setFilters([filters[0], Number(e.target.value)]);
+                  setIsRoleChanging(false);
+                  setTimeout(() => {
+                    setIsRoleChanging(true);
+                  }, 0);
+                }}
+                defaultValue={"level"}
+                options={WeaponOptions}
+              />
+            </div>
+          )}
           {isDetail && (
-            <Button text='所有角色' theme='light' onClick={toggleMode} className={styles.ani} />
+            <Button
+              className={cn(styles.allRoleBtn, styles.allRoleBtnAni)}
+              text='所有角色'
+              theme='light'
+              onClick={toggleMode}
+            />
           )}
         </div>
         {roles.length > 0 ? (
           <>
             {!isDetail && (
-              <div className={styles.roleTable}>
+              <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : "")}>
                 {_roles.map((e, i) => (
                   <div
                     key={e.name + i}
@@ -213,6 +315,9 @@ const Role: React.FC = () => {
                     <span>{e.name}</span>
                   </div>
                 ))}
+                {roles.length > 0 && _roles.length === 0 && (
+                  <div className={styles.empty}>筛选结果为空</div>
+                )}
               </div>
             )}
             {/* 渲染角色详情页 */}
@@ -234,7 +339,10 @@ const Role: React.FC = () => {
                           </>
                         )}
                         {currentRole.actived_constellation_num > 0 && (
-                          <span>{currentRole.actived_constellation_num}命</span>
+                          <span>
+                            {currentRole.actived_constellation_num}命
+                            {currentRole.actived_constellation_num >= 6 ? " （满命）" : ""}
+                          </span>
                         )}
                       </div>
                     </div>

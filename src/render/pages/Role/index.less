@@ -28,11 +28,34 @@
       font-size: 28px;
     }
 
-    &>div {
+    .all-role-btn {
       left    : 20px;
       position: absolute;
       top     : 20px;
       z-index : 10;
+    }
+
+    // 筛选框区域
+    .selects {
+      .ani-show-right();
+      .flex-center-y();
+
+      padding        : 0 20px;
+      bottom         : 4px;
+      justify-content: flex-end;
+      position       : absolute;
+      right          : 0px;
+      width          : 36vw;
+      z-index        : 10;
+
+      &>div {
+        margin-left: 12px;
+
+        select {
+          width    : 100px;
+          font-size: 16px;
+        }
+      }
     }
   }
 
@@ -72,8 +95,11 @@
     background-image: url("../../../assets/item-bg-6.png");
   }
 
+  .role-table-ani {
+    .ani-show-bottom();
+  }
+
   .role-table {
-    .ani-show-right();
     .flex();
 
     flex     : 1;
@@ -82,6 +108,15 @@
     overflow : auto;
     padding  : 4px 12px;
     width    : 100vw;
+
+    .empty {
+      color      : @color-second;
+      font-size  : 20px;
+      height     : 460px;
+      line-height: 460px;
+      text-align : center;
+      width      : 100%;
+    }
 
     .role-item {
       .flex-center-column();
@@ -631,6 +666,11 @@
   .loading {
     .ani-show-bottom();
   }
+}
+
+// 所有角色按钮动画
+.all-role-btn-ani {
+  .ani-show-left();
 }
 
 // 背景动画
