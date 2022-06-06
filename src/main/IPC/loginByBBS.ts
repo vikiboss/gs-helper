@@ -1,4 +1,4 @@
-import { BrowserWindow, session } from "electron";
+import { app, BrowserWindow, session } from "electron";
 
 import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
 import { isDev } from "../createMainWindow";
@@ -36,7 +36,7 @@ const loginByBBS = async () => {
   // 阻止弹出新窗口
   dom.setWindowOpenHandler(() => ({ action: "deny" }));
   // 设置 UA 为手机版本
-  dom.setUserAgent(APP_USER_AGENT_MOBILE);
+  dom.setUserAgent(APP_USER_AGENT_MOBILE + app.getVersion());
   // 加载米游社登录页面
   dom.loadURL(LINK_MIHOYO_BBS_LOGIN);
   // 优化页面元素

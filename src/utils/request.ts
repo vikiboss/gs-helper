@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { APP_USER_AGENT_BBS, APP_VERSION_BBS } from "../constants";
+import { APP_USER_AGENT_BBS } from "../constants";
 import { store } from "../main";
 
 // 创建 Axios 实例并设置默认配置、请求头等
@@ -8,7 +8,7 @@ const request = axios.create({
   timeout: 50000,
   headers: {
     "User-Agent": APP_USER_AGENT_BBS,
-    "x-rpc-app_version": APP_VERSION_BBS,
+    "x-rpc-app_version": "2.28.1",
     "x-rpc-client_type": "5",
     "x-requested-with": "com.mihoyo.hyperion",
     "x-rpc-channel": "appstore"

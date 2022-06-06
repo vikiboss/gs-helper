@@ -1,7 +1,7 @@
 import { app } from "electron";
 import D from "dayjs";
 
-import { API_HK4E, GachaTypeMap, DefaultGachaData } from "../constants";
+import { API_HK4E, GachaTypeMap } from "../constants";
 import { deepClone, wait } from "../utils/utils";
 import request from "../utils/request";
 
@@ -14,6 +14,20 @@ interface RawGachaData {
   list: RawGachaItem[];
   region: string;
 }
+
+export const DefaultGachaData: GachaData = {
+  info: {
+    uid: "",
+    lang: "zh-cn",
+    export_app: app.getName(),
+    export_app_version: "1.0.0",
+    export_time: "",
+    export_timestamp: "",
+    update_time: "",
+    uigf_version: "v2.2"
+  },
+  list: []
+};
 
 const getGachaListByUrl = async (url: string): Promise<GachaData> => {
   try {

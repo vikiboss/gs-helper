@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { app } from "electron";
 
-import { DefaultGachaData } from "../constants";
+import { DefaultGachaData } from "../services/getGachaListByUrl";
 import { isDirExist, isFileExist } from "./nodeUtils";
 import mergeGachaList from "./mergeGachaList";
 

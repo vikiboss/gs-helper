@@ -1,4 +1,4 @@
-import { BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
 
 import { APP_USER_AGENT_DESKTOP } from "../../constants";
 import { isDev } from "../createMainWindow";
@@ -34,7 +34,7 @@ const openWindow = async (
   });
 
   dom.on("did-finish-load", () => dom.executeJavaScript(ScriptRefineBBS));
-  dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP);
+  dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP + app.getVersion());
   dom.loadURL(url);
 };
 

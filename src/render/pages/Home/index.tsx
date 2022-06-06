@@ -1,5 +1,5 @@
 import { NavigateOptions, useNavigate } from "react-router-dom";
-import React, { MouseEventHandler, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
@@ -11,7 +11,7 @@ import { MdOutlineAccountBox } from "react-icons/md";
 import { MdOutlineNoteAlt } from "react-icons/md";
 import { RiCalendarCheckFill } from "react-icons/ri";
 
-import { ANNUCEMENT, LINK_GENSHIN_MAP, LOGIN_TIP, WELCOME_TIP } from "../../../constants";
+import { LINK_GENSHIN_MAP } from "../../../constants";
 import Button from "../../components/Button";
 import nativeApi from "../../utils/nativeApi";
 import useAuth from "../../hooks/useAuth";
@@ -174,8 +174,8 @@ const Home: React.FC = () => {
           ) : (
             <div className={styles.noLoginContainer}>
               <div className={styles.noLoginText}>
-                <span>{WELCOME_TIP}</span>
-                <span>{LOGIN_TIP}</span>
+                <span>欢迎你，旅行者。👋</span>
+                <span>建议登录 「米游社」 账号以获得最佳使用体验。</span>
               </div>
               <Button
                 text='登录米游社'
@@ -242,7 +242,8 @@ const Home: React.FC = () => {
               ))}
           </div>
           <div className={styles.footer} onClick={() => safelyNavigate("/about")}>
-            {ANNUCEMENT}
+            「原神助手」 使用 MIT 协议开源，软件内的数据与素材主要来源于
+            「米游社」。数据可能存在延迟，请以游戏内的实时数据为准，详情请参阅 「关于」 页面。
           </div>
         </div>
       </div>

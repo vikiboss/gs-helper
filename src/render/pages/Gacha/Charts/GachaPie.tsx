@@ -1,7 +1,8 @@
 import React from "react";
 import { CommonPieProps, MouseEventHandler, ResponsivePie } from "@nivo/pie";
 
-import { ChartTheme, Colors } from "../../../../constants";
+import { ChartTheme } from "../../../../constants";
+import { Colors } from "../utils/transformGachaDataType";
 
 type GachaPieProp = {
   width: React.CSSProperties["width"];

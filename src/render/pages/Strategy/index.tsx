@@ -24,26 +24,24 @@ import version from "../../../assets/icon-version.png";
 import weapon from "../../../assets/icon-weapon.png";
 import wiki from "../../../assets/icon-wiki.png";
 
-import {
-  LINK_BBS_ABYSS,
-  LINK_BBS_ACTIVITY,
-  LINK_BBS_ANIMAL,
-  LINK_BBS_BOSS,
-  LINK_BBS_ELEMENT,
-  LINK_BBS_FOOD,
-  LINK_BBS_MATERIAL,
-  LINK_BBS_MYSTERY,
-  LINK_BBS_NEWER,
-  LINK_BBS_OBC,
-  LINK_BBS_PV,
-  LINK_BBS_RELIQUARY,
-  LINK_BBS_ROLE,
-  LINK_BBS_STRATEGY,
-  LINK_BBS_TASK,
-  LINK_BBS_TEAM,
-  LINK_BBS_VERSION,
-  LINK_BBS_WEAPON
-} from "../../../constants";
+const LINK_BBS_ABYSS = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/46";
+const LINK_BBS_ACTIVITY = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/48";
+const LINK_BBS_ANIMAL = "https://bbs.mihoyo.com/ys/obc/channel/map/189/49";
+const LINK_BBS_BOSS = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/43";
+const LINK_BBS_ELEMENT = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/41";
+const LINK_BBS_FOOD = "https://bbs.mihoyo.com/ys/obc/channel/map/189/21";
+const LINK_BBS_MATERIAL = "https://bbs.mihoyo.com/ys/obc/channel/map/189/13";
+const LINK_BBS_MYSTERY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/54";
+const LINK_BBS_NEWER = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/38";
+const LINK_BBS_OBC = "https://bbs.mihoyo.com/ys/obc";
+const LINK_BBS_PV = "https://bbs.mihoyo.com/ys/obc/channel/map/80";
+const LINK_BBS_RELIQUARY = "https://bbs.mihoyo.com/ys/obc/channel/map/189/218";
+const LINK_BBS_ROLE = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/39";
+const LINK_BBS_STRATEGY = "https://bbs.mihoyo.com/ys/strategy";
+const LINK_BBS_TASK = "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231";
+const LINK_BBS_TEAM = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/40";
+const LINK_BBS_VERSION = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233";
+const LINK_BBS_WEAPON = "https://bbs.mihoyo.com/ys/obc/channel/map/189/5";
 
 import styles from "./index.less";
 

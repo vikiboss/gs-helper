@@ -1,6 +1,11 @@
-import { Colors } from "../../../../constants";
-
 import type { GachaData } from "../../../../typings";
+
+export const Colors: Record<string, string> = {
+  blue: "#73abcd",
+  purple: "#9779c2",
+  golden: "#ffa564",
+  red: "#da4e55"
+};
 
 const n5 = {
   id: "5星",

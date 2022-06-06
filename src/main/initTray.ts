@@ -1,7 +1,6 @@
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
 import path from "path";
 
-import { APP_NAME } from "../constants";
 import { isDev } from "./createMainWindow";
 import { store } from ".";
 import icon from "../assets/icon.ico";
@@ -60,7 +59,7 @@ const initTray = (win: BrowserWindow) => {
   const contextMenu = Menu.buildFromTemplate(menus);
 
   // 设置托盘菜单提示文字
-  tray.setToolTip(`${APP_NAME} v${app.getVersion()}`);
+  tray.setToolTip(`${app.getName()} v${app.getVersion()}`);
   // 监听点击事件，绑定程序的显示与隐藏操作
   tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
   // 加载托盘右键菜单

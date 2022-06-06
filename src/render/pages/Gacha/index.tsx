@@ -6,7 +6,6 @@ import cn from "classnames";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
-import { DefaultGachaData, GachaMap } from "../../../constants";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import DateRange from "./Charts/DateRange";
@@ -21,6 +20,27 @@ import useNotice from "../../hooks/useNotice";
 import type { GachaData, GachaType, GachaItemType, StarType } from "../../../typings";
 
 import styles from "./index.less";
+
+const DefaultGachaData: GachaData = {
+  info: {
+    uid: "",
+    lang: "zh-cn",
+    export_app: "原神助手",
+    export_app_version: "1.0.0",
+    export_time: "",
+    export_timestamp: "",
+    update_time: "",
+    uigf_version: "v2.2"
+  },
+  list: []
+};
+
+export const GachaMap: Record<GachaType, string> = {
+  activity: "活动祈愿",
+  weapon: "武器祈愿",
+  normal: "常驻祈愿",
+  newer: "新手祈愿"
+};
 
 type FilterBtn = { name: string; type: StarType | GachaType | GachaItemType };
 

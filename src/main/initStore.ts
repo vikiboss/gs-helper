@@ -1,11 +1,16 @@
 import Store from "electron-store";
 import { v4 as uuid } from "uuid";
 
-import { DefaultAppData } from "../constants";
 import { deepClone } from "../utils/utils";
 
 import type { Schema } from "electron-store";
 import type { AppData } from "../typings";
+
+export const DefaultAppData: AppData = {
+  currentUid: "",
+  users: [],
+  settings: { alwaysOnTop: false, deviceId: "" }
+};
 
 /** 初始化 Store */
 const initStore = () => {
