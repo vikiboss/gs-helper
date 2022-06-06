@@ -77,11 +77,10 @@ const Home: React.FC = () => {
       setUser(user);
       setNotesData(note);
       setSign(sign);
+      setLoading(false);
     } catch {
-      notice.faild({ message: "加载超时，请检查网络连接" });
+      notice.faild({ message: "加载超时，请检查网络连接 T_T" });
     }
-
-    setLoading(false);
   };
 
   const handlePageSwitch = (path: string) => {

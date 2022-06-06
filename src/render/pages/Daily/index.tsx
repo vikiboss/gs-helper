@@ -75,8 +75,12 @@ const Daily: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await nativeApi.getCalenderList();
-      if (res.length > 0) setCalenderList(res);
+      try {
+        const res = await nativeApi.getCalenderList();
+        if (res.length > 0) setCalenderList(res);
+      } catch {
+        notice.faild({ message: "加载超时，请检查网络连接 T_T" });
+      }
     })();
   }, []);
 

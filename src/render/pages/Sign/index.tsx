@@ -53,7 +53,7 @@ const Sign: React.FC = () => {
       setSignData(data);
       setSignInfo(info);
     } catch {
-      notice.faild({ message: "加载超时，请检查网络连接" });
+      notice.faild({ message: "加载超时，请检查网络连接 T_T" });
     }
   };
 
@@ -63,15 +63,19 @@ const Sign: React.FC = () => {
     } else if (signInfo.first_bind) {
       notice.warning({ message: "旅行者是第一次绑定游戏账号，请先到米游社手动签到一次吧~" });
     } else {
-      const isSignDone = await nativeApi.doBBSSign();
-      if (isSignDone) {
-        const total = signInfo.total_sign_day;
-        const award = signData.awards[total];
-        const todayAward = `${award.name}x${award.cnt}`;
-        notice.success({ message: `签到成功！获得 ${todayAward}，本月累计签到 ${total + 1} 天` });
-        await updateInfo();
-      } else {
-        notice.faild({ message: "很抱歉，网络异常，签到失败 T_T" });
+      try {
+        const isSignDone = await nativeApi.doBBSSign();
+        if (isSignDone) {
+          const total = signInfo.total_sign_day;
+          const award = signData.awards[total];
+          const todayAward = `${award.name}x${award.cnt}`;
+          notice.success({ message: `签到成功！获得 ${todayAward}，本月累计签到 ${total + 1} 天` });
+          await updateInfo();
+        } else {
+          notice.faild({ message: "网络异常，签到失败 T_T" });
+        }
+      } catch {
+        notice.faild({ message: "加载超时，请检查网络连接 T_T" });
       }
     }
   };

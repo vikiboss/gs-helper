@@ -154,7 +154,7 @@ const Role: React.FC = () => {
       if (roles.length) setRoles(roles);
       // if (roles.length) setRoles([...roles, ...roles]);
     } catch {
-      notice.faild({ message: "加载超时，请检查网络连接" });
+      notice.faild({ message: "加载超时，请检查网络连接 T_T" });
     }
   };
 
@@ -218,25 +218,29 @@ const Role: React.FC = () => {
             {/* 渲染角色详情页 */}
             {isDetail && (
               <div className={styles.roleDetail}>
-                <div className={cn(styles.detailContent, isRoleChanging ? styles.contentAni : "")}>
+                <div className={styles.detailContent}>
                   <div className={styles.roleInfo}>
-                    <div className={cn(styles.name)}>{currentRole.name}</div>
-                    <img src={getStarImage(currentRole.rarity)} alt='star' />
-                    <div className={styles.roleAttr}>
-                      <span>Lv. {currentRole.level}</span>
-                      <span>{ElementTypes[currentRole.element]}</span>
-                      {!currentRole.name.includes("旅行者") && (
-                        <>
-                          {/* <span>生日：{D(currentRole.startTime).format("M月D日")}</span> */}
-                          <FaHeart size={16} />
-                          <span>{currentRole.fetter}</span>
-                        </>
-                      )}
-                      {currentRole.actived_constellation_num > 0 && (
-                        <span>{currentRole.actived_constellation_num}命</span>
-                      )}
+                    <div className={cn(styles.titleZone, isRoleChanging ? styles.titleAni : "")}>
+                      <div className={cn(styles.name)}>{currentRole.name}</div>
+                      <img src={getStarImage(currentRole.rarity)} alt='star' />
+                      <div className={styles.roleAttr}>
+                        <span>Lv. {currentRole.level}</span>
+                        <span>{ElementTypes[currentRole.element]}</span>
+                        {!currentRole.name.includes("旅行者") && (
+                          <>
+                            {/* <span>生日：{D(currentRole.startTime).format("M月D日")}</span> */}
+                            <FaHeart size={16} />
+                            <span>{currentRole.fetter}</span>
+                          </>
+                        )}
+                        {currentRole.actived_constellation_num > 0 && (
+                          <span>{currentRole.actived_constellation_num}命</span>
+                        )}
+                      </div>
                     </div>
-                    <div className={styles.tabContainer}>
+                    <div
+                      className={cn(styles.tabContainer, isRoleChanging ? styles.contentAni : "")}
+                    >
                       <div className={styles.tab}>
                         {tabs.map((e) => (
                           <div

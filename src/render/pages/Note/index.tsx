@@ -71,7 +71,7 @@ const Month: React.FC = () => {
         }
         setMonthInfos(data);
       } catch {
-        notice.faild({ message: "加载超时，请检查网络连接" });
+        notice.faild({ message: "加载超时，请检查网络连接 T_T" });
       }
     })();
   }, []);

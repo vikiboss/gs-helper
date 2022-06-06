@@ -170,31 +170,37 @@
       width          : 100%;
       text-shadow    : 1px 1px 2px rgba(0, 0, 0, 0.3);
 
+
       .role-info {
         width: 600px;
 
-        .name {
-          margin-left: 40px;
-          line-height: 40px;
-          font-size  : 36px;
-        }
+        .title-zone {
+          .flex-center-y-column();
 
-        &>img:nth-child(2) {
-          margin-left: 40px;
-          height     : 24px;
-        }
-
-        .role-attr {
-          .flex-center-y();
-
-          margin-left: 44px;
-
-          span:not(:last-child) {
-            margin-right: 12px;
+          .name {
+            margin-left: 40px;
+            line-height: 40px;
+            font-size  : 36px;
           }
 
-          span:not(:nth-child(1)) {
-            margin-left: 4px;
+          &>img {
+            height     : 24px;
+            margin-left: 40px;
+            width      : 94px;
+          }
+
+          .role-attr {
+            .flex-center-y();
+
+            margin-left: 44px;
+
+            span:not(:last-child) {
+              margin-right: 12px;
+            }
+
+            span:not(:nth-child(1)) {
+              margin-left: 4px;
+            }
           }
         }
 
@@ -452,10 +458,10 @@
                     transform: scale(1.05);
                   }
                 }
-                
+
                 .constelll-active {
                   background-color: rgba(0, 0, 0, 0.3);
-                  transform: scale(1.05);
+                  transform       : scale(1.05);
                 }
               }
 
@@ -501,6 +507,11 @@
           }
         }
       }
+    }
+
+    // 角色标题区域动画
+    .title-ani {
+      .ani-show-right();
     }
 
     // 角色详情区域动画
