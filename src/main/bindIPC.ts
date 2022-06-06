@@ -2,9 +2,12 @@ import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from "electron";
 
 import { IPCEvents } from "../constants";
 import { store } from ".";
+import changeUser from "./changeUser";
 import deleteUser from "./deleteUser";
 import getCurrentUser from "./ipcHandlers/getCurrentUser";
 import getGachaUrl from "./getGachaUrl";
+import getLocalGachaDatas from "./getLocalGachaDatas";
+import getUserRole from "./ipcHandlers/getUserRole";
 import handleGetGachaListByUrl from "./ipcHandlers/getGachaListByUrl";
 import loginViaBBS from "./ipcHandlers/loginByBBS";
 import openWindow from "./ipcHandlers/openWindow";
@@ -16,11 +19,9 @@ import getCalenderList from "../services/getCalenderList";
 import getDailyNotes from "../services/getDailyNotes";
 import getGameRoleInfo from "../services/getGameRoleInfo";
 import getHitokoto from "../services/getHitokoto";
-import getLocalGachaDatas from "./getLocalGachaDatas";
 import getMonthInfo from "../services/getMonthInfo";
 import getOwnedRoleList from "../services/getOwnedRoleList";
 import getPublicRoleList from "../services/getPublicRoleList";
-import getUserRole from "./ipcHandlers/getUserRole";
 
 import type { AppInfo } from "../typings";
 
@@ -37,14 +38,15 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.on(IPCEvents.setStoreKey, (_, key: string, value: any) => store.set(key, value));
   IPC.on(IPCEvents.writeClipboardText, (_, text: string) => clipboard.writeText(text));
 
+  IPC.handle(IPCEvents.changeUser, async (_, uid: string) => await changeUser(uid));
   IPC.handle(IPCEvents.doBBSSign, async () => await doBBSSign());
   IPC.handle(IPCEvents.getAppInfo, () => AppicationInfo);
   IPC.handle(IPCEvents.getBBSSignData, async () => await getBBSSignData());
   IPC.handle(IPCEvents.getBBSSignInfo, async () => await getBBSSignInfo());
   IPC.handle(IPCEvents.getCalenderList, async () => await getCalenderList());
   IPC.handle(IPCEvents.getCurrentUser, () => getCurrentUser());
-  IPC.handle(IPCEvents.getLocalGachaDatas, () => getLocalGachaDatas());
   IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
+  IPC.handle(IPCEvents.getLocalGachaDatas, () => getLocalGachaDatas());
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
   IPC.handle(IPCEvents.getGameRoleInfo, async () => await getGameRoleInfo());
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());

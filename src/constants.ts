@@ -2,6 +2,7 @@ import type { AppData, GachaData, GachaType, GameRole } from "./typings";
 
 // main 进程 与 render 进程进行 IPC 通信的事件常量
 export const IPCEvents: Record<string, string> = {
+  changeUser: "CHANGE_USER",
   closeApp: "CLOSE_APP",
   deleteUser: "DELETE_USER",
   doBBSSign: "DO_BBS_SIGN",
@@ -15,11 +16,11 @@ export const IPCEvents: Record<string, string> = {
   getGachaUrl: "GET_GACHA_URL",
   getGameRoleInfo: "GET_GAME_ROLE_INFO",
   getHitokoto: "GET_HITOKOTO",
+  getLocalGachaDatas: "GET_LOCAL_GACHA_DATAS",
   getMonthInfo: "GET_MONTH_INFO",
   getOwnedRoleList: "GET_OWNED_ROLE_LIST",
   getPublicRoleList: "GET_PUBLIC_ROLE_LIST",
   getStoreKey: "GET_STORE_KEY",
-  getLocalGachaDatas: "GET_LOCAL_GACHA_DATAS",
   getUserRole: "GET_USER_ROLE",
   hideApp: "HIDE_APP",
   loginByBBS: "LOGIN_BY_BBS",
@@ -37,10 +38,7 @@ export const APP_NAME = "原神助手";
 export const ANNUCEMENT =
   "「原神助手」 使用 MIT 协议开源，软件内的数据与素材主要来源于 「米游社」。数据可能存在延迟，请以游戏内的实时数据为准，详情请参阅 「关于」 页面。";
 
-export const GAME_NAME: Record<string, string> = {
-  "zh-CN": "原神",
-  en: "Genshin Impact"
-};
+export const GAME_NAME: Record<string, string> = { "zh-CN": "原神", en: "Genshin Impact" };
 
 export const LOGIN_TIP = "建议登录 「米游社」 账号以获得最佳使用体验。";
 export const WELCOME_TIP = "欢迎你，旅行者。👋";

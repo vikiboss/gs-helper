@@ -329,8 +329,10 @@
           transform: scale(1.08);
           // border: 2px solid @home-block-hover-border-color;
 
+          // 悬浮时显示三角形伪元素，同时播放动画
           &::before {
-            .ani-slide-top();
+            .ani-slide-bottom();
+
             border-top  : 10px solid @color-white;
             border-left : 10px solid transparent;
             border-right: 10px solid transparent;
@@ -344,11 +346,12 @@
           border          : 2px solid @home-block-active-border-color;
         }
 
+        // 伪元素  绘制按钮悬浮的三角形
         &::before {
           z-index : 10;
           content : " ";
           position: absolute;
-          top     : 6px;
+          top     : -6px;
           left    : calc((206px / 2) - 5px - 2px -8px);
           height  : 0px;
           width   : 0px;

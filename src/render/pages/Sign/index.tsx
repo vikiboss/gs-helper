@@ -44,13 +44,17 @@ const Sign: React.FC = () => {
   }, []);
 
   const updateInfo = async () => {
-    const [data, info] = await Promise.all([
-      nativeApi.getBBSSignData(),
-      nativeApi.getBBSSignInfo()
-    ]);
-    if (!data.month || !info.today) return;
-    setSignData(data);
-    setSignInfo(info);
+    try {
+      const [data, info] = await Promise.all([
+        nativeApi.getBBSSignData(),
+        nativeApi.getBBSSignInfo()
+      ]);
+      if (!data.month || !info.today) return;
+      setSignData(data);
+      setSignInfo(info);
+    } catch {
+      notice.faild({ message: "加载超时，请检查网络链接" });
+    }
   };
 
   const handleSign = async () => {

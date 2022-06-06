@@ -1,8 +1,9 @@
-import { BrowserWindow } from "electron";
+import { BrowserWindow, session } from "electron";
 
 import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
 import { isDev } from "../createMainWindow";
 import { mainWin, store } from "..";
+import { ScriptRefineBBS } from "./openWindow";
 import verifyCookie from "../verifyCookie";
 
 import type { UserData } from "../../typings";
@@ -38,13 +39,17 @@ const loginByBBS = async () => {
   dom.setUserAgent(APP_USER_AGENT_MOBILE);
   // 加载米游社登录页面
   dom.loadURL(LINK_MIHOYO_BBS_LOGIN);
+  // 优化页面元素
+  dom.on("did-finish-load", () => dom.executeJavaScript(ScriptRefineBBS));
 
   // 监听登录窗口被关闭事件
   bbsWin.on("close", async () => {
-    // 获取窗口的 cookie
-    const cookies = dom.session.cookies;
+    // 获取 cookie
+    const cookies = session.defaultSession.cookies;
     // 验证 cookie 有效性（是否成功登录）
     const { valid, cookie, roleInfo } = await verifyCookie(cookies);
+    // 设置当前 uid，有效登录时 uid 设置正常，未登录则置空
+    store.set("currentUid", roleInfo.game_uid);
     // 无效则不对本地 store 处理
     if (!valid) return;
     // 有效则继续处理
@@ -63,8 +68,6 @@ const loginByBBS = async () => {
     }
     // 将新的账号信息列表保存至本地磁盘中
     store.set("users", localUsers);
-    // 设置当前账号为此账号
-    store.set("currentUid", user.uid);
     // 登录窗口关闭后，聚焦主窗口
     mainWin.focus();
   });

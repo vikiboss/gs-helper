@@ -7,8 +7,9 @@ import type { GachaData, AppInfo } from "./typings";
 import type { Store } from "electron-store";
 
 export interface NativeApi {
+  changeUser: (uid: string) => Promise<void>;
   closeApp: () => void;
-  deleteUser: (uid?: string) => void;
+  deleteUser: (uid: string) => void;
   doBBSSign: () => Promise<boolean>;
   getAppInfo: () => Promise<AppInfo>;
   getBBSSignData: () => Promise<SignData | null>;
@@ -20,10 +21,10 @@ export interface NativeApi {
   getGachaUrl: () => Promise<string>;
   getGameRoleInfo: () => Promise<GameRole | null>;
   getHitokoto: () => Promise<string>;
+  getLocalGachaDatas: () => Promise<GachaData[]>;
   getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
   getOwnedRoleList: () => Promise<Role[] | null>;
   getPublicRoleList: () => Promise<PublicRole[] | null>;
-  getLocalGachaDatas: () => Promise<GachaData[]>;
   getStoreKey: (key: string) => Promise<any>;
   getUserRole: () => Promise<GameRole | null>;
   hideApp: () => void;

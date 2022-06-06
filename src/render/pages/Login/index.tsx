@@ -9,36 +9,48 @@ import nativeApi from "../../utils/nativeApi";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 
+import type { UserData } from "../../../typings";
+
 import styles from "./index.less";
 
-type LoginProp = {
+interface LoginProp {
   from?: string;
-};
+}
 
-const LoginGuids = [
-  "① 点击 「登录米游社」 按钮打开登录窗口",
-  "② 在登录窗口中登录 「米游社」 账号",
-  "③ 完成登录后关闭登录窗口",
-  "④ 点击 「刷新状态」 按钮完成登录"
+interface LocationState {
+  changeAccount?: boolean;
+  isExpired?: boolean;
+}
+
+const LoginGuides = [
+  "① 点击 「登录米游社」 按钮打开登录界面",
+  "② 在登录界面中登录 「米游社」 账号",
+  "③ 成功登录后关闭登录界面",
+  "④ 点击 「验证账号」 按钮完成登录"
 ];
 
 const Login: React.FC<LoginProp> = (props) => {
   const notice = useNotice();
-  const { state } = useLocation();
+  const auth = useAuth();
   const navigate = useNavigate();
+  const state = useLocation().state as LocationState;
   const { isLogin, login } = useAuth();
-  const [isSwitching, setIsSwitching] = useState<boolean>((state as any)?.changeAccount);
-  const isExpired = (state as any)?.isExpired;
-
-  const naviProps = {
-    to: props?.from || "/",
-    replace: true
-  };
+  const [users, setUsers] = useState<UserData[]>([]);
+  const [isSwitching, setIsSwitching] = useState<boolean>(state?.changeAccount);
 
   useEffect(() => {
     if (props?.from) notice.faild({ message: "请登录以使用全部功能" });
-    if (isExpired) notice.faild({ message: "验证信息已过期，请重新登录" });
-    if (isSwitching) notice.info({ message: "请登录 「新的账号」 以切换账号" });
+    if (state?.isExpired) notice.faild({ message: "验证信息已过期，请重新登录" });
+    (async () => {
+      const users: UserData[] = await nativeApi.getStoreKey("users");
+      if (users.length > 0) {
+        // if (isSwitching) notice.info({ message: "点击页面底部已登录 UID 可快速切换本地账号" });
+        users.sort((p, n) => Number(p.uid) - Number(n.uid));
+        setUsers(users);
+      }
+      // setUsers([...users, ...users]);
+      // setUsers([...users, ...users, ...users, ...users, ...users, ...users]);
+    })();
   }, []);
 
   const handleLogin = () => {
@@ -47,33 +59,73 @@ const Login: React.FC<LoginProp> = (props) => {
 
   const handleRefresh = async () => {
     const user = await nativeApi.getCurrentUser();
-    if (!user?.cookie) return notice.faild({ message: "未检测到有效验证信息，请重新登录" });
-    notice.success({ message: "登录成功，正在返回登录前页面..." });
+    if (!user) {
+      auth.logout();
+      notice.faild({ message: "未检测到有效验证信息，请重新登录" });
+      return;
+    } else {
+      notice.success({ message: "登录成功，正在前往首页登录前页面..." });
+      setTimeout(() => {
+        setIsSwitching(false);
+        login();
+      }, 1200);
+    }
+  };
+
+  const handleUserSwitch = async (uid: string) => {
+    await nativeApi.changeUser(uid);
+    notice.success({ message: `已切换到 UID ${uid}，正在前往首页...` });
     setTimeout(() => {
       setIsSwitching(false);
       login();
-    }, 1200);
+    }, 1000);
+  };
+
+  const naviProps = {
+    to: props?.from || "/",
+    replace: true
   };
 
   if (isLogin && !isSwitching) return <Navigate {...naviProps} />;
 
   return (
     <>
-      <div className={styles.bg}>
-        <div className={styles.title}>登录 「米游社」 账号</div>
-        <div style={{ marginBottom: "20px" }}>
-          <div className={styles.desc}>操作步骤：</div>
-          {LoginGuids.map((e) => (
-            <div className={styles.step} key={e}>
-              {e}
+      <div className={styles.container}>
+        <div className={styles.title}>{isSwitching ? "切换" : "登录"} 「米游社」 账号</div>
+        <div className={styles.content}>
+          <div>
+            <div>操作步骤：</div>
+            {LoginGuides.map((e) => (
+              <div className={styles.step} key={e}>
+                {e}
+              </div>
+            ))}
+          </div>
+          <div className={styles.btns}>
+            <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
+            <Button type='confirm' size='middle' text='验证账号' onClick={handleRefresh} />
+          </div>
+          <img src={element} alt='七大元素' style={{ width: "20vw" }} />
+          {users.length > 0 && (
+            <div className={styles.localUser}>
+              <div>※ 点击下方 UID 可快速登录本地账号 ※</div>
+              <div
+                style={{
+                  justifyContent: users.length > 6 ? "flex-start" : "center",
+                  overflow: users.length > 6 ? "auto" : "hidden"
+                }}
+              >
+                {users.map((e, i) => (
+                  <Button
+                    key={e.uid + i}
+                    text={e.uid}
+                    onClick={handleUserSwitch.bind(null, e.uid)}
+                  />
+                ))}
+              </div>
             </div>
-          ))}
+          )}
         </div>
-        <div className={styles.btns}>
-          <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
-          <Button type='confirm' size='middle' text='刷新状态' onClick={handleRefresh} />
-        </div>
-        <img src={element} alt='七大元素' style={{ width: "20vw" }} />
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

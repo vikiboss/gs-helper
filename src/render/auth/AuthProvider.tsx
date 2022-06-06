@@ -21,15 +21,14 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
     })();
   }, []);
 
-  const login = (callback?: VoidFunction) => {
-    setIsLogin(true);
-    return callback ? callback() : true;
-  };
-
-  const logout = async (uid?: string, callback?: VoidFunction) => {
+  const login = () => setIsLogin(true);
+  const logout = async (uid?: string) => {
     setIsLogin(false);
-    nativeApi.deleteUser(uid);
-    return callback ? callback() : true;
+    if (uid) {
+      nativeApi.deleteUser(uid);
+    } else {
+      nativeApi.setStoreKey("currentUid", "");
+    }
   };
 
   return <Provider value={{ isLogin, login, logout }}>{children}</Provider>;

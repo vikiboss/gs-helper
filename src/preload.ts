@@ -7,8 +7,9 @@ import type { GachaData, AppInfo, UserData } from "./typings";
 // 通过 IPC 实现 main 进程与 render 进程相互通信
 // 通过 contextBridge 将 API 安全的挂载到 render 进程的全局变量 window 中
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
+  changeUser: (uid: string) => IPC.invoke(IPCEvents.changeUser, uid),
   closeApp: () => IPC.send(IPCEvents.closeApp),
-  deleteUser: (uid?: string) => IPC.send(IPCEvents.deleteUser, uid),
+  deleteUser: (uid: string) => IPC.send(IPCEvents.deleteUser, uid),
   doBBSSign: () => IPC.invoke(IPCEvents.doBBSSign),
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPCEvents.getAppInfo),
   getBBSSignData: () => IPC.invoke(IPCEvents.getBBSSignData),
@@ -19,10 +20,10 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
   getGameRoleInfo: () => IPC.invoke(IPCEvents.getGameRoleInfo),
   getHitokoto: () => IPC.invoke(IPCEvents.getHitokoto),
+  getLocalGachaDatas: () => IPC.invoke(IPCEvents.getLocalGachaDatas),
   getMonthInfo: (month?: number) => IPC.invoke(IPCEvents.getMonthInfo, month),
   getOwnedRoleList: () => IPC.invoke(IPCEvents.getOwnedRoleList),
   getPublicRoleList: () => IPC.invoke(IPCEvents.getPublicRoleList),
-  getLocalGachaDatas: () => IPC.invoke(IPCEvents.getLocalGachaDatas),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
   getUserRole: () => IPC.invoke(IPCEvents.getUserRole),
   hideApp: () => IPC.send(IPCEvents.hideApp),
