@@ -1,15 +1,25 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 
 import Alert, { AlertProp } from "../components/Alert";
 
-export type AlertOptions = {
+export interface AlertOptions {
   autoHide?: boolean;
   duration?: number;
   message: string;
   type?: AlertProp["type"];
-};
+}
 
-const useNotice = () => {
+export interface Notice {
+  show: (optons: AlertOptions) => void;
+  hide: () => void;
+  info: (optons: AlertOptions) => void;
+  warning: (optons: AlertOptions) => void;
+  success: (optons: AlertOptions) => void;
+  faild: (optons: AlertOptions) => void;
+  holder: ReactElement<AlertProp, any>;
+}
+
+const useNotice = (): Notice => {
   const [message, setMessage] = useState<string>("");
   const [timer, setTimer] = useState<NodeJS.Timeout>();
   const [type, setType] = useState<AlertProp["type"]>("info");

@@ -53,7 +53,7 @@ const Sign: React.FC = () => {
       setSignData(data);
       setSignInfo(info);
     } catch {
-      notice.faild({ message: "加载超时，请检查网络链接" });
+      notice.faild({ message: "加载超时，请检查网络连接" });
     }
   };
 

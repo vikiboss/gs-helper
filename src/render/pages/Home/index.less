@@ -41,123 +41,12 @@
     width   : calc(100vw - 80px);
     z-index : 1;
 
-    .user-card {
-      .flex-center-y();
+    .loading {
+      .ani-show-bottom;
 
-      height          : 150px;
-      width           : 360px;
-      // padding-right: 20px;
-      // border-right : 1px solid @color-primary;
-
-      .avatar {
-        .transition-quick();
-        .flex-center();
-
-        background-image : url("../../../assets/avatar-border-hover.png");
-        background-repeat: no-repeat;
-        background-size  : contain;
-        height           : $width;
-        width            : 140px;
-
-        .avatar-image {
-          border-radius: 50px;
-          height       : $width;
-          width        : 100px;
-        }
-
-        &:active {
-          transform: scale(0.8);
-        }
-      }
-
-      .user-info {
-        .flex-center-y-column();
-
-        .info-item {
-          .flex-center-y();
-
-          flex       : 1;
-          margin-left: 20px;
-          width      : 100%;
-
-          .nickname {
-            background   : linear-gradient(to right, @color-accent, transparent);
-            border-radius: 16px;
-            color        : @color-white;
-            display      : inline-block;
-            flex         : 1;
-            padding      : 4px 10px;
-          }
-
-          .level,
-          .region,
-          .uid {
-            color  : @color-primary;
-            display: inline-block;
-            flex   : 1;
-            padding: 4px 10px;
-
-            &:active {
-              color: @color-second;
-            }
-          }
-        }
-      }
-    }
-
-    .note-card {
-      .flex-column-wrap();
-
-      flex       : 1;
-      height     : 120px;
-      margin-left: 60px;
-
-      .note-item {
-        .flex-center-y();
-
-        height: 30px;
-        width : 50%;
-
-        &:active {
-          color: @color-second;
-        }
-
-        .note-icon {
-          height      : 24px;
-          margin-right: 4px;
-          width       : $height;
-        }
-
-        .note-detail {
-          .transition-quick();
-          .flex-center-y();
-
-          height     : 26px;
-          line-height: 26px;
-
-          .dispatch-border {
-            .transition-quick();
-            .flex-center();
-
-            border       : 2px solid @color-accent;
-            border-radius: 15px;
-            margin-right : 8px;
-            overflow     : hidden;
-
-            .dispatch-avatar {
-              height: 24px;
-            }
-
-            &:active {
-              border-color: @color-white;
-            }
-          }
-
-          .done {
-            border-color: @color-success;
-          }
-        }
-      }
+      flex      : 1;
+      font-size : 24px;
+      text-align: center;
     }
 
     .top-greeting {
@@ -371,6 +260,129 @@
 
       &:hover {
         opacity: 0.8;
+      }
+    }
+  }
+}
+
+
+
+.user-card {
+  .ani-show-left();
+  .flex-center-y();
+
+  height          : 150px;
+  width           : 360px;
+  // padding-right: 20px;
+  // border-right : 1px solid @color-primary;
+
+  .avatar {
+    .transition-quick();
+    .flex-center();
+
+    background-image : url("../../../assets/avatar-border-hover.png");
+    background-repeat: no-repeat;
+    background-size  : contain;
+    height           : $width;
+    width            : 140px;
+
+    .avatar-image {
+      border-radius: 50px;
+      height       : $width;
+      width        : 100px;
+    }
+
+    &:active {
+      transform: scale(0.8);
+    }
+  }
+
+  .user-info {
+    .flex-center-y-column();
+
+    .info-item {
+      .flex-center-y();
+
+      flex       : 1;
+      margin-left: 20px;
+      width      : 100%;
+
+      .nickname {
+        background   : linear-gradient(to right, @color-accent, transparent);
+        border-radius: 16px;
+        color        : @color-white;
+        display      : inline-block;
+        flex         : 1;
+        padding      : 4px 10px;
+      }
+
+      .level,
+      .region,
+      .uid {
+        color  : @color-primary;
+        display: inline-block;
+        flex   : 1;
+        padding: 4px 10px;
+
+        &:active {
+          color: @color-second;
+        }
+      }
+    }
+  }
+}
+
+.note-card {
+  .ani-show-right();
+  .flex-column-wrap();
+
+  flex       : 1;
+  height     : 120px;
+  margin-left: 60px;
+
+  .note-item {
+    .flex-center-y();
+
+    height: 30px;
+    width : 50%;
+
+    &:active {
+      color: @color-second;
+    }
+
+    .note-icon {
+      height      : 24px;
+      margin-right: 4px;
+      width       : $height;
+    }
+
+    .note-detail {
+      .transition-quick();
+      .flex-center-y();
+
+      height     : 26px;
+      line-height: 26px;
+
+      .dispatch-border {
+        .transition-quick();
+        .flex-center();
+
+        border       : 2px solid @color-accent;
+        border-radius: 15px;
+        margin-right : 8px;
+        overflow     : hidden;
+
+        .dispatch-avatar {
+          height: 24px;
+        }
+
+        &:active {
+          border-color: @color-white;
+        }
+      }
+
+      .done {
+        border-color: @color-success;
       }
     }
   }
