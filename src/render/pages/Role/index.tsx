@@ -344,7 +344,12 @@ const Role: React.FC = () => {
                               })}
                             </div>
                             <div>
-                              <span>{currentRole.constellations[constellIndex].name}</span>
+                              <span>
+                                {currentRole.constellations[constellIndex].name}
+                                {currentRole.constellations[constellIndex].is_actived
+                                  ? ""
+                                  : " （未激活）"}
+                              </span>
                               <span>命之座·第{constellIndex + 1}层</span>
                               <div>
                                 {currentRole.constellations[constellIndex].effect
@@ -354,10 +359,6 @@ const Role: React.FC = () => {
                                     <div key={e}>{e}</div>
                                   ))}
                               </div>
-                              {/* <span>{e.name}</span> */}
-                              {/* {.map((e) => (
-                                      <div key={e}>{e}</div>
-                                ))} */}
                             </div>
                           </div>
                         )}

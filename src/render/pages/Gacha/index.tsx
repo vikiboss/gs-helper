@@ -70,21 +70,21 @@ const Gacha: React.FC = () => {
   const [link, setLink] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
 
-  const initGachaData = async () => {
+  const initGachaData = async (newUid?: string) => {
     const gachas: GachaData[] = await nativeApi.getLocalGachaDatas();
     setGachas(gachas);
+    if (newUid) return setUid(newUid);
     const _uid: string = await nativeApi.getStoreKey("currentUid");
     const loggedUidGachaData = gachas.filter((e) => e.info.uid === _uid)[0];
     if (loggedUidGachaData) {
-      if (!uid) setUid(_uid);
+      setUid(_uid);
     } else if (gachas.length) {
-      console.log(_uid);
-      if (Number(_uid)) {
+      setUid(gachas[0].info.uid);
+      if (_uid) {
         notice.warning({ message: "当前已登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
       } else {
         notice.warning({ message: "未登录米游社账号，已自动选择本地首个账号的数据" });
       }
-      if (!uid) setUid(gachas[0].info.uid);
     }
   };
 
@@ -97,8 +97,11 @@ const Gacha: React.FC = () => {
 
   const updateGachaData = async () => {
     if (loading) return notice.faild({ message: "派蒙正在努力获取中，请不要重复点击啦！" });
+
     if (!link) return notice.faild({ message: "请先获取 「本地祈愿链接」 或手动输入祈愿链接" });
     if (!link.match(/^https?:\/\//)) return notice.faild({ message: "链接无效，请检查" });
+
+    notice.info({ message: "派蒙努力加载中，预计半分钟...", autoHide: false });
 
     setLoading(true);
     const data = await nativeApi.getGachaListByUrl(link);
@@ -106,8 +109,7 @@ const Gacha: React.FC = () => {
 
     if (data.list.length) {
       notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
-      await initGachaData();
-      setUid(data.info.uid);
+      await initGachaData(data.info.uid);
     } else {
       notice.faild({ message: "数据异常，请尝试重新获取 「最新链接」 后再试" });
     }
@@ -303,12 +305,8 @@ const Gacha: React.FC = () => {
             </div>
             {uids.length > 0 && uid && (
               <div className={styles.selectZone}>
-                <select
-                  name='UID'
-                  id='uid'
-                  onChange={(e) => setUid(e.target.value)}
-                  defaultValue={uid}
-                >
+                <label htmlFor='uid'>UID</label>
+                <select name='UID' id='uid' value={uid} onChange={(e) => setUid(e.target.value)}>
                   {uids.map((e) => (
                     <option key={e} value={e}>
                       {e}

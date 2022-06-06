@@ -74,7 +74,7 @@
 
   .role-table {
     .ani-show-right();
-    .flex-center-y();
+    .flex();
 
     flex     : 1;
     flex-wrap: wrap;
@@ -88,6 +88,7 @@
       .transition();
 
       color : #564c4a;
+      height: 148px;
       margin: 4px;
       width : calc((100vw - 24px - 8 * 2 * $margin) / 8);
 
@@ -238,10 +239,11 @@
               &::before {
                 .ani-slide-right();
 
-                content  : "▶";
-                font-size: 14px;
-                left     : -24px;
-                position : absolute;
+                content    : "▶";
+                font-size  : 14px;
+                left       : -24px;
+                position   : absolute;
+                text-shadow: none;
               }
             }
           }
