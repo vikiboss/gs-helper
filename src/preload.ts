@@ -18,6 +18,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getCurrentUser: (): Promise<UserData | null> => IPC.invoke(IPCEvents.getCurrentUser),
   getDailyNotes: () => IPC.invoke(IPCEvents.getDailyNotes),
   getGachaUrl: (): Promise<string> => IPC.invoke(IPCEvents.getGachaUrl),
+  getGameRoleCard: (uid: string) => IPC.invoke(IPCEvents.getGameRoleCard, uid),
   getGameRoleInfo: () => IPC.invoke(IPCEvents.getGameRoleInfo),
   getHitokoto: () => IPC.invoke(IPCEvents.getHitokoto),
   getLocalGachaDatas: () => IPC.invoke(IPCEvents.getLocalGachaDatas),

@@ -12,6 +12,7 @@ export const IPCEvents: Record<string, string> = {
   getDailyNotes: "GET_DAILY_NOTES",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
+  getGameRoleCard: "GET_GAME_ROLE_CARD",
   getGameRoleInfo: "GET_GAME_ROLE_INFO",
   getHitokoto: "GET_HITOKOTO",
   getLocalGachaDatas: "GET_LOCAL_GACHA_DATAS",
