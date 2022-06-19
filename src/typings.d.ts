@@ -11,6 +11,7 @@ import type { MonthInfo } from "./services/getMonthInfo";
 import type { PublicRole } from "./services/getPublicRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
+import type { SpiralAbyssData } from "./services/getSpiralAbyss";
 import type { Store } from "electron-store";
 
 export interface NativeApi {
@@ -26,7 +27,8 @@ export interface NativeApi {
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
-  getGameRoleCard: (uid: string) => Promise<GameRoleCardData | null>;
+  getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
+  getSpiralAbyss: (uid?: string) => Promise<SpiralAbyssData | null>;
   getGameRoleInfo: () => Promise<GameRole | null>;
   getHitokoto: () => Promise<string>;
   getLocalGachaDatas: () => Promise<GachaData[]>;

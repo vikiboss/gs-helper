@@ -23,6 +23,7 @@ import getOwnedRoleList from "../../services/getOwnedRoleList";
 import getPublicRoleList from "../../services/getPublicRoleList";
 
 import type { AppInfo } from "../../typings";
+import getSpiralAbyss from "../../services/getSpiralAbyss";
 
 const AppicationInfo: AppInfo = { name: app.getName(), version: app.getVersion() };
 
@@ -46,13 +47,14 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getCurrentUser, () => getCurrentUser());
   IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
-  IPC.handle(IPCEvents.getGameRoleCard, async (_, uid: string) => await getGameRoleCard(uid));
+  IPC.handle(IPCEvents.getGameRoleCard, async (_, uid?: string) => await getGameRoleCard(uid));
   IPC.handle(IPCEvents.getGameRoleInfo, async () => await getGameRoleInfo());
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());
   IPC.handle(IPCEvents.getLocalGachaDatas, () => getLocalGachaDatas());
   IPC.handle(IPCEvents.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
   IPC.handle(IPCEvents.getOwnedRoleList, async () => await getOwnedRoleList());
   IPC.handle(IPCEvents.getPublicRoleList, async () => await getPublicRoleList());
+  IPC.handle(IPCEvents.getSpiralAbyss, async (_, uid?: string) => await getSpiralAbyss(uid));
   IPC.handle(IPCEvents.getStoreKey, (_, key: string) => store.get(key));
   IPC.handle(IPCEvents.readClipboardText, () => clipboard.readText());
   IPC.handle(
