@@ -93,9 +93,9 @@ const getOwnedRoleList = async (): Promise<Role[] | null> => {
     cookie
   };
   const { status, data } = await request.post<BaseRes<RoleData>>(url, postData, { headers });
-  const faild = status !== 200 || data.retcode !== 0;
-  if (faild) console.log("getOwnedRoleList: ", data);
-  return data?.data?.avatars || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getOwnedRoleList: ", data);
+  return isOK ? data?.data?.avatars || null : null;
 };
 
 export default getOwnedRoleList;

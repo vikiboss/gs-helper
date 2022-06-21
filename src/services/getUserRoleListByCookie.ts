@@ -9,8 +9,10 @@ const getUserRolesByCookie = async (cookie: string): Promise<GameRole[] | null> 
   const params = { game_biz: GAME_BIZ };
   const headers = { referer: LINK_BBS_REFERER, cookie };
   const { status, data } = await request.get<BaseRes<GameRolesData>>(url, { params, headers });
-  if (status !== 200 || data.retcode !== 0) console.log("getUserRolesByCookie: ", data);
-  return data?.data?.list || null;
+  // { data: null, message: '登录失效，请重新登录', retcode: -100 }
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getUserRolesByCookie: ", data);
+  return isOK ? data?.data?.list || null : null;
 };
 
 export default getUserRolesByCookie;

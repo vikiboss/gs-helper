@@ -24,8 +24,10 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   const url = `${API_TAKUMI}/event/bbs_sign_reward/info`;
   const headers = { referer: LINK_BBS_REFERER, cookie };
   const { status, data } = await request.get<BaseRes<SignInfo>>(url, { params, headers });
-  if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
-  return data?.data || null;
+  // { data: null, message: '尚未登录', retcode: -100 }
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getBBSSignInfo: ", data);
+  return isOK ? data?.data || null : null;
 };
 
 export default getBBSSignInfo;

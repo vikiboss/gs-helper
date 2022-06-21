@@ -123,9 +123,10 @@ const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
   const url = `${API_YS_CONTENT}/ysCn/getContentList`;
   const params = { pageSize: 1000, pageNum: 1, channelId: 152 };
   const { status, data } = await request.get<BaseRes<PublicRoleListData>>(url, { params });
-  if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getBBSSignInfo: ", data);
   const res = getNeededRoleInfo(data?.data?.list);
-  return res.length ? res : null;
+  return isOK ? (res.length ? res : null) : null;
 };
 
 export default getPublicRoleList;

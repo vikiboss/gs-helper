@@ -108,9 +108,9 @@ const getSpiralAbyss = async (uid?: string): Promise<SpiralAbyssData | null> => 
     cookie: currentUser.cookie
   };
   const { status, data } = await request.get<BaseRes<SpiralAbyssData>>(url, { headers, params });
-  const faild = status !== 200 || data.retcode !== 0;
-  if (faild) console.log("getSpiralAbyss: ", data);
-  return data?.data || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getSpiralAbyss: ", data);
+  return isOK ? data?.data || null : null;
 };
 
 export default getSpiralAbyss;

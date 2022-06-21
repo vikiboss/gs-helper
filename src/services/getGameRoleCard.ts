@@ -97,9 +97,9 @@ const getGameRoleCard = async (uid?: string): Promise<GameRoleCardData | null> =
     cookie: currentUser.cookie
   };
   const { status, data } = await request.get<BaseRes<GameRoleCardData>>(url, { headers, params });
-  const faild = status !== 200 || data.retcode !== 0;
-  if (faild) console.log("getGameRoleCard: ", data);
-  return data?.data || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getGameRoleCard: ", data);
+  return isOK ? data?.data || null : null;
 };
 
 export default getGameRoleCard;

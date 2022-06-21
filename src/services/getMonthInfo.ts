@@ -52,9 +52,9 @@ const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
   const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };
   const headers = { referer: LINK_BBS_REFERER, cookie };
   const { status, data } = await request.get<BaseRes<MonthInfo>>(url, { params, headers });
-  const faild = status !== 200 || data.retcode !== 0;
-  if (faild) console.log("getMonthInfo: ", data);
-  return data?.data || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getMonthInfo: ", data);
+  return isOK ? data?.data || null : null;
 };
 
 export default getMonthInfo;

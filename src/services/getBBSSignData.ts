@@ -16,15 +16,14 @@ export interface SignData {
   resign: boolean;
 }
 
-
-
 const getBBSSignData = async (): Promise<SignData | null> => {
   const act_id = await getBBSSignActId();
   const url = `${API_TAKUMI}/event/bbs_sign_reward/home`;
   const config = { params: { act_id }, headers: { referer: LINK_BBS_REFERER } };
   const { status, data } = await request.get<BaseRes<SignData>>(url, config);
-  if (status !== 200 || data.retcode !== 0) console.log("getBBSSignData: ", data);
-  return data?.data || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getBBSSignData: ", data);
+  return isOK ? data?.data || null : null;
 };
 
 export default getBBSSignData;

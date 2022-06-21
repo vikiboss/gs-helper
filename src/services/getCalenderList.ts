@@ -61,8 +61,9 @@ const getCalenderList = async (): Promise<CalenderEvent[] | null> => {
   const { status, data } = await request.get<BaseRes<CalenderData>>(url, {
     params: { app_sn: "ys_obc" }
   });
-  if (status !== 200 || data.retcode !== 0) console.log("getBBSSignInfo: ", data);
-  return data?.data?.list || null;
+  const isOK = status === 200 && data.retcode === 0;
+  if (!isOK) console.log("getBBSSignInfo: ", data);
+  return isOK ? data?.data?.list || null : null;
 };
 
 export default getCalenderList;
