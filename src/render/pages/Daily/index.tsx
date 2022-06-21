@@ -17,9 +17,9 @@ type Type = "roles" | "weapons" | "materials";
 const WeekMap = ["日", "一", "二", "三", "四", "五", "六"];
 
 const Types = [
+  { title: "今日素材", name: "materials" },
   { title: "天赋培养", name: "roles" },
-  { title: "武器突破", name: "weapons" },
-  { title: "突破素材", name: "materials" }
+  { title: "武器突破", name: "weapons" }
 ];
 
 const Tips = [
@@ -70,7 +70,7 @@ const Daily: React.FC = () => {
   const notice = useNotice();
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([]);
   const [changing, setChanging] = useState<boolean>(false);
-  const [type, setType] = useState<Type>("roles");
+  const [type, setType] = useState<Type>("materials");
   const [week, setWeek] = useState<number>(todayWeek);
 
   useEffect(() => {
