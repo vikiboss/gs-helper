@@ -31,7 +31,6 @@ const getBBSSignActId = async (): Promise<string> => {
   const signPageUrl =
     data.data.navigator.filter((e: any) => e.name.includes("签到"))[0].app_path || "";
   const params = new URLSearchParams(signPageUrl.split("?").reverse()[0]);
-  console.log("getBBSSignActId: ", params.get("act_id"));
   return params.get("act_id") || "e202009291139501";
 };
 
