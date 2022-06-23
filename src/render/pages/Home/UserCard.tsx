@@ -68,14 +68,14 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   ];
 
   // 处理原粹数值数据
-  const isResinOk = note?.current_resin === note?.max_resin;
+  const isResinFull = note?.current_resin === note?.max_resin;
   const resinStatus = `${note?.current_resin}/${note?.max_resin}`;
   const resinTime = Number(note?.resin_recovery_time) || 0;
   const targetTime = D(Date.now() + resinTime * 1000).format("HH:mm");
   const isResinToday = new Date(Date.now() + resinTime * 1000).getDay() === new Date().getDay();
   const resinTimeText = (isResinToday ? "今日 " : "明日 ") + targetTime;
   const resinNotOkText = `将于${resinTimeText} 回满，还剩 ${formatTime(resinTime)}`;
-  const resinTitle = isResinOk ? "树脂恢复完毕" : resinNotOkText;
+  const resinTitle = isResinFull ? "树脂恢复完毕" : resinNotOkText;
 
   // 处理洞天宝钱数据
   const isHomeOk = note?.max_home_coin !== 0;
@@ -97,11 +97,11 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const doneText = isTaskDone ? "已完成" : "未完成";
   const hasReceivedReward = note?.is_extra_task_reward_received;
   const extraText = hasReceivedReward ? "已领取" : "未领取";
-  const taskTitle = `任务${doneText}，额外奖励${extraText}`;
+  const taskTitle = `每日委托任务${doneText}，额外奖励${extraText}`;
 
   // 处理周本数据
   const { remain_resin_discount_num: remain, resin_discount_num_limit: limit } = note;
-  const discountStatus = `${remain}/${limit}`;
+  const discountStatus = `${limit - remain}/${limit}`;
   const isDiscountDone = remain === 0;
   const discountText = isDiscountDone ? "已达上限" : `还剩 ${remain} 次`;
   const discountTitle = "本周树脂消耗减半次数" + discountText;
@@ -144,50 +144,59 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     dispatchs.filter((e) => !e.done).sort((p, n) => n.remain - p.remain)[0]?.remain || 0;
   const isDispatchToday =
     new Date(Date.now() + lastDispatchTime * 1000).getDay() === new Date().getDay();
+  const isDispatchAllReady = lastDispatchTime === 0;
   const dispatchTime = formatTime(lastDispatchTime);
   const dispatchReadyTime = D(Date.now() + lastDispatchTime * 1000).format("HH:mm");
   const dispatchTimeText = (isDispatchToday ? "今日 " : "明日 ") + dispatchReadyTime;
   const dispatcTitle =
     dispatchs.length > 0
-      ? `将于${dispatchTimeText} 全部完成，还剩 ${dispatchTime}`
+      ? isDispatchAllReady
+        ? "已全部完成，等待领取"
+        : `将于${dispatchTimeText} 全部完成，还剩 ${dispatchTime}`
       : "暂未派遣任何角色";
 
   const notes = [
     {
-      detail: `原粹树脂 ${resinStatus}`,
+      detail: `每日委托任务 ${taskStatus} ${isTaskDone ? "" : "ℹ️"}`,
+      icon: taskIcon,
+      title: taskTitle,
+      ok: isTaskDone,
+      name: "task"
+    },
+    {
+      detail: `值得铭记的强敌 ${discountStatus} ${isDiscountDone ? "" : "ℹ️"}`,
+      icon: discountIcon,
+      title: discountTitle,
+      ok: isDiscountDone,
+      name: "discount"
+    },
+    {
+      detail: `参量质变仪 ${transformerStatus} ${!isTransformerReady ? "" : "ℹ️"}`,
+      icon: transformerIcon,
+      title: transformerTitle,
+      ok: isTransformerReady,
+      name: "transformer"
+    },
+    {
+      detail: `米游社签到 ${signStatus} ${sign.is_sign ? "" : "ℹ️"}`,
+      icon: bbsIcon,
+      title: signTitle,
+      ok: sign.is_sign,
+      name: "sign"
+    },
+    {
+      detail: `原粹树脂 ${resinStatus} ${!isResinFull ? "" : "ℹ️"}`,
       title: resinTitle,
+      ok: isResinFull,
       icon: resinIcon,
       name: "resin"
     },
     {
-      detail: `洞天宝钱 ${homeStatus}`,
+      detail: `洞天宝钱 ${homeStatus} ${!isHomeFull ? "" : "ℹ️"}`,
       title: homeTitle,
+      ok: isHomeFull,
       icon: homeIcon,
       name: "home"
-    },
-    {
-      detail: `每日委托任务 ${taskStatus}`,
-      icon: taskIcon,
-      title: taskTitle,
-      name: "task"
-    },
-    {
-      detail: `值得铭记的强敌 ${discountStatus}`,
-      icon: discountIcon,
-      title: discountTitle,
-      name: "discount"
-    },
-    {
-      detail: `参量质变仪 ${transformerStatus}`,
-      icon: transformerIcon,
-      title: transformerTitle,
-      name: "transformer"
-    },
-    {
-      detail: `米游社签到 ${signStatus}`,
-      icon: bbsIcon,
-      title: signTitle,
-      name: "sign"
     }
   ];
 
@@ -227,7 +236,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
               className={styles.noteItem}
               key={e.name}
               title={e.title}
-              onClick={() => notice.info({ message: e.title })}
+              onClick={() => notice[e.ok ? "success" : "info"]({ message: e.title })}
             >
               <img src={e.icon} className={cn(styles.noteIcon, styles[e.name])} />
               <div className={styles.noteDetail}>{e.detail}</div>
@@ -236,11 +245,12 @@ const UserCard: React.FC<UserCardProp> = (props) => {
         <div
           className={styles.noteItem}
           title={dispatcTitle}
-          onClick={() => notice.info({ message: dispatcTitle })}
+          onClick={() => notice[isDispatchAllReady ? "success" : "info"]({ message: dispatcTitle })}
         >
           <div className={styles.noteDetail}>
             <img src={prestigeIcon} className={cn(styles.noteIcon)} />
             {dispatchDetail}
+            {!isDispatchAllReady ? "" : "ℹ️"}
           </div>
         </div>
         <div className={styles.noteItem}>
@@ -250,7 +260,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
                 className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
                 title={e.title}
                 key={e.avatar}
-                onClick={() => notice[e.done ? "success" : "warning"]({ message: e.title })}
+                onClick={() => notice[e.done ? "success" : "info"]({ message: e.title })}
               >
                 <img src={e.avatar} alt='角色' className={styles.dispatchAvatar} />
               </div>
