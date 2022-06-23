@@ -42,8 +42,10 @@ const Game: React.FC = () => {
       setCardData({ ...card, uid });
       setSpiralAbyss({ ...abyss, uid });
       console.log(card, abyss);
-    } catch {
-      notice.faild({ message: "加载超时，请检查网络连接 T_T" });
+    } catch (e) {
+      const isOffline = e?.message?.includes("getaddrinfo");
+      const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+      notice.faild({ message: msg });
     }
   };
 

@@ -70,8 +70,10 @@ const Month: React.FC = () => {
           else notice.faild({ message: "网络异常，部分月份数据获取失败，请重试" });
         }
         setMonthInfos(data);
-      } catch {
-        notice.faild({ message: "加载超时，请检查网络连接 T_T" });
+      } catch (e) {
+        const isOffline = e?.message?.includes("getaddrinfo");
+        const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+        notice.faild({ message: msg });
       }
     })();
   }, []);
