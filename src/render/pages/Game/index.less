@@ -37,8 +37,6 @@
   }
 
   .content {
-    .ani-show-bottom();
-
     margin  : 20px;
     width   : 930px;
     height  : 430px;
@@ -53,21 +51,24 @@
 }
 
 .statistic-card {
+  .flex();
+
   width : 100%;
   height: 100%;
 
-  .row {
-    .flex();
+  .column {
+    .flex-column();
 
-    justify-content: space-between;
+    width   : 50%;
+    overflow: hidden;
 
     .stats {
-      width: 50%;
+      .ani-show-left();
+
+      width: 100%;
 
       &>div:first-child {
-        border-bottom : 1px solid @color-second;
-        margin        : 0 20px 0 12px;
-        padding-bottom: 8px;
+        margin: 0 20px 0 20px;
 
         div:first-child {
           font-size: 24px;
@@ -82,11 +83,11 @@
         .flex-wrap();
 
         &>div {
-          .flex-center-column();
+          .flex-center-x-column();
 
-          // color : @color-primary;
-          height: 60px;
-          width : 90px;
+          height         : 66px;
+          justify-content: flex-end;
+          width          : 90px;
 
           &>span {
             color     : @color-second;
@@ -102,10 +103,11 @@
     }
 
     .avatars {
+      .ani-show-right();
       .flex-column-wrap();
 
-      width    : 50%;
-      font-size: 14px;
+      width    : 100%;
+      font-size: 12px;
 
       &>div:first-child {
         font-size    : 20px;
@@ -118,33 +120,54 @@
         &>div {
           .flex();
 
-          width : 200px;
-          margin: 0 8px;
+          width: 112px;
 
           img {
-            margin-right: 12px;
-            width       : 48px;
+            width: 52px;
           }
 
           div {
             .flex-center-y-column();
+
+            span {
+              line-height: 1.6em
+            }
           }
         }
       }
     }
 
     .homes {
+      .ani-show-left();
       .flex-column();
 
-      width: 50%;
+      width: 100%;
 
       &>div:first-child {
-        font-size: 20px;
-        margin   : 12px 0 8px 20px;
+        .flex-center-y();
+
+        margin: 24px 20px 8px 20px;
+
+        &>span {
+          font-size: 20px;
+        }
+
+        &>div:nth-child(2) {
+          .flex-center-y();
+
+          font-size: 18px;
+
+          img {
+            margin: 0 8px;
+            width : 24px;
+          }
+        }
       }
 
       &>div:nth-child(2) {
         .flex-center-x-wrap();
+
+        margin-bottom: 12px;
 
         &>div {
           .flex-center();
@@ -163,12 +186,91 @@
           img {
             width : 100%;
             height: auto;
-            filter: brightness(0.8);
+            filter: brightness(0.7);
+          }
+        }
+      }
+
+      &>div:nth-child(3) {
+        &>div {
+          .flex-center();
+
+          &>div {
+            .flex-center-column();
+
+            margin: 4px;
+            width : 100px;
+
+            &>span {
+              color     : @color-second;
+              font-size : 14px;
+              margin-top: 4px;
+            }
           }
         }
       }
     }
 
-    .explorations {}
+    .explorations {
+      .ani-show-right();
+      .flex-column();
+
+      width: 100%;
+
+      &>div:first-child {
+        font-size: 20px;
+        margin   : 20px 0 10px 0;
+      }
+
+      &>div:nth-child(2) {
+        .flex-wrap();
+
+        align-content  : flex-start;
+        height         : 232px;
+        justify-content: space-between;
+        overflow       : auto;
+
+        &::-webkit-scrollbar {
+          display: none
+        }
+
+        &>div {
+          .flex-center-y();
+
+          background-color: @color-bg-accent;
+          border-radius   : 8px;
+          height          : 52px;
+          margin          : 3px 0;
+          overflow        : hidden;
+          position        : relative;
+          width           : 226px;
+
+          &>img {
+            width : 100%;
+            height: 100%;
+          }
+
+          &>div {
+            .flex-center-y();
+
+            position: absolute;
+
+            &>div {
+              .flex-center-y-column();
+
+              &>span {
+                font-size: 12px;
+              }
+            }
+
+            &>img {
+              filter: brightness(0.2);
+              margin: 0 8px 0 6px;
+              width : 36px;
+            }
+          }
+        }
+      }
+    }
   }
 }
