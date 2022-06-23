@@ -4,7 +4,7 @@ import D from "dayjs";
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
 
 interface SpiralAbyssProp {
-  data: SpiralAbyssData;
+  data: SpiralAbyssData & { uid: string };
 }
 
 const formatTime = (timestamp: string) => {

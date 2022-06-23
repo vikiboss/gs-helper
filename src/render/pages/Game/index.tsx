@@ -22,8 +22,8 @@ const Game: React.FC = () => {
   const [uid, setUid] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
   const [type, setType] = useState<"statistic" | "abyss">("statistic");
-  const [cardData, setCardData] = useState<GameRoleCardData>();
-  const [spiralAbyss, setSpiralAbyss] = useState<SpiralAbyssData>();
+  const [cardData, setCardData] = useState<GameRoleCardData & { uid: string }>();
+  const [spiralAbyss, setSpiralAbyss] = useState<SpiralAbyssData & { uid: string }>();
 
   useEffect(() => {
     (async () => await updateInfo())();
@@ -31,14 +31,16 @@ const Game: React.FC = () => {
 
   const updateInfo = async (uid?: string) => {
     try {
+      const user = await nativeApi.getCurrentUser();
+      uid = uid || user.uid;
       const [card, abyss] = await Promise.all([
         nativeApi.getGameRoleCard(uid),
         nativeApi.getSpiralAbyss(uid)
       ]);
       if (!card.role?.nickname || !abyss.schedule_id) return;
       setLoading(false);
-      setCardData(card);
-      setSpiralAbyss(abyss);
+      setCardData({ ...card, uid });
+      setSpiralAbyss({ ...abyss, uid });
       console.log(card, abyss);
     } catch {
       notice.faild({ message: "加载超时，请检查网络连接 T_T" });
