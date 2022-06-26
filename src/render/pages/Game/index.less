@@ -280,3 +280,38 @@
     }
   }
 }
+
+.spiral-abyss {
+  .ani-show-bottom();
+  .flex-column();
+
+  width : 100%;
+  height: 100%;
+
+  &>span {
+    color      : @color-second;
+    line-height: 100%;
+    text-align : center;
+  }
+
+  .abyss-box {
+    .flex-wrap();
+
+    &>div {
+      .flex-center-x-column();
+
+      height: 66px;
+      width : 120px;
+
+      &>span {
+        color     : @color-second;
+        font-size : 14px;
+        margin-top: 4px;
+      }
+
+      .abyssNumber {
+        .flex-center();
+      }
+    }
+  }
+}

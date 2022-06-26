@@ -22,7 +22,7 @@ const Game: React.FC = () => {
   const notice = useNotice();
   const [uid, setUid] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [type, setType] = useState<"statistic" | "abyss">("statistic");
+  const [type, setType] = useState<"statistic" | "abyss">("abyss");
   const [cardData, setCardData] = useState<GameRoleCardData & { uid: string }>();
   const [spiralAbyss, setSpiralAbyss] = useState<SpiralAbyssData & { uid: string }>();
 
