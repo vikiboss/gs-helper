@@ -52,9 +52,9 @@ const Game: React.FC = () => {
 
   const handleQuery = async () => {
     if (!uid) {
-      const text = (await nativeApi.readClipboardText()).trim();
+      const text = (await nativeApi.readClipboardText()).replace(/\s/g, "").trim();
       if (text) {
-        if (text.match(/^[0-9]{2,12}$/)) {
+        if (text.match(/^[1-9][0-9]{7,9}$/)) {
           setUid(text.trim());
         } else {
           notice.warning({ message: "剪切板中的内容不是有效的 UID" });
@@ -68,9 +68,9 @@ const Game: React.FC = () => {
         notice.info({ message: "小派蒙努力查询中...", autoHide: false });
         const isOK = await updateInfo(uid);
         if (!isOK) {
-          notice.faild({ message: "目标 UID 不存在或数据未公开" });
+          notice.faild({ message: "目标 UID 不存在或其米游社主页的游戏数据未公开" });
         } else {
-          notice.success({ message: "数据获取成功", duration: 1000 });
+          notice.success({ message: "数据获取成功" });
         }
         setLoading(false);
       } else {
