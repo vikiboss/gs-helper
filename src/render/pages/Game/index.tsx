@@ -15,6 +15,7 @@ import withAuth from "../../auth/withAuth";
 
 import type { GameRoleCardData } from "../../../services/getGameRoleCard";
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
+import SelectButton from "../../components/SelectButton";
 
 const Game: React.FC = () => {
   const navigate = useNavigate();
@@ -79,13 +80,22 @@ const Game: React.FC = () => {
     }
   };
 
+  const items = [
+    { label: "数据概览", value: "statistic" },
+    { label: "深渊螺旋", value: "abyss" }
+  ];
+
   return (
     <>
       <div className={styles.container}>
         {cardData && spiralAbyss ? (
           <>
             <div className={styles.top}>
-              <div className={styles.title}>游戏数据</div>
+              <SelectButton
+                items={items}
+                value={type}
+                changeItem={setType}
+              />
               <div className={styles.inputArea}>
                 <Input
                   value={uid}
