@@ -22,9 +22,11 @@ const Statistic: React.FC = () => {
   const notice = useNotice();
   const [uid, setUid] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [type, setType] = useState<"statistic" | "abyss">("abyss");
+  const [type, setType] = useState<"statistic" | "abyss">("statistic");
   const [cardData, setCardData] = useState<GameRoleCardData & { uid: string }>();
-  const [spiralAbyss, setSpiralAbyss] = useState<SpiralAbyssData & { uid: string }>();
+  const [spiralAbyss, setSpiralAbyss] = useState<
+    SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] }
+  >();
 
   useEffect(() => {
     (async () => await updateInfo())();
@@ -41,7 +43,7 @@ const Statistic: React.FC = () => {
       if (!card?.role?.nickname || !abyss?.schedule_id) return false;
       setLoading(false);
       setCardData({ ...card, uid });
-      setSpiralAbyss({ ...abyss, uid });
+      setSpiralAbyss({ ...abyss, uid, role: card.role });
       console.log(card, abyss);
       return true;
     } catch (e) {
@@ -91,11 +93,7 @@ const Statistic: React.FC = () => {
         {cardData && spiralAbyss ? (
           <>
             <div className={styles.top}>
-              <SelectButton
-                items={items}
-                value={type}
-                changeItem={setType}
-              />
+              <SelectButton items={items} value={type} changeItem={setType} />
               <div className={styles.inputArea}>
                 <Input
                   value={uid}

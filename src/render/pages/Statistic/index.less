@@ -46,7 +46,7 @@
     margin  : 20px;
     width   : 930px;
     height  : 430px;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .back-btn {
@@ -101,12 +101,17 @@
             margin-top: 4px;
           }
 
-          .abyssNumber {
+          .horizontal {
             .flex-center();
 
             font-family: arial;
             font-size  : 20px;
             font-weight: bold;
+
+            &>span {
+              align-self: flex-end;
+              font-size : 12px;
+            }
           }
         }
       }
@@ -133,7 +138,13 @@
           width: 112px;
 
           img {
+            .transition();
+
             width: 52px;
+
+            &:hover {
+              transform: translateY(-4px)
+            }
           }
 
           div {
@@ -181,7 +192,10 @@
 
         &>div {
           .flex-center();
+          .shadow-deep();
+          .transition();
 
+          border       : 1px solid rgba(100, 100, 100, 0.1);
           border-radius: 100px;
           color        : @color-white;
           margin       : 4px;
@@ -189,12 +203,16 @@
           position     : relative;
           width        : 100px;
 
+          &:hover {
+            transform: translateY(-4px);
+          }
+
           span {
             position: absolute;
           }
 
           img {
-            width : 100%;
+            width : 100px;
             height: auto;
             filter: brightness(0.7);
           }
@@ -225,11 +243,12 @@
       .ani-show-right();
       .flex-column();
 
-      width: 100%;
+      width  : 100%;
+      z-index: 10;
 
       &>div:first-child {
         font-size: 20px;
-        margin   : 20px 0 10px 0;
+        margin   : 16px 0 8px 0;
       }
 
       &>div:nth-child(2) {
@@ -238,6 +257,7 @@
         align-content  : flex-start;
         height         : 232px;
         justify-content: space-between;
+        padding        : 2px 8px;
         overflow       : auto;
 
         &::-webkit-scrollbar {
@@ -246,14 +266,21 @@
 
         &>div {
           .flex-center-y();
+          .shadow-shallow();
+          .transition();
 
           background-color: @color-bg-accent;
+          border          : 1px solid rgba(100, 100, 100, 0.1);
           border-radius   : 8px;
-          height          : 52px;
+          height          : 50px;
           margin          : 3px 0;
           overflow        : hidden;
           position        : relative;
-          width           : 226px;
+          width           : 216px;
+
+          &:hover {
+            transform: scale(1.05);
+          }
 
           &>img {
             width : 100%;
@@ -269,7 +296,12 @@
               .flex-center-y-column();
 
               &>span {
-                font-size: 12px;
+                font-size: 14px;
+              }
+
+              &>span:nth-child(2) {
+                margin-top: 3px;
+                font-size : 12px;
               }
             }
 
@@ -283,43 +315,192 @@
       }
     }
   }
+
+  .off {
+    .ani-show-bottom();
+
+    color      : @color-second;
+    line-height: 120px;
+    text-align : center;
+  }
 }
 
 .spiral-abyss {
-  .ani-show-bottom();
   .flex-column();
 
-  width : 100%;
-  height: 100%;
+  flex    : 1;
+  overflow: hidden;
 
-  &>span {
+  .none {
+    .ani-show-bottom();
+
     color      : @color-second;
-    line-height: 100%;
+    line-height: 380px;
     text-align : center;
   }
 
-  .abyss-box {
-    .flex-wrap();
+  .row {
+    .flex-center-y();
 
-    &>div {
-      .flex-center-x-column();
+    justify-content: space-between;
+    margin-bottom  : 12px;
 
-      height: 66px;
-      width : 120px;
+    .user {
+      .ani-show-left();
 
-      &>span {
-        color     : @color-second;
-        font-size : 14px;
-        margin-top: 4px;
+      margin: 0 20px;
+
+      &>div:first-child {
+        font-size: 24px;
       }
 
-      .horizontal {
-        .flex-center();
-
-        font-family: arial;
-        font-size  : 20px;
-        font-weight: bold;
+      &>div:nth-child(2) {
+        color: @color-second;
       }
     }
+
+    .abyss-box {
+      .ani-show-right();
+      .flex-wrap();
+
+      justify-self: flex-end;
+      align-items : center;
+
+      &>div {
+        .flex-center-column();
+
+        height: 48px;
+        width : 120px;
+
+        &>span {
+          color     : @color-second;
+          font-size : 14px;
+          margin-top: 4px;
+        }
+
+        .horizontal {
+          .flex-center();
+
+          font-family: arial;
+          font-size  : 20px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .reveal-rank {
+      .ani-show-left();
+
+      margin: 0 20px;
+
+      &>div:first-child {
+        margin: 0px 0 8px 0;
+      }
+
+      &>div:nth-child(2) {
+        &>img {
+          width : 36px;
+          margin: 0 4px;
+        }
+      }
+    }
+
+    .rank-box {
+      .ani-show-right();
+      .flex-wrap();
+
+      justify-self: flex-end;
+      align-items : center;
+
+
+      &>div {
+        .flex-center-column();
+
+        height: 48px;
+        width : 120px;
+
+        &>div:first-child {
+          .flex-center();
+
+          &>img {
+            width: 36px;
+          }
+
+          &>div {
+            margin-top  : 8px;
+            margin-right: 10px;
+          }
+        }
+
+        &>span {
+          color     : @color-second;
+          font-size : 14px;
+          margin-top: 4px;
+        }
+      }
+    }
+  }
+
+  .detail {
+    .ani-show-bottom();
+    .flex-wrap();
+
+    align-content: flex-start;
+    height       : 260px;
+    overflow     : auto;
+
+    &::-webkit-scrollbar {
+      display: none
+    }
+
+    &>div {
+      .flex-center-y();
+      .shadow-shallow();
+      .transition();
+
+      background-color: @color-bg-accent;
+      border          : 1px solid rgba(100, 100, 100, 0.1);
+      border-radius   : 6px;
+      justify-content : space-between;
+      margin          : 8px 12px;
+      padding         : 2px 20px 2px 4px;
+      width           : 260px;
+      height          : 60px;
+
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      &>div:first-child {
+        .flex-center();
+
+        position: relative;
+        height  : 50px;
+        width   : 50px;
+
+        &>img {
+          position: absolute;
+          width   : 54px;
+        }
+
+        &>span {
+          color      : @color-primary;
+          font-size  : 18px;
+          height     : 20px;
+          line-height: $height;
+          text-align : center;
+          width      : $height;
+          z-index    : 10;
+        }
+      }
+    }
+  }
+
+  .tip {
+    bottom  : 20px;
+    color   : @color-second;
+    left    : 36px;
+    position: absolute;
   }
 }

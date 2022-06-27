@@ -8,7 +8,7 @@ import type { GameRoleCardData } from "../../../services/getGameRoleCard";
 
 import styles from "./index.less";
 
-interface StatisticCardProp {
+export interface StatisticCardProp {
   data: GameRoleCardData & { uid: string };
 }
 
@@ -68,22 +68,32 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               <span>奇馈宝箱</span>
             </div>
             <div>
-              <div className={styles.abyssNumber}>
-                <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[0])} />-
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[0])} />
+                <div>-</div>
                 <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[1])} />
               </div>
               <span>深渊螺旋</span>
             </div>
             <div>
-              <BounceNumber size={24} number={stats.anemoculus_number} />
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={stats.anemoculus_number} />
+                <span>/66</span>
+              </div>
               <span>风神瞳</span>
             </div>
             <div>
-              <BounceNumber size={24} number={stats.geoculus_number} />
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={stats.geoculus_number} />
+                <span>/131</span>
+              </div>
               <span>岩神瞳</span>
             </div>
             <div>
-              <BounceNumber size={24} number={stats.electroculus_number} />
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={stats.electroculus_number} />
+                <span>/181</span>
+              </div>
               <span>雷神瞳</span>
             </div>
           </div>
@@ -133,7 +143,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               </div>
             </>
           ) : (
-            <div style={{ lineHeight: "120px" }}>尘歌壶未开启</div>
+            <div className={styles.off}>尘歌壶未开启</div>
           )}
         </div>
       </div>

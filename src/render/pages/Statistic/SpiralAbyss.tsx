@@ -1,13 +1,18 @@
 import React from "react";
 import D from "dayjs";
 
+import { GameRoleCardData } from "../../../services/getGameRoleCard";
+import BounceNumber from "../../components/BounceNumber";
+import getServerNameByServer from "../../../utils/getServerNameByServer";
+
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
 
+import abyssBg from "../../../assets/abyss-bg.png";
+
 import styles from "./index.less";
-import BounceNumber from "../../components/BounceNumber";
 
 interface SpiralAbyssProp {
-  data: SpiralAbyssData & { uid: string };
+  data: SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] };
 }
 
 const formatTime = (timestamp: string) => {
@@ -23,108 +28,115 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
     <div className={styles.spiralAbyss}>
       {hasData ? (
         <>
-          <div className={styles.abyssBox}>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={Number(data.max_floor.split("-")[0])} />
-                <div>-</div>
-                <BounceNumber size={24} number={Number(data.max_floor.split("-")[1])} />
+          <div className={styles.row}>
+            <div className={styles.user}>
+              <div>{data.role.nickname}</div>
+              <div>
+                Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
               </div>
-              <span>最深抵达</span>
             </div>
-            <div>
-              <BounceNumber size={24} number={data.total_star} />
-              <span>本期获星</span>
+            <div className={styles.abyssBox}>
+              <div>
+                <div className={styles.horizontal}>
+                  <BounceNumber size={24} number={Number(data.max_floor.split("-")[0])} />
+                  <div>-</div>
+                  <BounceNumber size={24} number={Number(data.max_floor.split("-")[1])} />
+                </div>
+                <span>本期最深抵达</span>
+              </div>
+              <div>
+                <BounceNumber size={24} number={data.total_star} />
+                <span>本期总获星数</span>
+              </div>
+              <div>
+                <BounceNumber size={24} number={data.total_battle_times} />
+                <span>本期战斗次数</span>
+              </div>
+              <div>
+                <BounceNumber size={24} number={data.total_win_times} />
+                <span>本期完成次数</span>
+              </div>
+              <div>
+                <div className={styles.horizontal}>
+                  <BounceNumber size={24} number={succRate} />
+                  <div>%</div>
+                </div>
+                <span>本期完成率</span>
+              </div>
             </div>
-            <div>
-              <BounceNumber size={24} number={data.total_battle_times} />
-              <span>战斗次数</span>
+          </div>
+          <div className={styles.row}>
+            {data.reveal_rank.length > 0 && (
+              <div className={styles.revealRank}>
+                <div>常用角色</div>
+                <div>
+                  {data.reveal_rank.map((e, i) => (
+                    <img key={i} src={e.avatar_icon} alt={String(e.value)} />
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className={styles.rankBox}>
+              {data.damage_rank.length > 0 && (
+                <div>
+                  <div>
+                    <img src={data.damage_rank[0].avatar_icon} alt='' />
+                    <BounceNumber size={20} number={data.damage_rank[0].value} />
+                  </div>
+                  <span>最强一击</span>
+                </div>
+              )}
+              {data.defeat_rank.length > 0 && (
+                <div>
+                  <div>
+                    <img src={data.defeat_rank[0].avatar_icon} alt='' />
+                    <BounceNumber size={20} number={data.defeat_rank[0].value} />
+                  </div>
+                  <span>最多击破</span>
+                </div>
+              )}
+              {data.normal_skill_rank.length > 0 && (
+                <div>
+                  <div>
+                    <img src={data.normal_skill_rank[0].avatar_icon} alt='' />
+                    <BounceNumber size={20} number={data.normal_skill_rank[0].value} />
+                  </div>
+                  <span>最多元素战技</span>
+                </div>
+              )}
+              {data.energy_skill_rank.length > 0 && (
+                <div>
+                  <div>
+                    <img src={data.energy_skill_rank[0].avatar_icon} alt='' />
+                    <BounceNumber size={20} number={data.energy_skill_rank[0].value} />
+                  </div>
+                  <span>最多元素爆发</span>
+                </div>
+              )}
+              {data.take_damage_rank.length > 0 && (
+                <div>
+                  <div>
+                    <img src={data.take_damage_rank[0].avatar_icon} alt='' />
+                    <BounceNumber size={20} number={data.take_damage_rank[0].value} />
+                  </div>
+                  <span>最多承伤</span>
+                </div>
+              )}
             </div>
-            <div>
-              <BounceNumber size={24} number={data.total_win_times} />
-              <span>完成次数</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={succRate} />
-                <div>%</div>
-              </div>
-              <span>完成率</span>
-            </div>
           </div>
-          <div>
-            {data.reveal_rank.map((e, i) => (
-              <div key={i}>
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}星|出战次数：{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.damage_rank.map((e, i) => (
-              <div key={i}>
-                最强一击：
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}|{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.defeat_rank.map((e, i) => (
-              <div key={i}>
-                最多击破：
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}|{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.energy_skill_rank.map((e, i) => (
-              <div key={i}>
-                最多元素爆发：
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}|{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.normal_skill_rank.map((e, i) => (
-              <div key={i}>
-                最多元素战技：
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}|{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
-            {data.take_damage_rank.map((e, i) => (
-              <div key={i}>
-                最多承伤：
-                <img src={e.avatar_icon} width='32px' alt='' />
-                <span key={e.avatar_id}>
-                  {e.rarity}|{e.value}
-                </span>
-              </div>
-            ))}
-          </div>
-          <div>
+
+          <div className={styles.detail}>
             {data.floors.map((e) => (
               <div key={e.index}>
                 <div>
-                  第{e.index}层|{e.is_unlock ? "已" : "未"}解锁|本期：{e.star}星|历史最高：
-                  {e.max_star}星
+                  <img src={abyssBg} alt='关卡logo' />
+                  <span>{e.index}</span>
                 </div>
+                <div>深渊螺旋第 {e.index} 层</div>
                 <div>
+                  ⭐ {e.star}/{e.max_star}
+                </div>
+                {/* <div>
                   {e.levels.map((e) => (
                     <div key={e.index}>
                       第{e.index}间|本期：{e.star}|历史最高：{e.max_star}
@@ -147,14 +159,14 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                       </div>
                     </div>
                   ))}
-                </div>
+                </div> */}
               </div>
             ))}
           </div>
-          <div>{`统计周期：${period} （总第 ${data.schedule_id} 期）`}</div>
+          <div className={styles.tip}>{`统计周期：${period} （总第 ${data.schedule_id} 期）`}</div>
         </>
       ) : (
-        <span>暂无数据</span>
+        <span className={styles.none}>暂无当期数据</span>
       )}
     </div>
   );
