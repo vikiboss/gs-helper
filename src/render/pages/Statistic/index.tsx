@@ -21,6 +21,7 @@ const Statistic: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
   const [uid, setUid] = useState<string>("");
+  const [isSelf, setIsSelf] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
   const [type, setType] = useState<"statistic" | "abyss">("statistic");
   const [cardData, setCardData] = useState<GameRoleCardData & { uid: string }>();
@@ -41,12 +42,14 @@ const Statistic: React.FC = () => {
         nativeApi.getSpiralAbyss(uid)
       ]);
       if (!card?.role?.nickname || !abyss?.schedule_id) return false;
+      setIsSelf(uid === "" || uid === user.uid);
       setLoading(false);
       setCardData({ ...card, uid });
       setSpiralAbyss({ ...abyss, uid, role: card.role });
       console.log(card, abyss);
       return true;
     } catch (e) {
+      console.log(e);
       const isOffline = e?.message?.includes("getaddrinfo");
       const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
       notice.faild({ message: msg });
@@ -87,12 +90,22 @@ const Statistic: React.FC = () => {
     { label: "深渊螺旋", value: "abyss" }
   ];
 
+  const handleMyStatistic = async () => {
+    setIsSelf(true);
+    setLoading(true);
+    await updateInfo();
+    setLoading(false);
+  };
+
   return (
     <>
       <div className={styles.container}>
         {cardData && spiralAbyss ? (
           <>
             <div className={styles.top}>
+              {!isSelf && (
+                <Button className={styles.btn} text='返回我的数据' onClick={handleMyStatistic} />
+              )}
               <SelectButton items={items} value={type} changeItem={setType} />
               <div className={styles.inputArea}>
                 <Input
