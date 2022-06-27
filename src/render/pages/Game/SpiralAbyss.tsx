@@ -25,15 +25,16 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
         <>
           <div className={styles.abyssBox}>
             <div>
-              <div className={styles.abyssNumber}>
-                <BounceNumber size={24} number={Number(data.max_floor.split("-")[0])} />-
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={Number(data.max_floor.split("-")[0])} />
+                <div>-</div>
                 <BounceNumber size={24} number={Number(data.max_floor.split("-")[1])} />
               </div>
               <span>最深抵达</span>
             </div>
             <div>
               <BounceNumber size={24} number={data.total_star} />
-              <span>总获星</span>
+              <span>本期获星</span>
             </div>
             <div>
               <BounceNumber size={24} number={data.total_battle_times} />
@@ -41,11 +42,14 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
             </div>
             <div>
               <BounceNumber size={24} number={data.total_win_times} />
-              <span>成功次数</span>
+              <span>完成次数</span>
             </div>
             <div>
-              <BounceNumber size={24} number={succRate} />
-              <span>成功百分比</span>
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={succRate} />
+                <div>%</div>
+              </div>
+              <span>完成率</span>
             </div>
           </div>
           <div>
