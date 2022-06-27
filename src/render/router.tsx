@@ -8,7 +8,6 @@ import Game from "./pages/Game";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Note from "./pages/Note";
-import Query from "./pages/Query";
 import Role from "./pages/Role";
 import Setting from "./pages/Setting";
 import Sign from "./pages/Sign";
@@ -25,7 +24,6 @@ const AppRouter: React.FC = () => {
         <Route path='/game' element={<Game />} />
         <Route path='/login' element={<Login />} />
         <Route path='/note' element={<Note />} />
-        <Route path='/query' element={<Query />} />
         <Route path='/role' element={<Role />} />
         <Route path='/setting' element={<Setting />} />
         <Route path='/sign' element={<Sign />} />
