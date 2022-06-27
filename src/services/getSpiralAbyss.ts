@@ -99,6 +99,7 @@ interface Avatars {
 
 const getSpiralAbyss = async (uid?: string): Promise<SpiralAbyssData | null> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return null;
   uid = uid || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/spiralAbyss`;
   const params = { role_id: uid, schedule_type: "1", server: getServerByUid(uid) };

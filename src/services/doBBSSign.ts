@@ -13,6 +13,7 @@ interface DoSignData {
 
 const doBBSSign = async (): Promise<boolean> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return false;
   const { cookie, uid } = currentUser;
   const act_id = await getBBSSignActId();
   const postData = { act_id, region: getServerByUid(uid), uid };

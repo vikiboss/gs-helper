@@ -17,7 +17,8 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
   useEffect(() => {
     (async () => {
       const uid = await nativeApi.getStoreKey("currentUid");
-      setIsLogin(Boolean(uid));
+      const logged = Boolean(uid);
+      (logged ? login : logout)();
     })();
   }, []);
 

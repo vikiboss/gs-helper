@@ -36,6 +36,7 @@ export type DailyNotesData = {
 
 const getDailyNotes = async (): Promise<DailyNotesData | null> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return null;
   const { cookie, uid } = currentUser;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`;
   const params = { role_id: uid, server: getServerByUid(uid) };

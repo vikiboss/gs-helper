@@ -47,6 +47,7 @@ export interface MonthInfo {
 
 const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return null;
   const { cookie, uid } = currentUser;
   const url = `${API_HK4E}/event/ys_ledger/monthInfo`;
   const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };

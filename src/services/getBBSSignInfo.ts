@@ -18,6 +18,7 @@ export interface SignInfo {
 
 const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return null;
   const { cookie, uid } = currentUser;
   const act_id = await getBBSSignActId();
   const params = { act_id, uid, region: getServerByUid(uid) };
