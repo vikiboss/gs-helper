@@ -144,7 +144,7 @@ const Home: React.FC = () => {
     {
       name: "游戏数据",
       Icon: HiCubeTransparent,
-      handler: () => handlePageSwitch("/game")
+      handler: () => handlePageSwitch("/statistic")
     }
   ];
 

@@ -17,7 +17,7 @@ import type { GameRoleCardData } from "../../../services/getGameRoleCard";
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
 import SelectButton from "../../components/SelectButton";
 
-const Game: React.FC = () => {
+const Statistic: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
   const [uid, setUid] = useState<string>("");
@@ -131,4 +131,4 @@ const Game: React.FC = () => {
   );
 };
 
-export default withAuth(Game);
+export default withAuth(Statistic);
