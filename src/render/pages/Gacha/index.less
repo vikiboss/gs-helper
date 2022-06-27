@@ -15,28 +15,19 @@
   height  : 100%;
 
 
-  .align-center {
-    align-self: flex-start;
-    margin    : 12px 40px;
-  }
-
   .sub-title {
-    .align-center();
-
     font-size: 20px;
   }
 
   .top-zone {
     .flex-center-y();
 
-    border-bottom  : 1px solid @input-border-color;
+    height         : 82px;
     justify-content: flex-start;
-    margin         : 20px 0 0 0;
-    padding        : 4px 40px 20px 80px;
+    padding-left   : 48px;
     width          : calc(100vw - 40px - 80px);
 
     input {
-      width           : 160px;
       background-color: @input-bg-color;
       border          : 2px solid @input-border-color;
       border-radius   : 16px;
@@ -49,6 +40,7 @@
       padding         : 2px 12px;
       text-overflow   : ellipsis;
       transition      : all 0.6s cubic-bezier(0.36, 0.79, 0.68, 0.99);
+      width           : 160px;
       will-change     : "contents";
       z-index         : 1;
 
@@ -87,6 +79,10 @@
       position       : absolute;
       right          : 40px;
       top            : 24px;
+
+      .select-btn {
+        margin-right: 20px;
+      }
 
       .select-zone {
         .flex-center-y();
@@ -137,20 +133,15 @@
         .transition();
         .flex-center();
 
-        border-radius: 20px;
+        border-radius: 6px;
         height       : 32px;
-        margin-left  : 12px;
+        margin-right : 12px;
         padding      : 2px;
         position     : relative;
         width        : 32px;
 
-        svg {
-          .transition-quick();
-        }
-
         &::before {
-          // border       : 2px solid transparent;
-          border-radius: 20px;
+          border-radius: 6px;
           content      : " ";
           height       : 32px;
           left         : 1px;
@@ -161,7 +152,7 @@
         }
 
         &:hover {
-          background-color: @color-primary;
+          background-color: @color-accent;
           color           : @color-white;
 
           svg {
@@ -178,104 +169,11 @@
 
   .content {
     .ani-show-right();
-    .align-center();
 
     display        : flex;
     flex           : 1;
     justify-content: space-between;
     width          : calc(100vw - 40px * 2);
-
-    .pie-name {
-      font-size : 18px;
-      margin    : 20px 0;
-      text-align: center;
-    }
-
-    .pie-chart {
-      .flex-column();
-
-      // padding-right: 90px;
-      // border-right: 2px dashed @color-second;
-      z-index: 10;
-
-
-
-      .filter-zone {
-        .flex-column();
-
-        .filter-btns {
-          display: flex;
-
-          .btn {
-            .transition();
-
-            background-color: @color-bg;
-            border          : 1px solid @color-second;
-            border-radius   : 4px;
-            color           : @color-second;
-            cursor          : pointer;
-            font-size       : 14px;
-            height          : 18px;
-            margin          : 2px;
-            padding         : 1px 6px;
-            text-align      : center;
-          }
-
-          .active {
-            color: @color-white;
-          }
-
-          .btn-active {
-            .active();
-
-            background-color: @color-star-5;
-            border-color    : @color-star-5;
-          }
-
-          .select {
-            .btn();
-
-            margin-right: 14px;
-            position    : relative;
-
-            &::before {
-              color   : @color-second;
-              content : "|";
-              left    : 46px;
-              position: absolute;
-            }
-          }
-
-          .select-all {
-            .active();
-
-            background-color: @color-primary;
-            border-color    : @color-primary;
-          }
-
-          .btn-5 {
-            .active();
-
-            border-color    : @color-star-5;
-            background-color: @color-star-5;
-          }
-
-          .btn-4 {
-            .active();
-
-            border-color    : @color-star-4;
-            background-color: @color-star-4;
-          }
-
-          .btn-3 {
-            .active();
-
-            border-color    : @color-star-3;
-            background-color: @color-star-3;
-          }
-        }
-      }
-    }
 
     .time-range-container {
       display        : flex;
@@ -310,7 +208,6 @@
         }
       }
     }
-
 
     .table-name {
       font-size : 18px;
@@ -348,5 +245,100 @@
     left    : 20px;
     position: absolute;
     top     : 20px;
+  }
+}
+
+.pie-chart {
+  .flex-column();
+
+  // padding-right: 90px;
+  // border-right: 2px dashed @color-second;
+  z-index: 10;
+
+  .pie-name {
+    font-size : 18px;
+    margin    : 12px 0;
+    text-align: center;
+  }
+
+  .filter-title {
+    font-size    : 18px;
+    margin-bottom: 4px;
+  }
+
+  .filter-zone {
+    .flex-column();
+
+    .filter-btns {
+      display: flex;
+
+      .btn {
+        .transition();
+
+        background-color: @color-bg;
+        border          : 1px solid @color-second;
+        border-radius   : 4px;
+        color           : @color-second;
+        cursor          : pointer;
+        font-size       : 14px;
+        height          : 18px;
+        margin          : 2px;
+        padding         : 1px 6px;
+        text-align      : center;
+      }
+
+      .active {
+        color: @color-white;
+      }
+
+      .btn-active {
+        .active();
+
+        background-color: @color-star-5;
+        border-color    : @color-star-5;
+      }
+
+      .select {
+        .btn();
+
+        margin-right: 14px;
+        position    : relative;
+
+        &::before {
+          color   : @color-second;
+          content : "|";
+          left    : 46px;
+          position: absolute;
+        }
+      }
+
+      .select-all {
+        .active();
+
+        background-color: @color-primary;
+        border-color    : @color-primary;
+      }
+
+      .btn-5 {
+        .active();
+
+        border-color    : @color-star-5;
+        background-color: @color-star-5;
+      }
+
+      .btn-4 {
+        .active();
+
+        border-color    : @color-star-4;
+        background-color: @color-star-4;
+      }
+
+      .btn-3 {
+        .active();
+
+        border-color    : @color-star-3;
+        background-color: @color-star-3;
+      }
+    }
   }
 }

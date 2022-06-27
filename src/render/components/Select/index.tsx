@@ -8,16 +8,17 @@ interface Option {
 }
 
 interface SelectProp {
-  name?: string;
-  value?: React.SelectHTMLAttributes<HTMLSelectElement>["value"];
-  options?: Option[];
-  label?: string;
   defaultValue?: React.HTMLAttributes<HTMLSelectElement>["defaultValue"];
-  wrapperStyle?: React.CSSProperties;
-  selectStyle?: React.CSSProperties;
-  optionStyle?: React.CSSProperties;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
   key?: React.Attributes["key"];
+  label?: string;
+  name?: string;
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
+  options?: Option[];
+  optionStyle?: React.CSSProperties;
+  selectStyle?: React.CSSProperties;
+  title?: string;
+  value?: React.SelectHTMLAttributes<HTMLSelectElement>["value"];
+  wrapperStyle?: React.CSSProperties;
 }
 
 const Select: React.FC<SelectProp> = (props) => {
@@ -30,11 +31,12 @@ const Select: React.FC<SelectProp> = (props) => {
     options,
     optionStyle,
     selectStyle,
+    title,
     value,
     wrapperStyle
   } = props;
   return (
-    <div className={styles.wrapper} key={key} style={wrapperStyle}>
+    <div title={title} className={styles.wrapper} key={key} style={wrapperStyle}>
       {label && <label htmlFor={name}>{label}</label>}
       <select
         defaultValue={defaultValue}
