@@ -34,7 +34,6 @@ const Login: React.FC<LoginProp> = (props) => {
   const auth = useAuth();
   const navigate = useNavigate();
   const state = useLocation().state as LocationState;
-  const { isLogin, login } = useAuth();
   const [users, setUsers] = useState<UserData[]>([]);
   const [isSwitching, setIsSwitching] = useState<boolean>(state?.changeAccount);
 
@@ -67,7 +66,7 @@ const Login: React.FC<LoginProp> = (props) => {
       notice.success({ message: "登录成功，正在前往首页登录前页面..." });
       setTimeout(() => {
         setIsSwitching(false);
-        login();
+        auth.login();
       }, 1200);
     }
   };
@@ -77,7 +76,7 @@ const Login: React.FC<LoginProp> = (props) => {
     notice.success({ message: `已切换到 UID ${uid}，正在前往首页...` });
     setTimeout(() => {
       setIsSwitching(false);
-      login();
+      auth.login();
     }, 1000);
   };
 
@@ -86,12 +85,20 @@ const Login: React.FC<LoginProp> = (props) => {
     replace: true
   };
 
-  if (isLogin && !isSwitching) return <Navigate {...naviProps} />;
+  if (auth.isLogin && !isSwitching) return <Navigate {...naviProps} />;
+
+  const handleBack = async () => {
+    const user = await nativeApi.getCurrentUser();
+    if (!user) auth.logout();
+    navigate("/");
+  };
 
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.title}>{isSwitching ? "切换" : "登录"} 「米游社」 账号</div>
+        <div className={styles.top}>
+          <div className={styles.title}>{isSwitching ? "切换" : "登录"} 「米游社」 账号</div>
+        </div>
         <div className={styles.content}>
           <div>
             <div>操作步骤：</div>
@@ -131,7 +138,7 @@ const Login: React.FC<LoginProp> = (props) => {
           Icon={TiArrowBack}
           size='middle'
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={handleBack}
         />
       </div>
       {notice.holder}

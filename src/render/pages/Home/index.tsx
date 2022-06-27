@@ -180,7 +180,7 @@ const Home: React.FC = () => {
                 <span>建议登录 「米游社」 账号以获得最佳使用体验。</span>
               </div>
               <Button
-                text='登录米游社'
+                text='前往登录'
                 size='middle'
                 type='confirm'
                 onClick={() => safelyNavigate("/login")}
