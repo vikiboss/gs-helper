@@ -5,6 +5,7 @@ import type { GameRole } from "../typings";
 
 const getGameRoleInfo = async (): Promise<GameRole | null> => {
   const currentUser = getCurrentUser();
+  if (!currentUser) return null;
   const roles = await getUserRolesByCookie(currentUser.cookie);
   return (roles && roles[0]) || null;
 };

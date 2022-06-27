@@ -27,15 +27,15 @@ const getUserRolesByCookie = async (cookie: string): Promise<GameRole[] | null> 
   return data?.data?.list || null;
 };
 
-/** 验证 Cookie 有效性 */
-const verifyCookie = async (cks: Cookies): Promise<AuthResState> => {
+/** 验证 Cookie 有效性并尝试获取绑定的游戏角色 */
+const verifyCookieAndGetGameRole = async (cks: Cookies): Promise<AuthResState> => {
   const cookie = await transferCookiesToString(cks);
   const hasLtoken = cookie.includes("ltoken");
   if (!hasLtoken) return { valid: false, cookie: "", roleInfo: null };
   const roles = await getUserRolesByCookie(cookie);
   const valid = Boolean(roles[0]?.game_uid);
   if (!valid) console.log("verifyCookie: ", cookie);
-  return { valid, cookie, roleInfo: roles[0] };
+  return { valid: true, cookie, roleInfo: valid ? roles[0] : null };
 };
 
-export default verifyCookie;
+export default verifyCookieAndGetGameRole;

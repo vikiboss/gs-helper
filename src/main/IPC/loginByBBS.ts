@@ -4,7 +4,7 @@ import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
 import { isDev } from "../createMainWindow";
 import { mainWin, store } from "..";
 import { ScriptRefineBBS } from "./openWindow";
-import verifyCookie from "../../utils/verifyCookie";
+import verifyCookieAndGetGameRole from "../../utils/verifyCookieAndGetGameRole";
 
 import type { UserData } from "../../typings";
 
@@ -47,12 +47,12 @@ const loginByBBS = async () => {
     // 获取 cookie
     const cookies = session.defaultSession.cookies;
     // 验证 cookie 有效性（是否成功登录）
-    const { valid, cookie, roleInfo } = await verifyCookie(cookies);
+    const { valid, cookie, roleInfo } = await verifyCookieAndGetGameRole(cookies);
     // 设置当前 uid，有效登录时 uid 设置正常，未登录则置空
-    store.set("currentUid", roleInfo.game_uid);
-    // 无效则不对本地 store 处理
-    if (!valid) return;
-    // 有效则继续处理
+    store.set("currentUid", roleInfo ? roleInfo.game_uid : "");
+    // Cookie 无效，或者未绑定游戏角色，则不对本地 store 处理
+    if (!valid || !roleInfo) return;
+    // Cookie 有效，且绑定了游戏角色，则继续处理
     const user: UserData = { uid: roleInfo.game_uid, cookie };
     // 获取本地所有账户
     const localUsers = store.get("users");

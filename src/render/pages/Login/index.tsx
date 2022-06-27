@@ -61,7 +61,7 @@ const Login: React.FC<LoginProp> = (props) => {
     const user = await nativeApi.getCurrentUser();
     if (!user) {
       auth.logout();
-      notice.faild({ message: "未检测到有效验证信息，请重新登录" });
+      notice.faild({ message: "未获取到 UID 信息，请确保登录成功且在米游社绑定过UID" });
       return;
     } else {
       notice.success({ message: "登录成功，正在前往首页登录前页面..." });
@@ -100,6 +100,7 @@ const Login: React.FC<LoginProp> = (props) => {
                 {e}
               </div>
             ))}
+            <span>注意：如果之前没有使用过米游社 APP，请先前往米游社 APP 绑定 UID</span>
           </div>
           <div className={styles.btns}>
             <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
