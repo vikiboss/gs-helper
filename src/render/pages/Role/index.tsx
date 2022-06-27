@@ -252,38 +252,38 @@ const Role: React.FC = () => {
         )}
       >
         <div className={styles.topZone}>
-          <span className={cn(styles.title, isDetail ? styles.detailMode : "")}>
-            {isDetail ? "角色详情" : "所有获得的角色"}
-          </span>
           {!isDetail && roles.length > 0 && (
-            <div className={styles.selects}>
-              <Select
-                name='elementFilter'
-                value={filters[0]}
-                onChange={(e) => {
-                  setFilters([e.target.value, filters[1]]);
-                  setIsRoleChanging(false);
-                  setTimeout(() => {
-                    setIsRoleChanging(true);
-                  }, 0);
-                }}
-                defaultValue={"level"}
-                options={ElementOptions}
-              />
-              <Select
-                name='weaponFilter'
-                value={filters[1]}
-                onChange={(e) => {
-                  setFilters([filters[0], Number(e.target.value)]);
-                  setIsRoleChanging(false);
-                  setTimeout(() => {
-                    setIsRoleChanging(true);
-                  }, 0);
-                }}
-                defaultValue={"level"}
-                options={WeaponOptions}
-              />
-            </div>
+            <>
+              <span className={cn(styles.title)}>我的角色</span>
+              <div className={styles.selects}>
+                <Select
+                  name='elementFilter'
+                  value={filters[0]}
+                  onChange={(e) => {
+                    setFilters([e.target.value, filters[1]]);
+                    setIsRoleChanging(false);
+                    setTimeout(() => {
+                      setIsRoleChanging(true);
+                    }, 0);
+                  }}
+                  defaultValue={"level"}
+                  options={ElementOptions}
+                />
+                <Select
+                  name='weaponFilter'
+                  value={filters[1]}
+                  onChange={(e) => {
+                    setFilters([filters[0], Number(e.target.value)]);
+                    setIsRoleChanging(false);
+                    setTimeout(() => {
+                      setIsRoleChanging(true);
+                    }, 0);
+                  }}
+                  defaultValue={"level"}
+                  options={WeaponOptions}
+                />
+              </div>
+            </>
           )}
           {isDetail && (
             <Button

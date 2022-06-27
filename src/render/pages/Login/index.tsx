@@ -23,9 +23,9 @@ interface LocationState {
 }
 
 const LoginGuides = [
-  "① 点击 「登录米游社」 按钮打开登录界面",
-  "② 在登录界面中登录 「米游社」 账号",
-  "③ 成功登录后关闭登录界面",
+  "① 点击 「登录米游社」 按钮打开登录窗口",
+  "② 在登录窗口中登录 「米游社」 账号",
+  "③ 成功登录后关闭登录窗口",
   "④ 点击 「验证账号」 按钮完成登录"
 ];
 
@@ -113,7 +113,6 @@ const Login: React.FC<LoginProp> = (props) => {
             <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
             <Button type='confirm' size='middle' text='验证账号' onClick={handleRefresh} />
           </div>
-          <img src={element} alt='七大元素' style={{ width: "20vw" }} />
           {users.length > 0 && (
             <div className={styles.localUser}>
               <div>※ 点击下方 UID 可快速登录本地账号 ※</div>

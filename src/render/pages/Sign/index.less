@@ -9,16 +9,24 @@
   position: relative;
 
   .signContainer {
-    .ani-show-right();
     .flex-center-x-column();
 
     .title {
+      .ani-show-top();
+
       font-size  : 24px;
       line-height: 42px;
       margin-top : 20px;
     }
 
+    .tip {
+      .ani-show-top();
+
+      color: @color-second;
+    }
+
     .sign-table {
+      .ani-show-right();
       .flex-wrap();
 
       align-content: flex-start;
@@ -76,10 +84,6 @@
           width          : 78px;
         }
       }
-    }
-
-    .tip {
-      color: @color-second;
     }
   }
 

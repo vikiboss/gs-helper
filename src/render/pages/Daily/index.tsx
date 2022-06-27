@@ -114,7 +114,9 @@ const Daily: React.FC = () => {
       <div className={styles.container}>
         {calenderList.length > 0 ? (
           <>
-            <div className={styles.title}>原神日历</div>
+            <div className={styles.top}>
+              <div className={styles.title}>原神日历</div>
+            </div>
             <div className={styles.content}>
               <div className={styles.contentTop}>
                 <div className={styles.weeks}>
