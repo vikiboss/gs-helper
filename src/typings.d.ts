@@ -9,6 +9,7 @@ import type { GameRole } from "./services/getGameRoleInfo";
 import type { GameRoleCardData } from "./services/getGameRoleCard";
 import type { MonthInfo } from "./services/getMonthInfo";
 import type { PublicRole } from "./services/getPublicRoleList";
+import type { Role } from "./services/getOwnedRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SpiralAbyssData } from "./services/getSpiralAbyss";
@@ -33,7 +34,7 @@ export interface NativeApi {
   getHitokoto: () => Promise<string>;
   getLocalGachaDatas: () => Promise<GachaData[]>;
   getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
-  getOwnedRoleList: () => Promise<Role[] | null>;
+  getOwnedRoleList: (uid?: string) => Promise<Role[] | null>;
   getPublicRoleList: () => Promise<PublicRole[] | null>;
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;

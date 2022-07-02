@@ -3,17 +3,17 @@ import cn from "classnames";
 
 import styles from "./index.less";
 
-type Item = {
+export type SelectItem = {
   label: string;
   value: string;
 };
 
-interface SelectButtonProp {
+export interface SelectButtonProp {
   changeItem?: Function;
   className?: string;
   direction?: "vertical" | "horizontal";
   height?: number;
-  items: Item[];
+  items: SelectItem[];
   style?: React.CSSProperties;
   value?: string;
   width?: number;

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-type BounceNumberProp = {
+export interface BounceNumberProp {
   number: number;
   size?: number;
   duration?: number;
   style?: React.CSSProperties;
   wrapperStyle?: React.CSSProperties;
-};
+}
 
-const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const BounceNumber: React.FC<BounceNumberProp> = (props) => {
   const [transforms, setTransforms] = useState<string[]>([]);

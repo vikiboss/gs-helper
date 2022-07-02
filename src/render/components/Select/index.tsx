@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./index.less";
 
-interface Option {
+export interface Option {
   value: string | number;
   label: string;
 }

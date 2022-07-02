@@ -23,7 +23,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getHitokoto: () => IPC.invoke(IPCEvents.getHitokoto),
   getLocalGachaDatas: () => IPC.invoke(IPCEvents.getLocalGachaDatas),
   getMonthInfo: (month?: number) => IPC.invoke(IPCEvents.getMonthInfo, month),
-  getOwnedRoleList: () => IPC.invoke(IPCEvents.getOwnedRoleList),
+  getOwnedRoleList: (uid?: string) => IPC.invoke(IPCEvents.getOwnedRoleList, uid),
   getPublicRoleList: () => IPC.invoke(IPCEvents.getPublicRoleList),
   getSpiralAbyss: (uid?: string) => IPC.invoke(IPCEvents.getSpiralAbyss, uid),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),

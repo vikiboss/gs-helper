@@ -2,14 +2,14 @@ import React from "react";
 
 import icon from "../../../assets/icon.png";
 import nativeApi from "../../utils/nativeApi";
-import WinButton from "./WinButton";
+import WinButton from "../WinButton";
 
 import styles from "./index.less";
 
-type WinFrameProp = {
+export interface WinFrameProp {
   title?: string;
   children?: JSX.Element;
-};
+}
 
 const WinFrame: React.FC<WinFrameProp> = (props) => {
   const { title = "" } = props;

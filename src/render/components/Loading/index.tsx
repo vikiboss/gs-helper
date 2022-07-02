@@ -3,11 +3,11 @@ import React from "react";
 import paimon from "../../../assets/paimon.gif";
 import paimon2 from "../../../assets/paimon2.gif";
 
-type LoadingProp = {
+export interface LoadingProp {
   text?: string;
   isEmpty?: boolean;
   className?: React.HTMLAttributes<HTMLDivElement>["className"];
-};
+}
 
 const Loading: React.FC<LoadingProp> = (props) => {
   const { isEmpty = false, className } = props;

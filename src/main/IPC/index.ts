@@ -52,7 +52,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());
   IPC.handle(IPCEvents.getLocalGachaDatas, () => getLocalGachaDatas());
   IPC.handle(IPCEvents.getMonthInfo, async (_, month?: number) => await getMonthInfo(month));
-  IPC.handle(IPCEvents.getOwnedRoleList, async () => await getOwnedRoleList());
+  IPC.handle(IPCEvents.getOwnedRoleList, async (_, uid?: string) => await getOwnedRoleList(uid));
   IPC.handle(IPCEvents.getPublicRoleList, async () => await getPublicRoleList());
   IPC.handle(IPCEvents.getSpiralAbyss, async (_, uid?: string) => await getSpiralAbyss(uid));
   IPC.handle(IPCEvents.getStoreKey, (_, key: string) => store.get(key));

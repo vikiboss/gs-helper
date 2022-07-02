@@ -82,10 +82,11 @@ export interface Affixes {
   effect: string;
 }
 
-const getOwnedRoleList = async (): Promise<Role[] | null> => {
+const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
   const currentUser = getCurrentUser();
   if (!currentUser) return null;
-  const { cookie, uid } = currentUser;
+  const { cookie } = currentUser;
+  uid = uid || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/character`;
   const postData = { role_id: uid, server: getServerByUid(uid) };
   const headers = {

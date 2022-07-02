@@ -4,30 +4,44 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
+import GameStatsTab from "./GameStatsTab";
 import Input from "../../components/Input";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
-import SpiralAbyss from "./SpiralAbyss";
-import StatisticCard from "./StatisticCard";
+import RolesTab from "./RolesTab";
+import SelectButton from "../../components/SelectButton";
+import SpiralAbyssTab from "./SpiralAbyssTab";
 import styles from "./index.less";
 import useNotice from "../../hooks/useNotice";
 import withAuth from "../../auth/withAuth";
 
 import type { GameRoleCardData } from "../../../services/getGameRoleCard";
+import type { Role as RoleInfo } from "../../../services/getOwnedRoleList";
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
-import SelectButton from "../../components/SelectButton";
+
+export type TypeState = "statistic" | "roles" | "abyss";
+export type GameRoleCardState = GameRoleCardData & { uid: string };
+export type SpiralAbyssState = SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] };
+export type RolesState = {
+  list: RoleInfo[];
+  uid: string;
+  role: GameRoleCardData["role"];
+};
 
 const Statistic: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
+
   const [uid, setUid] = useState<string>("");
   const [isSelf, setIsSelf] = useState<boolean>(true);
   const [loading, setLoading] = useState<boolean>(true);
-  const [type, setType] = useState<"statistic" | "abyss">("statistic");
-  const [cardData, setCardData] = useState<GameRoleCardData & { uid: string }>();
-  const [spiralAbyss, setSpiralAbyss] = useState<
-    SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] }
-  >();
+
+  const [type, setType] = useState<TypeState>("statistic");
+  // const [type, setType] = useState<TypeState>("roles");
+
+  const [rolesDate, setRolesData] = useState<RolesState>();
+  const [gameStatsData, setGameStatsData] = useState<GameRoleCardState>();
+  const [spiralAbyssData, setSpiralAbyssData] = useState<SpiralAbyssState>();
 
   useEffect(() => {
     (async () => await updateInfo())();
@@ -37,21 +51,29 @@ const Statistic: React.FC = () => {
     try {
       const user = await nativeApi.getCurrentUser();
       uid = uid || user.uid;
-      const [card, abyss] = await Promise.all([
+      const [card, roles, abyss] = await Promise.all([
         nativeApi.getGameRoleCard(uid),
+        nativeApi.getOwnedRoleList(uid),
         nativeApi.getSpiralAbyss(uid)
       ]);
-      if (!card?.role?.nickname || !abyss?.schedule_id) return false;
+      const isOK = card?.role?.nickname && roles[0]?.id && abyss?.schedule_id;
+     
+      if (!isOK) return false;
+     
       setIsSelf(uid === "" || uid === user.uid);
       setLoading(false);
-      setCardData({ ...card, uid });
-      setSpiralAbyss({ ...abyss, uid, role: card.role });
-      console.log(card, abyss);
+      setGameStatsData({ ...card, uid });
+      setRolesData({ list: roles, uid, role: card.role });
+      setSpiralAbyssData({ ...abyss, uid, role: card.role });
+      
+      console.log(card, roles, abyss);
       return true;
     } catch (e) {
       console.log(e);
+      
       const isOffline = e?.message?.includes("getaddrinfo");
       const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+      
       notice.faild({ message: msg });
     }
   };
@@ -85,8 +107,9 @@ const Statistic: React.FC = () => {
     }
   };
 
-  const items = [
+  const items: { label: string; value: TypeState }[] = [
     { label: "数据概览", value: "statistic" },
+    { label: "常用角色", value: "roles" },
     { label: "深渊螺旋", value: "abyss" }
   ];
 
@@ -100,7 +123,7 @@ const Statistic: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {cardData && spiralAbyss ? (
+        {gameStatsData && spiralAbyssData ? (
           <>
             <div className={styles.top}>
               {!isSelf && (
@@ -122,8 +145,9 @@ const Statistic: React.FC = () => {
             </div>
             {!loading && (
               <div className={styles.content}>
-                {type === "statistic" && <StatisticCard data={cardData} />}
-                {type === "abyss" && <SpiralAbyss data={spiralAbyss} />}
+                {type === "statistic" && <GameStatsTab data={gameStatsData} />}
+                {type === "roles" && <RolesTab data={rolesDate} />}
+                {type === "abyss" && <SpiralAbyssTab data={spiralAbyssData} />}
               </div>
             )}
           </>

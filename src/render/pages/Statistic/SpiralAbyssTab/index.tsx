@@ -1,18 +1,16 @@
 import React from "react";
 import D from "dayjs";
 
-import { GameRoleCardData } from "../../../services/getGameRoleCard";
-import BounceNumber from "../../components/BounceNumber";
-import getServerNameByServer from "../../../utils/getServerNameByServer";
+import abyssBg from "../../../../assets/abyss-bg.png";
+import BounceNumber from "../../../components/BounceNumber";
+import getServerNameByServer from "../../../../utils/getServerNameByServer";
 
-import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
-
-import abyssBg from "../../../assets/abyss-bg.png";
+import type { SpiralAbyssState } from "..";
 
 import styles from "./index.less";
 
 interface SpiralAbyssProp {
-  data: SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] };
+  data: SpiralAbyssState;
 }
 
 const formatTime = (timestamp: string) => {

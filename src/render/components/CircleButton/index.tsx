@@ -1,15 +1,17 @@
 import React from "react";
 import classnames from "classnames";
-import { IconType } from "react-icons";
+
+import type { IconType } from "react-icons";
+
 import styles from "./index.less";
 
-type CircleButtonProp = {
+export interface CircleButtonProp {
   Icon: IconType;
   tip?: string;
   size?: "small" | "middle" | "large";
   className?: string;
   onClick?: () => void;
-};
+}
 
 const SIZE_MAP = {
   small: 16,

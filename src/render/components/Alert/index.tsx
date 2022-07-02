@@ -3,11 +3,11 @@ import cn from "classnames";
 
 import styles from "./index.less";
 
-export type AlertProp = {
+export interface AlertProp {
   visible: boolean;
   message: string;
   type: "info" | "warning" | "success" | "faild";
-};
+}
 
 const Alert: React.FC<AlertProp> = (props) => {
   const { visible, type, message } = props;

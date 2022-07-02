@@ -1,12 +1,13 @@
 import React from "react";
 import cn from "classnames";
-import { IconType } from "react-icons";
 import { BiCircle } from "react-icons/Bi";
 import { BsXLg } from "react-icons/Bs";
 
+import type { IconType } from "react-icons";
+
 import styles from "./index.less";
 
-type ButtonProp = {
+export interface ButtonProp {
   type?: "confirm" | "cancel";
   size?: "small" | "middle" | "large";
   theme?: "light" | "dark";
@@ -14,7 +15,7 @@ type ButtonProp = {
   text: string;
   className?: string;
   onClick?: () => void;
-};
+}
 
 const SIZE_MAP = {
   small: 12,

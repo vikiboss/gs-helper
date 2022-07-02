@@ -1,15 +1,15 @@
 import React from "react";
 
-import { deepClone } from "../../../utils/utils";
-import BounceNumber from "../../components/BounceNumber";
-import getServerNameByServer from "../../../utils/getServerNameByServer";
+import { deepClone } from "../../../../utils/utils";
+import BounceNumber from "../../../components/BounceNumber";
+import getServerNameByServer from "../../../../utils/getServerNameByServer";
 
-import type { GameRoleCardData } from "../../../services/getGameRoleCard";
+import type { GameRoleCardState } from "..";
 
 import styles from "./index.less";
 
 export interface StatisticCardProp {
-  data: GameRoleCardData & { uid: string };
+  data: GameRoleCardState;
 }
 
 const StatisticCard: React.FC<StatisticCardProp> = (props) => {
@@ -20,7 +20,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
     <div className={styles.statisticCard}>
       <div className={styles.column}>
         <div className={styles.stats}>
-          <div>
+          <div className={styles.user}>
             <div>{data.role.nickname}</div>
             <div>
               Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
@@ -148,7 +148,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
         </div>
       </div>
       <div className={styles.column}>
-        <div className={styles.avatars}>
+        {/* <div className={styles.avatars}>
           <div>常用角色</div>
           <div>
             {data.avatars.slice(0, 8).map((e) => (
@@ -157,14 +157,13 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 <div>
                   <span>{e.name}</span>
                   <span>
-                    {/* {e.actived_constellation_num}命 好感{e.fetter} */}
                     Lv.{e.level}
                   </span>
                 </div>
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
         <div className={styles.explorations}>
           <div>世界探索</div>
           <div>
