@@ -65,7 +65,8 @@ const initTray = (win: BrowserWindow) => {
   // 设置托盘菜单提示文字
   tray.setToolTip(`${app.getName()} v${app.getVersion()}`);
   // 监听点击事件，绑定程序的显示与隐藏操作
-  tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
+  // tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
+  tray.on("click", () => win.show());
   // 加载托盘右键菜单
   tray.setContextMenu(contextMenu);
   // 监听即将退出的事件，销毁托盘图标与菜单

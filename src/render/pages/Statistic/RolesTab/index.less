@@ -2,16 +2,27 @@
 @import "../../../utils/utils.less";
 
 .user {
-  .ani-show-left();
+  .ani-show-top();
 
   margin: 0 20px;
 
-  &>div:first-child {
+  & > div:first-child {
     font-size: 24px;
   }
 
-  &>div:nth-child(2) {
+  & > div:nth-child(2) {
     color: @color-second;
   }
 }
 
+.role-table {
+  .ani-show-bottom();
+  .flex();
+
+  flex: 1;
+  flex-wrap: wrap;
+  margin-left: 20px;
+  overflow: auto;
+  padding-top: 12px;
+  width: 100%;
+}

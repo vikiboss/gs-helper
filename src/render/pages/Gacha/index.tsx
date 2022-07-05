@@ -54,6 +54,7 @@ const Gacha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [type, setType] = useState<"overview" | "analysis" | "prediction">("overview");
+  const [isApple, setIsApple] = useState<boolean>(false);
   const [uid, setUid] = useState<string>("");
   const [filter, setfilter] = useState<FilterType>(DefaultFilters);
   const [gachas, setGachas] = useState<GachaData[]>([]);
@@ -81,15 +82,24 @@ const Gacha: React.FC = () => {
   useEffect(() => {
     (async () => {
       await initGachaData();
-      await getLocalGachaUrl();
+      const isApple = (await nativeApi.getAppInfo()).isAppleDevice;
+      setIsApple(isApple);
+      console.log(await nativeApi.getAppInfo());
+      if (!isApple) await getLocalGachaUrl();
     })();
   }, []);
 
   const updateGachaData = async () => {
     if (loading) return notice.faild({ message: "派蒙正在努力获取中，请不要重复点击啦！" });
 
-    if (!link) return notice.faild({ message: "请先获取 「本地祈愿链接」 或手动输入祈愿链接" });
-    if (!link.match(/^https?:\/\//)) return notice.faild({ message: "链接无效，请检查" });
+    if (!link) {
+      const msg = isApple ? "请先输入祈愿链接" : "请先获取 「本地祈愿链接」 或手动输入祈愿链接";
+      return notice.faild({ message: msg });
+    }
+
+    if (!link.match(/^https?:\/\//)) {
+      return notice.faild({ message: "链接无效，请检查" });
+    }
 
     notice.info({ message: "派蒙努力加载中，预计半分钟...", autoHide: false });
 
@@ -168,6 +178,8 @@ const Gacha: React.FC = () => {
     { value: "prediction", label: "预测" }
   ];
 
+  const isEmpty = !loading && !gacha.info.uid;
+
   return (
     <>
       <div className={styles.container}>
@@ -184,11 +196,13 @@ const Gacha: React.FC = () => {
             onChange={(e) => setLink(e.target.value)}
             placeholder='祈愿记录链接'
           />
-          <Button
-            onClick={link ? copyLink : () => getLocalGachaUrl(true)}
-            style={{ marginRight: "12px" }}
-            text={link ? "复制" : "获取本地链接"}
-          />
+          {!isApple && (
+            <Button
+              onClick={link ? copyLink : () => getLocalGachaUrl(true)}
+              style={{ marginRight: "12px" }}
+              text={link ? "复制" : "获取本地链接"}
+            />
+          )}
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <div className={styles.rightZone}>
             <SelectButton
@@ -200,9 +214,11 @@ const Gacha: React.FC = () => {
             <div className={styles.icon} title='导入 JSON 数据' onClick={handleImport}>
               <BiImport size={20} />
             </div>
-            <div className={styles.icon} title='导出 JSON 数据' onClick={handleExport}>
-              <BiExport size={20} />
-            </div>
+            {!isEmpty && (
+              <div className={styles.icon} title='导出 JSON 数据' onClick={handleExport}>
+                <BiExport size={20} />
+              </div>
+            )}
             {uids.length > 0 && uid && (
               <Select
                 name='UID'
@@ -220,7 +236,7 @@ const Gacha: React.FC = () => {
           )
         ) : (
           <div style={{ display: "flex", flex: 1 }}>
-            <Loading text={loadingText} isEmpty={!loading && !gacha.info.uid} />
+            <Loading text={loadingText} isEmpty={isEmpty} />
           </div>
         )}
         {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}

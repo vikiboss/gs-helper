@@ -1,0 +1,110 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+.wrapper {
+  .flex-center-column();
+  .transition();
+
+  color: #564c4a;
+  height: 148px;
+  width: 110px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  & > div {
+    .flex-center-column();
+    .shadow-deep();
+
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    height: 121px;
+    margin-bottom: 3px;
+    position: relative;
+    width: 100px;
+
+    // 角色头图
+    img:nth-child(1) {
+      width: 100px;
+      height: 100px;
+    }
+
+    // 星级 icon
+    img:nth-child(2) {
+      bottom: 16px;
+      position: absolute;
+      height: 24px;
+    }
+
+    // 元素 icon
+    img:nth-child(3) {
+      left: 2px;
+      position: absolute;
+      top: 2px;
+      width: 20px;
+    }
+
+    // 命座数
+    & > div {
+      .flex-center();
+
+      background-color: rgba(64, 64, 64, 0.6);
+      border-bottom-left-radius: 6px;
+      border-top-right-radius: 6px;
+      color: @color-white;
+      font-size: 12px;
+      height: 22px;
+      position: absolute;
+      right: 0px;
+      top: 0px;
+      width: 22px;
+    }
+
+    span {
+      font-size: 14px;
+      line-height: 22px;
+    }
+  }
+
+  & > span {
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+}
+
+.star-1 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-1.png");
+}
+
+.star-2 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-2.png");
+}
+
+.star-3 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-3.png");
+}
+
+.star-4 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-4.png");
+}
+
+.star-5 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-5.png");
+}
+
+.star-6 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-6.png");
+}

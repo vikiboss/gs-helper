@@ -78,21 +78,21 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
             <div>
               <div className={styles.horizontal}>
                 <BounceNumber size={24} number={stats.anemoculus_number} />
-                <span>/66</span>
+                <span className={styles.fullNum}>/66</span>
               </div>
               <span>风神瞳</span>
             </div>
             <div>
               <div className={styles.horizontal}>
                 <BounceNumber size={24} number={stats.geoculus_number} />
-                <span>/131</span>
+                <span className={styles.fullNum}>/131</span>
               </div>
               <span>岩神瞳</span>
             </div>
             <div>
               <div className={styles.horizontal}>
                 <BounceNumber size={24} number={stats.electroculus_number} />
-                <span>/181</span>
+                <span className={styles.fullNum}>/181</span>
               </div>
               <span>雷神瞳</span>
             </div>

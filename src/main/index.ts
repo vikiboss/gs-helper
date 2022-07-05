@@ -33,6 +33,8 @@ app.on("second-instance", () => mainWin?.show());
 
 // 程序准备完毕的事件
 app.on("ready", () => {
+  // 隐藏 dock 图标
+  if (isAppleDevice) app.dock.hide();
   // 初始化 Store （读取配置）
   store = initStore();
   // 创建主窗口

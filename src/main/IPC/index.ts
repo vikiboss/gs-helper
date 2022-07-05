@@ -1,7 +1,7 @@
 import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from "electron";
 
 import { IPCEvents } from "../../constants";
-import { store } from "..";
+import { isAppleDevice, isDev, store } from "..";
 import { changeUser, deleteUser } from "../handleUsers";
 import getCurrentUser from "./getCurrentUser";
 import getGachaUrl from "../../utils/getGachaUrl";
@@ -25,7 +25,12 @@ import getPublicRoleList from "../../services/getPublicRoleList";
 
 import type { AppInfo } from "../../typings";
 
-const AppicationInfo: AppInfo = { name: app.getName(), version: app.getVersion() };
+const AppicationInfo: AppInfo = {
+  name: app.getName(),
+  version: app.getVersion(),
+  isDev: !app.isPackaged,
+  isAppleDevice: process.platform === "darwin"
+};
 
 const bindIPC = (win: BrowserWindow) => {
   IPC.on(IPCEvents.closeApp, () => app.exit(0));
