@@ -1,12 +1,9 @@
 import { app, BrowserWindow } from "electron";
 import Store from "electron-store";
 
-import { registerHotkey, unregisterHotkey } from "./handleHotkeys";
-import bindIPC from "./IPC";
+import { unregisterHotkey } from "./handleHotkeys";
 import createMainWindow from "./createMainWindow";
 import initStore from "./initStore";
-import initTray from "./initTray";
-import restoreSettings from "./restoreSettings";
 
 import type { AppData } from "../typings";
 
@@ -21,6 +18,11 @@ app.disableHardwareAcceleration();
 // 单例模式
 const isWinner = app.requestSingleInstanceLock();
 
+// 用以代表开发模式的变量，导出以供其他部分引用
+export const isDev = !app.isPackaged;
+// macOS
+export const isAppleDevice = process.platform === "darwin";
+
 // 如果不是第一个实例，直接退出
 if (!isWinner) app.quit();
 
@@ -31,25 +33,16 @@ app.on("second-instance", () => mainWin?.show());
 
 // 程序准备完毕的事件
 app.on("ready", () => {
-  // 创建主窗口
-  mainWin = createMainWindow();
   // 初始化 Store （读取配置）
   store = initStore();
-  // 初始化托盘图标与菜单
-  void initTray(mainWin);
-  // 恢复设置
-  void restoreSettings(mainWin);
-  // 注册全局热键
-  void registerHotkey(mainWin);
-  // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
-  void bindIPC(mainWin);
+  // 创建主窗口
+  mainWin = createMainWindow();
 });
 
 // 监听窗口全部关闭的事件
 app.on("window-all-closed", () => {
   // 不是苹果设备则退出，反正只是写给 Windows 用的，没啥用（
-  const isNotAppleDevice = process.platform !== "darwin";
-  if (isNotAppleDevice) app.quit();
+  if (!isAppleDevice) app.quit();
 });
 
 // 监听程序激活事件

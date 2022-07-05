@@ -1,13 +1,14 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions, shell } from "electron";
+import { BrowserWindow, BrowserWindowConstructorOptions, shell } from "electron";
 
 // 声明内置常量
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
+import { registerHotkey } from "./handleHotkeys";
+import bindIPC from "./IPC";
 import icon from "../assets/icon.ico";
-
-// 用以代表开发模式的变量，导出以供其他部分引用
-export const isDev = !app.isPackaged;
+import initTray from "./initTray";
+import restoreSettings from "./restoreSettings";
 
 // 配置窗口的选项参数
 const winOptions: BrowserWindowConstructorOptions = {
@@ -50,6 +51,16 @@ const createMainWindow = () => {
 
   // 加载入口文件，这个入口常量是由 electron-forge 和 webpack 内置的
   win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+
+  // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
+  void bindIPC(win);
+  // 初始化托盘图标与菜单
+  void initTray(win);
+  // 恢复设置
+  void restoreSettings(win);
+  // 注册全局热键
+  void registerHotkey(win);
+
   // 返回创建的窗口实例
   return win;
 };

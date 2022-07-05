@@ -1,9 +1,9 @@
-import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions } from "electron";
+import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions, nativeImage } from "electron";
 import path from "path";
 
-import { isDev } from "./createMainWindow";
-import { store } from ".";
+import { store, isDev, isAppleDevice } from ".";
 import icon from "../assets/icon.ico";
+import macicon from "../assets/macicon.png";
 
 export const Menus: Record<string, string> = {
   alwaysOnTop: "置顶显示",
@@ -14,8 +14,12 @@ export const Menus: Record<string, string> = {
 
 /** 初始化托盘图标与菜单 */
 const initTray = (win: BrowserWindow) => {
+  // 从路径新建图片
+  const image = nativeImage.createFromPath(path.join(__dirname, isAppleDevice ? macicon : icon));
+  // 设置图片为自动适应模式的黑白图标
+  isAppleDevice && image.setTemplateImage(true);
   // 初始化托盘图标
-  const tray = new Tray(path.join(__dirname, icon));
+  const tray = new Tray(image);
 
   // 主窗口的 webContents 用于控制 DevTools 的开关
   const web = win.webContents;

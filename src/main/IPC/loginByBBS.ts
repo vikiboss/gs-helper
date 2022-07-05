@@ -1,8 +1,7 @@
 import { app, BrowserWindow, session } from "electron";
 
 import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
-import { isDev } from "../createMainWindow";
-import { mainWin, store } from "..";
+import { mainWin, store, isDev, isAppleDevice } from "..";
 import { ScriptRefineBBS } from "./openWindow";
 import verifyCookieAndGetGameRole from "../../utils/verifyCookieAndGetGameRole";
 
@@ -15,7 +14,7 @@ const loginByBBS = async () => {
     width: 400,
     height: 700,
     show: false,
-    modal: true,
+    modal: !isAppleDevice,
     parent: mainWin,
     resizable: false,
     maximizable: false,

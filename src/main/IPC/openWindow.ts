@@ -1,7 +1,7 @@
 import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
 
 import { APP_USER_AGENT_DESKTOP } from "../../constants";
-import { isDev } from "../createMainWindow";
+import { isDev } from "..";
 
 const wins = new Map<string, BrowserWindow>();
 

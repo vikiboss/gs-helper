@@ -20,10 +20,10 @@ import getGameRoleInfo from "../../services/getGameRoleInfo";
 import getHitokoto from "../../services/getHitokoto";
 import getMonthInfo from "../../services/getMonthInfo";
 import getOwnedRoleList from "../../services/getOwnedRoleList";
+import getSpiralAbyss from "../../services/getSpiralAbyss";
 import getPublicRoleList from "../../services/getPublicRoleList";
 
 import type { AppInfo } from "../../typings";
-import getSpiralAbyss from "../../services/getSpiralAbyss";
 
 const AppicationInfo: AppInfo = { name: app.getName(), version: app.getVersion() };
 
