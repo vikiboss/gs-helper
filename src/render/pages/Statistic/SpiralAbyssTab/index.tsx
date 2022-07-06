@@ -19,7 +19,7 @@ const formatTime = (timestamp: string) => {
 
 const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
   const { data } = props;
-  const hasData = data.start_time && data.is_unlock;
+  const hasData = data.start_time && data.is_unlock && data.total_battle_times !== 0;
   const period = `${formatTime(data.start_time)} ~ ${formatTime(data.end_time)}`;
   const succRate = Math.round((data.total_win_times / data.total_battle_times) * 100);
   return (

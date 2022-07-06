@@ -29,7 +29,7 @@ const AppicationInfo: AppInfo = {
   name: app.getName(),
   version: app.getVersion(),
   isDev: !app.isPackaged,
-  isAppleDevice: process.platform === "darwin"
+  isWindows: process.platform === "win32"
 };
 
 const bindIPC = (win: BrowserWindow) => {

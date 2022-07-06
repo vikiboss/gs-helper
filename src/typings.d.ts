@@ -56,7 +56,7 @@ export interface AppInfo {
   name: string;
   version: string;
   isDev: boolean;
-  isAppleDevice: boolean;
+  isWindows: boolean;
 }
 
 export interface GachaItem {

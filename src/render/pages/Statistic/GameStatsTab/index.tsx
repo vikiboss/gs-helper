@@ -45,7 +45,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
             </div>
             <div>
               <BounceNumber size={24} number={stats.domain_number} />
-              <span>解锁秘境</span>
+              <span>秘境</span>
             </div>
             <div>
               <BounceNumber size={24} number={stats.luxurious_chest_number} />

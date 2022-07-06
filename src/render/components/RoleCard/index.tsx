@@ -1,3 +1,4 @@
+import cn from "classnames";
 import React, { MouseEventHandler } from "react";
 import { Role } from "../../../services/getOwnedRoleList";
 
@@ -18,20 +19,28 @@ import Dendro from "../../../assets/dendro.png";
 import styles from "./index.less";
 
 export interface RoleCardProp {
-  role?: Role;
-  key?: number | string;
+  className?: string;
+  withName?: boolean;
   onClick?: MouseEventHandler<HTMLDivElement>;
+  role?: Role;
+  style?: React.CSSProperties;
 }
 
 const StarImgs: string[] = [star1, star2, star3, star4, star5];
 const ElementImgs: Record<string, string> = { Pyro, Hydro, Anemo, Electro, Geo, Cryo, Dendro };
 
-const RoleCard: React.FC<RoleCardProp> = ({ onClick, role, key }) => {
+const RoleCard: React.FC<RoleCardProp> = ({
+  className,
+  onClick,
+  role,
+  style,
+  withName = true
+}) => {
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`];
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1];
 
   return (
-    <div key={key} className={styles.wrapper} onClick={onClick}>
+    <div style={style} className={cn(styles.wrapper, className)} onClick={onClick}>
       <div className={getStarClass(role.rarity)}>
         <img src={role.icon} alt='icon' />
         <img src={getStarImage(role.rarity)} alt='star' />
@@ -39,7 +48,7 @@ const RoleCard: React.FC<RoleCardProp> = ({ onClick, role, key }) => {
         <span>Lv. {role.level}</span>
         {role.actived_constellation_num > 0 && <div>{role.actived_constellation_num}</div>}
       </div>
-      <span>{role.name}</span>
+      {withName && <span>{role.name}</span>}
     </div>
   );
 };

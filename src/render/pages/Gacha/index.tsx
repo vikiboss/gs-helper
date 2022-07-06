@@ -54,7 +54,7 @@ const Gacha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
   const [type, setType] = useState<"overview" | "analysis" | "prediction">("overview");
-  const [isApple, setIsApple] = useState<boolean>(false);
+  const [isWindows, setisWindows] = useState<boolean>(false);
   const [uid, setUid] = useState<string>("");
   const [filter, setfilter] = useState<FilterType>(DefaultFilters);
   const [gachas, setGachas] = useState<GachaData[]>([]);
@@ -82,10 +82,9 @@ const Gacha: React.FC = () => {
   useEffect(() => {
     (async () => {
       await initGachaData();
-      const isApple = (await nativeApi.getAppInfo()).isAppleDevice;
-      setIsApple(isApple);
-      console.log(await nativeApi.getAppInfo());
-      if (!isApple) await getLocalGachaUrl();
+      const isWindows = (await nativeApi.getAppInfo()).isWindows;
+      setisWindows(isWindows);
+      if (isWindows) await getLocalGachaUrl();
     })();
   }, []);
 
@@ -93,8 +92,8 @@ const Gacha: React.FC = () => {
     if (loading) return notice.faild({ message: "派蒙正在努力获取中，请不要重复点击啦！" });
 
     if (!link) {
-      const msg = isApple ? "请先输入祈愿链接" : "请先获取 「本地祈愿链接」 或手动输入祈愿链接";
-      return notice.faild({ message: msg });
+      const msg = isWindows ?  "请先获取 「本地祈愿链接」 或手动输入祈愿链接" : "请先输入祈愿链接后再尝试获取数据";
+      return notice.warning({ message: msg });
     }
 
     if (!link.match(/^https?:\/\//)) {
@@ -196,7 +195,7 @@ const Gacha: React.FC = () => {
             onChange={(e) => setLink(e.target.value)}
             placeholder='祈愿记录链接'
           />
-          {!isApple && (
+          {isWindows && (
             <Button
               onClick={link ? copyLink : () => getLocalGachaUrl(true)}
               style={{ marginRight: "12px" }}

@@ -95,6 +95,7 @@ const Home: React.FC = () => {
   };
 
   const handleWindowOpen = (link: string) => {
+    notice.success({ message: "正在打开页面...", duration: 1000 });
     nativeApi.openWindow(link);
   };
 
@@ -244,8 +245,8 @@ const Home: React.FC = () => {
               ))}
           </div>
           <div className={styles.footer} onClick={() => safelyNavigate("/about")}>
-            「原神助手」 使用 MIT 协议开源，软件内的数据与素材主要来源于
-            「米游社」。数据可能存在延迟，请以游戏内的实时数据为准，详情请参阅 「关于」 页面。
+            「原神助手」 使用 MIT 协议开源，数据来源于
+            「米游社」，可能存在延迟，请以游戏内为准，详情请参阅 「关于」 页面。
           </div>
         </div>
       </div>

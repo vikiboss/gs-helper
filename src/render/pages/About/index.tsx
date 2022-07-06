@@ -31,7 +31,7 @@ const About: React.FC = () => {
       <div className={styles.title}>关于</div>
       <div className={styles.declaration}>
         <p>
-          「原神助手」 小工具完全由个人独立开发，基于
+          「原神助手」 由个人独立开发，基于
           <a href={ElectronLink} target='_blank'>
             {" Electron "}
           </a>
@@ -39,33 +39,33 @@ const About: React.FC = () => {
           <a href={ReactLink} target='_blank'>
             {" React "}
           </a>
-          ，使用
+          ，支持 Windows、macOS、Linux 三大主流桌面平台。本工具完全免费，使用
           <a href={licenceLink} target='_blank'>
             {" MIT "}
           </a>
-          协议开放源代码，仅供个人学习交流使用，完全免费，
+          协议开放源代码，仅供个人学习交流使用，
           <b>请勿用于任何商业或违法违规用途</b>。
         </p>
 
         <p>
-          本小工具的开发初衷是：将原神玩家所需要的多数功能整合到一起，提升游戏效率和游戏体验。首页
-          「角色信息与便签状态」 数据采取自动更新的策略，频率为 1 次/分钟，
-          <b>数据可能存在延迟，请以游戏内的实时数据为准，此处仅供参考</b>。
+          开发初衷是将原神玩家所需要的多数功能整合到一起，提升游戏效率与体验。首页的便签数据采取自动更新的策略，频率为
+          1 次/分钟，
+          <b>可能存在延迟，请以游戏内的实时数据为准。</b>
         </p>
-
         <p>
-          软件界面设计参考了原神游戏本体及米游社，大部分内容与素材来源于 「米游社」，版权归
+          软件界面设计参考了原神游戏本体及米游社，大部分内容与素材来源于
+          「米游社」，仅用于学习交流使用，版权归 「
           <a href='https://www.mihoyo.com/' target='_blank'>
-            {" 「米哈游」 "}
+            {"米哈游"}
           </a>
-          或 「原作者」 所有，仅用于学习交流使用。
+          或原作者」 所有。
           <b>如有发现任何实质性的侵权行为，请联系开发者对相关内容进行删除</b>。
         </p>
       </div>
 
       <div className={styles.bottom}>
         <div className={styles.items}>
-          <div className={styles.item}>※ 当前版本：{vsersion}</div>
+          <div className={styles.item}>※ 当前版本：{vsersion} Beta</div>
           <div className={styles.item}>
             <div className={styles.field}>
               ※ 开发者：
@@ -99,7 +99,7 @@ const About: React.FC = () => {
         <div className={styles.codeZones}>
           <div className={styles.codeZone}>
             <img className={styles.code} src={groupQRCode} alt='交流群' />
-            <div>「原神助手」 交流群</div>
+            <div>「原神助手」 交流 QQ 群</div>
           </div>
           <div className={styles.codeZone}>
             <img className={styles.code} src={aliPayCode} alt='支付宝收款码' />

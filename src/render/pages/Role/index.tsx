@@ -10,6 +10,8 @@ import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
+import RoleCard from "../../components/RoleCard";
+import Select from "../../components/Select";
 import useNotice from "../../hooks/useNotice";
 import withAuth from "../../auth/withAuth";
 
@@ -33,7 +35,6 @@ import type { PublicRole } from "../../../services/getPublicRoleList";
 import type { Reliquarie, Role as RoleInfo } from "../../../services/getOwnedRoleList";
 
 import styles from "./index.less";
-import Select from "../../components/Select";
 
 type RenderRoleInfo = RoleInfo & PublicRole;
 type TabType = "weapon" | "reliquary" | "constellation" | "profile";
@@ -266,7 +267,6 @@ const Role: React.FC = () => {
                       setIsRoleChanging(true);
                     }, 0);
                   }}
-                  defaultValue={"level"}
                   options={ElementOptions}
                 />
                 <Select
@@ -279,7 +279,6 @@ const Role: React.FC = () => {
                       setIsRoleChanging(true);
                     }, 0);
                   }}
-                  defaultValue={"level"}
                   options={WeaponOptions}
                 />
               </div>
@@ -299,23 +298,32 @@ const Role: React.FC = () => {
             {!isDetail && (
               <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : "")}>
                 {_roles.map((e, i) => (
-                  <div
-                    key={e.name + i}
-                    className={styles.roleItem}
+                  <RoleCard
+                    key={e.id}
+                    style={{ margin: "4px" }}
+                    role={e}
                     onClick={() => {
                       setIndex(i);
                       setMode("detail");
                     }}
-                  >
-                    <div className={getStarClass(e.rarity)}>
-                      <img src={e.icon} alt='icon' />
-                      <img src={getStarImage(e.rarity)} alt='star' />
-                      <img src={ElementImgs[e.element]} alt='element' />
-                      <span>Lv. {e.level}</span>
-                      {e.actived_constellation_num > 0 && <div>{e.actived_constellation_num}</div>}
-                    </div>
-                    <span>{e.name}</span>
-                  </div>
+                  />
+                  // <div
+                  //   key={e.name + i}
+                  //   className={styles.roleItem}
+                  //   onClick={() => {
+                  //     setIndex(i);
+                  //     setMode("detail");
+                  //   }}
+                  // >
+                  //   <div className={getStarClass(e.rarity)}>
+                  //     <img src={e.icon} alt='icon' />
+                  //     <img src={getStarImage(e.rarity)} alt='star' />
+                  //     <img src={ElementImgs[e.element]} alt='element' />
+                  //     <span>Lv. {e.level}</span>
+                  //     {e.actived_constellation_num > 0 && <div>{e.actived_constellation_num}</div>}
+                  //   </div>
+                  //   <span>{e.name}</span>
+                  // </div>
                 ))}
                 {roles.length > 0 && _roles.length === 0 && (
                   <div className={styles.empty}>筛选结果为空</div>

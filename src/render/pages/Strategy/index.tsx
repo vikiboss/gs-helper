@@ -44,6 +44,7 @@ const LINK_BBS_VERSION = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233"
 const LINK_BBS_WEAPON = "https://bbs.mihoyo.com/ys/obc/channel/map/189/5";
 
 import styles from "./index.less";
+import useNotice from "../../hooks/useNotice";
 
 const btns = [
   {
@@ -140,25 +141,34 @@ const btns = [
 
 const Setting: React.FC = () => {
   const navigate = useNavigate();
+  const notice = useNotice();
+
+  const handleWindowOpen = (link: string) => {
+    notice.success({ message: "正在打开页面...", duration: 1000 });
+    nativeApi.openWindow(link);
+  };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.title}>原神攻略</div>
-      <div className={styles.btns}>
-        {btns.map((e) => (
-          <div className={styles.btn} key={e.name} onClick={() => nativeApi.openWindow(e.link)}>
-            <img src={e.icon} alt={e.name} />
-            <span>{e.name}</span>
-          </div>
-        ))}
+    <>
+      <div className={styles.container}>
+        <div className={styles.title}>原神攻略</div>
+        <div className={styles.btns}>
+          {btns.map((e) => (
+            <div className={styles.btn} key={e.name} onClick={handleWindowOpen.bind(null, e.link)}>
+              <img src={e.icon} alt={e.name} />
+              <span>{e.name}</span>
+            </div>
+          ))}
+        </div>
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate("/")}
+        />
       </div>
-      <CircleButton
-        Icon={TiArrowBack}
-        size='middle'
-        className={styles.backBtn}
-        onClick={() => navigate("/")}
-      />
-    </div>
+      {notice.holder}
+    </>
   );
 };
 
