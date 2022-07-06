@@ -72,9 +72,9 @@ const Gacha: React.FC = () => {
     } else if (gachas.length) {
       setUid(gachas[0].info.uid);
       if (_uid) {
-        notice.warning({ message: "当前已登录 UID 的祈愿数据不存在，已自动切换到本地其他账号" });
+        notice.warning({ message: "当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID" });
       } else {
-        notice.warning({ message: "未登录米游社账号，已自动选择本地首个账号的数据" });
+        notice.warning({ message: "当前未登录米游社账号，已自动选择本地首个 UID" });
       }
     }
   };
@@ -89,15 +89,17 @@ const Gacha: React.FC = () => {
   }, []);
 
   const updateGachaData = async () => {
-    if (loading) return notice.faild({ message: "派蒙正在努力获取中，请不要重复点击啦！" });
+    if (loading) return notice.faild({ message: "派蒙正在努力获取，请不要重复点击啦！" });
 
     if (!link) {
-      const msg = isWindows ?  "请先获取 「本地祈愿链接」 或手动输入祈愿链接" : "请先输入祈愿链接后再尝试获取数据";
+      const msg = isWindows
+        ? "请先 「获取本地祈愿链接」 或 「手动输入祈愿链接」"
+        : "请先输入祈愿链接后再尝试更新祈愿数据";
       return notice.warning({ message: msg });
     }
 
     if (!link.match(/^https?:\/\//)) {
-      return notice.faild({ message: "链接无效，请检查" });
+      return notice.faild({ message: "输入的祈愿链接无效，请检查后重试" });
     }
 
     notice.info({ message: "派蒙努力加载中，预计半分钟...", autoHide: false });
@@ -110,7 +112,7 @@ const Gacha: React.FC = () => {
       notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
       await initGachaData(data.info.uid);
     } else {
-      notice.faild({ message: "数据异常，请尝试重新获取 「最新链接」 后再试" });
+      notice.faild({ message: "数据拉取异常，请尝试 「重新获取祈愿链接」后再次更新数据" });
     }
     setLoading(false);
   };
@@ -145,7 +147,7 @@ const Gacha: React.FC = () => {
       setLink(url);
       if (isUserTrriger) notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
     } else {
-      const message = "本地日志中不存在有效链接，请先在游戏内打开 「祈愿历史记录」 后再尝试获取";
+      const message = "本地日志中不存在有效链接，请先在本地游戏内打开 「祈愿历史记录」 页面";
       if (isUserTrriger) notice.faild({ message });
     }
     return !!url;
@@ -161,14 +163,14 @@ const Gacha: React.FC = () => {
   const handleExport = () => notice.warning({ message: "导出功能暂未开放" });
   const handleBack = () => {
     if (loading) {
-      notice.warning({ message: "请耐心等待数据加载完成" });
+      notice.warning({ message: "请耐心等待数据加载完成..." });
     } else {
       navigate("/");
     }
   };
 
   const loadingText = loading ? "派蒙努力加载中，预计半分钟..." : "派蒙没有找到任何数据";
-  const tip = `※ 共加载了 ${gacha.list.length} 条数据（${dateRangeText}），数据同步存在延迟，请以游戏内为准。`;
+  const tip = `※ 共计 ${gacha.list.length} 条数据（${dateRangeText}）。因原神官方的设定，数据存在大约一小时的延迟。`;
   const uids = gachas.map((e) => e.info.uid).sort((p, n) => Number(p) - Number(n));
 
   const items = [
@@ -177,7 +179,7 @@ const Gacha: React.FC = () => {
     { value: "prediction", label: "预测" }
   ];
 
-  const isEmpty = !loading && !gacha.info.uid;
+  const isEmpty = gachas.length === 0;
 
   return (
     <>
@@ -210,15 +212,15 @@ const Gacha: React.FC = () => {
               items={items}
               value={type}
             />
-            <div className={styles.icon} title='导入 JSON 数据' onClick={handleImport}>
-              <BiImport size={20} />
+            <div className={styles.icon} title='导入祈愿数据' onClick={handleImport}>
+              <BiImport size={20} title='导入祈愿数据' />
             </div>
             {!isEmpty && (
-              <div className={styles.icon} title='导出 JSON 数据' onClick={handleExport}>
-                <BiExport size={20} />
+              <div className={styles.icon} title='导出祈愿数据' onClick={handleExport}>
+                <BiExport size={20} title='导出祈愿数据' />
               </div>
             )}
-            {uids.length > 0 && uid && (
+            {!isEmpty && (
               <Select
                 name='UID'
                 onChange={(e) => setUid(e.target.value)}

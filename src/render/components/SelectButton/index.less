@@ -5,21 +5,29 @@
   .flex();
 
   border-radius: 6px;
-  overflow     : hidden;
+  overflow: hidden;
 
-  &>div {
+  & > div {
     .flex-center();
     .transition();
 
     background-color: @color-bg-deep;
-    flex            : 1;
-    font-size       : 14px;
-    padding         : 8px 12px;
+    flex: 1;
+    font-size: 14px;
+    padding: 8px 12px;
+
+    &:hover {
+      background-color: @color-accent-light;
+    }
   }
 
   .selected {
     background-color: @color-accent;
-    color           : @color-white;
+    color: @color-white;
+
+    &:hover {
+      background-color: @color-accent;
+    }
   }
 }
 

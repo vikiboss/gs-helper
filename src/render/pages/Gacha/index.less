@@ -70,7 +70,6 @@
 
     .right-zone {
       .flex-center-y();
-      .transition-slow();
 
       // width          : 420px;
       flex: 1;
@@ -80,86 +79,23 @@
       top: 24px;
 
       .select-btn {
-        margin-right: 12px;
-      }
-
-      .select-zone {
-        .flex-center-y();
-
         margin-left: 12px;
-
-        &:hover {
-          select {
-            border: 2px solid @color-second;
-          }
-
-          label,
-          select {
-            color: @color-primary;
-          }
-        }
-
-        label {
-          .transition-slow();
-
-          color: @color-second;
-          margin-right: 6px;
-        }
-
-        select {
-          .transition-slow();
-
-          color: @color-second;
-          background-color: transparent;
-          border: 2px solid transparent;
-          border-radius: 6px;
-          font-size: 18px;
-          font-weight: bold;
-          height: 32px;
-          line-height: 32px;
-          outline: none;
-          padding: 3px;
-          width: 124px;
-
-          option {
-            font-weight: bold;
-          }
-        }
       }
 
       .icon {
-        .transition();
         .flex-center();
 
+        background-color: @color-bg-deep;
         border-radius: 6px;
-        height: 24px;
-        margin-right: 12px;
+        height: 28px;
+        margin-left: 12px;
         padding: 2px;
         position: relative;
-        width: 24px;
-
-        &::before {
-          border-radius: 6px;
-          content: " ";
-          height: 24px;
-          left: 1px;
-          margin: 1px;
-          position: absolute;
-          top: 1px;
-          width: 24px;
-        }
+        width: 28px;
 
         &:hover {
           background-color: @color-accent;
           color: @color-white;
-
-          svg {
-            transform: scale(1.1);
-          }
-
-          // &::before {
-          // border-color: @color-white;
-          // }
         }
       }
     }
