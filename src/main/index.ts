@@ -20,6 +20,8 @@ const isWinner = app.requestSingleInstanceLock();
 
 // 用以代表开发模式的变量，导出以供其他部分引用
 export const isDev = !app.isPackaged;
+// Windows
+export const isWindows = process.platform === "win32";
 // macOS
 export const isAppleDevice = process.platform === "darwin";
 
@@ -43,7 +45,7 @@ app.on("ready", () => {
 
 // 监听窗口全部关闭的事件
 app.on("window-all-closed", () => {
-  // 不是苹果设备则退出，反正只是写给 Windows 用的，没啥用（
+  // 不是苹果设备则退出
   if (!isAppleDevice) app.quit();
 });
 
@@ -56,7 +58,7 @@ app.on("activate", () => {
 });
 
 // 监听程序退出的事件，善后，取消注册全局热键
-app.on("will-quit", () => void unregisterHotkey());
+app.on("before-quit", () => isWindows && unregisterHotkey());
 
 // 导出 主窗口 与 Store 方便其他部分进行引用
 export { mainWin, store };

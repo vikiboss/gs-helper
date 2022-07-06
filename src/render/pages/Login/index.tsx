@@ -60,7 +60,7 @@ const Login: React.FC<LoginProp> = (props) => {
     const user = await nativeApi.getCurrentUser();
     if (!user) {
       auth.logout();
-      notice.faild({ message: "未获取到 UID 信息，请确保登录成功且在米游社绑定过UID" });
+      notice.faild({ message: "未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID" });
       return;
     } else {
       notice.success({ message: "登录成功，正在前往首页登录前页面..." });

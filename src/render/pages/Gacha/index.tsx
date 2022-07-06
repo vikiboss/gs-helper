@@ -206,12 +206,14 @@ const Gacha: React.FC = () => {
           )}
           <Button type='confirm' text='更新数据' onClick={updateGachaData} />
           <div className={styles.rightZone}>
-            <SelectButton
-              changeItem={setType}
-              className={styles.selectBtn}
-              items={items}
-              value={type}
-            />
+            {!isEmpty && (
+              <SelectButton
+                changeItem={setType}
+                className={styles.selectBtn}
+                items={items}
+                value={type}
+              />
+            )}
             <div className={styles.icon} title='导入祈愿数据' onClick={handleImport}>
               <BiImport size={20} title='导入祈愿数据' />
             </div>

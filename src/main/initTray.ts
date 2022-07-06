@@ -1,7 +1,8 @@
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions, nativeImage } from "electron";
 import path from "path";
 
-import { store, isDev, isAppleDevice } from ".";
+import { store, isDev, isAppleDevice, isWindows } from ".";
+
 import icon from "../assets/icon.ico";
 import macicon from "../assets/macicon.png";
 
@@ -54,7 +55,7 @@ const initTray = (win: BrowserWindow) => {
     {
       label: Menus.quit,
       role: "close",
-      click: () => app.quit(),
+      click: () => app.exit(),
       accelerator: "CommandOrControl+Alt+Q"
     }
   ];
@@ -66,11 +67,13 @@ const initTray = (win: BrowserWindow) => {
   tray.setToolTip(`${app.getName()} v${app.getVersion()}`);
   // 监听点击事件，绑定程序的显示与隐藏操作
   // tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
-  tray.on("click", () => win.show());
+  tray.on("click", () => isWindows && win.show());
+  // 双击显示主界面
+  tray.on("double-click", () => win.show());
   // 加载托盘右键菜单
   tray.setContextMenu(contextMenu);
   // 监听即将退出的事件，销毁托盘图标与菜单
-  app.on("will-quit", () => tray.destroy());
+  app.on("before-quit", () => tray.destroy());
 
   // 当置顶状态发生改变时，将状态写入 Store，同时及时刷新菜单的状态显示
   win.on("always-on-top-changed", (_, onTop) => {
