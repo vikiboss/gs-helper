@@ -184,55 +184,59 @@ const Gacha: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <CircleButton
-          Icon={TiArrowBack}
-          size='middle'
-          className={styles.backBtn}
-          onClick={handleBack}
-        />
-        <div className={styles.topZone}>
-          <input
-            value={link}
-            onBlur={(e) => setLink(e.target.value.trim())}
-            onChange={(e) => setLink(e.target.value)}
-            placeholder='祈愿记录链接'
+        <>
+          <CircleButton
+            Icon={TiArrowBack}
+            size='middle'
+            className={styles.backBtn}
+            onClick={handleBack}
           />
-          {isWindows && (
-            <Button
-              onClick={link ? copyLink : () => getLocalGachaUrl(true)}
-              style={{ marginRight: "12px" }}
-              text={link ? "复制" : "获取本地链接"}
+          <div className={styles.topZone}>
+            <input
+              value={link}
+              onBlur={(e) => setLink(e.target.value.trim())}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder='祈愿记录链接'
             />
-          )}
-          <Button type='confirm' text='更新数据' onClick={updateGachaData} />
-          <div className={styles.rightZone}>
-            {!isEmpty && (
-              <SelectButton
-                changeItem={setType}
-                className={styles.selectBtn}
-                items={items}
-                value={type}
+            {isWindows && (
+              <Button
+                onClick={link ? copyLink : () => getLocalGachaUrl(true)}
+                style={{ marginRight: "12px" }}
+                text={link ? "复制" : "获取本地链接"}
               />
             )}
-            <div className={styles.icon} title='导入祈愿数据' onClick={handleImport}>
-              <BiImport size={20} title='导入祈愿数据' />
-            </div>
-            {!isEmpty && (
-              <div className={styles.icon} title='导出祈愿数据' onClick={handleExport}>
-                <BiExport size={20} title='导出祈愿数据' />
+            <Button type='confirm' text='更新数据' onClick={updateGachaData} />
+            <div className={styles.rightZone}>
+              {!isEmpty && (
+                <SelectButton
+                  changeItem={setType}
+                  className={styles.selectBtn}
+                  items={items}
+                  value={type}
+                />
+              )}
+              <div className={styles.icon} title='导入单个 UID 祈愿数据' onClick={handleImport}>
+                <BiImport size={20} title='导入单个 UID 祈愿数据' />
               </div>
-            )}
-            {!isEmpty && (
-              <Select
-                name='UID'
-                onChange={(e) => setUid(e.target.value)}
-                options={uids.map((e) => ({ value: e, label: e }))}
-                title='切换 UID'
-                value={uid}
-              />
-            )}
+              {!isEmpty && (
+                <div className={styles.icon} title='导出当前 UID 的祈愿数据' onClick={handleExport}>
+                  <BiExport size={20} title='导出当前 UID 的祈愿数据' />
+                </div>
+              )}
+              {!isEmpty && (
+                <Select
+                  wrapperStyle={{ marginLeft: "12px" }}
+                  name='UID'
+                  onChange={(e) => setUid(e.target.value)}
+                  options={uids.map((e) => ({ value: e, label: e }))}
+                  title='切换 UID'
+                  value={uid}
+                />
+              )}
+            </div>
           </div>
-        </div>
+        </>
+
         {gacha.info.uid && !loading ? (
           type === "overview" && (
             <Overview gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />

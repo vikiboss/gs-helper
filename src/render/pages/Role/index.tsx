@@ -35,6 +35,8 @@ import type { PublicRole } from "../../../services/getPublicRoleList";
 import type { Reliquarie, Role as RoleInfo } from "../../../services/getOwnedRoleList";
 
 import styles from "./index.less";
+import WeaponCard from "../../components/WeaponCard";
+import ItemCard from "../../components/ItemCard";
 
 type RenderRoleInfo = RoleInfo & PublicRole;
 type TabType = "weapon" | "reliquary" | "constellation" | "profile";
@@ -50,7 +52,6 @@ const TabMap: Record<TabType, string> = {
   profile: "简介"
 };
 
-const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`];
 const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1];
 
 // 将获取的个人角色信息和公开的角色的信息合并
@@ -307,23 +308,6 @@ const Role: React.FC = () => {
                       setMode("detail");
                     }}
                   />
-                  // <div
-                  //   key={e.name + i}
-                  //   className={styles.roleItem}
-                  //   onClick={() => {
-                  //     setIndex(i);
-                  //     setMode("detail");
-                  //   }}
-                  // >
-                  //   <div className={getStarClass(e.rarity)}>
-                  //     <img src={e.icon} alt='icon' />
-                  //     <img src={getStarImage(e.rarity)} alt='star' />
-                  //     <img src={ElementImgs[e.element]} alt='element' />
-                  //     <span>Lv. {e.level}</span>
-                  //     {e.actived_constellation_num > 0 && <div>{e.actived_constellation_num}</div>}
-                  //   </div>
-                  //   <span>{e.name}</span>
-                  // </div>
                 ))}
                 {roles.length > 0 && _roles.length === 0 && (
                   <div className={styles.empty}>筛选结果为空</div>
@@ -375,14 +359,7 @@ const Role: React.FC = () => {
                         {/* 渲染武器 Tab */}
                         {infoTab === "weapon" && (
                           <div className={styles.weapon}>
-                            <div className={styles[`star-${currentRole.weapon.rarity}`]}>
-                              <img src={currentRole.weapon.icon} alt='icon' />
-                              <img src={getStarImage(currentRole.weapon.rarity)} alt='star' />
-                              {currentRole.weapon.affix_level > 1 && (
-                                <span>{currentRole.weapon.affix_level}</span>
-                              )}
-                              <span>{currentRole.weapon.name}</span>
-                            </div>
+                            <WeaponCard weapon={currentRole.weapon} />
                             <div>
                               <span>
                                 {currentRole.weapon.name} / {currentRole.weapon.type_name}
@@ -407,18 +384,7 @@ const Role: React.FC = () => {
                               {currentRole.reliquaries.length ? (
                                 <>
                                   {currentRole.reliquaries.map((e) => (
-                                    <div
-                                      className={cn(
-                                        styles.reliquaryItem,
-                                        styles[`star-${e.rarity}`]
-                                      )}
-                                      key={e.pos}
-                                    >
-                                      <img src={e.icon} alt='icon' />
-                                      <img src={getStarImage(e.rarity)} alt='star' />
-                                      {e.level > 0 && <span>{e.level}</span>}
-                                      <span>{e.name}</span>
-                                    </div>
+                                    <ItemCard key={e.pos} item={e} />
                                   ))}
                                 </>
                               ) : (

@@ -154,7 +154,7 @@ const Overview: React.FC<OverviewProp> = ({ gacha, filter, toggleFilter, notice 
   return (
     <div className={styles.content}>
       <div className={styles.pieChart}>
-        <div className={styles.pieName}>星级筛选结果 / 环形图</div>
+        <div className={styles.pieName}>星级占比</div>
         <GachaPie {...pieProps} />
         <div className={styles.filterTitle}>筛选条件</div>
         <div className={styles.filterZone}>
@@ -194,7 +194,7 @@ const Overview: React.FC<OverviewProp> = ({ gacha, filter, toggleFilter, notice 
             </div>
           ))}
         </div>
-        <div className={styles.tableName}>星级出货数、出货率 / 一览表</div>
+        <div className={styles.tableName}>星级出货数、出货率</div>
         <div className={styles.detailTable}>
           <div>
             <div>出货数 / 率</div>
@@ -214,7 +214,7 @@ const Overview: React.FC<OverviewProp> = ({ gacha, filter, toggleFilter, notice 
             </div>
           ))}
         </div>
-        <div className={styles.tableName}>祈愿次数分布筛选结果 / 日历图</div>
+        <div className={styles.tableName}>祈愿次数分布</div>
         <div className={styles.timeRangeContainer}>
           <DateRange {...rangeProps} />
         </div>

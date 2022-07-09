@@ -8,7 +8,7 @@
   flex: 1;
   max-width: 100vw;
   overflow: hidden;
-  padding-bottom: 20px;
+  padding-bottom: 12px;
   position: relative;
   width: 100vw;
 
@@ -73,7 +73,7 @@
     flex-wrap: wrap;
     height: calc(100vh - 100px);
     overflow: auto;
-    padding: 4px 12px;
+    padding: 12px 12px 4px 12px;
     width: 100vw;
 
     .empty {
@@ -190,62 +190,6 @@
             .weapon {
               .flex();
 
-              // 武器背景容器
-              & > div:nth-child(1) {
-                .flex-center-x-column();
-                .shadow();
-                .transition();
-
-                border-radius: 6px;
-                height: 126px;
-                justify-content: space-between;
-                position: relative;
-                width: 100px;
-
-                &:hover {
-                  transform: scale(1.05);
-                }
-
-                // 武器图片
-                img {
-                  height: 100px;
-                  margin-top: 2px;
-                  width: $height;
-                }
-
-                // 武器星级 icon
-                img:nth-child(2) {
-                  bottom: 16px;
-                  position: absolute;
-                  height: 24px;
-                  width: auto;
-                }
-
-                // 武器精炼等级
-                & > span:not(:last-child) {
-                  .flex-center();
-
-                  background-color: rgba(64, 64, 64, 0.6);
-                  border-bottom-right-radius: 6px;
-                  border-top-left-radius: 6px;
-                  color: @color-accent;
-                  font-size: 12px;
-                  height: 24px;
-                  position: absolute;
-                  left: 0px;
-                  top: 0px;
-                  width: 24px;
-                }
-
-                // 武器名称
-                & > span:last-child {
-                  color: @color-primary;
-                  font-size: 14px;
-                  line-height: 18px;
-                  text-shadow: none;
-                }
-              }
-
               // 武器等级、类型、介绍
               & > div:nth-child(2) {
                 .flex-column();
@@ -275,61 +219,8 @@
               & > div:nth-child(1) {
                 .flex-wrap();
 
-                // 圣遗物背景容器
-                .reliquary-item {
-                  .flex-center-x-column();
-                  .shadow();
-                  .transition();
-
-                  border-radius: 6px;
-                  height: 106px;
-                  justify-content: space-between;
-                  margin: 0 0 12px 12px;
-                  position: relative;
-                  width: 80px;
-
-                  &:hover {
-                    transform: scale(1.05);
-                  }
-
-                  // 圣遗物图片
-                  img {
-                    height: 80px;
-                    margin-top: 2px;
-                    width: $height;
-                  }
-
-                  // 武器星级 icon
-                  img:nth-child(2) {
-                    bottom: 16px;
-                    position: absolute;
-                    height: 20px;
-                    width: auto;
-                  }
-
-                  // 圣遗物等级
-                  span:not(:last-child) {
-                    .flex-center();
-
-                    background-color: rgba(64, 64, 64, 0.6);
-                    border-bottom-right-radius: 6px;
-                    border-top-left-radius: 6px;
-                    color: @color-white;
-                    font-size: 10px;
-                    height: 20px;
-                    position: absolute;
-                    left: 0px;
-                    top: 0px;
-                    width: 20px;
-                  }
-
-                  // 圣遗物名称
-                  span:last-child {
-                    color: @color-primary;
-                    font-size: 10px;
-                    line-height: 16px;
-                    text-shadow: none;
-                  }
+                & > div {
+                  margin: 0px 5px 12px 5px;
                 }
               }
 

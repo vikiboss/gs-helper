@@ -1,0 +1,102 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+.wrapper {
+  .flex-center-column();
+  .transition();
+
+  color: #564c4a;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  & > div {
+    .flex-center-x-column();
+    .shadow-deep();
+
+    border-radius: 6px;
+    margin-bottom: 3px;
+    position: relative;
+    width: 80px;
+
+    // 物品图
+    img:nth-child(1) {
+      margin-top: 2px;
+      width: 80px;
+      height: 80px;
+    }
+
+    // 物品星级
+    img:nth-child(2) {
+      bottom: 14px;
+      position: absolute;
+      height: 20px;
+      width: auto;
+    }
+
+    .corner-number {
+      .flex-center();
+
+      background-color: rgba(64, 64, 64, 0.6);
+      position: absolute;
+      color: @color-white;
+      font-size: 10px;
+      height: 20px;
+      width: 20px;
+    }
+
+    // 物品等级
+    & > div {
+      .corner-number();
+
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 4px;
+      left: 0px;
+      top: 0px;
+    }
+
+    // 物品名称
+    & > span {
+      font-size: 10px;
+      line-height: 15px;
+      text-shadow: none;
+    }
+  }
+}
+
+.star-1 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-1.png");
+}
+
+.star-2 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-2.png");
+}
+
+.star-3 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-3.png");
+}
+
+.star-4 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-4.png");
+}
+
+.star-5 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-5.png");
+}
+
+.star-6 {
+  .bg-image-cover-no-repeat();
+
+  background-image: url("../../../assets/item-bg-6.png");
+}

@@ -9,10 +9,6 @@
   // height: 148px;
   width: 110px;
 
-  .border {
-    border: 1px solid #cfcfcf;
-  }
-
   &:hover {
     transform: scale(1.05);
   }
@@ -27,7 +23,7 @@
     position: relative;
     width: 100px;
 
-    // 角色头图
+    // 武器图
     img:nth-child(1) {
       width: 100px;
       height: 100px;
@@ -38,14 +34,6 @@
       bottom: 16px;
       position: absolute;
       height: 24px;
-    }
-
-    // 元素 icon
-    img:nth-child(3) {
-      left: 2px;
-      position: absolute;
-      top: 2px;
-      width: 20px;
     }
 
     .corner-number {
@@ -59,8 +47,18 @@
       width: 22px;
     }
 
-    // 命座数
-    & > div {
+    // 武器等级
+    & > div:nth-child(3) {
+      .corner-number();
+
+      border-top-left-radius: 6px;
+      border-bottom-right-radius: 4px;
+      left: 0px;
+      top: 0px;
+    }
+
+    // 精炼等级
+    & > div:nth-child(4) {
       .corner-number();
 
       border-top-right-radius: 6px;
@@ -69,15 +67,11 @@
       top: 0px;
     }
 
-    span {
+    & > span {
       font-size: 14px;
-      line-height: 22px;
+      line-height: 20px;
+      text-shadow: none;
     }
-  }
-
-  & > span {
-    font-size: 16px;
-    margin-bottom: 2px;
   }
 }
 

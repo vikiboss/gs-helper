@@ -1,15 +1,17 @@
 import { app, Menu, Tray, BrowserWindow, MenuItemConstructorOptions, nativeImage } from "electron";
 import path from "path";
 
-import { store, isDev, isAppleDevice, isWindows } from ".";
+import { store, isAppleDevice, isWindows } from ".";
 
 import icon from "../assets/icon.ico";
 import macicon from "../assets/macicon.png";
 
 export const Menus: Record<string, string> = {
+  openMainWindow: "打开助手",
   alwaysOnTop: "置顶显示",
-  open: "打开助手",
   openDevTools: "DevTools",
+  hideMainWindow: "隐藏主界面",
+  openSetting: "设置",
   quit: "退出"
 };
 
@@ -30,7 +32,7 @@ const initTray = (win: BrowserWindow) => {
   // 定义托盘菜单
   const menus: MenuItemConstructorOptions[] = [
     // 显示主程序
-    { label: Menus.open, click: () => win.show(), accelerator: "CommandOrControl+Q" },
+    { label: Menus.openMainWindow, click: () => win.show(), accelerator: "CommandOrControl+Q" },
     // 置顶菜单
     {
       label: Menus.alwaysOnTop,
@@ -46,10 +48,21 @@ const initTray = (win: BrowserWindow) => {
     // 切换 DevTools 开启状态
     {
       label: Menus.openDevTools,
-      visible: isDev,
+      // visible: isDev,
       checked: web.isDevToolsOpened(),
       type: "checkbox",
       click: () => (isOpen ? web.closeDevTools() : web.openDevTools({ mode: "detach" }))
+    },
+    // 打开设置
+    {
+      label: Menus.openSetting,
+      // visible: isDev,
+      click: () => {
+        const url = web.getURL();
+        const target = url.split("#")[0] + "#/setting";
+        win.loadURL(target);
+        win.show();
+      }
     },
     // 退出
     {

@@ -138,7 +138,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/note")
     },
     {
-      name: "角色详情",
+      name: "我的角色",
       Icon: MdOutlineAccountBox,
       handler: () => handlePageSwitch("/role")
     },

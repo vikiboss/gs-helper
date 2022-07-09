@@ -171,7 +171,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               const isR = e.type === "Reputation";
               const name = !isR && (e.offerings[0]?.name || "").replaceAll("等级", "");
               const text = isR ? "声望" : name || "";
-              const level = text ? `${text} ${e.level} 级` : "";
+              const level = text ? `·${text} ${e.level} 级` : "";
               return (
                 <div key={e.id}>
                   <img src={e.background_image} alt={e.name} />
@@ -180,7 +180,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                     <div>
                       <span>{e.name}</span>
                       <span>
-                        {e.exploration_percentage / 10}% {level}
+                        {e.exploration_percentage / 10}%{level}
                       </span>
                     </div>
                   </div>
