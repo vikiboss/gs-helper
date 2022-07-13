@@ -6,6 +6,7 @@ import type { CalenderEvent } from "./services/getCalenderList";
 import type { Cookies } from "electron";
 import type { DailyNotesData } from "./services/getDailyNotes";
 import type { GameRole } from "./services/getGameRoleInfo";
+import type { GameRecordCardData } from "./services/getGameRecordCard";
 import type { GameRoleCardData } from "./services/getGameRoleCard";
 import type { MonthInfo } from "./services/getMonthInfo";
 import type { PublicRole } from "./services/getPublicRoleList";
@@ -28,6 +29,7 @@ export interface NativeApi {
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
+  getGameRecordCard: (uid?: string) => Promise<GameRecordCardData | null>;
   getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
   getSpiralAbyss: (uid?: string) => Promise<SpiralAbyssData | null>;
   getGameRoleInfo: () => Promise<GameRole | null>;

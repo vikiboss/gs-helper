@@ -21,9 +21,9 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
       <div className={styles.column}>
         <div className={styles.stats}>
           <div className={styles.user}>
-            <div>{data.role.nickname}</div>
+            <div>{data.info.nickname}</div>
             <div>
-              Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
+              Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
             </div>
           </div>
           <div className={styles.statsBox}>

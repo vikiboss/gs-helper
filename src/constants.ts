@@ -12,6 +12,7 @@ export const IPCEvents: Record<string, string> = {
   getDailyNotes: "GET_DAILY_NOTES",
   getGachaListByUrl: "GET_GACHA_LIST_BY_URL",
   getGachaUrl: "GET_GACHA_URL",
+  getGameRecordCard: "GET_GAME_RECORD_CARD",
   getGameRoleCard: "GET_GAME_ROLE_CARD",
   getGameRoleInfo: "GET_GAME_ROLE_INFO",
   getHitokoto: "GET_HITOKOTO",
@@ -35,7 +36,7 @@ export const IPCEvents: Record<string, string> = {
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 
 export const GAME_NAME: Record<string, string> = { "zh-CN": "原神", en: "Genshin Impact" };
-export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/2.28.1`;
+export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/2.32.1`;
 export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/`;
 export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/`;
 export const GAME_BIZ = "hk4e_cn";

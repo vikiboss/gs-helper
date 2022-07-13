@@ -8,7 +8,7 @@ const request = axios.create({
   timeout: 6000,
   headers: {
     "User-Agent": APP_USER_AGENT_BBS,
-    "x-rpc-app_version": "2.28.1",
+    "x-rpc-app_version": "2.32.1",
     "x-rpc-client_type": "5",
     "x-requested-with": "com.mihoyo.hyperion",
     "x-rpc-channel": "appstore"
