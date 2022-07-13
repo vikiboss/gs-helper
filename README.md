@@ -57,6 +57,38 @@
 - [ ] 重构祈愿分析页 UI
 - [ ] 完善数据分析、展示、预测等功能
 
+### 界面展示
+
+> 注意：项目仍在开发中，细节及部分页面的设计仍在调整当中，此处截图仅供参考，不代表最终发布的样式。
+
+### 本地开发
+
+```bash
+# clone 项目
+git clone git@github.com:Vikiboss/genshin-helper.git
+# 切换到项目目录
+cd genshin-helper
+# 安装依赖
+npm i
+# 启动本地开发环境
+npm start
+```
+
+### 本地构建
+
+```bash
+# clone 项目
+git clone git@github.com:Vikiboss/genshin-helper.git
+# 切换到项目目录
+cd genshin-helper
+# 安装依赖
+npm i
+# 构建项目
+npm run package
+# 构建并打包项目
+npm run make
+```
+
 ### Licence
 
 - [MIT](LICENCE)
