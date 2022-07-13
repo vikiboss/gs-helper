@@ -20,12 +20,12 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
     <div className={styles.statisticCard}>
       <div className={styles.column}>
         <div className={styles.stats}>
-          <div className={styles.user}>
+          {data.info && <div className={styles.user}>
             <div>{data.info.nickname}</div>
             <div>
               Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
             </div>
-          </div>
+          </div>}
           <div className={styles.statsBox}>
             <div>
               <BounceNumber size={24} number={stats.active_day_number} />

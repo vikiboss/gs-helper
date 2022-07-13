@@ -27,12 +27,14 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
       {hasData ? (
         <>
           <div className={styles.row}>
-            <div className={styles.user}>
-              <div>{data.info.nickname}</div>
-              <div>
-                Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
+            {data.info && (
+              <div className={styles.user}>
+                <div>{data.info.nickname}</div>
+                <div>
+                  Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
+                </div>
               </div>
-            </div>
+            )}
             <div className={styles.abyssBox}>
               <div>
                 <div className={styles.horizontal}>

@@ -59,7 +59,7 @@ const Statistic: React.FC = () => {
         nativeApi.getSpiralAbyss(uid)
       ]);
 
-      console.log(infos,card, roles, abyss);
+      console.log(infos, card, roles, abyss);
 
       const isOK = infos[0]?.nickname && roles[0]?.id && abyss?.schedule_id;
 
