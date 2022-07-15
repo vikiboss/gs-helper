@@ -1,66 +1,67 @@
 @import "../../utils/colors.less";
 @import "../../utils/utils.less";
 
-@win-bar-bg-color : #454d5c;
+@win-bar-bg-color: #454d5c;
 
 @home-block-active-border-color: #ecebeb;
-@home-block-border-color       : #6a6e75;
-@home-block-hover-border-color : #fee6b3;
-@home-btn-bg-color             : #586171;
-@home-btn-color                : #ebe4d7;
-@home-btn-hover-color          : #f8f6f4;
-@home-btn-list-bg-color        : #e6e1d5;
+@home-block-border-color: #6a6e75;
+@home-block-hover-border-color: #fee6b3;
+@home-btn-bg-color: #586171;
+@home-btn-color: #ebe4d7;
+@home-btn-hover-color: #f8f6f4;
+@home-btn-list-bg-color: #e6e1d5;
 
 .container {
   .flex-center-x-column();
+  .text-shadow-shallow();
 
-  color   : @win-bar-bg-color;
-  flex    : 1;
+  color: @win-bar-bg-color;
+  flex: 1;
   overflow: hidden;
-  z-index : 0;
+  z-index: 0;
 
   &::before {
     background: url("../../../assets/bg.jpg") fixed 0 / cover;
-    bottom    : 0;
-    content   : "";
-    filter    : blur(8px) brightness(1.2);
-    left      : 0;
-    position  : absolute;
-    right     : 0;
-    top       : 0;
-    transform : scale(1.1);
+    bottom: 0;
+    content: "";
+    filter: blur(8px) brightness(1.2);
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.1);
   }
 
   .user {
     .ani-show-top();
     .flex-center-y();
 
-    height  : 180px;
-    padding : 52px 40px 0 40px;
+    height: 180px;
+    padding: 52px 40px 0 40px;
     position: relative;
-    width   : calc(100vw - 80px);
-    z-index : 1;
+    width: calc(100vw - 80px);
+    z-index: 1;
 
     .loading {
       .ani-show-top();
 
-      flex      : 1;
-      font-size : 24px;
+      flex: 1;
+      font-size: 24px;
       text-align: center;
     }
 
     .top-greeting {
       .ani-show-left();
 
-      color        : @color-primary;
-      left         : 0;
-      margin       : 16px 16px 16px 40px;
-      overflow     : hidden;
-      position     : absolute;
+      color: @color-primary;
+      left: 0;
+      margin: 16px 16px 16px 40px;
+      overflow: hidden;
+      position: absolute;
       text-overflow: ellipsis;
-      top          : 0;
-      white-space  : nowrap;
-      width        : 500px;
+      top: 0;
+      white-space: nowrap;
+      width: 500px;
 
       &:active {
         color: @color-second;
@@ -71,11 +72,11 @@
       .ani-show-right();
       .flex-center-y();
 
-      color   : @color-primary;
-      margin  : 16px;
+      color: @color-primary;
+      margin: 16px;
       position: absolute;
-      right   : 0;
-      top     : 0;
+      right: 0;
+      top: 0;
 
       .top-btn {
         .flex-center-y();
@@ -100,17 +101,17 @@
     .no-login-container {
       .flex-center-y();
 
-      height         : 150px;
+      height: 150px;
       justify-content: space-between;
-      padding-right  : 60px;
-      width          : calc(100vw - 40px);
+      padding-right: 60px;
+      width: calc(100vw - 40px);
 
       .no-login-text {
         .flex-center-y-column();
 
-        font-size   : 28px;
-        height      : 80%;
-        line-height : 36px;
+        font-size: 28px;
+        height: 80%;
+        line-height: 36px;
         padding-left: 32px;
 
         span {
@@ -123,39 +124,39 @@
   .content {
     .flex-center-column();
 
-    flex   : 1;
+    flex: 1;
     z-index: 1;
-    width  : 100vw;
+    width: 100vw;
 
     .btn-list {
       .flex-wrap();
 
       align-content: flex-start;
-      flex         : 1;
-      padding      : 0 32px;
-      width        : calc(100vw - 64px);
+      flex: 1;
+      padding: 0 32px;
+      width: calc(100vw - 64px);
 
       .title-zone {
-        width  : 100%;
+        width: 100%;
         display: flex;
 
         .title {
           .flex-center();
 
-          color     : @color-white;
-          font-size : 32px;
-          padding   : 8px;
+          color: @color-white;
+          font-size: 32px;
+          padding: 8px;
           text-align: center;
-          width     : 100%;
+          width: 100%;
 
           .arrow {
             background-repeat: no-repeat;
-            background-size  : $width $height;
-            content          : "";
-            display          : inline-block;
-            height           : $width;
-            margin           : 0 20px;
-            width            : 24px;
+            background-size: $width $height;
+            content: "";
+            display: inline-block;
+            height: $width;
+            margin: 0 20px;
+            width: 24px;
           }
 
           span::before {
@@ -176,15 +177,15 @@
         .title-btns {
           .flex-center-y();
 
-          flex           : 1;
+          flex: 1;
           justify-content: flex-end;
-          margin-right   : 8px;
+          margin-right: 8px;
         }
       }
 
       .ps {
-        color  : @color-white;
-        width  : 100%;
+        color: @color-white;
+        width: 100%;
         padding: 0 8px 0px 8px;
       }
 
@@ -193,28 +194,28 @@
         .flex-center-column();
         .transition-slow();
 
-        background-color       : @home-btn-bg-color;
-        background-image       : url("../../../assets/btn-border.png");
-        background-repeat      : no-repeat;
-        background-size        : contain;
-        border                 : 2px solid @home-block-border-color;
-        border-radius          : 2px;
-        color                  : @home-btn-color;
-        height                 : 105px;
-        margin                 : 8px;
+        background-color: @home-btn-bg-color;
+        background-image: url("../../../assets/btn-border.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        border: 2px solid @home-block-border-color;
+        border-radius: 2px;
+        color: @home-btn-color;
+        height: 105px;
+        margin: 8px;
         // overflow         : hidden;
-        position               : relative;
-        width                  : 206px;
+        position: relative;
+        width: 206px;
         // width               : calc((100% - 80px) / 4);
 
         .btn-text {
           margin-top: 4px;
-          font-size : 20px;
+          font-size: 20px;
         }
 
         &:hover {
           // border-radius: 20px;
-          color    : @home-btn-hover-color;
+          color: @home-btn-hover-color;
           transform: scale(1.08);
           // border: 2px solid @home-block-hover-border-color;
 
@@ -222,28 +223,28 @@
           &::before {
             .ani-slide-bottom();
 
-            border-top  : 10px solid @color-white;
-            border-left : 10px solid transparent;
+            border-top: 10px solid @color-white;
+            border-left: 10px solid transparent;
             border-right: 10px solid transparent;
           }
         }
 
         &:active {
-          color           : @home-btn-bg-color;
-          transform       : scale(1);
+          color: @home-btn-bg-color;
+          transform: scale(1);
           background-color: @home-btn-hover-color;
-          border          : 2px solid @home-block-active-border-color;
+          border: 2px solid @home-block-active-border-color;
         }
 
         // 伪元素  绘制按钮悬浮的三角形
         &::before {
-          z-index : 10;
-          content : " ";
+          z-index: 10;
+          content: " ";
           position: absolute;
-          top     : -6px;
-          left    : calc((206px / 2) - 5px - 2px -8px);
-          height  : 0px;
-          width   : 0px;
+          top: -6px;
+          left: calc((206px / 2) - 5px - 2px -8px);
+          height: 0px;
+          width: 0px;
         }
       }
     }
@@ -254,11 +255,11 @@
       .text-shadow();
 
       align-self: flex-start;
-      color    : @color-white;
+      color: @color-white;
       font-size: 12px;
-      margin   : 12px 0;
+      margin: 12px 0;
       margin-left: 40px;
-      opacity  : 0.6;
+      opacity: 0.6;
 
       &:hover {
         opacity: 0.8;
@@ -267,31 +268,30 @@
   }
 }
 
-
-
 .user-card {
   .ani-show-left();
   .flex-center-y();
 
-  height          : 150px;
-  width           : 360px;
+  height: 150px;
+  width: 360px;
   // padding-right: 20px;
   // border-right : 1px solid @color-primary;
 
   .avatar {
-    .transition-quick();
+    .transition();
     .flex-center();
 
-    background-image : url("../../../assets/avatar-border-hover.png");
+    // background-image : url("../../../assets/avatar-border-hover.png");
     background-repeat: no-repeat;
-    background-size  : contain;
-    height           : $width;
-    width            : 140px;
+    background-size: contain;
+    height: $width;
+    margin: 0 12px 0 36px;
+    width: 140px;
 
     .avatar-image {
-      border-radius: 50px;
-      height       : $width;
-      width        : 100px;
+      // border-radius: 50px;
+      height: $width;
+      width: 120px;
     }
 
     &:active {
@@ -305,25 +305,25 @@
     .info-item {
       .flex-center-y();
 
-      flex       : 1;
+      flex: 1;
       margin-left: 20px;
-      width      : 100%;
+      width: 100%;
 
       .nickname {
-        background   : linear-gradient(to right, @color-accent, transparent);
+        background: linear-gradient(to right, @color-accent, transparent);
         border-radius: 16px;
-        color        : @color-white;
-        display      : inline-block;
-        flex         : 1;
-        padding      : 4px 10px;
+        color: @color-white;
+        display: inline-block;
+        flex: 1;
+        padding: 4px 10px;
       }
 
       .level,
       .region,
       .uid {
-        color  : @color-primary;
+        color: @color-primary;
         display: inline-block;
-        flex   : 1;
+        flex: 1;
         padding: 4px 10px;
 
         &:active {
@@ -338,41 +338,41 @@
   .ani-show-right();
   .flex-column-wrap();
 
-  flex       : 1;
-  height     : 120px;
+  flex: 1;
+  height: 120px;
   margin-left: 60px;
 
   .note-item {
     .flex-center-y();
 
     height: 30px;
-    width : 50%;
+    width: 50%;
 
     &:active {
       color: @color-second;
     }
 
     .note-icon {
-      height      : 24px;
+      height: 24px;
       margin-right: 4px;
-      width       : $height;
+      width: $height;
     }
 
     .note-detail {
       .transition-quick();
       .flex-center-y();
 
-      height     : 26px;
+      height: 26px;
       line-height: 26px;
 
       .dispatch-border {
         .transition-quick();
         .flex-center();
 
-        border       : 2px solid @color-accent;
+        border: 2px solid @color-accent;
         border-radius: 15px;
-        margin-right : 8px;
-        overflow     : hidden;
+        margin-right: 8px;
+        overflow: hidden;
 
         .dispatch-avatar {
           height: 24px;

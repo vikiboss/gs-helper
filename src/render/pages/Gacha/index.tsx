@@ -58,7 +58,7 @@ const Gacha: React.FC = () => {
   const [uid, setUid] = useState<string>("");
   const [filter, setfilter] = useState<FilterType>(DefaultFilters);
   const [gachas, setGachas] = useState<GachaData[]>([]);
-  const [link, setLink] = useState<string>("");
+  const [link, setLink] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const initGachaData = async (newUid?: string) => {
@@ -102,7 +102,7 @@ const Gacha: React.FC = () => {
       return notice.faild({ message: "输入的祈愿链接无效，请检查后重试" });
     }
 
-    notice.info({ message: "派蒙努力加载中，预计半分钟...", autoHide: false });
+    notice.info({ message: "派蒙努力加载中，预计需要一分钟...", autoHide: false });
 
     setLoading(true);
     const data = await nativeApi.getGachaListByUrl(link);
@@ -135,7 +135,7 @@ const Gacha: React.FC = () => {
   const copyLink = () => {
     if (link) {
       nativeApi.writeClipboardText(link);
-      notice.success({ message: "已将 「祈愿记录链接」 复制到剪切板" });
+      notice.success({ message: "已将 「祈愿记录链接」 复制到剪切板，可供其他平台使用" });
     } else {
       notice.faild({ message: " 「祈愿记录链接」 为空" });
     }
@@ -143,9 +143,13 @@ const Gacha: React.FC = () => {
 
   const getLocalGachaUrl = async (isUserTrriger: boolean = false) => {
     const url = await nativeApi.getGachaUrl();
+    setLink(url);
     if (url) {
-      setLink(url);
-      if (isUserTrriger) notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
+      if (isUserTrriger) {
+        notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
+      } else {
+        notice.success({ message: "已自动获取本地 「祈愿记录链接」", duration: 1200 });
+      }
     } else {
       const message = "本地日志中不存在有效链接，请先在本地游戏内打开 「祈愿历史记录」 页面";
       if (isUserTrriger) notice.faild({ message });
@@ -169,8 +173,8 @@ const Gacha: React.FC = () => {
     }
   };
 
-  const loadingText = loading ? "派蒙努力加载中，预计半分钟..." : "派蒙没有找到任何数据";
-  const tip = `※ 共计 ${gacha.list.length} 条数据（${dateRangeText}）。因原神官方的设定，数据存在大约一小时的延迟。`;
+  const loadingText = loading ? "派蒙努力加载中，预计需要一分钟..." : "派蒙没有找到任何数据";
+  const tip = `※ 共计 ${gacha.list.length} 条数据（覆盖范围：${dateRangeText}）。因官方设定，数据存在约一小时的延迟。`;
   const uids = gachas.map((e) => e.info.uid).sort((p, n) => Number(p) - Number(n));
 
   const items = [
@@ -196,16 +200,16 @@ const Gacha: React.FC = () => {
               value={link}
               onBlur={(e) => setLink(e.target.value.trim())}
               onChange={(e) => setLink(e.target.value)}
-              placeholder='祈愿记录链接'
+              placeholder='祈愿记录链接（按下 Ctrl + V 快捷键快速粘贴）'
             />
-            {isWindows && (
+            {isWindows && link !== null && (
               <Button
                 onClick={link ? copyLink : () => getLocalGachaUrl(true)}
                 style={{ marginRight: "12px" }}
                 text={link ? "复制" : "获取本地链接"}
               />
             )}
-            <Button type='confirm' text='更新数据' onClick={updateGachaData} />
+            {link !== null && <Button type='confirm' text='更新数据' onClick={updateGachaData} />}
             <div className={styles.rightZone}>
               {!isEmpty && (
                 <SelectButton
