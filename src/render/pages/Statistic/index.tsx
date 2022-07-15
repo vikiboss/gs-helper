@@ -18,15 +18,14 @@ import withAuth from "../../auth/withAuth";
 import type { GameRoleCardData } from "../../../services/getGameRoleCard";
 import type { Role as RoleInfo } from "../../../services/getOwnedRoleList";
 import type { SpiralAbyssData } from "../../../services/getSpiralAbyss";
-import type { GameRecordCardItem } from "../../../services/getGameRecordCard";
 
 export type TypeState = "statistic" | "roles" | "abyss";
-export type GameRoleCardState = GameRoleCardData & { uid: string; info: GameRecordCardItem };
-export type SpiralAbyssState = SpiralAbyssData & { uid: string; info: GameRecordCardItem };
+export type GameRoleCardState = GameRoleCardData & { uid: string };
+export type SpiralAbyssState = SpiralAbyssData & { uid: string; role: GameRoleCardData["role"] };
 export type RolesState = {
   list: RoleInfo[];
   uid: string;
-  info: GameRecordCardItem;
+  role: GameRoleCardData["role"];
 };
 
 const Statistic: React.FC = () => {
@@ -52,32 +51,29 @@ const Statistic: React.FC = () => {
     try {
       const user = await nativeApi.getCurrentUser();
       uid = uid || user.uid;
-      const [infos, card, roles, abyss] = await Promise.all([
-        nativeApi.getGameRecordCard(uid),
+      const [card, roles, abyss] = await Promise.all([
         nativeApi.getGameRoleCard(uid),
         nativeApi.getOwnedRoleList(uid),
         nativeApi.getSpiralAbyss(uid)
       ]);
-
-      console.log(infos, card, roles, abyss);
-
-      const isOK = infos[0]?.nickname && roles[0]?.id && abyss?.schedule_id;
-
+      const isOK = card?.role?.nickname && roles[0]?.id && abyss?.schedule_id;
+     
       if (!isOK) return false;
-
+     
       setIsSelf(uid === "" || uid === user.uid);
       setLoading(false);
-      setGameStatsData({ ...card, uid, info: infos[0] });
-      setRolesData({ list: roles, uid, info: infos[0] });
-      setSpiralAbyssData({ ...abyss, uid, info: infos[0] });
-
+      setGameStatsData({ ...card, uid });
+      setRolesData({ list: roles, uid, role: card.role });
+      setSpiralAbyssData({ ...abyss, uid, role: card.role });
+      
+      console.log(card, roles, abyss);
       return true;
     } catch (e) {
       console.log(e);
-
+      
       const isOffline = e?.message?.includes("getaddrinfo");
       const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
-
+      
       notice.faild({ message: msg });
     }
   };
@@ -117,7 +113,7 @@ const Statistic: React.FC = () => {
     { label: "深渊螺旋", value: "abyss" }
   ];
 
-  const backToMine = async () => {
+  const handleMyStatistic = async () => {
     setIsSelf(true);
     setLoading(true);
     await updateInfo();
@@ -131,7 +127,7 @@ const Statistic: React.FC = () => {
           <>
             <div className={styles.top}>
               {!isSelf && (
-                <Button className={styles.btn} text='返回我的数据' onClick={backToMine} />
+                <Button className={styles.btn} text='返回我的数据' onClick={handleMyStatistic} />
               )}
               <SelectButton items={items} value={type} changeItem={setType} />
               <div className={styles.inputArea}>

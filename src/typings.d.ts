@@ -29,7 +29,7 @@ export interface NativeApi {
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;
   getGachaUrl: () => Promise<string>;
-  getGameRecordCard: (uid?: string) => Promise<GameRecordCardData | null>;
+  getGameRecordCard: (bbsId?: string) => Promise<GameRecordCardData | null>;
   getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
   getSpiralAbyss: (uid?: string) => Promise<SpiralAbyssData | null>;
   getGameRoleInfo: () => Promise<GameRole | null>;

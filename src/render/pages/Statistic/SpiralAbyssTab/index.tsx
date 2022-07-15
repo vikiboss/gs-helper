@@ -27,11 +27,11 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
       {hasData ? (
         <>
           <div className={styles.row}>
-            {data.info && (
+            {data.role && (
               <div className={styles.user}>
-                <div>{data.info.nickname}</div>
+                <div>{data.role.nickname}</div>
                 <div>
-                  Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
+                  Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
                 </div>
               </div>
             )}

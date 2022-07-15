@@ -14,10 +14,10 @@ interface RolesProp {
 const Roles: React.FC<RolesProp> = ({ data }) => {
   return (
     <div className={styles.roles}>
-      {data.info && <div className={styles.user}>
-        <div>{data.info.nickname}</div>
+      {data.role && <div className={styles.user}>
+        <div>{data.role.nickname}</div>
         <div>
-          Lv.{data.info.level} {getServerNameByServer(data.info.region)} {data.uid}
+          Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
         </div>
       </div>}
       <div className={styles.roleTable}>

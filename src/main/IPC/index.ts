@@ -53,7 +53,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IPCEvents.getCurrentUser, () => getCurrentUser());
   IPC.handle(IPCEvents.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IPCEvents.getGachaUrl, async () => await getGachaUrl());
-  IPC.handle(IPCEvents.getGameRecordCard, async (_, uid?: string) => await getGameRecordCard(uid));
+  IPC.handle(IPCEvents.getGameRecordCard, async (_, bbsId?: string) => await getGameRecordCard(bbsId));
   IPC.handle(IPCEvents.getGameRoleCard, async (_, uid?: string) => await getGameRoleCard(uid));
   IPC.handle(IPCEvents.getGameRoleInfo, async () => await getGameRoleInfo());
   IPC.handle(IPCEvents.getHitokoto, async () => await getHitokoto());

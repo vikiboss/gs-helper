@@ -36,12 +36,12 @@ export interface Data_switches {
   is_public: boolean;
 }
 
-const getGameRecordCard = async (uid?: string): Promise<GameRecordCardData | null> => {
+const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | null> => {
   const currentUser = getCurrentUser();
   if (!currentUser) return null;
-  uid = uid || currentUser.uid;
+  bbsId = bbsId || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/card/wapi/getGameRecordCard`;
-  const params = { uid };
+  const params = { uid: bbsId };
   const headers = {
     referer: LINK_BBS_REFERER,
     DS: getDS(qs(params)),
