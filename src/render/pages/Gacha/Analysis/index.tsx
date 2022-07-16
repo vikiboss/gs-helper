@@ -4,11 +4,11 @@ import D from "dayjs";
 import React from "react";
 
 import { Notice } from "../../../hooks/useNotice";
-import DateRange from "../Charts/DateRange";
+import DateRange from "../Overview/Charts/DateRange";
 import filterGachaList, { GachaTypeMap } from "../utils/filterGachaList";
-import GachaPie from "../Charts/StarPie";
+import GachaPie from "../Overview/Charts/StarPie";
 import transformGachaDataDate from "../utils/transformGachaDataDate";
-import transformGachaDataType from "../utils/transformGachaDataType";
+import transformGachaDataType from "../utils/getPieData";
 
 import type { GachaData, GachaItemType, GachaType, StarType } from "../../../../typings";
 
@@ -94,7 +94,7 @@ const Analysis: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) =
     {
       type: "gacha",
       btns: [
-        { name: "活动池", type: "activity" },
+        { name: "角色池", type: "activity" },
         { name: "武器池", type: "weapon" },
         { name: "常驻池", type: "normal" },
         { name: "新手池", type: "newer" }
@@ -126,17 +126,6 @@ const Analysis: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) =
   const now = new Date();
   const dateRange = [D(now).subtract(8, "M").toDate(), now];
 
-  const pieProps = {
-    data: transformGachaDataType(list),
-    height: 268,
-    style: { alignSelf: "center" },
-    width: 268,
-    onClick: (e: { id: string | number; value: number }) => {
-      const limitedList = list.filter((item) => `${item.rank_type}星` === e.id);
-      const message = getListTypeInfo(limitedList);
-      if (message) notice.info({ message });
-    }
-  };
 
   const rangeProps = {
     className: styles.timeRange,
@@ -154,7 +143,6 @@ const Analysis: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) =
   return (
     <div className={styles.content}>
       <div className={styles.pieChart}>
-        <GachaPie {...pieProps} />
         <div className={styles.filterTitle}>筛选条件</div>
         <div className={styles.filterZone}>
           {filterLines.map((line, i) => {
@@ -197,7 +185,7 @@ const Analysis: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) =
         <div className={styles.detailTable}>
           <div>
             <div>出货数 / 率</div>
-            <div>活动池</div>
+            <div>角色池</div>
             <div>武器池</div>
             <div>常驻池</div>
             <div>新手池</div>

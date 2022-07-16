@@ -2,7 +2,7 @@ import React from "react";
 import { CommonPieProps, ResponsivePie } from "@nivo/pie";
 
 import { ChartTheme } from "../../../constants";
-import { Colors } from "../Gacha/utils/transformGachaDataType";
+import { Colors } from "../Gacha/utils/getPieData";
 
 type NotePieProp = {
   width: React.CSSProperties["width"];

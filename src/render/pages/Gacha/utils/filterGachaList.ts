@@ -1,21 +1,20 @@
-import { FilterType } from "..";
+import type { FilterType } from "..";
+import type { GachaData, GachaItemType, GachaType } from "../../../../typings";
 
-import type { GachaData } from "../../../../typings";
-
-export const GachaTypeMap: Record<string, string> = {
+export const GachaTypeMap: Record<GachaType, string | string[]> = {
   weapon: "302",
-  activity: "301",
+  activity: ["301", "400"],
   normal: "200",
   newer: "100"
 };
 
-const ItemTypeMap = {
+export const ItemTypeMap: Record<GachaItemType, string> = {
   weapon: "武器",
   role: "角色"
 };
 
 const transformGachaType = (type: FilterType["gacha"]): string[] => {
-  return type.map((e) => GachaTypeMap[e]);
+  return type.map((e) => GachaTypeMap[e]).flat();
 };
 
 const transformItemType = (type: FilterType["item"]): string[] => {

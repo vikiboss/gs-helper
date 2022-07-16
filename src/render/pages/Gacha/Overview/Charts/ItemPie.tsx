@@ -1,10 +1,10 @@
 import React from "react";
 import { CommonPieProps, MouseEventHandler, ResponsivePie } from "@nivo/pie";
 
-import { ChartTheme } from "../../../../constants";
-import { Colors } from "../utils/transformGachaDataType";
+import { ChartTheme } from "../../../../../constants";
+import { Colors } from "../../utils/getPieData";
 
-type TypePieProp = {
+type ItemPieProp = {
   width: React.CSSProperties["width"];
   height: React.CSSProperties["height"];
   style?: React.CSSProperties;
@@ -32,21 +32,19 @@ const defs = [
 ];
 
 const fill = [
-  { match: { id: "新手池" }, id: "lines" },
-  { match: { id: "活动池" }, id: "lines" },
-  { match: { id: "武器池" }, id: "lines" },
-  { match: { id: "常驻池" }, id: "lines" }
+  { match: { id: "武器" }, id: "lines" },
+  { match: { id: "角色" }, id: "lines" }
 ];
 
-const legends: CommonPieProps<TypePieProp["data"]>["legends"] = [
+const legends: CommonPieProps<ItemPieProp["data"]>["legends"] = [
   {
     anchor: "bottom",
     direction: "row",
-    translateY: 56,
-    translateX: 10,
-    itemWidth: 60,
-    itemHeight: 18,
-    symbolSize: 18,
+    translateY: 40,
+    translateX: 0,
+    itemWidth: 54,
+    itemHeight: 20,
+    symbolSize: 16,
     symbolShape: "circle",
     effects: [
       {
@@ -59,7 +57,7 @@ const legends: CommonPieProps<TypePieProp["data"]>["legends"] = [
   }
 ];
 
-const TypePie: React.FC<TypePieProp> = (props) => {
+const ItemPie: React.FC<ItemPieProp> = (props) => {
   const { data, style, width, height, onClick, className = "" } = props;
   return (
     <div
@@ -84,7 +82,7 @@ const TypePie: React.FC<TypePieProp> = (props) => {
         fill={fill}
         innerRadius={0.5}
         legends={legends}
-        margin={{ top: 20, right: 40, bottom: 80, left: 40 }}
+        margin={{ top: 24, right: 24, bottom: 60, left: 24 }}
         padAngle={0.7}
         theme={ChartTheme}
       />
@@ -92,4 +90,4 @@ const TypePie: React.FC<TypePieProp> = (props) => {
   );
 };
 
-export default TypePie;
+export default ItemPie;

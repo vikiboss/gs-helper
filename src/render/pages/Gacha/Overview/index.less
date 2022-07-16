@@ -8,132 +8,109 @@
 
 .content {
   .ani-show-right();
+  .flex-column();
 
-  display: flex;
-  justify-content: space-between;
   width: 920px;
   height: 428px;
 
   .time-range-container {
+    width: 570px;
     display: flex;
-    max-width: 520px;
     justify-content: flex-end;
-    transform: translateX(-20px);
-  }
-
-  .detail-data {
-    .flex-center-y-column();
-
-    .detail-title {
-      height: 26px;
-      line-height: 26px;
-    }
-  }
-
-  .detail-table {
-    .flex-center-y-column();
-
-    & > div {
-      display: flex;
-
-      div {
-        border: 1px solid @color-second;
-        height: 24px;
-        line-height: $height;
-        margin: 1px;
-        text-align: center;
-        width: 100px;
-      }
-    }
   }
 
   .table-name {
     font-size: 18px;
-    text-align: center;
-    margin: 16px 0 4px 0;
+    margin-bottom: 12px;
+    margin-left: 42px;
   }
 }
 
-.star {
-  font-size: 14px;
+.row {
+  .flex();
+
+  width: 920px;
+
+  &:first-child {
+    height: 190px;
+  }
+
+  &:nth-child(2) {
+    justify-content: space-between;
+  }
 }
 
-.star-5 {
-  color: @color-star-5;
-}
+.filter {
+  z-index: 10;
 
-.star-4 {
-  color: @color-star-4;
-}
+  .filter-title {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
 
-.star-3 {
-  color: @color-star-3;
-}
+  .pieTitle {
+    font-size: 18px;
+    margin-top: 20px;
+  }
 
-.date-tip {
-  bottom: 16px;
-  color: @color-second;
-  // font-size: 12px;
-  left: 40px;
-  position: absolute;
-}
+  .tip {
+    color: @color-second;
+    font-size: 14px;
+    margin-top: 12px;
+  }
 
-.filter-title {
-  font-size: 18px;
-  margin-bottom: 4px;
-}
+  .filter-zone {
+    .flex-column();
 
-.filter-zone {
-  .flex-column();
+    .filter-btns {
+      display: flex;
 
-  .filter-btns {
-    display: flex;
+      .btn {
+        .transition();
 
-    .btn {
-      .transition();
-
-      background-color: @color-bg;
-      border: 1px solid @color-second;
-      border-radius: 4px;
-      color: @color-second;
-      cursor: pointer;
-      font-size: 14px;
-      height: 18px;
-      margin: 2px;
-      padding: 1px 6px;
-      text-align: center;
-    }
-
-    .active {
-      color: @color-white;
-    }
-
-    .btn-active {
-      .active();
-
-      background-color: @color-star-5;
-      border-color: @color-star-5;
-    }
-
-    .select {
-      .btn();
-
-      margin-right: 14px;
-      position: relative;
-
-      &::before {
+        background-color: @color-bg;
+        border: 1px solid @color-second;
+        border-radius: 4px;
         color: @color-second;
-        content: "|";
-        left: 46px;
-        position: absolute;
+        cursor: pointer;
+        font-size: 14px;
+        height: 18px;
+        margin: 3px;
+        padding: 1px 6px;
+        text-align: center;
       }
-    }
 
-    .select-all {
-      .active();
+      .active {
+        color: @color-white;
+      }
 
-      background-color: @color-primary;
-      border-color: @color-primary;
+      .btn-active {
+        .active();
+
+        background-color: @color-star-5;
+        border-color: @color-star-5;
+      }
+
+      .select {
+        .btn();
+
+        margin-right: 14px;
+        position: relative;
+
+        &::before {
+          color: @color-second;
+          content: "|";
+          left: 46px;
+          position: absolute;
+        }
+      }
+
+      .select-all {
+        .active();
+
+        background-color: @color-primary;
+        border-color: @color-primary;
+      }
     }
   }
 }
