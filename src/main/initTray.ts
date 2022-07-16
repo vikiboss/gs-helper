@@ -26,8 +26,6 @@ const initTray = (win: BrowserWindow) => {
 
   // 主窗口的 webContents 用于控制 DevTools 的开关
   const web = win.webContents;
-  // DevTools 是否打开
-  const isOpen = web.isDevToolsOpened();
 
   // 定义托盘菜单
   const menus: MenuItemConstructorOptions[] = [
@@ -49,9 +47,7 @@ const initTray = (win: BrowserWindow) => {
     {
       label: Menus.openDevTools,
       // visible: isDev,
-      checked: web.isDevToolsOpened(),
-      type: "checkbox",
-      click: () => (isOpen ? web.closeDevTools() : web.openDevTools({ mode: "detach" }))
+      click: () => web.openDevTools({ mode: "detach" })
     },
     // 打开设置
     {
@@ -94,18 +90,6 @@ const initTray = (win: BrowserWindow) => {
     // 刷新托盘右键菜单
     tray.setContextMenu(contextMenu);
     store.set("settings.alwaysOnTop", onTop);
-  });
-
-  // 当 DevTools 的开关状态发生改变时，及时刷新菜单的状态显示
-  web.on("devtools-opened", () => {
-    contextMenu.items[2].checked = true;
-    // 刷新托盘右键菜单
-    tray.setContextMenu(contextMenu);
-  });
-  web.on("devtools-closed", () => {
-    contextMenu.items[2].checked = false;
-    // 刷新托盘右键菜单
-    tray.setContextMenu(contextMenu);
   });
 };
 

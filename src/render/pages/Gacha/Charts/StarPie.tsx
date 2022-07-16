@@ -4,7 +4,7 @@ import { CommonPieProps, MouseEventHandler, ResponsivePie } from "@nivo/pie";
 import { ChartTheme } from "../../../../constants";
 import { Colors } from "../utils/transformGachaDataType";
 
-type GachaPieProp = {
+type ItemPieProp = {
   width: React.CSSProperties["width"];
   height: React.CSSProperties["height"];
   style?: React.CSSProperties;
@@ -20,15 +20,6 @@ type GachaPieProp = {
 };
 
 const defs = [
-  {
-    id: "dots",
-    type: "patternDots",
-    background: "inherit",
-    color: "rgba(255, 255, 255, 0.3)",
-    size: 4,
-    padding: 1,
-    stagger: true
-  },
   {
     id: "lines",
     type: "patternLines",
@@ -46,7 +37,7 @@ const fill = [
   { match: { id: "5星" }, id: "lines" }
 ];
 
-const legends: CommonPieProps<GachaPieProp["data"]>["legends"] = [
+const legends: CommonPieProps<ItemPieProp["data"]>["legends"] = [
   {
     anchor: "bottom",
     direction: "row",
@@ -67,7 +58,7 @@ const legends: CommonPieProps<GachaPieProp["data"]>["legends"] = [
   }
 ];
 
-const GachaPie: React.FC<GachaPieProp> = (props) => {
+const ItemPie: React.FC<ItemPieProp> = (props) => {
   const { data, style, width, height, onClick, className = "" } = props;
   return (
     <div
@@ -100,4 +91,4 @@ const GachaPie: React.FC<GachaPieProp> = (props) => {
   );
 };
 
-export default GachaPie;
+export default ItemPie;

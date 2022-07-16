@@ -1,20 +1,20 @@
-import React from "react";
+import { TimeRangeDayData } from "@nivo/calendar";
 import cn from "classnames";
 import D from "dayjs";
+import React from "react";
 
-import { Notice } from "../../hooks/useNotice";
-import filterGachaList, { GachaTypeMap } from "./utils/filterGachaList";
-import GachaPie from "./Charts/GachaPie";
-import transformGachaDataDate from "./utils/transformGachaDataDate";
-import transformGachaDataType from "./utils/transformGachaDataType";
+import { Notice } from "../../../hooks/useNotice";
+import DateRange from "../Charts/DateRange";
+import filterGachaList, { GachaTypeMap } from "../utils/filterGachaList";
+import GachaPie from "../Charts/StarPie";
+import transformGachaDataDate from "../utils/transformGachaDataDate";
+import transformGachaDataType from "../utils/transformGachaDataType";
 
-import type { GachaData, GachaItemType, GachaType, StarType } from "../../../typings";
+import type { GachaData, GachaItemType, GachaType, StarType } from "../../../../typings";
 
 import styles from "./index.less";
-import DateRange from "./Charts/DateRange";
-import { TimeRangeDayData } from "@nivo/calendar";
 
-interface OverviewProp {
+export interface PageProp {
   gacha: GachaData;
   filter: FilterType;
   toggleFilter: Function;
@@ -47,7 +47,7 @@ const DefaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
-const Overview: React.FC<OverviewProp> = ({ gacha, filter, toggleFilter, notice }) => {
+const Overview: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) => {
   const getGachaNumsAndRates = (rank: "3" | "4" | "5", gachaType: GachaType) => {
     const star_l = gacha.list.filter((e) => e.rank_type === rank);
     const gacha_l = gacha.list.filter((e) => e.uigf_gacha_type === GachaTypeMap[gachaType]);
@@ -154,7 +154,6 @@ const Overview: React.FC<OverviewProp> = ({ gacha, filter, toggleFilter, notice 
   return (
     <div className={styles.content}>
       <div className={styles.pieChart}>
-        <div className={styles.pieName}>星级占比</div>
         <GachaPie {...pieProps} />
         <div className={styles.filterTitle}>筛选条件</div>
         <div className={styles.filterZone}>

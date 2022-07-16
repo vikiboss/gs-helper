@@ -4,18 +4,19 @@ import { useNavigate } from "react-router-dom";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
+import Analysis from "./Analysis";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
-import Overview from "./Overview";
+import Overview, { PageProp } from "./Overview";
+import Prediction from "./Prediction";
 import Select from "../../components/Select";
 import SelectButton from "../../components/SelectButton";
+import styles from "./index.less";
 import useNotice from "../../hooks/useNotice";
 
 import type { GachaData, GachaType, GachaItemType, StarType } from "../../../typings";
-
-import styles from "./index.less";
 
 const DefaultGachaData: GachaData = {
   info: {
@@ -50,10 +51,12 @@ const DefaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
+type Pages = "overview" | "analysis" | "prediction";
+
 const Gacha: React.FC = () => {
   const notice = useNotice();
   const navigate = useNavigate();
-  const [type, setType] = useState<"overview" | "analysis" | "prediction">("overview");
+  const [type, setType] = useState<Pages>("overview");
   const [isWindows, setisWindows] = useState<boolean>(false);
   const [uid, setUid] = useState<string>("");
   const [filter, setfilter] = useState<FilterType>(DefaultFilters);
@@ -185,6 +188,14 @@ const Gacha: React.FC = () => {
 
   const isEmpty = gachas.length === 0;
 
+  const PageMap: Record<Pages, React.FC<PageProp>> = {
+    overview: Overview,
+    analysis: Analysis,
+    prediction: Prediction
+  };
+
+  const Page = PageMap[type];
+
   return (
     <>
       <div className={styles.container}>
@@ -197,7 +208,7 @@ const Gacha: React.FC = () => {
           />
           <div className={styles.topZone}>
             <input
-              value={link}
+              value={link || ""}
               onBlur={(e) => setLink(e.target.value.trim())}
               onChange={(e) => setLink(e.target.value)}
               placeholder='祈愿记录链接（按下 Ctrl + V 快捷键快速粘贴）'
@@ -242,9 +253,7 @@ const Gacha: React.FC = () => {
         </>
 
         {gacha.info.uid && !loading ? (
-          type === "overview" && (
-            <Overview gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />
-          )
+          <Page gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />
         ) : (
           <div style={{ display: "flex", flex: 1 }}>
             <Loading text={loadingText} isEmpty={isEmpty} />
