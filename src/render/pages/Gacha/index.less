@@ -7,16 +7,11 @@
 @input-text-color: @color-primary;
 
 .container {
-  .ani-show-right();
   .flex-center-x-column();
 
   flex: 1;
   position: relative;
   height: 100%;
-
-  .sub-title {
-    font-size: 20px;
-  }
 
   .top-zone {
     .flex-center-y();
@@ -27,6 +22,7 @@
     width: calc(100vw - 40px - 80px);
 
     input {
+      .ani-show-right();
       background-color: @input-bg-color;
       border: 2px solid @input-border-color;
       border-radius: 16px;
@@ -49,7 +45,7 @@
         // 通用兄弟选择器：同一层级后面所有含有 .title 类的元素都会被选中
         & ~ .right-zone {
           .transition-slow();
-          
+
           opacity: 0;
         }
       }
@@ -69,8 +65,12 @@
       }
     }
 
+    .btn {
+      .ani-show-right();
+    }
+
     .right-zone {
-      .transition();
+      .ani-show-right();
       .flex-center-y();
 
       // width          : 420px;
@@ -105,6 +105,8 @@
   }
 
   .date-tip {
+    .ani-show-right();
+
     bottom: 16px;
     color: @color-second;
     // font-size: 12px;
@@ -113,6 +115,8 @@
   }
 
   .back-btn {
+    .ani-show-right();
+
     left: 20px;
     position: absolute;
     top: 20px;

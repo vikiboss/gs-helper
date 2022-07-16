@@ -1,17 +1,13 @@
 @import "../../../utils/colors.less";
 @import "../../../utils/utils.less";
 
-@input-bg-color: @color-white;
-@input-border-color: #d6d6d6;
-@input-border-hover-color: @color-second;
-@input-text-color: @color-primary;
-
 .content {
-  .ani-show-right();
   .flex-column();
 
-  width: 920px;
   height: 428px;
+  // 此处就不需要 hidden 了，防止 toolip 被遮挡
+  // overflow: hidden;
+  width: 920px;
 
   .time-range-container {
     width: 570px;
@@ -23,6 +19,8 @@
     font-size: 18px;
     margin-bottom: 12px;
     margin-left: 42px;
+    padding-left: 6px;
+    border-left: 4px solid @color-accent;
   }
 }
 
@@ -33,9 +31,15 @@
 
   &:first-child {
     height: 190px;
+
+    & > div {
+      .ani-show-top();
+    }
   }
 
   &:nth-child(2) {
+    .ani-show-bottom();
+
     justify-content: space-between;
   }
 }
@@ -46,11 +50,15 @@
   .filter-title {
     font-size: 18px;
     margin-bottom: 12px;
+    padding-left: 6px;
+    border-left: 4px solid @color-accent;
   }
 
   .pieTitle {
     font-size: 18px;
     margin-top: 20px;
+    padding-left: 6px;
+    border-left: 4px solid @color-accent;
   }
 
   .tip {

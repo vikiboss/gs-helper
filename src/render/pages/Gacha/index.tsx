@@ -4,17 +4,17 @@ import { useNavigate } from "react-router-dom";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
-import Analysis from "./Analysis";
+import Analysis from "./Data";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
-import Overview, { PageProp } from "./Overview";
-import Prediction from "./Prediction";
+import Overview from "./Overview";
+import Prediction from "./Analysis";
 import Select from "../../components/Select";
 import SelectButton from "../../components/SelectButton";
 import styles from "./index.less";
-import useNotice from "../../hooks/useNotice";
+import useNotice, { Notice } from "../../hooks/useNotice";
 
 import type { GachaData, GachaType, GachaItemType, StarType } from "../../../typings";
 
@@ -31,6 +31,13 @@ const DefaultGachaData: GachaData = {
   },
   list: []
 };
+
+export interface PageProp {
+  gacha: GachaData;
+  filter: FilterType;
+  toggleFilter: Function;
+  notice: Notice;
+}
 
 export const GachaMap: Record<GachaType, string> = {
   activity: "活动祈愿",
@@ -182,11 +189,11 @@ const Gacha: React.FC = () => {
 
   const items = [
     { value: "overview", label: "总览" },
-    { value: "analysis", label: "分析" },
-    { value: "prediction", label: "预测" }
+    { value: "analysis", label: "数据" },
+    { value: "prediction", label: "分析" }
   ];
 
-  const isEmpty = gachas.length === 0;
+  const isEmpty = !loading && link !== null && gachas.length === 0;
 
   const PageMap: Record<Pages, React.FC<PageProp>> = {
     overview: Overview,
@@ -215,12 +222,20 @@ const Gacha: React.FC = () => {
             />
             {isWindows && link !== null && (
               <Button
+                className={styles.btn}
                 onClick={link ? copyLink : () => getLocalGachaUrl(true)}
                 style={{ marginRight: "12px" }}
                 text={link ? "复制" : "获取本地链接"}
               />
             )}
-            {link !== null && <Button type='confirm' text='更新数据' onClick={updateGachaData} />}
+            {link !== null && (
+              <Button
+                className={styles.btn}
+                type='confirm'
+                text='更新数据'
+                onClick={updateGachaData}
+              />
+            )}
             <div className={styles.rightZone}>
               {!isEmpty && (
                 <SelectButton
@@ -256,7 +271,7 @@ const Gacha: React.FC = () => {
           <Page gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />
         ) : (
           <div style={{ display: "flex", flex: 1 }}>
-            <Loading text={loadingText} isEmpty={isEmpty} />
+            <Loading text={link === null ? "" : loadingText} isEmpty={!isEmpty} />
           </div>
         )}
         {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}

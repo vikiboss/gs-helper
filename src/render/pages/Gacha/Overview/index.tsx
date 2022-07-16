@@ -3,7 +3,6 @@ import cn from "classnames";
 import D from "dayjs";
 import React from "react";
 
-import { Notice } from "../../../hooks/useNotice";
 import DateRange from "./Charts/DateRange";
 import filterGachaList from "../utils/filterGachaList";
 import getPieData from "../utils/getPieData";
@@ -15,20 +14,7 @@ import TypePie from "./Charts/TypePie";
 import type { GachaData, GachaItemType, GachaType, StarType } from "../../../../typings";
 
 import styles from "./index.less";
-
-export interface PageProp {
-  gacha: GachaData;
-  filter: FilterType;
-  toggleFilter: Function;
-  notice: Notice;
-}
-
-export const GachaMap: Record<GachaType, string> = {
-  activity: "活动祈愿",
-  weapon: "武器祈愿",
-  normal: "常驻祈愿",
-  newer: "新手祈愿"
-};
+import { PageProp } from "..";
 
 type FilterBtn = { name: string; type: StarType | GachaType | GachaItemType };
 
@@ -49,54 +35,54 @@ const DefaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
+const filterLines: FilterLine[] = [
+  {
+    type: "item",
+    btns: [
+      { name: "角色", type: "role" },
+      { name: "武器", type: "weapon" }
+    ]
+  },
+  {
+    type: "star",
+    btns: [
+      { name: "5星", type: 5 },
+      { name: "4星", type: 4 },
+      { name: "3星", type: 3 }
+    ]
+  },
+  {
+    type: "gacha",
+    btns: [
+      { name: "角色池", type: "activity" },
+      { name: "武器池", type: "weapon" },
+      { name: "常驻池", type: "normal" },
+      { name: "新手池", type: "newer" }
+    ]
+  }
+];
+
+const getListTypeInfo = (list: GachaData["list"]) => {
+  const roles = list.filter((item) => item.item_type === "角色");
+  const weapons = list.filter((item) => item.item_type === "武器");
+  const r_5 = roles.filter((item) => item.rank_type === "5");
+  const r_4 = roles.filter((item) => item.rank_type === "4");
+  const w_5 = weapons.filter((item) => item.rank_type === "5");
+  const w_4 = weapons.filter((item) => item.rank_type === "4");
+  const w_3 = weapons.filter((item) => item.rank_type === "3");
+  let message = "";
+  message += r_5.length ? `5星角色${r_5.length}个 & ` : "";
+  // message += r_5.length ? `5星角色${r_5.length}个（${r_5.join("、")}） & ` : "";
+  message += r_4.length ? `4星角色${r_4.length}个 & ` : "";
+  message += w_5.length ? `5星武器${w_5.length}个 & ` : "";
+  // message += w_5.length ? `5星武器${w_5.length}个（${w_5.join("、")}） & ` : "";
+  message += w_4.length ? `4星武器${w_4.length}个 & ` : "";
+  message += w_3.length ? `3星武器${w_3.length}个 & ` : "";
+  message = message.slice(0, message.length - 2).trim();
+  return message;
+};
+
 const Overview: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) => {
-  const filterLines: FilterLine[] = [
-    {
-      type: "item",
-      btns: [
-        { name: "角色", type: "role" },
-        { name: "武器", type: "weapon" }
-      ]
-    },
-    {
-      type: "star",
-      btns: [
-        { name: "5星", type: 5 },
-        { name: "4星", type: 4 },
-        { name: "3星", type: 3 }
-      ]
-    },
-    {
-      type: "gacha",
-      btns: [
-        { name: "角色池", type: "activity" },
-        { name: "武器池", type: "weapon" },
-        { name: "常驻池", type: "normal" },
-        { name: "新手池", type: "newer" }
-      ]
-    }
-  ];
-
-  const getListTypeInfo = (list: GachaData["list"]) => {
-    const roles = list.filter((item) => item.item_type === "角色");
-    const weapons = list.filter((item) => item.item_type === "武器");
-    const r_5 = roles.filter((item) => item.rank_type === "5");
-    const r_4 = roles.filter((item) => item.rank_type === "4");
-    const w_5 = weapons.filter((item) => item.rank_type === "5");
-    const w_4 = weapons.filter((item) => item.rank_type === "4");
-    const w_3 = weapons.filter((item) => item.rank_type === "3");
-    let message = "";
-    message += r_5.length ? `5星角色${r_5.length}个 & ` : "";
-    // message += r_5.length ? `5星角色${r_5.length}个（${r_5.join("、")}） & ` : "";
-    message += r_4.length ? `4星角色${r_4.length}个 & ` : "";
-    message += w_5.length ? `5星武器${w_5.length}个 & ` : "";
-    // message += w_5.length ? `5星武器${w_5.length}个（${w_5.join("、")}） & ` : "";
-    message += w_4.length ? `4星武器${w_4.length}个 & ` : "";
-    message += w_3.length ? `3星武器${w_3.length}个 & ` : "";
-    message = message.slice(0, message.length - 2).trim();
-    return message;
-  };
-
   const updateTime = gacha.info.update_time;
   const list = filterGachaList(gacha.list, filter);
   const now = new Date();
@@ -107,7 +93,7 @@ const Overview: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) =
     style: { alignSelf: "center" },
     width: 300,
     onClick: (e: { id: string | number; value: number }) => {
-      notice.info({ message: e.id + "," + e.value });
+      notice.info({ message: e.id + "数：" + e.value });
     }
   };
 

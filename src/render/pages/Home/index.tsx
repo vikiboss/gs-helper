@@ -56,8 +56,19 @@ const Home: React.FC = () => {
 
   const updateInfo = async (isUserTrriger: boolean = true) => {
     if (!auth.isLogin) return;
+
+    if (loading && isUserTrriger) {
+      return notice.warning({ message: "小派蒙正在努力加载，请不要重复点击啦！", autoHide: false });
+    }
+
     setLoading(true);
-    if (isUserTrriger) notice.info({ message: "小派蒙正在努力获取最新数据...", autoHide: false });
+
+    if (isUserTrriger) {
+      clearInterval(heart);
+      setHeart(null);
+      notice.info({ message: "小派蒙正在努力获取最新数据...", autoHide: false });
+      setHeart(setInterval(() => updateInfo(false), 60000));
+    }
 
     try {
       const [user, note, sign] = await Promise.all([
@@ -79,6 +90,7 @@ const Home: React.FC = () => {
       setSign(sign);
       setLoading(false);
     } catch (e) {
+      setLoading(false);
       const isOffline = e?.message?.includes("getaddrinfo");
       const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
       notice.faild({ message: msg });

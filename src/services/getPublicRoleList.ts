@@ -49,6 +49,8 @@ export interface CV {
 export interface PublicRole {
   /** 名称 */
   name: string;
+  /** 角色头图 */
+  icon: string;
   /** 简介 */
   introduction: string;
   /** 发布时间 */
@@ -65,6 +67,7 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
   for (const role of publicRoles) {
     const _role: PublicRole = {
       name: role.title,
+      icon: "",
       startTime: role.start_time,
       introduction: "",
       line: "",
@@ -82,6 +85,12 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
           .replace(/&(.*?);/g, "");
         continue;
       }
+
+      if (type === "ICON") {
+        _role.icon = (e.value as ExtValue[])[0]?.url;
+        continue;
+      }
+
       if (type === "台词") {
         _role.line = (e.value as ExtValue[])[0]?.url;
         continue;

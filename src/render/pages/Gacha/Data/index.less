@@ -1,0 +1,139 @@
+@import "../../../utils/colors.less";
+@import "../../../utils/utils.less";
+
+.content {
+  .flex-column();
+
+  height: 428px;
+  overflow: hidden;
+  width: 920px;
+
+  & > div:nth-child(2) {
+    height: 300px;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .table-name {
+    .ani-show-top();
+
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-left: 6px;
+    border-left: 4px solid @color-accent;
+  }
+
+  .detail-table {
+    .ani-show-top();
+    .flex-center-y-column();
+
+    margin-bottom: 12px;
+
+    .head {
+      background-color: @color-bg-deep;
+    }
+
+    & > div {
+      display: flex;
+
+      div {
+        .transition-quick();
+
+        border-radius: 3px;
+        border: 1px solid @color-second;
+        height: 28px;
+        line-height: $height;
+        margin: 1px 3px;
+        text-align: center;
+        width: 146px;
+
+        &:hover {
+          background-color: @color-bg-deep;
+        }
+      }
+    }
+  }
+
+  .pool-name {
+    .ani-show-bottom();
+
+    font-size: 18px;
+    margin-bottom: 12px;
+    padding-left: 6px;
+    border-left: 4px solid @color-accent;
+  }
+
+  .pool-list {
+    .ani-show-bottom();
+    .flex-wrap();
+
+    margin: 4px 0;
+
+    & > span {
+      margin-top: 4px;
+      margin-right: 2px;
+    }
+
+    .avatar {
+      .transition();
+
+      width: 42px;
+      height: 42px;
+      margin: 2px 4px;
+      position: relative;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      & > img {
+        width: 42px;
+        height: 42px;
+        background-color: @color-star-5;
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      & > span {
+        background-color: rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 0;
+        bottom: 0;
+        color: @color-white;
+        font-size: 10px;
+        height: 20px;
+        line-height: 22px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        width: 20px;
+      }
+    }
+  }
+}
+
+.star {
+  font-size: 14px;
+}
+
+.star-5 {
+  color: @color-star-5;
+}
+
+.star-4 {
+  color: @color-star-4;
+}
+
+.star-3 {
+  color: @color-star-3;
+}
+
+.tip {
+  .ani-show-bottom();
+
+  color: @color-second;
+}

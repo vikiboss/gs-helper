@@ -79,7 +79,7 @@ const About: React.FC = () => {
             <a href={LINK_GITHUB_REPO} target='_blank'>
               {" GitHub "}
             </a>
-            <span>（欢迎 star）</span>
+            <span>（点个 star 吧~）</span>
           </div>
           <div className={styles.item}>
             ※ 用到的开源库：

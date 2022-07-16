@@ -65,6 +65,7 @@ export const ElementTypes: Record<string, string> = {
 
 export const GachaTypeMap: Record<string, string> = {
   "301": "角色活动祈愿",
+  "400": "角色活动祈愿2",
   "302": "武器活动祈愿",
   "200": "常驻祈愿",
   "100": "新手祈愿"
