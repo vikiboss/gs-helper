@@ -71,7 +71,7 @@ export const GachaTypeMap: Record<string, string> = {
   "100": "新手祈愿"
 };
 
-export const NomalItemList: string[] = [
+export const NormalItemList: string[] = [
   "刻晴",
   "莫娜",
   "七七",

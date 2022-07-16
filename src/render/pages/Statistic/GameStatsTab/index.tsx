@@ -100,7 +100,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
         </div>
         <div className={styles.homes}>
           <div>
-            <span>尘歌壶</span>
+            <span>〓尘歌壶〓</span>
             {data.homes.length > 0 && (
               <div>
                 <img
@@ -165,7 +165,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
           </div>
         </div> */}
         <div className={styles.explorations}>
-          <div>世界探索</div>
+          <div>〓世界探索〓</div>
           <div>
             {we.map((e) => {
               const isR = e.type === "Reputation";

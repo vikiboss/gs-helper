@@ -93,7 +93,7 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     style: { alignSelf: "center" },
     width: 300,
     onClick: (e: { id: string | number; value: number }) => {
-      notice.info({ message: e.id + "数：" + e.value });
+      notice.success({ message: e.id + "数：" + e.value });
     }
   };
 
@@ -114,7 +114,7 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     <div className={styles.content}>
       <div className={styles.row}>
         <div className={styles.filter}>
-          <div className={styles.filterTitle}>筛选条件</div>
+          <div className={styles.filterTitle}>〓筛选〓</div>
           <div className={styles.filterZone}>
             {filterLines.map((line, i) => {
               const filters: (StarType | GachaType | GachaItemType)[] = filter[line.type];
@@ -139,10 +139,10 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
             })}
           </div>
           <div className={styles.tip}>上次数据更新时间：{updateTime}</div>
-          <div className={styles.pieTitle}>多维饼图</div>
+          <div className={styles.pieTitle}>〓多维饼图〓</div>
         </div>
         <div>
-          <div className={styles.tableName}>次数分布</div>
+          <div className={styles.tableName}>〓祈愿日历〓</div>
           <div className={styles.timeRangeContainer}>
             <DateRange {...rangeProps} />
           </div>

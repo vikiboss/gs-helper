@@ -2,7 +2,8 @@ import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
 import { GachaMap } from "..";
-import { GachaTypeMap } from "../utils/filterGachaList";
+import { NormalItemList } from "../../../../constants";
+import getListByType from "../utils/getListByType";
 import nativeApi from "../../../utils/nativeApi";
 
 import type { GachaData, GachaType } from "../../../../typings";
@@ -10,7 +11,6 @@ import type { PageProp } from "..";
 import type { CalenderEvent } from "../../../../services/getCalenderList";
 
 import styles from "./index.less";
-import { NomalItemList as NormalItemList } from "../../../../constants";
 
 type TableRow = "3" | "4" | "5" | "合计";
 type TableColumn = GachaType | "合计";
@@ -24,17 +24,6 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
       if (list.length > 0) setCalenderList(list);
     })();
   }, []);
-
-  const getListByType = (list: GachaData["list"], type: GachaType) => {
-    return list.filter((e) => {
-      const target = GachaTypeMap[type];
-      if (Array.isArray(target)) {
-        return target.includes(e.uigf_gacha_type);
-      } else {
-        return target === e.uigf_gacha_type;
-      }
-    });
-  };
 
   const getGachaNumsAndRates = (rank: TableRow, type: TableColumn) => {
     const isAllStar = rank === "合计";
@@ -75,64 +64,68 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
   return (
     <div className={styles.content}>
       <div>
-        <div className={styles.tableName}>出货数、出货率</div>
-        <div className={styles.detailTable}>
-          <div>
-            <div className={styles.head}>出货数 / 率</div>
-            <div className={styles.head}>角色池</div>
-            <div className={styles.head}>武器池</div>
-            <div className={styles.head}>常驻池</div>
-            <div className={styles.head}>新手池</div>
-            <div className={styles.head}>合计</div>
-          </div>
-          {["5", "4", "3", "合计"].map((e: TableRow) => (
-            <div key={e}>
-              <div className={styles.head}>{e === "合计" ? e : e + "星"}</div>
-              {[...Object.keys(GachaMap), "合计"].map((f: TableColumn) => (
-                <div className={cn(styles[`star${e}`], styles.star)} key={f}>
-                  {getGachaNumsAndRates(e, f)}
-                </div>
-              ))}
-            </div>
-          ))}
-        </div>
-      </div>
-      {calenderList.length > 0 && (
         <div>
-          <div className={styles.poolName}>五星出货详情</div>
-          {pools.length > 0 ? (
-            pools.map((e) => (
-              <div key={e.title} className={styles.poolList}>
-                <span>{e.title}</span>
-                {e.list.map((item, i) => {
-                  const role = calenderList.filter((e) => e.title === item.name)[0];
-                  const showDetail = (item: { name: string; times: number }) => {
-                    const pn = item.times * 160;
-                    const msg = `${item.name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
-                    notice.success({ message: msg });
-                  };
-                  const isLimit = !NormalItemList.includes(item.name);
-                  const style = item.times > 75 ? "red" : item.times > 60 ? "orange" : "green";
-                  return (
-                    <div
-                      onClick={() => showDetail(item)}
-                      title={item.name}
-                      key={item.name + i}
-                      className={styles.avatar}
-                    >
-                      <img key={item.name + i} src={role?.img_url} alt={item.name} />
-                      <span className={styles[style]}>{item.times}</span>
-                      {isLimit && <span>限定</span>}
-                    </div>
-                  );
-                })}
+          <div className={styles.tableName}>〓出货数、出货率〓</div>
+          <div className={styles.detailTable}>
+            <div>
+              <div className={styles.head}>出货数 / 率</div>
+              <div className={styles.head}>角色池</div>
+              <div className={styles.head}>武器池</div>
+              <div className={styles.head}>常驻池</div>
+              <div className={styles.head}>新手池</div>
+              <div className={styles.head}>合计</div>
+            </div>
+            {["5", "4", "3", "合计"].map((e: TableRow) => (
+              <div key={e}>
+                <div className={styles.head}>{e === "合计" ? e : e + "星"}</div>
+                {[...Object.keys(GachaMap), "合计"].map((f: TableColumn) => (
+                  <div className={cn(styles[`star${e}`], styles.star)} key={f}>
+                    {getGachaNumsAndRates(e, f)}
+                  </div>
+                ))}
               </div>
-            ))
-          ) : (
-            <div className={styles.tip}>暂无五星数据</div>
-          )}
+            ))}
+          </div>
         </div>
-      )}
+        {calenderList.length > 0 && (
+          <div>
+            <div className={styles.poolName}>〓五星出货详情〓</div>
+            {pools.length > 0 ? (
+              pools.map((e) => (
+                <div key={e.title} className={styles.poolList}>
+                  <span>{e.title}</span>
+                  <div>
+                    {e.list.map((item, i) => {
+                      const role = calenderList.filter((e) => e.title === item.name)[0];
+                      const showDetail = (item: { name: string; times: number }) => {
+                        const pn = item.times * 160;
+                        const msg = `${item.name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
+                        notice.success({ message: msg });
+                      };
+                      const isLimit = !NormalItemList.includes(item.name);
+                      const style = item.times > 72 ? "red" : item.times > 60 ? "orange" : "green";
+                      return (
+                        <div
+                          onClick={() => showDetail(item)}
+                          title={item.name}
+                          key={item.name + i}
+                          className={styles.avatar}
+                        >
+                          <img key={item.name + i} src={role?.img_url} alt={item.name} />
+                          <span className={styles[style]}>{item.times}</span>
+                          {isLimit && <span>限定</span>}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className={styles.tip}>暂无五星数据</div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

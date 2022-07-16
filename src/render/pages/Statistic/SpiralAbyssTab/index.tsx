@@ -68,7 +68,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
           <div className={styles.row}>
             {data.reveal_rank.length > 0 && (
               <div className={styles.revealRank}>
-                <div>常用角色</div>
+                <div>〓常用角色〓</div>
                 <div>
                   {data.reveal_rank.map((e, i) => (
                     <img key={i} src={e.avatar_icon} alt={String(e.value)} />
