@@ -106,7 +106,7 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     onClick: (e: TimeRangeDayData) => {
       const limitedList = list.filter((item) => item.time.slice(0, 10) === e.day);
       const message = getListTypeInfo(limitedList);
-      if (message) notice.info({ message });
+      if (message) notice.success({ message });
     }
   };
 

@@ -20,7 +20,6 @@
   .table-name {
     .ani-show-top();
 
-    font-size: 18px;
     margin-bottom: 12px;
     padding-left: 6px;
     border-left: 4px solid @color-accent;
@@ -42,13 +41,14 @@
       div {
         .transition-quick();
 
+        font-size: 15px;
         border-radius: 3px;
         border: 1px solid @color-second;
-        height: 28px;
+        height: 24px;
         line-height: $height;
-        margin: 1px 3px;
+        margin: 1px 5px;
         text-align: center;
-        width: 146px;
+        width: 140px;
 
         &:hover {
           background-color: @color-bg-deep;
@@ -80,8 +80,8 @@
     .avatar {
       .transition();
 
-      width: 42px;
-      height: 42px;
+      width: 48px;
+      height: 48px;
       margin: 2px 4px;
       position: relative;
 
@@ -102,25 +102,39 @@
       }
 
       & > img {
-        width: 42px;
-        height: 42px;
+        width: 48px;
+        height: 48px;
         background-color: @color-star-5;
         border-radius: 4px;
         overflow: hidden;
       }
 
       & > span {
-        border-top-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        bottom: 0;
         color: @color-white;
-        font-size: 9px;
-        height: 16px;
-        line-height: 18px;
+        font-size: 10px;
         position: absolute;
-        right: 0;
         text-align: center;
-        width: 16px;
+      }
+
+      & > span:nth-child(2) {
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 4px;
+        bottom: 0;
+        height: 18px;
+        line-height: 20px;
+        right: 0;
+        width: 18px;
+      }
+
+      & > span:nth-child(3) {
+        background-color: @color-success;
+        border-bottom-right-radius: 8px;
+        border-top-left-radius: 4px;
+        height: 14px;
+        left: 0;
+        line-height: 16px;
+        top: 0;
+        width: 26px;
       }
     }
   }

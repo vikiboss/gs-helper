@@ -10,6 +10,7 @@ import type { PageProp } from "..";
 import type { CalenderEvent } from "../../../../services/getCalenderList";
 
 import styles from "./index.less";
+import { NomalItemList as NormalItemList } from "../../../../constants";
 
 type TableRow = "3" | "4" | "5" | "合计";
 type TableColumn = GachaType | "合计";
@@ -41,7 +42,9 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
     const starList = isAllStar ? gacha.list : gacha.list.filter((e) => e.rank_type === rank);
     const gachaList = isAllType ? gacha.list : getListByType(gacha.list, type);
     const itemList = isAllType ? starList : getListByType(starList, type);
-    return `${itemList.length}/${((itemList.length * 100) / (gachaList.length || 1)).toFixed(2)}%`;
+    return `${itemList.length} / ${((itemList.length * 100) / (gachaList.length || 1)).toFixed(
+      2
+    )}%`;
   };
 
   const getPoolsNamesByList = (list: GachaData["list"]) => {
@@ -75,7 +78,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
         <div className={styles.tableName}>出货数、出货率</div>
         <div className={styles.detailTable}>
           <div>
-            <div className={styles.head}>出货数/率</div>
+            <div className={styles.head}>出货数 / 率</div>
             <div className={styles.head}>角色池</div>
             <div className={styles.head}>武器池</div>
             <div className={styles.head}>常驻池</div>
@@ -108,6 +111,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     const msg = `${item.name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
                     notice.success({ message: msg });
                   };
+                  const isLimit = !NormalItemList.includes(item.name);
                   const style = item.times > 75 ? "red" : item.times > 60 ? "orange" : "green";
                   return (
                     <div
@@ -118,6 +122,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     >
                       <img key={item.name + i} src={role?.img_url} alt={item.name} />
                       <span className={styles[style]}>{item.times}</span>
+                      {isLimit && <span>限定</span>}
                     </div>
                   );
                 })}

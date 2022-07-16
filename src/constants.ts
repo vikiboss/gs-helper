@@ -71,6 +71,24 @@ export const GachaTypeMap: Record<string, string> = {
   "100": "新手祈愿"
 };
 
+export const NomalItemList: string[] = [
+  "刻晴",
+  "莫娜",
+  "七七",
+  "迪卢克",
+  "琴",
+  "阿莫斯之弓",
+  "天空之翼",
+  "四风原典",
+  "天空之卷",
+  "和璞鸢",
+  "天空之脊",
+  "狼的末路",
+  "天空之傲",
+  "天空之刃",
+  "风鹰剑"
+];
+
 // nivo 图表库的主题数据
 export const ChartTheme = {
   background: "#f9f6f2",
