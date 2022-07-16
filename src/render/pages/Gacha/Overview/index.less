@@ -2,123 +2,27 @@
 @import "../../../utils/utils.less";
 
 .content {
-  .flex-column();
+  .ani-show-right();
 
+  display: flex;
   height: 428px;
-  // 此处就不需要 hidden 了，防止 toolip 被遮挡
-  // overflow: hidden;
+  justify-content: space-between;
+  overflow: hidden;
   width: 920px;
-
-  .time-range-container {
-    width: 570px;
-    display: flex;
-    justify-content: flex-end;
-  }
-
-  .table-name {
-    font-size: 18px;
-    margin-bottom: 12px;
-    margin-left: 42px;
-    padding-left: 6px;
-    border-left: 4px solid @color-accent;
-  }
 }
 
-.row {
-  .flex();
-
-  width: 920px;
-
-  &:first-child {
-    height: 190px;
-
-    & > div {
-      .ani-show-top();
-    }
-  }
-
-  &:nth-child(2) {
-    .ani-show-bottom();
-
-    justify-content: space-between;
-  }
+.star {
+  font-size: 14px;
 }
 
-.filter {
-  z-index: 10;
+.star-5 {
+  color: @color-star-5;
+}
 
-  .filter-title {
-    font-size: 18px;
-    margin-bottom: 12px;
-    padding-left: 6px;
-    border-left: 4px solid @color-accent;
-  }
+.star-4 {
+  color: @color-star-4;
+}
 
-  .pieTitle {
-    font-size: 18px;
-    margin-top: 20px;
-    padding-left: 6px;
-    border-left: 4px solid @color-accent;
-  }
-
-  .tip {
-    color: @color-second;
-    font-size: 14px;
-    margin-top: 12px;
-  }
-
-  .filter-zone {
-    .flex-column();
-
-    .filter-btns {
-      display: flex;
-
-      .btn {
-        .transition();
-
-        background-color: @color-bg;
-        border: 1px solid @color-second;
-        border-radius: 4px;
-        color: @color-second;
-        cursor: pointer;
-        font-size: 14px;
-        height: 18px;
-        margin: 3px;
-        padding: 1px 6px;
-        text-align: center;
-      }
-
-      .active {
-        color: @color-white;
-      }
-
-      .btn-active {
-        .active();
-
-        background-color: @color-star-5;
-        border-color: @color-star-5;
-      }
-
-      .select {
-        .btn();
-
-        margin-right: 14px;
-        position: relative;
-
-        &::before {
-          color: @color-second;
-          content: "|";
-          left: 46px;
-          position: absolute;
-        }
-      }
-
-      .select-all {
-        .active();
-
-        background-color: @color-primary;
-        border-color: @color-primary;
-      }
-    }
-  }
+.star-3 {
+  color: @color-star-3;
 }

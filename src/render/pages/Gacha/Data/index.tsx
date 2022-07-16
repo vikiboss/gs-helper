@@ -108,6 +108,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     const msg = `${item.name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
                     notice.success({ message: msg });
                   };
+                  const style = item.times > 75 ? "red" : item.times > 60 ? "orange" : "green";
                   return (
                     <div
                       onClick={() => showDetail(item)}
@@ -116,7 +117,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                       className={styles.avatar}
                     >
                       <img key={item.name + i} src={role?.img_url} alt={item.name} />
-                      <span>{item.times}</span>
+                      <span className={styles[style]}>{item.times}</span>
                     </div>
                   );
                 })}

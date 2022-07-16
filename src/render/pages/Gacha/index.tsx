@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
-import Analysis from "./Data";
+import Data from "./Data";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
 import Overview from "./Overview";
-import Prediction from "./Analysis";
+import Statistics from "./Statistics";
 import Select from "../../components/Select";
 import SelectButton from "../../components/SelectButton";
 import styles from "./index.less";
@@ -58,7 +58,7 @@ const DefaultFilters: FilterType = {
   star: [3, 4, 5]
 };
 
-type Pages = "overview" | "analysis" | "prediction";
+type Pages = "overview" | "data" | "statistics";
 
 const Gacha: React.FC = () => {
   const notice = useNotice();
@@ -189,16 +189,16 @@ const Gacha: React.FC = () => {
 
   const items = [
     { value: "overview", label: "总览" },
-    { value: "analysis", label: "数据" },
-    { value: "prediction", label: "分析" }
+    { value: "data", label: "数据" },
+    { value: "statistics", label: "统计" }
   ];
 
   const isEmpty = !loading && link !== null && gachas.length === 0;
 
   const PageMap: Record<Pages, React.FC<PageProp>> = {
     overview: Overview,
-    analysis: Analysis,
-    prediction: Prediction
+    statistics: Statistics,
+    data: Data
   };
 
   const Page = PageMap[type];
