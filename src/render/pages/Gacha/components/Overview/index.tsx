@@ -107,22 +107,22 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
         </div>
         <div>
           {MostInfo.unluckest.valid && (
-            <span className={styles.item}>
+            <span className={styles.item} style={{backgroundColor: "#505a6d",}}>
               最非酋的五星：{MostInfo.unluckest.name}，{MostInfo.unluckest.count} 发才出
             </span>
           )}
           {MostInfo.luckest.valid && (
-            <span className={styles.item}>
+            <span className={styles.item} style={{backgroundColor: "#e4b44d",}}>
               最欧皇的五星：{MostInfo.luckest.name}，{MostInfo.luckest.count} 发就出啦
             </span>
           )}
           {MostInfo.predestined.valid && MostInfo.predestined.count >= 2 && (
-            <span className={styles.item}>
+            <span className={styles.item} style={{backgroundColor: "#de6c9d",}}>
               最有缘的五星：{MostInfo.predestined.name}，重复抽到 {MostInfo.predestined.count} 次
             </span>
           )}
           {maxTimes >= 10 && (
-            <span className={styles.item}>
+            <span className={styles.item} style={{backgroundColor: "#9d78d2",}}>
               最疯狂的一天：{maxDay}，这天一共抽了 {maxTimes} 次!
             </span>
           )}
