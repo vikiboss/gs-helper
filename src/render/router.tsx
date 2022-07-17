@@ -1,17 +1,17 @@
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-import About from "./pages/About";
-import Daily from "./pages/Daily";
-import Gacha from "./pages/Gacha";
-import Statistic from "./pages/Statistic";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Note from "./pages/Note";
-import Role from "./pages/Role";
-import Setting from "./pages/Setting";
-import Sign from "./pages/Sign";
-import Strategy from "./pages/Strategy";
+import About from "./pages/about";
+import Daily from "./pages/daily";
+import Gacha from "./pages/gacha";
+import Statistic from "./pages/statistic";
+import Home from "./pages/home";
+import Login from "./pages/login";
+import Note from "./pages/note";
+import Role from "./pages/role";
+import Setting from "./pages/setting";
+import Sign from "./pages/sign";
+import Strategy from "./pages/strategy";
 
 const AppRouter: React.FC = () => {
   return (
