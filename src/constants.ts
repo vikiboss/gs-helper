@@ -2,6 +2,7 @@
 export const IPCEvents: Record<string, string> = {
   changeUser: "CHANGE_USER",
   closeApp: "CLOSE_APP",
+  clearData: "CLEAR_DATA",
   deleteUser: "DELETE_USER",
   doBBSSign: "DO_BBS_SIGN",
   getAppInfo: "GET_APP_INFO",

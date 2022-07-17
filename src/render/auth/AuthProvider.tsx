@@ -23,8 +23,9 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
   }, []);
 
   const login = () => setIsLogin(true);
-  const logout = async (uid?: string) => {
+  const logout = async (uid?: string, isClear: boolean = false) => {
     setIsLogin(false);
+    if (isClear) return;
     if (uid) {
       nativeApi.deleteUser(uid);
     } else {

@@ -8,6 +8,7 @@ import type { GachaData, AppInfo, UserData } from "./typings";
 // 通过 contextBridge 将 API 安全的挂载到 render 进程的全局变量 window 中
 contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   changeUser: (uid: string) => IPC.invoke(IPCEvents.changeUser, uid),
+  clearData: () => IPC.invoke(IPCEvents.clearData),
   closeApp: () => IPC.send(IPCEvents.closeApp),
   deleteUser: (uid: string) => IPC.send(IPCEvents.deleteUser, uid),
   doBBSSign: () => IPC.invoke(IPCEvents.doBBSSign),

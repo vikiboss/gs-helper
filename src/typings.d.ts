@@ -18,6 +18,7 @@ import type { Store } from "electron-store";
 
 export interface NativeApi {
   changeUser: (uid: string) => Promise<void>;
+  clearData: () => Promise<boolean>;
   closeApp: () => void;
   deleteUser: (uid: string) => void;
   doBBSSign: () => Promise<boolean>;

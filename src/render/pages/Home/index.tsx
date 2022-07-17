@@ -23,6 +23,7 @@ import type { SignInfo } from "../../../services/getBBSSignInfo";
 import type { GameRole } from "../../../typings";
 
 import styles from "./index.less";
+import Loading from "../../components/Loading";
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -184,7 +185,7 @@ const Home: React.FC = () => {
                 handleCopy={handleCopy}
               />
             ) : (
-              <div className={styles.loading}>Loading...</div>
+              <Loading className={styles.loading} />
             )
           ) : (
             <div className={styles.noLoginContainer}>
