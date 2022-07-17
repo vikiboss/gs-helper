@@ -71,16 +71,30 @@
 
       margin: 4px 0;
 
-      & > span {
-        align-self: flex-start;
-        border-left: 4px solid @color-accent;
+      & > div:nth-child(1) {
+        .flex-center-y-column();
+
+        align-items: flex-end;
+        border-right: 3px solid @color-accent;
         margin-right: 8px;
         margin-top: 4px;
-        padding-left: 6px;
+        padding-right: 8px;
         width: 54px;
+
+        & > span {
+          margin: 4px 0;
+        }
+
+        & > span:nth-child(1) {
+          font-size: 18px;
+        }
+
+        & > span:nth-child(2) {
+          color: @color-second;
+        }
       }
 
-      & > div {
+      & > div:nth-child(2) {
         .flex-wrap();
 
         flex: 1;
@@ -126,9 +140,9 @@
 
         & > span:nth-child(2) {
           border-bottom-right-radius: 4px;
-          border-left: 2px solid @color-white;
+          border-left: 2px solid @color-bg;
           border-top-left-radius: 4px;
-          border-top: 2px solid @color-white;
+          border-top: 2px solid @color-bg;
           bottom: 0;
           height: 18px;
           line-height: 20px;
@@ -139,9 +153,9 @@
         & > span:nth-child(3) {
           background-color: @color-success;
           border-bottom-right-radius: 6px;
-          // border-right: 2px solid @color-white;
+          // border-right: 2px solid @color-bg;
           border-top-left-radius: 4px;
-          // border-bottom: 2px solid @color-white;
+          // border-bottom: 2px solid @color-bg;
           height: 14px;
           left: 0;
           line-height: 16px;

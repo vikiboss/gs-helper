@@ -193,7 +193,7 @@ const Gacha: React.FC = () => {
     { value: "statistics", label: "统计" }
   ];
 
-  const isEmpty = !loading && link !== null && gachas.length === 0;
+  const isEmpty = gachas.length === 0;
 
   const PageMap: Record<Pages, React.FC<PageProp>> = {
     overview: Overview,

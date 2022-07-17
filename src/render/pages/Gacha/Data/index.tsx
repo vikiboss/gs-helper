@@ -93,20 +93,31 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
             {pools.length > 0 ? (
               pools.map((e) => (
                 <div key={e.title} className={styles.poolList}>
-                  <span>{e.title}</span>
+                  <div>
+                    <span>{e.title}</span>
+                    <span>
+                      {e.list.filter((e) => NormalItemList.includes(e.name)).length}
+                      {e.name !== "normal" &&
+                        `+${e.list.filter((e) => !NormalItemList.includes(e.name)).length}`}
+                    </span>
+                  </div>
                   <div>
                     {e.list.map((item, i) => {
                       const role = calenderList.filter((e) => e.title === item.name)[0];
-                      const showDetail = (item: { name: string; times: number }) => {
+                      const showDetail = (
+                        item: { name: string; times: number },
+                        isLimit: boolean
+                      ) => {
                         const pn = item.times * 160;
-                        const msg = `${item.name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
+                        const name = (isLimit ? "限定五星" : "五星") + item.name;
+                        const msg = `${name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
                         notice.success({ message: msg });
                       };
                       const isLimit = !NormalItemList.includes(item.name);
                       const style = item.times > 72 ? "red" : item.times > 60 ? "orange" : "green";
                       return (
                         <div
-                          onClick={() => showDetail(item)}
+                          onClick={() => showDetail(item, isLimit)}
                           title={item.name}
                           key={item.name + i}
                           className={styles.avatar}
