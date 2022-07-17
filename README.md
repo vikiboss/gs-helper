@@ -86,6 +86,10 @@
 
 > 待补充...
 
+### 下载
+
+- [蓝奏云](https://viki.lanzout.com/i6B7307yt7pi)
+
 ### 本地开发
 
 ```bash
