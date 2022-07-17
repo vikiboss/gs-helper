@@ -88,7 +88,7 @@ const Month: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.title}>旅行者札记</div>
+        <div className={styles.title}>冒险札记</div>
         {monthInfos[0]?.account_id ? (
           <div className={styles.content}>
             <div className={styles.greeting}>
@@ -154,7 +154,7 @@ const Month: React.FC = () => {
                   <span>
                     相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
                     {monthData.last_primogems > 0 &&
-                      `，相比上月${pSign ? " +" : " -"}${Math.abs(monthData.primogems_rate)}%`}
+                      `，相比上月 ${pSign ? "+" : "-"}${Math.abs(monthData.primogems_rate)}%`}
                   </span>
                 </div>
                 <div className={styles.monthItem}>
@@ -180,8 +180,7 @@ const Month: React.FC = () => {
               </div>
             </div>
             <div className={styles.tip}>
-              ※ 仅统计 「充值途径」
-              之外获取的资源，支持查询近三个月的数据，可能存在延迟，请以游戏内为准，此处仅供参考。
+              ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
             </div>
           </div>
         ) : (

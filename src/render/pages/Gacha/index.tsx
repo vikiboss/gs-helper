@@ -173,8 +173,8 @@ const Gacha: React.FC = () => {
   const format = (str: string) => D(str).format("YYYY/M/D HH:mm");
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`;
 
-  const handleImport = () => notice.warning({ message: "导入功能暂未开放" });
-  const handleExport = () => notice.warning({ message: "导出功能暂未开放" });
+  const handleImport = () => notice.warning({ message: "导入功能仍处于开发中" });
+  const handleExport = () => notice.warning({ message: "导出功能仍处于开发中" });
   const handleBack = () => {
     if (loading) {
       notice.warning({ message: "请耐心等待数据加载完成..." });
