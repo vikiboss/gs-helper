@@ -20,8 +20,14 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
 
   useEffect(() => {
     (async () => {
-      const list = await nativeApi.getCalenderList();
-      if (list.length > 0) setCalenderList(list);
+      try {
+        const list = await nativeApi.getCalenderList();
+        if (list.length > 0) setCalenderList(list);
+      } catch (e) {
+        const isOffline = e?.message?.includes("getaddrinfo");
+        const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+        notice.faild({ message: msg });
+      }
     })();
   }, []);
 
@@ -87,7 +93,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
             ))}
           </div>
         </div>
-        {calenderList.length > 0 && (
+        {calenderList.length > 0 ? (
           <div>
             <div className={styles.poolName}>〓五星出货详情〓</div>
             {pools.length > 0 ? (
@@ -135,6 +141,8 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
               <div className={styles.tip}>暂无五星数据</div>
             )}
           </div>
+        ) : (
+          <div className={styles.tip}>正在获取角色图片...</div>
         )}
       </div>
     </div>

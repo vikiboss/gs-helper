@@ -33,7 +33,6 @@ const getMostInfo = (gacha: GachaData) => {
 
     memo[e.name] ? memo[e.name]++ : (memo[e.name] = 1);
   }
-  console.log("memo", memo);
   for (const [k, v] of Object.entries(memo)) {
     if (Number(v) > predestined.count) {
       predestined.name = k;

@@ -39,7 +39,7 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
       <div className={styles.tip}>上次数据更新时间：{updateTime}</div>
       <div className={styles.cards}>
         {statictics.map((e) => (
-          <div className={cn(styles.luck, styles["luck-" + getLevel(e.times)])}>
+          <div key={e.name} className={cn(styles.luck, styles["luck-" + getLevel(e.times)])}>
             <div className={styles.name}>{e.name}</div>
             <div className={styles.sumary}>
               <div className={styles.count}>{e.times}</div>
@@ -107,22 +107,22 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
         </div>
         <div>
           {MostInfo.unluckest.valid && (
-            <span className={styles.item} style={{backgroundColor: "#505a6d",}}>
+            <span className={styles.item} style={{ backgroundColor: "#505a6d" }}>
               最非酋的五星：{MostInfo.unluckest.name}，{MostInfo.unluckest.count} 发才出
             </span>
           )}
           {MostInfo.luckest.valid && (
-            <span className={styles.item} style={{backgroundColor: "#e4b44d",}}>
+            <span className={styles.item} style={{ backgroundColor: "#e4b44d" }}>
               最欧皇的五星：{MostInfo.luckest.name}，{MostInfo.luckest.count} 发就出啦
             </span>
           )}
           {MostInfo.predestined.valid && MostInfo.predestined.count >= 2 && (
-            <span className={styles.item} style={{backgroundColor: "#de6c9d",}}>
+            <span className={styles.item} style={{ backgroundColor: "#8ab648" }}>
               最有缘的五星：{MostInfo.predestined.name}，重复抽到 {MostInfo.predestined.count} 次
             </span>
           )}
           {maxTimes >= 10 && (
-            <span className={styles.item} style={{backgroundColor: "#9d78d2",}}>
+            <span className={styles.item} style={{ backgroundColor: "#9d78d2" }}>
               最疯狂的一天：{maxDay}，这天一共抽了 {maxTimes} 次!
             </span>
           )}

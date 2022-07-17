@@ -191,7 +191,7 @@ const Gacha: React.FC = () => {
     { value: "statistics", label: "统计" }
   ];
 
-  const isEmpty = gachas.length === 0;
+  const isEmpty = !loading && gachas.length === 0;
 
   const PageMap: Record<Pages, React.FC<PageProp>> = {
     overview: Overview,
@@ -235,7 +235,7 @@ const Gacha: React.FC = () => {
               />
             )}
             <div className={styles.rightZone}>
-              {!isEmpty && (
+              {gachas.length !== 0 && (
                 <SelectButton
                   changeItem={setType}
                   className={styles.selectBtn}
@@ -246,12 +246,12 @@ const Gacha: React.FC = () => {
               <div className={styles.icon} title='导入单个 UID 祈愿数据' onClick={handleImport}>
                 <BiImport size={20} title='导入单个 UID 祈愿数据' />
               </div>
-              {!isEmpty && (
+              {gachas.length !== 0 && (
                 <div className={styles.icon} title='导出当前 UID 的祈愿数据' onClick={handleExport}>
                   <BiExport size={20} title='导出当前 UID 的祈愿数据' />
                 </div>
               )}
-              {!isEmpty && (
+              {gachas.length !== 0 && (
                 <Select
                   wrapperStyle={{ marginLeft: "12px" }}
                   name='UID'

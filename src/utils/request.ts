@@ -5,7 +5,7 @@ import { store } from "../main";
 
 // 创建 Axios 实例并设置默认配置、请求头等
 const request = axios.create({
-  timeout: 6000,
+  timeout: 10000,
   headers: {
     "User-Agent": APP_USER_AGENT_BBS,
     "x-rpc-app_version": "2.32.1",

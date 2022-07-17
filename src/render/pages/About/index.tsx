@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 
-import CircleButton from "../../components/CircleButton";
-import wxRewardCode from "../../../assets/wx-reward.jpg";
-import aliPayCode from "../../../assets/ali-pay.png";
-import groupQRCode from "../../../assets/group-qrcode.png";
 import { LINK_GITHUB_REPO } from "../../../constants";
+import aliPayCode from "../../../assets/ali-pay.png";
+import CircleButton from "../../components/CircleButton";
+import groupQRCode from "../../../assets/group-qrcode.png";
 import nativeApi from "../../utils/nativeApi";
+import wxRewardCode from "../../../assets/wx-reward.jpg";
 
 import styles from "./index.less";
 

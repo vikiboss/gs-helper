@@ -20,11 +20,15 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
   if (!isDirExist(GachaDataDirPath)) fs.mkdirSync(GachaDataDirPath);
   // 获取该 UID 的数据文件路径
   const GachaFilePath = path.join(GachaDataDirPath, `${uid}.json`);
-  if (!isFileExist(GachaFilePath)) {
+  const isNewData = !isFileExist(GachaFilePath);
+  if (isNewData) {
+    // 合并处理
+    const list = mergeGachaList([], gacha.list);
+    const data = { info: gacha.info, list };
     // 如果该 UID 数据不存在，则说明是第一次获取，直接将该文件保存
-    fs.writeFileSync(GachaFilePath, JSON.stringify(gacha), { encoding: "utf-8" });
+    fs.writeFileSync(GachaFilePath, JSON.stringify(data), { encoding: "utf-8" });
     // 直接返回参数里的祈愿数据
-    return gacha;
+    return data;
   } else {
     // 如果该 UID 数据存在，则先读取旧数据，然后做合并处理
     try {
@@ -34,10 +38,11 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
       // 合并处理
       const list = mergeGachaList(LocalGacha.list, gacha.list);
       // 写入新数据
-      const fileContent = JSON.stringify({ info: gacha.info, list });
+      const data = { info: gacha.info, list };
+      const fileContent = JSON.stringify(data);
       fs.writeFileSync(GachaFilePath, fileContent, { encoding: "utf-8" });
       // 返回合并后的祈愿数据
-      return { info: gacha.info, list };
+      return data;
     } catch {
       // JSON 解析出错时，返回空数据
       return DefaultGachaData;
