@@ -157,8 +157,6 @@ const Gacha: React.FC = () => {
     if (url) {
       if (isUserTrriger) {
         notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
-      } else {
-        notice.success({ message: "已自动获取本地 「祈愿记录链接」", duration: 1200 });
       }
     } else {
       const message = "本地日志中不存在有效链接，请先在本地游戏内打开 「祈愿历史记录」 页面";
