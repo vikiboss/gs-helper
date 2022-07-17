@@ -52,20 +52,23 @@
   - 深渊螺旋
   - 成就数
   - 角色数
+- [x] 重构祈愿分析页 UI
+- [x] 完善数据分析、展示、预测等功能
 - [ ] 米游社定时签到
 - [ ] 自动完成米游社米游币任务
 - [ ] 完善设置页 UI 布局
 - [ ] 完善设置选项与功能
-- [x] 重构祈愿分析页 UI
-- [x] 完善数据分析、展示、预测等功能
 
 ### 界面展示
 
 > 注意：项目仍在开发中，细节及部分页面的设计仍在调整当中，此处截图仅供参考，不代表最终发布的样式。
 
 ![demo1](docs/imgs/demo1.png)
-![demo2](docs/imgs/demo2.png)
 ![demo3](docs/imgs/demo3.png)
+![demo19](docs/imgs/demo19.png)
+![demo17](docs/imgs/demo17.png)
+![demo18](docs/imgs/demo18.png)
+![demo2](docs/imgs/demo2.png)
 ![demo4](docs/imgs/demo4.png)
 ![demo5](docs/imgs/demo5.png)
 ![demo6](docs/imgs/demo6.png)
@@ -79,6 +82,7 @@
 ![demo14](docs/imgs/demo14.png)
 ![demo15](docs/imgs/demo15.png)
 ![demo16](docs/imgs/demo16.png)
+![demo20](docs/imgs/demo20.png)
 
 > 待补充...
 
