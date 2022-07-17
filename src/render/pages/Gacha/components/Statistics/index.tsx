@@ -3,18 +3,18 @@ import cn from "classnames";
 import D from "dayjs";
 import React from "react";
 
-import DateRange from "./Charts/DateRange";
-import filterGachaList from "../utils/filterGachaList";
-import getPieData from "../utils/getPieData";
-import ItemPie from "./Charts/ItemPie";
-import StarPie from "./Charts/StarPie";
-import transformGachaDataDate from "../utils/transformGachaDataDate";
-import TypePie from "./Charts/TypePie";
+import DateRange from "./components/DateRange";
+import filterGachaList from "../../utils/filterGachaList";
+import getPieData from "../../utils/getPieData";
+import ItemPie from "./components/ItemPie";
+import StarPie from "./components/StarPie";
+import transformGachaDataDate from "../../utils/transformGachaDataDate";
+import TypePie from "./components/TypePie";
 
-import type { GachaData, GachaItemType, GachaType, StarType } from "../../../../typings";
+import type { GachaData, GachaItemType, GachaType, StarType } from "../../../../../typings";
 
 import styles from "./index.less";
-import { PageProp } from "..";
+import { PageProp } from "../../";
 
 type FilterBtn = { name: string; type: StarType | GachaType | GachaItemType };
 

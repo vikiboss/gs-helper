@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import D from "dayjs";
 import React, { useEffect, useState } from "react";
 
-import Data from "./Data";
+import Data from "./components/Data";
 import Button from "../../components/Button";
 import CircleButton from "../../components/CircleButton";
 import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
-import Overview from "./Overview";
-import Statistics from "./Statistics";
+import Overview from "./components/Overview";
+import Statistics from "./components/Statistics";
 import Select from "../../components/Select";
 import SelectButton from "../../components/SelectButton";
 import styles from "./index.less";
@@ -271,7 +271,7 @@ const Gacha: React.FC = () => {
           <Page gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />
         ) : (
           <div style={{ display: "flex", flex: 1 }}>
-            <Loading text={link === null ? "" : loadingText} isEmpty={!isEmpty} />
+            <Loading text={link === null ? "" : loadingText} isEmpty={isEmpty} />
           </div>
         )}
         {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}

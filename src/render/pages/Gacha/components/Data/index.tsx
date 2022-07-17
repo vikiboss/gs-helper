@@ -1,14 +1,14 @@
 import cn from "classnames";
 import React, { useEffect, useState } from "react";
 
-import { GachaMap } from "..";
-import { NormalItemList } from "../../../../constants";
-import getListByType from "../utils/getListByType";
-import nativeApi from "../../../utils/nativeApi";
+import { GachaMap } from "../..";
+import { NormalItemList } from "../../../../../constants";
+import getListByType from "../../utils/getListByType";
+import nativeApi from "../../../../utils/nativeApi";
 
-import type { GachaData, GachaType } from "../../../../typings";
-import type { PageProp } from "..";
-import type { CalenderEvent } from "../../../../services/getCalenderList";
+import type { GachaData, GachaType } from "../../../../../typings";
+import type { PageProp } from "../..";
+import type { CalenderEvent } from "../../../../../services/getCalenderList";
 
 import styles from "./index.less";
 
