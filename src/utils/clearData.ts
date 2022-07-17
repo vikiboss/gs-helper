@@ -15,7 +15,7 @@ const clearData = async () => {
   } else {
     try {
       await fs.promises.unlink(GachaDataDirPath);
-      const data = JSON.stringify(DefaultAppData);
+      const data = JSON.stringify(DefaultAppData, undefined, 2);
       await fs.promises.writeFile(GachaDataDirPath, data, { encoding: "utf-8" });
       return true;
     } catch {
