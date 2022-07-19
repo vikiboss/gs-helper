@@ -6,7 +6,9 @@
 
 ### 下载
 
-- [蓝奏云](https://viki.lanzout.com/i6B7307yt7pi)
+- `v1.1.0` 测试版
+  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.0/genshin-helper-win32-x64-1.1.0.zip)
+  - [蓝奏云](https://viki.lanzout.com/i6B7307yt7pi)
 
 ### 介绍
 
