@@ -4,17 +4,17 @@
 
 > 🚧 请注意：本项目仍在开发中。
 
-### 下载
-
-- `v1.1.0` 测试版
-  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.0/genshin-helper-win32-x64-1.1.0.zip)
-  - [蓝奏云](https://viki.lanzout.com/i6B7307yt7pi)
-
 ### 介绍
 
 一个为 _《原神》_ 玩家精心编写的开源小工具，基于 [Electron](https://www.electronjs.org/) 和 [React](https://reactjs.org/)。
 
 > [_《原神》_](https://ys.mihoyo.com/) 是由 [米哈游](https://www.mihoyo.com/) 公司制作发行的一款开放世界冒险游戏。
+
+### 下载
+
+- `v1.1.1` 测试版，[更新日志](https://github.com/Vikiboss/genshin-helper/releases/tag/1.1.1)
+  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.1/genshin-helper-win32-x64-1.1.1.zip)
+  - [蓝奏云](https://viki.lanzout.com/iEAlK092z21a)
 
 ### 进度
 
@@ -68,6 +68,8 @@
 ### 界面展示
 
 > 注意：项目仍在开发中，细节及部分页面的设计仍在调整当中，此处截图仅供参考，不代表最终发布的样式。
+
+如果界面图加载不出来，请科学上网后刷新页面。
 
 ![demo1](docs/imgs/demo1.png)
 ![demo3](docs/imgs/demo3.png)
