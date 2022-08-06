@@ -157,42 +157,42 @@ const UserCard: React.FC<UserCardProp> = (props) => {
 
   const notes = [
     {
-      detail: `每日委托任务 ${taskStatus} ${isTaskDone ? "" : "ℹ️"}`,
+      detail: `每日委托任务 ${taskStatus} ${isTaskDone ? "" : "◀"}`,
       icon: taskIcon,
       title: taskTitle,
       ok: isTaskDone,
       name: "task"
     },
     {
-      detail: `值得铭记的强敌 ${discountStatus} ${isDiscountDone ? "" : "ℹ️"}`,
+      detail: `值得铭记的强敌 ${discountStatus} ${isDiscountDone ? "" : "◀"}`,
       icon: discountIcon,
       title: discountTitle,
       ok: isDiscountDone,
       name: "discount"
     },
     {
-      detail: `参量质变仪 ${transformerStatus} ${!isTransformerReady ? "" : "ℹ️"}`,
+      detail: `参量质变仪 ${transformerStatus} ${!isTransformerReady ? "" : "◀"}`,
       icon: transformerIcon,
       title: transformerTitle,
       ok: isTransformerReady,
       name: "transformer"
     },
     {
-      detail: `米游社签到 ${signStatus} ${sign.is_sign ? "" : "ℹ️"}`,
+      detail: `米游社签到 ${signStatus} ${sign.is_sign ? "" : "◀"}`,
       icon: bbsIcon,
       title: signTitle,
       ok: sign.is_sign,
       name: "sign"
     },
     {
-      detail: `原粹树脂 ${resinStatus} ${!isResinFull ? "" : "ℹ️"}`,
+      detail: `原粹树脂 ${resinStatus} ${!isResinFull ? "" : "◀"}`,
       title: resinTitle,
       ok: isResinFull,
       icon: resinIcon,
       name: "resin"
     },
     {
-      detail: `洞天宝钱 ${homeStatus} ${!isHomeFull ? "" : "ℹ️"}`,
+      detail: `洞天宝钱 ${homeStatus} ${!isHomeFull ? "" : "◀"}`,
       title: homeTitle,
       ok: isHomeFull,
       icon: homeIcon,
@@ -250,14 +250,14 @@ const UserCard: React.FC<UserCardProp> = (props) => {
           <div className={styles.noteDetail}>
             <img src={prestigeIcon} className={cn(styles.noteIcon)} />
             {dispatchDetail}
-            {!isDispatchAllReady ? "" : "ℹ️"}
+            {!isDispatchAllReady ? "" : " ◀"}
           </div>
         </div>
         <div className={styles.noteItem}>
           <div className={styles.noteDetail}>
             {dispatchs.map((e) => (
               <div
-                className={cn(styles.dispatchBorder, e.done ? styles.done : "")}
+                className={cn(styles.dispatch, e.done ? styles.done : "")}
                 title={e.title}
                 key={e.avatar}
                 onClick={() => notice[e.done ? "success" : "info"]({ message: e.title })}

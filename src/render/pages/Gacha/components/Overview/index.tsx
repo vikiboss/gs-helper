@@ -49,6 +49,9 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               {e.unluckyDays > 0 && (
                 <span className={styles.tag}>{`已垫 ${e.unluckyDays} 抽`}</span>
               )}
+              {e.unluckyDays_4 > 0 && (
+                <span className={styles.tag}>{`已 ${e.unluckyDays_4} 抽未出紫及以上`}</span>
+              )}
               <span className={styles.tag}>{e.all ? `共计 ${e.all} 抽` : "从未抽过"}</span>
               <span className={styles.tag}>{e.number ? `已出 ${e.number} 金` : "至今未出金"}</span>
               {e.times > 0 && <span className={styles.tag}>{`平均每金 ${e.times} 抽`}</span>}{" "}
@@ -63,23 +66,24 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
       <div className={styles.desc}>
         <div>
           <div>
-            {"※ 共经历 "}
+            {"※ 经历 "}
             <span className={styles.star3}>{luckInfo.count}</span>
             {" 次小保底，歪了 "}
             <span className={styles.star4}>{luckInfo.miss}</span>
-            {" 次"}
-          </div>
-          <div>
-            {"※ 小保底歪的概率："}
+            {" 次，歪的概率："}
             <span className={styles.star5}>{luckInfo.rate}%</span>
           </div>
+          {/* <div>
+            {"※ 小保底歪的概率："}
+            <span className={styles.star5}>{luckInfo.rate}%</span>
+          </div> */}
           {limitRoleTimes > 0 ? (
             <div>
               {"※ 平均每个"}
               <span className={styles.star4}>{"限定五星角色"}</span>
               {"消耗 "}
               <span className={styles.star5}>{Math.round(limitRoleTimes * 160)}</span>
-              {" 原石（ "}
+              {" 原石（"}
               <span className={styles.star5}>{limitRoleTimes}</span>
               {" 抽）"}
             </div>
@@ -95,7 +99,7 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star4}>{"限定五星武器"}</span>
               {"消耗 "}
               <span className={styles.star5}>{Math.round(limitWeaponTimes * 160)}</span>
-              {" 原石（ "}
+              {" 原石（"}
               <span className={styles.star5}>{limitWeaponTimes}</span>
               {" 抽）"}
             </div>
@@ -103,6 +107,18 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
             <div>
               ※ 暂未获得<span className={styles.star4}>{"限定五星武器"}</span>
             </div>
+          )}
+
+          {gacha.list.length > 0 ? (
+            <div>
+              {"※ 共计祈愿 "}
+              <span className={styles.star4}>{gacha.list.length}</span>
+              {" 次，价值 "}
+              <span className={styles.star5}>{gacha.list.length * 160}</span>
+              {" 原石"}
+            </div>
+          ) : (
+            <div>※ 没有祈愿记录</div>
           )}
         </div>
         <div>

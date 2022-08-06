@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { APP_USER_AGENT_BBS } from "../constants";
+import { APP_USER_AGENT_BBS, BBS_VERSION } from "../constants";
 import { store } from "../main";
 
 // 创建 Axios 实例并设置默认配置、请求头等
@@ -8,19 +8,23 @@ const request = axios.create({
   timeout: 10000,
   headers: {
     "User-Agent": APP_USER_AGENT_BBS,
-    "x-rpc-app_version": "2.32.1",
-    "x-rpc-client_type": "5",
     "x-requested-with": "com.mihoyo.hyperion",
-    "x-rpc-channel": "appstore"
+    "x-rpc-app_version": BBS_VERSION,
+    "x-rpc-channel": "appstore",
+    "x-rpc-client_type": "5",
+    "x-rpc-device_model": "iPhone12,8",
+    "x-rpc-device_name": "iPhone",
+    "x-rpc-platform": "ios",
+    "x-rpc-sys_version": "15.6"
   }
 });
 
 // x-rpc-client_type 字段的说明：
 //
 // 1:  iOS Client
-// 2:  Android Client
+// 2:  Android Client // v2.34.1 salt: z8DRIUjNDT7IT5IZXvrUAxyupA1peND9
 // 4:  PC Web
-// 5:  Mobile Web
+// 5:  Mobile Web // v2.34.1 salt: 9nQiU3AV0rJSIBWgdynfoGMGKaklfbM7
 
 request.interceptors.request.use(
   (config) => {

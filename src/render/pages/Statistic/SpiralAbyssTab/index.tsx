@@ -4,6 +4,7 @@ import D from "dayjs";
 import abyssBg from "../../../../assets/abyss-bg.png";
 import BounceNumber from "../../../components/BounceNumber";
 import getServerNameByServer from "../../../../utils/getServerNameByServer";
+import star1 from "../../../../assets/star1.png";
 
 import type { SpiralAbyssState } from "..";
 
@@ -134,7 +135,10 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                 </div>
                 <div>深渊螺旋第 {e.index} 层</div>
                 <div>
-                  ⭐ {e.star}/{e.max_star}
+                  <img src={star1} alt='星星' className={styles.star} />
+                  <span>
+                    {e.star}/{e.max_star}
+                  </span>
                 </div>
                 {/* <div>
                   {e.levels.map((e) => (

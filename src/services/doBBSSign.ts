@@ -19,9 +19,6 @@ const doBBSSign = async (): Promise<boolean> => {
   const postData = { act_id, region: getServerByUid(uid), uid };
   const headers = {
     referer: LINK_BBS_REFERER,
-    "x-rpc-app_version": "2.3.0",
-    "User-Agent":
-      "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/2.3.0",
     cookie,
     DS: getSignDS()
   };

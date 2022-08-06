@@ -25,7 +25,10 @@ const Setting: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.welcome}>持续开发中，敬请期待</div>
-        <Button text='重置配置文件' className={styles.clearCache} onClick={handleClearData} />
+        <div className={styles.clearCache}>
+          <Button text='重置配置文件' onClick={handleClearData} />
+          <span>清空本地所有账号的 Cookie 数据和配置文件（不包括祈愿记录数据），清空后需要重新登录，请谨慎操作！</span>
+        </div>
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

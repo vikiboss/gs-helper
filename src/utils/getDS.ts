@@ -9,7 +9,7 @@ const getRandomStr = (n: number) => {
   return str;
 };
 
-// 比较新的 DS 加密算法，目前貌似 2.3.0 后续版本都能用，Github@lulu666lulu
+// ver 2.34.1
 const getDS = (query: string = "", body: string = "") => {
   const params = {
     salt: "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs",
@@ -23,10 +23,10 @@ const getDS = (query: string = "", body: string = "") => {
   return DS;
 };
 
-// 米游社 2.3.0 版本的签到 DS 算法
+// ver 2.34.1
 export const getSignDS = () => {
   const params = {
-    salt: "h8w582wxwgqvahcdkpvdhbh2w9casgfl",
+    salt: "9nQiU3AV0rJSIBWgdynfoGMGKaklfbM7",
     t: String(Math.floor(Date.now() / 1000)),
     r: getRandomStr(6)
   };

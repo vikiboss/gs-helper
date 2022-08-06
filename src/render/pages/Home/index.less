@@ -281,7 +281,7 @@
   // border-right : 1px solid @color-primary;
 
   .avatar {
-    .transition();
+    .transition-quick();
     .flex-center();
 
     // background-image : url("../../../assets/avatar-border-hover.png");
@@ -368,26 +368,36 @@
       height: 26px;
       line-height: 26px;
 
-      .dispatch-border {
-        .transition-quick();
-        .flex-center();
+      .dispatch {
+        .transition();
+        .flex();
 
-        border: 2px solid @color-accent;
-        border-radius: 15px;
+        align-items: flex-end;
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 14px;
+        border: 2px solid @color-success;
+        height: 24px;
+        justify-content: center;
         margin-right: 8px;
         overflow: hidden;
+        width: 24px;
 
         .dispatch-avatar {
-          height: 24px;
+          height: 30px;
+        }
+
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.6);
         }
 
         &:active {
-          border-color: @color-white;
+          background-color: rgba(255, 255, 255, 0.6);
         }
       }
 
       .done {
-        border-color: @color-success;
+        border-color: @color-accent;
+        background-color: @color-accent-light;
       }
     }
   }
