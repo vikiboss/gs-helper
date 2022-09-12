@@ -175,8 +175,21 @@ const Gacha: React.FC = () => {
   const format = (str: string) => D(str).format("YYYY/M/D HH:mm");
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`;
 
-  const handleImport = () => notice.warning({ message: "导入功能仍处于开发中" });
-  const handleExport = () => notice.warning({ message: "导出功能仍处于开发中" });
+  const handleImport = async () => {
+    const { ok, message, data } = await nativeApi.importGacha();
+    notice[ok ? "success" : "warning"]({ message });
+
+    if (ok) {
+      const uid = data.info.uid;
+      await initGachaData(uid);
+    }
+  };
+
+  const handleExport = async () => {
+    const { ok, message } = await nativeApi.exportGacha(uid);
+    notice[ok ? "success" : "warning"]({ message });
+  };
+
   const handleBack = () => {
     if (loading) {
       notice.warning({ message: "请耐心等待数据加载完成..." });
@@ -248,11 +261,11 @@ const Gacha: React.FC = () => {
                 />
               )}
               <div className={styles.icon} title='导入单个 UID 祈愿数据' onClick={handleImport}>
-                <BiImport size={20} title='导入单个 UID 祈愿数据' />
+                <BiImport size={20} title='导入单个 UID 的祈愿数据' />
               </div>
               {gachas.length !== 0 && (
                 <div className={styles.icon} title='导出当前 UID 的祈愿数据' onClick={handleExport}>
-                  <BiExport size={20} title='导出当前 UID 的祈愿数据' />
+                  <BiExport size={20} title='导出当前选中 UID 的祈愿数据' />
                 </div>
               )}
               {gachas.length !== 0 && (

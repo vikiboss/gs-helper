@@ -1,7 +1,7 @@
 import { app } from "electron";
 import D from "dayjs";
 
-import { API_HK4E, GachaTypeMap } from "../constants";
+import { API_HK4E, GachaTypeMap, TypeToUIGFTypeMap } from "../constants";
 import { deepClone, wait } from "../utils/utils";
 import request from "../utils/request";
 
@@ -87,7 +87,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
           const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
             if (e.uid) delete e.uid;
             if (e.lang) delete e.lang;
-            return Object.assign(e, { uigf_gacha_type: type });
+            return Object.assign(e, { uigf_gacha_type: TypeToUIGFTypeMap[type] });
           });
 
           // 将 获取并处理过的列表数据 合并到 待返回的数据 里

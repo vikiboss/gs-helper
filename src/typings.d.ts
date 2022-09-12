@@ -22,6 +22,7 @@ export interface NativeApi {
   closeApp: () => void;
   deleteUser: (uid: string) => void;
   doBBSSign: () => Promise<boolean>;
+  exportGacha: (uid: string) => Promise<BaseIPCRes<null | GachaData>>;
   getAppInfo: () => Promise<AppInfo>;
   getBBSSignData: () => Promise<SignData | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
@@ -41,6 +42,7 @@ export interface NativeApi {
   getPublicRoleList: () => Promise<PublicRole[] | null>;
   getStoreKey: (key: string) => Promise<any>;
   hideApp: () => void;
+  importGacha: () => Promise<BaseIPCRes<null | GachaData>>;
   loginByBBS: () => void;
   minimizeApp: () => void;
   openLink: (url: string) => void;
@@ -54,6 +56,12 @@ export interface NativeApi {
 export type GachaType = "activity" | "normal" | "weapon" | "newer";
 export type GachaItemType = "weapon" | "role";
 export type StarType = 1 | 2 | 3 | 4 | 5;
+
+export interface BaseIPCRes<T> {
+  ok: boolean;
+  data: T | null;
+  message: string;
+}
 
 export interface AppInfo {
   name: string;

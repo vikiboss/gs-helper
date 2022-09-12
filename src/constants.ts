@@ -24,6 +24,7 @@ export const IPCEvents: Record<string, string> = {
   getSpiralAbyss: "GET_SPIRAL_ABYSS",
   getStoreKey: "GET_STORE_KEY",
   hideApp: "HIDE_APP",
+  importGacha: "IMPORT_GACHA",
   loginByBBS: "LOGIN_BY_BBS",
   minimizeApp: "MONIMIZE_APP",
   openLink: "OPEN_LINK",
@@ -31,7 +32,8 @@ export const IPCEvents: Record<string, string> = {
   readClipboardText: "READ_CLIPBOARD_TEXT",
   request: "REQUEST",
   setStoreKey: "SET_STORE_KEY",
-  writeClipboardText: "WRITE_CLIPBOARD_TEXT"
+  writeClipboardText: "WRITE_CLIPBOARD_TEXT",
+  exportGacha: "EXPORT_GACHA"
 };
 
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
@@ -71,6 +73,14 @@ export const GachaTypeMap: Record<string, string> = {
   "302": "武器活动祈愿",
   "200": "常驻祈愿",
   "100": "新手祈愿"
+};
+
+export const TypeToUIGFTypeMap: Record<string, string> = {
+  "100": "100",
+  "200": "200",
+  "301": "301",
+  "400": "301",
+  "302": "302"
 };
 
 export const NormalItemList: string[] = [

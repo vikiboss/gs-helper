@@ -2,7 +2,7 @@ import { contextBridge, ipcRenderer as IPC } from "electron";
 import { IPCEvents, EXPOSED_API_FROM_ELECTRON } from "./constants";
 
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
-import type { GachaData, AppInfo, UserData } from "./typings";
+import type { GachaData, AppInfo, UserData, BaseIPCRes } from "./typings";
 
 // 通过 IPC 实现 main 进程与 render 进程相互通信
 // 通过 contextBridge 将 API 安全的挂载到 render 进程的全局变量 window 中
@@ -12,6 +12,8 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   closeApp: () => IPC.send(IPCEvents.closeApp),
   deleteUser: (uid: string) => IPC.send(IPCEvents.deleteUser, uid),
   doBBSSign: () => IPC.invoke(IPCEvents.doBBSSign),
+  exportGacha: (uid: string): Promise<BaseIPCRes<null | GachaData>> =>
+    IPC.invoke(IPCEvents.exportGacha, uid),
   getAppInfo: (): Promise<AppInfo> => IPC.invoke(IPCEvents.getAppInfo),
   getBBSSignData: () => IPC.invoke(IPCEvents.getBBSSignData),
   getBBSSignInfo: () => IPC.invoke(IPCEvents.getBBSSignInfo),
@@ -30,6 +32,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getSpiralAbyss: (uid?: string) => IPC.invoke(IPCEvents.getSpiralAbyss, uid),
   getStoreKey: (key: string): Promise<any> => IPC.invoke(IPCEvents.getStoreKey, key),
   hideApp: () => IPC.send(IPCEvents.hideApp),
+  importGacha: (): Promise<BaseIPCRes<null | GachaData>> => IPC.invoke(IPCEvents.importGacha),
   loginByBBS: () => IPC.send(IPCEvents.loginByBBS),
   minimizeApp: () => IPC.send(IPCEvents.minimizeApp),
   openLink: (url: string) => IPC.send(IPCEvents.openLink, url),
