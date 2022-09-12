@@ -58,6 +58,7 @@ export type StarType = 1 | 2 | 3 | 4 | 5;
 export interface AppInfo {
   name: string;
   version: string;
+  isBeta: boolean;
   isDev: boolean;
   isWindows: boolean;
 }

@@ -35,6 +35,7 @@ interface Stats {
   precious_chest_number: number;
   luxurious_chest_number: number;
   exquisite_chest_number: number;
+  dendroculus_number: number;
   common_chest_number: number;
   electroculus_number: number;
   magic_chest_number: number;

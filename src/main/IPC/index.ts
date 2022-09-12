@@ -30,6 +30,7 @@ import type { AppInfo } from "../../typings";
 const AppicationInfo: AppInfo = {
   name: app.getName(),
   version: app.getVersion(),
+  isBeta: true,
   isDev: !app.isPackaged,
   isWindows: process.platform === "win32"
 };

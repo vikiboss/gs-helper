@@ -16,16 +16,19 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
   const { data } = props;
   const we = deepClone(data.world_explorations).reverse();
   const stats = data.stats;
+  console.log(stats);
   return (
     <div className={styles.statisticCard}>
       <div className={styles.column}>
         <div className={styles.stats}>
-          {data.role && <div className={styles.user}>
-            <div>{data.role.nickname}</div>
-            <div>
-              Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
+          {data.role && (
+            <div className={styles.user}>
+              <div>{data.role.nickname}</div>
+              <div>
+                Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
+              </div>
             </div>
-          </div>}
+          )}
           <div className={styles.statsBox}>
             <div>
               <BounceNumber size={24} number={stats.active_day_number} />
@@ -95,6 +98,13 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 <span className={styles.fullNum}>/181</span>
               </div>
               <span>雷神瞳</span>
+            </div>
+            <div>
+              <div className={styles.horizontal}>
+                <BounceNumber size={24} number={stats.dendroculus_number} />
+                <span className={styles.fullNum}>/待定</span>
+              </div>
+              <span>草神瞳</span>
             </div>
           </div>
         </div>

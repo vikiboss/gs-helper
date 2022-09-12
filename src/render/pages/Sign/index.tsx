@@ -67,12 +67,15 @@ const Sign: React.FC = () => {
     } else {
       try {
         const isSignDone = await nativeApi.doBBSSign();
-        if (isSignDone) {
+        const info: SignInfo = await nativeApi.getBBSSignInfo();
+        if (isSignDone && info.is_sign) {
           const total = signInfo.total_sign_day;
           const award = signData.awards[total];
           const todayAward = `${award.name}x${award.cnt}`;
           notice.success({ message: `签到成功！获得 ${todayAward}，本月累计签到 ${total + 1} 天` });
           await updateInfo();
+        } else if (isSignDone) {
+          notice.faild({ message: "无法绕过验证码，签到失败 T_T，请尝试手动签到" });
         } else {
           notice.faild({ message: "网络异常，签到失败 T_T" });
         }

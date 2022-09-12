@@ -103,7 +103,7 @@ const Gacha: React.FC = () => {
 
     if (!link) {
       const msg = isWindows
-        ? "请先 「获取本地祈愿链接」 或 「手动输入祈愿链接」"
+        ? "请先输入祈愿链接后再尝试更新祈愿数据"
         : "请先输入祈愿链接后再尝试更新祈愿数据";
       return notice.warning({ message: msg });
     }
@@ -122,7 +122,7 @@ const Gacha: React.FC = () => {
       notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
       await initGachaData(data.info.uid);
     } else {
-      notice.faild({ message: "数据拉取异常，请尝试 「重新获取祈愿链接」后再次更新数据" });
+      notice.faild({ message: "数据拉取异常，请检查祈愿链接后重试" });
     }
     setLoading(false);
   };
@@ -163,6 +163,10 @@ const Gacha: React.FC = () => {
       if (isUserTrriger) notice.faild({ message });
     }
     return !!url;
+  };
+
+  const openTutorial = () => {
+    open("https://docs.qq.com/doc/p/d4e754b865f99003c2495b038748b9359a7411bb");
   };
 
   const gacha = gachas.filter((e) => e.info.uid === uid)[0] || DefaultGachaData;
@@ -216,14 +220,14 @@ const Gacha: React.FC = () => {
               value={link || ""}
               onBlur={(e) => setLink(e.target.value.trim())}
               onChange={(e) => setLink(e.target.value)}
-              placeholder='祈愿记录链接（按下 Ctrl + V 快捷键快速粘贴）'
+              placeholder='祈愿记录链接（Ctrl + V 快捷键快速粘贴）'
             />
             {isWindows && link !== null && (
               <Button
                 className={styles.btn}
-                onClick={link ? copyLink : () => getLocalGachaUrl(true)}
+                onClick={link ? copyLink : openTutorial}
                 style={{ marginRight: "12px" }}
-                text={link ? "复制" : "获取本地链接"}
+                text={link ? "复制" : "查看获取教程"}
               />
             )}
             {link !== null && (
