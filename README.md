@@ -12,9 +12,9 @@
 
 ### 下载
 
-- `v1.1.1` 测试版，[更新日志](https://github.com/Vikiboss/genshin-helper/releases/tag/1.1.1)
-  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.1/genshin-helper-win32-x64-1.1.1.zip)
-  - [蓝奏云](https://viki.lanzout.com/iEAlK092z21a)
+- `v1.1.2` 测试版，[更新日志](https://github.com/Vikiboss/genshin-helper/releases/tag/1.1.2)
+  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.2/genshin-helper-win32-x64-1.1.2.zip)
+  - [蓝奏云](https://viki.lanzout.com/ioHOf0bk6umf)
 
 ### 进度
 
