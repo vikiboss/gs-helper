@@ -3,18 +3,18 @@ import D from "dayjs";
 import React from "react";
 
 import avatar from "../../../assets/icon.png";
-import prestigeIcon from "../../../assets/prestige.png";
-import { SignInfo } from "../../../services/getBBSSignInfo";
-import { DailyNotesData } from "../../../services/getDailyNotes";
-import { GameRole } from "../../../typings";
-import { Notice } from "../../hooks/useNotice";
-
 import bbsIcon from "../../../assets/bbs.png";
 import discountIcon from "../../../assets/discount.png";
 import homeIcon from "../../../assets/home.png";
+import prestigeIcon from "../../../assets/prestige.png";
 import resinIcon from "../../../assets/resin.png";
 import taskIcon from "../../../assets/task.png";
 import transformerIcon from "../../../assets/transformer.png";
+
+import type { DailyNotesData } from "../../../services/getDailyNotes";
+import type { GameRole } from "../../../typings";
+import type { Notice } from "../../hooks/useNotice";
+import type { SignInfo } from "../../../services/getBBSSignInfo";
 
 import styles from "./index.less";
 
@@ -28,16 +28,16 @@ interface UserCardProp {
 }
 
 const formatTime = (seconds: number) => {
-  if (seconds <= 60) return `${seconds} 秒 `;
-  if (seconds <= 3600) return `${Math.ceil(seconds / 60)} 分钟 `;
+  if (seconds <= 60) return `${seconds}秒`;
+  if (seconds <= 3600) return `${Math.ceil(seconds / 60)}分钟`;
   if (seconds <= 86400) {
-    const hour = `${Math.floor(seconds / 3600)} 小时 `;
+    const hour = `${Math.floor(seconds / 3600)}小时`;
     const minute = Math.ceil((seconds % 3600) / 60);
-    return hour + (minute ? minute + " 分钟 " : "");
+    return hour + (minute ? minute + "分钟" : "");
   }
-  const day = `${Math.floor(seconds / 86400)} 天 `;
+  const day = `${Math.floor(seconds / 86400)}天`;
   const hour = Math.ceil((seconds % 86400) / 3600);
-  const timeStr = day + (hour ? hour + " 小时 " : "");
+  const timeStr = day + (hour ? hour + "小时" : "");
   return timeStr.trim();
 };
 
@@ -71,22 +71,23 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const isResinFull = note?.current_resin === note?.max_resin;
   const resinStatus = `${note?.current_resin}/${note?.max_resin}`;
   const resinTime = Number(note?.resin_recovery_time) || 0;
-  const targetTime = D(Date.now() + resinTime * 1000).format("HH:mm");
+  const targetTime = D(Date.now() + resinTime * 1000).format("HH:mm:ss");
+  const nextTime = formatTime(resinTime % (8 * 60));
   const isResinToday = new Date(Date.now() + resinTime * 1000).getDay() === new Date().getDay();
-  const resinTimeText = (isResinToday ? "今日 " : "明日 ") + targetTime;
-  const resinNotOkText = `将于${resinTimeText} 回满，还剩 ${formatTime(resinTime)}`;
-  const resinTitle = isResinFull ? "树脂恢复完毕" : resinNotOkText;
+  const resinTimeText = `将于${isResinToday ? "今日" : "明日"} ${targetTime} `;
+  const resinText = `下次恢复还剩${nextTime}，${resinTimeText}回满（${formatTime(resinTime)}）`;
+  const resinTitle = isResinFull ? "树脂恢复完毕" : resinText;
 
   // 处理洞天宝钱数据
   const isHomeOk = note?.max_home_coin !== 0;
   const isHomeFull = note?.current_home_coin === note?.max_home_coin;
   const homeStatus = isHomeOk ? `${note?.current_home_coin}/${note?.max_home_coin}` : "暂未开启";
   const homeTime = Number(note?.home_coin_recovery_time) || 0;
-  const homeTimeText = D(Date.now() + homeTime * 1000).format("M月D日 HH:mm");
+  const homeTimeText = D(Date.now() + homeTime * 1000).format("M月D日 HH:mm:ss");
   const homeTitle = isHomeOk
     ? isHomeFull
       ? "洞天宝钱已存满"
-      : `将于 ${homeTimeText} 存满，还剩 ${formatTime(homeTime)}`
+      : `将于 ${homeTimeText} 存满，还剩${formatTime(homeTime)}`
     : "尘歌壶功能未开启";
 
   // 处理每日委托数据
@@ -111,7 +112,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const _ = note?.transformer?.recovery_time;
   const transformerTime = _.Day * 86400 + _.Hour * 3600 + _.Minute * 60 + _.Second;
   const isTransformerReady = transformerTime === 0;
-  const formatText = _.Second > 0 ? "M月D日 HH:mm" : "M月D日";
+  const formatText = _.Second > 0 ? "M月D日 HH:mm:ss" : "M月D日";
   const transformerReadyTime = D(Date.now() + transformerTime * 1000).format(formatText);
   const transformerStatus = hasTransformer
     ? isTransformerReady
@@ -120,7 +121,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     : "暂未获得";
   const transformerTitle = isTransformerReady
     ? "已就绪"
-    : `将于 ${transformerReadyTime} 可用，还剩 ${formatTime(transformerTime)}`;
+    : `将于 ${transformerReadyTime} 可用，还剩${formatTime(transformerTime)}`;
 
   // 处理签到数据
   const signStatus = `${sign.is_sign ? "已签到" : "未签到"}`;
@@ -132,7 +133,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const dispatchs = (note?.expeditions || []).map((e) => {
     const done = e.status === "Finished";
     const doneText = "探索派遣任务已完成，等待领取";
-    const pendingText = `探险中，距离探险结束还剩 ${formatTime(Number(e.remained_time))}`;
+    const pendingText = `探险中，距离探险结束还剩${formatTime(Number(e.remained_time))}`;
     const title = done ? doneText : pendingText;
     const avatar = e.avatar_side_icon;
     return { done, avatar, title, remain: Number(e.remained_time) };
@@ -146,13 +147,13 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     new Date(Date.now() + lastDispatchTime * 1000).getDay() === new Date().getDay();
   const isDispatchAllReady = lastDispatchTime === 0;
   const dispatchTime = formatTime(lastDispatchTime);
-  const dispatchReadyTime = D(Date.now() + lastDispatchTime * 1000).format("HH:mm");
+  const dispatchReadyTime = D(Date.now() + lastDispatchTime * 1000).format("HH:mm:ss");
   const dispatchTimeText = (isDispatchToday ? "今日 " : "明日 ") + dispatchReadyTime;
   const dispatcTitle =
     dispatchs.length > 0
       ? isDispatchAllReady
         ? "已全部完成，等待领取"
-        : `将于${dispatchTimeText} 全部完成，还剩 ${dispatchTime}`
+        : `将于${dispatchTimeText} 全部完成，还剩${dispatchTime}`
       : "暂未派遣任何角色";
 
   const notes = [
