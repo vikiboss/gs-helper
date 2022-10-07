@@ -128,7 +128,7 @@ const btns = [
     link: LINK_BBS_MYSTERY
   },
   {
-    name: "深渊螺旋",
+    name: "深境螺旋",
     icon: abyss,
     link: LINK_BBS_ABYSS
   },

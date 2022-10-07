@@ -110,7 +110,7 @@ const Statistic: React.FC = () => {
   const items: { label: string; value: TypeState }[] = [
     { label: "数据概览", value: "statistic" },
     { label: "展示角色", value: "roles" },
-    { label: "深渊螺旋", value: "abyss" }
+    { label: "深境螺旋", value: "abyss" }
   ];
 
   const handleMyStatistic = async () => {

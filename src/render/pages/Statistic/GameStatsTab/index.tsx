@@ -76,7 +76,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 <div>-</div>
                 <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[1])} />
               </div>
-              <span>深渊螺旋</span>
+              <span>深境螺旋</span>
             </div>
             <div>
               <div className={styles.horizontal}>

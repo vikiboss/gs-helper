@@ -133,7 +133,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                   <img src={abyssBg} alt='关卡logo' />
                   <span>{e.index}</span>
                 </div>
-                <div>深渊螺旋第 {e.index} 层</div>
+                <div>深境螺旋第 {e.index} 层</div>
                 <div>
                   <img src={star1} alt='星星' className={styles.star} />
                   <span>
