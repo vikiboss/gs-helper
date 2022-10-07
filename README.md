@@ -12,85 +12,19 @@
 
 ### 下载
 
-- `v1.1.3` 测试版，[更新日志](https://github.com/Vikiboss/genshin-helper/releases/tag/1.1.3)
+- `v1.1.3` 测试版，[各版本更新日志](https://github.com/Vikiboss/genshin-helper/releases)
   - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip)
   - [蓝奏云](https://viki.lanzout.com/i687i0dd32da)
-
-### 进度
-
-- [x] 完善首页 UI 布局
-- [x] 完善关于页 UI 布局
-- [x] 完善登录页 UI 布局
-- [x] 自动获取本地祈愿链接
-- [x] 通过链接获取所有祈愿记录
-- [x] 可视化展示与分析祈愿数据
-- [x] 获取米游社绑定的游戏账号信息
-- [x] 支持多账号快速切换
-- [x] 检测验证信息有效性
-- [x] 获取米游社签到奖励列表
-- [x] 获取米游社签到状态
-- [x] 进行米游社签到
-- [x] 对接米游社实时便签
-  - 原粹树脂
-  - 委托任务
-  - 洞天财翁
-  - 探索派遣
-  - 周本状态
-- [x] 获取并展示当天原神日历（当天可获取材料）
-- [x] 获取原神所有角色的圣遗物和武器数据
-- [x] 完善角色详情页，添加动画交互
-- [x] 获取并可视化展示旅行者札记数据
-  - 当天、前一天的原石和摩拉数据
-  - 近三个月的原石和摩拉数据
-- [x] 完善其他旅行者工具页面 UI
-- [x] 获取个人原神游戏详细数据
-  - 游戏活跃数据
-  - 角色信息
-  - 地图探索数据
-  - 尘歌壶数据
-- [x] 获取原神游戏深境螺旋信息
-  - 对战记录
-  - 使用的角色
-  - 历史战绩
-- [x] 获取他人账号的概览信息
-  - 游戏角色名
-  - 活跃天数
-  - 深境螺旋
-  - 成就数
-  - 角色数
-- [x] 重构祈愿分析页 UI
-- [x] 完善数据分析、展示、预测等功能
-- [ ] 米游社定时签到
-- [ ] 自动完成米游社米游币任务
-- [ ] 完善设置页 UI 布局
-- [ ] 完善设置选项与功能
 
 ### 界面展示
 
 > 注意：项目仍在开发中，细节及部分页面的设计仍在调整当中，此处截图仅供参考，不代表最终发布的样式。
 
-如果界面图加载不出来，请科学上网后刷新页面。
-
-![demo1](docs/imgs/demo1.png)
-![demo3](docs/imgs/demo3.png)
-![demo19](docs/imgs/demo19.png)
-![demo17](docs/imgs/demo17.png)
-![demo18](docs/imgs/demo18.png)
-![demo2](docs/imgs/demo2.png)
-![demo4](docs/imgs/demo4.png)
-![demo5](docs/imgs/demo5.png)
-![demo6](docs/imgs/demo6.png)
-![demo7](docs/imgs/demo7.png)
-![demo8](docs/imgs/demo8.png)
-![demo9](docs/imgs/demo9.png)
-![demo10](docs/imgs/demo10.png)
-![demo11](docs/imgs/demo11.png)
-![demo12](docs/imgs/demo12.png)
-![demo13](docs/imgs/demo13.png)
-![demo14](docs/imgs/demo14.png)
-![demo15](docs/imgs/demo15.png)
-![demo16](docs/imgs/demo16.png)
-![demo20](docs/imgs/demo20.png)
+![home.png](https://s2.loli.net/2022/10/07/OAjsXDKyGJIVe7C.png)
+![detail.png](https://s2.loli.net/2022/10/07/ahJ6eKdbXfVLWUy.png)
+![gacha-1.png](https://s2.loli.net/2022/10/07/5o1a2QNJvH6ZiTF.png)
+![gacha-2.png](https://s2.loli.net/2022/10/07/9QSqfOYmZKTH7MC.png)
+![daily.png](https://s2.loli.net/2022/10/07/UWzSKCvt2NHQ59e.png)
 
 > 待补充...
 
