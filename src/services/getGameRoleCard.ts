@@ -89,7 +89,9 @@ interface Offerings {
 
 const getGameRoleCard = async (uid?: string): Promise<GameRoleCardData | null> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
   uid = uid || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/index`;
   const params = { role_id: uid, server: getServerByUid(uid) };
@@ -100,7 +102,9 @@ const getGameRoleCard = async (uid?: string): Promise<GameRoleCardData | null> =
   };
   const { status, data } = await request.get<BaseRes<GameRoleCardData>>(url, { headers, params });
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getGameRoleCard: ", data);
+  if (!isOK) {
+    console.log("getGameRoleCard: ", data);
+  }
   return isOK ? data?.data || null : null;
 };
 

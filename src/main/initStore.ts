@@ -19,7 +19,9 @@ const initStore = () => {
   // 初始化 device id
   const deviceId = store.get("settings.deviceId", "");
   // 没有 device id 则随机生成并写入配置
-  if (!deviceId) store.set("settings.deviceId", uuid().replace("-", "").toUpperCase());
+  if (!deviceId) {
+    store.set("settings.deviceId", uuid().replace("-", "").toUpperCase());
+  }
   return store;
 };
 

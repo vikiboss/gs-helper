@@ -11,7 +11,10 @@ const openWindow = async (
   options: BrowserWindowConstructorOptions = {},
   UA?: string
 ): Promise<void> => {
-  if (wins.has(url)) return wins.get(url).show();
+  if (wins.has(url)) {
+    return wins.get(url).show();
+  }
+
   const win = new BrowserWindow({
     width: 1300,
     height: 803,
@@ -21,7 +24,10 @@ const openWindow = async (
     ...options
   });
 
-  if (!isDev) win.removeMenu();
+  if (!isDev) {
+    win.removeMenu();
+  }
+
   wins.set(url, win);
   win.once("ready-to-show", () => win.show());
   win.on("close", () => wins.delete(url));

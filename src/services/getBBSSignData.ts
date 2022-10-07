@@ -22,7 +22,9 @@ const getBBSSignData = async (): Promise<SignData | null> => {
   const config = { params: { act_id }, headers: { referer: LINK_BBS_REFERER } };
   const { status, data } = await request.get<BaseRes<SignData>>(url, config);
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getBBSSignData: ", data);
+  if (!isOK) {
+    console.log("getBBSSignData: ", data);
+  }
   return isOK ? data?.data || null : null;
 };
 

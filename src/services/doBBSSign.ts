@@ -13,7 +13,9 @@ interface DoSignData {
 
 const doBBSSign = async (): Promise<boolean> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return false;
+  if (!currentUser) {
+    return false;
+  }
   const { cookie, uid } = currentUser;
   const act_id = await getBBSSignActId();
   const postData = { act_id, region: getServerByUid(uid), uid };
@@ -25,7 +27,9 @@ const doBBSSign = async (): Promise<boolean> => {
   const url = `${API_TAKUMI}/event/bbs_sign_reward/sign`;
   const { status, data } = await request.post<BaseRes<DoSignData>>(url, postData, { headers });
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("doBBSSign: ", data);
+  if (!isOK) {
+    console.log("doBBSSign: ", data);
+  }
   return isOK;
 };
 

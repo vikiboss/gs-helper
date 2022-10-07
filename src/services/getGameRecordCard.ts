@@ -38,7 +38,9 @@ export interface Data_switches {
 
 const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | null> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
   bbsId = bbsId || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/card/wapi/getGameRecordCard`;
   const params = { uid: bbsId };
@@ -52,8 +54,9 @@ const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | n
     params
   });
   const isOK = status === 200 && data.retcode === 0;
-  console.log("getGameRecordCard: ", data);
-  if (!isOK) console.log("getGameRecordCard: ", data);
+  if (!isOK) {
+    console.log("getGameRecordCard: ", data);
+  }
   return isOK ? data?.data?.list || null : null;
 };
 

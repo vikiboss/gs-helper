@@ -24,7 +24,9 @@ const getGachaUrl = async () => {
     // 正则表达式搜索祈愿链接
     const URLReg = /^OnGetWebViewPageFinish:(.+#\/log)$/gm;
     const url = URLReg.exec(logContent)[1] || "";
-    if (isDev) console.log("getGachaUrl: ", url.split("?")[0] + "?...");
+    if (isDev) {
+      console.log("getGachaUrl: ", url.split("?")[0] + "?...");
+    }
     return url;
   } catch (e) {
     return "";

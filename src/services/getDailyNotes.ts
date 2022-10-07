@@ -36,7 +36,9 @@ export type DailyNotesData = {
 
 const getDailyNotes = async (): Promise<DailyNotesData | null> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
   const { cookie, uid } = currentUser;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`;
   const params = { role_id: uid, server: getServerByUid(uid) };
@@ -44,7 +46,9 @@ const getDailyNotes = async (): Promise<DailyNotesData | null> => {
   const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, { params, headers });
   // { data: null, message: 'Please login', retcode: 10001 }
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getDailyNotes: ", data);
+  if (!isOK) {
+    console.log("getDailyNotes: ", data);
+  }
   return isOK ? data?.data || null : null;
 };
 

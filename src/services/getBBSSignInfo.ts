@@ -18,7 +18,9 @@ export interface SignInfo {
 
 const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
   const { cookie, uid } = currentUser;
   const act_id = await getBBSSignActId();
   const params = { act_id, uid, region: getServerByUid(uid) };
@@ -27,7 +29,9 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   const { status, data } = await request.get<BaseRes<SignInfo>>(url, { params, headers });
   // { data: null, message: '尚未登录', retcode: -100 }
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getBBSSignInfo: ", data);
+  if (!isOK) {
+    console.log("getBBSSignInfo: ", data);
+  }
   return isOK ? data?.data || null : null;
 };
 

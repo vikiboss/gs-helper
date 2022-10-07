@@ -62,7 +62,9 @@ const getCalenderList = async (): Promise<CalenderEvent[] | null> => {
     params: { app_sn: "ys_obc" }
   });
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getBBSSignInfo: ", data);
+  if (!isOK) {
+    console.log("getBBSSignInfo: ", data);
+  }
   return isOK ? data?.data?.list || null : null;
 };
 

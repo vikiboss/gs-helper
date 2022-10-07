@@ -1,8 +1,7 @@
 import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from "electron";
 
-import { IPCEvents } from "../../constants";
 import { store } from "..";
-
+import { IPCEvents } from "../../constants";
 import { changeUser, deleteUser } from "../handleUsers";
 import exportGacha from "./exportGacha";
 import getCurrentUser from "./getCurrentUser";
@@ -10,7 +9,6 @@ import handleGetGachaListByUrl from "./getGachaListByUrl";
 import importConfig from "./importGacha";
 import loginViaBBS from "./loginByBBS";
 import openWindow from "./openWindow";
-
 import doBBSSign from "../../services/doBBSSign";
 import getBBSSignData from "../../services/getBBSSignData";
 import getBBSSignInfo from "../../services/getBBSSignInfo";
@@ -24,7 +22,6 @@ import getMonthInfo from "../../services/getMonthInfo";
 import getOwnedRoleList from "../../services/getOwnedRoleList";
 import getPublicRoleList from "../../services/getPublicRoleList";
 import getSpiralAbyss from "../../services/getSpiralAbyss";
-
 import clearData from "../../utils/clearData";
 import getGachaUrl from "../../utils/getGachaUrl";
 import getLocalGachaDatas from "../../utils/getLocalGachaDatas";

@@ -23,7 +23,9 @@ const getUserRolesByCookie = async (cookie: string): Promise<GameRole[] | null> 
   const url = `${API_TAKUMI}/binding/api/getUserGameRolesByCookie`;
   const config = { params: { game_biz: GAME_BIZ }, headers: { referer: LINK_BBS_REFERER, cookie } };
   const { data, status } = await request.get<BaseRes<GameRolesData>>(url, config);
-  if (status !== 200 || data.retcode !== 0) console.log("getUserRolesByCookie: ", data);
+  if (status !== 200 || data.retcode !== 0) {
+    console.log("getUserRolesByCookie: ", data);
+  }
   return data?.data?.list || null;
 };
 
@@ -31,10 +33,14 @@ const getUserRolesByCookie = async (cookie: string): Promise<GameRole[] | null> 
 const verifyCookieAndGetGameRole = async (cks: Cookies): Promise<AuthResState> => {
   const cookie = await transferCookiesToString(cks);
   const hasLtoken = cookie.includes("ltoken");
-  if (!hasLtoken) return { valid: false, cookie: "", roleInfo: null };
+  if (!hasLtoken) {
+    return { valid: false, cookie: "", roleInfo: null };
+  }
   const roles = await getUserRolesByCookie(cookie);
   const valid = Boolean(roles[0]?.game_uid);
-  if (!valid) console.log("verifyCookie: ", cookie);
+  if (!valid) {
+    console.log("verifyCookie: ", cookie);
+  }
   return { valid: true, cookie, roleInfo: valid ? roles[0] : null };
 };
 

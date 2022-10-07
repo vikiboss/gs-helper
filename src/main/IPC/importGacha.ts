@@ -5,8 +5,9 @@ import { mainWin } from "..";
 import type { BaseIPCRes, GachaData } from "../../typings";
 import updateLocalGachaData from "../../utils/updateLocalGachaData";
 
-/** 导入 JSON 配置信息 */
+/** 导入 JSON 祈愿数据 */
 const importGacha = async (): Promise<BaseIPCRes<GachaData | null>> => {
+  // 打开对话框, 选择 JSON 文件
   const { filePaths } = await dialog.showOpenDialog(mainWin, {
     title: "导入祈愿记录数据文件",
     defaultPath: app.getPath("desktop"),

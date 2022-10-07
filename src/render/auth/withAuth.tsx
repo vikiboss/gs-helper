@@ -8,7 +8,11 @@ const withAuth = (Component: React.ComponentType) => {
   return function () {
     const { isLogin } = useAuth();
     const location = useLocation();
-    if (isLogin) return <Component />;
+
+    if (isLogin) {
+      return <Component />;
+    }
+
     return <Login from={location?.pathname} />;
   };
 };

@@ -25,7 +25,9 @@ const loginByBBS = async () => {
   });
 
   // 生产环境下移除窗口顶部的默认菜单
-  if (!isDev) bbsWin.removeMenu();
+  if (!isDev) {
+    bbsWin.removeMenu();
+  }
 
   // 准备好时显示窗口
   bbsWin.once("ready-to-show", () => bbsWin.show());
@@ -50,7 +52,9 @@ const loginByBBS = async () => {
     // 设置当前 uid，有效登录时 uid 设置正常，未登录则置空
     store.set("currentUid", roleInfo ? roleInfo.game_uid : "");
     // Cookie 无效，或者未绑定游戏角色，则不对本地 store 处理
-    if (!valid || !roleInfo) return;
+    if (!valid || !roleInfo) {
+      return;
+    }
     // Cookie 有效，且绑定了游戏角色，则继续处理
     const user: UserData = { uid: roleInfo.game_uid, cookie };
     // 获取本地所有账户

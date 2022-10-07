@@ -85,8 +85,8 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
 
           // 对返回的 list 列表进行数据处理（删除 uid 和 lang 字段）
           const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
-            if (e.uid) delete e.uid;
-            if (e.lang) delete e.lang;
+            e.uid && delete e.uid;
+            e.lang && delete e.lang;
             return Object.assign(e, { uigf_gacha_type: TypeToUIGFTypeMap[type] });
           });
 

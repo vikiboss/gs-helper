@@ -11,7 +11,9 @@ const mergeGachaList = (pre: GachaData["list"], list: GachaData["list"]) => {
 
   // 通过 id 过滤掉重复的单条数据
   pre = pre.filter((e) => {
-    if (ids.has(e.id)) return false;
+    if (ids.has(e.id)) {
+      return false;
+    }
     return ids.add(e.id);
   });
 

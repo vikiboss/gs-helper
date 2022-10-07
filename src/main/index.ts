@@ -26,7 +26,9 @@ export const isWindows = process.platform === "win32";
 export const isAppleDevice = process.platform === "darwin";
 
 // 如果不是第一个实例，直接退出
-if (!isWinner) app.quit();
+if (!isWinner) {
+  app.quit();
+}
 
 // 以下是第一个实例的逻辑，监听第二实例的启动事件
 
@@ -36,7 +38,9 @@ app.on("second-instance", () => mainWin?.show());
 // 程序准备完毕的事件
 app.on("ready", () => {
   // 隐藏 dock 图标
-  if (isAppleDevice) app.dock.hide();
+  if (isAppleDevice) {
+    app.dock.hide();
+  }
   // 初始化 Store （读取配置）
   store = initStore();
   // 创建主窗口
@@ -46,13 +50,17 @@ app.on("ready", () => {
 // 监听窗口全部关闭的事件
 app.on("window-all-closed", () => {
   // 不是苹果设备则退出
-  if (!isAppleDevice) app.quit();
+  if (!isAppleDevice) {
+    app.quit();
+  }
 });
 
 // 监听程序激活事件
 app.on("activate", () => {
   const windowExist = BrowserWindow.getAllWindows().length !== 0;
-  if (windowExist) return;
+  if (windowExist) {
+    return;
+  }
   // 如果不存在任何窗口，则创建主窗口
   mainWin = createMainWindow();
 });

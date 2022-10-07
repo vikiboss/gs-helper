@@ -84,7 +84,9 @@ export interface Affixes {
 
 const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
   const currentUser = getCurrentUser();
-  if (!currentUser) return null;
+  if (!currentUser) {
+    return null;
+  }
   const { cookie } = currentUser;
   uid = uid || currentUser.uid;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/character`;
@@ -96,7 +98,9 @@ const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
   };
   const { status, data } = await request.post<BaseRes<RoleData>>(url, postData, { headers });
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getOwnedRoleList: ", data);
+  if (!isOK) {
+    console.log("getOwnedRoleList: ", data);
+  }
   return isOK ? data?.data?.avatars || null : null;
 };
 

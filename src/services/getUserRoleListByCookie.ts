@@ -11,7 +11,9 @@ const getUserRolesByCookie = async (cookie: string): Promise<GameRole[] | null> 
   const { status, data } = await request.get<BaseRes<GameRolesData>>(url, { params, headers });
   // { data: null, message: '登录失效，请重新登录', retcode: -100 }
   const isOK = status === 200 && data.retcode === 0;
-  if (!isOK) console.log("getUserRolesByCookie: ", data);
+  if (!isOK) {
+    console.log("getUserRolesByCookie: ", data);
+  }
   return isOK ? data?.data?.list || null : null;
 };
 

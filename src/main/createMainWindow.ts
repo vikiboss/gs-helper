@@ -10,7 +10,7 @@ import icon from "../assets/icon.ico";
 import initTray from "./initTray";
 import restoreSettings from "./restoreSettings";
 
-// 配置窗口的选项参数
+/** 配置窗口的选项参数 */
 const winOptions: BrowserWindowConstructorOptions = {
   // 设置窗口默认的宽度、高度
   width: 970,
@@ -28,7 +28,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   fullscreenable: false,
   // 加载时的背景颜色
   backgroundColor: "#F9F6F2",
-  // web 内容的偏好，此处设置 preload，用于 IPC 通信
+  // 设置 web 页面的 preload，用于 IPC 通信
   webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY }
 };
 
@@ -53,13 +53,13 @@ const createMainWindow = () => {
   win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
   // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
-  void bindIPC(win);
+  bindIPC(win);
   // 初始化托盘图标与菜单
-  void initTray(win);
+  initTray(win);
   // 恢复设置
-  void restoreSettings(win);
+  restoreSettings(win);
   // 注册全局热键
-  void registerHotkey(win);
+  registerHotkey(win);
 
   // 返回创建的窗口实例
   return win;
