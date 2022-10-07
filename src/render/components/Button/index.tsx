@@ -1,7 +1,7 @@
 import React from "react";
 import cn from "classnames";
-import { BiCircle } from "react-icons/Bi";
-import { BsXLg } from "react-icons/Bs";
+import { BiCircle } from "react-icons/bi";
+import { BsXLg } from "react-icons/bs";
 
 import type { IconType } from "react-icons";
 
@@ -14,7 +14,7 @@ export interface ButtonProp {
   style?: React.CSSProperties;
   text: string;
   className?: string;
-  onClick?: () => void;
+  onClick?: (...args: any[]) => any;
 }
 
 const SIZE_MAP = {
@@ -29,15 +29,7 @@ const TYPE_MAP: Record<string, IconType> = {
 };
 
 const Button: React.FC<ButtonProp> = (props) => {
-  const {
-    onClick = () => {},
-    className = "",
-    size = "small",
-    theme = "dark",
-    style = {},
-    type,
-    text
-  } = props;
+  const { onClick, className = "", size = "small", theme = "dark", style = {}, type, text } = props;
   const Icon = type ? TYPE_MAP[type] : null;
   return (
     <div

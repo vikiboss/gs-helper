@@ -48,7 +48,7 @@ const getPeriodByHour = (hour: number) => {
 };
 
 /** 按时间获取当前时间段的打招呼消息 */
-const getGreetingMsg = (date: Date = new Date(), short: boolean = false) => {
+const getGreetingMsg = (date: Date = new Date(), short = false) => {
   const hour = date.getHours();
   const period = getPeriodByHour(hour);
   return (short ? GreetingMsgMap : GreetingShortMsgMap)[period];

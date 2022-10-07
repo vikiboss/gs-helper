@@ -45,7 +45,7 @@ export interface MonthInfo {
   lantern: boolean;
 }
 
-const getMonthInfo = async (month: number = 0): Promise<MonthInfo | null> => {
+const getMonthInfo = async (month = 0): Promise<MonthInfo | null> => {
   const currentUser = getCurrentUser();
   if (!currentUser) return null;
   const { cookie, uid } = currentUser;

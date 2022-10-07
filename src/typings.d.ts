@@ -3,10 +3,9 @@ import { EXPOSED_API_FROM_ELECTRON } from "./constants";
 import type { AxiosRequestConfig as Config, AxiosResponse } from "axios";
 import type { BrowserWindowConstructorOptions as WinOptions } from "electron";
 import type { CalenderEvent } from "./services/getCalenderList";
-import type { Cookies } from "electron";
 import type { DailyNotesData } from "./services/getDailyNotes";
-import type { GameRole } from "./services/getGameRoleInfo";
 import type { GameRecordCardData } from "./services/getGameRecordCard";
+import type { GameRole } from "./services/getGameRoleInfo";
 import type { GameRoleCardData } from "./services/getGameRoleCard";
 import type { MonthInfo } from "./services/getMonthInfo";
 import type { PublicRole } from "./services/getPublicRoleList";
@@ -14,7 +13,6 @@ import type { Role } from "./services/getOwnedRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SpiralAbyssData } from "./services/getSpiralAbyss";
-import type { Store } from "electron-store";
 
 export interface NativeApi {
   changeUser: (uid: string) => Promise<void>;

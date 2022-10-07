@@ -2,7 +2,7 @@
 export const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 // 对象拼接成字符串，类似 URLSearchParams，可选是否对参数编码
-export const qs = (obj: Object, encode: boolean = false) => {
+export const qs = (obj: Record<string, string>, encode = false) => {
   let res = "";
   for (const [k, v] of Object.entries(obj)) res += `${k}=${encode ? encodeURIComponent(v) : v}&`;
   return res.slice(0, res.length - 1);
@@ -18,7 +18,7 @@ export const deepClone = <T>(obj: T): T => {
   if (!isValid(obj)) return obj;
   const _obj = Array.isArray(obj) ? [] : ({} as any);
   for (const key in obj) {
-    if (!obj.hasOwnProperty(key)) continue;
+    if (!Object.prototype.hasOwnProperty.call(obj, key)) continue;
     _obj[key] = isValid(obj[key]) ? deepClone(obj[key]) : obj[key];
   }
   return _obj;

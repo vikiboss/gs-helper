@@ -3,25 +3,24 @@
 
 @font-face {
   font-family: HanYiBlack;
-  src        : url("../assets/HanYiBlack.woff2");
+  src: url("../assets/HanYiBlack.woff2");
 }
 
 :root {
   -webkit-user-select: none;
-  color              : @color-primary;
-  font-family        : HanYiBlack;
-  user-select        : none;
+  color: @color-primary;
+  font-family: HanYiBlack;
+  user-select: none;
 }
-
 
 body {
   font-size: 16px;
-  overflow : hidden;
-  cursor   : url("../assets/cursor.cur"), default;
+  overflow: hidden;
+  cursor: url("../assets/cursor.cur"), default;
 }
 
 input::selection {
-  color           : @color-white;
+  color: @color-white;
   background-color: @color-accent;
 }
 
@@ -32,7 +31,7 @@ img {
 a {
   .transition();
 
-  color  : @color-accent;
+  color: @color-accent;
   outline: none;
 
   &:hover {

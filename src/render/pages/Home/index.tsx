@@ -2,13 +2,12 @@ import { NavigateOptions, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
-import { BiNotepad, BiInfoCircle } from "react-icons/Bi";
+import { BiNotepad, BiInfoCircle } from "react-icons/bi";
 import { FaRegMap, FaRegCompass } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 import { IoMdRefresh } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
-import { MdOutlineAccountBox } from "react-icons/md";
-import { MdOutlineNoteAlt } from "react-icons/md";
+import { MdOutlineAccountBox, MdOutlineNoteAlt } from "react-icons/md";
 import { RiCalendarCheckFill } from "react-icons/ri";
 
 import { LINK_GENSHIN_MAP } from "../../../constants";
@@ -55,7 +54,7 @@ const Home: React.FC = () => {
     navigate(path, options);
   };
 
-  const updateInfo = async (isUserTrriger: boolean = true) => {
+  const updateInfo = async (isUserTrriger = true) => {
     if (!auth.isLogin) return;
 
     if (loading && isUserTrriger) {

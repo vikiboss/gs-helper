@@ -10,7 +10,7 @@ const getRandomStr = (n: number) => {
 };
 
 // ver 2.34.1
-const getDS = (query: string = "", body: string = "") => {
+const getDS = (query = "", body = "") => {
   const params = {
     salt: "xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs",
     t: String(Math.floor(Date.now() / 1000)),

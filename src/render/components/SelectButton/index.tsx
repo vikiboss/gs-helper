@@ -9,7 +9,7 @@ export type SelectItem = {
 };
 
 export interface SelectButtonProp {
-  changeItem?: Function;
+  changeItem?: (...args: any[]) => any;
   className?: string;
   direction?: "vertical" | "horizontal";
   height?: number;
@@ -20,7 +20,7 @@ export interface SelectButtonProp {
 }
 
 const SelectButton: React.FC<SelectButtonProp> = ({
-  changeItem = null,
+  changeItem,
   className,
   direction = "horizontal",
   height,
@@ -39,7 +39,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
         ...style
       }}
     >
-      {items.map((e, i) => (
+      {items.map((e) => (
         <div
           key={e.value}
           onClick={changeItem && changeItem.bind(null, e.value)}

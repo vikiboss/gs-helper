@@ -32,6 +32,7 @@ const Tips = [
   "「周三」 与 「周六」 开放的秘境和可获取的材料相同"
 ];
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getUniqueArray = (arr: any[], key: string) => {
   const values = new Set();
   const res = [];
@@ -96,7 +97,7 @@ const Daily: React.FC = () => {
   const list = map[type].filter((e) => e.drop_day.includes(String(((week + 6) % 7) + 1)));
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : "");
 
-  const handleChange = async (fn: Function) => {
+  const handleChange = async (fn: () => void) => {
     setChanging(true);
     fn();
     setTimeout(() => setChanging(false), 20);

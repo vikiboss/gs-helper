@@ -1,5 +1,6 @@
-import { GachaData } from "../typings";
 import sortGachaList from "./sortGachaList";
+
+import type { GachaData } from "../typings";
 
 // 新旧祈愿数据列表合并算法
 const mergeGachaList = (pre: GachaData["list"], list: GachaData["list"]) => {

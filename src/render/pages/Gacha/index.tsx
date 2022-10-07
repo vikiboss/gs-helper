@@ -1,4 +1,4 @@
-import { BiImport, BiExport } from "react-icons/Bi";
+import { BiImport, BiExport } from "react-icons/bi";
 import { TiArrowBack } from "react-icons/ti";
 import { useNavigate } from "react-router-dom";
 import D from "dayjs";
@@ -35,7 +35,7 @@ const DefaultGachaData: GachaData = {
 export interface PageProp {
   gacha: GachaData;
   filter: FilterType;
-  toggleFilter: Function;
+  toggleFilter: (...args: any[]) => void;
   notice: Notice;
 }
 
@@ -151,7 +151,7 @@ const Gacha: React.FC = () => {
     }
   };
 
-  const getLocalGachaUrl = async (isUserTrriger: boolean = false) => {
+  const getLocalGachaUrl = async (isUserTrriger = false) => {
     const url = await nativeApi.getGachaUrl();
     setLink(url);
     if (url) {

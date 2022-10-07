@@ -1,4 +1,4 @@
-import { GachaData } from "../typings";
+import type { GachaData } from "../typings";
 
 // 通过 id （时间）进行列表排序
 const sortGachaList = (list: GachaData["list"]) => {

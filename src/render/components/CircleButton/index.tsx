@@ -10,7 +10,7 @@ export interface CircleButtonProp {
   tip?: string;
   size?: "small" | "middle" | "large";
   className?: string;
-  onClick?: () => void;
+  onClick?: (...args: any[]) => any;
 }
 
 const SIZE_MAP = {
@@ -20,7 +20,7 @@ const SIZE_MAP = {
 };
 
 const CircleButton: React.FC<CircleButtonProp> = (props) => {
-  const { onClick = () => {}, className = "", size = "small", Icon, tip = "" } = props;
+  const { onClick, className = "", size = "small", Icon, tip = "" } = props;
   return (
     <div className={classnames(styles.btn, styles[size], className)} onClick={onClick} title={tip}>
       <Icon size={SIZE_MAP[size]} className={styles.icon} />

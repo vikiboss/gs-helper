@@ -16,7 +16,7 @@ const TYPE_MAP: Record<string, IconType> = {
 };
 
 const WinButton: React.FC<WinButtonProp> = (props) => {
-  const { onClick = () => {}, className = "", type } = props;
+  const { onClick, className = "", type } = props;
   const Icon = TYPE_MAP[type];
   return (
     <div className={classnames(styles.btn, styles.size, className)} onClick={onClick}>

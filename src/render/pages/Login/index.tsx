@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import { TiArrowBack } from "react-icons/ti";
 
-import element from "../../../assets/element.png";
+// import element from "../../../assets/element.png";
 import useNotice from "../../hooks/useNotice";
 import useAuth from "../../hooks/useAuth";
 import nativeApi from "../../utils/nativeApi";

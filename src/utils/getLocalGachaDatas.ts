@@ -41,7 +41,9 @@ const getLocalGachaDatas = (): GachaData[] => {
       // 尝试解析，并将成功解析的数据存入列表
       const data = JSON.parse(content);
       gachas.push(data);
-    } catch {}
+    } catch (e: any) {
+      console.log(e);
+    }
   }
   // 返回数据
   return gachas;
