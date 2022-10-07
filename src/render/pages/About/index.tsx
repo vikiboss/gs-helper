@@ -39,7 +39,7 @@ const About: React.FC = () => {
           <a href={ReactLink} target='_blank'>
             {" React "}
           </a>
-          ，支持 Windows、macOS、Linux 三大主流桌面平台。本工具完全免费，使用
+          ，支持 Windows、macOS、Linux 三大主流桌面平台，仅提供 Windows 成品版本，其他版本需自行在对应平台编译使用，不保证一致性。本工具完全免费，使用
           <a href={licenceLink} target='_blank'>
             {" MIT "}
           </a>

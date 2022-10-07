@@ -37,9 +37,15 @@ export const IPCEvents: Record<string, string> = {
 };
 
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
-
 export const BBS_VERSION = "2.34.1";
-export const GAME_NAME: Record<string, string> = { "zh-CN": "原神", en: "Genshin Impact" };
+
+export const ExportAppName = "Genshin Helper";
+
+export const GAME_NAME: Record<string, string> = {
+  zh: "原神",
+  en: "Genshin Impact"
+};
+
 export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/${BBS_VERSION}`;
 export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/`;
 export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/`;
@@ -98,7 +104,8 @@ export const NormalItemList: string[] = [
   "狼的末路",
   "天空之傲",
   "天空之刃",
-  "风鹰剑"
+  "风鹰剑",
+  "提纳里"
 ];
 
 // nivo 图表库的主题数据

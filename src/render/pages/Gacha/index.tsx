@@ -103,7 +103,8 @@ const Gacha: React.FC = () => {
 
     if (!link) {
       const msg = isWindows
-        ? "请先输入祈愿链接后再尝试更新祈愿数据"
+        ? "请先 「获取本地链接」 或 「手动输入祈愿链接」"
+        // ? "请先输入祈愿链接后再尝试更新祈愿数据"
         : "请先输入祈愿链接后再尝试更新祈愿数据";
       return notice.warning({ message: msg });
     }
@@ -122,7 +123,10 @@ const Gacha: React.FC = () => {
       notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` });
       await initGachaData(data.info.uid);
     } else {
-      notice.faild({ message: "数据拉取异常，请检查祈愿链接后重试" });
+      notice.faild({
+        message: "数据拉取异常，尝试打开游戏内历史记录页重新获取最新链接后重试",
+        duration: 10000
+      });
     }
     setLoading(false);
   };
@@ -143,12 +147,8 @@ const Gacha: React.FC = () => {
   };
 
   const copyLink = () => {
-    if (link) {
-      nativeApi.writeClipboardText(link);
-      notice.success({ message: "已将 「祈愿记录链接」 复制到剪切板，可供其他平台使用" });
-    } else {
-      notice.faild({ message: " 「祈愿记录链接」 为空" });
-    }
+    nativeApi.writeClipboardText(link);
+    notice.success({ message: "已将 「祈愿记录链接」 复制到剪切板，可供其他软件和平台使用" });
   };
 
   const getLocalGachaUrl = async (isUserTrriger = false) => {
@@ -159,15 +159,15 @@ const Gacha: React.FC = () => {
         notice.success({ message: "本地 「祈愿记录链接」 获取成功" });
       }
     } else {
-      const message = "本地日志中不存在有效链接，请先在本地游戏内打开 「祈愿历史记录」 页面";
+      const message = "本地缓存中不存在有效链接，请先在本地游戏内打开 「祈愿历史记录」 页面";
       if (isUserTrriger) notice.faild({ message });
     }
     return !!url;
   };
 
-  const openTutorial = () => {
-    open("https://docs.qq.com/doc/p/d4e754b865f99003c2495b038748b9359a7411bb");
-  };
+  // const openTutorial = () => {
+  //   open("https://docs.qq.com/doc/p/d4e754b865f99003c2495b038748b9359a7411bb");
+  // };
 
   const gacha = gachas.filter((e) => e.info.uid === uid)[0] || DefaultGachaData;
   const firsteDate = gacha.list.length ? gacha.list[0].time : "";
@@ -238,9 +238,11 @@ const Gacha: React.FC = () => {
             {isWindows && link !== null && (
               <Button
                 className={styles.btn}
-                onClick={link ? copyLink : openTutorial}
+                onClick={link ? copyLink : () => getLocalGachaUrl(true)}
+                // onClick={link ? copyLink : openTutorial}
                 style={{ marginRight: "12px" }}
-                text={link ? "复制" : "查看获取教程"}
+                text={link ? "复制链接" : "获取本地链接"}
+                // text={link ? "复制链接" : "查看获取教程"}
               />
             )}
             {link !== null && (

@@ -1,9 +1,9 @@
 import { app } from "electron";
 import D from "dayjs";
 
-import { API_HK4E, GachaTypeMap, TypeToUIGFTypeMap } from "../constants";
-import { deepClone, wait } from "../utils/utils";
 import request from "../utils/request";
+import { deepClone, wait } from "../utils/utils";
+import { API_HK4E, ExportAppName, GachaTypeMap, TypeToUIGFTypeMap } from "../constants";
 
 import type { BaseRes, GachaData, GachaItem, RawGachaItem } from "../typings";
 
@@ -19,8 +19,8 @@ export const DefaultGachaData: GachaData = {
   info: {
     uid: "",
     lang: "zh-cn",
-    export_app: app.getName(),
-    export_app_version: "1.0.0",
+    export_app: "",
+    export_app_version: "",
     export_time: "",
     export_timestamp: "",
     update_time: "",
@@ -37,9 +37,10 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     // 默认的空数据
     const gacha: GachaData = deepClone(DefaultGachaData);
 
-    // 填充基本的信息
-    gacha.info.update_time = D(new Date()).format("YYYY-MM-DD HH:mm:ss");
+    // 填充 UIGF v2.2 格式数据的基本信息
+    gacha.info.export_app = ExportAppName;
     gacha.info.export_app_version = app.getVersion();
+    gacha.info.update_time = D(new Date()).format("YYYY-MM-DD HH:mm:ss");
 
     // 是否已获取 UID
     let hasUid = false;
