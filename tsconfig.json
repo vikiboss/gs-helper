@@ -2,6 +2,7 @@
   "compilerOptions": {
     "allowJs": true,
     "module": "commonjs",
+    "target": "ESNEXT",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -12,8 +13,12 @@
     "downlevelIteration": true,
     "jsx": "react",
     "paths": {
-      "*": ["./node_modules/*"]
+      "*": [
+        "./node_modules/*"
+      ]
     }
   },
-  "include": ["./src/**/*"]
+  "include": [
+    "./src/**/*"
+  ]
 }
