@@ -1,0 +1,34 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+.container {
+  .ani-show-right();
+  .flex-center-column();
+
+  flex: 1;
+  position: relative;
+
+  .welcome {
+    font-size: 20px;
+  }
+
+  .clearCache {
+    align-items: center;
+    bottom: 40px;
+    display: flex;
+    left: 40px;
+    position: absolute;
+
+    & > span {
+      color: @color-second;
+      font-size: 14px;
+      margin-left: 16px;
+    }
+  }
+
+  .back-btn {
+    left: 20px;
+    position: absolute;
+    top: 20px;
+  }
+}

@@ -1,0 +1,194 @@
+@import "../../../../utils/colors.less";
+@import "../../../../utils/utils.less";
+
+.content {
+  .flex-column();
+
+  height: 428px;
+  width: 920px;
+
+  .tip {
+    .ani-show-top();
+
+    color: @color-second;
+    font-size: 14px;
+    margin-left: 8px;
+  }
+
+  .cards {
+    .flex-wrap();
+
+    justify-content: center;
+
+    & > div {
+      .ani-show-top();
+      .shadow-shallow();
+      .transition();
+
+      width: 424px;
+      padding: 12px;
+      height: 112px;
+      border-radius: 12px;
+      margin: 4px 6px;
+      position: relative;
+
+      &:hover {
+        .shadow();
+      }
+
+      .name {
+        background-color: @color-success;
+        border-bottom-left-radius: 12px;
+        border-top-right-radius: 12px;
+        height: 32px;
+        line-height: 32px;
+        position: absolute;
+        right: 0;
+        text-align: center;
+        top: 0;
+        width: 100px;
+      }
+
+      .sumary {
+        .flex();
+
+        .count {
+          background-color: rgba(255, 255, 255, 0.2);
+          border-radius: 12px;
+          border: 2px solid @color-white;
+          font-size: 24px;
+          font-weight: 100;
+          height: $width;
+          line-height: 38px;
+          margin-right: 12px;
+          padding: 2px;
+          text-align: center;
+          width: 36px;
+        }
+
+        .title {
+          font-size: 40px;
+          font-weight: bold;
+        }
+      }
+
+      .tags {
+        .flex-wrap();
+
+        margin-top: 8px;
+      }
+    }
+  }
+
+  .desc {
+    .ani-show-bottom();
+    .flex();
+
+    height: 120px;
+    margin-top: 8px;
+
+    & > div:nth-child(1) {
+      .flex-column();
+
+      flex: 1;
+      justify-content: flex-start;
+
+      & > div {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 1px 0 6px 4px;
+      }
+    }
+
+    & > div:nth-child(2) {
+      .flex-wrap();
+
+      align-content: flex-start;
+      flex: 1;
+    }
+  }
+}
+
+.tag {
+  .transition();
+
+  font-size: 12px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 32px;
+  color: @color-white;
+  height: 20px;
+  line-height: 21px;
+  margin-right: 8px;
+  margin-bottom: 6px;
+  padding: 2px 10px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.item {
+  .transition();
+
+  font-size: 12px;
+  background-color: @color-success;
+  border-radius: 32px;
+  color: @color-white;
+  height: 24px;
+  line-height: 26px;
+  margin-left: 8px;
+  margin-bottom: 6px;
+  padding: 3px 12px;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.star {
+  font-size: 14px;
+}
+
+.star-5 {
+  color: @color-star-5;
+}
+
+.star-4 {
+  color: @color-star-4;
+}
+
+.star-3 {
+  color: @color-star-3;
+}
+
+.luck {
+  color: @color-white;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+.luck-0 {
+  background-image: linear-gradient(30deg, @color-luck-0 50%, @color-luck-0-s);
+}
+
+.luck-1 {
+  background-image: linear-gradient(30deg, @color-luck-1 50%, @color-luck-1-s);
+}
+
+.luck-2 {
+  background-image: linear-gradient(30deg, @color-luck-2 50%, @color-luck-2-s);
+}
+
+.luck-3 {
+  background-image: linear-gradient(30deg, @color-luck-3 50%, @color-luck-3-s);
+}
+
+.luck-4 {
+  background-image: linear-gradient(30deg, @color-luck-4 50%, @color-luck-4-s);
+}
+
+.luck-5 {
+  background-image: linear-gradient(30deg, @color-luck-5 50%, @color-luck-5-s);
+}
