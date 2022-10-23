@@ -16,6 +16,10 @@
 
 软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=vikiboss/genshin-helper&type=Date)](https://star-history.com/#vikiboss/genshin-helper&Date)
+
 ### 下载
 
 - `v1.1.3` 测试版，[各版本更新日志](https://github.com/Vikiboss/genshin-helper/releases)
