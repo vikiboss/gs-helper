@@ -2,7 +2,6 @@ import { app, BrowserWindow, session } from "electron";
 
 import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from "../../constants";
 import { mainWin, store, isDev, isAppleDevice } from "..";
-import { ScriptRefineBBS } from "./openWindow";
 import verifyCookieAndGetGameRole from "../../utils/verifyCookieAndGetGameRole";
 
 import type { UserData } from "../../typings";
@@ -13,7 +12,7 @@ const loginByBBS = async () => {
   const bbsWin = new BrowserWindow({
     width: 400,
     height: 700,
-    show: false,
+    show: true,
     modal: !isAppleDevice,
     parent: mainWin,
     resizable: false,
@@ -29,9 +28,6 @@ const loginByBBS = async () => {
     bbsWin.removeMenu();
   }
 
-  // 准备好时显示窗口
-  bbsWin.once("ready-to-show", () => bbsWin.show());
-
   const dom = bbsWin.webContents;
 
   // 阻止弹出新窗口
@@ -40,8 +36,6 @@ const loginByBBS = async () => {
   dom.setUserAgent(APP_USER_AGENT_MOBILE + app.getVersion());
   // 加载米游社登录页面
   dom.loadURL(LINK_MIHOYO_BBS_LOGIN);
-  // 优化页面元素
-  dom.on("did-finish-load", () => dom.executeJavaScript(ScriptRefineBBS));
 
   // 监听登录窗口被关闭事件
   bbsWin.on("close", async () => {

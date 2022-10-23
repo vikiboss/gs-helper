@@ -53,7 +53,7 @@ const Login: React.FC<LoginProp> = (props) => {
   }, []);
 
   const handleLogin = () => {
-    notice.success({ message: "正在打开登录页面...", duration: 1200 });
+    notice.success({ message: "正在打开登录页面...", duration: 6000 });
     nativeApi.loginByBBS();
   };
 
