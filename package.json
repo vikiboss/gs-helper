@@ -10,7 +10,7 @@
     "start:watch": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "prettier": "prettier .",
+    "prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,less,css}",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
   },
   "author": {
@@ -32,8 +32,10 @@
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "@vercel/webpack-asset-relocator-loader": "1.7.0",
+    "@vikiboss/prettier-config": "^0.0.7",
+    "conf": "^10.2.0",
     "css-loader": "^6.7.1",
-    "electron": "18.2.0",
+    "electron": "^21.2.0",
     "eslint": "^8.26.0",
     "eslint-plugin-import": "^2.26.0",
     "fork-ts-checker-webpack-plugin": "^6.5.2",
@@ -44,7 +46,8 @@
     "prop-types": "^15.8.1",
     "style-loader": "^3.3.1",
     "ts-loader": "^9.4.1",
-    "typescript": "~4.5.5"
+    "typescript": "~4.5.5",
+    "webpack": "^5.74.0"
   },
   "dependencies": {
     "@nivo/bar": "^0.80.0",
@@ -52,17 +55,14 @@
     "@nivo/core": "^0.80.0",
     "@nivo/pie": "^0.80.0",
     "@nivo/tooltip": "0.80.0",
-    "@vikiboss/prettier-config": "^0.0.6",
     "axios": "^1.1.3",
     "classnames": "^2.3.2",
-    "conf": "^10.2.0",
     "dayjs": "^1.11.6",
     "electron-store": "^8.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.6.0",
     "react-router-dom": "^6.4.2",
-    "uuid": "^8.3.2",
-    "webpack": "^5.74.0"
+    "uuid": "^8.3.2"
   }
 }
