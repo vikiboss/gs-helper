@@ -88,101 +88,103 @@ const Month: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.title}>冒险札记</div>
         {monthInfos[0]?.account_id ? (
-          <div className={styles.content}>
-            <div className={styles.greeting}>
-              {initData.nickname}，{greeting}
-            </div>
-            <div className={styles.today}>
-              <div className={styles.itemBg}>
-                <span>今日</span>
-                <div className={styles.item}>
-                  <img src={primogem} alt='原石' />
-                  <BounceNumber
-                    number={initData.day_data.current_primogems}
-                    wrapperStyle={{ width: "40px" }}
-                  />
-                  <img src={mora} alt='摩拉' />
-                  <BounceNumber
-                    number={initData.day_data.current_mora}
-                    wrapperStyle={{ width: "80px" }}
-                  />
+          <>
+            <div className={styles.title}>冒险札记</div>
+            <div className={styles.content}>
+              <div className={styles.greeting}>
+                {initData.nickname}，{greeting}
+              </div>
+              <div className={styles.today}>
+                <div className={styles.itemBg}>
+                  <span>今日</span>
+                  <div className={styles.item}>
+                    <img src={primogem} alt='原石' />
+                    <BounceNumber
+                      number={initData.day_data.current_primogems}
+                      wrapperStyle={{ width: "40px" }}
+                    />
+                    <img src={mora} alt='摩拉' />
+                    <BounceNumber
+                      number={initData.day_data.current_mora}
+                      wrapperStyle={{ width: "80px" }}
+                    />
+                  </div>
+                </div>
+                <div className={styles.itemBg}>
+                  <span>昨日</span>
+                  <div className={styles.item}>
+                    <img src={primogem} alt='原石' />
+                    <BounceNumber
+                      number={initData.day_data.last_primogems}
+                      wrapperStyle={{ width: "40px" }}
+                    />
+                    <img src={mora} alt='摩拉' />
+                    <BounceNumber
+                      number={initData.day_data.last_mora}
+                      wrapperStyle={{ width: "80px" }}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className={styles.itemBg}>
-                <span>昨日</span>
-                <div className={styles.item}>
-                  <img src={primogem} alt='原石' />
-                  <BounceNumber
-                    number={initData.day_data.last_primogems}
-                    wrapperStyle={{ width: "40px" }}
-                  />
-                  <img src={mora} alt='摩拉' />
-                  <BounceNumber
-                    number={initData.day_data.last_mora}
-                    wrapperStyle={{ width: "80px" }}
-                  />
-                </div>
+
+              <div className={styles.filter}>
+                {initData.optional_month.length > 1 && <span>按月份查看：</span>}
+                {initData.optional_month.length === 0 && <span>暂无数据</span>}
+                {initData.optional_month.map((e) => (
+                  <div
+                    key={e}
+                    onClick={() => setMonth(e)}
+                    className={cn(styles.btn, month === Number(e) ? styles.active : "")}
+                  >
+                    {e}月
+                  </div>
+                ))}
               </div>
-            </div>
 
-            <div className={styles.filter}>
-              {initData.optional_month.length > 1 && <span>按月份查看：</span>}
-              {initData.optional_month.length === 0 && <span>暂无数据</span>}
-              {initData.optional_month.map((e) => (
-                <div
-                  key={e}
-                  onClick={() => setMonth(e)}
-                  className={cn(styles.btn, month === Number(e) ? styles.active : "")}
-                >
-                  {e}月
-                </div>
-              ))}
-            </div>
-
-            <div className={styles.monthContent}>
-              <div>
-                <div className={styles.monthTitle}>{monthInfo.data_month}月札记</div>
-                <div className={styles.monthDesc}>当月累计获取资源</div>
-                <div className={styles.monthItem}>
-                  <img src={primogem} alt='原石' />
-                  <BounceNumber
-                    number={monthData.current_primogems}
-                    wrapperStyle={{ width: "80px" }}
-                  />
-                  <span>
-                    相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
-                    {monthData.last_primogems > 0 &&
-                      `，相比上月 ${pSign ? "+" : "-"}${Math.abs(monthData.primogems_rate)}%`}
-                  </span>
-                </div>
-                <div className={styles.monthItem}>
-                  <img src={mora} alt='摩拉' />
-                  <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: "80px" }} />
-                  {monthData.last_mora > 0 && (
+              <div className={styles.monthContent}>
+                <div>
+                  <div className={styles.monthTitle}>{monthInfo.data_month}月札记</div>
+                  <div className={styles.monthDesc}>当月累计获取资源</div>
+                  <div className={styles.monthItem}>
+                    <img src={primogem} alt='原石' />
+                    <BounceNumber
+                      number={monthData.current_primogems}
+                      wrapperStyle={{ width: "80px" }}
+                    />
                     <span>
-                      相比上月 {mSign ? "+" : "-"}
-                      {Math.abs(monthData.mora_rate)}%
+                      相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
+                      {monthData.last_primogems > 0 &&
+                        `，相比上月 ${pSign ? "+" : "-"}${Math.abs(monthData.primogems_rate)}%`}
                     </span>
-                  )}
+                  </div>
+                  <div className={styles.monthItem}>
+                    <img src={mora} alt='摩拉' />
+                    <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: "80px" }} />
+                    {monthData.last_mora > 0 && (
+                      <span>
+                        相比上月 {mSign ? "+" : "-"}
+                        {Math.abs(monthData.mora_rate)}%
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div>
+                  <Pie
+                    data={monthData.group_by.map((e) => ({
+                      id: e.action,
+                      value: e.num
+                    }))}
+                    width={480}
+                    height={240}
+                  />
                 </div>
               </div>
-              <div>
-                <Pie
-                  data={monthData.group_by.map((e) => ({
-                    id: e.action,
-                    value: e.num
-                  }))}
-                  width={480}
-                  height={240}
-                />
+              <div className={styles.tip}>
+                ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
               </div>
             </div>
-            <div className={styles.tip}>
-              ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
-            </div>
-          </div>
+          </>
         ) : (
           <Loading />
         )}
