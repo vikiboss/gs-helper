@@ -9,14 +9,17 @@ import groupQRCode from "../../../assets/group-qrcode.png";
 import nativeApi from "../../utils/nativeApi";
 import wxRewardCode from "../../../assets/wx-reward.jpg";
 
+import type { AppInfo } from "../../../typings";
+
 import styles from "./index.less";
+
 
 const About: React.FC = () => {
   const navigate = useNavigate();
-  const [vsersion, setVersion] = useState("");
+  const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({});
 
   useEffect(() => {
-    (async () => setVersion((await nativeApi.getAppInfo()).version))();
+    (async () => setAppInfo(await nativeApi.getAppInfo()))();
   }, []);
 
   const licenceLink = "https://github.com/Vikiboss/genshin-helper/blob/master/LICENCE";
@@ -31,7 +34,7 @@ const About: React.FC = () => {
       <div className={styles.title}>关于</div>
       <div className={styles.declaration}>
         <p>
-          「原神助手」 由个人独立开发，基于
+          「{appInfo?.zhName || "原神助手"}」 由个人独立开发，基于
           <a href={ElectronLink} target='_blank'>
             {" Electron "}
           </a>
@@ -65,7 +68,7 @@ const About: React.FC = () => {
 
       <div className={styles.bottom}>
         <div className={styles.items}>
-          <div className={styles.item}>※ 当前版本：{vsersion} Beta</div>
+          <div className={styles.item}>※ 当前版本：{appInfo?.version || "未知"} Beta</div>
           <div className={styles.item}>
             <div className={styles.field}>
               ※ 开发者：

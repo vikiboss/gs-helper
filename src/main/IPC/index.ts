@@ -1,7 +1,7 @@
 import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from "electron";
 
 import { store } from "..";
-import { IPCEvents } from "../../constants";
+import { AppName, IPCEvents } from "../../constants";
 import { changeUser, deleteUser } from "../handleUsers";
 import exportGacha from "./exportGacha";
 import getCurrentUser from "./getCurrentUser";
@@ -30,6 +30,7 @@ import type { AppInfo } from "../../typings";
 
 const AppicationInfo: AppInfo = {
   name: app.getName(),
+  zhName: AppName,
   version: app.getVersion(),
   isBeta: true,
   isDev: !app.isPackaged,

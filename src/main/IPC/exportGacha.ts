@@ -3,7 +3,7 @@ import { app, dialog } from "electron";
 import fs from "fs/promises";
 
 import { mainWin } from "..";
-import { ExportAppName } from "../../constants";
+import { AppName } from "../../constants";
 import getLocalGachaDatas from "../../utils/getLocalGachaDatas";
 
 import type { BaseIPCRes, GachaData } from "../../typings";
@@ -33,7 +33,7 @@ const exportGacha = async (uid: string): Promise<BaseIPCRes<null | GachaData>> =
   try {
     data.info.lang = "zh-cn";
     data.info.uigf_version = "v2.2";
-    data.info.export_app = ExportAppName;
+    data.info.export_app = AppName;
     data.info.export_app_version = app.getVersion();
     data.info.export_time = dayjs().format("YYYY-MM-DD HH:mm:ss");
     data.info.export_timestamp = String(new Date().getTime());

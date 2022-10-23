@@ -11,11 +11,11 @@ import "./index.less";
 const root = createRoot(document.getElementById("app"));
 
 const render = async () => {
-  const { name, version, isBeta } = await nativeApi.getAppInfo();
+  const { zhName, version, isBeta } = await nativeApi.getAppInfo();
   const isLogin = Boolean(await nativeApi.getStoreKey("currentUid"));
 
   root.render(
-    <WinFrame title={`${name} v${version} ${isBeta ? "Beta" : ""}`}>
+    <WinFrame title={`${zhName} v${version} ${isBeta ? "Beta" : ""}`}>
       <AuthProvider isLogin={isLogin}>
         <AppRouter />
       </AuthProvider>

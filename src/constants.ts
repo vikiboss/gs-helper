@@ -39,7 +39,7 @@ export const IPCEvents: Record<string, string> = {
 export const EXPOSED_API_FROM_ELECTRON = "nativeApi";
 export const BBS_VERSION = "2.34.1";
 
-export const ExportAppName = "Genshin Helper";
+export const AppName = "原神助手";
 
 export const GAME_NAME: Record<string, string> = {
   zh: "原神",

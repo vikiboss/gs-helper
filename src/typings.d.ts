@@ -63,6 +63,7 @@ export interface BaseIPCRes<T> {
 
 export interface AppInfo {
   name: string;
+  zhName: string;
   version: string;
   isBeta: boolean;
   isDev: boolean;
