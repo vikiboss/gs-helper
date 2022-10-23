@@ -10,10 +10,11 @@
     "start:watch": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "style:fix": "pnpm run prettier:fix && pnpm run eslint:fix",
     "prettier": "prettier ./**/*.{sass,less,css,html,md,json}",
     "prettier:fix": "prettier --write ./**/*.{sass,less,css,html,md,json}",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix ."
+    "eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "eslint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
   "author": {
     "name": "Viki",
