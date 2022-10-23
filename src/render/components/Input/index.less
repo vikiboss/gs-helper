@@ -1,0 +1,39 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input {
+  .transition();
+
+  background-color  : transparent;
+  border            : 2px solid transparent;
+  border-radius     : 6px;
+  color             : @color-primary;
+  font-size         : 18px;
+  font-weight       : bold;
+  height            : 28px;
+  line-height       : 28px;
+  outline           : none;
+  padding           : 1px 2px;
+
+
+  &:hover {
+    border-color: @color-second;
+  }
+
+  &:focus {
+    border-color: @color-second;
+  }
+
+  &::placeholder {
+    color: @color-second;
+  }
+}

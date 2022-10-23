@@ -1,0 +1,69 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+@win-bar-bg-color      : #454d5c;
+@win-bar-bg-line-color : #515a6a;
+@win-bar-title-color    : #ece5d8;
+
+.frame {
+  background-color: @color-bg;
+  display         : flex;
+  flex-direction  : column;
+  height          : 100vh;
+  overflow        : hidden;
+  width           : 100vw;
+
+  .top-bar {
+    background-color: @win-bar-bg-color;
+    // box-shadow      : 0 0 10px 4px #ccc;
+    display         : flex;
+    height          : 42px;
+    padding         : 2px;
+    width           : 100vw;
+    z-index         : 999999999;
+
+    &::before {
+      -webkit-app-region: drag;
+      background-color  : transparent;
+      border            : 1px solid @win-bar-bg-line-color;
+      content           : "";
+      height            : 40px;
+      position          : fixed;
+      width             : calc(100vw - 6px);
+    }
+
+    .icon {
+      height: 24px;
+      margin: 9px;
+      width : 24px;
+    }
+
+    .title {
+      color    : @win-bar-title-color;
+      font-size: 20px;
+      margin   : 10px 10px 10px 0;
+    }
+
+    .btns {
+      .flex-center();
+
+      -webkit-app-region: no-drag;
+      padding           : 8px;
+      position          : absolute;
+      right             : 8px;
+      top               : 0px;
+
+      .btn {
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .content {
+    .flex-column();
+
+    height          : calc(100vh - 42px);
+    background-color: transparent;
+    overflow        : hidden;
+  }
+}

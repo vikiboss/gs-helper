@@ -1,0 +1,39 @@
+@import "../../utils/colors.less";
+@import "../../utils/utils.less";
+
+.alert {
+  .transition-slow();
+  .flex-center();
+
+  color     : @color-white;
+  font-size : 20px;
+  height    : 42px;
+  left      : 0;
+  position  : absolute;
+  width     : 100vw;
+  z-index   : 1000;
+}
+
+.info {
+  background-color: @color-info;
+}
+
+.warning {
+  background-color: @color-warning;
+}
+
+.success {
+  background-color: @color-success;
+}
+
+.faild {
+  background-color: @color-faild;
+}
+
+.hide {
+  top: 100vh;
+}
+
+.show {
+  top: calc(100vh - 42px);
+}
