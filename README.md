@@ -40,26 +40,24 @@
 
 ### 本地开发
 
+环境要求：
+
+- `Node.js` > 16
+- `Git`
+- 推荐使用 `pnpm` 包管理器来管理 `Node.js` 依赖
+
 ```bash
-# clone 项目
+# 使用 npm 从国内镜像全局安装 pnpm (如果没有安装 pnpm)
+npm i -g pnpm --registry=https://registry.npmmirror.com/
+# 使用 Git 将本项目 clone 到本地
 git clone git@github.com:vikiboss/genshin-helper.git
 # 切换到项目目录
 cd genshin-helper
-# 安装依赖
+# 安装项目依赖（React、Electron、webpack 等）
 pnpm install
 # 启动本地开发环境
 pnpm run start
-```
 
-### 本地构建
-
-```bash
-# clone 项目
-git clone git@github.com:vikiboss/genshin-helper.git
-# 切换到项目目录
-cd genshin-helper
-# 安装依赖
-pnpm install
 # 构建项目
 pnpm run package
 # 构建并打包项目
