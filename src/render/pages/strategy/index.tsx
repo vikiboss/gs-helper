@@ -42,18 +42,20 @@ const LINK_BBS_TASK = "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231";
 const LINK_BBS_TEAM = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/40";
 const LINK_BBS_VERSION = "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233";
 const LINK_BBS_WEAPON = "https://bbs.mihoyo.com/ys/obc/channel/map/189/5";
+const LINK_BILI_YYY = "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate";
+const LINK_BILI_WOJU = "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate";
 
 import styles from "./index.less";
 import useNotice from "../../hooks/useNotice";
 
 const btns = [
   {
-    name: "观测枢-攻略",
+    name: "全攻略",
     icon: strategy,
     link: LINK_BBS_STRATEGY
   },
   {
-    name: "观测枢-百科",
+    name: "原神百科",
     icon: wiki,
     link: LINK_BBS_OBC
   },
@@ -136,6 +138,16 @@ const btns = [
     name: "PV合辑",
     icon: PV,
     link: LINK_BBS_PV
+  },
+  {
+    name: "影月月(B站)",
+    icon: PV,
+    link: LINK_BILI_YYY
+  },
+  {
+    name: "莴苣妈妈(B站)",
+    icon: PV,
+    link: LINK_BILI_WOJU
   }
 ];
 
@@ -151,7 +163,7 @@ const Setting: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.title}>原神攻略</div>
+        <div className={styles.title}>原神小窗攻略</div>
         <div className={styles.btns}>
           {btns.map((e) => (
             <div className={styles.btn} key={e.name} onClick={handleWindowOpen.bind(null, e.link)}>

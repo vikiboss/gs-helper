@@ -12,6 +12,7 @@ import { RiCalendarCheckFill } from "react-icons/ri";
 
 import { LINK_GENSHIN_MAP } from "../../../constants";
 import Button from "../../components/Button";
+import Loading from "../../components/Loading";
 import nativeApi from "../../utils/nativeApi";
 import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
@@ -22,7 +23,6 @@ import type { SignInfo } from "../../../services/getBBSSignInfo";
 import type { GameRole } from "../../../typings";
 
 import styles from "./index.less";
-import Loading from "../../components/Loading";
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -129,13 +129,12 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/daily")
     },
     {
-      name: "原神攻略",
+      name: "小窗攻略",
       Icon: FaRegCompass,
       handler: () => handlePageSwitch("/strategy")
-      // handler: () => handleWindowOpen(LINK_BBS_YS_OBC)
     },
     {
-      name: "提瓦特地图",
+      name: "小窗地图",
       Icon: FaRegMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },
