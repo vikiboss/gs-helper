@@ -1,4 +1,4 @@
-![genshin-helper](https://socialify.git.ci/Vikiboss/genshin-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2FVikiboss%2Fgenshin-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
+![genshin-helper](https://socialify.git.ci/vikiboss/genshin-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2Fvikiboss%2Fgenshin-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
 
 中文 | [English](README-en.md)
 
@@ -16,14 +16,14 @@
 
 软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
 
-## Star History
+## Star 历史
 
 [![Star History Chart](https://api.star-history.com/svg?repos=vikiboss/genshin-helper&type=Date)](https://star-history.com/#vikiboss/genshin-helper&Date)
 
 ### 下载
 
-- `v1.1.3` 测试版，[各版本更新日志](https://github.com/Vikiboss/genshin-helper/releases)
-  - [GitHub](https://github.com/Vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip)
+- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
+  - [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip)
   - [蓝奏云](https://viki.lanzout.com/i687i0dd32da)
 
 ### 界面展示
@@ -42,30 +42,30 @@
 
 ```bash
 # clone 项目
-git clone git@github.com:Vikiboss/genshin-helper.git
+git clone git@github.com:vikiboss/genshin-helper.git
 # 切换到项目目录
 cd genshin-helper
 # 安装依赖
-npm i
+pnpm install
 # 启动本地开发环境
-npm start
+pnpm run start
 ```
 
 ### 本地构建
 
 ```bash
 # clone 项目
-git clone git@github.com:Vikiboss/genshin-helper.git
+git clone git@github.com:vikiboss/genshin-helper.git
 # 切换到项目目录
 cd genshin-helper
 # 安装依赖
-npm i
+pnpm install
 # 构建项目
-npm run package
+pnpm run package
 # 构建并打包项目
-npm run make
+pnpm run make
 ```
 
 ### Licence
 
-- [MIT](LICENCE)
+- [MIT](LICENCE) License © 2022-PRESENT Viki

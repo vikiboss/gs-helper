@@ -1,4 +1,5 @@
 {
+  "root": true,
   "env": {
     "browser": true,
     "es6": true,
@@ -13,9 +14,15 @@
     "plugin:import/typescript"
   ],
   "rules": {
-    "@typescript-eslint/no-explicit-any": ["off"],
-    "@typescript-eslint/no-var-requires": ["off"],
-    "@typescript-eslint/triple-slash-reference": ["off"]
+    "@typescript-eslint/no-explicit-any": [
+      "off"
+    ],
+    "@typescript-eslint/no-var-requires": [
+      "off"
+    ],
+    "@typescript-eslint/triple-slash-reference": [
+      "off"
+    ]
   },
   "parser": "@typescript-eslint/parser"
 }
