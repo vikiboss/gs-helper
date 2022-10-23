@@ -1,5 +1,5 @@
-@import "../../utils/colors.less";
-@import "../../utils/utils.less";
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
 
 @win-bar-bg-color: #454d5c;
 
@@ -21,9 +21,9 @@
   z-index: 0;
 
   &::before {
-    background: url("../../../assets/bg.jpg") fixed 0 / cover;
+    background: url('../../../assets/bg.jpg') fixed 0 / cover;
     bottom: 0;
-    content: "";
+    content: '';
     filter: blur(8px) brightness(1.2);
     left: 0;
     position: absolute;
@@ -155,7 +155,7 @@
           .arrow {
             background-repeat: no-repeat;
             background-size: $width $height;
-            content: "";
+            content: '';
             display: inline-block;
             height: $width;
             margin: 0 20px;
@@ -166,14 +166,14 @@
             .ani-slide-left();
             .arrow();
 
-            background-image: url("../../../assets/arrow-left.png");
+            background-image: url('../../../assets/arrow-left.png');
           }
 
           span::after {
             .ani-slide-right();
             .arrow();
 
-            background-image: url("../../../assets/arrow-right.png");
+            background-image: url('../../../assets/arrow-right.png');
           }
         }
 
@@ -198,7 +198,7 @@
         .transition-slow();
 
         background-color: @home-btn-bg-color;
-        background-image: url("../../../assets/btn-border.png");
+        background-image: url('../../../assets/btn-border.png');
         background-repeat: no-repeat;
         background-size: contain;
         border: 2px solid @home-block-border-color;
@@ -242,7 +242,7 @@
         // 伪元素  绘制按钮悬浮的三角形
         &::before {
           z-index: 10;
-          content: " ";
+          content: ' ';
           position: absolute;
           top: -6px;
           left: calc((206px / 2) - 5px - 2px -8px);

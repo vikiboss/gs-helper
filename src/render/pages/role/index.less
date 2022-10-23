@@ -1,5 +1,5 @@
-@import "../../utils/colors.less";
-@import "../../utils/utils.less";
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
 
 .container {
   .flex-column();
@@ -156,18 +156,26 @@
               padding-left: 12px;
 
               &:hover {
-                background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+                background: linear-gradient(
+                  to right,
+                  rgba(255, 255, 255, 0.3),
+                  transparent
+                );
               }
             }
 
             .tab-active {
               position: relative;
-              background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
+              background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.3),
+                transparent
+              );
 
               &::before {
                 .ani-slide-right();
 
-                content: "▶";
+                content: '▶';
                 font-size: 14px;
                 left: -24px;
                 position: absolute;
@@ -414,7 +422,7 @@
     .bg-image-cover-no-repeat();
 
     left: 18px;
-    background-image: url("../../../assets/arrow-left.png");
+    background-image: url('../../../assets/arrow-left.png');
 
     &:hover {
       .ani-slide-right();
@@ -427,7 +435,7 @@
     .bg-image-cover-no-repeat();
 
     right: 18px;
-    background-image: url("../../../assets/arrow-right.png");
+    background-image: url('../../../assets/arrow-right.png');
 
     &:hover {
       .ani-slide-left();
@@ -492,7 +500,11 @@
 .electro {
   .detail-mode();
 
-  background-image: radial-gradient(circle, @color-electro, @color-electro-deep);
+  background-image: radial-gradient(
+    circle,
+    @color-electro,
+    @color-electro-deep
+  );
 }
 
 // 岩元素背景

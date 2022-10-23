@@ -1,11 +1,11 @@
-@import "../../utils/colors.less";
-@import "../../utils/utils.less";
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
 
 .container {
   .ani-show-right();
   .flex-center-x();
 
-  flex    : 1;
+  flex: 1;
   position: relative;
 
   .signContainer {
@@ -14,9 +14,9 @@
     .title {
       .ani-show-top();
 
-      font-size  : 24px;
+      font-size: 24px;
       line-height: 42px;
-      margin-top : 20px;
+      margin-top: 20px;
     }
 
     .tip {
@@ -30,44 +30,43 @@
       .flex-wrap();
 
       align-content: flex-start;
-      height       : 432px;
-      margin       : 16px 0;
-      width        : 860px;
+      height: 432px;
+      margin: 16px 0;
+      width: 860px;
 
       .sign-item {
         .flex-column();
         .transition();
 
-        background-image : url("../../../assets/sign-item-bg.png");
+        background-image: url('../../../assets/sign-item-bg.png');
         background-repeat: no-repeat;
-        background-size  : contain;
-        border           : 1px solid @color-second;
-        border-radius    : 4px;
-        height           : 100px;
-        margin           : 3px;
-        width            : 78px;
+        background-size: contain;
+        border: 1px solid @color-second;
+        border-radius: 4px;
+        height: 100px;
+        margin: 3px;
+        width: 78px;
 
         &:hover {
           transform: scale(1.05);
         }
 
         img {
-          width : 64px;
+          width: 64px;
           margin: calc((78px - $width) / 2);
           height: $width;
         }
 
         div {
-          text-align : center;
+          text-align: center;
           line-height: calc(100px - 78px);
-          font-size  : 10px;
+          font-size: 10px;
         }
       }
 
       .today {
-        background-image: url("../../../assets/sign-item-bg-today.png");
-        cursor          : pointer;
-
+        background-image: url('../../../assets/sign-item-bg-today.png');
+        cursor: pointer;
 
         &:hover {
           transform: scale(1.1);
@@ -76,20 +75,20 @@
 
       .signed {
         &::before {
-          background     : no-repeat url("../../../assets/sign-item-signed.png");
+          background: no-repeat url('../../../assets/sign-item-signed.png');
           background-size: contain;
-          content        : "";
-          height         : 100px;
-          position       : absolute;
-          width          : 78px;
+          content: '';
+          height: 100px;
+          position: absolute;
+          width: 78px;
         }
       }
     }
   }
 
   .back-btn {
-    left    : 20px;
+    left: 20px;
     position: absolute;
-    top     : 20px;
+    top: 20px;
   }
 }

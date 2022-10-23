@@ -10,8 +10,10 @@
     "start:watch": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "prettier": "prettier --write ./**/*.{js,jsx,ts,tsx,less,css}",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx ."
+    "prettier": "prettier ./**/*.{sass,less,css,html,md,json}",
+    "prettier:fix": "prettier --write ./**/*.{sass,less,css,html,md,json}",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx --fix ."
   },
   "author": {
     "name": "Viki",
