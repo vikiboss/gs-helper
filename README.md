@@ -22,8 +22,8 @@
 
 ### 下载
 
-- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases
-  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip)
+- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
+  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip
   - 蓝奏云：https://viki.lanzout.com/i687i0dd32da
 
 ### Star 历史
