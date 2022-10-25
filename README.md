@@ -2,29 +2,11 @@
 
 中文 | [English](README-en.md)
 
-> 🚧 请注意：项目仍在开发中，布局和功能随时可能调整，不代表最终效果。
-
 ### 介绍
 
-一个为 _《原神》_ 玩家精心编写的开源小工具，基于 [Electron](https://www.electronjs.org/) 和 [React](https://reactjs.org/)。
+一个为 _《原神》_ 玩家精心编写的开源小工具，基于 [Electron](https://www.electronjs.org/) 和 [React](https://reactjs.org/)。支持**原神签到**、**祈愿分析**、查看**便签状态**和**游戏详细数据**等。
 
-> [_《原神》_](https://ys.mihoyo.com/) 是由 [米哈游](https://www.mihoyo.com/) 公司制作发行的一款开放世界冒险游戏。
-
-支持**原神签到**、**祈愿分析**、查看**便签状态**和**游戏详细数据**等。
-
-开发初衷是**将原神玩家所需要的多数功能整合到一起，提升游戏效率与体验**。
-
-软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
-
-## Star 历史
-
-[![Star History Chart](https://api.star-history.com/svg?repos=vikiboss/genshin-helper&type=Date)](https://star-history.com/#vikiboss/genshin-helper&Date)
-
-### 下载
-
-- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
-  - [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip)
-  - [蓝奏云](https://viki.lanzout.com/i687i0dd32da)
+开发初衷是**将原神玩家所需要的多数功能整合到一起，提升游戏效率与体验**。软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
 
 ### 界面展示
 
@@ -38,11 +20,21 @@
 
 > 待补充...
 
+### 下载
+
+- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
+  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip
+  - 蓝奏云：https://viki.lanzout.com/i687i0dd32da
+
+### Star 历史
+
+[![Star History Chart](https://api.star-history.com/svg?repos=vikiboss/genshin-helper&type=Date)](https://star-history.com/#vikiboss/genshin-helper&Date)
+
 ### 本地开发
 
 环境要求：
 
-- `Node.js` > 16
+- 建议 `Node.js` >= 16
 - `Git`
 - 推荐使用 `pnpm` 包管理器来管理 `Node.js` 依赖
 
@@ -64,6 +56,6 @@ pnpm run package
 pnpm run make
 ```
 
-### Licence
+### License
 
 - [MIT](LICENCE) License © 2022-PRESENT Viki
