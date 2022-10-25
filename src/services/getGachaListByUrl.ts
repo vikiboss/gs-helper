@@ -38,7 +38,7 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
     const gacha: GachaData = deepClone(DefaultGachaData);
 
     // 填充 UIGF v2.2 格式数据的基本信息
-    gacha.info.export_app = AppName;
+    gacha.info.export_app = AppName.en;
     gacha.info.export_app_version = app.getVersion();
     gacha.info.update_time = D(new Date()).format("YYYY-MM-DD HH:mm:ss");
 

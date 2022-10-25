@@ -29,8 +29,8 @@ import getLocalGachaDatas from "../../utils/getLocalGachaDatas";
 import type { AppInfo } from "../../typings";
 
 const AppicationInfo: AppInfo = {
-  name: app.getName(),
-  zhName: AppName,
+  name: AppName.en,
+  zhName: AppName.zh,
   version: app.getVersion(),
   isBeta: true,
   isDev: !app.isPackaged,

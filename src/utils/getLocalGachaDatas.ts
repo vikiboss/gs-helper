@@ -16,7 +16,7 @@ const getLocalGachaDatas = (): GachaData[] => {
   // 若该目录不存在
   if (!isDirExist(gachaDataDirPath)) {
     // 旧版的祈愿数据目录
-    const fallbackPath = path.join(AppPath.replace(app.getName(), AppName), "GachaDatas");
+    const fallbackPath = path.join(AppPath.replace(app.getName(), AppName.zh), "GachaDatas");
     // 判断旧版的目录是否存在
     if (isDirExist(fallbackPath)) {
       // 如果存在则迁移

@@ -33,7 +33,7 @@ const exportGacha = async (uid: string): Promise<BaseIPCRes<null | GachaData>> =
   try {
     data.info.lang = "zh-cn";
     data.info.uigf_version = "v2.2";
-    data.info.export_app = AppName;
+    data.info.export_app = AppName.en;
     data.info.export_app_version = app.getVersion();
     data.info.export_time = dayjs().format("YYYY-MM-DD HH:mm:ss");
     data.info.export_timestamp = String(new Date().getTime());
