@@ -1,7 +1,7 @@
 import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
 
 import { APP_USER_AGENT_DESKTOP } from "../../constants";
-import { isDev } from "..";
+import { isDev, store } from "..";
 
 const wins = new Map<string, BrowserWindow>();
 
@@ -21,6 +21,7 @@ const openWindow = async (
     show: false,
     autoHideMenuBar: true,
     backgroundColor: "#F9F6F2",
+    alwaysOnTop: store.get("settings").alwaysOnTop ?? false,
     ...options
   });
 
