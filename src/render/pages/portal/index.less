@@ -1,0 +1,32 @@
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
+
+.container {
+  .ani-show-right();
+  .flex-center-x-column();
+
+  flex: 1;
+  position: relative;
+  padding: 0 60px;
+
+  .title {
+    font-size: 24px;
+    line-height: 42px;
+    margin: 20px 0;
+  }
+
+  .btns {
+    .flex();
+
+    align-content: flex-start;
+    flex-wrap: wrap;
+    height: 373px;
+    padding: 32px 36px;
+  }
+
+  .back-btn {
+    left: 20px;
+    position: absolute;
+    top: 20px;
+  }
+}

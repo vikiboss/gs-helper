@@ -15,10 +15,12 @@ import type { DailyNotesData } from "../../../services/getDailyNotes";
 import type { GameRole } from "../../../typings";
 import type { Notice } from "../../hooks/useNotice";
 import type { SignInfo } from "../../../services/getBBSSignInfo";
+import type { NavigateOptions } from "react-router-dom";
 
 import styles from "./index.less";
 
 interface UserCardProp {
+  safelyNavigate: (path: string, options?: NavigateOptions) => void;
   handleAvatarClick: () => void;
   handleCopy: (str: string, msg: string) => void;
   note: DailyNotesData;
@@ -42,7 +44,7 @@ const formatTime = (seconds: number) => {
 };
 
 const UserCard: React.FC<UserCardProp> = (props) => {
-  const { notice, user, sign, note, handleCopy, handleAvatarClick } = props;
+  const { notice, user, sign, note, handleCopy, handleAvatarClick, safelyNavigate } = props;
 
   const infos = [
     {
@@ -237,7 +239,13 @@ const UserCard: React.FC<UserCardProp> = (props) => {
               className={styles.noteItem}
               key={e.name}
               title={e.title}
-              onClick={() => notice[e.ok ? "success" : "info"]({ message: e.title })}
+              onClick={() => {
+                if (e.name === "sign") {
+                  safelyNavigate("/sign")
+                } else {
+                  notice[e.ok ? "success" : "info"]({ message: e.title })
+                }
+              }}
             >
               <img src={e.icon} className={cn(styles.noteIcon, styles[e.name])} />
               <div className={styles.noteDetail}>{e.detail}</div>

@@ -1,14 +1,15 @@
+import D from "dayjs";
 import { NavigateOptions, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from "react-icons/ai";
 import { BiNotepad, BiInfoCircle } from "react-icons/bi";
-import { FaRegMap, FaRegCompass } from "react-icons/fa";
+import { FaRegMap, FaRegCompass, FaDoorOpen } from "react-icons/fa";
 import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 import { IoMdRefresh } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineAccountBox, MdOutlineNoteAlt } from "react-icons/md";
-import { RiCalendarCheckFill } from "react-icons/ri";
+// import { RiCalendarCheckFill } from "react-icons/ri";
 
 import { LINK_GENSHIN_MAP } from "../../../constants";
 import Button from "../../components/Button";
@@ -18,9 +19,10 @@ import useAuth from "../../hooks/useAuth";
 import useNotice from "../../hooks/useNotice";
 import UserCard from "./UserCard";
 
+import type { CalenderEvent } from "../../../services/getCalenderList";
 import type { DailyNotesData } from "../../../services/getDailyNotes";
-import type { SignInfo } from "../../../services/getBBSSignInfo";
 import type { GameRole } from "../../../typings";
+import type { SignInfo } from "../../../services/getBBSSignInfo";
 
 import styles from "./index.less";
 
@@ -33,20 +35,48 @@ const Home: React.FC = () => {
   const [user, setUser] = useState<GameRole | null>(null);
   const [sign, setSign] = useState<SignInfo | null>(null);
   const [note, setNotesData] = useState<DailyNotesData | null>(null);
-  const [hitokoto, setHitokoto] = useState<string>("loading...");
+  const [tip, setTip] = useState<string>("loading...");
 
   useEffect(() => {
     (async () => {
       updateInfo(false);
-      const hitokoto = await nativeApi.getHitokoto();
-      setHitokoto(hitokoto);
-      setHeart(setInterval(() => updateInfo(false), 60000));
+      setTip(await getTip());
+
+      setHeart(setInterval(async () => {
+        updateInfo(false);
+        setTip(await getTip());
+      }, 10000));
+
     })();
     return () => {
       clearInterval(heart);
       setHeart(null);
     };
   }, []);
+
+  const isToday = (e: CalenderEvent) => {
+    const now = Number(String(Date.now()).slice(0, 10));
+    // const now = 1627315220;
+    return Number(e.end_time) > now && Number(e.start_time) < now;
+  }
+
+  const getTip = async () => {
+    const BirthType = "4";
+    const list = await nativeApi.getCalenderList();
+    const event = list.find(e => e.kind === BirthType && isToday(e));
+
+    if (event) {
+      const now = new Date();
+      const WeekMap = ["日", '一', '二', '三', '四', '五', '六']
+      const timeStr = `${D(now).format("M月D日")} 星期${WeekMap[now.getDay()]}`
+      return `${timeStr} ${event.title} 快去米游社为 TA 庆生吧！`
+    } else {
+      const hitokoto = await nativeApi.getHitokoto();
+      return hitokoto;
+    }
+
+  }
+
 
   const safelyNavigate = (path: string, options?: NavigateOptions) => {
     clearInterval(heart);
@@ -98,11 +128,20 @@ const Home: React.FC = () => {
   };
 
   const handlePageSwitch = (path: string) => {
-    const noAuth =
-      !auth.isLogin && !(path === "/gacha" || path === "/strategy" || path === "/daily");
-    if (noAuth) return notice.warning({ message: "这个功能需要登录才能正常使用" });
+    const noLogin = !auth.isLogin;
+    const isPublicPath = ["/gacha", "/strategy", "/daily"].includes(path);
+    const noAuth = noLogin && !isPublicPath;
+
+    if (noAuth) {
+      return notice.warning({ message: "这个功能需要登录才能正常使用" });
+    }
+
     const monthNotOpen = path === "/month" && user.level < 10;
-    if (monthNotOpen) return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
+
+    if (monthNotOpen) {
+      return notice.warning({ message: "旅行者还没有达到札记开放等级（10级）" });
+    }
+
     safelyNavigate(path);
   };
 
@@ -139,10 +178,15 @@ const Home: React.FC = () => {
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },
     {
-      name: "米游社签到",
-      Icon: RiCalendarCheckFill,
-      handler: () => handlePageSwitch("/sign")
+      name: "传送门",
+      Icon: FaDoorOpen,
+      handler: () => handlePageSwitch("/portal")
     },
+    // {
+    //   name: "米游社签到",
+    //   Icon: RiCalendarCheckFill,
+    //   handler: () => handlePageSwitch("/sign")
+    // },
     {
       name: "冒险札记",
       Icon: MdOutlineNoteAlt,
@@ -181,6 +225,7 @@ const Home: React.FC = () => {
                 notice={notice}
                 handleAvatarClick={handleAvatarClick}
                 handleCopy={handleCopy}
+                safelyNavigate={safelyNavigate}
               />
             ) : (
               <Loading className={styles.loading} />
@@ -199,8 +244,8 @@ const Home: React.FC = () => {
               />
             </div>
           )}
-          <div className={styles.topGreeting} onClick={handleCopy.bind(null, hitokoto, "复制成功")}>
-            {hitokoto}
+          <div className={styles.topGreeting} onClick={handleCopy.bind(null, tip, "复制成功")}>
+            {tip}
           </div>
           <div className={styles.topBtns}>
             {auth.isLogin && (

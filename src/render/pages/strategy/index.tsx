@@ -151,7 +151,7 @@ const btns = [
   }
 ];
 
-const Setting: React.FC = () => {
+const Strategy: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
 
@@ -184,4 +184,4 @@ const Setting: React.FC = () => {
   );
 };
 
-export default Setting;
+export default Strategy;
