@@ -9,7 +9,6 @@ import { HiOutlineChartPie, HiCubeTransparent } from "react-icons/hi";
 import { IoMdRefresh } from "react-icons/io";
 import { IoSettingsOutline } from "react-icons/io5";
 import { MdOutlineAccountBox, MdOutlineNoteAlt } from "react-icons/md";
-// import { RiCalendarCheckFill } from "react-icons/ri";
 
 import { LINK_GENSHIN_MAP } from "../../../constants";
 import Button from "../../components/Button";
@@ -58,7 +57,7 @@ const Home: React.FC = () => {
     const now = Number(String(Date.now()).slice(0, 10));
     // const now = 1627315220;
     return Number(e.end_time) > now && Number(e.start_time) < now;
-  }
+  };
 
   const getTip = async () => {
     const BirthType = "4";
@@ -67,16 +66,14 @@ const Home: React.FC = () => {
 
     if (event) {
       const now = new Date();
-      const WeekMap = ["日", '一', '二', '三', '四', '五', '六']
-      const timeStr = `${D(now).format("M月D日")} 星期${WeekMap[now.getDay()]}`
-      return `${timeStr} ${event.title} 快去米游社为 TA 庆生吧！`
+      const WeekMap = ["日", '一', '二', '三', '四', '五', '六'];
+      const timeStr = `${D(now).format("M月D日")} 星期${WeekMap[now.getDay()]}`;
+      return `${timeStr} ${event.title} 快去米游社为 TA 庆生吧！`;
     } else {
       const hitokoto = await nativeApi.getHitokoto();
       return hitokoto;
     }
-
-  }
-
+  };
 
   const safelyNavigate = (path: string, options?: NavigateOptions) => {
     clearInterval(heart);
@@ -173,7 +170,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/strategy")
     },
     {
-      name: "地图",
+      name: "大地图",
       Icon: FaRegMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },

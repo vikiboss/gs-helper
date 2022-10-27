@@ -1,10 +1,10 @@
 [
   {
-    "name": "全攻略",
+    "name": "观测枢 - 攻略",
     "url": "https://bbs.mihoyo.com/ys/strategy"
   },
   {
-    "name": "Wiki百科",
+    "name": "观测枢 - 百科",
     "url": "https://bbs.mihoyo.com/ys/obc"
   },
   {
@@ -72,11 +72,11 @@
     "url": "https://bbs.mihoyo.com/ys/obc/channel/map/80"
   },
   {
-    "name": "影月月(B站)",
+    "name": "你的影月月 (B站)",
     "url": "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate"
   },
   {
-    "name": "莴苣妈妈(B站)",
+    "name": "莴苣某人 (B站)",
     "url": "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate"
   }
 ]

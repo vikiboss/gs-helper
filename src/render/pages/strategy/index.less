@@ -7,7 +7,7 @@
 
   flex: 1;
   position: relative;
-  padding: 0 60px;
+  padding: 0 20px;
 
   .title {
     font-size: 24px;
@@ -19,49 +19,52 @@
     .flex();
 
     align-content: flex-start;
-    background-image: url('../../../assets/btn-border.png');
     background-repeat: no-repeat;
     background-size: contain;
     flex-wrap: wrap;
-    height: 373px;
-    padding: 32px 36px;
+    height: 428px;
+    padding: 12px 13px;
 
     .btn {
       .ani-show-right();
-      .transition();
+      .transition-quick();
       .flex-center();
 
-      background-image: url('../../../assets/btn-border-2.png');
       background-repeat: no-repeat;
       background-size: contain;
-      cursor: pointer;
+      border: 3px solid rgba(73, 83, 102, 0.4);
+      border-radius: 8px;
       height: 44px;
       margin: 10px;
-      width: 172px;
+      width: 200px;
 
       & > span {
-        .transition();
+        .transition-quick();
 
-        color: @color-accent-deep;
+        color: @color-primary;
         line-height: $height;
         margin-left: 8px;
         text-align: center;
       }
 
-      & > img {
-        height: 26px;
-        width: $height;
-      }
-
       &:hover {
-        background-image: url('../../../assets/btn-border-2-hover.png');
-        transform: scale(1.08);
+        transform: translateY(-2px);
+        border-color: @color-accent-deep;
+        background-color: rgba(255, 165, 100, 0.3);
+
+        & > span {
+          color: @color-primary;
+        }
       }
 
-      &:active & > span {
+      &:active {
         transform: none;
-        color: @color-primary;
+        background-color: rgba(255, 165, 100, 0.6);
       }
+    }
+
+    .hightlight {
+      background-color: rgba(255, 165, 100, 0.1);
     }
   }
 

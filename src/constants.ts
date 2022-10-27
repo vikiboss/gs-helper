@@ -1,5 +1,5 @@
 // main 进程 与 render 进程进行 IPC 通信的事件常量
-export const IPCEvents: Record<string, string> = {
+export const IpcEvents: Record<string, string> = {
   changeUser: "CHANGE_USER",
   closeApp: "CLOSE_APP",
   clearData: "CLEAR_DATA",
@@ -23,6 +23,7 @@ export const IPCEvents: Record<string, string> = {
   getPublicRoleList: "GET_PUBLIC_ROLE_LIST",
   getSpiralAbyss: "GET_SPIRAL_ABYSS",
   getStoreKey: "GET_STORE_KEY",
+  getStrategyList: "GET_STRATEGY_LIST",
   hideApp: "HIDE_APP",
   importGacha: "IMPORT_GACHA",
   loginByBBS: "LOGIN_BY_BBS",
@@ -65,6 +66,7 @@ export const API_TAKUMI_RECORD = "https://api-takumi-record.mihoyo.com";
 export const API_HK4E = "https://hk4e-api.mihoyo.com";
 export const API_STATIC = "https://api-static.mihoyo.com";
 export const API_YS_CONTENT = "https://ys.mihoyo.com/content";
+export const API_REPO_DATA = "https://raw.fastgit.org/vikiboss/genshin-helper/main/data";
 
 export const ElementTypes: Record<string, string> = {
   Cryo: "冰",

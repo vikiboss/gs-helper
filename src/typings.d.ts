@@ -13,6 +13,7 @@ import type { Role } from "./services/getOwnedRoleList";
 import type { SignData } from "./services/getBBSSignData";
 import type { SignInfo } from "./services/getBBSSignInfo";
 import type { SpiralAbyssData } from "./services/getSpiralAbyss";
+import type { StrategyItem } from "./services/getStrategyList";
 
 export interface NativeApi {
   changeUser: (uid: string) => Promise<void>;
@@ -32,6 +33,7 @@ export interface NativeApi {
   getGameRecordCard: (bbsId?: string) => Promise<GameRecordCardData | null>;
   getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
   getSpiralAbyss: (uid?: string) => Promise<SpiralAbyssData | null>;
+  getStrategyList: () => Promise<StrategyItem[]>;
   getGameRoleInfo: () => Promise<GameRole | null>;
   getHitokoto: () => Promise<string>;
   getLocalGachaDatas: () => Promise<GachaData[]>;
