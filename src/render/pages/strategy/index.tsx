@@ -55,7 +55,7 @@ const btns = [
     link: LINK_BBS_STRATEGY
   },
   {
-    name: "原神百科",
+    name: "Wiki百科",
     icon: wiki,
     link: LINK_BBS_OBC
   },
