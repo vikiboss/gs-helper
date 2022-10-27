@@ -17,9 +17,9 @@ type Type = "roles" | "weapons" | "materials";
 const WeekMap = ["日", "一", "二", "三", "四", "五", "六"];
 
 const Types = [
-  { title: "今日素材", name: "materials" },
-  { title: "天赋培养", name: "roles" },
-  { title: "武器突破", name: "weapons" }
+  { title: "当日素材", name: "materials" },
+  { title: "按角色查看", name: "roles" },
+  { title: "按武器查看", name: "weapons" }
 ];
 
 const Tips = [
@@ -78,7 +78,11 @@ const Daily: React.FC = () => {
     (async () => {
       try {
         const res = await nativeApi.getCalenderList();
-        if (res.length > 0) setCalenderList(res);
+        if (res.length > 0) {
+          setCalenderList(res);
+        } else {
+          notice.faild({ message: "数据为空 T_T" });
+        }
       } catch (e) {
         const isOffline = e?.message?.includes("getaddrinfo");
         const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
@@ -89,10 +93,13 @@ const Daily: React.FC = () => {
 
   const roles = calenderList.filter((e) => e.break_type === "2");
   roles.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
+
   const weapons = calenderList.filter((e) => e.break_type === "1");
   weapons.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
+
   const materials = getMaterialList(calenderList);
   materials.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
+
   const map: Record<string, CalenderEvent[]> = { roles, weapons, materials };
   const list = map[type].filter((e) => e.drop_day.includes(String(((week + 6) % 7) + 1)));
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : "");
