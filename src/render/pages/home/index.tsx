@@ -163,7 +163,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/gacha")
     },
     {
-      name: "原神日历",
+      name: "材料日历",
       Icon: BiNotepad,
       handler: () => handlePageSwitch("/daily")
     },
@@ -173,7 +173,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch("/strategy")
     },
     {
-      name: "小窗地图",
+      name: "地图",
       Icon: FaRegMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP)
     },
