@@ -13,12 +13,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Nilou@2x.png"
     },
     "material": {
-      "name": "「笃行」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "祸神之禊泪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/93c6c4f4412ce4a4294587de74fb6082_8206180629644313814.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「笃行」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -36,12 +48,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Cyno@2x.png"
     },
     "material": {
-      "name": "「诤言」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "凶将之手眼",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/9cb14fc38bd9bf155c603e98b5a620c3_1516706338928389119.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「诤言」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -59,12 +83,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tighnari@2x.png"
     },
     "material": {
-      "name": "「诤言」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "万劫之真意",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/cc3e1c4db7481a51906ce53e3c17d194_6358354729575715626.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「诤言」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -82,12 +118,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yelan@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [1, 4, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "鎏金之鳞",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/314689a418ed1f4abbf9014e6003aa5f_7786919700721232426.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [1, 4, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -105,12 +153,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Albedo@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "吞天之鲸·只角",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/1e4e184fc305b67be19cc737c00185cb_219029947399460414.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -128,12 +188,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiao@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "武炼之魂·孤影",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/12/15363053/a9c6a08dd4fc9828704ba2d073955f3c_7156065979923149940.png",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -151,12 +223,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Itto@2x.png"
     },
     "material": {
-      "name": "「风雅」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
-      "drop": [2, 5, 7],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "灰烬之心",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/7524ac4337d01d7be35bd7ab591947ca_8760044691007065983.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「风雅」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+          "drop": [2, 5, 7],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -174,12 +258,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayato@2x.png"
     },
     "material": {
-      "name": "「风雅」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "凶将之手眼",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/9cb14fc38bd9bf155c603e98b5a620c3_1516706338928389119.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「风雅」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -197,12 +293,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yae@2x.png"
     },
     "material": {
-      "name": "「天光」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "万劫之真意",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/cc3e1c4db7481a51906ce53e3c17d194_6358354729575715626.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「天光」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -220,12 +328,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shougun@2x.png"
     },
     "material": {
-      "name": "「天光」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "熔毁之刻",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/6d92c5634a85eb7a7954727f914d41eb_7448492734091959860.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「天光」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -243,12 +363,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shenhe@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "狱火之蝶",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/f3f8344abc39c69306959e7846094893_2837963393618130558.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -266,12 +398,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Hutao@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "魔王之刃·残片",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/5a709a916a0441763b0a9756da44aa6f_3614695399288238930.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -289,12 +433,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tartaglia@2x.png"
     },
     "material": {
-      "name": "「自由」的教导",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "魔王之刃·残片",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/5a709a916a0441763b0a9756da44aa6f_3614695399288238930.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」的教导",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -312,12 +468,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kokomi@2x.png"
     },
     "material": {
-      "name": "「浮世」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "狱火之蝶",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/f3f8344abc39c69306959e7846094893_2837963393618130558.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「浮世」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -335,12 +503,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yoimiya@2x.png"
     },
     "material": {
-      "name": "「浮世」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "龙王之冕",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/9638f8183e94151cc362689193064d52_5040040173969885760.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「浮世」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -358,12 +538,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayaka@2x.png"
     },
     "material": {
-      "name": "「风雅」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "血玉之枝",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/9be07eb65fb192c9fb3bfbd850539af5_8305282903633598119.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「风雅」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -381,12 +573,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kazuha@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "鎏金之鳞",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/314689a418ed1f4abbf9014e6003aa5f_7786919700721232426.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -404,12 +608,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Eula@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "龙王之冕",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/9638f8183e94151cc362689193064d52_5040040173969885760.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -427,12 +643,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ganyu@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "武炼之魂·孤影",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/12/15363053/a9c6a08dd4fc9828704ba2d073955f3c_7156065979923149940.png",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -450,12 +678,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Zhongli@2x.png"
     },
     "material": {
-      "name": "「黄金」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "吞天之鲸·只角",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/1e4e184fc305b67be19cc737c00185cb_219029947399460414.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「黄金」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -473,12 +713,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Klee@2x.png"
     },
     "material": {
-      "name": "「自由」的教导",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风之环",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/bff0d1ed9be583c0f46b3a4c0007358e_5468027632780776914.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」的教导",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -496,12 +748,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Keqing@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [1, 4, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "北风之环",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/bff0d1ed9be583c0f46b3a4c0007358e_5468027632780776914.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [1, 4, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -519,12 +783,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Venti@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风之尾",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/b0214957da0c6883ffd2df23ec4c497c_3216003332824745374.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -542,12 +818,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qin@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之翎",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/88d7d0a752d3807b03758dbf219fb651_7348189405847651970.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -565,12 +853,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Mona@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风之环",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/bff0d1ed9be583c0f46b3a4c0007358e_5468027632780776914.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -588,12 +888,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qiqi@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "北风之尾",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/b0214957da0c6883ffd2df23ec4c497c_3216003332824745374.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -611,12 +923,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Aloy@2x.png"
     },
     "material": {
-      "name": "「自由」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "熔毁之刻",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/6d92c5634a85eb7a7954727f914d41eb_7448492734091959860.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -634,12 +958,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diluc@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之翎",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/88d7d0a752d3807b03758dbf219fb651_7348189405847651970.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -657,12 +993,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Candace@2x.png"
     },
     "material": {
-      "name": "「诤言」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "祸神之禊泪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/93c6c4f4412ce4a4294587de74fb6082_8206180629644313814.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「诤言」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -680,12 +1028,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Collei@2x.png"
     },
     "material": {
-      "name": "「笃行」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "祸神之禊泪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/93c6c4f4412ce4a4294587de74fb6082_8206180629644313814.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「笃行」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -703,12 +1063,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Heizo@2x.png"
     },
     "material": {
-      "name": "「浮世」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "万劫之真意",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/cc3e1c4db7481a51906ce53e3c17d194_6358354729575715626.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「浮世」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -726,12 +1098,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Dori@2x.png"
     },
     "material": {
-      "name": "「巧思」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/ad09c0f8b089b2e7b8c54abe4aa149db_3983505189235785710.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "昏识塔",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+      "talent": {
+        "advance": {
+          "name": "血玉之枝",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/9be07eb65fb192c9fb3bfbd850539af5_8305282903633598119.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「巧思」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/ad09c0f8b089b2e7b8c54abe4aa149db_3983505189235785710.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
       }
     }
   },
@@ -749,12 +1133,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Gorou@2x.png"
     },
     "material": {
-      "name": "「天光」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
-      "drop": [7, 3, 6],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "熔毁之刻",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/6d92c5634a85eb7a7954727f914d41eb_7448492734091959860.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「天光」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+          "drop": [7, 3, 6],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -772,12 +1168,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tohma@2x.png"
     },
     "material": {
-      "name": "「浮世」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "狱火之蝶",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/f3f8344abc39c69306959e7846094893_2837963393618130558.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「浮世」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -795,12 +1203,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sara@2x.png"
     },
     "material": {
-      "name": "「风雅」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "灰烬之心",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/7524ac4337d01d7be35bd7ab591947ca_8760044691007065983.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「风雅」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -818,12 +1238,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sayu@2x.png"
     },
     "material": {
-      "name": "「天光」的教导",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/04e7083e7ef82753c0c06b007fd920aa_4157316151126954918.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "鎏金之鳞",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/314689a418ed1f4abbf9014e6003aa5f_7786919700721232426.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「天光」的教导",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/04e7083e7ef82753c0c06b007fd920aa_4157316151126954918.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -841,12 +1273,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diona@2x.png"
     },
     "material": {
-      "name": "「自由」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "魔王之刃·残片",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/5a709a916a0441763b0a9756da44aa6f_3614695399288238930.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -864,12 +1308,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Beidou@2x.png"
     },
     "material": {
-      "name": "「黄金」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "东风的吐息",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/9596047f216ac96ccaaffe6c43644f08_5925221769309945736.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「黄金」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -887,12 +1343,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sucrose@2x.png"
     },
     "material": {
-      "name": "「自由」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风的魂匣",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/615f166f07ed12d71eda1b3505f450d8_8597237464132848173.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -910,12 +1378,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ambor@2x.png"
     },
     "material": {
-      "name": "「自由」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
-      "drop": [4, 7, 1],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风的吐息",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/9596047f216ac96ccaaffe6c43644f08_5925221769309945736.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -933,12 +1413,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Lisa@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之爪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/dacaa0fa40b4aaa6316cab027f65304b_6625224617019671842.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -956,12 +1448,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Barbara@2x.png"
     },
     "material": {
-      "name": "「自由」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风之环",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/bff0d1ed9be583c0f46b3a4c0007358e_5468027632780776914.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「自由」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -979,12 +1483,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Noel@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [2, 5, 7],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之爪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/dacaa0fa40b4aaa6316cab027f65304b_6625224617019671842.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [2, 5, 7],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1002,12 +1518,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xingqiu@2x.png"
     },
     "material": {
-      "name": "「黄金」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "北风之尾",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/b0214957da0c6883ffd2df23ec4c497c_3216003332824745374.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「黄金」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1025,12 +1553,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ningguang@2x.png"
     },
     "material": {
-      "name": "「繁荣」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
-      "drop": [7, 1, 4],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "北风的魂匣",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/615f166f07ed12d71eda1b3505f450d8_8597237464132848173.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「繁荣」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+          "drop": [7, 1, 4],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1048,12 +1588,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Bennett@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [5, 7, 2],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之翎",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/88d7d0a752d3807b03758dbf219fb651_7348189405847651970.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [5, 7, 2],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1071,12 +1623,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Feiyan@2x.png"
     },
     "material": {
-      "name": "「黄金」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
-      "drop": [7, 3, 6],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "血玉之枝",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/27/4820086/9be07eb65fb192c9fb3bfbd850539af5_8305282903633598119.png",
+          "domain": {
+            "name": "若陀龙王",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/04/28/4521515/95ed03933a6f8cc13d43ad34772799ed_8952216951194232034.png"
+          }
+        },
+        "nomal": {
+          "name": "「黄金」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+          "drop": [7, 3, 6],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1094,12 +1658,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Rosaria@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [7, 3, 6],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "武炼之魂·孤影",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/12/15363053/a9c6a08dd4fc9828704ba2d073955f3c_7156065979923149940.png",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [7, 3, 6],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1117,12 +1693,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kaeya@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风的魂匣",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/615f166f07ed12d71eda1b3505f450d8_8597237464132848173.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1140,12 +1728,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shinobu@2x.png"
     },
     "material": {
-      "name": "「风雅」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
-      "drop": [2, 5, 7],
-      "domain": {
-        "name": "菫色之庭",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+      "talent": {
+        "advance": {
+          "name": "祸神之禊泪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/4820086/93c6c4f4412ce4a4294587de74fb6082_8206180629644313814.png",
+          "domain": {
+            "name": "祸津御建鸣神命",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/14/8797197/e0fd38861a313d0160045648a82dbac8_9005559508175226449.png"
+          }
+        },
+        "nomal": {
+          "name": "「风雅」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+          "drop": [2, 5, 7],
+          "domain": {
+            "name": "菫色之庭",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
+          }
+        }
       }
     }
   },
@@ -1163,12 +1763,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yunjin@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [2, 5, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "灰烬之心",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4820086/7524ac4337d01d7be35bd7ab591947ca_8760044691007065983.png",
+          "domain": {
+            "name": "「女士」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/08/31/4521515/9f515d21faf7d16b453da4590d8f6ef2_3271273324217501877.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [2, 5, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1186,12 +1798,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Razor@2x.png"
     },
     "material": {
-      "name": "「抗争」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "东风之爪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/dacaa0fa40b4aaa6316cab027f65304b_6625224617019671842.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「抗争」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1209,12 +1833,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Fischl@2x.png"
     },
     "material": {
-      "name": "「诗文」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
-      "drop": [6, 7, 3],
-      "domain": {
-        "name": "忘却之峡",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+      "talent": {
+        "advance": {
+          "name": "北风的魂匣",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/615f166f07ed12d71eda1b3505f450d8_8597237464132848173.png",
+          "domain": {
+            "name": "北风的王狼",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/dc96e2dc9303aaa26f2f97a59049fdd4_2018276294304439605.png"
+          }
+        },
+        "nomal": {
+          "name": "「诗文」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+          "drop": [6, 7, 3],
+          "domain": {
+            "name": "忘却之峡",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
+          }
+        }
       }
     }
   },
@@ -1232,12 +1868,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Chongyun@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [7, 2, 5],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "东风的吐息",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/9596047f216ac96ccaaffe6c43644f08_5925221769309945736.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1255,12 +1903,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiangling@2x.png"
     },
     "material": {
-      "name": "「勤劳」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
-      "drop": [2, 5, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "东风之爪",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/dacaa0fa40b4aaa6316cab027f65304b_6625224617019671842.png",
+          "domain": {
+            "name": "裂空的魔龙",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/23/408757/cf9a2ff0fba6f0c27b884e3bd1c0cd87_3152596685020308057.png"
+          }
+        },
+        "nomal": {
+          "name": "「勤劳」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+          "drop": [2, 5, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   },
@@ -1278,12 +1938,24 @@
       "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xinyan@2x.png"
     },
     "material": {
-      "name": "「黄金」系列",
-      "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
-      "drop": [3, 6, 7],
-      "domain": {
-        "name": "太山府",
-        "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+      "talent": {
+        "advance": {
+          "name": "吞天之鲸·只角",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/11/11/4820086/1e4e184fc305b67be19cc737c00185cb_219029947399460414.jpg",
+          "domain": {
+            "name": "「公子」",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/05/12/4521515/10625db39a2891e60f0594285229ee80_18941331759725837.png"
+          }
+        },
+        "nomal": {
+          "name": "「黄金」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "太山府",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
+          }
+        }
       }
     }
   }
