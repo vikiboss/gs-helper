@@ -1,82 +1,116 @@
 [
   {
     "name": "观测枢 - 攻略",
-    "url": "https://bbs.mihoyo.com/ys/strategy"
+    "url": "https://bbs.mihoyo.com/ys/strategy",
+    "hightlight": false,
+    "alt": "米游社官方推出的原神攻略站"
   },
   {
     "name": "观测枢 - 百科",
-    "url": "https://bbs.mihoyo.com/ys/obc"
+    "url": "https://bbs.mihoyo.com/ys/obc",
+    "hightlight": false,
+    "alt": "米游社官方推出的原神Wiki百科"
   },
   {
     "name": "任务手册",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231"
-  },
-  {
-    "name": "活动集锦",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/48"
-  },
-  {
-    "name": "版本合集",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233"
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231",
+    "hightlight": true,
+    "alt": "快速检索查看各种任务（魔神任务、传说任务、世界任务、委托任务等）的流程和攻略"
   },
   {
     "name": "角色攻略",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/39"
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/39",
+    "hightlight": true,
+    "alt": "快速检索查看角色的培养材料、圣遗物攻略、配队攻略和玩法等"
   },
   {
-    "name": "装备解析",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/5"
+    "name": "武器图鉴",
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/5",
+    "hightlight": false,
+    "alt": "快速检索查看各种武器的介绍、属性、突破材料和适配角色等"
   },
   {
     "name": "圣遗物图鉴",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/218"
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/218",
+    "hightlight": false,
+    "alt": "快速检索查看各种圣遗物套装的介绍、属性和适配角色等"
   },
   {
-    "name": "阵容攻略",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/40"
-  },
-  {
-    "name": "新手合集",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/38"
+    "name": "配队攻略",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/40",
+    "hightlight": false,
+    "alt": "快速检索查看各种配队玩法和攻略"
   },
   {
     "name": "材料图鉴",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/13"
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/13",
+    "hightlight": false,
+    "alt": "快速检索查看各种烹饪材料、突破材料、任务道具等的材料介绍和获取途径等"
+  },
+  {
+    "name": "版本攻略合集",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/233",
+    "hightlight": false,
+    "alt": "快速检索查看各个版本的攻略合集"
   },
   {
     "name": "动物图鉴",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/49"
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/49",
+    "hightlight": false,
+    "alt": "快速检索查看各种动物的介绍、用途和分布地点等"
   },
   {
-    "name": "讨伐BOSS",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/43"
-  },
-  {
-    "name": "元素攻略",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/41"
-  },
-  {
-    "name": "料理大全",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/21"
+    "name": "料理图鉴",
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/21",
+    "hightlight": false,
+    "alt": "快速检索查看各种料理的食谱获取方法、制作原料、使用效果和专属角色等"
   },
   {
     "name": "秘境图鉴",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/54"
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/189/54",
+    "hightlight": false,
+    "alt": "快速检索查看各个秘境的背景介绍、位置分布、产出材料等"
   },
   {
-    "name": "深境螺旋",
-    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/46"
+    "name": "新手合集",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/38",
+    "hightlight": false,
+    "alt": "快速检索查看推荐给新手的一系列教程和指南"
   },
   {
-    "name": "PV合辑",
-    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/80"
+    "name": "讨伐BOSS",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/43",
+    "hightlight": false,
+    "alt": "快速检索查看各个BOSS的背景介绍、位置分布、产出材料等"
+  },
+  {
+    "name": "元素攻略",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/41",
+    "hightlight": false,
+    "alt": "快速检索查看一系列有关元素反应和配队的攻略"
+  },
+  {
+    "name": "活动集锦",
+    "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/37/48",
+    "hightlight": false,
+    "alt": "快速检索查看各个版本的活动介绍和奖励攻略等"
+  },
+  {
+    "name": "角色PV合集",
+    "url": "https://bbs.mihoyo.com/ys/obc/channel/map/80",
+    "hightlight": true,
+    "alt": "快速检索查看各个角色的展示PV和各种剧情过场视频"
   },
   {
     "name": "你的影月月 (B站)",
-    "url": "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate"
+    "url": "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate",
+    "hightlight": true,
+    "alt": "来自B站专门做原神攻略的人气UP主"
   },
   {
     "name": "莴苣某人 (B站)",
-    "url": "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate"
+    "url": "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate",
+    "hightlight": true,
+    "alt": "来自B站专门做原神攻略的人气UP主"
   }
 ]
