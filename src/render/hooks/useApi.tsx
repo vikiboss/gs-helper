@@ -28,7 +28,7 @@ function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
     return isOK;
   }
 
-  return [request, loading, data, error] as const;
+  return [request, data, loading, error] as const;
 }
 
 export default useApi;

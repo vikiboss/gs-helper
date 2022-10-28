@@ -32,9 +32,9 @@ const Statistic: React.FC = () => {
   const [currentUid, setCurrentUid] = useState<string>('');
   const [inputUid, setInputUid] = useState<string>('');
 
-  const [fetchCard, l1, card] = useApi(getGameRoleCard);
-  const [fetchRoles, l2, roles] = useApi(getOwnedRoleList);
-  const [fetchAbyss, l3, abyss] = useApi(getSpiralAbyss);
+  const [fetchCard, card, l1] = useApi(getGameRoleCard);
+  const [fetchRoles, roles, l2] = useApi(getOwnedRoleList);
+  const [fetchAbyss, abyss, l3] = useApi(getSpiralAbyss);
 
   const loaded = !(l1 || l2 || l3) && card && roles && abyss;
 

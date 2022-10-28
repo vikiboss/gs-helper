@@ -21,8 +21,7 @@ interface StrategyItem {
 const Strategy: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-
-  const [request, loading, data = []] = useApi<StrategyItem[]>(
+  const [request, data = [], loading] = useApi<StrategyItem[]>(
     nativeApi.getRepoData
   );
 
