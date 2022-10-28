@@ -44,7 +44,7 @@ const Home: React.FC = () => {
       setHeart(setInterval(async () => {
         updateInfo(false);
         setTip(await getTip());
-      }, 10000));
+      }, 60000));
 
     })();
     return () => {
