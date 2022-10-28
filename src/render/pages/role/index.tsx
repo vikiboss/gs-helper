@@ -253,6 +253,9 @@ const Role: React.FC = () => {
       // 获取用户的角色列表
       const roles = await nativeApi.getOwnedRoleList();
       // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
+
+      console.log(roles);
+
       roles.sort((p, n) => {
         return (
           n.level - p.level ||

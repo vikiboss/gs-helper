@@ -71,7 +71,7 @@ const Daily: React.FC = () => {
   const notice = useNotice();
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([]);
   const [changing, setChanging] = useState<boolean>(false);
-  const [type, setType] = useState<Type>("materials");
+  const [type, setType] = useState<Type>("roles");
   const [week, setWeek] = useState<number>(todayWeek);
 
   useEffect(() => {
