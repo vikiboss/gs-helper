@@ -4,15 +4,20 @@
     "enname": "Nilou",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Nilou.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Nilou@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/10/14/4328207/4507cd1faa4999738dac3d6d5f5d7f94_7463503381974788231.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Nilou.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Nilou.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/10/14/4328207/4507cd1faa4999738dac3d6d5f5d7f94_7463503381974788231.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Nilou@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「笃行」系列",
+      "name": "「笃行」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -22,15 +27,20 @@
     "enname": "Cyno",
     "element": "Electro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Cyno.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Cyno@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/20/4328207/b3847d2416145eb8bb6343302e2b4dca_6997837798254516316.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Cyno.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Cyno.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/20/4328207/b3847d2416145eb8bb6343302e2b4dca_6997837798254516316.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Cyno@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「诤言」系列",
+      "name": "「诤言」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -40,15 +50,20 @@
     "enname": "Tighnari",
     "element": "Dendro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tighnari.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tighnari@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/23/75379475/6953568084aaa02bc7a774430f1f3b56_9172357402103659910.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tighnari.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Tighnari.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/23/75379475/6953568084aaa02bc7a774430f1f3b56_9172357402103659910.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tighnari@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「诤言」系列",
+      "name": "「诤言」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -58,15 +73,20 @@
     "enname": "Yelan",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yelan.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yelan@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/79396e8f1225b66e201036e086dd2d8a_1377270106888079991.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yelan.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/79396e8f1225b66e201036e086dd2d8a_1377270106888079991.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yelan@2x.png"
+    },
     "material": {
-      "drop": [1, 4, 7],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [1, 4, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -76,15 +96,20 @@
     "enname": "Albedo",
     "element": "Geo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Albedo.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Albedo@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/213bb493f9b6c433b8cba3a6f738b9f6_475021720007877747.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Albedo.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Albedo.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/213bb493f9b6c433b8cba3a6f738b9f6_475021720007877747.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Albedo@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -94,15 +119,20 @@
     "enname": "Xiao",
     "element": "Anemo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiao.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiao@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/05c5e6dda23259bb49cb6a57c792d284_5237559879224948621.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiao.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Xiao.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/05c5e6dda23259bb49cb6a57c792d284_5237559879224948621.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiao@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -112,15 +142,20 @@
     "enname": "Arataki itto",
     "element": "Geo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Itto.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Itto@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/baf328a93ae579848391513c40df1ee0_8021041769727469540.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Itto.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Itto.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/baf328a93ae579848391513c40df1ee0_8021041769727469540.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Itto@2x.png"
+    },
     "material": {
-      "drop": [2, 5, 7],
-      "title": "「风雅」系列",
+      "name": "「风雅」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+      "drop": [2, 5, 7],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -130,15 +165,20 @@
     "enname": "Kamisato Ayato",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayato.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayato@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d16fbf95d62771daa65ab5d04f6abbd5_5682396699474055.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayato.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Ayato.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d16fbf95d62771daa65ab5d04f6abbd5_5682396699474055.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayato@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「风雅」系列",
+      "name": "「风雅」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -148,15 +188,20 @@
     "enname": "Yae Miko",
     "element": "Electro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yae.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yae@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/6276411/2a54cd4008e8bc398f3f8bdc08225048_2883595654384922672.jpg",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yae.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yae.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/02/15/6276411/2a54cd4008e8bc398f3f8bdc08225048_2883595654384922672.jpg"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yae@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「天光」系列",
+      "name": "「天光」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -166,15 +211,20 @@
     "enname": "Raiden Shogun",
     "element": "Electro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shougun.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shougun@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4f2125e44d2b9e15611877eda1794ec7_971228898754945838.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shougun.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Shougun.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4f2125e44d2b9e15611877eda1794ec7_971228898754945838.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shougun@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「天光」系列",
+      "name": "「天光」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -184,15 +234,20 @@
     "enname": "Shenhe",
     "element": "Cryo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shenhe.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shenhe@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e2dfeee83654c0a6a7436b7c120c105a_6795155790527755000.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shenhe.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Shenhe.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e2dfeee83654c0a6a7436b7c120c105a_6795155790527755000.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shenhe@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -202,15 +257,20 @@
     "enname": "Hu Tao",
     "element": "Pyro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Hutao.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Hutao@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/c972cf842ee3c4914fd61e347a64cd7a_5160992946606096106.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Hutao.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Hutao.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/c972cf842ee3c4914fd61e347a64cd7a_5160992946606096106.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Hutao@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -220,15 +280,20 @@
     "enname": "Tartaglia",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tartaglia.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tartaglia@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7f58bde0ac3fde59a9ebdef71b813165_3128687126656430063.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tartaglia.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Tartaglia.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7f58bde0ac3fde59a9ebdef71b813165_3128687126656430063.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tartaglia@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「自由」的教导",
+      "name": "「自由」的教导",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -238,15 +303,20 @@
     "enname": "Sangonomiya Kokomi",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kokomi.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kokomi@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/5f6f5d0c81155aea5c939ba08249e5d5_8361164934610616218.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kokomi.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Kokomi.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/5f6f5d0c81155aea5c939ba08249e5d5_8361164934610616218.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kokomi@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「浮世」系列",
+      "name": "「浮世」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -256,15 +326,20 @@
     "enname": "Yoimiya",
     "element": "Pyro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yoimiya.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yoimiya@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/9afdd357dffff37637b32a24c617b54f_8781889780041590703.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yoimiya.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yoimiya.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/9afdd357dffff37637b32a24c617b54f_8781889780041590703.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yoimiya@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「浮世」系列",
+      "name": "「浮世」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -274,15 +349,20 @@
     "enname": "Kamisato Ayaka",
     "element": "Cryo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayaka.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayaka@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/74d14ff2bfdb9961758d0b83097ab64c_6898495248687804760.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ayaka.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Ayaka.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/74d14ff2bfdb9961758d0b83097ab64c_6898495248687804760.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ayaka@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「风雅」系列",
+      "name": "「风雅」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -292,15 +372,20 @@
     "enname": "Kaedehara Kazuha",
     "element": "Anemo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kazuha.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kazuha@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/36b5afeda1cc299ed0307b14399e6909_6018399472726457376.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kazuha.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Kazuha.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/36b5afeda1cc299ed0307b14399e6909_6018399472726457376.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kazuha@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -310,15 +395,20 @@
     "enname": "Eula",
     "element": "Cryo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Eula.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Eula@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7938ec06b109205f036e451cf290e297_666841722281818499.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Eula.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Eula.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7938ec06b109205f036e451cf290e297_666841722281818499.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Eula@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -328,15 +418,20 @@
     "enname": "Ganyu",
     "element": "Cryo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ganyu.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ganyu@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e5411d80d0cd1b20d32e65565fed4b88_417824432506361738.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ganyu.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Ganyu.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e5411d80d0cd1b20d32e65565fed4b88_417824432506361738.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ganyu@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -346,15 +441,20 @@
     "enname": "Zhongli",
     "element": "Geo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zhongli.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Zhongli@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4e3ff986e180510478cf35927f1009fe_6686816528751678233.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Zhongli.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Zhongli.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4e3ff986e180510478cf35927f1009fe_6686816528751678233.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Zhongli@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「黄金」系列",
+      "name": "「黄金」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -364,15 +464,20 @@
     "enname": "Klee",
     "element": "Pyro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Klee.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Klee@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/6ae8ad7f384c24a35e091159536a438c_6213472890650459940.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Klee.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Klee.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/6ae8ad7f384c24a35e091159536a438c_6213472890650459940.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Klee@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「自由」的教导",
+      "name": "「自由」的教导",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/2d1960fe2ce77189e18014b52982630a_2854270570499212202.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -382,15 +487,20 @@
     "enname": "Keqing",
     "element": "Electro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Keqing.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Keqing@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4a7b16d7954d5b005d3eee8f53d1f7f6_3928029705430572343.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Keqing.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Keqing.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4a7b16d7954d5b005d3eee8f53d1f7f6_3928029705430572343.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Keqing@2x.png"
+    },
     "material": {
-      "drop": [1, 4, 7],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [1, 4, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -400,15 +510,20 @@
     "enname": "Venti",
     "element": "Anemo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Venti.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Venti@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/5dfaf4f048e29df066ae95358888a3f0_494294381245295170.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Venti.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Venti.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/5dfaf4f048e29df066ae95358888a3f0_494294381245295170.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Venti@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -418,15 +533,20 @@
     "enname": "Jean",
     "element": "Anemo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qin.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qin@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/a7608c6a588467440f7685a22ab6547c_9054467724670292212.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qin.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Qin.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/a7608c6a588467440f7685a22ab6547c_9054467724670292212.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qin@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -436,15 +556,20 @@
     "enname": "Mona",
     "element": "Hydro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mona.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Mona@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d7d8e4a15f70e31a16edaa6d7389437f_2621682045856446660.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Mona.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Mona.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d7d8e4a15f70e31a16edaa6d7389437f_2621682045856446660.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Mona@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -454,15 +579,20 @@
     "enname": "Qiqi",
     "element": "Cryo",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qiqi.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qiqi@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7aa3ac9a40ad50d0e90a2b87a6d7c6d9_2689374362470113415.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Qiqi.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Qiqi.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7aa3ac9a40ad50d0e90a2b87a6d7c6d9_2689374362470113415.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Qiqi@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -472,15 +602,20 @@
     "enname": "Aloy",
     "element": "Cryo",
     "rarity": 6,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Aloy.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Aloy@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/65886603cf7f0bdbaa82a165898237a3_4578105863815249128.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Aloy.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Aloy.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/65886603cf7f0bdbaa82a165898237a3_4578105863815249128.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Aloy@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「自由」系列",
+      "name": "「自由」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -490,15 +625,20 @@
     "enname": "Diluc",
     "element": "Pyro",
     "rarity": 5,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diluc.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diluc@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/67e36568afdf20f4ab81693b1bbd81a8_6265806245227306904.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diluc.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Diluc.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/67e36568afdf20f4ab81693b1bbd81a8_6265806245227306904.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diluc@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -508,15 +648,20 @@
     "enname": "Candace",
     "element": "Hydro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Candace.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Candace@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/20/4328207/0587df6ac5144c9dd023b0f73ceaf8be_7837788427682725710.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Candace.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Candace.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/20/4328207/0587df6ac5144c9dd023b0f73ceaf8be_7837788427682725710.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Candace@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「诤言」系列",
+      "name": "「诤言」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -526,15 +671,20 @@
     "enname": "Collei",
     "element": "Dendro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Collei.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Collei@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/23/75379475/a0150a8489abc5011a44b4f6419ccec7_2812696932246907984.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Collei.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Collei.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/23/75379475/a0150a8489abc5011a44b4f6419ccec7_2812696932246907984.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Collei@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「笃行」系列",
+      "name": "「笃行」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -544,15 +694,20 @@
     "enname": "Shikanoin Heizou",
     "element": "Anemo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Heizo.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Heizo@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/cc145e6cd2f0dacb39ce36f7ebf257fc_1415068154526289177.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Heizo.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Heizo.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/cc145e6cd2f0dacb39ce36f7ebf257fc_1415068154526289177.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Heizo@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「浮世」系列",
+      "name": "「浮世」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -562,15 +717,20 @@
     "enname": "Dori",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Dori.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Dori@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/07/195563531/844969ce9b8bc5ebf9d1be69d7b6d7b2_4659886404719657655.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Dori.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Dori.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/09/07/195563531/844969ce9b8bc5ebf9d1be69d7b6d7b2_4659886404719657655.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Dori@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「巧思」系列",
+      "name": "「巧思」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/ad09c0f8b089b2e7b8c54abe4aa149db_3983505189235785710.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "昏识塔",
+        "name": "昏识塔",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
       }
     }
@@ -580,15 +740,20 @@
     "enname": "Gorou",
     "element": "Geo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Gorou.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Gorou@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/1535aaa6189d4262445c0a66ead22eb9_8348227124024509889.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Gorou.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Gorou.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/1535aaa6189d4262445c0a66ead22eb9_8348227124024509889.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Gorou@2x.png"
+    },
     "material": {
-      "drop": [7, 3, 6],
-      "title": "「天光」系列",
+      "name": "「天光」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/9101bb051b761d15db3b811e3c11f35e_1337682300909585584.png",
+      "drop": [7, 3, 6],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -598,15 +763,20 @@
     "enname": "Thoma",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tohma.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tohma@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/82047aba562c2a0e4d5f14302795042a_3313236971898299428.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Tohma.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Tohma.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/82047aba562c2a0e4d5f14302795042a_3313236971898299428.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Tohma@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「浮世」系列",
+      "name": "「浮世」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/8c7290c464927a8f3a5c91a19bc55e4c_2652835632088181801.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -616,15 +786,20 @@
     "enname": "Kujou Sara",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sara.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sara@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/df5b17a7ff6a93c53758a866e34b4a48_2157396976814965929.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sara.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Sara.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/df5b17a7ff6a93c53758a866e34b4a48_2157396976814965929.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sara@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「风雅」系列",
+      "name": "「风雅」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -634,15 +809,20 @@
     "enname": "Sayu",
     "element": "Anemo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sayu.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sayu@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e1efe9b6aa376cb9da09ac019b2fbef2_7794737012770757063.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sayu.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Sayu.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/e1efe9b6aa376cb9da09ac019b2fbef2_7794737012770757063.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sayu@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「天光」的教导",
+      "name": "「天光」的教导",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/04e7083e7ef82753c0c06b007fd920aa_4157316151126954918.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -652,15 +832,20 @@
     "enname": "Diona",
     "element": "Cryo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diona.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diona@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/853239155e875d63c38b68aa97ecc7ec_3887220035267266269.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Diona.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Diona.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/853239155e875d63c38b68aa97ecc7ec_3887220035267266269.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Diona@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「自由」系列",
+      "name": "「自由」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -670,15 +855,20 @@
     "enname": "Beidou",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Beidou.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Beidou@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/da6b6a982f94bcf77a6c123cbfffb858_1356907943768799923.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Beidou.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Beidou.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/da6b6a982f94bcf77a6c123cbfffb858_1356907943768799923.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Beidou@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「黄金」系列",
+      "name": "「黄金」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -688,15 +878,20 @@
     "enname": "Sucrose",
     "element": "Anemo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sucrose.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sucrose@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/8e90e2981d76a103983b2390b321cdc2_8764516744193788167.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Sucrose.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Sucrose.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/8e90e2981d76a103983b2390b321cdc2_8764516744193788167.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Sucrose@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「自由」系列",
+      "name": "「自由」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -706,15 +901,20 @@
     "enname": "Amber",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ambor.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ambor@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/138132721f21bf60c53a8935a8fb0107_2815437205031866763.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ambor.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Ambor.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/138132721f21bf60c53a8935a8fb0107_2815437205031866763.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ambor@2x.png"
+    },
     "material": {
-      "drop": [4, 7, 1],
-      "title": "「自由」系列",
+      "name": "「自由」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+      "drop": [4, 7, 1],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -724,15 +924,20 @@
     "enname": "Lisa",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Lisa.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Lisa@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/b561d6285fafd646a40e6143800de1ee_6243992974764126334.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Lisa.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Lisa.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/b561d6285fafd646a40e6143800de1ee_6243992974764126334.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Lisa@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -742,15 +947,20 @@
     "enname": "Barbara",
     "element": "Hydro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Barbara.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Barbara@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/99c350156e7322e3c81860aa4d0d28f5_5906560701736008353.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Barbara.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Barbara.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/99c350156e7322e3c81860aa4d0d28f5_5906560701736008353.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Barbara@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「自由」系列",
+      "name": "「自由」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/127e8ff10e65542d119a1b895e091b46_8324184099114143317.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -760,15 +970,20 @@
     "enname": "Noelle",
     "element": "Geo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Noel.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Noel@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/2156b7be8f604ed8bd645d64bc618f7d_1250940739020523545.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Noel.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Noel.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/2156b7be8f604ed8bd645d64bc618f7d_1250940739020523545.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Noel@2x.png"
+    },
     "material": {
-      "drop": [2, 5, 7],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [2, 5, 7],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -778,15 +993,20 @@
     "enname": "Xingqiu",
     "element": "Hydro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xingqiu.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xingqiu@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/be2e1677fbbde80645efcfb0d0abd2b3_268149500829119900.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xingqiu.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Xingqiu.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/be2e1677fbbde80645efcfb0d0abd2b3_268149500829119900.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xingqiu@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「黄金」系列",
+      "name": "「黄金」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -796,15 +1016,20 @@
     "enname": "Ningguang",
     "element": "Geo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ningguang.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ningguang@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/2231ceb71c3b24ae080e8e1dea98e6a5_786599339786038178.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Ningguang.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Ningguang.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/2231ceb71c3b24ae080e8e1dea98e6a5_786599339786038178.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Ningguang@2x.png"
+    },
     "material": {
-      "drop": [7, 1, 4],
-      "title": "「繁荣」系列",
+      "name": "「繁荣」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/08fd7ca78f0a3d76943dcabb8c4c984d_4225296401185479449.png",
+      "drop": [7, 1, 4],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -814,15 +1039,20 @@
     "enname": "Bennett",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Bennett.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Bennett@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4b939bc2ef49ec4462f632ddec20758d_3722054698956149317.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Bennett.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Bennett.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4b939bc2ef49ec4462f632ddec20758d_3722054698956149317.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Bennett@2x.png"
+    },
     "material": {
-      "drop": [5, 7, 2],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [5, 7, 2],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -832,15 +1062,20 @@
     "enname": "Yanfei",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Feiyan.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Feiyan@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7b8362f392bbcfe9c8df2a319313407c_5345868075333032134.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Feiyan.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Feiyan.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/7b8362f392bbcfe9c8df2a319313407c_5345868075333032134.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Feiyan@2x.png"
+    },
     "material": {
-      "drop": [7, 3, 6],
-      "title": "「黄金」系列",
+      "name": "「黄金」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+      "drop": [7, 3, 6],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -850,15 +1085,20 @@
     "enname": "Rosaria",
     "element": "Cryo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Rosaria.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Rosaria@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/bdec34acae15315368017c1dbc29e106_3944648842597772835.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Rosaria.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Rosaria.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/bdec34acae15315368017c1dbc29e106_3944648842597772835.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Rosaria@2x.png"
+    },
     "material": {
-      "drop": [7, 3, 6],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [7, 3, 6],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -868,15 +1108,20 @@
     "enname": "Kaeya",
     "element": "Cryo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kaeya.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kaeya@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4f7aa2dc46f21a8b8a3cd5255de5c7e2_7269620473027920302.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Kaeya.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Kaeya.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/4f7aa2dc46f21a8b8a3cd5255de5c7e2_7269620473027920302.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Kaeya@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -886,15 +1131,20 @@
     "enname": "Kuki Shinobu",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shinobu.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shinobu@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/33c41932d1b5531ac73bca243c761816_4476966283098131317.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Shinobu.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Shinobu.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/33c41932d1b5531ac73bca243c761816_4476966283098131317.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Shinobu@2x.png"
+    },
     "material": {
-      "drop": [2, 5, 7],
-      "title": "「风雅」系列",
+      "name": "「风雅」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/21/15568211/994b1453bcc87664a6815496715bd569_4763952261692427253.png",
+      "drop": [2, 5, 7],
       "domain": {
-        "title": "菫色之庭",
+        "name": "菫色之庭",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2021/07/11/79683714/b59bb5e853bb855c7194d60480f7c069_3403329664126743175.png"
       }
     }
@@ -904,15 +1154,20 @@
     "enname": "Yun Jin",
     "element": "Geo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yunjin.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yunjin@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/6f4bbe7d060f72a0c84e868887ac7a32_3861318040095042024.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Yunjin.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yunjin.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/6f4bbe7d060f72a0c84e868887ac7a32_3861318040095042024.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Yunjin@2x.png"
+    },
     "material": {
-      "drop": [2, 5, 7],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [2, 5, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -922,15 +1177,20 @@
     "enname": "Razor",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Razor.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Razor@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/eb8eac8bbe0d502a32ebc6caa822b127_1647779397740664036.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Razor.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Razor.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/eb8eac8bbe0d502a32ebc6caa822b127_1647779397740664036.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Razor@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「抗争」系列",
+      "name": "「抗争」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/fc803239634f9035664b818f08e42f08_6255025949454286240.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -940,15 +1200,20 @@
     "enname": "Fischl",
     "element": "Electro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Fischl.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Fischl@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/f328a4fb30139b431ddb5f57d752ad46_2540391362970787647.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Fischl.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Fischl.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/f328a4fb30139b431ddb5f57d752ad46_2540391362970787647.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Fischl@2x.png"
+    },
     "material": {
-      "drop": [6, 7, 3],
-      "title": "「诗文」系列",
+      "name": "「诗文」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/86fd228ce3aa9b5f4541b34c2ac6c3b4_2768286836747901422.png",
+      "drop": [6, 7, 3],
       "domain": {
-        "title": "忘却之峡",
+        "name": "忘却之峡",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/03/25/4905523/d6eb786eca21d18f8fd2ff4f63d99bc0_7184326871835672781.png"
       }
     }
@@ -958,15 +1223,20 @@
     "enname": "Chongyun",
     "element": "Cryo",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chongyun.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Chongyun@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/a69e3dc8c8d6e01fbb54d1d8ddf7f7e9_4778757238923076430.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Chongyun.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Chongyun.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/a69e3dc8c8d6e01fbb54d1d8ddf7f7e9_4778757238923076430.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Chongyun@2x.png"
+    },
     "material": {
-      "drop": [7, 2, 5],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [7, 2, 5],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -976,15 +1246,20 @@
     "enname": "Xiangling",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiangling.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiangling@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/563c4f6f024a58edc8d6154bcbcf01a7_3571411441103108517.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xiangling.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Xiangling.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/563c4f6f024a58edc8d6154bcbcf01a7_3571411441103108517.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xiangling@2x.png"
+    },
     "material": {
-      "drop": [2, 5, 7],
-      "title": "「勤劳」系列",
+      "name": "「勤劳」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/7bcdfc964568483041339346b20ac870_8802895355053984746.png",
+      "drop": [2, 5, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
@@ -994,15 +1269,20 @@
     "enname": "Xinyan",
     "element": "Pyro",
     "rarity": 4,
-    "avatar": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xinyan.png",
-    "poster": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xinyan@2x.png",
-    "avatar_full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d10a465a95f623e740d292dc927740e5_6534185379566811289.png",
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Xinyan.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Xinyan.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/15/75379475/d10a465a95f623e740d292dc927740e5_6534185379566811289.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Xinyan@2x.png"
+    },
     "material": {
-      "drop": [3, 6, 7],
-      "title": "「黄金」系列",
+      "name": "「黄金」系列",
       "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/07/01/80410800/5c31d23006a125fe771fe295a92ea661_8115507080777026141.png",
+      "drop": [3, 6, 7],
       "domain": {
-        "title": "太山府",
+        "name": "太山府",
         "icon": "https://uploadstatic.mihoyo.com/ys-obc/2020/06/26/4839652/955166e60ef4b0b2f4b6f71e283ed734_8023134565096444298.png"
       }
     }
