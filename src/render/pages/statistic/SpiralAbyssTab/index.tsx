@@ -4,8 +4,9 @@ import D from 'dayjs';
 import AbyssNumber from '../../../components/AbyssNumber';
 import NumberDescription from '../../../components/NumberDescription';
 import RoleNumber from '../../../components/RoleNumber';
-// import abyssBg from '../../../../assets/abyss-bg.png';
 import star1 from '../../../../assets/star1.png';
+import star2 from '../../../../assets/star2.png';
+import star3 from '../../../../assets/star3.png';
 
 import type { SpiralAbyssData } from '../../../../services/getSpiralAbyss';
 
@@ -19,6 +20,8 @@ const formatTime = (timestamp: string) => {
   return D(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm');
 };
 
+const starMap = ['', star1, star2, star3];
+
 const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
   const {
     data: {
@@ -31,7 +34,6 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
       end_time,
       total_win_times,
       total_battle_times,
-      // reveal_rank,
       damage_rank,
       defeat_rank,
       normal_skill_rank,
@@ -98,41 +100,52 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
 
           <div className={styles.detail}>
             {floors.map(e => (
-              <div key={e.index}>
-                <div>
-                  {/* <img src={abyssBg} alt="关卡logo" /> */}
+              <div key={e.index} className={styles.abyssItem}>
+                <div className={styles.abyssIndex}>
                   <span>{e.index}</span>
                 </div>
-                <div>
-                  <img src={star1} alt="星星" className={styles.star} />
-                  <span>
-                    {e.star}/{e.max_star}
-                  </span>
-                </div>
-                <div>
-                  {e.levels.map(e => (
-                    <div key={e.index}>
-                      第{e.index}间|本期：{e.star}|历史最高：{e.max_star}
-                      <div>
-                        {e.battles.map(e => (
-                          <div key={e.index}>
-                            {e.index === 1 ? '上' : '下'}半场|时间：
-                            {formatTime(e.timestamp)}
-                            <div>
-                              {e.avatars.map(e => (
-                                <div key={e.id}>
-                                  <img src={e.icon} width="16px" alt="" />
-                                  <span>
-                                    Lv. {e.level}|{e.rarity}星
-                                  </span>
-                                </div>
-                              ))}
-                            </div>
+                <div className={styles.zones}>
+                  {e.levels.map(f => {
+                    const [start, end] = f.battles.map(e => {
+                      return D(Number(e.timestamp) * 1000).format(
+                        'M月D日 HH:mm'
+                      );
+                    });
+
+                    return (
+                      <div className={styles.zone} key={f.index}>
+                        <div className={styles.stars}>
+                          <div>第 {f.index} 间</div>
+                          <div>
+                            <img
+                              src={starMap[f.star]}
+                              alt="星星"
+                              className={styles.star}
+                            />
+                            {start && <span>上半：{start}</span>}
+                            {end && <span>下半：{end}</span>}
                           </div>
-                        ))}
+                        </div>
+                        <div className={styles.roles}>
+                          {f.battles.map(g => (
+                            <div className={styles.rolesRow} key={g.index}>
+                              {g.avatars.map(e => {
+                                const backgroundColor =
+                                  e.rarity === 4 ? '#9677b3' : '#c08d4b';
+                                return (
+                                  <img
+                                    src={e.icon}
+                                    key={e.id}
+                                    style={{ backgroundColor }}
+                                  />
+                                );
+                              })}
+                            </div>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             ))}

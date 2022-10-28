@@ -2,12 +2,122 @@
 @import '../../../utils/utils.less';
 
 .spiral-abyss {
-  .flex-column();
+  .flex-center-column();
+
+  height: 100%;
 
   .row {
     .ani-show-top();
     .flex-center-y();
 
+    width: 100%;
     justify-content: space-around;
+  }
+
+  .detail {
+    .ani-show-bottom();
+
+    width: 100%;
+    height: 392px;
+    overflow: auto;
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: @color-primary;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .abyss-item {
+      .flex-center-y();
+
+      padding: 0 4px;
+      border-radius: 8px;
+      border: 3px solid @color-primary;
+      height: 80px;
+      margin: 6px 8px 8px 8px;
+
+      .abyssIndex {
+        .flex-center();
+
+        border-right: 3px solid @color-primary;
+        color: @color-primary;
+        font-size: 32px;
+        font-weight: bold;
+        height: 80px;
+        width: $height;
+      }
+
+      .zones {
+        .flex-center-y();
+
+        flex: 1;
+        justify-content: flex-start;
+
+        .zone {
+          .flex-center();
+
+          margin-left: 12px;
+
+          .stars {
+            .flex-center-column();
+
+            height: 80px;
+            width: 108px;
+
+            & > div:nth-child(2) {
+              .flex-center-column();
+            }
+
+            span {
+              font-size: 9px;
+              color: @color-second;
+            }
+
+            img {
+              .transition();
+
+              height: 24px;
+
+              &:hover {
+                transform: scale(1.06);
+              }
+            }
+          }
+        }
+
+        .roles {
+          .flex-center-column();
+
+          .roles-row {
+            .flex-center-y();
+          }
+
+          img {
+            .transition();
+
+            margin: 2px;
+            width: 34px;
+            border-radius: 3px;
+
+            &:hover {
+              transform: scale(1.06);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .tip {
+    .ani-show-bottom();
+
+    bottom: 16px;
+    color: @color-second;
+    font-size: 14px;
+    left: 28px;
+    position: absolute;
   }
 }
