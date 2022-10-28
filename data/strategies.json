@@ -14,7 +14,7 @@
   {
     "name": "任务手册",
     "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231",
-    "hightlight": true,
+    "hightlight": false,
     "alt": "快速检索查看各种任务（魔神任务、传说任务、世界任务、委托任务等）的流程和攻略"
   },
   {
@@ -98,7 +98,7 @@
   {
     "name": "角色PV合集",
     "url": "https://bbs.mihoyo.com/ys/obc/channel/map/80",
-    "hightlight": true,
+    "hightlight": false,
     "alt": "快速检索查看各个角色的展示PV和各种剧情过场视频"
   },
   {
