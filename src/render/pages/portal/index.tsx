@@ -11,9 +11,10 @@ import useApi from '../../hooks/useApi';
 import Loading from '../../components/Loading';
 
 interface PortalItem {
-  name: '哔哩哔哩原神直播间';
-  description: '聚焦原神全新版本前瞻直播，领原石';
-  url: 'https://live.bilibili.com/21987615';
+  name: string;
+  description: string;
+  url: string;
+  icon: string;
   hightlight: false;
   browser: false;
 }
@@ -40,13 +41,19 @@ const Portal: React.FC = () => {
         {!loading ? (
           <>
             <div className={styles.title}>传送门</div>
-            <div className={styles.btns}>
+            <div className={styles.cards}>
               {data.map(e => (
-                <>
-                  <div>{e.name}</div>
+                <div
+                  key={e.name}
+                  className={styles.card}
+                  onClick={() => handleWindowOpen(e.url)}
+                >
+                  <div>
+                    <img src={e.icon} alt="icon" />
+                    <div>{e.name}</div>
+                  </div>
                   <div>{e.description}</div>
-                  <div onClick={() => handleWindowOpen(e.url)}>{e.url}</div>
-                </>
+                </div>
               ))}
             </div>
           </>

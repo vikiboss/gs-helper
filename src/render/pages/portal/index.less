@@ -7,7 +7,7 @@
 
   flex: 1;
   position: relative;
-  padding: 0 60px;
+  padding: 0 40px;
 
   .title {
     font-size: 24px;
@@ -15,13 +15,64 @@
     margin: 20px 0;
   }
 
-  .btns {
+  .cards {
     .flex();
 
     align-content: flex-start;
+    height: 450px;
     flex-wrap: wrap;
-    height: 373px;
-    padding: 32px 36px;
+    overflow: auto;
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 2px;
+      background-color: @color-primary;
+    }
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .card {
+      .transition-quick();
+      .flex-column();
+
+      word-break: break-word;
+      overflow: hidden;
+      max-width: 250px;
+      margin: 10px;
+      padding: 12px;
+      border-radius: 8px;
+      box-shadow: 0 0 0 1px rgb(0 0 0 / 14%);
+
+      &:hover {
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 24%);
+      }
+
+      & > div:first-child {
+        .flex-center-y();
+
+        margin-bottom: 6px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid rgb(0 0 0 / 14%);
+
+        & > div {
+          max-width: 220px;
+          word-break: break-word;
+        }
+      }
+
+      & > div:nth-child(2) {
+        font-size: 12px;
+        color: @color-second;
+      }
+
+      img {
+        border-radius: 3px;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+      }
+    }
   }
 
   .back-btn {
