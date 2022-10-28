@@ -1,0 +1,30 @@
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
+
+.wrapper {
+  .flex-center-column();
+
+  & > span {
+    color: @color-second;
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  .horizontal {
+    .flex-center();
+
+    font-family: arial;
+    font-size: 20px;
+    font-weight: bold;
+
+    .full-num {
+      color: @color-second;
+    }
+
+    & > span {
+      align-self: flex-end;
+      font-size: 12px;
+    }
+  }
+}

@@ -1,111 +1,97 @@
-import React from "react";
+import React from 'react';
 
-import { deepClone } from "../../../../utils/utils";
-import BounceNumber from "../../../components/BounceNumber";
-import getServerNameByServer from "../../../../utils/getServerNameByServer";
+import { deepClone } from '../../../../utils/utils';
+import BounceNumber from '../../../components/BounceNumber';
 
-import type { GameRoleCardState } from "..";
+import type { GameRoleCardData } from '../../../../services/getGameRoleCard';
 
-import styles from "./index.less";
+import styles from './index.less';
+import AbyssNumber from '../../../components/AbyssNumber';
+import NumberDescription from '../../../components/NumberDescription';
 
 export interface StatisticCardProp {
-  data: GameRoleCardState;
+  data: GameRoleCardData;
 }
 
-const StatisticCard: React.FC<StatisticCardProp> = (props) => {
+const StatisticCard: React.FC<StatisticCardProp> = props => {
   const { data } = props;
+
   const we = deepClone(data.world_explorations).reverse();
-  const stats = data.stats;
-  console.log(stats);
+
+  const {
+    stats: {
+      active_day_number,
+      achievement_number,
+      avatar_number,
+      way_point_number,
+      domain_number,
+      luxurious_chest_number,
+      precious_chest_number,
+      exquisite_chest_number,
+      common_chest_number,
+      magic_chest_number,
+      spiral_abyss,
+      anemoculus_number,
+      geoculus_number,
+      electroculus_number,
+      dendroculus_number,
+    },
+    homes,
+  } = data;
+
+  const [floor, zone] = spiral_abyss.split('-').map(Number);
+
   return (
     <div className={styles.statisticCard}>
       <div className={styles.column}>
         <div className={styles.stats}>
-          {data.role && (
-            <div className={styles.user}>
-              <div>{data.role.nickname}</div>
-              <div>
-                Lv.{data.role.level} {getServerNameByServer(data.role.region)} {data.uid}
-              </div>
-            </div>
-          )}
           <div className={styles.statsBox}>
-            <div>
-              <BounceNumber size={24} number={stats.active_day_number} />
-              <span>活跃天</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.achievement_number} />
-              <span>成就</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.avatar_number} />
-              <span>角色</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.way_point_number} />
-              <span>传送点</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.domain_number} />
-              <span>秘境</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.luxurious_chest_number} />
-              <span>华丽宝箱</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.precious_chest_number} />
-              <span>珍贵宝箱</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.exquisite_chest_number} />
-              <span>精致宝箱</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.common_chest_number} />
-              <span>普通宝箱</span>
-            </div>
-            <div>
-              <BounceNumber size={24} number={stats.magic_chest_number} />
-              <span>奇馈宝箱</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[0])} />
-                <div>-</div>
-                <BounceNumber size={24} number={Number(stats.spiral_abyss.split("-")[1])} />
-              </div>
-              <span>深境螺旋</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={stats.anemoculus_number} />
-                <span className={styles.fullNum}>/66</span>
-              </div>
-              <span>风神瞳</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={stats.geoculus_number} />
-                <span className={styles.fullNum}>/131</span>
-              </div>
-              <span>岩神瞳</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={stats.electroculus_number} />
-                <span className={styles.fullNum}>/181</span>
-              </div>
-              <span>雷神瞳</span>
-            </div>
-            <div>
-              <div className={styles.horizontal}>
-                <BounceNumber size={24} number={stats.dendroculus_number} />
-                <span className={styles.fullNum}>/271</span>
-              </div>
-              <span>草神瞳</span>
-            </div>
+            <NumberDescription value={active_day_number} description="活跃天" />
+            <NumberDescription value={achievement_number} description="成就" />
+            <NumberDescription value={avatar_number} description="角色" />
+            <NumberDescription value={way_point_number} description="传送点" />
+            <NumberDescription value={domain_number} description="秘境" />
+            <NumberDescription
+              value={luxurious_chest_number}
+              description="华丽宝箱"
+            />
+            <NumberDescription
+              value={precious_chest_number}
+              description="珍贵宝箱"
+            />
+            <NumberDescription
+              value={exquisite_chest_number}
+              description="精致宝箱"
+            />
+            <NumberDescription
+              value={common_chest_number}
+              description="普通宝箱"
+            />
+            <NumberDescription
+              value={magic_chest_number}
+              description="奇馈宝箱"
+            />
+            <AbyssNumber values={[floor, zone]} />
+            <NumberDescription
+              value={anemoculus_number}
+              description="风神瞳"
+              sub="/66"
+            />
+            <NumberDescription
+              value={geoculus_number}
+              description="岩神瞳"
+              sub="/131"
+            />
+            <NumberDescription
+              value={electroculus_number}
+              description="雷神瞳"
+              sub="/181"
+            />
+            <NumberDescription
+              value={dendroculus_number}
+              description="草神瞳"
+              sub="/271"
+            />
           </div>
         </div>
         <div className={styles.homes}>
@@ -114,17 +100,17 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
             {data.homes.length > 0 && (
               <div>
                 <img
-                  src={data.homes[0].comfort_level_icon}
-                  alt={data.homes[0].comfort_level_name}
+                  src={homes[0].comfort_level_icon}
+                  alt={homes[0].comfort_level_name}
                 />
-                <span>{data.homes[0].comfort_level_name}</span>
+                <span>{homes[0].comfort_level_name}</span>
               </div>
             )}
           </div>
           {data.homes.length > 0 ? (
             <>
               <div>
-                {data.homes.map((e) => (
+                {data.homes.map(e => (
                   <div key={e.name}>
                     <img src={e.icon} alt={e.name}></img>
                     <span>{e.name}</span>
@@ -134,19 +120,19 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               <div>
                 <div>
                   <div>
-                    <BounceNumber size={24} number={data.homes[0].level} />
+                    <BounceNumber size={24} number={homes[0].level} />
                     <span>信任等阶</span>
                   </div>
                   <div>
-                    <BounceNumber size={24} number={data.homes[0].comfort_num} />
+                    <BounceNumber size={24} number={homes[0].comfort_num} />
                     <span>最高洞天仙力</span>
                   </div>
                   <div>
-                    <BounceNumber size={24} number={data.homes[0].item_num} />
+                    <BounceNumber size={24} number={homes[0].item_num} />
                     <span>获得摆设</span>
                   </div>
                   <div>
-                    <BounceNumber size={24} number={data.homes[0].visit_num} />
+                    <BounceNumber size={24} number={homes[0].visit_num} />
                     <span>历史访客</span>
                   </div>
                 </div>
@@ -158,30 +144,15 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
         </div>
       </div>
       <div className={styles.column}>
-        {/* <div className={styles.avatars}>
-          <div>常用角色</div>
-          <div>
-            {data.avatars.slice(0, 8).map((e) => (
-              <div key={e.id}>
-                <img src={e.card_image} key={e.name} alt={e.name} />
-                <div>
-                  <span>{e.name}</span>
-                  <span>
-                    Lv.{e.level}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div> */}
         <div className={styles.explorations}>
           <div>〓世界探索〓</div>
           <div>
-            {we.map((e) => {
-              const isR = e.type === "Reputation";
-              const name = !isR && (e.offerings[0]?.name || "").replaceAll("等级", "");
-              const text = isR ? "声望" : name || "";
-              const level = text ? `·${text} ${e.level} 级` : "";
+            {we.map(e => {
+              const isR = e.type === 'Reputation';
+              const name =
+                !isR && (e.offerings[0]?.name || '').replaceAll('等级', '');
+              const text = isR ? '声望' : name || '';
+              const level = text ? `·${text} ${e.level} 级` : '';
               return (
                 <div key={e.id}>
                   <img src={e.background_image} alt={e.name} />

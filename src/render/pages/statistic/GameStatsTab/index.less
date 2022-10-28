@@ -1,20 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/utils.less';
 
-.user {
-  .ani-show-left();
-
-  margin: 0 20px;
-
-  & > div:first-child {
-    font-size: 24px;
-  }
-
-  & > div:nth-child(2) {
-    color: @color-second;
-  }
-}
-
 .statistic-card {
   .flex();
 
@@ -26,6 +12,7 @@
 
     width: 50%;
     overflow: hidden;
+    margin-top: 20px;
 
     .stats {
       .ani-show-left();
@@ -39,75 +26,11 @@
           .flex-center-x-column();
 
           height: 66px;
-          justify-content: flex-end;
+          justify-content: flex-start;
           width: 90px;
-
-          & > span {
-            color: @color-second;
-            font-size: 14px;
-            margin-top: 4px;
-          }
-
-          .horizontal {
-            .flex-center();
-
-            font-family: arial;
-            font-size: 20px;
-            font-weight: bold;
-
-            .full-num {
-              color: @color-second;
-            }
-
-            & > span {
-              align-self: flex-end;
-              font-size: 12px;
-            }
-          }
         }
       }
     }
-
-    // .avatars {
-    //   .ani-show-right();
-    //   .flex-column-wrap();
-
-    //   width    : 100%;
-    //   font-size: 12px;
-
-    //   &>div:first-child {
-    //     font-size    : 20px;
-    //     margin-bottom: 18px;
-    //   }
-
-    //   &>div:nth-child(2) {
-    //     .flex-wrap();
-
-    //     &>div {
-    //       .flex();
-
-    //       width: 112px;
-
-    //       img {
-    //         .transition();
-
-    //         width: 52px;
-
-    //         &:hover {
-    //           transform: translateY(-4px)
-    //         }
-    //       }
-
-    //       div {
-    //         .flex-center-y-column();
-
-    //         span {
-    //           line-height: 1.6em
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
 
     .homes {
       .ani-show-left();
@@ -203,7 +126,7 @@
       & > div:first-child {
         border-left: 4px solid @color-accent;
         font-size: 20px;
-        margin: 20px 0 12px 0;
+        margin-bottom: 12px;
         padding-left: 6px;
       }
 
@@ -211,7 +134,7 @@
         .flex-wrap();
 
         align-content: flex-start;
-        height: 392px;
+        height: 412px;
         justify-content: space-between;
         padding: 2px 6px;
         overflow: auto;

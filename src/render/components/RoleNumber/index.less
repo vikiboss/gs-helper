@@ -1,0 +1,27 @@
+@import '../../utils/colors.less';
+@import '../../utils/utils.less';
+
+.wrapper {
+  .flex-center-column();
+
+  & > div:first-child {
+    display: flex;
+
+    & > div {
+      margin-top: 4px;
+      margin-right: 8px;
+    }
+  }
+
+  & > span {
+    color: @color-second;
+    font-size: 12px;
+    margin-top: 4px;
+    text-align: center;
+  }
+
+  & img {
+    height: 24px;
+    width: $height;
+  }
+}

@@ -3,29 +3,33 @@
 
 .container {
   .ani-show-right();
-  .flex-center-x-column();
+  .flex-center-y-column();
 
   flex: 1;
   position: relative;
 
   .top {
     .ani-show-top();
-    .flex-center();
+    .flex-center-y();
 
-    width: 100%;
+    margin-left: 80px;
     height: 82px;
     background-color: @color-bg;
     position: relative;
 
     .btn {
-      .ani-show-left();
-
-      left: 82px;
-      position: absolute;
+      margin-left: 20px;
     }
 
-    .title {
-      font-size: 24px;
+    .user {
+      & > div:nth-child(2) {
+        color: @color-second;
+        font-size: 14px;
+      }
+    }
+
+    .select-btns {
+      margin-left: 150px;
     }
 
     .input-area {
@@ -33,7 +37,7 @@
       .flex-center-y();
 
       position: absolute;
-      right: 20px;
+      right: 32px;
 
       input {
         text-align: center;
