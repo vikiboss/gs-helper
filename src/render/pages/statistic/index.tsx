@@ -104,7 +104,7 @@ const Statistic: React.FC = () => {
             <div className={styles.top}>
               <div className={styles.user}>
                 <div>{card.role.nickname}</div>
-                <div>{`Lv.${card.role.level} ${accountUid}`}</div>
+                <div>{`Lv.${card.role.level} ${currentUid}`}</div>
               </div>
               <SelectButton
                 className={styles.selectBtns}
