@@ -25,8 +25,8 @@ const Statistic: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
 
-  // const [type, setType] = useState<TypeState>('statistic');
-  const [type, setType] = useState<TypeState>('abyss');
+  const [type, setType] = useState<TypeState>('statistic');
+  // const [type, setType] = useState<TypeState>('abyss');
 
   const [accountUid, setAccountUid] = useState<string>('');
   const [currentUid, setCurrentUid] = useState<string>('');
