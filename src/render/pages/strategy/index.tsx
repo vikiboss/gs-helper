@@ -4,20 +4,30 @@ import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import CircleButton from '../../components/CircleButton';
+import Loading from '../../components/Loading';
 import nativeApi from '../../utils/nativeApi';
+import useApi from '../../hooks/useApi';
 import useNotice from '../../hooks/useNotice';
 
 import styles from './index.less';
-import useApi from '../../hooks/useApi';
-import Loading from '../../components/Loading';
+
+interface StrategyItem {
+  name: string;
+  url: string;
+  hightlight?: boolean;
+  alt?: string;
+}
 
 const Strategy: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [request, loading, data = []] = useApi(nativeApi.getStrategyList);
+
+  const [request, loading, data = []] = useApi<StrategyItem[]>(
+    nativeApi.getRepoData
+  );
 
   useEffect(() => {
-    request();
+    request('strategies.json');
   }, []);
 
   const handleWindowOpen = (link: string) => {
@@ -36,19 +46,21 @@ const Strategy: React.FC = () => {
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
-              {data.map(e => (
-                <div
-                  className={cn(
-                    styles.btn,
-                    e.hightlight ? styles.hightlight : ''
-                  )}
-                  key={e.name}
-                  title={e.alt}
-                  onClick={handleWindowOpen.bind(null, e.url)}
-                >
-                  <span>{e.name}</span>
-                </div>
-              ))}
+              {data.map(e => {
+                const extra = e.hightlight ? styles.hightlight : '';
+                const className = cn(styles.btn, extra);
+
+                return (
+                  <div
+                    className={className}
+                    key={e.name}
+                    title={e.alt}
+                    onClick={handleWindowOpen.bind(null, e.url)}
+                  >
+                    <span>{e.name}</span>
+                  </div>
+                );
+              })}
             </div>
           </>
         ) : (
