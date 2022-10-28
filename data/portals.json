@@ -1,7 +1,7 @@
 [
   {
     "name": "原神哔哩直播间",
-    "description": "聚焦前瞻直播，领原石！",
+    "description": "聚焦新版本前瞻直播，领原石！",
     "url": "https://live.bilibili.com/21987615",
     "icon": "https://www.bilibili.com/favicon.ico",
     "hightlight": false,
@@ -9,7 +9,7 @@
   },
   {
     "name": "原神官方微博",
-    "description": "聚焦官方最新动态",
+    "description": "随时查看官方最新动态",
     "url": "https://weibo.com/ysmihoyo",
     "icon": "https://m.weibo.cn/favicon.ico",
     "hightlight": false,
@@ -17,7 +17,7 @@
   },
   {
     "name": "原神微博超话",
-    "description": "连续签到领福利",
+    "description": "来微博超话签到领福利",
     "url": "https://weibo.com/p/100808fc439dedbb06ca5fd858848e521b8716",
     "icon": "https://m.weibo.cn/favicon.ico",
     "hightlight": false,
@@ -25,7 +25,7 @@
   },
   {
     "name": "原神 TapTap 主页",
-    "description": "原神活动、资讯、攻略",
+    "description": "原神最新的活动、资讯、攻略",
     "url": "https://www.taptap.cn/app/168332/topic",
     "icon": "https://assets.tapimg.com/web-app/favicon.ico",
     "hightlight": false,
@@ -33,7 +33,7 @@
   },
   {
     "name": "椰羊 cocogoat",
-    "description": "原神成就扫描、记录、查缺补漏工具",
+    "description": "原神成就记录、查缺补漏工具",
     "url": "https://cocogoat.work/achievement",
     "icon": "https://77.xyget.cn/favicon.ico",
     "hightlight": false,
@@ -65,7 +65,7 @@
   },
   {
     "name": "哔哩 Wiki 原神板块",
-    "description": "原神百科、攻略、小工具、资讯",
+    "description": "B站版原神百科、攻略、小工具、资讯",
     "url": "https://wiki.biligame.com/ys",
     "icon": "https://static.hdslb.com/images/favicon.ico",
     "hightlight": false,
@@ -73,7 +73,7 @@
   },
   {
     "name": "原神抽卡模拟器（英文）",
-    "description": "原神抽卡模拟器，无脑来十连？",
+    "description": "原神抽卡模拟器，客官来十连？",
     "url": "https://gi-wish-simulator.uzairashraf.dev/",
     "icon": "https://ys.mihoyo.com/main/favicon.ico",
     "hightlight": false,
