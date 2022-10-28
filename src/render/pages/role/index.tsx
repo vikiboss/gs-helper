@@ -213,12 +213,12 @@ const RarityOptions = [
     label: '所有星级',
   },
   {
-    value: 4,
-    label: '4星角色',
-  },
-  {
     value: 5,
     label: '5星角色',
+  },
+  {
+    value: 4,
+    label: '4星角色',
   },
 ];
 
