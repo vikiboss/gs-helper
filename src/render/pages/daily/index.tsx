@@ -1,35 +1,35 @@
-import { TiArrowBack } from "react-icons/ti";
-import { useNavigate } from "react-router-dom";
-import cn from "classnames";
-import React, { useEffect, useState } from "react";
+import { TiArrowBack } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+import React, { useEffect, useState } from 'react';
 
-import CircleButton from "../../components/CircleButton";
-import Loading from "../../components/Loading";
-import useNotice from "../../hooks/useNotice";
-import nativeApi from "../../utils/nativeApi";
+import CircleButton from '../../components/CircleButton';
+import Loading from '../../components/Loading';
+import useNotice from '../../hooks/useNotice';
+import nativeApi from '../../utils/nativeApi';
 
-import styles from "./index.less";
+import styles from './index.less';
 
-import type { CalenderEvent } from "../../../services/getCalenderList";
+import type { CalenderEvent } from '../../../services/getCalenderList';
 
-type Type = "roles" | "weapons" | "materials";
+type Type = 'roles' | 'weapons' | 'materials';
 
-const WeekMap = ["日", "一", "二", "三", "四", "五", "六"];
+const WeekMap = ['日', '一', '二', '三', '四', '五', '六'];
 
 const Types = [
-  { title: "当日素材", name: "materials" },
-  { title: "按角色查看", name: "roles" },
-  { title: "按武器查看", name: "weapons" }
+  { title: '按素材查看', name: 'materials' },
+  { title: '按角色查看', name: 'roles' },
+  { title: '按武器查看', name: 'weapons' },
 ];
 
 const Tips = [
-  "「周日」 所有秘境均开放，所有材料均可获取",
-  "「周一」 与 「周四」 开放的秘境和可获取的材料相同",
-  "「周二」 与 「周五」 开放的秘境和可获取的材料相同",
-  "「周三」 与 「周六」 开放的秘境和可获取的材料相同",
-  "「周一」 与 「周四」 开放的秘境和可获取的材料相同",
-  "「周二」 与 「周五」 开放的秘境和可获取的材料相同",
-  "「周三」 与 「周六」 开放的秘境和可获取的材料相同"
+  '「周日」 所有秘境均开放，所有材料均可获取',
+  '「周一」 与 「周四」 开放的秘境和可获取的材料相同',
+  '「周二」 与 「周五」 开放的秘境和可获取的材料相同',
+  '「周三」 与 「周六」 开放的秘境和可获取的材料相同',
+  '「周一」 与 「周四」 开放的秘境和可获取的材料相同',
+  '「周二」 与 「周五」 开放的秘境和可获取的材料相同',
+  '「周三」 与 「周六」 开放的秘境和可获取的材料相同',
 ];
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -46,22 +46,22 @@ const getUniqueArray = (arr: any[], key: string) => {
 };
 
 const getMaterialList = (calenderList: CalenderEvent[]) => {
-  const kind2 = calenderList.filter((e) => e.kind === "2");
+  const kind2 = calenderList.filter(e => e.kind === '2');
   let materials: CalenderEvent[] = [];
   for (const e of kind2) {
     const infos = e.contentInfos;
     const len = infos.length;
     if (!len) continue;
     const title = infos[0].title;
-    const talent = infos.filter((e) => e.title.includes("哲学"))[0];
-    const item = title.includes("「") ? talent : infos[len - 1];
+    const talent = infos.filter(e => e.title.includes('哲学'))[0];
+    const item = title.includes('「') ? talent : infos[len - 1];
     materials.push({
       ...e,
-      title: item.title.slice(0, 4) + "系列",
-      img_url: item.icon
+      title: item.title.slice(0, 4) + '系列',
+      img_url: item.icon,
     });
   }
-  materials = getUniqueArray(materials, "title");
+  materials = getUniqueArray(materials, 'title');
   return materials;
 };
 
@@ -71,7 +71,7 @@ const Daily: React.FC = () => {
   const notice = useNotice();
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([]);
   const [changing, setChanging] = useState<boolean>(false);
-  const [type, setType] = useState<Type>("roles");
+  const [type, setType] = useState<Type>('roles');
   const [week, setWeek] = useState<number>(todayWeek);
 
   useEffect(() => {
@@ -81,28 +81,32 @@ const Daily: React.FC = () => {
         if (res.length > 0) {
           setCalenderList(res);
         } else {
-          notice.faild({ message: "数据为空 T_T" });
+          notice.faild({ message: '数据为空 T_T' });
         }
       } catch (e) {
-        const isOffline = e?.message?.includes("getaddrinfo");
-        const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+        const isOffline = e?.message?.includes('getaddrinfo');
+        const msg = isOffline
+          ? '网络状况不佳，请检查后重试 T_T'
+          : '加载超时，请检查网络连接 T_T';
         notice.faild({ message: msg });
       }
     })();
   }, []);
 
-  const roles = calenderList.filter((e) => e.break_type === "2");
+  const roles = calenderList.filter(e => e.break_type === '2');
   roles.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
 
-  const weapons = calenderList.filter((e) => e.break_type === "1");
+  const weapons = calenderList.filter(e => e.break_type === '1');
   weapons.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
 
   const materials = getMaterialList(calenderList);
-  materials.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
+  materials.sort((p, n) => JSON.parse(n.sort)[0] - JSON.parse(p.sort)[0]);
 
   const map: Record<string, CalenderEvent[]> = { roles, weapons, materials };
-  const list = map[type].filter((e) => e.drop_day.includes(String(((week + 6) % 7) + 1)));
-  const todayClass = cn(styles.btn, todayWeek === week ? styles.active : "");
+  const list = map[type].filter(e =>
+    e.drop_day.includes(String(((week + 6) % 7) + 1))
+  );
+  const todayClass = cn(styles.btn, todayWeek === week ? styles.active : '');
 
   const handleChange = async (fn: () => void) => {
     setChanging(true);
@@ -111,9 +115,12 @@ const Daily: React.FC = () => {
   };
 
   const handleItemClick = (e: CalenderEvent) => {
-    let message = type === "roles" ? `「${e.title}」 天赋培养需要：` : "";
-    message += type !== "materials" ? `${e.contentInfos.map((e) => e.title).join("、")}` : e.title;
-    message += `，可在 「${e.contentSource[0]?.title || "忘却之峡"}」 获取`;
+    let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : '';
+    message +=
+      type !== 'materials'
+        ? `${e.contentInfos.map(e => e.title).join('、')}`
+        : e.title;
+    message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`;
     notice.info({ message });
   };
 
@@ -138,7 +145,10 @@ const Daily: React.FC = () => {
                   {WeekMap.map((e, i) => (
                     <div
                       key={e}
-                      className={cn(styles.btn, i === week ? styles.active : "")}
+                      className={cn(
+                        styles.btn,
+                        i === week ? styles.active : ''
+                      )}
                       onClick={() => handleChange(setWeek.bind(null, i))}
                     >
                       周{e}
@@ -146,10 +156,13 @@ const Daily: React.FC = () => {
                   ))}
                 </div>
                 <div className={styles.types}>
-                  {Types.map((e) => (
+                  {Types.map(e => (
                     <div
                       key={e.name}
-                      className={cn(styles.btn, e.name === type ? styles.active : "")}
+                      className={cn(
+                        styles.btn,
+                        e.name === type ? styles.active : ''
+                      )}
                       onClick={() => handleChange(setType.bind(null, e.name))}
                     >
                       {e.title}
@@ -159,7 +172,7 @@ const Daily: React.FC = () => {
               </div>
               {!changing && (
                 <div className={styles.main}>
-                  {list.map((e) => (
+                  {list.map(e => (
                     <div key={e.title} onClick={() => handleItemClick(e)}>
                       <img src={e.img_url} alt={e.title} />
                       <span>{e.title}</span>
@@ -179,9 +192,9 @@ const Daily: React.FC = () => {
 
         <CircleButton
           Icon={TiArrowBack}
-          size='middle'
+          size="middle"
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         />
       </div>
       {notice.holder}
