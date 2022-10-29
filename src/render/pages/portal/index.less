@@ -36,7 +36,7 @@
     }
 
     .card {
-      .transition-quick();
+      .transition();
       .flex-column();
 
       word-break: break-word;
@@ -48,7 +48,14 @@
       box-shadow: 0 0 0 1px rgb(0 0 0 / 14%);
 
       &:hover {
-        box-shadow: 0 0 0 1px rgb(0 0 0 / 24%);
+        transform: scale(1.03);
+        background-color: @color-white;
+      }
+
+      &:active {
+        transform: none;
+        background-color: rgba(240, 240, 240, 0.8);
+        box-shadow: 0 0 0 1px rgb(0 0 0 / 14%);
       }
 
       & > div:first-child {
