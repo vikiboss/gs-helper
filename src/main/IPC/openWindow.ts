@@ -1,7 +1,9 @@
-import { app, BrowserWindow, BrowserWindowConstructorOptions } from "electron";
+import { app, BrowserWindow, BrowserWindowConstructorOptions } from 'electron';
 
-import { APP_USER_AGENT_DESKTOP } from "../../constants";
-import { isDev, store } from "..";
+import { APP_USER_AGENT_DESKTOP } from '../../constants';
+import { isDev, store } from '..';
+
+export const subWins: Set<BrowserWindow> = new Set();
 
 const openWindow = async (
   _: Electron.IpcMainEvent,
@@ -13,21 +15,25 @@ const openWindow = async (
     width: 1300,
     height: 803,
     autoHideMenuBar: true,
-    backgroundColor: "#F9F6F2",
-    alwaysOnTop: store.get("settings").alwaysOnTop ?? false,
-    ...options
+    backgroundColor: '#F9F6F2',
+    alwaysOnTop: store.get('settings').alwaysOnTop ?? false,
+    ...options,
   });
 
   if (!isDev) {
     win.removeMenu();
   }
 
+  subWins.add(win);
+
+  win.addListener('close', () => subWins.delete(win));
+
   const dom = win.webContents;
 
   // 在窗口内跳转
-  dom.setWindowOpenHandler((details) => {
+  dom.setWindowOpenHandler(details => {
     dom.loadURL(details.url);
-    return { action: "deny" };
+    return { action: 'deny' };
   });
 
   // 设置 UA
@@ -37,11 +43,11 @@ const openWindow = async (
   dom.loadURL(url);
 
   // 鼠标右键返回上一页面
-  dom.addListener("context-menu", () => {
+  dom.addListener('context-menu', () => {
     if (dom.canGoBack()) {
       dom.goBack();
     }
-  })
+  });
 };
 
 export default openWindow;
