@@ -23,9 +23,9 @@ const getGachaUrl = async () => {
     // 尝试读取日志文件内容
     const logContent = await fs.readFile(logPath, { encoding: "utf-8" });
     // 在日志文件里使用正则表达式搜索游戏安装目录
-    const GameDirReg = /\w:\/.+(GenshinImpact_Data|YuanShen_Data)/;
+    const gameDirReg = /\w:\/.+(GenshinImpact_Data|YuanShen_Data)/;
     // 获取游戏安装目录
-    const gameDir = GameDirReg.exec(logContent)[0] || "";
+    const gameDir = gameDirReg.exec(logContent)[0] || "";
 
     if (!gameDir) {
       return "";
