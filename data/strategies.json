@@ -14,7 +14,7 @@
   {
     "name": "任务手册",
     "url": "https://bbs.mihoyo.com/ys/strategy/channel/map/45/231",
-    "hightlight": false,
+    "hightlight": true,
     "alt": "快速检索查看各种任务（魔神任务、传说任务、世界任务、委托任务等）的流程和攻略"
   },
   {
@@ -100,17 +100,5 @@
     "url": "https://bbs.mihoyo.com/ys/obc/channel/map/80",
     "hightlight": false,
     "alt": "快速检索查看各个角色的展示PV和各种剧情过场视频"
-  },
-  {
-    "name": "你的影月月 (哔哩)",
-    "url": "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate",
-    "hightlight": true,
-    "alt": "来自哔哩哔哩专门做原神攻略的人气UP主"
-  },
-  {
-    "name": "莴苣某人 (哔哩)",
-    "url": "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate",
-    "hightlight": true,
-    "alt": "来自哔哩哔哩专门做原神攻略的人气UP主"
   }
 ]

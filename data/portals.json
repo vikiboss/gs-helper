@@ -17,7 +17,7 @@
   },
   {
     "name": "可莉特调",
-    "description": "素材、圣遗物评分、养成和伤害计算",
+    "description": "方便快捷的圣遗物评分工具",
     "url": "https://genshin.pub/",
     "icon": "https://genshin.pub/images/favicon/favicon.ico",
     "hightlight": false,
@@ -32,10 +32,10 @@
     "browser": false
   },
   {
-    "name": "哔哩 Wiki 原神板块",
-    "description": "B站版原神百科、攻略、小工具、资讯",
+    "name": "哔哩游戏 Wiki 原神板块",
+    "description": "原神百科、攻略、小工具、资讯",
     "url": "https://wiki.biligame.com/ys",
-    "icon": "https://static.hdslb.com/images/favicon.ico",
+    "icon": "https://www.bilibili.com/favicon.ico",
     "hightlight": false,
     "browser": false
   },
@@ -48,8 +48,24 @@
     "browser": false
   },
   {
-    "name": "原神哔哩直播间",
-    "description": "聚焦新版本前瞻直播，领原石！",
+    "name": "你的影月月（哔哩）",
+    "description": "一位专做原神攻略的人气UP主",
+    "url": "https://space.bilibili.com/431073645/video?tid=4&keyword=&order=pubdate",
+    "icon": "https://www.bilibili.com/favicon.ico",
+    "hightlight": false,
+    "browser": false
+  },
+  {
+    "name": "莴苣某人（哔哩）",
+    "url": "https://space.bilibili.com/1773346/video?tid=4&keyword=&order=pubdate",
+    "icon": "https://www.bilibili.com/favicon.ico",
+    "hightlight": false,
+    "description": "也是一位原神区的人气UP主",
+    "browser": false
+  },
+  {
+    "name": "原神直播间（哔哩）",
+    "description": "直达新版本前瞻直播，领原石！",
     "url": "https://live.bilibili.com/21987615",
     "icon": "https://www.bilibili.com/favicon.ico",
     "hightlight": false,
@@ -65,7 +81,7 @@
   },
   {
     "name": "原神微博超话",
-    "description": "来微博超话签到领福利",
+    "description": "直达微博超话，签到领福利",
     "url": "https://weibo.com/p/100808fc439dedbb06ca5fd858848e521b8716",
     "icon": "https://m.weibo.cn/favicon.ico",
     "hightlight": false,
@@ -73,7 +89,7 @@
   },
   {
     "name": "原神 TapTap 主页",
-    "description": "原神最新的活动、资讯、攻略",
+    "description": "最新的原神活动、资讯、攻略",
     "url": "https://www.taptap.cn/app/168332/topic",
     "icon": "https://assets.tapimg.com/web-app/favicon.ico",
     "hightlight": false,
