@@ -94,5 +94,13 @@
     "icon": "https://assets.tapimg.com/web-app/favicon.ico",
     "hightlight": false,
     "browser": false
+  },
+  {
+    "name": "来给「原神助手」提建议！",
+    "description": "欢迎加入交流群发表你的看法",
+    "url": "https://jq.qq.com/?_wv=1027&k=InHF9niP",
+    "icon": "https://qzonestyle.gtimg.cn/qzone/qzact/act/external/tiqq/logo.png",
+    "hightlight": true,
+    "browser": true
   }
 ]
