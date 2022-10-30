@@ -2,6 +2,8 @@ import cn from 'classnames';
 import D from 'dayjs';
 import React from 'react';
 
+import nativeApi from '../../utils/nativeApi';
+
 import avatar from '../../../assets/icon.png';
 import bbsIcon from '../../../assets/bbs.png';
 import discountIcon from '../../../assets/discount.png';
@@ -21,8 +23,6 @@ import styles from './index.less';
 
 interface UserCardProp {
   safelyNavigate: (path: string, options?: NavigateOptions) => void;
-  handleAvatarClick: () => void;
-  handleCopy: (str: string, msg: string) => void;
   note: DailyNotesData;
   notice: Notice;
   sign: SignInfo;
@@ -44,15 +44,17 @@ const formatTime = (seconds: number) => {
 };
 
 const UserCard: React.FC<UserCardProp> = props => {
-  const {
-    notice,
-    user,
-    sign,
-    note,
-    handleCopy,
-    handleAvatarClick,
-    safelyNavigate,
-  } = props;
+  const { notice, user, sign, note, safelyNavigate } = props;
+
+  const handleCopy = (str: string, msg: string) => {
+    nativeApi.writeClipboardText(str);
+    notice.success({ message: msg });
+  };
+
+  const handleOpenGame = async () => {
+    const { ok, message } = await nativeApi.openGame();
+    notice[ok ? 'success' : 'faild']({ message, duration: 8000 });
+  };
 
   const infos = [
     {
@@ -238,7 +240,7 @@ const UserCard: React.FC<UserCardProp> = props => {
   return (
     <>
       <div className={styles.userCard}>
-        <div className={styles.avatar} onClick={handleAvatarClick}>
+        <div className={styles.avatar} onDoubleClick={handleOpenGame}>
           <img src={avatar} alt="avatar" className={styles.avatarImage} />
         </div>
         <div className={styles.userInfo}>

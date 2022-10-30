@@ -37,7 +37,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   importGacha: () => IPC.invoke(IpcEvents.importGacha),
   loginByBBS: () => IPC.send(IpcEvents.loginByBBS),
   minimizeApp: () => IPC.send(IpcEvents.minimizeApp),
-  openLink: (url: string) => IPC.send(IpcEvents.openLink, url),
+  openGame: () => IPC.invoke(IpcEvents.openGame),
   readClipboardText: () => IPC.invoke(IpcEvents.readClipboardText),
   setStoreKey: (key: string, value: any) =>
     IPC.send(IpcEvents.setStoreKey, key, value),

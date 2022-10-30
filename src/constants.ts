@@ -28,7 +28,7 @@ export const IpcEvents: Record<string, string> = {
   importGacha: 'IMPORT_GACHA',
   loginByBBS: 'LOGIN_BY_BBS',
   minimizeApp: 'MONIMIZE_APP',
-  openLink: 'OPEN_LINK',
+  openGame: 'OPEN_GAME',
   openWindow: 'OPEN_WINDOW',
   readClipboardText: 'READ_CLIPBOARD_TEXT',
   request: 'REQUEST',

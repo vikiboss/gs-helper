@@ -158,12 +158,6 @@ const Home: React.FC = () => {
     nativeApi.openWindow(link);
   };
 
-  const handleAvatarClick = async () => {
-    const hitokoto = await nativeApi.getHitokoto();
-    const error = hitokoto.includes('出错啦');
-    notice[error ? 'warning' : 'info']({ message: hitokoto });
-  };
-
   const btns = [
     {
       name: '祈愿分析',
@@ -212,11 +206,6 @@ const Home: React.FC = () => {
     },
   ];
 
-  const handleCopy = (str: string, msg: string) => {
-    nativeApi.writeClipboardText(str);
-    notice.success({ message: msg });
-  };
-
   // const isHomeDataLoaded = false;
   const isHomeDataLoaded = !loading && note && user && sign;
 
@@ -231,8 +220,6 @@ const Home: React.FC = () => {
                 user={user}
                 note={note}
                 notice={notice}
-                handleAvatarClick={handleAvatarClick}
-                handleCopy={handleCopy}
                 safelyNavigate={safelyNavigate}
               />
             ) : (
@@ -252,12 +239,7 @@ const Home: React.FC = () => {
               />
             </div>
           )}
-          <div
-            className={styles.topGreeting}
-            onClick={handleCopy.bind(null, tip, '复制成功')}
-          >
-            {tip}
-          </div>
+          <div className={styles.topGreeting}>{tip}</div>
           <div className={styles.topBtns}>
             {auth.isLogin && (
               <>

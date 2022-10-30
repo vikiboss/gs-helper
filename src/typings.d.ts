@@ -44,7 +44,7 @@ export interface NativeApi {
   importGacha: () => Promise<BaseIPCRes<null | GachaData>>;
   loginByBBS: () => void;
   minimizeApp: () => void;
-  openLink: (url: string) => void;
+  openGame: () => Promise<BaseIPCRes<boolean>>;
   openWindow: (url: string, options?: WinOptions, UA?: string) => void;
   readClipboardText: () => Promise<string>;
   request: <T>(config: Config) => Promise<AxiosResponse<T>>;

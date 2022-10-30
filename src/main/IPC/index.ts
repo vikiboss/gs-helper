@@ -1,4 +1,4 @@
-import { app, BrowserWindow, clipboard, ipcMain as IPC, shell } from 'electron';
+import { app, BrowserWindow, clipboard, ipcMain as IPC } from 'electron';
 
 import { store } from '..';
 import { AppName, IpcEvents } from '../../constants';
@@ -8,6 +8,7 @@ import getCurrentUser from './getCurrentUser';
 import handleGetGachaListByUrl from './getGachaListByUrl';
 import importConfig from './importGacha';
 import loginViaBBS from './loginByBBS';
+import openGame from '../../utils/openGame';
 import openWindow from './openWindow';
 import doBBSSign from '../../services/doBBSSign';
 import getBBSSignData from '../../services/getBBSSignData';
@@ -44,9 +45,8 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.on(IpcEvents.hideApp, () => win.hide());
   IPC.on(IpcEvents.loginByBBS, loginViaBBS);
   IPC.on(IpcEvents.minimizeApp, () => win.minimize());
-  IPC.on(IpcEvents.openLink, (_, url: string) => shell.openExternal(url));
   IPC.on(IpcEvents.openWindow, openWindow);
- 
+
   IPC.on(IpcEvents.setStoreKey, (_, key: string, value: any) =>
     store.set(key, value)
   );
@@ -59,15 +59,15 @@ const bindIPC = (win: BrowserWindow) => {
     IpcEvents.changeUser,
     async (_, uid: string) => await changeUser(uid)
   );
- 
+
   IPC.handle(IpcEvents.clearData, async () => await clearData());
   IPC.handle(IpcEvents.doBBSSign, async () => await doBBSSign());
- 
+
   IPC.handle(
     IpcEvents.exportGacha,
     async (_, uid: string) => await exportGacha(uid)
   );
- 
+
   IPC.handle(IpcEvents.getAppInfo, () => AppicationInfo);
   IPC.handle(IpcEvents.getBBSSignData, async () => await getBBSSignData());
   IPC.handle(IpcEvents.getBBSSignInfo, async () => await getBBSSignInfo());
@@ -75,7 +75,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IpcEvents.getCurrentUser, () => getCurrentUser());
   IPC.handle(IpcEvents.getDailyNotes, async () => await getDailyNotes());
   IPC.handle(IpcEvents.getGachaUrl, async () => await getGachaUrl());
- 
+
   IPC.handle(
     IpcEvents.getGameRoleCard,
     async (_, uid?: string) => await getGameRoleCard(uid)
@@ -84,31 +84,31 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IpcEvents.getGameRoleInfo, async () => await getGameRoleInfo());
   IPC.handle(IpcEvents.getHitokoto, async () => await getHitokoto());
   IPC.handle(IpcEvents.getLocalGachaDatas, () => getLocalGachaDatas());
-  
+
   IPC.handle(
     IpcEvents.getMonthInfo,
     async (_, month?: number) => await getMonthInfo(month)
   );
-  
+
   IPC.handle(
     IpcEvents.getOwnedRoleList,
     async (_, uid?: string) => await getOwnedRoleList(uid)
   );
-  
+
   IPC.handle(
     IpcEvents.getPublicRoleList,
     async () => await getPublicRoleList()
   );
-  
+
   IPC.handle(
     IpcEvents.getSpiralAbyss,
     async (_, uid?: string) => await getSpiralAbyss(uid)
   );
-  
+
   IPC.handle(IpcEvents.getStoreKey, (_, key: string) => store.get(key));
   IPC.handle(IpcEvents.importGacha, async () => await importConfig());
   IPC.handle(IpcEvents.readClipboardText, () => clipboard.readText());
- 
+
   IPC.handle(
     IpcEvents.getRepoData,
     async (_, filename: string) => await getRepoData(filename)
@@ -123,6 +123,7 @@ const bindIPC = (win: BrowserWindow) => {
     IpcEvents.getGameRecordCard,
     async (_, bbsId?: string) => await getGameRecordCard(bbsId)
   );
+  IPC.handle(IpcEvents.openGame, async () => await openGame());
 };
 
 export default bindIPC;
