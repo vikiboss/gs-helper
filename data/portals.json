@@ -18,7 +18,7 @@
   {
     "name": "可莉特调",
     "description": "方便快捷的圣遗物评分工具",
-    "url": "https://genshin.pub/",
+    "url": "https://genshin.pub/relic",
     "icon": "https://genshin.pub/images/favicon/favicon.ico",
     "hightlight": false,
     "browser": false
@@ -64,7 +64,7 @@
     "browser": false
   },
   {
-    "name": "原神直播间（哔哩）",
+    "name": "原神哔哩哔哩直播间",
     "description": "直达新版本前瞻直播，领原石！",
     "url": "https://live.bilibili.com/21987615",
     "icon": "https://www.bilibili.com/favicon.ico",
@@ -97,7 +97,7 @@
   },
   {
     "name": "来给「原神助手」提建议！",
-    "description": "欢迎加入交流群发表你的看法",
+    "description": "欢迎加入交流群，期待你的新点子！",
     "url": "https://jq.qq.com/?_wv=1027&k=InHF9niP",
     "icon": "https://qzonestyle.gtimg.cn/qzone/qzact/act/external/tiqq/logo.png",
     "hightlight": true,
