@@ -30,9 +30,13 @@ const Portal: React.FC = () => {
     request('portals.json');
   }, []);
 
-  const handleWindowOpen = (link: string) => {
-    notice.success({ message: '正在打开页面...', duration: 1000 });
-    nativeApi.openWindow(link);
+  const handleWindowOpen = (link: PortalItem) => {
+    if (link.browser) {
+      window.open(link.url);
+    } else {
+      notice.success({ message: '正在打开页面...', duration: 1000 });
+      nativeApi.openWindow(link.url, { title: link.name });
+    }
   };
 
   return (
@@ -46,7 +50,7 @@ const Portal: React.FC = () => {
                 <div
                   key={e.name}
                   className={styles.card}
-                  onClick={() => handleWindowOpen(e.url)}
+                  onClick={() => handleWindowOpen(e)}
                 >
                   <div>
                     <img src={e.icon} alt="icon" />
