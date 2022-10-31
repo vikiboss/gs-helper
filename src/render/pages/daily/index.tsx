@@ -24,13 +24,13 @@ const Types: { title: string; name: Type }[] = [
 ];
 
 const Tips = [
-  '「周日」 所有秘境均开放，所有材料均可获取',
-  '「周一」 与 「周四」 开放的秘境和可获取的材料相同',
-  '「周二」 与 「周五」 开放的秘境和可获取的材料相同',
-  '「周三」 与 「周六」 开放的秘境和可获取的材料相同',
-  '「周一」 与 「周四」 开放的秘境和可获取的材料相同',
-  '「周二」 与 「周五」 开放的秘境和可获取的材料相同',
-  '「周三」 与 「周六」 开放的秘境和可获取的材料相同',
+  '「周日」 所有秘境均开放，所有材料均可获取。',
+  '「周一」 与 「周四」 开放的秘境和可获取的材料相同。',
+  '「周二」 与 「周五」 开放的秘境和可获取的材料相同。',
+  '「周三」 与 「周六」 开放的秘境和可获取的材料相同。',
+  '「周一」 与 「周四」 开放的秘境和可获取的材料相同。',
+  '「周二」 与 「周五」 开放的秘境和可获取的材料相同。',
+  '「周三」 与 「周六」 开放的秘境和可获取的材料相同。',
 ];
 
 const getUniqueArray = (arr: any[], key: string) => {
@@ -76,21 +76,17 @@ const Daily: React.FC = () => {
   const notice = useNotice();
   const [type, setType] = useState<Type>('roles');
   const [week, setWeek] = useState<number>(todayWeek);
-  const [fetch, cals = [], loading] = useApi<CalenderEvent[]>(nativeApi.getCalenderList);
+  const [fetch, cals = [], loading, err] = useApi<CalenderEvent[]>(nativeApi.getCalenderList);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        await fetch();
-      } catch (e) {
-        const isOffline = e?.message?.includes('getaddrinfo');
-        const msg = isOffline
-          ? '网络状况不佳，请检查后重试 T_T'
-          : '加载超时，请检查网络连接 T_T';
-        notice.faild({ message: msg });
-      }
-    })();
-  }, []);
+  const fetchData = async () => {
+    await fetch();
+
+    if (err) {
+      notice.faild({ message: err });
+    }
+  };
+
+  useEffect(() => void fetchData(), []);
 
   // 角色
   const roles = cals.filter((e) => e.break_type === '2');
@@ -104,10 +100,10 @@ const Daily: React.FC = () => {
   const materials = getMaterialList(cals);
   materials.sort((p, n) => JSON.parse(n.sort)[0] - JSON.parse(p.sort)[0]);
 
-  const map: Record<string, CalenderEvent[]> = { roles, weapons, materials };
+  const EventMap: Record<string, CalenderEvent[]> = { roles, weapons, materials };
 
-  const isToday = (arr: string[]) => arr.includes(String((week + 6) % 7 + 1));
-  const list = map[type].filter((e) => isToday(e.drop_day));
+  const isToday = (arr: string[]) => arr.includes(String(((week + 6) % 7) + 1));
+  const list = EventMap[type].filter((e) => isToday(e.drop_day));
 
   const handleItemClick = (e: CalenderEvent) => {
     let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : '';
@@ -125,7 +121,7 @@ const Daily: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading ? 
+        {!loading ? (
           <>
             <div className={styles.top}>
               <div className={styles.title}>材料日历</div>
@@ -133,68 +129,48 @@ const Daily: React.FC = () => {
             <div className={styles.content}>
               <div className={styles.contentTop}>
                 <div className={styles.weeks}>
-                  <div
-                    className={todayClass}
-                    onClick={() => setWeek(todayWeek)}
-                  >
+                  <div className={todayClass} onClick={() => setWeek(todayWeek)}>
                     今日
                   </div>
                   <span>|</span>
                   {WeekMap.map((e, i) => {
-                    const className = cn(
-                      styles.btn,
-                      i === week ? styles.active : ''
-                    );
+                    const className = cn(styles.btn, i === week ? styles.active : '');
                     return (
-                      <div
-                        key={e}
-                        className={className}
-                        onClick={() => setWeek(i)}
-                      >
+                      <div key={e} className={className} onClick={() => setWeek(i)}>
                         周{e}
                       </div>
                     );
                   })}
                 </div>
                 <div className={styles.types}>
-                  {Types.map((e) => 
-                    <div
-                      key={e.name}
-                      className={cn(
-                        styles.btn,
-                        e.name === type ? styles.active : ''
-                      )}
-                      onClick={() => setType(e.name)}
-                    >
-                      {e.title}
-                    </div>
-                  )}
+                  {Types.map((e) => {
+                    const className = cn(styles.btn, e.name === type ? styles.active : '');
+                    return (
+                      <div key={e.name} className={className} onClick={() => setType(e.name)}>
+                        {e.title}
+                      </div>
+                    );
+                  })}
                 </div>
               </div>
               <div className={styles.main}>
-                {list.map((e) => 
+                {list.map((e) => (
                   <div key={e.title} onClick={() => handleItemClick(e)}>
                     <img src={e.img_url} />
                     <span>{e.title}</span>
                   </div>
-                )}
+                ))}
               </div>
               <span className={styles.tip}>
-                ※ {Tips[week]}
-                。秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。
+                ※ {Tips[week]}秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。
               </span>
             </div>
           </>
-         : 
+        ) : (
           <Loading />
-        }
+        )}
 
-        <CircleButton
-          Icon={TiArrowBack}
-          size='middle'
-          className={styles.backBtn}
-          onClick={() => navigate('/')}
-        />
+        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
       </div>
       {notice.holder}
     </>

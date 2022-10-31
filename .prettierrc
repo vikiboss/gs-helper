@@ -1,5 +1,6 @@
 {
   "singleQuote": true,
   "printWidth": 160,
+  "jsxSingleQuote": true,
   "htmlWhitespaceSensitivity": "strict"
 }
