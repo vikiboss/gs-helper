@@ -19,7 +19,11 @@ import styles from './index.less';
 
 export type TypeState = 'statistic' | 'roles' | 'abyss';
 
-const { getGameRoleCard, getOwnedRoleList, getSpiralAbyss } = nativeApi;
+const {
+  getGameRoleCard,
+  getOwnedRoleList,
+  getSpiralAbyss,
+} = nativeApi;
 
 const Statistic: React.FC = () => {
   const navigate = useNavigate();

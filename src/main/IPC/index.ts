@@ -13,6 +13,7 @@ import openWindow from './openWindow';
 import doBBSSign from '../../services/doBBSSign';
 import getBBSSignData from '../../services/getBBSSignData';
 import getBBSSignInfo from '../../services/getBBSSignInfo';
+import getCabinetRoleList from '../../services/getCabinetRoleList';
 import getCalenderList from '../../services/getCalenderList';
 import getDailyNotes from '../../services/getDailyNotes';
 import getGameRecordCard from '../../services/getGameRecordCard';
@@ -71,6 +72,7 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.handle(IpcEvents.getAppInfo, () => AppicationInfo);
   IPC.handle(IpcEvents.getBBSSignData, async () => await getBBSSignData());
   IPC.handle(IpcEvents.getBBSSignInfo, async () => await getBBSSignInfo());
+  IPC.handle(IpcEvents.getCabinetRoleList, async (_, uid: string) => await getCabinetRoleList(uid));
   IPC.handle(IpcEvents.getCalenderList, async () => await getCalenderList());
   IPC.handle(IpcEvents.getCurrentUser, () => getCurrentUser());
   IPC.handle(IpcEvents.getDailyNotes, async () => await getDailyNotes());

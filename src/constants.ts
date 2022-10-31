@@ -9,6 +9,7 @@ export const IpcEvents: Record<string, string> = {
   getBBSSignData: 'GET_BBS_SIGN_DATA',
   getBBSSignInfo: 'GET_BBS_SIGN_INFO',
   getCalenderList: 'GET_CALENDER_LIST',
+  getCabinetRoleList: 'GET_CABINET_ROLE_LIST',
   getCurrentUser: 'GET_CURRENT_USER',
   getDailyNotes: 'GET_DAILY_NOTES',
   getGachaListByUrl: 'GET_GACHA_LIST_BY_URL',

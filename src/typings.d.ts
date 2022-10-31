@@ -5,6 +5,7 @@ import type { BrowserWindowConstructorOptions as WinOptions } from 'electron';
 import type { CalenderEvent } from './services/getCalenderList';
 import type { DailyNotesData } from './services/getDailyNotes';
 import type { GameRecordCardData } from './services/getGameRecordCard';
+import type { EnkaUserData } from './services/getCabinetRoleList';
 import type { GameRole } from './services/getGameRoleInfo';
 import type { GameRoleCardData } from './services/getGameRoleCard';
 import type { MonthInfo } from './services/getMonthInfo';
@@ -25,6 +26,7 @@ export interface NativeApi {
   getBBSSignData: () => Promise<SignData | null>;
   getBBSSignInfo: () => Promise<SignInfo | null>;
   getCalenderList: () => Promise<CalenderEvent[] | null>;
+  getCabinetRoleList: (uid?: string) => Promise<EnkaUserData | null>;
   getCurrentUser: () => Promise<UserData | null>;
   getDailyNotes: () => Promise<DailyNotesData | null>;
   getGachaListByUrl: (url: string) => Promise<GachaData>;

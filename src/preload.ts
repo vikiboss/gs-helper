@@ -16,6 +16,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getBBSSignData: () => IPC.invoke(IpcEvents.getBBSSignData),
   getBBSSignInfo: () => IPC.invoke(IpcEvents.getBBSSignInfo),
   getCalenderList: () => IPC.invoke(IpcEvents.getCalenderList),
+  getCabinetRoleList: (uid?: string) => IPC.invoke(IpcEvents.getCabinetRoleList, uid),
   getCurrentUser: () => IPC.invoke(IpcEvents.getCurrentUser),
   getDailyNotes: () => IPC.invoke(IpcEvents.getDailyNotes),
   getGachaUrl: () => IPC.invoke(IpcEvents.getGachaUrl),
