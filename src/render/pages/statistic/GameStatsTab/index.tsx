@@ -112,7 +112,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               <div>
                 {data.homes.map((e) => 
                   <div key={e.name}>
-                    <img src={e.icon} alt={e.name}></img>
+                    <img src={e.icon} alt={e.name} />
                     <span>{e.name}</span>
                   </div>
                 )}

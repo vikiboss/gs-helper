@@ -13,7 +13,7 @@ import type { AppInfo } from '../../../typings';
 import styles from './index.less';
 
 function Link(href: string, text: string) {
-  return <a href={href} target='_blank'>{` ${text} `}</a>;
+  return <a href={href} target='_blank' rel='noreferrer'>{` ${text} `}</a>;
 }
 
 const LINK_LICENSE =

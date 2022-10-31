@@ -7,19 +7,34 @@
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/recommended",
     "plugin:import/electron",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "plugin:react/jsx-runtime",
+    "plugin:react/recommended"
   ],
   "rules": {
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/no-var-requires": ["off"],
     "@typescript-eslint/triple-slash-reference": ["off"],
     "@typescript-eslint/no-extra-parens": ["error", "all"],
+
+    "react/jsx-closing-bracket-location": [1, "tag-aligned"],
+    "react/jsx-tag-spacing": [2],
+    "react/jsx-pascal-case": [1],
+    "react/jsx-curly-spacing": [1, { "when": "never" }],
+    "react/jsx-boolean-value": [2, "never"],
+    "react/self-closing-comp": [2, { "component": true, "html": true }],
+
     "space-before-function-paren": ["error", { "named": "never" }],
     "object-curly-spacing": ["error", "always"],
     "space-infix-ops": ["error"],

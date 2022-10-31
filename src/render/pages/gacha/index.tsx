@@ -289,18 +289,18 @@ const Gacha: React.FC = () => {
               }
               <div
                 className={styles.icon}
-                title='导入单个 UID 祈愿数据'
+                title='从本地导入 UIGF 规范的祈愿数据（JSON 格式）'
                 onClick={handleImport}
               >
-                <BiImport size={20} title='导入单个 UID 的祈愿数据' />
+                <BiImport size={20} />
               </div>
               {gachas.length !== 0 && 
                 <div
                   className={styles.icon}
-                  title='导出当前 UID 的祈愿数据'
+                  title='将当前 UID 祈愿数据按 UIGF 规范进行导出（JSON 格式）'
                   onClick={handleExport}
                 >
-                  <BiExport size={20} title='导出当前选中 UID 的祈愿数据' />
+                  <BiExport size={20} />
                 </div>
               }
               {gachas.length !== 0 && 

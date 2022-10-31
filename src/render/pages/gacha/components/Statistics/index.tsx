@@ -129,11 +129,10 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
                   </div>
                   {line.btns.map((e) => {
                     const btnProps = {
-                      key: e.type,
                       className: cn(styles.btn, filters.includes(e.type) ? styles.btnActive : ''),
                       onClick: () => toggleFilter(line.type, e.type)
                     };
-                    return <div {...btnProps}>{e.name}</div>;
+                    return <div {...btnProps} key={e.type}>{e.name}</div>;
                   })}
                 </div>
               );
