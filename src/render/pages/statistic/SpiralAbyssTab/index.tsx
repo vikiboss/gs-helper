@@ -1,5 +1,6 @@
 import React from 'react';
 import D from 'dayjs';
+import cn from 'classnames';
 
 import AbyssNumber from '../../../components/AbyssNumber';
 import NumberDescription from '../../../components/NumberDescription';
@@ -99,17 +100,16 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
           </div>
 
           <div className={styles.detail}>
-            {floors.map((e) => 
-              <div key={e.index} className={styles.abyssItem}>
+            {floors.sort((a, b) => b.index - a.index).slice(0, 4).map((e, i) => {
+              const detailClass = cn(styles.abyssItem, styles[ i % 2 === 0 ? 'showLeft' : 'showRight']);
+              return <div key={e.index} className={detailClass}>
                 <div className={styles.abyssIndex}>
                   <span>{e.index}</span>
                 </div>
                 <div className={styles.zones}>
                   {e.levels.map((f) => {
                     const [start, end] = f.battles.map((e) => {
-                      return D(Number(e.timestamp) * 1000).format(
-                        'M月D日 HH:mm'
-                      );
+                      return D(Number(e.timestamp) * 1000).format('M月D日 HH:mm');
                     });
 
                     return (
@@ -147,7 +147,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                     );
                   })}
                 </div>
-              </div>
+              </div>;}
             )}
           </div>
           <div className={styles.tip}>

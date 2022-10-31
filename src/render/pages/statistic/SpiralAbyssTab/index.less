@@ -1,6 +1,14 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/utils.less';
 
+.show-left {
+  .ani-show-left();
+}
+
+.show-right {
+  .ani-show-right();
+}
+
 .spiral-abyss {
   .flex-center-column();
 
@@ -15,8 +23,6 @@
   }
 
   .detail {
-    .ani-show-bottom();
-
     width: 100%;
     height: 392px;
     overflow: auto;
@@ -27,22 +33,37 @@
     }
 
     &::-webkit-scrollbar {
+      display: none;
       width: 6px;
     }
 
     .abyss-item {
+      .transition-quick();
       .flex-center-y();
 
       padding: 0 4px;
       border-radius: 8px;
-      border: 3px solid @color-primary;
+      border: 3px solid @color-second;
       height: 80px;
       margin: 6px 8px 8px 8px;
 
+      &:hover {
+        border-color: @color-primary;
+        background-color: rgba(232, 232, 232, 0.6);
+
+        .abyssIndex {
+          border-color: @color-primary;
+        }
+      }
+
       .abyssIndex {
+        .transition-quick();
         .flex-center();
 
-        border-right: 3px solid @color-primary;
+        // border-bottom-right-radius: 8px;
+        // border-top-right-radius: 8px;
+        border: 3px solid @color-second;
+        border-left: none;
         color: @color-primary;
         font-size: 32px;
         font-weight: bold;
