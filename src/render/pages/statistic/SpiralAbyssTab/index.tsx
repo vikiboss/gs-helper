@@ -12,6 +12,7 @@ import star3 from '../../../../assets/star3.png';
 import type { SpiralAbyssData } from '../../../../services/getSpiralAbyss';
 
 import styles from './index.less';
+import Loading from '../../../components/Loading';
 
 interface SpiralAbyssProp {
   data: SpiralAbyssData;
@@ -95,12 +96,12 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
               sub='%'
             />
             {roleNums.map((e) => 
-              <RoleNumber key={e.value} {...e} />
+              <RoleNumber key={e.description} {...e} />
             )}
           </div>
 
           <div className={styles.detail}>
-            {floors.sort((a, b) => b.index - a.index).slice(0, 4).map((e, i) => {
+            {floors.length > 0 ? floors.sort((a, b) => b.index - a.index).slice(0, 4).map((e, i) => {
               const detailClass = cn(styles.abyssItem, styles[ i % 2 === 0 ? 'showLeft' : 'showRight']);
               return <div key={e.index} className={detailClass}>
                 <div className={styles.abyssIndex}>
@@ -148,7 +149,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                   })}
                 </div>
               </div>;}
-            )}
+            ) : <Loading isEmpty style={{ height:'100%' }} text='TA 好像还没有开始打深境螺旋' />}
           </div>
           <div className={styles.tip}>
             {`统计周期：${period} （总第 ${schedule_id} 期）`}

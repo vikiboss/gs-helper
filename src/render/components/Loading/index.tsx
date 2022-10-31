@@ -5,14 +5,16 @@ import paimon2 from '../../../assets/paimon2.gif';
 
 export interface LoadingProp {
   text?: string;
+  style?: React.CSSProperties;
   isEmpty?: boolean;
   className?: React.HTMLAttributes<HTMLDivElement>['className'];
 }
 
 const Loading: React.FC<LoadingProp> = (props) => {
-  const { isEmpty = false, className } = props;
+  const { isEmpty = false, className, style: _style = {} } = props;
   const text = isEmpty ? '没有内容' : '小派蒙正在努力加载中...';
   const style: React.CSSProperties = {
+    ..._style,
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
