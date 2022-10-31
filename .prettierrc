@@ -1,6 +1,5 @@
 {
   "singleQuote": true,
   "printWidth": 160,
-  "arrowParens": "always",
   "htmlWhitespaceSensitivity": "strict"
 }
