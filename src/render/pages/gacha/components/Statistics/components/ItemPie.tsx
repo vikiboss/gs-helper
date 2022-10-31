@@ -1,12 +1,12 @@
-import React from "react";
-import { CommonPieProps, MouseEventHandler, ResponsivePie } from "@nivo/pie";
+import React from 'react';
+import { CommonPieProps, MouseEventHandler, ResponsivePie } from '@nivo/pie';
 
-import { ChartTheme } from "../../../../../../constants";
-import { Colors } from "../../../utils/getPieData";
+import { ChartTheme } from '../../../../../../constants';
+import { Colors } from '../../../utils/getPieData';
 
 type ItemPieProp = {
-  width: React.CSSProperties["width"];
-  height: React.CSSProperties["height"];
+  width: React.CSSProperties['width'];
+  height: React.CSSProperties['height'];
   style?: React.CSSProperties;
   onClick?: MouseEventHandler<
     {
@@ -21,10 +21,10 @@ type ItemPieProp = {
 
 const defs = [
   {
-    id: "lines",
-    type: "patternLines",
-    background: "inherit",
-    color: "rgba(255, 255, 255, 0.3)",
+    id: 'lines',
+    type: 'patternLines',
+    background: 'inherit',
+    color: 'rgba(255, 255, 255, 0.3)',
     rotation: -45,
     lineWidth: 6,
     spacing: 10
@@ -32,25 +32,25 @@ const defs = [
 ];
 
 const fill = [
-  { match: { id: "武器" }, id: "lines" },
-  { match: { id: "角色" }, id: "lines" }
+  { match: { id: '武器' }, id: 'lines' },
+  { match: { id: '角色' }, id: 'lines' }
 ];
 
-const legends: CommonPieProps<ItemPieProp["data"]>["legends"] = [
+const legends: CommonPieProps<ItemPieProp['data']>['legends'] = [
   {
-    anchor: "bottom",
-    direction: "row",
+    anchor: 'bottom',
+    direction: 'row',
     translateY: 40,
     translateX: 0,
     itemWidth: 54,
     itemHeight: 20,
     symbolSize: 16,
-    symbolShape: "circle",
+    symbolShape: 'circle',
     effects: [
       {
-        on: "hover",
+        on: 'hover',
         style: {
-          itemTextColor: "#ffa564"
+          itemTextColor: '#ffa564'
         }
       }
     ]
@@ -58,7 +58,7 @@ const legends: CommonPieProps<ItemPieProp["data"]>["legends"] = [
 ];
 
 const ItemPie: React.FC<ItemPieProp> = (props) => {
-  const { data, style, width, height, onClick, className = "" } = props;
+  const { data, style, width, height, onClick, className = '' } = props;
   return (
     <div
       className={className}
@@ -68,12 +68,12 @@ const ItemPie: React.FC<ItemPieProp> = (props) => {
         onClick={onClick}
         activeOuterRadiusOffset={8}
         arcLabelsSkipAngle={10}
-        arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
-        arcLinkLabelsColor={{ from: "color" }}
+        arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+        arcLinkLabelsColor={{ from: 'color' }}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor='#333333'
         arcLinkLabelsThickness={2}
-        borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
+        borderColor={{ from: 'color', modifiers: [['darker', 0.2]] }}
         borderWidth={1}
         colors={Object.values(Colors)}
         cornerRadius={3}

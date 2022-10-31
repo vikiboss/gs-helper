@@ -1,17 +1,17 @@
-import getListByType from "./getListByType";
+import getListByType from './getListByType';
 
-import type { GachaData, GachaType } from "../../../../typings";
+import type { GachaData, GachaType } from '../../../../typings';
 
 const getMostInfo = (gacha: GachaData) => {
-  const predestined = { name: "", count: 0, valid: false };
-  const luckest = { name: "", count: 999, valid: false };
-  const unluckest = { name: "", count: 0, valid: false };
+  const predestined = { name: '', count: 0, valid: false };
+  const luckest = { name: '', count: 999, valid: false };
+  const unluckest = { name: '', count: 0, valid: false };
   const i_5 = [] as { count: number; name: string }[];
-  for (const type of ["activity", "weapon", "normal"] as GachaType[]) {
+  for (const type of ['activity', 'weapon', 'normal'] as GachaType[]) {
     const list = getListByType(gacha.list, type);
     let lastIndex = -1;
     for (const [i, e] of list.entries()) {
-      if (e.rank_type === "5") {
+      if (e.rank_type === '5') {
         i_5.push({ count: i - lastIndex, name: e.name });
         lastIndex = i;
       }
@@ -31,7 +31,7 @@ const getMostInfo = (gacha: GachaData) => {
       unluckest.valid = true;
     }
 
-    memo[e.name] ? memo[e.name]++ : (memo[e.name] = 1);
+    memo[e.name] ? memo[e.name]++ : memo[e.name] = 1;
   }
   for (const [k, v] of Object.entries(memo)) {
     if (Number(v) > predestined.count) {

@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export interface Option {
   value: string | number;
@@ -8,8 +8,8 @@ export interface Option {
 }
 
 interface SelectProp {
-  defaultValue?: React.HTMLAttributes<HTMLSelectElement>["defaultValue"];
-  key?: React.Attributes["key"];
+  defaultValue?: React.HTMLAttributes<HTMLSelectElement>['defaultValue'];
+  key?: React.Attributes['key'];
   label?: string;
   name?: string;
   onChange?: React.ChangeEventHandler<HTMLSelectElement>;
@@ -17,7 +17,7 @@ interface SelectProp {
   optionStyle?: React.CSSProperties;
   selectStyle?: React.CSSProperties;
   title?: string;
-  value?: React.SelectHTMLAttributes<HTMLSelectElement>["value"];
+  value?: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
   wrapperStyle?: React.CSSProperties;
 }
 
@@ -46,11 +46,11 @@ const Select: React.FC<SelectProp> = (props) => {
         style={selectStyle}
       >
         {Array.isArray(options) &&
-          options.map((e) => (
+          options.map((e) => 
             <option key={e.label} value={e.value} style={optionStyle}>
               {e.label}
             </option>
-          ))}
+          )}
       </select>
     </div>
   );

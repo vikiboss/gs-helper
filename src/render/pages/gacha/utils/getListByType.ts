@@ -1,8 +1,8 @@
-import { GachaTypeMap } from "./filterGachaList";
+import { GachaTypeMap } from './filterGachaList';
 
-import type { GachaData, GachaType } from "../../../../typings";
+import type { GachaData, GachaType } from '../../../../typings';
 
-const getListByType = (list: GachaData["list"], type: GachaType) => {
+const getListByType = (list: GachaData['list'], type: GachaType) => {
   return list.filter((e) => {
     const target = GachaTypeMap[type];
     if (Array.isArray(target)) {

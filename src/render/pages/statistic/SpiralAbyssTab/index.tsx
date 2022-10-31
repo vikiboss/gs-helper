@@ -22,7 +22,7 @@ const formatTime = (timestamp: string) => {
 
 const starMap = ['', star1, star2, star3];
 
-const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
+const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
   const {
     data: {
       schedule_id,
@@ -44,7 +44,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
 
   const hasData = start_time && is_unlock && total_battle_times !== 0;
   const period = `${formatTime(start_time)} ~ ${formatTime(end_time)}`;
-  const succRate = Math.round((total_win_times / total_battle_times) * 100);
+  const succRate = Math.round(total_win_times / total_battle_times * 100);
   const [floor, zone] = max_floor.split('-').map(Number);
 
   const map = [
@@ -71,42 +71,42 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
 
   return (
     <div className={styles.spiralAbyss}>
-      {hasData ? (
+      {hasData ? 
         <>
           <div className={styles.row}>
-            <AbyssNumber values={[floor, zone]} description="本期最深抵达" />
+            <AbyssNumber values={[floor, zone]} description='本期最深抵达' />
             <NumberDescription
               value={total_star}
-              description="本期获星"
-              sub="/36"
+              description='本期获星'
+              sub='/36'
             />
             <NumberDescription
               value={total_battle_times}
-              description="本期战斗次数"
+              description='本期战斗次数'
             />
             <NumberDescription
               value={total_win_times}
-              description="本期完成次数"
+              description='本期完成次数'
             />
             <NumberDescription
               value={succRate}
-              description="本期完成率"
-              sub="%"
+              description='本期完成率'
+              sub='%'
             />
-            {roleNums.map(e => (
+            {roleNums.map((e) => 
               <RoleNumber key={e.value} {...e} />
-            ))}
+            )}
           </div>
 
           <div className={styles.detail}>
-            {floors.map(e => (
+            {floors.map((e) => 
               <div key={e.index} className={styles.abyssItem}>
                 <div className={styles.abyssIndex}>
                   <span>{e.index}</span>
                 </div>
                 <div className={styles.zones}>
-                  {e.levels.map(f => {
-                    const [start, end] = f.battles.map(e => {
+                  {e.levels.map((f) => {
+                    const [start, end] = f.battles.map((e) => {
                       return D(Number(e.timestamp) * 1000).format(
                         'M月D日 HH:mm'
                       );
@@ -119,7 +119,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
                           <div>
                             <img
                               src={starMap[f.star]}
-                              alt="星星"
+                              alt='星星'
                               className={styles.star}
                             />
                             {start && <span>上半：{start}</span>}
@@ -127,9 +127,9 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
                           </div>
                         </div>
                         <div className={styles.roles}>
-                          {f.battles.map(g => (
+                          {f.battles.map((g) => 
                             <div className={styles.rolesRow} key={g.index}>
-                              {g.avatars.map(e => {
+                              {g.avatars.map((e) => {
                                 const backgroundColor =
                                   e.rarity === 4 ? '#9677b3' : '#c08d4b';
                                 return (
@@ -141,22 +141,22 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = props => {
                                 );
                               })}
                             </div>
-                          ))}
+                          )}
                         </div>
                       </div>
                     );
                   })}
                 </div>
               </div>
-            ))}
+            )}
           </div>
           <div className={styles.tip}>
             {`统计周期：${period} （总第 ${schedule_id} 期）`}
           </div>
         </>
-      ) : (
+       : 
         <span className={styles.none}>暂无当期数据</span>
-      )}
+      }
     </div>
   );
 };

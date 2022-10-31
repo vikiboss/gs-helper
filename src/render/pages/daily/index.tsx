@@ -46,14 +46,14 @@ const getUniqueArray = (arr: any[], key: string) => {
 };
 
 const getMaterialList = (calenderList: CalenderEvent[]) => {
-  const kind2 = calenderList.filter(e => e.kind === '2');
+  const kind2 = calenderList.filter((e) => e.kind === '2');
   let materials: CalenderEvent[] = [];
   for (const e of kind2) {
     const infos = e.contentInfos;
     const len = infos.length;
     if (!len) continue;
     const title = infos[0].title;
-    const talent = infos.filter(e => e.title.includes('哲学'))[0];
+    const talent = infos.filter((e) => e.title.includes('哲学'))[0];
     const item = title.includes('「') ? talent : infos[len - 1];
     materials.push({
       ...e,
@@ -93,18 +93,18 @@ const Daily: React.FC = () => {
     })();
   }, []);
 
-  const roles = calenderList.filter(e => e.break_type === '2');
+  const roles = calenderList.filter((e) => e.break_type === '2');
   roles.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
 
-  const weapons = calenderList.filter(e => e.break_type === '1');
+  const weapons = calenderList.filter((e) => e.break_type === '1');
   weapons.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0]);
 
   const materials = getMaterialList(calenderList);
   materials.sort((p, n) => JSON.parse(n.sort)[0] - JSON.parse(p.sort)[0]);
 
   const map: Record<string, CalenderEvent[]> = { roles, weapons, materials };
-  const list = map[type].filter(e =>
-    e.drop_day.includes(String(((week + 6) % 7) + 1))
+  const list = map[type].filter((e) =>
+    e.drop_day.includes(String((week + 6) % 7 + 1))
   );
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : '');
 
@@ -118,7 +118,7 @@ const Daily: React.FC = () => {
     let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : '';
     message +=
       type !== 'materials'
-        ? `${e.contentInfos.map(e => e.title).join('、')}`
+        ? `${e.contentInfos.map((e) => e.title).join('、')}`
         : e.title;
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`;
     notice.info({ message });
@@ -127,7 +127,7 @@ const Daily: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {calenderList.length > 0 ? (
+        {calenderList.length > 0 ? 
           <>
             <div className={styles.top}>
               <div className={styles.title}>材料日历</div>
@@ -142,7 +142,7 @@ const Daily: React.FC = () => {
                     今日
                   </div>
                   <span>|</span>
-                  {WeekMap.map((e, i) => (
+                  {WeekMap.map((e, i) => 
                     <div
                       key={e}
                       className={cn(
@@ -153,10 +153,10 @@ const Daily: React.FC = () => {
                     >
                       周{e}
                     </div>
-                  ))}
+                  )}
                 </div>
                 <div className={styles.types}>
-                  {Types.map(e => (
+                  {Types.map((e) => 
                     <div
                       key={e.name}
                       className={cn(
@@ -167,32 +167,32 @@ const Daily: React.FC = () => {
                     >
                       {e.title}
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
-              {!changing && (
+              {!changing && 
                 <div className={styles.main}>
-                  {list.map(e => (
+                  {list.map((e) => 
                     <div key={e.title} onClick={() => handleItemClick(e)}>
                       <img src={e.img_url} alt={e.title} />
                       <span>{e.title}</span>
                     </div>
-                  ))}
+                  )}
                 </div>
-              )}
+              }
               <span className={styles.tip}>
                 ※ {Tips[week]}
                 。秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。
               </span>
             </div>
           </>
-        ) : (
+         : 
           <Loading />
-        )}
+        }
 
         <CircleButton
           Icon={TiArrowBack}
-          size="middle"
+          size='middle'
           className={styles.backBtn}
           onClick={() => navigate('/')}
         />

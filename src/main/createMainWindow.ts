@@ -1,14 +1,14 @@
-import { BrowserWindow, BrowserWindowConstructorOptions, shell } from "electron";
+import { BrowserWindow, BrowserWindowConstructorOptions, shell } from 'electron';
 
 // 声明内置常量
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
-import { registerHotkey } from "./handleHotkeys";
-import bindIPC from "./IPC";
-import icon from "../assets/icon.ico";
-import initTray from "./initTray";
-import restoreSettings from "./restoreSettings";
+import { registerHotkey } from './handleHotkeys';
+import bindIPC from './IPC';
+import icon from '../assets/icon.ico';
+import initTray from './initTray';
+import restoreSettings from './restoreSettings';
 
 /** 配置窗口的选项参数 */
 const winOptions: BrowserWindowConstructorOptions = {
@@ -27,7 +27,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   // 禁止全屏
   fullscreenable: false,
   // 加载时的背景颜色
-  backgroundColor: "#F9F6F2",
+  backgroundColor: '#F9F6F2',
   // 设置 web 页面的 preload，用于 IPC 通信
   webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY }
 };
@@ -39,14 +39,14 @@ const createMainWindow = () => {
   // 移除窗口顶部的默认菜单栏
   win.removeMenu();
   // 监听准备好了的事件，当就绪时显示主窗口
-  win.once("ready-to-show", () => win.show());
+  win.once('ready-to-show', () => win.show());
   // 阻止窗口边框右键单击
-  win.once("system-context-menu", (e) => e.preventDefault());
+  win.once('system-context-menu', (e) => e.preventDefault());
 
   // 处理跳转，默认使用外部浏览器打开（比如 target 为 _blank 的 a 链接）
   win.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url);
-    return { action: "deny" };
+    return { action: 'deny' };
   });
 
   // 加载入口文件，这个入口常量是由 electron-forge 和 webpack 内置的

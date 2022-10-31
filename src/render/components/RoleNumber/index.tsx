@@ -12,13 +12,13 @@ interface RoleNumberProp {
   description: string;
 }
 
-const RoleNumber: React.FC<RoleNumberProp> = props => {
+const RoleNumber: React.FC<RoleNumberProp> = (props) => {
   const { value, avatar, className, description } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>
       <div>
-        {avatar && <img src={avatar} alt="角色头图" />}
+        {avatar && <img src={avatar} alt='角色头图' />}
         <BounceNumber size={20} number={value} />
       </div>
       <span>{description}</span>

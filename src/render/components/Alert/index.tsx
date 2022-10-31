@@ -1,12 +1,12 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export interface AlertProp {
   visible: boolean;
   message: string;
-  type: "info" | "warning" | "success" | "faild";
+  type: 'info' | 'warning' | 'success' | 'faild';
 }
 
 const Alert: React.FC<AlertProp> = (props) => {

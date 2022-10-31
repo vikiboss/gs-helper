@@ -1,11 +1,11 @@
-import { app, BrowserWindow } from "electron";
-import Store from "electron-store";
+import { app, BrowserWindow } from 'electron';
+import Store from 'electron-store';
 
-import { unregisterHotkey } from "./handleHotkeys";
-import createMainWindow from "./createMainWindow";
-import initStore from "./initStore";
+import { unregisterHotkey } from './handleHotkeys';
+import createMainWindow from './createMainWindow';
+import initStore from './initStore';
 
-import type { AppData } from "../typings";
+import type { AppData } from '../typings';
 
 // 在外层定义主窗口，并导出，方便其他子窗口创建时进行引用
 let mainWin: BrowserWindow = null;
@@ -21,9 +21,9 @@ const isWinner = app.requestSingleInstanceLock();
 // 用以代表开发模式的变量，导出以供其他部分引用
 export const isDev = !app.isPackaged;
 // Windows
-export const isWindows = process.platform === "win32";
+export const isWindows = process.platform === 'win32';
 // macOS
-export const isAppleDevice = process.platform === "darwin";
+export const isAppleDevice = process.platform === 'darwin';
 
 // 如果不是第一个实例，直接退出
 if (!isWinner) {
@@ -33,10 +33,10 @@ if (!isWinner) {
 // 以下是第一个实例的逻辑，监听第二实例的启动事件
 
 // 检测到第二次启动的时候，若第一个实例窗口未关闭，则前置显示第一个实例，不再重复创建
-app.on("second-instance", () => mainWin?.show());
+app.on('second-instance', () => mainWin?.show());
 
 // 程序准备完毕的事件
-app.on("ready", () => {
+app.on('ready', () => {
   // 隐藏 dock 图标
   if (isAppleDevice) {
     app.dock.hide();
@@ -48,7 +48,7 @@ app.on("ready", () => {
 });
 
 // 监听窗口全部关闭的事件
-app.on("window-all-closed", () => {
+app.on('window-all-closed', () => {
   // 不是苹果设备则退出
   if (!isAppleDevice) {
     app.quit();
@@ -56,7 +56,7 @@ app.on("window-all-closed", () => {
 });
 
 // 监听程序激活事件
-app.on("activate", () => {
+app.on('activate', () => {
   const windowExist = BrowserWindow.getAllWindows().length !== 0;
   if (windowExist) {
     return;
@@ -66,7 +66,7 @@ app.on("activate", () => {
 });
 
 // 监听程序退出的事件，善后，取消注册全局热键
-app.on("before-quit", () => isWindows && unregisterHotkey());
+app.on('before-quit', () => isWindows && unregisterHotkey());
 
 // 导出 主窗口 与 Store 方便其他部分进行引用
 export { mainWin, store };

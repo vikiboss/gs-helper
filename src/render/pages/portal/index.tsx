@@ -42,31 +42,31 @@ const Portal: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading ? (
+        {!loading ? 
           <>
             <div className={styles.title}>传送门</div>
             <div className={styles.cards}>
-              {data.map(e => (
+              {data.map((e) => 
                 <div
                   key={e.name}
                   className={styles.card}
                   onClick={() => handleWindowOpen(e)}
                 >
                   <div>
-                    <img src={e.icon} alt="icon" />
+                    <img src={e.icon} alt='icon' />
                     <div>{e.name}</div>
                   </div>
                   <div>{e.description}</div>
                 </div>
-              ))}
+              )}
             </div>
           </>
-        ) : (
+         : 
           <Loading />
-        )}
+        }
         <CircleButton
           Icon={TiArrowBack}
-          size="middle"
+          size='middle'
           className={styles.backBtn}
           onClick={() => navigate('/')}
         />

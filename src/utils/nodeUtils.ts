@@ -1,8 +1,8 @@
-import fs from "fs";
-import crypto from "crypto";
+import fs from 'fs';
+import crypto from 'crypto';
 
 // MD5 加密算法
-export const md5 = (value: string) => crypto.createHash("md5").update(value).digest("hex");
+export const md5 = (value: string) => crypto.createHash('md5').update(value).digest('hex');
 
 // 文件是否存在
 export function isFileExist(filePath: string): boolean {

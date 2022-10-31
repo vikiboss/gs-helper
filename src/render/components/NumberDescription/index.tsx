@@ -12,7 +12,7 @@ interface NumberDescriptionProp {
   description: string;
 }
 
-const NumberDescription: React.FC<NumberDescriptionProp> = props => {
+const NumberDescription: React.FC<NumberDescriptionProp> = (props) => {
   const { value, sub, description, className } = props;
 
   return (

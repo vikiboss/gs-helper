@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import nativeApi from "../utils/nativeApi";
-import AuthContext from "./AuthContext";
+import nativeApi from '../utils/nativeApi';
+import AuthContext from './AuthContext';
 
 const Provider = AuthContext.Provider;
 
@@ -16,7 +16,7 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
 
   useEffect(() => {
     (async () => {
-      const uid = await nativeApi.getStoreKey("currentUid");
+      const uid = await nativeApi.getStoreKey('currentUid');
       const logged = Boolean(uid);
       (logged ? login : logout)();
     })();
@@ -32,7 +32,7 @@ const AuthProvider: React.FC<AuthProviderProp> = (props) => {
     if (uid) {
       nativeApi.deleteUser(uid);
     } else {
-      nativeApi.setStoreKey("currentUid", "");
+      nativeApi.setStoreKey('currentUid', '');
     }
   };
 

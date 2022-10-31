@@ -34,16 +34,16 @@ const formatTime = (seconds: number) => {
   if (seconds <= 3600) return `${Math.ceil(seconds / 60)}分钟`;
   if (seconds <= 86400) {
     const hour = `${Math.floor(seconds / 3600)}小时`;
-    const minute = Math.ceil((seconds % 3600) / 60);
+    const minute = Math.ceil(seconds % 3600 / 60);
     return hour + (minute ? minute + '分钟' : '');
   }
   const day = `${Math.floor(seconds / 86400)}天`;
-  const hour = Math.ceil((seconds % 86400) / 3600);
+  const hour = Math.ceil(seconds % 86400 / 3600);
   const timeStr = day + (hour ? hour + '小时' : '');
   return timeStr.trim();
 };
 
-const UserCard: React.FC<UserCardProp> = props => {
+const UserCard: React.FC<UserCardProp> = (props) => {
   const { notice, user, sign, note, safelyNavigate } = props;
 
   const handleCopy = (str: string, msg: string) => {
@@ -142,7 +142,7 @@ const UserCard: React.FC<UserCardProp> = props => {
   const transformerStatus = hasTransformer
     ? isTransformerReady
       ? '已就绪'
-      : `冷却中`
+      : '冷却中'
     : '暂未获得';
   const transformerTitle = isTransformerReady
     ? '已就绪'
@@ -153,11 +153,11 @@ const UserCard: React.FC<UserCardProp> = props => {
   const hasMiss = sign.sign_cnt_missed > 0;
   const missText = hasMiss
     ? `错过 ${sign.sign_cnt_missed} 天`
-    : `一天都没漏呢！`;
+    : '一天都没漏呢！';
   const signTitle = `本月累计签到 ${sign.total_sign_day} 天，${missText}`;
 
   // 处理探索派遣
-  const dispatchs = (note?.expeditions || []).map(e => {
+  const dispatchs = (note?.expeditions || []).map((e) => {
     const done = e.status === 'Finished';
     const doneText = '探索派遣任务已完成，等待领取';
     const pendingText = `探险中，距离探险结束还剩${formatTime(
@@ -168,10 +168,10 @@ const UserCard: React.FC<UserCardProp> = props => {
     return { done, avatar, title, remain: Number(e.remained_time) };
   });
 
-  const doneNum = dispatchs.filter(e => e.done).length;
+  const doneNum = dispatchs.filter((e) => e.done).length;
   const dispatchDetail = `探索派遣 ${doneNum}/${dispatchs.length}`;
   const lastDispatchTime =
-    dispatchs.filter(e => !e.done).sort((p, n) => n.remain - p.remain)[0]
+    dispatchs.filter((e) => !e.done).sort((p, n) => n.remain - p.remain)[0]
       ?.remain || 0;
   const isDispatchToday =
     new Date(Date.now() + lastDispatchTime * 1000).getDay() ===
@@ -241,11 +241,11 @@ const UserCard: React.FC<UserCardProp> = props => {
     <>
       <div className={styles.userCard}>
         <div className={styles.avatar} onDoubleClick={handleOpenGame}>
-          <img src={avatar} alt="avatar" className={styles.avatarImage} />
+          <img src={avatar} alt='avatar' className={styles.avatarImage} />
         </div>
         <div className={styles.userInfo}>
           {infos.length &&
-            infos.map(e => (
+            infos.map((e) => 
               <div
                 className={styles.infoItem}
                 key={e.key}
@@ -267,12 +267,12 @@ const UserCard: React.FC<UserCardProp> = props => {
                   {e.content}
                 </div>
               </div>
-            ))}
+            )}
         </div>
       </div>
       <div className={styles.noteCard}>
         {notes.length &&
-          notes.map(e => (
+          notes.map((e) => 
             <div
               className={styles.noteItem}
               key={e.name}
@@ -291,7 +291,7 @@ const UserCard: React.FC<UserCardProp> = props => {
               />
               <div className={styles.noteDetail}>{e.detail}</div>
             </div>
-          ))}
+          )}
         <div
           className={styles.noteItem}
           title={dispatcTitle}
@@ -309,7 +309,7 @@ const UserCard: React.FC<UserCardProp> = props => {
         </div>
         <div className={styles.noteItem}>
           <div className={styles.noteDetail}>
-            {dispatchs.map(e => (
+            {dispatchs.map((e) => 
               <div
                 className={cn(styles.dispatch, e.done ? styles.done : '')}
                 title={e.title}
@@ -320,11 +320,11 @@ const UserCard: React.FC<UserCardProp> = props => {
               >
                 <img
                   src={e.avatar}
-                  alt="角色"
+                  alt='角色'
                   className={styles.dispatchAvatar}
                 />
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>

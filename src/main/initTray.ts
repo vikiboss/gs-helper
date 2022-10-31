@@ -55,7 +55,7 @@ const initTray = (win: BrowserWindow) => {
         const targetValue = !win.isAlwaysOnTop();
         store.set('settings.alwaysOnTop', targetValue);
         win.setAlwaysOnTop(targetValue);
-        subWins.forEach(e => e.setAlwaysOnTop(targetValue));
+        subWins.forEach((e) => e.setAlwaysOnTop(targetValue));
       },
     },
     // 切换 DevTools 开启状态

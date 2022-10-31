@@ -1,19 +1,19 @@
-import cn from "classnames";
-import React, { useEffect, useState } from "react";
+import cn from 'classnames';
+import React, { useEffect, useState } from 'react';
 
-import { GachaMap } from "../..";
-import { NormalItemList } from "../../../../../constants";
-import getListByType from "../../utils/getListByType";
-import nativeApi from "../../../../utils/nativeApi";
+import { GachaMap } from '../..';
+import { NormalItemList } from '../../../../../constants';
+import getListByType from '../../utils/getListByType';
+import nativeApi from '../../../../utils/nativeApi';
 
-import type { GachaData, GachaType } from "../../../../../typings";
-import type { PageProp } from "../..";
-import type { CalenderEvent } from "../../../../../services/getCalenderList";
+import type { GachaData, GachaType } from '../../../../../typings';
+import type { PageProp } from '../..';
+import type { CalenderEvent } from '../../../../../services/getCalenderList';
 
-import styles from "./index.less";
+import styles from './index.less';
 
-type TableRow = "3" | "4" | "5" | "合计";
-type TableColumn = GachaType | "合计";
+type TableRow = '3' | '4' | '5' | '合计';
+type TableColumn = GachaType | '合计';
 
 const Data: React.FC<PageProp> = ({ gacha, notice }) => {
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([]);
@@ -24,39 +24,39 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
         const list = await nativeApi.getCalenderList();
         if (list.length > 0) setCalenderList(list);
       } catch (e) {
-        const isOffline = e?.message?.includes("getaddrinfo");
-        const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+        const isOffline = e?.message?.includes('getaddrinfo');
+        const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T';
         notice.faild({ message: msg });
       }
     })();
   }, []);
 
   const getGachaNumsAndRates = (rank: TableRow, type: TableColumn) => {
-    const isAllStar = rank === "合计";
-    const isAllType = type === "合计";
+    const isAllStar = rank === '合计';
+    const isAllType = type === '合计';
     const starList = isAllStar ? gacha.list : gacha.list.filter((e) => e.rank_type === rank);
     const gachaList = isAllType ? gacha.list : getListByType(gacha.list, type);
     const itemList = isAllType ? starList : getListByType(starList, type);
-    return `${itemList.length} / ${((itemList.length * 100) / (gachaList.length || 1)).toFixed(
+    return `${itemList.length} / ${(itemList.length * 100 / (gachaList.length || 1)).toFixed(
       2
     )}%`;
   };
 
-  const getPoolsNamesByList = (list: GachaData["list"]) => {
+  const getPoolsNamesByList = (list: GachaData['list']) => {
     const data: { title: string; name: GachaType; list: { name: string; times: number }[] }[] = [
-      { title: "角色池", name: "activity", list: [] },
-      { title: "武器池", name: "weapon", list: [] },
-      { title: "常驻池", name: "normal", list: [] },
-      { title: "新手池", name: "newer", list: [] }
+      { title: '角色池', name: 'activity', list: [] },
+      { title: '武器池', name: 'weapon', list: [] },
+      { title: '常驻池', name: 'normal', list: [] },
+      { title: '新手池', name: 'newer', list: [] }
     ];
-    for (const type of ["activity", "normal", "weapon", "newer"] as GachaType[]) {
+    for (const type of ['activity', 'normal', 'weapon', 'newer'] as GachaType[]) {
       const filteredList = getListByType(list, type);
       for (const [i, e] of filteredList.entries()) {
-        if (e.rank_type === "5") {
+        if (e.rank_type === '5') {
           const target = data.filter((e) => e.name === type)[0];
           if (target) {
             const len = target.list.length;
-            const offset = len ? target.list.reduce((p, n) => (p = p + n.times), 0) : 0;
+            const offset = len ? target.list.reduce((p, n) => p = p + n.times, 0) : 0;
             target.list.push({ name: e.name, times: i + 1 - offset });
           }
         }
@@ -81,29 +81,29 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
               <div className={styles.head}>新手池</div>
               <div className={styles.head}>合计</div>
             </div>
-            {["5", "4", "3", "合计"].map((e: TableRow) => (
+            {['5', '4', '3', '合计'].map((e: TableRow) => 
               <div key={e}>
-                <div className={styles.head}>{e === "合计" ? e : e + "星"}</div>
-                {[...Object.keys(GachaMap), "合计"].map((f: TableColumn) => (
+                <div className={styles.head}>{e === '合计' ? e : e + '星'}</div>
+                {[...Object.keys(GachaMap), '合计'].map((f: TableColumn) => 
                   <div className={cn(styles[`star${e}`], styles.star)} key={f}>
                     {getGachaNumsAndRates(e, f)}
                   </div>
-                ))}
+                )}
               </div>
-            ))}
+            )}
           </div>
         </div>
-        {calenderList.length > 0 ? (
+        {calenderList.length > 0 ? 
           <div>
             <div className={styles.poolName}>〓五星出货详情〓</div>
-            {pools.length > 0 ? (
-              pools.map((e) => (
+            {pools.length > 0 ? 
+              pools.map((e) => 
                 <div key={e.title} className={styles.poolList}>
                   <div>
                     <span>{e.title}</span>
                     <span>
                       {e.list.filter((e) => NormalItemList.includes(e.name)).length}
-                      {e.name !== "normal" &&
+                      {e.name !== 'normal' &&
                         `+${e.list.filter((e) => !NormalItemList.includes(e.name)).length}`}
                     </span>
                   </div>
@@ -115,12 +115,12 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                         isLimit: boolean
                       ) => {
                         const pn = item.times * 160;
-                        const name = (isLimit ? "限定五星" : "五星") + item.name;
+                        const name = (isLimit ? '限定五星' : '五星') + item.name;
                         const msg = `${name}，累计消耗 ${item.times} 次祈愿，价值 ${pn} 原石`;
                         notice.success({ message: msg });
                       };
                       const isLimit = !NormalItemList.includes(item.name);
-                      const style = item.times > 72 ? "red" : item.times > 60 ? "orange" : "green";
+                      const style = item.times > 72 ? 'red' : item.times > 60 ? 'orange' : 'green';
                       return (
                         <div
                           onClick={() => showDetail(item, isLimit)}
@@ -136,14 +136,14 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     })}
                   </div>
                 </div>
-              ))
-            ) : (
+              )
+             : 
               <div className={styles.tip}>暂无五星数据</div>
-            )}
+            }
           </div>
-        ) : (
+         : 
           <div className={styles.tip}>正在获取角色图片...</div>
-        )}
+        }
       </div>
     </div>
   );

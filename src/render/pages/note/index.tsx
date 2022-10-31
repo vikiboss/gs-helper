@@ -1,31 +1,31 @@
-import { TiArrowBack } from "react-icons/ti";
-import { useNavigate } from "react-router-dom";
-import cn from "classnames";
-import React, { useEffect, useState } from "react";
+import { TiArrowBack } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
+import cn from 'classnames';
+import React, { useEffect, useState } from 'react';
 
-import { wait } from "../../../utils/utils";
-import BounceNumber from "../../components/BounceNumber";
-import CircleButton from "../../components/CircleButton";
-import getGreetingMsg from "../../../utils/getGreetingMsg";
-import Loading from "../../components/Loading";
-import Pie from "./Pie";
-import useNotice from "../../hooks/useNotice";
-import withAuth from "../../auth/withAuth";
+import { wait } from '../../../utils/utils';
+import BounceNumber from '../../components/BounceNumber';
+import CircleButton from '../../components/CircleButton';
+import getGreetingMsg from '../../../utils/getGreetingMsg';
+import Loading from '../../components/Loading';
+import Pie from './Pie';
+import useNotice from '../../hooks/useNotice';
+import withAuth from '../../auth/withAuth';
 
-import mora from "../../../assets/mora.png";
-import primogem from "../../../assets/primogem.png";
-import nativeApi from "../../utils/nativeApi";
+import mora from '../../../assets/mora.png';
+import primogem from '../../../assets/primogem.png';
+import nativeApi from '../../utils/nativeApi';
 
-import type { MonthInfo } from "../../../services/getMonthInfo";
+import type { MonthInfo } from '../../../services/getMonthInfo';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export const DefaultMonthInfo: MonthInfo = {
   uid: 0,
-  region: "cn_gf01",
+  region: 'cn_gf01',
   account_id: 0,
-  nickname: "旅行者",
-  date: "2022-01-01",
+  nickname: '旅行者',
+  date: '2022-01-01',
   month: 0,
   optional_month: [],
   data_month: 1,
@@ -67,12 +67,12 @@ const Month: React.FC = () => {
           await wait(50);
           const res = await nativeApi.getMonthInfo(e);
           if (res) data.push(res);
-          else notice.faild({ message: "网络异常，部分月份数据获取失败，请重试" });
+          else notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' });
         }
         setMonthInfos(data);
       } catch (e) {
-        const isOffline = e?.message?.includes("getaddrinfo");
-        const msg = isOffline ? "网络状况不佳，请检查后重试 T_T" : "加载超时，请检查网络连接 T_T";
+        const isOffline = e?.message?.includes('getaddrinfo');
+        const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T';
         notice.faild({ message: msg });
       }
     })();
@@ -88,7 +88,7 @@ const Month: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {monthInfos[0]?.account_id ? (
+        {monthInfos[0]?.account_id ? 
           <>
             <div className={styles.title}>冒险札记</div>
             <div className={styles.content}>
@@ -102,12 +102,12 @@ const Month: React.FC = () => {
                     <img src={primogem} alt='原石' />
                     <BounceNumber
                       number={initData.day_data.current_primogems}
-                      wrapperStyle={{ width: "40px" }}
+                      wrapperStyle={{ width: '40px' }}
                     />
                     <img src={mora} alt='摩拉' />
                     <BounceNumber
                       number={initData.day_data.current_mora}
-                      wrapperStyle={{ width: "80px" }}
+                      wrapperStyle={{ width: '80px' }}
                     />
                   </div>
                 </div>
@@ -117,12 +117,12 @@ const Month: React.FC = () => {
                     <img src={primogem} alt='原石' />
                     <BounceNumber
                       number={initData.day_data.last_primogems}
-                      wrapperStyle={{ width: "40px" }}
+                      wrapperStyle={{ width: '40px' }}
                     />
                     <img src={mora} alt='摩拉' />
                     <BounceNumber
                       number={initData.day_data.last_mora}
-                      wrapperStyle={{ width: "80px" }}
+                      wrapperStyle={{ width: '80px' }}
                     />
                   </div>
                 </div>
@@ -131,15 +131,15 @@ const Month: React.FC = () => {
               <div className={styles.filter}>
                 {initData.optional_month.length > 1 && <span>按月份查看：</span>}
                 {initData.optional_month.length === 0 && <span>暂无数据</span>}
-                {initData.optional_month.map((e) => (
+                {initData.optional_month.map((e) => 
                   <div
                     key={e}
                     onClick={() => setMonth(e)}
-                    className={cn(styles.btn, month === Number(e) ? styles.active : "")}
+                    className={cn(styles.btn, month === Number(e) ? styles.active : '')}
                   >
                     {e}月
                   </div>
-                ))}
+                )}
               </div>
 
               <div className={styles.monthContent}>
@@ -150,23 +150,23 @@ const Month: React.FC = () => {
                     <img src={primogem} alt='原石' />
                     <BounceNumber
                       number={monthData.current_primogems}
-                      wrapperStyle={{ width: "80px" }}
+                      wrapperStyle={{ width: '80px' }}
                     />
                     <span>
                       相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
                       {monthData.last_primogems > 0 &&
-                        `，相比上月 ${pSign ? "+" : "-"}${Math.abs(monthData.primogems_rate)}%`}
+                        `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`}
                     </span>
                   </div>
                   <div className={styles.monthItem}>
                     <img src={mora} alt='摩拉' />
-                    <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: "80px" }} />
-                    {monthData.last_mora > 0 && (
+                    <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: '80px' }} />
+                    {monthData.last_mora > 0 && 
                       <span>
-                        相比上月 {mSign ? "+" : "-"}
+                        相比上月 {mSign ? '+' : '-'}
                         {Math.abs(monthData.mora_rate)}%
                       </span>
-                    )}
+                    }
                   </div>
                 </div>
                 <div>
@@ -185,14 +185,14 @@ const Month: React.FC = () => {
               </div>
             </div>
           </>
-        ) : (
+         : 
           <Loading />
-        )}
+        }
         <CircleButton
           Icon={TiArrowBack}
           size='middle'
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         />
       </div>
       {notice.holder}

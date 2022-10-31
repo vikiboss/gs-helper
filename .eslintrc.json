@@ -5,6 +5,8 @@
     "es6": true,
     "node": true
   },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/eslint-recommended",
@@ -17,7 +19,12 @@
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/no-var-requires": ["off"],
     "@typescript-eslint/triple-slash-reference": ["off"],
-    "semi": ["error"]
-  },
-  "parser": "@typescript-eslint/parser"
+    "arrow-parens": ["error", "always"],
+    "jsx-quotes": ["error", "prefer-single"],
+    "no-multiple-empty-lines": ["error", { "max": 2, "maxEOF": 0 }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "no-var": ["error"],
+    "@typescript-eslint/no-extra-parens": ["error", "all"]
+  }
 }

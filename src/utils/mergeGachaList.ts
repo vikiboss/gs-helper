@@ -1,9 +1,9 @@
-import sortGachaList from "./sortGachaList";
+import sortGachaList from './sortGachaList';
 
-import type { GachaData } from "../typings";
+import type { GachaData } from '../typings';
 
 // 新旧祈愿数据列表合并算法
-const mergeGachaList = (pre: GachaData["list"], list: GachaData["list"]) => {
+const mergeGachaList = (pre: GachaData['list'], list: GachaData['list']) => {
   // 先把新旧数据合并到同一个数组
   pre = pre.concat(list);
   // 创建一个 Set，它的值具有唯一性

@@ -1,12 +1,12 @@
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useState } from 'react';
 
-import Alert, { AlertProp } from "../components/Alert";
+import Alert, { AlertProp } from '../components/Alert';
 
 export interface AlertOptions {
   autoHide?: boolean;
   duration?: number;
   message: string;
-  type?: AlertProp["type"];
+  type?: AlertProp['type'];
 }
 
 export interface Notice {
@@ -20,9 +20,9 @@ export interface Notice {
 }
 
 const useNotice = (): Notice => {
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>('');
   const [timer, setTimer] = useState<NodeJS.Timeout>();
-  const [type, setType] = useState<AlertProp["type"]>("info");
+  const [type, setType] = useState<AlertProp['type']>('info');
   const [visible, setVisible] = useState<boolean>(false);
 
   const showAlert = (optons: AlertOptions) => {
@@ -43,16 +43,16 @@ const useNotice = (): Notice => {
       setVisible(false);
     },
     info(optons: AlertOptions) {
-      showAlert({ ...optons, type: "info" });
+      showAlert({ ...optons, type: 'info' });
     },
     warning(optons: AlertOptions) {
-      showAlert({ ...optons, type: "warning" });
+      showAlert({ ...optons, type: 'warning' });
     },
     success(optons: AlertOptions) {
-      showAlert({ ...optons, type: "success" });
+      showAlert({ ...optons, type: 'success' });
     },
     faild(optons: AlertOptions) {
-      showAlert({ ...optons, type: "faild" });
+      showAlert({ ...optons, type: 'faild' });
     },
     holder: <Alert visible={visible} type={type} message={message} />
   };

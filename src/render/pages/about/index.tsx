@@ -13,7 +13,7 @@ import type { AppInfo } from '../../../typings';
 import styles from './index.less';
 
 function Link(href: string, text: string) {
-  return <a href={href} target="_blank">{` ${text} `}</a>;
+  return <a href={href} target='_blank'>{` ${text} `}</a>;
 }
 
 const LINK_LICENSE =
@@ -38,7 +38,7 @@ const About: React.FC = () => {
   const AppName = appInfo?.zhName || '原神助手';
   const Version = appInfo?.version || '未知';
 
-  const P1 = (
+  const P1 = 
     <p>
       「{Link(LINK_GITHUB_REPO, AppName)}」 由个人独立开发，基于
       {Link(LINK_ELECTRON, 'Electron')}与{Link(LINK_REACT, 'React')}，支持
@@ -47,24 +47,24 @@ const About: React.FC = () => {
       次/分钟），
       <b>可能存在延迟，请以游戏内实时数据为准。</b>
     </p>
-  );
+  ;
 
-  const P2 = (
+  const P2 = 
     <p>
       软件界面设计参考了原神游戏本体及米游社，大部分内容与素材来源于「米游社」，仅用于学习交流使用，版权归
       「{Link(LINK_MIHOYO, '米哈游')}或原作者」 所有。
       <b>如有发现任何实质性的侵权行为，请联系开发者对相关内容进行删除</b>。
     </p>
-  );
+  ;
 
-  const P3 = (
+  const P3 = 
     <p>
       本工具仅提供 Windows
       成品版本，其他版本需自行在对应平台编译使用，不保证一致性。本工具完全免费，使用
       {Link(LINK_LICENSE, 'MIT')}协议开放源代码，仅供个人学习交流使用，
       <b>请勿用于任何商业或违法违规用途</b>。
     </p>
-  );
+  ;
 
   return (
     <div className={styles.container}>
@@ -97,11 +97,11 @@ const About: React.FC = () => {
         </div>
         <div className={styles.codeZones}>
           <div className={styles.codeZone}>
-            <img className={styles.code} src={groupQRCode} alt="交流群" />
+            <img className={styles.code} src={groupQRCode} alt='交流群' />
             <div>「原神助手」 QQ 交流群</div>
           </div>
           <div className={styles.codeZone}>
-            <img className={styles.code} src={wxRewardCode} alt="微信赞赏码" />
+            <img className={styles.code} src={wxRewardCode} alt='微信赞赏码' />
             <div>Viki の 微信赞赏码</div>
           </div>
           <div className={styles.mask} />
@@ -110,7 +110,7 @@ const About: React.FC = () => {
       <div className={styles.thank}>{'※ 开发不易 ❤ 感谢支持 ※'}</div>
       <CircleButton
         Icon={TiArrowBack}
-        size="middle"
+        size='middle'
         className={styles.backBtn}
         onClick={() => navigate('/')}
       />

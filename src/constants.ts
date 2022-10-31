@@ -51,8 +51,8 @@ export const GAME_NAME: Record<string, string> = {
 };
 
 export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/${BBS_VERSION}`;
-export const APP_USER_AGENT_DESKTOP = `Mozilla/5.0 GenshinHelper/`;
-export const APP_USER_AGENT_MOBILE = `Mozilla/5.0 Mobile/15E148 GenshinHelper/`;
+export const APP_USER_AGENT_DESKTOP = 'Mozilla/5.0 GenshinHelper/';
+export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/';
 export const GAME_BIZ = 'hk4e_cn';
 
 export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com';

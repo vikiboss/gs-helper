@@ -81,7 +81,7 @@ const Gacha: React.FC = () => {
     setGachas(gachas);
     if (newUid) return setUid(newUid);
     const _uid: string = await nativeApi.getStoreKey('currentUid');
-    const loggedUidGachaData = gachas.filter(e => e.info.uid === _uid)[0];
+    const loggedUidGachaData = gachas.filter((e) => e.info.uid === _uid)[0];
     if (loggedUidGachaData) {
       setUid(_uid);
     } else if (gachas.length) {
@@ -188,7 +188,7 @@ const Gacha: React.FC = () => {
   //   open("https://docs.qq.com/doc/p/d4e754b865f99003c2495b038748b9359a7411bb");
   // };
 
-  const gacha = gachas.filter(e => e.info.uid === uid)[0] || DefaultGachaData;
+  const gacha = gachas.filter((e) => e.info.uid === uid)[0] || DefaultGachaData;
   const firsteDate = gacha.list.length ? gacha.list[0].time : '';
   const lastDate = gacha.list.length
     ? gacha.list[gacha.list.length - 1].time
@@ -224,7 +224,7 @@ const Gacha: React.FC = () => {
     : '派蒙没有找到任何数据';
   const tip = `※ 共计 ${gacha.list.length} 条数据（覆盖范围：${dateRangeText}）。因官方设定，数据存在约一小时的延迟。`;
   const uids = gachas
-    .map(e => e.info.uid)
+    .map((e) => e.info.uid)
     .sort((p, n) => Number(p) - Number(n));
 
   const items = [
@@ -249,18 +249,18 @@ const Gacha: React.FC = () => {
         <>
           <CircleButton
             Icon={TiArrowBack}
-            size="middle"
+            size='middle'
             className={styles.backBtn}
             onClick={handleBack}
           />
           <div className={styles.topZone}>
             <input
               value={link || ''}
-              onBlur={e => setLink(e.target.value.trim())}
-              onChange={e => setLink(e.target.value)}
-              placeholder="祈愿记录链接（Ctrl + V 快捷键快速粘贴）"
+              onBlur={(e) => setLink(e.target.value.trim())}
+              onChange={(e) => setLink(e.target.value)}
+              placeholder='祈愿记录链接（Ctrl + V 快捷键快速粘贴）'
             />
-            {isWindows && link !== null && (
+            {isWindows && link !== null && 
               <Button
                 className={styles.btn}
                 onClick={link ? copyLink : () => getLocalGachaUrl(true)}
@@ -269,72 +269,72 @@ const Gacha: React.FC = () => {
                 text={link ? '复制链接' : '获取本地链接'}
                 // text={link ? "复制链接" : "查看获取教程"}
               />
-            )}
-            {link !== null && (
+            }
+            {link !== null && 
               <Button
                 className={styles.btn}
-                type="confirm"
-                text="更新数据"
+                type='confirm'
+                text='更新数据'
                 onClick={updateGachaData}
               />
-            )}
+            }
             <div className={styles.rightZone}>
-              {gachas.length !== 0 && (
+              {gachas.length !== 0 && 
                 <SelectButton
                   changeItem={setType}
                   className={styles.selectBtn}
                   items={items}
                   value={type}
                 />
-              )}
+              }
               <div
                 className={styles.icon}
-                title="导入单个 UID 祈愿数据"
+                title='导入单个 UID 祈愿数据'
                 onClick={handleImport}
               >
-                <BiImport size={20} title="导入单个 UID 的祈愿数据" />
+                <BiImport size={20} title='导入单个 UID 的祈愿数据' />
               </div>
-              {gachas.length !== 0 && (
+              {gachas.length !== 0 && 
                 <div
                   className={styles.icon}
-                  title="导出当前 UID 的祈愿数据"
+                  title='导出当前 UID 的祈愿数据'
                   onClick={handleExport}
                 >
-                  <BiExport size={20} title="导出当前选中 UID 的祈愿数据" />
+                  <BiExport size={20} title='导出当前选中 UID 的祈愿数据' />
                 </div>
-              )}
-              {gachas.length !== 0 && (
+              }
+              {gachas.length !== 0 && 
                 <Select
                   wrapperStyle={{ marginLeft: '12px' }}
-                  name="UID"
-                  onChange={e => setUid(e.target.value)}
-                  options={uids.map(e => ({ value: e, label: e }))}
-                  title="切换 UID"
+                  name='UID'
+                  onChange={(e) => setUid(e.target.value)}
+                  options={uids.map((e) => ({ value: e, label: e }))}
+                  title='切换 UID'
                   value={uid}
                 />
-              )}
+              }
             </div>
           </div>
         </>
 
-        {gacha.info.uid && !loading ? (
+        {gacha.info.uid && !loading ? 
           <Page
             gacha={gacha}
             filter={filter}
             notice={notice}
             toggleFilter={toggleFilter}
           />
-        ) : (
+         : 
           <div style={{ display: 'flex', flex: 1 }}>
             <Loading
               text={link === null ? '' : loadingText}
               isEmpty={isEmpty}
             />
           </div>
-        )}
-        {gacha.list.length > 0 && !loading && (
+        }
+        {gacha.list.length > 0 && !loading && 
           <span className={styles.dateTip}>{tip}</span>
-        )}
+        }
       </div>
       {notice.holder}
     </>

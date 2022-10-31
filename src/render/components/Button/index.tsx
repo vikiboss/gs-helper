@@ -1,16 +1,16 @@
-import React from "react";
-import cn from "classnames";
-import { BiCircle } from "react-icons/bi";
-import { BsXLg } from "react-icons/bs";
+import React from 'react';
+import cn from 'classnames';
+import { BiCircle } from 'react-icons/bi';
+import { BsXLg } from 'react-icons/bs';
 
-import type { IconType } from "react-icons";
+import type { IconType } from 'react-icons';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export interface ButtonProp {
-  type?: "confirm" | "cancel";
-  size?: "small" | "middle" | "large";
-  theme?: "light" | "dark";
+  type?: 'confirm' | 'cancel';
+  size?: 'small' | 'middle' | 'large';
+  theme?: 'light' | 'dark';
   style?: React.CSSProperties;
   text: string;
   className?: string;
@@ -29,7 +29,7 @@ const TYPE_MAP: Record<string, IconType> = {
 };
 
 const Button: React.FC<ButtonProp> = (props) => {
-  const { onClick, className = "", size = "small", theme = "dark", style = {}, type, text } = props;
+  const { onClick, className = '', size = 'small', theme = 'dark', style = {}, type, text } = props;
   const Icon = type ? TYPE_MAP[type] : null;
   return (
     <div
@@ -37,7 +37,7 @@ const Button: React.FC<ButtonProp> = (props) => {
       className={cn(styles.btn, styles[theme], styles[size], className)}
       onClick={onClick}
     >
-      {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : "")} />}
+      {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : '')} />}
       <div className={cn(styles.text, Icon ? styles.withIcon : styles.noIcon)}>{text}</div>
     </div>
   );

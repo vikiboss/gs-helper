@@ -1,12 +1,12 @@
-import fs from "fs";
-import path from "path";
-import { app } from "electron";
+import fs from 'fs';
+import path from 'path';
+import { app } from 'electron';
 
-import { DefaultGachaData } from "../services/getGachaListByUrl";
-import { isDirExist, isFileExist } from "./nodeUtils";
-import mergeGachaList from "./mergeGachaList";
+import { DefaultGachaData } from '../services/getGachaListByUrl';
+import { isDirExist, isFileExist } from './nodeUtils';
+import mergeGachaList from './mergeGachaList';
 
-import type { GachaData } from "../typings";
+import type { GachaData } from '../typings';
 
 // 通过新的抽卡数据来更新配置文件里的抽卡数据
 const updateLocalGachaData = (gacha: GachaData): GachaData => {
@@ -14,9 +14,9 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
   const uid = gacha.info.uid;
 
   // 获取当前的软件目录
-  const AppPath = app.getPath("userData");
+  const AppPath = app.getPath('userData');
   // 获取存放所有祈愿数据的文件夹路径
-  const GachaDataDirPath = path.join(AppPath, "GachaDatas");
+  const GachaDataDirPath = path.join(AppPath, 'GachaDatas');
 
   // 若该文件夹不存在，则创建
   if (!isDirExist(GachaDataDirPath)) {
@@ -35,7 +35,7 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
     const data = { info: gacha.info, list };
 
     // 写入本地文件
-    fs.writeFileSync(GachaFilePath, JSON.stringify(data), { encoding: "utf-8" });
+    fs.writeFileSync(GachaFilePath, JSON.stringify(data), { encoding: 'utf-8' });
 
     // 直接返回参数里的祈愿数据
     return data;
@@ -43,7 +43,7 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
     // 如果该 UID 数据存在，则先读取旧数据，然后做合并处理
     try {
       // 读取旧数据
-      const LocalGachaStr = fs.readFileSync(GachaFilePath, { encoding: "utf-8" });
+      const LocalGachaStr = fs.readFileSync(GachaFilePath, { encoding: 'utf-8' });
       const LocalGacha = JSON.parse(LocalGachaStr) as GachaData;
 
       // 合并处理
@@ -52,7 +52,7 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
       // 写入新数据
       const data = { info: gacha.info, list };
       const fileContent = JSON.stringify(data);
-      fs.writeFileSync(GachaFilePath, fileContent, { encoding: "utf-8" });
+      fs.writeFileSync(GachaFilePath, fileContent, { encoding: 'utf-8' });
 
       // 返回合并后的祈愿数据
       return data;

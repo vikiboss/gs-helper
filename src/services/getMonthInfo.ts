@@ -1,9 +1,9 @@
-import { API_HK4E, LINK_BBS_REFERER } from "../constants";
-import getCurrentUser from "../main/IPC/getCurrentUser";
-import getServerByUid from "../utils/getServerByUid";
-import request from "../utils/request";
+import { API_HK4E, LINK_BBS_REFERER } from '../constants';
+import getCurrentUser from '../main/IPC/getCurrentUser';
+import getServerByUid from '../utils/getServerByUid';
+import request from '../utils/request';
 
-import type { BaseRes } from "../typings";
+import type { BaseRes } from '../typings';
 
 interface DayData {
   current_primogems: number;
@@ -47,18 +47,25 @@ export interface MonthInfo {
 
 const getMonthInfo = async (month = 0): Promise<MonthInfo | null> => {
   const currentUser = getCurrentUser();
+
   if (!currentUser) {
     return null;
   }
+
   const { cookie, uid } = currentUser;
   const url = `${API_HK4E}/event/ys_ledger/monthInfo`;
   const params = { month, bind_uid: uid, bind_region: getServerByUid(uid) };
   const headers = { referer: LINK_BBS_REFERER, cookie };
-  const { status, data } = await request.get<BaseRes<MonthInfo>>(url, { params, headers });
+  const config = { params, headers };
+
+  const { status, data } = await request.get<BaseRes<MonthInfo>>(url, config);
+
   const isOK = status === 200 && data.retcode === 0;
+
   if (!isOK) {
-    console.log("getMonthInfo: ", data);
+    console.log('getMonthInfo: ', data);
   }
+
   return isOK ? data?.data || null : null;
 };
 

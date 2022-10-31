@@ -31,7 +31,7 @@ const openWindow = async (
   const dom = win.webContents;
 
   // 在窗口内跳转
-  dom.setWindowOpenHandler(details => {
+  dom.setWindowOpenHandler((details) => {
     dom.loadURL(details.url);
     return { action: 'deny' };
   });

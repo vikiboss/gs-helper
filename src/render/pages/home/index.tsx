@@ -63,7 +63,7 @@ const Home: React.FC = () => {
   const getTip = async () => {
     const BirthType = '4';
     const list = await nativeApi.getCalenderList();
-    const event = list.find(e => e.kind === BirthType && isToday(e));
+    const event = list.find((e) => e.kind === BirthType && isToday(e));
 
     if (event) {
       const now = new Date();
@@ -213,8 +213,8 @@ const Home: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          {auth.isLogin ? (
-            isHomeDataLoaded ? (
+          {auth.isLogin ? 
+            isHomeDataLoaded ? 
               <UserCard
                 sign={sign}
                 user={user}
@@ -222,26 +222,26 @@ const Home: React.FC = () => {
                 notice={notice}
                 safelyNavigate={safelyNavigate}
               />
-            ) : (
+             : 
               <Loading className={styles.loading} />
-            )
-          ) : (
+            
+           : 
             <div className={styles.noLoginContainer}>
               <div className={styles.noLoginText}>
                 <span>欢迎你，旅行者。👋</span>
                 <span>建议登录 「米游社」 账号以获得最佳使用体验。</span>
               </div>
               <Button
-                text="前往登录"
-                size="middle"
-                type="confirm"
+                text='前往登录'
+                size='middle'
+                type='confirm'
                 onClick={() => safelyNavigate('/login')}
               />
             </div>
-          )}
+          }
           <div className={styles.topGreeting}>{tip}</div>
           <div className={styles.topBtns}>
-            {auth.isLogin && (
+            {auth.isLogin && 
               <>
                 <div className={styles.topBtn} onClick={() => updateInfo()}>
                   <IoMdRefresh
@@ -252,7 +252,7 @@ const Home: React.FC = () => {
                 </div>
                 |
               </>
-            )}
+            }
             <div
               className={styles.topBtn}
               onClick={() =>
@@ -261,17 +261,17 @@ const Home: React.FC = () => {
                 })
               }
             >
-              {auth.isLogin ? (
+              {auth.isLogin ? 
                 <>
                   <AiOutlineUserSwitch size={20} />
                   <span>切换账号</span>
                 </>
-              ) : (
+               : 
                 <>
                   <AiOutlineUserAdd size={20} />
                   <span>登录米游社</span>
                 </>
-              )}
+              }
             </div>
             |
             <div
@@ -299,12 +299,12 @@ const Home: React.FC = () => {
               </div>
             </div>
             {btns.length &&
-              btns.map(({ name, handler, Icon }) => (
+              btns.map(({ name, handler, Icon }) => 
                 <div className={styles.btn} onClick={handler} key={name}>
                   <Icon size={42} />
                   <span className={styles.btnText}>{name}</span>
                 </div>
-              ))}
+              )}
           </div>
           <div
             className={styles.footer}

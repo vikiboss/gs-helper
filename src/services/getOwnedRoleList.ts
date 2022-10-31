@@ -1,10 +1,10 @@
-import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from "../constants";
-import getCurrentUser from "../main/IPC/getCurrentUser";
-import getDS from "../utils/getDS";
-import getServerByUid from "../utils/getServerByUid";
-import request from "../utils/request";
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants';
+import getCurrentUser from '../main/IPC/getCurrentUser';
+import getDS from '../utils/getDS';
+import getServerByUid from '../utils/getServerByUid';
+import request from '../utils/request';
 
-import type { BaseRes } from "../typings";
+import type { BaseRes } from '../typings';
 
 export interface RoleData {
   avatars: Role[];
@@ -84,23 +84,35 @@ export interface Affixes {
 
 const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
   const currentUser = getCurrentUser();
+
   if (!currentUser) {
     return null;
   }
-  const { cookie } = currentUser;
+
   uid = uid || currentUser.uid;
+
+  const { cookie } = currentUser;
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/character`;
   const postData = { role_id: uid, server: getServerByUid(uid) };
+
   const headers = {
     referer: LINK_BBS_REFERER,
-    DS: getDS("", JSON.stringify(postData)),
-    cookie
+    DS: getDS('', JSON.stringify(postData)),
+    cookie,
   };
-  const { status, data } = await request.post<BaseRes<RoleData>>(url, postData, { headers });
+
+  const { status, data } = await request.post<BaseRes<RoleData>>(
+    url,
+    postData,
+    { headers }
+  );
+
   const isOK = status === 200 && data.retcode === 0;
+
   if (!isOK) {
-    console.log("getOwnedRoleList: ", data);
+    console.log('getOwnedRoleList: ', data);
   }
+
   return isOK ? data?.data?.avatars || null : null;
 };
 

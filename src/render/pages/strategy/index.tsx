@@ -41,11 +41,11 @@ const Strategy: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading ? (
+        {!loading ? 
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
-              {data.map(e => {
+              {data.map((e) => {
                 const extra = e.hightlight ? styles.hightlight : '';
                 const className = cn(styles.btn, extra);
 
@@ -62,12 +62,12 @@ const Strategy: React.FC = () => {
               })}
             </div>
           </>
-        ) : (
+         : 
           <Loading />
-        )}
+        }
         <CircleButton
           Icon={TiArrowBack}
-          size="middle"
+          size='middle'
           className={styles.backBtn}
           onClick={() => navigate('/')}
         />

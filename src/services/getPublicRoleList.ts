@@ -1,7 +1,7 @@
-import { API_YS_CONTENT } from "../constants";
-import request from "../utils/request";
+import { API_YS_CONTENT } from '../constants';
+import request from '../utils/request';
 
-import type { BaseRes } from "../typings";
+import type { BaseRes } from '../typings';
 
 interface PublicRoleListData {
   total: number;
@@ -64,60 +64,76 @@ export interface PublicRole {
 /** 将获取的信息处理成需要的信息字段 PublicRoleRaw => PublicRole */
 const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
   const res = [];
+
   for (const role of publicRoles) {
     const _role: PublicRole = {
       name: role.title,
-      icon: "",
+      icon: '',
       startTime: role.start_time,
-      introduction: "",
-      line: "",
-      CVs: []
+      introduction: '',
+      line: '',
+      CVs: [],
     };
 
     for (const e of role.ext) {
-      const type = e.arrtName.split("-")[1] || "";
-      if (type === "简介") {
+      const type = e.arrtName.split('-')[1] || '';
+      if (type === '简介') {
         _role.introduction = (e.value as string)
-          .replace(/<p(.*?)>/g, "")
-          .replace(/<\/p>/g, "")
-          .replace(/<br \/>/g, "")
-          .replace(/\n/g, "")
-          .replace(/&(.*?);/g, "");
+          .replace(/<p(.*?)>/g, '')
+          .replace(/<\/p>/g, '')
+          .replace(/<br \/>/g, '')
+          .replace(/\n/g, '')
+          .replace(/&(.*?);/g, '');
         continue;
       }
 
-      if (type === "ICON") {
+      if (type === 'ICON') {
         _role.icon = (e.value as ExtValue[])[0]?.url;
         continue;
       }
 
-      if (type === "台词") {
+      if (type === '台词') {
         _role.line = (e.value as ExtValue[])[0]?.url;
         continue;
       }
 
-      if (type === "音频语言") {
+      if (type === '音频语言') {
         if (!_role.CVs.length) {
-          _role.CVs = (e.value as string).split("/").map((e) => ({ name: "", type: e, vos: [] }));
+          _role.CVs = (e.value as string)
+            .split('/')
+            .map((e) => ({ name: '', type: e, vos: [] }));
         } else {
-          const langs = (e.value as string).split("/");
-          for (const [k, v] of langs.entries()) _role.CVs[k].type = v;
+          const langs = (e.value as string).split('/');
+          for (const [k, v] of langs.entries()) {
+            _role.CVs[k].type = v;
+          }
         }
         continue;
       }
 
-      if (type.startsWith("声优")) {
-        const indexs = type.replace("声优", "").split("-");
+      if (type.startsWith('声优')) {
+        const indexs = type.replace('声优', '').split('-');
         const i = Number(indexs[0]) - 1 || 0;
-        if (!_role.CVs[i]) _role.CVs[i] = { name: "", type: "", vos: [] };
-        _role.CVs[i].name = _role.CVs[i].name ? _role.CVs[i].name : (e.value as string);
+
+        if (!_role.CVs[i]) {
+          _role.CVs[i] = { name: '', type: '', vos: [] };
+        }
+
+        _role.CVs[i].name = _role.CVs[i].name
+          ? _role.CVs[i].name
+          : (e.value as string);
+
         continue;
       }
 
-      if (type.startsWith("音频")) {
-        const indexs = type.replace("音频", "").split("-");
+      if (type.startsWith('音频')) {
+        const indexs = type.replace('音频', '').split('-');
         const i = Number(indexs[0]) - 1 || 0;
-        if (!_role.CVs[i]) _role.CVs[i] = { name: "", type: "", vos: [] };
+
+        if (!_role.CVs[i]) {
+          _role.CVs[i] = { name: '', type: '', vos: [] };
+        }
+
         _role.CVs[i].vos.push(e.value as string);
         continue;
       }
@@ -131,13 +147,20 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
 const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
   const url = `${API_YS_CONTENT}/ysCn/getContentList`;
   const params = { pageSize: 1000, pageNum: 1, channelId: 152 };
-  const { status, data } = await request.get<BaseRes<PublicRoleListData>>(url, { params });
+
+  const { status, data } = await request.get<BaseRes<PublicRoleListData>>(url, {
+    params,
+  });
+
   const isOK = status === 200 && data.retcode === 0;
+
   if (!isOK) {
-    console.log("getBBSSignInfo: ", data);
+    console.log('getBBSSignInfo: ', data);
   }
+
   const res = getNeededRoleInfo(data?.data?.list);
-  return isOK ? (res.length ? res : null) : null;
+
+  return isOK ? res.length ? res : null : null;
 };
 
 export default getPublicRoleList;

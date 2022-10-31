@@ -99,7 +99,7 @@ const Statistic: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {loaded ? (
+        {loaded ? 
           <>
             <div className={styles.top}>
               <div className={styles.user}>
@@ -112,21 +112,21 @@ const Statistic: React.FC = () => {
                 value={type}
                 changeItem={setType}
               />
-              {accountUid !== currentUid && (
+              {accountUid !== currentUid && 
                 <Button
                   className={styles.btn}
-                  text="返回"
+                  text='返回'
                   onClick={backToMyProfile}
                 />
-              )}
+              }
               <div className={styles.inputArea}>
                 <Input
                   value={inputUid}
-                  onChange={e => setInputUid(e.target.value)}
+                  onChange={(e) => setInputUid(e.target.value)}
                   autoFocus
-                  type="number"
-                  placeholder="查询 UID"
-                  onKeyDown={e => e.key === 'Enter' && handleQuery()}
+                  type='number'
+                  placeholder='查询 UID'
+                  onKeyDown={(e) => e.key === 'Enter' && handleQuery()}
                 />
                 <Button
                   text={inputUid === '' ? '粘贴' : '查询'}
@@ -140,12 +140,12 @@ const Statistic: React.FC = () => {
               {type === 'abyss' && <SpiralAbyssTab data={abyss} />}
             </div>
           </>
-        ) : (
+         : 
           <Loading />
-        )}
+        }
         <CircleButton
           Icon={TiArrowBack}
-          size="middle"
+          size='middle'
           className={styles.backBtn}
           onClick={() => navigate('/')}
         />

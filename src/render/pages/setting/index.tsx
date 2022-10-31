@@ -1,14 +1,14 @@
-import React from "react";
-import { TiArrowBack } from "react-icons/ti";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { TiArrowBack } from 'react-icons/ti';
+import { useNavigate } from 'react-router-dom';
 
-import Button from "../../components/Button";
-import CircleButton from "../../components/CircleButton";
-import nativeApi from "../../utils/nativeApi";
-import useAuth from "../../hooks/useAuth";
-import useNotice from "../../hooks/useNotice";
+import Button from '../../components/Button';
+import CircleButton from '../../components/CircleButton';
+import nativeApi from '../../utils/nativeApi';
+import useAuth from '../../hooks/useAuth';
+import useNotice from '../../hooks/useNotice';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 const Setting: React.FC = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Setting: React.FC = () => {
   const handleClearData = async () => {
     const isOK = await nativeApi.clearData();
     if (isOK) auth.logout(undefined, true);
-    notice[isOK ? "success" : "faild"]({ message: isOK ? "重置成功，建议重启软件" : "无读写权限" });
+    notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' });
   };
 
   return (
@@ -33,7 +33,7 @@ const Setting: React.FC = () => {
           Icon={TiArrowBack}
           size='middle'
           className={styles.backBtn}
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         />
       </div>
       {notice.holder}

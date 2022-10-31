@@ -1,7 +1,7 @@
-import React from "react";
-import cn from "classnames";
+import React from 'react';
+import cn from 'classnames';
 
-import styles from "./index.less";
+import styles from './index.less';
 
 export type SelectItem = {
   label: string;
@@ -11,7 +11,7 @@ export type SelectItem = {
 export interface SelectButtonProp {
   changeItem?: (...args: any[]) => any;
   className?: string;
-  direction?: "vertical" | "horizontal";
+  direction?: 'vertical' | 'horizontal';
   height?: number;
   items: SelectItem[];
   style?: React.CSSProperties;
@@ -22,32 +22,32 @@ export interface SelectButtonProp {
 const SelectButton: React.FC<SelectButtonProp> = ({
   changeItem,
   className,
-  direction = "horizontal",
+  direction = 'horizontal',
   height,
   items,
   style,
   value,
   width
 }) => {
-  const isHori = direction === "horizontal";
+  const isHori = direction === 'horizontal';
   return (
     <div
-      className={cn(styles.wrapper, className, isHori ? "" : styles.vertical)}
+      className={cn(styles.wrapper, className, isHori ? '' : styles.vertical)}
       style={{
         width,
         height,
         ...style
       }}
     >
-      {items.map((e) => (
+      {items.map((e) => 
         <div
           key={e.value}
           onClick={changeItem && changeItem.bind(null, e.value)}
-          className={e.value === value ? styles.selected : ""}
+          className={e.value === value ? styles.selected : ''}
         >
           {e.label}
         </div>
-      ))}
+      )}
     </div>
   );
 };

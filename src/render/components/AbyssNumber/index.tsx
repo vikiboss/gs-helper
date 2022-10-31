@@ -11,8 +11,8 @@ interface AbyssNumberProp {
   description?: string;
 }
 
-const AbyssNumber: React.FC<AbyssNumberProp> = props => {
-  const { values, className, description = "深境螺旋" } = props;
+const AbyssNumber: React.FC<AbyssNumberProp> = (props) => {
+  const { values, className, description = '深境螺旋' } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>

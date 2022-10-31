@@ -1,11 +1,11 @@
-import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from "../constants";
-import { qs } from "../utils/utils";
-import getCurrentUser from "../main/IPC/getCurrentUser";
-import getDS from "../utils/getDS";
-import getServerByUid from "../utils/getServerByUid";
-import request from "../utils/request";
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants';
+import { qs } from '../utils/utils';
+import getCurrentUser from '../main/IPC/getCurrentUser';
+import getDS from '../utils/getDS';
+import getServerByUid from '../utils/getServerByUid';
+import request from '../utils/request';
 
-import type { BaseRes } from "../typings";
+import type { BaseRes } from '../typings';
 
 export interface SpiralAbyssData {
   schedule_id: number;
@@ -97,23 +97,38 @@ interface Avatars {
   rarity: number;
 }
 
-const getSpiralAbyss = async (uid?: string): Promise<SpiralAbyssData | null> => {
+const getSpiralAbyss = async (
+  uid?: string
+): Promise<SpiralAbyssData | null> => {
   const currentUser = getCurrentUser();
+
   if (!currentUser) {
     return null;
   }
+
   uid = uid || currentUser.uid;
+
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/spiralAbyss`;
-  const params = { role_id: uid, schedule_type: "1", server: getServerByUid(uid) };
+  const params = {
+    role_id: uid,
+    schedule_type: '1',
+    server: getServerByUid(uid),
+  };
   const headers = {
     referer: LINK_BBS_REFERER,
     DS: getDS(qs(params)),
-    cookie: currentUser.cookie
+    cookie: currentUser.cookie,
   };
-  const { status, data } = await request.get<BaseRes<SpiralAbyssData>>(url, { headers, params });
+
+  const { status, data } = await request.get<BaseRes<SpiralAbyssData>>(url, {
+    headers,
+    params,
+  });
+
   const isOK = status === 200 && data.retcode === 0;
+
   if (!isOK) {
-    console.log("getSpiralAbyss: ", data);
+    console.log('getSpiralAbyss: ', data);
   }
   return isOK ? data?.data || null : null;
 };
