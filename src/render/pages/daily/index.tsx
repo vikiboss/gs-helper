@@ -45,9 +45,9 @@ const getUniqueArray = (arr: any[], key: string) => {
   return results;
 };
 
-const getMaterialList = (calenderList: CalenderEvent[]) => {
-  const isMaterial = (e: CalenderEvent) => e.kind === '2';
-  const kind2 = calenderList.filter(isMaterial);
+const getMaterialList = (list: CalenderEvent[]) => {
+  const isMaterial = (event: CalenderEvent) => event.kind === '2';
+  const kind2 = list.filter(isMaterial);
 
   const materials: CalenderEvent[] = [];
 
@@ -76,9 +76,7 @@ const Daily: React.FC = () => {
   const notice = useNotice();
   const [type, setType] = useState<Type>('roles');
   const [week, setWeek] = useState<number>(todayWeek);
-  const [fetch, cals = [], loading] = useApi<CalenderEvent[]>(
-    nativeApi.getCalenderList
-  );
+  const [fetch, cals = [], loading] = useApi<CalenderEvent[]>(nativeApi.getCalenderList);
 
   useEffect(() => {
     (async () => {

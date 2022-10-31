@@ -26,7 +26,6 @@
     "@typescript-eslint/no-explicit-any": ["off"],
     "@typescript-eslint/no-var-requires": ["off"],
     "@typescript-eslint/triple-slash-reference": ["off"],
-    "@typescript-eslint/no-extra-parens": ["error", "all"],
 
     "react/jsx-closing-bracket-location": [1, "tag-aligned"],
     "react/jsx-tag-spacing": [2],

@@ -16,7 +16,6 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.40.1
   '@typescript-eslint/parser': ^5.40.1
   '@vercel/webpack-asset-relocator-loader': 1.7.0
-  '@vikiboss/prettier-config': ^0.0.7
   axios: ^1.1.3
   classnames: ^2.3.2
   conf: ^10.2.0
@@ -70,7 +69,6 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.40.1_5qybfgkzvfwydtoifdtk7hyuqy
   '@typescript-eslint/parser': 5.40.1_v4j2skhpbmb3nyu3p422gvgwf4
   '@vercel/webpack-asset-relocator-loader': 1.7.0
-  '@vikiboss/prettier-config': 0.0.7
   conf: 10.2.0
   css-loader: 6.7.1_webpack@5.74.0
   electron: 21.2.0
@@ -1507,10 +1505,6 @@ packages:
 
   /@vercel/webpack-asset-relocator-loader/1.7.0:
     resolution: {integrity: sha512-1Dy3BdOliDwxA7VZSIg55E1d/us2KvsCQOZV25fgufG//CsnZBGiSAL7qewTQf7YVHH0A9PHgzwMmKIZ8aFYVw==}
-    dev: true
-
-  /@vikiboss/prettier-config/0.0.7:
-    resolution: {integrity: sha512-T1x6wmKmUiH1Q1dutqSw8U887pVlVFF++AzmH5j4T7Sn/q1dz2eW1APcegv/RP12aC/vMZLQwMvsFcZEOZPAMw==}
     dev: true
 
   /@webassemblyjs/ast/1.11.1:
