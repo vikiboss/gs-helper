@@ -40,6 +40,7 @@ export const IpcEvents: Record<string, string> = {
 
 export const EXPOSED_API_FROM_ELECTRON = 'nativeApi';
 export const BBS_VERSION = '2.34.1';
+export const UPDATE_INTERVAL = 60000;
 
 export const AppName = {
   zh: '原神助手',

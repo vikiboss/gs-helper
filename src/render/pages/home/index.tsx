@@ -10,7 +10,7 @@ import { IoMdRefresh } from 'react-icons/io';
 import { IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md';
 
-import { LINK_GENSHIN_MAP } from '../../../constants';
+import { LINK_GENSHIN_MAP, UPDATE_INTERVAL } from '../../../constants';
 import Button from '../../components/Button';
 import Loading from '../../components/Loading';
 import nativeApi from '../../utils/nativeApi';
@@ -34,19 +34,19 @@ const Home: React.FC = () => {
   const [user, setUser] = useState<GameRole | null>(null);
   const [sign, setSign] = useState<SignInfo | null>(null);
   const [note, setNotesData] = useState<DailyNotesData | null>(null);
-  const [tip, setTip] = useState<string>('loading...');
+  const [tip, setTip] = useState<string>('');
 
-  useEffect(() => {
+  useEffect(function () {
     (async () => {
       updateInfo(false);
       setTip(await getTip());
 
-      setHeart(
-        setInterval(async () => {
-          updateInfo(false);
-          setTip(await getTip());
-        }, 60000)
-      );
+      const timer = setInterval(async () => {
+        updateInfo(false);
+        setTip(await getTip());
+      }, UPDATE_INTERVAL);
+
+      setHeart(timer);
     })();
     return () => {
       clearInterval(heart);
@@ -96,12 +96,13 @@ const Home: React.FC = () => {
 
     if (isUserTrriger) {
       clearInterval(heart);
-      setHeart(null);
+
       notice.info({
         message: '小派蒙正在努力获取最新数据...',
         autoHide: false,
       });
-      setHeart(setInterval(() => updateInfo(false), 60000));
+
+      setHeart(setInterval(() => updateInfo(false), UPDATE_INTERVAL));
     }
 
     try {
@@ -111,13 +112,15 @@ const Home: React.FC = () => {
         nativeApi.getBBSSignInfo(),
       ]);
 
-      if (!user?.game_uid || !note?.max_resin || !sign.today) {
+      if (!user?.game_uid || !note?.max_resin || !sign?.today) {
         const currentUser = await nativeApi.getCurrentUser();
         auth.logout(currentUser.uid);
         return navigate('/login', { state: { isExpired: true } });
       }
 
-      if (isUserTrriger) notice.success({ message: '游戏状态更新成功' });
+      if (isUserTrriger) {
+        notice.success({ message: '游戏状态更新成功' });
+      }
 
       setUser(user);
       setNotesData(note);
@@ -142,12 +145,10 @@ const Home: React.FC = () => {
       return notice.warning({ message: '这个功能需要登录才能正常使用' });
     }
 
-    const monthNotOpen = path === '/month' && user.level < 10;
+    const dailyNotOpen = path === '/daily' && user.level < 10;
 
-    if (monthNotOpen) {
-      return notice.warning({
-        message: '旅行者还没有达到札记开放等级（10级）',
-      });
+    if (dailyNotOpen) {
+      return notice.warning({ message: '旅行者还没有达到札记开放等级（10级）' });
     }
 
     safelyNavigate(path);
