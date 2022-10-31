@@ -99,12 +99,12 @@ const Month: React.FC = () => {
                 <div className={styles.itemBg}>
                   <span>今日</span>
                   <div className={styles.item}>
-                    <img src={primogem} alt='原石' />
+                    <img src={primogem} />
                     <BounceNumber
                       number={initData.day_data.current_primogems}
                       wrapperStyle={{ width: '40px' }}
                     />
-                    <img src={mora} alt='摩拉' />
+                    <img src={mora} />
                     <BounceNumber
                       number={initData.day_data.current_mora}
                       wrapperStyle={{ width: '80px' }}
@@ -114,12 +114,12 @@ const Month: React.FC = () => {
                 <div className={styles.itemBg}>
                   <span>昨日</span>
                   <div className={styles.item}>
-                    <img src={primogem} alt='原石' />
+                    <img src={primogem} />
                     <BounceNumber
                       number={initData.day_data.last_primogems}
                       wrapperStyle={{ width: '40px' }}
                     />
-                    <img src={mora} alt='摩拉' />
+                    <img src={mora} />
                     <BounceNumber
                       number={initData.day_data.last_mora}
                       wrapperStyle={{ width: '80px' }}
@@ -147,7 +147,7 @@ const Month: React.FC = () => {
                   <div className={styles.monthTitle}>{monthInfo.data_month}月札记</div>
                   <div className={styles.monthDesc}>当月累计获取资源</div>
                   <div className={styles.monthItem}>
-                    <img src={primogem} alt='原石' />
+                    <img src={primogem} />
                     <BounceNumber
                       number={monthData.current_primogems}
                       wrapperStyle={{ width: '80px' }}
@@ -159,7 +159,7 @@ const Month: React.FC = () => {
                     </span>
                   </div>
                   <div className={styles.monthItem}>
-                    <img src={mora} alt='摩拉' />
+                    <img src={mora} />
                     <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: '80px' }} />
                     {monthData.last_mora > 0 && 
                       <span>

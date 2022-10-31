@@ -408,7 +408,7 @@ const Role: React.FC = () => {
                       )}
                     >
                       <div className={cn(styles.name)}>{currentRole.name}</div>
-                      <img src={getStarImage(currentRole.rarity)} alt='star' />
+                      <img src={getStarImage(currentRole.rarity)} />
                       <div className={styles.roleAttr}>
                         <span>Lv. {currentRole.level}</span>
                         <span>{ElementTypes[currentRole.element]}</span>
@@ -511,7 +511,6 @@ const Role: React.FC = () => {
                                     }
                                     key={e.name + i}
                                     src={e.is_actived ? e.icon : lock}
-                                    alt={'命座' + e.pos}
                                     onClick={() => setConstellIndex(i)}
                                   />
                                 );
@@ -569,7 +568,6 @@ const Role: React.FC = () => {
                     isRoleChanging ? styles.imgAni : ''
                   )}
                   src={currentRole.image}
-                  alt={currentRole.name}
                 />
                 <div
                   className={cn(
@@ -577,7 +575,7 @@ const Role: React.FC = () => {
                     isRoleChanging ? styles.imgAni : ''
                   )}
                 >
-                  {currentRole.line && <img src={currentRole.line} alt='' />}
+                  {currentRole.line && <img src={currentRole.line} />}
                 </div>
               </div>
             }
@@ -603,7 +601,6 @@ const Role: React.FC = () => {
                 isRoleChanging ? styles.elementAni : ''
               )}
               src={ElementImgs[currentRole.element]}
-              alt='element'
             />
             <div
               className={styles.arrowLeft}

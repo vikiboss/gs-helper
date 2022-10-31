@@ -43,8 +43,8 @@ const WeaponCard: React.FC<WeaponCardProp> = ({
   return (
     <div style={style} className={cn(styles.wrapper, className)} onClick={onClick}>
       <div className={getStarClass(weapon.rarity)}>
-        <img src={weapon.icon} alt='icon' />
-        <img src={getStarImage(weapon.rarity)} alt='star' />
+        <img src={weapon.icon} />
+        <img src={getStarImage(weapon.rarity)} />
         <div>{weapon.level}</div>
         {weapon.affix_level > 0 && <div>{weapon.affix_level}</div>}
         {withName && <span>{weapon.name}</span>}

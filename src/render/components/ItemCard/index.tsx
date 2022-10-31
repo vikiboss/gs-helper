@@ -33,8 +33,8 @@ const ItemCard: React.FC<ItemCardProp> = ({ className, onClick, item, style, wit
   return (
     <div style={style} className={cn(styles.wrapper, className)} onClick={onClick}>
       <div className={getStarClass(item.rarity)}>
-        <img src={item.icon} alt='icon' />
-        <img src={getStarImage(item.rarity)} alt='star' />
+        <img src={item.icon} />
+        <img src={getStarImage(item.rarity)} />
         {withName && <span>{item.name}</span>}
         {item?.level > 0 && <div>{item.level}</div>}
       </div>

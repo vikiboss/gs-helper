@@ -118,11 +118,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                         <div className={styles.stars}>
                           <div>第 {f.index} 间</div>
                           <div>
-                            <img
-                              src={starMap[f.star]}
-                              alt='星星'
-                              className={styles.star}
-                            />
+                            <img src={starMap[f.star]} className={styles.star} />
                             {start && <span>上半：{start}</span>}
                             {end && <span>下半：{end}</span>}
                           </div>

@@ -97,11 +97,11 @@ const About: React.FC = () => {
         </div>
         <div className={styles.codeZones}>
           <div className={styles.codeZone}>
-            <img className={styles.code} src={groupQRCode} alt='交流群' />
+            <img className={styles.code} src={groupQRCode} />
             <div>「原神助手」 QQ 交流群</div>
           </div>
           <div className={styles.codeZone}>
-            <img className={styles.code} src={wxRewardCode} alt='微信赞赏码' />
+            <img className={styles.code} src={wxRewardCode} />
             <div>Viki の 微信赞赏码</div>
           </div>
           <div className={styles.mask} />

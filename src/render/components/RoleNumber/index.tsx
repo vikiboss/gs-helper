@@ -18,7 +18,7 @@ const RoleNumber: React.FC<RoleNumberProp> = (props) => {
   return (
     <div className={cn(styles.wrapper, className)}>
       <div>
-        {avatar && <img src={avatar} alt='角色头图' />}
+        {avatar && <img src={avatar} />}
         <BounceNumber size={20} number={value} />
       </div>
       <span>{description}</span>

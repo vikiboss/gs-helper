@@ -241,7 +241,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     <>
       <div className={styles.userCard}>
         <div className={styles.avatar} onDoubleClick={handleOpenGame}>
-          <img src={avatar} alt='avatar' className={styles.avatarImage} />
+          <img src={avatar} className={styles.avatarImage} />
         </div>
         <div className={styles.userInfo}>
           {infos.length &&
@@ -318,11 +318,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
                   notice[e.done ? 'success' : 'info']({ message: e.title })
                 }
               >
-                <img
-                  src={e.avatar}
-                  alt='角色'
-                  className={styles.dispatchAvatar}
-                />
+                <img src={e.avatar} className={styles.dispatchAvatar} />
               </div>
             )}
           </div>

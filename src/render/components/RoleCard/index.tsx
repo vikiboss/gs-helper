@@ -52,9 +52,9 @@ const RoleCard: React.FC<RoleCardProp> = ({
   return (
     <div style={style} className={cn(styles.wrapper, className)} onClick={onClick}>
       <div className={cn(getStarClass(role.rarity), withBorder ? styles.border : '')}>
-        <img src={role.icon} alt='icon' />
-        <img src={getStarImage(role.rarity)} alt='star' />
-        <img src={ElementImgs[role.element]} alt='element' />
+        <img src={role.icon} />
+        <img src={getStarImage(role.rarity)} />
+        <img src={ElementImgs[role.element]} />
         <span>Lv. {role.level}</span>
         {role.actived_constellation_num > 0 && <div>{role.actived_constellation_num}</div>}
       </div>

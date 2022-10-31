@@ -53,7 +53,7 @@ const Portal: React.FC = () => {
                   onClick={() => handleWindowOpen(e)}
                 >
                   <div>
-                    <img src={e.icon} alt='icon' />
+                    <img src={e.icon} />
                     <div>{e.name}</div>
                   </div>
                   <div>{e.description}</div>

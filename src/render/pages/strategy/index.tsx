@@ -53,7 +53,6 @@ const Strategy: React.FC = () => {
                   <div
                     className={className}
                     key={e.name}
-                    title={e.alt}
                     onClick={handleWindowOpen.bind(null, e.url)}
                   >
                     <span>{e.name}</span>

@@ -91,7 +91,7 @@ const Statistic: React.FC = () => {
 
   const items: { label: string; value: TypeState }[] = [
     { label: '数据概览', value: 'statistic' },
-    { label: '角色展示柜', value: 'roles' },
+    { label: '展示角色', value: 'roles' },
     { label: '深境螺旋', value: 'abyss' },
   ];
 

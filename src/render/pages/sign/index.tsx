@@ -117,7 +117,7 @@ const Sign: React.FC = () => {
                     className={cn(styles.signItem, signedClass, todayClass)}
                     onClick={isToday ? handleSign : handleInfo.bind(null, i)}
                   >
-                    <img src={e.icon} alt={e.name} />
+                    <img src={e.icon} />
                     <div>{`${e.name}x${e.cnt}`}</div>
                   </div>
                 );

@@ -174,7 +174,7 @@ const Daily: React.FC = () => {
                 <div className={styles.main}>
                   {list.map((e) => 
                     <div key={e.title} onClick={() => handleItemClick(e)}>
-                      <img src={e.img_url} alt={e.title} />
+                      <img src={e.img_url} />
                       <span>{e.title}</span>
                     </div>
                   )}

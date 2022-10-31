@@ -16,7 +16,7 @@ const WinFrame: React.FC<WinFrameProp> = (props) => {
   return (
     <div className={styles.frame}>
       <div className={styles.topBar}>
-        <img className={styles.icon} src={icon} alt='icon' />
+        <img className={styles.icon} src={icon} />
         <div className={styles.title}>{title}</div>
         <div className={styles.btns}>
           <WinButton className={styles.btn} onClick={nativeApi.minimizeApp} type='minimize' />

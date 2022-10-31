@@ -99,10 +99,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
             <span>〓尘歌壶〓</span>
             {data.homes.length > 0 && 
               <div>
-                <img
-                  src={homes[0].comfort_level_icon}
-                  alt={homes[0].comfort_level_name}
-                />
+                <img src={homes[0].comfort_level_icon} />
                 <span>{homes[0].comfort_level_name}</span>
               </div>
             }
@@ -112,7 +109,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               <div>
                 {data.homes.map((e) => 
                   <div key={e.name}>
-                    <img src={e.icon} alt={e.name} />
+                    <img src={e.icon} />
                     <span>{e.name}</span>
                   </div>
                 )}
@@ -155,7 +152,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               const level = text ? `·${text} ${e.level} 级` : '';
               return (
                 <div key={e.id}>
-                  <img src={e.background_image} alt={e.name} />
+                  <img src={e.background_image} />
                   <div>
                     <img src={e.icon} />
                     <div>
