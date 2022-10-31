@@ -134,7 +134,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const _ = note?.transformer?.recovery_time;
   const transformerTime =
     _.Day * 86400 + _.Hour * 3600 + _.Minute * 60 + _.Second;
-  const isTransformerReady = transformerTime === 0;
+  const isTransformerReady = hasTransformer && transformerTime === 0;
   const formatText = _.Second > 0 ? 'M月D日 HH:mm:ss' : 'M月D日';
   const transformerReadyTime = D(Date.now() + transformerTime * 1000).format(
     formatText
