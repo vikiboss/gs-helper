@@ -16,13 +16,11 @@ function Link(href: string, text: string) {
   return <a href={href} target='_blank' rel='noreferrer'>{` ${text} `}</a>;
 }
 
-const LINK_LICENSE =
-  'https://github.com/vikiboss/genshin-helper/blob/main/LICENCE';
+const LINK_LICENSE = 'https://github.com/vikiboss/genshin-helper/blob/main/LICENCE';
 const LINK_AUTHOR_GITHUB = 'https://github.com/vikiboss';
 const LINK_GROUP_QQ = 'https://jq.qq.com/?_wv=1027&k=InHF9niP';
 const LINK_ELECTRON = 'https://www.electronjs.org';
-const LINK_PACKAGE_JSON =
-  'https://github.com/vikiboss/genshin-helper/blob/main/package.json';
+const LINK_PACKAGE_JSON = 'https://github.com/vikiboss/genshin-helper/blob/main/package.json';
 const LINK_RELEASE = 'https://github.com/vikiboss/genshin-helper/releases';
 const LINK_REACT = 'https://reactjs.org';
 const LINK_MIHOYO = 'https://www.mihoyo.com/';
@@ -70,9 +68,7 @@ const About: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.title}>关于</div>
       <div className={styles.declaration}>
-        {P1}
-        {P2}
-        {P3}
+        {P1}{P2}{P3}
       </div>
       <div className={styles.bottom}>
         <div className={styles.items}>
