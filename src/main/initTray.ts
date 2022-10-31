@@ -8,11 +8,12 @@ import {
 } from 'electron';
 import path from 'path';
 
+import { AppName } from '../constants';
 import { store, isAppleDevice, isWindows } from '.';
+import { subWins } from './IPC/openWindow';
 
 import icon from '../assets/icon.ico';
 import macicon from '../assets/macicon.png';
-import { subWins } from './IPC/openWindow';
 
 export const Menus: Record<string, string> = {
   openMainWindow: '打开助手',
@@ -25,12 +26,15 @@ export const Menus: Record<string, string> = {
 
 /** 初始化托盘图标与菜单 */
 const initTray = (win: BrowserWindow) => {
+  // 图标路径
+  const dir = path.join(__dirname, isAppleDevice ? macicon : icon);
+
   // 从路径新建图片
-  const image = nativeImage.createFromPath(
-    path.join(__dirname, isAppleDevice ? macicon : icon)
-  );
+  const image = nativeImage.createFromPath(dir);
+
   // 设置图片为自动适应模式的黑白图标
   isAppleDevice && image.setTemplateImage(true);
+
   // 初始化托盘图标
   const tray = new Tray(image);
 
@@ -88,14 +92,18 @@ const initTray = (win: BrowserWindow) => {
   const contextMenu = Menu.buildFromTemplate(menus);
 
   // 设置托盘菜单提示文字
-  tray.setToolTip(`${app.getName()} v${app.getVersion()}`);
+  tray.setToolTip(`${AppName.zh} v${app.getVersion()}`);
+
   // 监听点击事件，绑定程序的显示与隐藏操作
   // tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
   tray.on('click', () => isWindows && win.show());
+  
   // 双击显示主界面
   tray.on('double-click', () => win.show());
+  
   // 加载托盘右键菜单
   tray.setContextMenu(contextMenu);
+  
   // 监听即将退出的事件，销毁托盘图标与菜单
   app.on('before-quit', () => tray.destroy());
 
