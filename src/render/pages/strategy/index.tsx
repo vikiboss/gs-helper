@@ -25,9 +25,7 @@ const Strategy: React.FC = () => {
     nativeApi.getRepoData
   );
 
-  useEffect(() => {
-    request('strategies.json');
-  }, []);
+  useEffect(() => void request('strategies.json'), []);
 
   const handleWindowOpen = (link: string) => {
     notice.success({

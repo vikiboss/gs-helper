@@ -22,9 +22,7 @@ interface PortalItem {
 const Portal: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [request, data = [], loading] = useApi<PortalItem[]>(
-    nativeApi.getRepoData
-  );
+  const [request, data = [], loading] = useApi<PortalItem[]>(nativeApi.getRepoData);
 
   useEffect(() => {
     request('portals.json');

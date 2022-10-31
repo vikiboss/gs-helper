@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
   const [loading, setLoading] = useState<boolean>(false);
+  const [done, setDone] = useState<boolean>(false);
   const [data, setData] = useState<T>();
   const [error, setError] = useState<string>('');
 
@@ -26,11 +27,12 @@ function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
       setError(msg);
     }
 
+    setDone(true);
     setLoading(false);
     return isOK;
   }
 
-  return [request, data, loading, error] as const;
+  return [request, data, loading, error, done] as const;
 }
 
 export default useApi;

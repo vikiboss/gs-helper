@@ -17,7 +17,11 @@ const Setting: React.FC = () => {
 
   const handleClearData = async () => {
     const isOK = await nativeApi.clearData();
-    if (isOK) auth.logout(undefined, true);
+
+    if (isOK) {
+      auth.logout(undefined, true);
+    }
+
     notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' });
   };
 
@@ -29,12 +33,7 @@ const Setting: React.FC = () => {
           <Button text='重置配置文件' onClick={handleClearData} />
           <span>清空本地所有账号的 Cookie 数据和配置文件（不包括祈愿记录数据），清空后需要重新登录，请谨慎操作！</span>
         </div>
-        <CircleButton
-          Icon={TiArrowBack}
-          size='middle'
-          className={styles.backBtn}
-          onClick={() => navigate('/')}
-        />
+        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
       </div>
       {notice.holder}
     </>
