@@ -185,7 +185,7 @@ const Gacha: React.FC = () => {
     }
     return !!url;
   };
-  
+
   const gacha = gachas.find((e) => e.info.uid === uid) || DefaultGachaData;
 
   const firsteDate = gacha.list.length ? gacha.list[0].time : '';
@@ -249,20 +249,15 @@ const Gacha: React.FC = () => {
               placeholder='祈愿记录链接（使用 Ctrl + V 快捷键进行粘贴）'
             />
 
+            <Button className={styles.btn} style={{ marginRight: '12px' }} type='confirm' text='更新数据' onClick={updateGachaData} />
+
             {isWindows && (
-              <Button
-                className={styles.btn}
-                onClick={link ? copyLink : () => getLocalGachaUrl(true)}
-                style={{ marginRight: '12px' }}
-                text={link ? '复制链接' : '获取本地链接'}
-              />
+              <Button className={styles.btn} onClick={link ? copyLink : () => getLocalGachaUrl(true)} text={link ? '复制' : '读取链接'} />
             )}
-            
-            <Button className={styles.btn} type='confirm' text='更新数据' onClick={updateGachaData} />
-            
+
             <div className={styles.rightZone}>
               {gachas.length !== 0 && <SelectButton changeItem={setType} className={styles.selectBtn} items={items} value={type} />}
-              
+
               <div className={styles.icon} title='从本地导入 UIGF 规范的祈愿数据（JSON 格式）' onClick={handleImport}>
                 <BiImport size={20} />
               </div>

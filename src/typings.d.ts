@@ -33,7 +33,7 @@ export interface NativeApi {
   getGachaUrl: () => Promise<string>;
   getGameRecordCard: (bbsId?: string) => Promise<GameRecordCardData | null>;
   getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
-  getSpiralAbyss: (uid?: string) => Promise<SpiralAbyssData | null>;
+  getSpiralAbyss: (uid?: string, last?: boolean) => Promise<SpiralAbyssData | null>;
   getRepoData: () => Promise<any>;
   getGameRoleInfo: () => Promise<GameRole | null>;
   getHitokoto: () => Promise<string>;

@@ -1,14 +1,6 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/utils.less';
 
-.show-left {
-  .ani-show-left();
-}
-
-.show-right {
-  .ani-show-right();
-}
-
 .spiral-abyss {
   .flex-center-column();
 
@@ -38,6 +30,7 @@
     }
 
     .abyss-item {
+      .ani-show-bottom();
       .transition-quick();
       .flex-center-y();
 

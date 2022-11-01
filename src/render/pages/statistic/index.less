@@ -10,9 +10,8 @@
 
   .top {
     .ani-show-top();
-    .flex-center-y();
+    .flex-center();
 
-    margin-left: 80px;
     height: 82px;
     background-color: @color-bg;
     position: relative;
@@ -22,14 +21,17 @@
     }
 
     .user {
+      position: absolute;
+      left: 80px;
+
+      & > div:first-child {
+        font-size: 18px;
+      }
+
       & > div:nth-child(2) {
         color: @color-second;
-        font-size: 14px;
+        font-size: 12px;
       }
-    }
-
-    .select-btns {
-      margin-left: 150px;
     }
 
     .input-area {

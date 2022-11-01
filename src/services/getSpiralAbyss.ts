@@ -98,7 +98,7 @@ interface Avatars {
 }
 
 const getSpiralAbyss = async (
-  uid?: string
+  uid?: string, last = false
 ): Promise<SpiralAbyssData | null> => {
   const currentUser = getCurrentUser();
 
@@ -111,7 +111,7 @@ const getSpiralAbyss = async (
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/spiralAbyss`;
   const params = {
     role_id: uid,
-    schedule_type: '1',
+    schedule_type: last ? '2' : '1',
     server: getServerByUid(uid),
   };
   const headers = {
@@ -130,6 +130,7 @@ const getSpiralAbyss = async (
   if (!isOK) {
     console.log('getSpiralAbyss: ', data);
   }
+
   return isOK ? data?.data || null : null;
 };
 

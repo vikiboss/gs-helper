@@ -1,13 +1,35 @@
 @import '../../../utils/colors.less';
 @import '../../../utils/utils.less';
 
-.role-table {
-  .ani-show-top();
-  .flex();
+.roles {
+  .flex-center-column();
 
-  flex-wrap: wrap;
-  flex: 1;
-  overflow: auto;
-  padding: 20px;
-  width: 890px;
+  .role-table {
+    .ani-show-top();
+    .flex();
+
+    flex-wrap: wrap;
+    flex: 1;
+    justify-content: space-between;
+    margin-top: 40px;
+    overflow: auto;
+    padding: 20px;
+    width: 890px;
+  }
+
+  .btn {
+    .ani-show-bottom();
+
+    margin-top: 60px;
+  }
+
+  .tip {
+    .ani-show-bottom();
+
+    bottom: 16px;
+    color: @color-second;
+    font-size: 14px;
+    left: 28px;
+    position: absolute;
+  }
 }

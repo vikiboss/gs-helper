@@ -5,7 +5,7 @@ import styles from './index.less';
 
 export type SelectItem = {
   label: string;
-  value: string;
+  value: string | number;
 };
 
 export interface SelectButtonProp {
@@ -15,7 +15,7 @@ export interface SelectButtonProp {
   height?: number;
   items: SelectItem[];
   style?: React.CSSProperties;
-  value?: string;
+  value?: string | number;
   width?: number;
 }
 

@@ -104,7 +104,7 @@ const bindIPC = (win: BrowserWindow) => {
 
   IPC.handle(
     IpcEvents.getSpiralAbyss,
-    async (_, uid?: string) => await getSpiralAbyss(uid)
+    async (_, uid?: string, last?: boolean) => await getSpiralAbyss(uid, last)
   );
 
   IPC.handle(IpcEvents.getStoreKey, (_, key: string) => store.get(key));

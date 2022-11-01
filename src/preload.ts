@@ -30,7 +30,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   getOwnedRoleList: (uid?: string) =>
     IPC.invoke(IpcEvents.getOwnedRoleList, uid),
   getPublicRoleList: () => IPC.invoke(IpcEvents.getPublicRoleList),
-  getSpiralAbyss: (uid?: string) => IPC.invoke(IpcEvents.getSpiralAbyss, uid),
+  getSpiralAbyss: (uid?: string, last?: boolean) => IPC.invoke(IpcEvents.getSpiralAbyss, uid, last),
   getRepoData: (filename: string) =>
     IPC.invoke(IpcEvents.getRepoData, filename),
   getStoreKey: (key: string) => IPC.invoke(IpcEvents.getStoreKey, key),

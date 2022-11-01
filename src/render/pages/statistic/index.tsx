@@ -17,19 +17,16 @@ import withAuth from '../../auth/withAuth';
 
 import styles from './index.less';
 
-export type TypeState = 'statistic' | 'roles' | 'abyss';
+export type TypeState = 'statistic' | 'roles' | 'abyss'| 'lastAbyss';
 
-const {
-  getGameRoleCard,
-  getOwnedRoleList,
-  getSpiralAbyss,
-} = nativeApi;
+const { getGameRoleCard, getOwnedRoleList, getSpiralAbyss } = nativeApi;
 
 const Statistic: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
 
   const [type, setType] = useState<TypeState>('statistic');
+  // const [type, setType] = useState<TypeState>('roles');
   // const [type, setType] = useState<TypeState>('abyss');
 
   const [accountUid, setAccountUid] = useState<string>('');
@@ -39,8 +36,9 @@ const Statistic: React.FC = () => {
   const [fetchCard, card, l1] = useApi(getGameRoleCard);
   const [fetchRoles, roles, l2] = useApi(getOwnedRoleList);
   const [fetchAbyss, abyss, l3] = useApi(getSpiralAbyss);
+  const [fetchLastAbyss, lastAbyss, l4] = useApi(getSpiralAbyss);
 
-  const loaded = !(l1 || l2 || l3) && card && roles && abyss;
+  const loaded = !(l1 || l2 || l3 || l4) && card && roles && abyss && lastAbyss;
 
   useEffect(() => {
     (async () => {
@@ -53,11 +51,7 @@ const Statistic: React.FC = () => {
   }, []);
 
   const updateInfo = async (uid?: string) => {
-    const results = await Promise.all([
-      fetchCard(uid),
-      fetchRoles(uid),
-      fetchAbyss(uid),
-    ]);
+    const results = await Promise.all([fetchCard(uid), fetchRoles(uid), fetchAbyss(uid), fetchLastAbyss(uid, true)]);
     return results.every(Boolean);
   };
 
@@ -92,7 +86,8 @@ const Statistic: React.FC = () => {
   const items: { label: string; value: TypeState }[] = [
     { label: '数据概览', value: 'statistic' },
     { label: '展示角色', value: 'roles' },
-    { label: '深境螺旋', value: 'abyss' },
+    { label: '本期深渊', value: 'abyss' },
+    { label: '上期深渊', value: 'lastAbyss' },
   ];
 
   const backToMyProfile = async () => {
@@ -103,26 +98,15 @@ const Statistic: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {loaded ? 
+        {loaded ? (
           <>
             <div className={styles.top}>
               <div className={styles.user}>
                 <div>{card.role.nickname}</div>
                 <div>{`Lv.${card.role.level} ${currentUid}`}</div>
               </div>
-              <SelectButton
-                className={styles.selectBtns}
-                items={items}
-                value={type}
-                changeItem={setType}
-              />
-              {accountUid !== currentUid && 
-                <Button
-                  className={styles.btn}
-                  text='返回'
-                  onClick={backToMyProfile}
-                />
-              }
+              <SelectButton className={styles.selectBtns} items={items} value={type} changeItem={setType} />
+              {accountUid !== currentUid && <Button className={styles.btn} text='返回' onClick={backToMyProfile} />}
               <div className={styles.inputArea}>
                 <Input
                   value={inputUid}
@@ -132,27 +116,20 @@ const Statistic: React.FC = () => {
                   placeholder='查询 UID'
                   onKeyDown={(e) => e.key === 'Enter' && handleQuery()}
                 />
-                <Button
-                  text={inputUid === '' ? '粘贴' : '查询'}
-                  onClick={handleQuery}
-                />
+                <Button text={inputUid === '' ? '粘贴' : '查询'} onClick={handleQuery} />
               </div>
             </div>
             <div className={styles.content}>
               {type === 'statistic' && <GameStatsTab data={card} />}
-              {type === 'roles' && <RolesTab data={roles} />}
+              {type === 'roles' && <RolesTab data={roles} uid={currentUid} />}
               {type === 'abyss' && <SpiralAbyssTab data={abyss} />}
+              {type === 'lastAbyss' && <SpiralAbyssTab data={lastAbyss} />}
             </div>
           </>
-         : 
+        ) : (
           <Loading />
-        }
-        <CircleButton
-          Icon={TiArrowBack}
-          size='middle'
-          className={styles.backBtn}
-          onClick={() => navigate('/')}
-        />
+        )}
+        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
       </div>
       {notice.holder}
     </>
