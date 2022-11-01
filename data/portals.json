@@ -16,14 +16,6 @@
     "browser": false
   },
   {
-    "name": "可莉特调",
-    "description": "方便快捷的圣遗物评分工具",
-    "url": "https://genshin.pub/relic",
-    "icon": "https://genshin.pub/images/favicon/favicon.ico",
-    "hightlight": false,
-    "browser": false
-  },
-  {
     "name": "NGA 论坛原神板块",
     "description": "游戏社区，包含各种资讯和攻略",
     "url": "https://bbs.nga.cn/thread.php?fid=650&rand=889",
