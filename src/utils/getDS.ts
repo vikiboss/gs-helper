@@ -26,7 +26,7 @@ const getDS = (query = '', body = '') => {
 // ver 2.34.1
 export const getSignDS = () => {
   const params = {
-    salt: '9nQiU3AV0rJSIBWgdynfoGMGKaklfbM7',
+    salt: 'Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29',
     t: String(Math.floor(Date.now() / 1000)),
     r: getRandomStr(6)
   };
