@@ -135,8 +135,11 @@ export interface UserData {
 export interface AppData {
   currentUid: string;
   users: UserData[];
-  settings: { alwaysOnTop: boolean; deviceId: string };
+  settings: {
+    alwaysOnTop: boolean;
+    deviceId: string;
+    gameDir: string;
+  };
 }
 
-export type ElectronWindow = Window &
-  typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
+export type ElectronWindow = Window & typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };

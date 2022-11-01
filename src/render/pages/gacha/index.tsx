@@ -66,11 +66,11 @@ const Gacha: React.FC = () => {
   const navigate = useNavigate();
 
   const [type, setType] = useState<Pages>('overview');
-  const [isWindows, setisWindows] = useState<boolean>(false);
+  const [isWindows, setisWindows] = useState<boolean>(true);
   const [uid, setUid] = useState<string>('');
   const [filter, setfilter] = useState<FilterType>(DefaultFilters);
   const [gachas, setGachas] = useState<GachaData[]>([]);
-  const [link, setLink] = useState<string | null>(null);
+  const [link, setLink] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
 
   const initGachaData = async (newUid?: string) => {
@@ -249,7 +249,7 @@ const Gacha: React.FC = () => {
               placeholder='祈愿记录链接（使用 Ctrl + V 快捷键进行粘贴）'
             />
 
-            {isWindows && link !== null && (
+            {isWindows && (
               <Button
                 className={styles.btn}
                 onClick={link ? copyLink : () => getLocalGachaUrl(true)}
@@ -258,7 +258,7 @@ const Gacha: React.FC = () => {
               />
             )}
             
-            {link !== null && <Button className={styles.btn} type='confirm' text='更新数据' onClick={updateGachaData} />}
+            <Button className={styles.btn} type='confirm' text='更新数据' onClick={updateGachaData} />
             
             <div className={styles.rightZone}>
               {gachas.length !== 0 && <SelectButton changeItem={setType} className={styles.selectBtn} items={items} value={type} />}

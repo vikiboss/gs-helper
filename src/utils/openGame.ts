@@ -13,13 +13,9 @@ import type { BaseIPCRes } from '../typings';
 
 const dirs = [
   'C:\\Program Files\\Genshin Impact\\Genshin Impact Game',
-  'C:\\Genshin Impact\\Genshin Impact Game',
   'D:\\Program Files\\Genshin Impact\\Genshin Impact Game',
-  'D:\\Genshin Impact\\Genshin Impact Game',
   'E:\\Program Files\\Genshin Impact\\Genshin Impact Game',
-  'E:\\Genshin Impact\\Genshin Impact Game',
   'F:\\Program Files\\Genshin Impact\\Genshin Impact Game',
-  'F:\\Genshin Impact\\Genshin Impact Game',
 ];
 
 /** 本地启动游戏 */
@@ -41,6 +37,7 @@ const openGame = async (): Promise<BaseIPCRes<boolean>> => {
       // 如果找不到游戏安装目录，尝试这几个默认位置
       for (const dir of dirs) {
         if (isFileExist(path.join(dir, name))) {
+          console.log('dir found in presets:', gameDir);
           gameDir = dir;
           break;
         }
@@ -48,15 +45,20 @@ const openGame = async (): Promise<BaseIPCRes<boolean>> => {
     }
 
     if (!gameDir) {
-      return { ok: false, data: false, message: '原神安装目录检测失败' };
+      return { ok: false, data: false, message: '原神安装目录检测失败，请先尝试打开一次祈愿历史记录页' };
     }
 
-    exec(name, { cwd: gameDir });
+    try {
+      console.log('exec:', path.join(gameDir, name));
+      exec(name, { cwd: gameDir });
+    } catch (e) {
+      console.log(e);
+    }
 
     return {
       ok: true,
       data: true,
-      message: '原神启动中，请稍等...',
+      message: '原神正在启动中...',
     };
   } catch (e) {
     console.log(e);
