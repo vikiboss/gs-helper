@@ -6,7 +6,7 @@ import {
   TimeRangeDayData
 } from '@nivo/calendar';
 
-import { ChartTheme } from '../../../../../../constants';
+import { ChartTheme } from '../../../../../constants';
 
 type DateRangeProp = {
   width: React.CSSProperties['width'];

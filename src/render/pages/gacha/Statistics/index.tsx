@@ -6,14 +6,14 @@ import { TimeRangeDayData } from '@nivo/calendar';
 import DateRange from './components/DateRange';
 import ItemPie from './components/ItemPie';
 import StarPie from './components/StarPie';
-import TypePie from './components/TypePie';
+import TypePie from './components/TypePie'; 
 
-import getPieData from '../../utils/getPieData';
-import filterGachaList from '../../utils/filterGachaList';
-import transformGachaDataDate from '../../utils/transformGachaDataDate';
+import getPieData from '../utils/getPieData';
+import filterGachaList from '../utils/filterGachaList';
+import transformGachaDataDate from '../utils/transformGachaDataDate';
 
-import type { GachaData, GachaItemType, GachaType, StarType } from '../../../../../typings';
-import type { PageProp } from '../..';
+import type { GachaData, GachaItemType, GachaType, StarType } from '../../../../typings';
+import type { PageProp } from '..';
 
 import styles from './index.less';
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import { CommonPieProps, MouseEventHandler, ResponsivePie } from '@nivo/pie';
 
-import { ChartTheme } from '../../../../../../constants';
-import { Colors } from '../../../utils/getPieData';
+import { ChartTheme } from '../../../../../constants';
+import { Colors } from '../../utils/getPieData';
 
-type StarPieProp = {
+type ItemPieProp = {
   width: React.CSSProperties['width'];
   height: React.CSSProperties['height'];
   style?: React.CSSProperties;
@@ -32,18 +32,17 @@ const defs = [
 ];
 
 const fill = [
-  { match: { id: '3星' }, id: 'lines' },
-  { match: { id: '4星' }, id: 'lines' },
-  { match: { id: '5星' }, id: 'lines' }
+  { match: { id: '武器' }, id: 'lines' },
+  { match: { id: '角色' }, id: 'lines' }
 ];
 
-const legends: CommonPieProps<StarPieProp['data']>['legends'] = [
+const legends: CommonPieProps<ItemPieProp['data']>['legends'] = [
   {
     anchor: 'bottom',
     direction: 'row',
     translateY: 40,
     translateX: 0,
-    itemWidth: 48,
+    itemWidth: 54,
     itemHeight: 20,
     symbolSize: 16,
     symbolShape: 'circle',
@@ -58,7 +57,7 @@ const legends: CommonPieProps<StarPieProp['data']>['legends'] = [
   }
 ];
 
-const ItemPie: React.FC<StarPieProp> = (props) => {
+const ItemPie: React.FC<ItemPieProp> = (props) => {
   const { data, style, width, height, onClick, className = '' } = props;
   return (
     <div

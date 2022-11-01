@@ -134,14 +134,14 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     const noLogin = !auth.isLogin;
-    const isPublicPath = ['/gacha', '/strategy', '/daily'].includes(path);
+    const isPublicPath = ['/gacha', '/strategy', '/calendar'].includes(path);
     const noAuth = noLogin && !isPublicPath;
 
     if (noAuth) {
       return notice.warning({ message: '这个功能需要登录才能正常使用' });
     }
 
-    const dailyNotOpen = path === '/daily' && user.level < 10;
+    const dailyNotOpen = path === '/calendar' && user.level < 10;
 
     if (dailyNotOpen) {
       return notice.warning({ message: '旅行者还没有达到札记开放等级（10级）' });
@@ -164,7 +164,7 @@ const Home: React.FC = () => {
     {
       name: '材料日历',
       Icon: BiNotepad,
-      handler: () => handlePageSwitch('/daily'),
+      handler: () => handlePageSwitch('/calendar'),
     },
     {
       name: '小窗攻略',

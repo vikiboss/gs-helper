@@ -1,21 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import cn from 'classnames';
-import { TiArrowBack } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
 
-import CircleButton from '../../components/CircleButton';
-import Loading from '../../components/Loading';
-import nativeApi from '../../utils/nativeApi';
-import useApi from '../../hooks/useApi';
-import useNotice from '../../hooks/useNotice';
-
-import type { CalenderEvent } from '../../../services/getCalenderList';
+import type { Notice } from '../../../hooks/useNotice';
+import type { CalenderEvent } from '../../../../services/getCalenderList';
 
 import styles from './index.less';
-
 type Type = 'roles' | 'weapons' | 'materials';
 
-const WeekMap = ['日', '一', '二', '三', '四', '五', '六'];
+interface DailyProp {
+  cals: CalenderEvent[];
+  notice: Notice;
+}
+
+const WeekMap = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 
 const Types: { title: string; name: Type }[] = [
   { title: '按素材查看', name: 'materials' },
@@ -70,23 +67,10 @@ const getMaterialList = (list: CalenderEvent[]) => {
   return getUniqueArray(materials, 'title');
 };
 
-const Daily: React.FC = () => {
+const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
   const todayWeek = new Date().getDay();
-  const navigate = useNavigate();
-  const notice = useNotice();
   const [type, setType] = useState<Type>('roles');
   const [week, setWeek] = useState<number>(todayWeek);
-  const [fetch, cals = [], loading, err] = useApi<CalenderEvent[]>(nativeApi.getCalenderList);
-
-  const fetchData = async () => {
-    await fetch();
-
-    if (err) {
-      notice.faild({ message: err });
-    }
-  };
-
-  useEffect(() => void fetchData(), []);
 
   // 角色
   const roles = cals.filter((e) => e.break_type === '2');
@@ -119,62 +103,44 @@ const Daily: React.FC = () => {
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : '');
 
   return (
-    <>
-      <div className={styles.container}>
-        {!loading ? (
-          <>
-            <div className={styles.top}>
-              <div className={styles.title}>材料日历</div>
-            </div>
-            <div className={styles.content}>
-              <div className={styles.contentTop}>
-                <div className={styles.weeks}>
-                  <div className={todayClass} onClick={() => setWeek(todayWeek)}>
-                    今日
-                  </div>
-                  <span>|</span>
-                  {WeekMap.map((e, i) => {
-                    const className = cn(styles.btn, i === week ? styles.active : '');
-                    return (
-                      <div key={e} className={className} onClick={() => setWeek(i)}>
-                        周{e}
-                      </div>
-                    );
-                  })}
-                </div>
-                <div className={styles.types}>
-                  {Types.map((e) => {
-                    const className = cn(styles.btn, e.name === type ? styles.active : '');
-                    return (
-                      <div key={e.name} className={className} onClick={() => setType(e.name)}>
-                        {e.title}
-                      </div>
-                    );
-                  })}
-                </div>
+    <div className={styles.content}>
+      <div className={styles.contentTop}>
+        <div className={styles.weeks}>
+          <div className={todayClass} onClick={() => setWeek(todayWeek)}>
+            今日
+          </div>
+          <span>|</span>
+          {WeekMap.map((e, i) => {
+            const className = cn(styles.btn, i === week ? styles.active : '');
+            return (
+              <div key={e} className={className} onClick={() => setWeek(i)}>
+                {e}
               </div>
-              <div className={styles.main}>
-                {list.map((e) => (
-                  <div key={e.title} onClick={() => handleItemClick(e)}>
-                    <img src={e.img_url} />
-                    <span>{e.title}</span>
-                  </div>
-                ))}
+            );
+          })}
+        </div>
+        <div className={styles.types}>
+          {Types.map((e) => {
+            const className = cn(styles.btn, e.name === type ? styles.active : '');
+            return (
+              <div key={e.name} className={className} onClick={() => setType(e.name)}>
+                {e.title}
               </div>
-              <span className={styles.tip}>
-                ※ {Tips[week]}秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。
-              </span>
-            </div>
-          </>
-        ) : (
-          <Loading />
-        )}
-
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
+            );
+          })}
+        </div>
       </div>
-      {notice.holder}
-    </>
+      <div className={styles.main}>
+        {list.map((e) => (
+          <div key={e.title} onClick={() => handleItemClick(e)}>
+            <img src={e.img_url} />
+            <span>{e.title}</span>
+          </div>
+        ))}
+      </div>
+      <span className={styles.tip}>※ {Tips[week]}秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。</span>
+    </div>
   );
 };
 
-export default Daily;
+export default DailyMaterial;
