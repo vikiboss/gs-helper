@@ -23,7 +23,7 @@ const getDS = (query = '', body = '') => {
   return DS;
 };
 
-// ver 2.34.1
+// ver 2.37.1
 export const getSignDS = () => {
   const params = {
     salt: 'Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29',

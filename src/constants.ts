@@ -39,7 +39,7 @@ export const IpcEvents: Record<string, string> = {
 };
 
 export const EXPOSED_API_FROM_ELECTRON = 'nativeApi';
-export const BBS_VERSION = '2.34.1';
+export const BBS_VERSION = '2.37.1';
 export const UPDATE_INTERVAL = 60000;
 
 export const AppName = {
@@ -52,12 +52,12 @@ export const GAME_NAME: Record<string, string> = {
   en: 'Genshin Impact',
 };
 
-export const APP_USER_AGENT_BBS = `Mozilla/5.0 miHoYoBBS/${BBS_VERSION}`;
+export const APP_USER_AGENT_BBS = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${BBS_VERSION}`;
 export const APP_USER_AGENT_DESKTOP = 'Mozilla/5.0 GenshinHelper/';
 export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/';
 export const GAME_BIZ = 'hk4e_cn';
 
-export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com';
+export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html';
 export const LINK_GITHUB_REPO = 'https://github.com/vikiboss/genshin-helper';
 export const LINK_MIHOYO_BBS_LOGIN = 'https://m.bbs.mihoyo.com/ys/#/login';
 export const LINK_GENSHIN_MAP = `${LINK_BBS_REFERER}/ys/app/interactive-map`;
@@ -68,8 +68,7 @@ export const API_TAKUMI_RECORD = 'https://api-takumi-record.mihoyo.com';
 export const API_HK4E = 'https://hk4e-api.mihoyo.com';
 export const API_STATIC = 'https://api-static.mihoyo.com';
 export const API_YS_CONTENT = 'https://ys.mihoyo.com/content';
-export const API_REPO_DATA =
-  'https://raw.fastgit.org/vikiboss/genshin-helper/main/data';
+export const API_REPO_DATA = 'https://raw.fastgit.org/vikiboss/genshin-helper/main/data';
 
 export const ElementTypes: Record<string, string> = {
   Cryo: '冰',
