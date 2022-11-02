@@ -53,7 +53,6 @@ dependencies:
   classnames: 2.3.2
   dayjs: 1.11.6
   electron-store: 8.1.0
-  json-schema-typed: 8.0.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
@@ -78,6 +77,7 @@ devDependencies:
   eslint-plugin-import: 2.26.0_yxvyo6v5zwzggfecalzmx54lre
   eslint-plugin-react: 7.31.10_eslint@8.26.0
   fork-ts-checker-webpack-plugin: 6.5.2_t64lpihqtpt5ru34uwm4f72xee
+  json-schema-typed: 8.0.1
   less: 4.1.3
   less-loader: 10.2.0_less@4.1.3+webpack@5.74.0
   node-loader: 2.0.0_webpack@5.74.0
@@ -4621,7 +4621,7 @@ packages:
 
   /json-schema-typed/8.0.1:
     resolution: {integrity: sha512-XQmWYj2Sm4kn4WeTYvmpKEbyPsL7nBsb647c7pMe6l02/yx2+Jfc4dT6UZkEXnIUb5LhD55r2HPsJ1milQ4rDg==}
-    dev: false
+    dev: true
 
   /json-schema/0.4.0:
     resolution: {integrity: sha512-es94M3nTIfsEPisRafak+HDLfHXnKBhV3vU5eqPcS3flIWqcxJWgXHXiey3YrpaNsanY5ei1VoYEbOzijuq9BA==}
