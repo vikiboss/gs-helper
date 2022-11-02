@@ -1,37 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { TiArrowBack } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import Button from '../../components/Button';
+import About from './About';
 import CircleButton from '../../components/CircleButton';
-import nativeApi from '../../utils/nativeApi';
-import useAuth from '../../hooks/useAuth';
+import General from './General';
+import SelectButton from '../../components/SelectButton';
 import useNotice from '../../hooks/useNotice';
 
 import styles from './index.less';
 
+interface LocationState {
+  tab?:'general' | 'about' 
+}
+
 const Setting: React.FC = () => {
-  const navigate = useNavigate();
-  const auth = useAuth();
   const notice = useNotice();
+  const navigate = useNavigate();
+  const state = useLocation().state as LocationState;
+  const [tab, setTab] = useState<LocationState['tab']>(state?.tab ?? 'general');
 
-  const handleClearData = async () => {
-    const isOK = await nativeApi.clearData();
-
-    if (isOK) {
-      auth.logout(undefined, true);
-    }
-
-    notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' });
-  };
+  const tabs = [
+    { label: '通用', value: 'general' },
+    { label: '关于', value: 'about' },
+  ];
 
   return (
     <>
       <div className={styles.container}>
-        <div className={styles.welcome}>持续开发中，敬请期待</div>
-        <div className={styles.clearCache}>
-          <Button text='重置配置文件' onClick={handleClearData} />
-          <span>清空本地所有账号的 Cookie 数据和配置文件（不包括祈愿记录数据），清空后需要重新登录，请谨慎操作！</span>
+        <div className={styles.top}>
+          <SelectButton value={tab} changeItem={setTab} items={tabs} />
+        </div>
+        <div className={styles.content}>
+          {tab === 'general' && <General notice={notice} />}
+          {tab === 'about' && <About />}
         </div>
         <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
       </div>

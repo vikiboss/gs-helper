@@ -3,7 +3,7 @@ import { NavigateOptions, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from 'react-icons/ai';
-import { BiNotepad, BiInfoCircle, BiMap } from 'react-icons/bi';
+import { BiNotepad,  BiMap } from 'react-icons/bi';
 import { FaRegCompass } from 'react-icons/fa';
 import { HiOutlineChartPie, HiCubeTransparent } from 'react-icons/hi';
 import { IoMdRefresh } from 'react-icons/io';
@@ -78,7 +78,7 @@ const Home: React.FC = () => {
     if (event) {
       const now = new Date();
       const WeekMap = ['日', '一', '二', '三', '四', '五', '六'];
-      const timeStr = `${D(now).format('M月D日')} 星期${WeekMap[now.getDay()]}`;
+      const timeStr = `${D(now).format('YYYY年M月D日')} 星期${WeekMap[now.getDay()]}`;
       return `${timeStr} ${event.title}`;
     } else {
       const hitokoto = await nativeApi.getHitokoto();
@@ -261,11 +261,11 @@ const Home: React.FC = () => {
               <IoSettingsOutline size={20} />
               <span>设置</span>
             </div>
-            |
+            {/* |
             <div className={styles.topBtn} onClick={() => safelyNavigate('/about')}>
               <BiInfoCircle size={20} />
               <span>关于</span>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className={styles.content}>
@@ -283,7 +283,7 @@ const Home: React.FC = () => {
                 </div>
               ))}
           </div>
-          <div className={styles.footer} onClick={() => safelyNavigate('/about')}>
+          <div className={styles.footer} onClick={() => safelyNavigate('/setting',{ state: { tab:'about' } })}>
             「原神助手」 使用 MIT 协议开源，数据来源于 「米游社」，可能存在延迟，请以游戏内为准，详情请参阅 「关于」 页面。
           </div>
         </div>

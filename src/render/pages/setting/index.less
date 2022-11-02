@@ -3,32 +3,30 @@
 
 .container {
   .ani-show-right();
-  .flex-center-column();
+  .flex-column();
 
-  flex: 1;
+  height: 100%;
   position: relative;
 
-  .welcome {
-    font-size: 20px;
+  .top {
+    .ani-show-top();
+    .flex-center();
+
+    height: 82px;
+    background-color: @color-bg;
+    position: relative;
   }
 
-  .clearCache {
-    align-items: center;
-    bottom: 40px;
-    display: flex;
-    left: 40px;
-    position: absolute;
+  .content {
+    .flex-center-column();
 
-    & > span {
-      color: @color-second;
-      font-size: 14px;
-      margin-left: 16px;
-    }
+    padding: 0px 20px 20px 20px;
   }
 
   .back-btn {
     left: 20px;
     position: absolute;
     top: 20px;
+    z-index: 10;
   }
 }

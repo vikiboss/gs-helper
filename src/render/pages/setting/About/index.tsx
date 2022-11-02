@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { TiArrowBack } from 'react-icons/ti';
 
-import { LINK_GITHUB_REPO } from '../../../constants';
-import CircleButton from '../../components/CircleButton';
-import groupQRCode from '../../../assets/group-qrcode.png';
-import nativeApi from '../../utils/nativeApi';
-import wxRewardCode from '../../../assets/wx-reward.jpg';
+import { LINK_GITHUB_REPO } from '../../../../constants';
+import groupQRCode from '../../../../assets/group-qrcode.png';
+import nativeApi from '../../../utils/nativeApi';
+import wxRewardCode from '../../../../assets/wx-reward.jpg';
 
-import type { AppInfo } from '../../../typings';
+import type { AppInfo } from '../../../../typings';
 
 import styles from './index.less';
 
@@ -26,7 +24,6 @@ const LINK_REACT = 'https://reactjs.org';
 const LINK_MIHOYO = 'https://www.mihoyo.com/';
 
 const About: React.FC = () => {
-  const navigate = useNavigate();
   const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({});
 
   useEffect(() => {
@@ -66,7 +63,6 @@ const About: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>关于</div>
       <div className={styles.declaration}>
         {P1}{P2}{P3}
       </div>
@@ -104,12 +100,6 @@ const About: React.FC = () => {
         </div>
       </div>
       <div className={styles.thank}>{'※ 开发不易 ❤ 感谢支持 ※'}</div>
-      <CircleButton
-        Icon={TiArrowBack}
-        size='middle'
-        className={styles.backBtn}
-        onClick={() => navigate('/')}
-      />
     </div>
   );
 };
