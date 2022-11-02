@@ -51,8 +51,8 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
 
       <div className={styles.bossItem}>
         <div>
-          <img src={list[idx].icon} width='20px' />
-          <span>{list[idx].name}</span>
+          <img src={list[idx].icon} />
+          {/* <span>{list[idx].name}</span> */}
         </div>
         <div>
           {list[idx].materials.map((e) => (
