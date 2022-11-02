@@ -3,12 +3,12 @@ import { NavigateOptions, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from 'react-icons/ai';
-import { BiNotepad, BiInfoCircle } from 'react-icons/bi';
-import { FaRegMap, FaRegCompass, FaDoorOpen } from 'react-icons/fa';
+import { BiNotepad, BiInfoCircle, BiMap } from 'react-icons/bi';
+import { FaRegCompass } from 'react-icons/fa';
 import { HiOutlineChartPie, HiCubeTransparent } from 'react-icons/hi';
 import { IoMdRefresh } from 'react-icons/io';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md';
+import { MdOutlineLocalFireDepartment, MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md';
 
 import { LINK_GENSHIN_MAP, UPDATE_INTERVAL } from '../../../constants';
 import Button from '../../components/Button';
@@ -117,13 +117,13 @@ const Home: React.FC = () => {
 
     await Promise.all([getUser(), getNote(), getSign()]);
 
-    if (done && (!user?.game_uid || !note?.max_resin || !sign?.today)) {
+    if (done && (!user?.game_uid && !note?.max_resin && !sign?.today)) {
       const currentUser = await nativeApi.getCurrentUser();
       auth.logout(currentUser.uid);
       return navigate('/login', { state: { isExpired: true } });
     }
 
-    if (isUserTrriger) {
+    if (!loading && user?.game_uid && note?.max_resin && sign?.today && isUserTrriger) {
       notice.success({ message: '游戏状态更新成功' });
     }
 
@@ -173,12 +173,12 @@ const Home: React.FC = () => {
     },
     {
       name: '大地图',
-      Icon: FaRegMap,
+      Icon: BiMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP),
     },
     {
       name: '传送门',
-      Icon: FaDoorOpen,
+      Icon: MdOutlineLocalFireDepartment,
       handler: () => handlePageSwitch('/portal'),
     },
     // {
