@@ -73,7 +73,7 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
           ))}
         </div>
       </div>
-      <span className={styles.tip}>※ 秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。</span>
+      <span className={styles.tip}>※ 每周有三次挑战「值得铭记的强敌」并在收取奖励时树脂消耗减半的次数，不同的角色升级高级天赋时需要这些对应的周本材料</span>
     </div>
   );
 };
