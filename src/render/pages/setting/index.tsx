@@ -11,7 +11,7 @@ import useNotice from '../../hooks/useNotice';
 import styles from './index.less';
 
 interface LocationState {
-  tab?:'general' | 'about' 
+  tab?: 'general' | 'about';
 }
 
 const Setting: React.FC = () => {
@@ -21,8 +21,8 @@ const Setting: React.FC = () => {
   const [tab, setTab] = useState<LocationState['tab']>(state?.tab ?? 'general');
 
   const tabs = [
-    { label: '通用', value: 'general' },
-    { label: '关于', value: 'about' },
+    { label: '通用设置', value: 'general' },
+    { label: '关于原神助手', value: 'about' },
   ];
 
   return (
@@ -33,7 +33,7 @@ const Setting: React.FC = () => {
         </div>
         <div className={styles.content}>
           {tab === 'general' && <General notice={notice} />}
-          {tab === 'about' && <About />}
+          {tab === 'about' && <About notice={notice} />}
         </div>
         <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
       </div>

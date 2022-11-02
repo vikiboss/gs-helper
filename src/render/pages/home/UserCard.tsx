@@ -239,7 +239,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     <>
       <div className={styles.userCard}>
         <div className={styles.avatar} onDoubleClick={handleOpenGame}>
-          <img src={avatar} className={styles.avatarImage} title='双击图标快速启动原神' />
+          <img src={avatar} className={styles.avatarImage} title='双击图标启动原神' />
         </div>
         <div className={styles.userInfo}>
           {infos.length &&
