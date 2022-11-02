@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import cn from 'classnames';
 import { TiArrowBack } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
 
@@ -8,13 +7,13 @@ import BounceNumber from '../../components/BounceNumber';
 import CircleButton from '../../components/CircleButton';
 import getGreetingMsg from '../../../utils/getGreetingMsg';
 import Loading from '../../components/Loading';
+import mora from '../../../assets/mora.png';
+import nativeApi from '../../utils/nativeApi';
 import Pie from './Pie';
+import primogem from '../../../assets/primogem.png';
+import SelectButton from '../../components/SelectButton';
 import useNotice from '../../hooks/useNotice';
 import withAuth from '../../auth/withAuth';
-
-import mora from '../../../assets/mora.png';
-import primogem from '../../../assets/primogem.png';
-import nativeApi from '../../utils/nativeApi';
 
 import type { MonthInfo } from '../../../services/getMonthInfo';
 
@@ -71,7 +70,7 @@ const Month: React.FC = () => {
         if (res) data.push(res);
         else notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' });
       }
-      
+
       setMonthInfos(data);
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo');
@@ -88,7 +87,7 @@ const Month: React.FC = () => {
   const monthData = monthInfo.month_data;
   const pSign = monthData.primogems_rate >= 0;
   const mSign = monthData.mora_rate >= 0;
-  
+
   const greeting = getGreetingMsg(undefined, true);
 
   return (
@@ -123,18 +122,16 @@ const Month: React.FC = () => {
               </div>
 
               <div className={styles.filter}>
-                {initData.optional_month.length > 1 && <span>按月份查看：</span>}
-                {initData.optional_month.length === 0 && <span>暂无数据</span>}
-                {initData.optional_month.map((e) => (
-                  <div key={e} onClick={() => setMonth(e)} className={cn(styles.btn, month === Number(e) ? styles.active : '')}>
-                    {e}月
-                  </div>
-                ))}
+                {initData.optional_month.length === 0 ? (
+                  <span>暂无数据</span>
+                ) : (
+                  <SelectButton value={month} changeItem={setMonth} items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))} />
+                )}
               </div>
 
               <div className={styles.monthContent}>
                 <div>
-                  <div className={styles.monthTitle}>{monthInfo.data_month}月札记</div>
+                  <div className={styles.monthTitle}>{monthInfo.data_month}月冒险札记</div>
                   <div className={styles.monthDesc}>当月累计获取资源</div>
                   <div className={styles.monthItem}>
                     <img src={primogem} />
