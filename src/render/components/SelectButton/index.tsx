@@ -15,6 +15,7 @@ export interface SelectButtonProp {
   height?: number;
   items: SelectItem[];
   style?: React.CSSProperties;
+  selectedStyle?: React.CSSProperties;
   value?: string | number;
   width?: number;
 }
@@ -26,6 +27,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
   height,
   items,
   style,
+  selectedStyle,
   value,
   width
 }) => {
@@ -42,6 +44,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
       {items.map((e) => 
         <div
           key={e.value}
+          style={e.value === value ? selectedStyle : undefined}
           onClick={changeItem && changeItem.bind(null, e.value)}
           className={e.value === value ? styles.selected : ''}
         >

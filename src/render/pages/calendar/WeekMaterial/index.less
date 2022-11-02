@@ -3,52 +3,58 @@
 
 .week-material {
   .ani-show-right();
-  .flex-center-x-wrap();
+  .flex-center-x-column-wrap();
 
-  width: 100%;
-  height: 440px;
-  overflow: auto;
+  height: 428px;
+  overflow: hidden;
+  padding: 0 24px 32px 24px;
+  position: relative;
+  width: calc(100vw - 48px);
 
-  &::-webkit-scrollbar {
-    display: none;
+  .top {
+    .ani-show-top();
   }
 
   img {
     .transition();
+    .shadow();
 
-    width: 32px;
+    width: 48px;
     height: $width;
     border-radius: 4px;
+    object-fit: cover;
 
     &:hover {
-      transform: scale(1.03);
+      .shadow-deep();
     }
   }
 
   .boss-item {
+    .shadow-shallow();
     .transition();
     .flex-center-x-column();
 
-    border: 2px solid @color-second;
+    border: 1px solid #d1d1d1;
     border-radius: 8px;
-    margin: 0 4px 16px 4px;
-    padding-top: 8px;
+    margin-top: 20px;
+    padding-top: 12px;
 
     &:hover {
-      border-color: @color-accent;
-      background-color: @color-bg-accent;
+      .shadow();
+
+      transform: translateY(-1px);
     }
 
     & > div:first-child {
       .flex-center();
 
       width: 100%;
-      padding-bottom: 6px;
-      border-bottom: 2px solid @color-second;
+      padding-bottom: 12px;
+      border-bottom: 2px solid @color-bg-second;
 
       span {
-        margin-left: 8px;
-        font-size: 20px;
+        margin-left: 12px;
+        font-size: 22px;
       }
     }
 
@@ -65,11 +71,11 @@
         padding: 8px 0 12px 0;
 
         &:first-child {
-          border-right: 2px solid @color-second;
+          border-right: 2px solid @color-bg-second;
         }
 
         &:last-child {
-          border-left: 2px solid @color-second;
+          border-left: 2px solid @color-bg-second;
         }
 
         & > div:first-child {
@@ -80,26 +86,39 @@
           margin-top: 4px;
 
           span {
-            margin-left: 6px;
+            margin-left: 12px;
+            font-size: 18px;
           }
         }
 
         & > div:nth-child(2) {
-          .flex-center-x-wrap();
+          .flex-wrap();
 
           flex: 1;
+          padding-left: 6px;
 
           .role {
-            .flex-column();
+            .flex-center-x-column();
 
             img {
-              width: 60px;
+              width: 84px;
               height: $width;
-              margin: 3px;
+              border-radius: 6px;
+              margin: 4px;
             }
           }
         }
       }
     }
+  }
+
+  .tip {
+    .ani-show-bottom();
+
+    bottom: 0;
+    color: @color-second;
+    font-size: 14px;
+    left: 30px;
+    position: absolute;
   }
 }

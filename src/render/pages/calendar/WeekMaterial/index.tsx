@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SelectButton from '../../../components/SelectButton';
 
 import type { Notice } from '../../../hooks/useNotice';
 
@@ -18,6 +19,8 @@ interface WeekMaterial extends WeekItem {
 }
 
 const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
+  const [idx, setIdx] = useState(0);
+
   // 所有材料对应的周本 Boss（包含重复项）
   const allBosses = roles.map((e) => e.material.talent.advance.domain);
   // Boss 去重
@@ -29,43 +32,48 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
   const materials = allMaterials.filter((e, i) => allMaterials.findIndex((f) => f.name === e.name) === i);
 
   const list: WeekBoss[] = bosses.map((e) => {
-    const matchMaterials: WeekMaterial[] = materials.filter((f)=>f.domain.name  === e.name).map((e) => {
-      const matchRoles = roles.filter((f) => f.material.talent.advance.name === e.name);
+    const matchMaterials: WeekMaterial[] = materials
+      .filter((f) => f.domain.name === e.name)
+      .map((e) => {
+        const matchRoles = roles.filter((f) => f.material.talent.advance.name === e.name);
 
-      return { ...e, roles: matchRoles };
-    });
+        return { ...e, roles: matchRoles };
+      });
 
     return { ...e, materials: matchMaterials };
   });
 
   return (
     <div className={styles.weekMaterial}>
-      {list.map((e) => (
-        <div key={e.name} className={styles.bossItem}>
-          <div>
-            <img src={e.icon} width='20px' />
-            <span>{e.name}</span>
-          </div>
-          <div>
-            {e.materials.map((e) => (
-              <div key={e.name} className={styles.materialItem}>
-                <div>
-                  <img src={e.icon} />
-                  <span>{e.name}</span>
-                </div>
-                <div>
-                  {e.roles.map((e) => (
-                    <div key={e.name} className={styles.role}>
-                      <img src={e.avatar.full} title={e.name} />
-                      {/* <span>{e.name}</span> */}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className={styles.top}>
+        <SelectButton style={{ height: '28px' }} value={idx} changeItem={setIdx} items={list.map((e, i) => ({ label: e.name, value: i }))} />
+      </div>
+
+      <div className={styles.bossItem}>
+        <div>
+          <img src={list[idx].icon} width='20px' />
+          <span>{list[idx].name}</span>
         </div>
-      ))}
+        <div>
+          {list[idx].materials.map((e) => (
+            <div key={e.name} className={styles.materialItem}>
+              <div>
+                <img src={e.icon} />
+                <span>{e.name}</span>
+              </div>
+              <div>
+                {e.roles.map((e) => (
+                  <div key={e.name} className={styles.role}>
+                    <img src={e.avatar.full} title={e.name} />
+                    <span>{e.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <span className={styles.tip}>※ 秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。</span>
     </div>
   );
 };
