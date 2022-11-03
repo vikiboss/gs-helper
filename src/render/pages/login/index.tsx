@@ -125,7 +125,7 @@ const Login: React.FC<LoginProp> = (props) => {
           </div>
           <div className={styles.btns}>
             <Button type='confirm' size='middle' text='登录米游社' onClick={handleLogin} />
-            <Button type='confirm' size='middle' text='验证账号' onClick={handleRefresh} />
+            <Button size='middle' text='验证账号' onClick={handleRefresh} />
           </div>
           {users.length > 0 && (
             <div className={styles.localUser}>

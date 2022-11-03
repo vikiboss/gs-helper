@@ -179,7 +179,7 @@ const Home: React.FC = () => {
       handler: () => handlePageSwitch('/strategy'),
     },
     {
-      name: '大地图',
+      name: '小窗地图',
       Icon: BiMap,
       handler: () => handleWindowOpen(LINK_GENSHIN_MAP),
     },
