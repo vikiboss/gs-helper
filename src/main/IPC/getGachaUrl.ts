@@ -2,9 +2,9 @@ import { app } from 'electron';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import { isDev, isAppleDevice } from '../main';
-import { isFileExist } from '../utils/nodeUtils';
-import getGameDir from './getGameDir';
+import { isDev, isAppleDevice } from '..';
+import { isFileExist } from '../../utils/nodeUtils';
+import getGameDir from '../../utils/getGameDir';
 
 /** 获取原神游戏在本地缓存里的祈愿记录链接，只有在游戏里打开过祈愿记录页面，缓存里才会有祈愿链接 */
 const getGachaUrl = async () => {

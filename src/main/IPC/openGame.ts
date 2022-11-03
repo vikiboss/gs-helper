@@ -5,11 +5,11 @@ import { app } from 'electron';
 
 const exec = util.promisify(child_process.exec);
 
-import { isAppleDevice } from '../main';
-import { isFileExist } from './nodeUtils';
-import getGameDir from './getGameDir';
+import { isAppleDevice } from '..';
+import { isFileExist } from '../../utils/nodeUtils';
+import getGameDir from '../../utils/getGameDir';
 
-import type { BaseIPCRes } from '../typings';
+import type { BaseIPCRes } from '../../typings';
 
 const dirs = [
   'C:\\Program Files\\Genshin Impact\\Genshin Impact Game',

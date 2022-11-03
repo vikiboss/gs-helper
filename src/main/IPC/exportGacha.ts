@@ -4,7 +4,7 @@ import fs from 'fs/promises';
 
 import { mainWin } from '..';
 import { AppName } from '../../constants';
-import getLocalGachaDatas from '../../utils/getLocalGachaDatas';
+import getLocalGachaDatas from './getLocalGachaDatas';
 
 import type { BaseIPCRes, GachaData } from '../../typings';
 

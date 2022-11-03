@@ -8,7 +8,7 @@ import getCurrentUser from './getCurrentUser';
 import handleGetGachaListByUrl from './getGachaListByUrl';
 import importConfig from './importGacha';
 import loginViaBBS from './loginByBBS';
-import openGame from '../../utils/openGame';
+import openGame from './openGame';
 import openWindow from './openWindow';
 import doBBSSign from '../../services/doBBSSign';
 import getBBSSignData from '../../services/getBBSSignData';
@@ -25,9 +25,9 @@ import getOwnedRoleList from '../../services/getOwnedRoleList';
 import getPublicRoleList from '../../services/getPublicRoleList';
 import getSpiralAbyss from '../../services/getSpiralAbyss';
 import getRepoData from '../../services/getRepoData';
-import clearData from '../../utils/clearData';
-import getGachaUrl from '../../utils/getGachaUrl';
-import getLocalGachaDatas from '../../utils/getLocalGachaDatas';
+import clearData from './clearData';
+import getGachaUrl from './getGachaUrl';
+import getLocalGachaDatas from './getLocalGachaDatas';
 
 import type { AppInfo } from '../../typings';
 

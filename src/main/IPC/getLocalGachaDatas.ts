@@ -2,10 +2,10 @@ import fs from 'fs';
 import path from 'path';
 import { app } from 'electron';
 
-import { AppName } from '../constants';
-import { isDirExist } from './nodeUtils';
+import { AppName } from '../../constants';
+import { isDirExist } from '../../utils/nodeUtils';
 
-import type { GachaData } from '../typings';
+import type { GachaData } from '../../typings';
 
 // 尝试获取本地所有祈愿数据
 const getLocalGachaDatas = (): GachaData[] => {

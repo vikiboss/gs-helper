@@ -2,8 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { app } from 'electron';
 
-import { isFileExist } from './nodeUtils';
-import { DefaultAppData } from '../main/initStore';
+import { isFileExist } from '../../utils/nodeUtils';
+import { DefaultAppData } from '../initStore';
 
 const clearData = async () => {
   // 获取当前的软件目录
