@@ -88,7 +88,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
         <div className={styles.codeZones}>
           <div className={styles.codeZone}>
             <img className={styles.code} src={groupQRCode} />
-            <div>QQ 交流群（快进来玩！）</div>
+            <div>QQ交流群（快进来玩！）</div>
           </div>
           <div className={styles.codeZone}>
             <img className={styles.code} src={wxRewardCode} />
