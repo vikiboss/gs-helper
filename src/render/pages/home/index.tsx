@@ -124,18 +124,19 @@ const Home: React.FC = () => {
 
     await Promise.all([getUser(), getNote(), getSign()]);
 
-    if (done && !user?.game_uid && !note?.max_resin && !sign?.today) {
-      const currentUser = await nativeApi.getCurrentUser();
-      auth.logout(currentUser.uid);
-      return navigate('/login', { state: { isExpired: true } });
-    }
+    const hasError = !user?.game_uid || !note?.max_resin || !sign?.today;
+    const isExpired = !user?.game_uid && !note?.max_resin && !sign?.today;
 
-    if (!loading && user?.game_uid && note?.max_resin && sign?.today && isUserTrriger) {
-      notice.success({ message: '游戏状态更新成功' });
-    }
-
-    if (error) {
-      notice.faild({ message: error });
+    if (done) {
+      if (isExpired) {
+        const currentUser = await nativeApi.getCurrentUser();
+        auth.logout(currentUser.uid);
+        return navigate('/login', { state: { isExpired: true } });
+      } else if (hasError || error) {
+        notice.faild({ message: '米游社数据请求失败，请重试。若多次出现此条消息，请联系开发者反馈。' });
+      } else {
+        notice.success({ message: '游戏状态更新成功' });
+      }
     }
   };
 
