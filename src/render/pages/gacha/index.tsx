@@ -18,7 +18,6 @@ import useNotice, { type Notice } from '../../hooks/useNotice';
 import type { GachaData, GachaType, GachaItemType, StarType } from '../../../typings';
 
 import styles from './index.less';
-
 const DefaultGachaData: GachaData = {
   info: {
     uid: '',

@@ -53,6 +53,7 @@ const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AW
 
 const About: React.FC<AboutProp> = ({ notice }) => {
   const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({});
+  const [show, setShow] = useState(false);
   const [request, repoInfo, loading] = useApi<RepoInfo>(nativeApi.getRepoData);
 
   const init = async () => {
@@ -75,10 +76,14 @@ const About: React.FC<AboutProp> = ({ notice }) => {
       if (latestVersion === version) {
         notice.success({ message: '恭喜，当前使用版本为最新版本。' });
       } else {
-        notice.success({ message: `新版本：${latestVersion} 已发布，请前往项目主页或者交流群下载。` });
+        notice.success({ message: `新版本 v${latestVersion} 已发布，请前往项目主页或交流群下载。` });
+        setShow(true);
       }
     }, 600);
+  };
 
+  const goDownloadPage = () => {
+    open(LINK_GITHUB_REPO + '#下载');
   };
 
   const appName = appInfo?.zhName ?? '原神助手';
@@ -123,7 +128,13 @@ const About: React.FC<AboutProp> = ({ notice }) => {
           <div className={styles.bottom}>
             <div className={styles.items}>
               <div className={styles.item}>
-                ※ 当前版本：v{version} Beta （{Link(undefined, '点此检查更新', checkUpdate)}）
+                ※ 当前版本：v{version} Beta {Link(undefined, '检查更新', checkUpdate)}
+                {show && (
+                  <>
+                    <span> | </span>
+                    {Link(undefined, `前往下载 v${latestVersion} 版本`, goDownloadPage)}
+                  </>
+                )}
               </div>
               <div className={styles.item}>
                 ※ 开发者：{Link(LINK_AUTHOR_GITHUB, 'Viki')}
