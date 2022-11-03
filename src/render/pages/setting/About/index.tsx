@@ -10,6 +10,7 @@ import type { AppInfo } from '../../../../typings';
 import type { Notice } from '../../../hooks/useNotice';
 
 import styles from './index.less';
+import Loading from '../../../components/Loading';
 
 interface AboutProp {
   notice: Notice;
@@ -52,7 +53,7 @@ const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AW
 
 const About: React.FC<AboutProp> = ({ notice }) => {
   const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({});
-  const [request, repoInfo] = useApi<RepoInfo>(nativeApi.getRepoData);
+  const [request, repoInfo, loading] = useApi<RepoInfo>(nativeApi.getRepoData);
 
   const init = async () => {
     setAppInfo(await nativeApi.getAppInfo());
@@ -61,19 +62,30 @@ const About: React.FC<AboutProp> = ({ notice }) => {
 
   useEffect(() => void init(), []);
 
-  function Link(href: string, text: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
+  function Link(href: string, text = '', onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
     return <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text} `}</a>;
   }
 
   const checkUpdate: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault();
+
     notice.info({ message: '正在检查更新，请稍后...', autoHide: false });
+
+    setTimeout(() => {
+      if (latestVersion === version) {
+        notice.success({ message: '恭喜，当前使用版本为最新版本。' });
+      } else {
+        notice.success({ message: `新版本：${latestVersion} 已发布，请前往项目主页或者交流群下载。` });
+      }
+    }, 600);
+
   };
 
   const appName = appInfo?.zhName ?? '原神助手';
   const version = appInfo?.version ?? '未知';
   const group = repoInfo?.qrcode?.group ?? GROUP;
   const award = repoInfo?.qrcode?.award ?? AWARD;
+  const latestVersion = repoInfo?.version ?? '';
 
   const P1 = (
     <p>
@@ -101,39 +113,45 @@ const About: React.FC<AboutProp> = ({ notice }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.declaration}>
-        {P1}
-        {P2}
-        {P3}
-      </div>
-      <div className={styles.bottom}>
-        <div className={styles.items}>
-          <div className={styles.item}>
-            ※ 当前版本：v{version} Beta （{Link(undefined, '点此检查更新', checkUpdate)}）
+      {!loading ? (
+        <>
+          <div className={styles.declaration}>
+            {P1}
+            {P2}
+            {P3}
           </div>
-          <div className={styles.item}>
-            ※ 开发者：{Link(LINK_AUTHOR_GITHUB, 'Viki')}
-            <span>（整个项目的💩代码和 BUG 都是他写的）</span>
+          <div className={styles.bottom}>
+            <div className={styles.items}>
+              <div className={styles.item}>
+                ※ 当前版本：v{version} Beta （{Link(undefined, '点此检查更新', checkUpdate)}）
+              </div>
+              <div className={styles.item}>
+                ※ 开发者：{Link(LINK_AUTHOR_GITHUB, 'Viki')}
+                <span>（整个项目的💩代码和 BUG 都是他写的）</span>
+              </div>
+              <div className={styles.item}>
+                ※ 源码：{Link(LINK_GITHUB_REPO, '前往 GitHub')}
+                <span>（点个 star 就是最大的支持 QAQ）</span>
+              </div>
+              <div className={styles.item}>※ 感谢开源社区：{Link(LINK_PACKAGE_JSON, 'package.json')}</div>
+              <div className={styles.item}>※ 交流群：{Link(group?.url, group?.number)}</div>
+            </div>
+            <div className={styles.codeZones}>
+              <div className={styles.codeZone} onClick={() => open(group?.url)}>
+                <img className={styles.code} src={group?.img} />
+                <div>{group?.title}</div>
+              </div>
+              <div className={styles.codeZone} onClick={() => open(award?.url)}>
+                <img className={styles.code} src={award?.img} />
+                <div>{award?.title}</div>
+              </div>
+              <div className={styles.mask} />
+            </div>
           </div>
-          <div className={styles.item}>
-            ※ 源码：{Link(LINK_GITHUB_REPO, '前往 GitHub')}
-            <span>（点个 star 就是最大的支持 QAQ）</span>
-          </div>
-          <div className={styles.item}>※ 感谢开源社区：{Link(LINK_PACKAGE_JSON, 'package.json')}</div>
-          <div className={styles.item}>※ 交流群：{Link(group.url, group.number)}</div>
-        </div>
-        <div className={styles.codeZones}>
-          <div className={styles.codeZone} onClick={() => open(group.url)}>
-            <img className={styles.code} src={group.img} />
-            <div>{group.title}</div>
-          </div>
-          <div className={styles.codeZone} onClick={() => open(award.url)}>
-            <img className={styles.code} src={award.img} />
-            <div>{award.title}</div>
-          </div>
-          <div className={styles.mask} />
-        </div>
-      </div>
+        </>
+      ) : (
+        <Loading style={{ flex: 1 }} />
+      )}
       <div className={styles.thank}>{'※ 开发不易 ❤ 感谢支持 ※'}</div>
     </div>
   );
