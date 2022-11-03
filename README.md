@@ -12,19 +12,24 @@
 
 > 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
 
-![home.png](https://s2.loli.net/2022/10/07/OAjsXDKyGJIVe7C.png)
-![detail.png](https://s2.loli.net/2022/10/07/ahJ6eKdbXfVLWUy.png)
-![gacha-1.png](https://s2.loli.net/2022/10/07/5o1a2QNJvH6ZiTF.png)
-![gacha-2.png](https://s2.loli.net/2022/10/07/9QSqfOYmZKTH7MC.png)
-![daily.png](https://s2.loli.net/2022/10/07/UWzSKCvt2NHQ59e.png)
+![QmLFZdccLz.png](https://s2.loli.net/2022/11/03/ycCK9j6usTDGw4x.png)
+![I57GlfU2Lz.png](https://s2.loli.net/2022/11/03/naYy6ErA2I9Hime.png)
+![ZrqXfwAM4T.png](https://s2.loli.net/2022/11/03/pTusGBjILriAtU5.png)
+![j69gtZpbv7.png](https://s2.loli.net/2022/11/03/OBNsou9JqgXykx5.png)
+![2F1bql0fwj.png](https://s2.loli.net/2022/11/03/6i4VsAbJCGtXNoa.png)
+![zoFlauKiRE.png](https://s2.loli.net/2022/11/03/oUQGOvCNzsIPy6j.png)
+![jb1qxLm734.png](https://s2.loli.net/2022/11/03/IoHdYgAtLa7r8x3.png)
+![z1IC1Uxffs.png](https://s2.loli.net/2022/11/03/wforK6cJRZ5VuHB.png)
+![4R91zrWYHc.png](https://s2.loli.net/2022/11/03/uOmrsJxFtWnCSpU.png)
+![SdXwgPm9cq.png](https://s2.loli.net/2022/11/03/5oqsmURpLTAXi7E.png)
 
 > 待补充...
 
 ### 下载
 
-- `v1.1.3` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
-  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.3/genshin-helper-win32-x64-1.1.3.zip
-  - 蓝奏云：https://viki.lanzout.com/i687i0dd32da
+- `v1.1.4` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
+  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.4/GenshinHelper-win32-x64-1.1.4.zip
+  - 蓝奏云：https://viki.lanzout.com/ionBJ0f436la
 
 ### Star 历史
 
