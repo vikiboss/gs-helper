@@ -51,11 +51,6 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     notice.success({ message: msg });
   };
 
-  const handleOpenGame = async () => {
-    const { ok, message } = await nativeApi.openGame();
-    notice[ok ? 'success' : 'faild']({ message, duration: 8000 });
-  };
-
   const infos = [
     {
       key: 'nickname',
@@ -238,8 +233,8 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   return (
     <>
       <div className={styles.userCard}>
-        <div className={styles.avatar} onDoubleClick={handleOpenGame}>
-          <img src={avatar} className={styles.avatarImage} title='双击图标启动原神' />
+        <div className={styles.avatar}>
+          <img src={avatar} className={styles.avatarImage} />
         </div>
         <div className={styles.userInfo}>
           {infos.length &&

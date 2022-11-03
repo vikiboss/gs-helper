@@ -3,11 +3,11 @@ import { NavigateOptions, useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from 'react-icons/ai';
-import { BiNotepad,  BiMap } from 'react-icons/bi';
+import { BiNotepad, BiMap } from 'react-icons/bi';
 import { FaRegCompass } from 'react-icons/fa';
 import { HiOutlineChartPie, HiCubeTransparent } from 'react-icons/hi';
 import { IoMdRefresh } from 'react-icons/io';
-import { IoSettingsOutline } from 'react-icons/io5';
+import { IoGameControllerOutline, IoSettingsOutline } from 'react-icons/io5';
 import { MdOutlineLocalFireDepartment, MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md';
 
 import { LINK_GENSHIN_MAP, UPDATE_INTERVAL } from '../../../constants';
@@ -26,7 +26,7 @@ import type { SignInfo } from '../../../services/getBBSSignInfo';
 
 import styles from './index.less';
 
-const { getGameRoleInfo, getBBSSignInfo, getDailyNotes } = nativeApi;
+const { getGameRoleInfo, getBBSSignInfo, getDailyNotes, getGachaUrl } = nativeApi;
 
 const Home: React.FC = () => {
   const auth = useAuth();
@@ -34,6 +34,7 @@ const Home: React.FC = () => {
   const navigate = useNavigate();
   const [tip, setTip] = useState<string>('');
   const [heart, setHeart] = useState<NodeJS.Timer>(null);
+  const [url, setUrl] = useState<string>('');
 
   const [getUser, user, l1, e1, d1] = useApi<GameRole | null>(getGameRoleInfo);
   const [getSign, sign, l2, e2, d2] = useApi<SignInfo | null>(getBBSSignInfo);
@@ -44,6 +45,7 @@ const Home: React.FC = () => {
   const done = d1 && d2 && d3;
 
   const init = async () => {
+    setUrl(await getGachaUrl());
     updateInfo(false);
     setTip(await getTip());
 
@@ -92,6 +94,11 @@ const Home: React.FC = () => {
     navigate(path, options);
   };
 
+  const handleOpenGame = async () => {
+    const { ok, message } = await nativeApi.openGame();
+    notice[ok ? 'success' : 'faild']({ message, duration: 8000 });
+  };
+
   const updateInfo = async (isUserTrriger = true) => {
     if (!auth.isLogin) {
       return;
@@ -117,7 +124,7 @@ const Home: React.FC = () => {
 
     await Promise.all([getUser(), getNote(), getSign()]);
 
-    if (done && (!user?.game_uid && !note?.max_resin && !sign?.today)) {
+    if (done && !user?.game_uid && !note?.max_resin && !sign?.today) {
       const currentUser = await nativeApi.getCurrentUser();
       auth.logout(currentUser.uid);
       return navigate('/login', { state: { isExpired: true } });
@@ -236,6 +243,15 @@ const Home: React.FC = () => {
                 |
               </>
             )}
+            {url && (
+              <>
+                <div className={styles.topBtn} onClick={handleOpenGame}>
+                  <IoGameControllerOutline size={20} />
+                  <span>启动原神</span>
+                </div>
+                |
+              </>
+            )}
             <div
               className={styles.topBtn}
               onClick={() =>
@@ -283,7 +299,7 @@ const Home: React.FC = () => {
                 </div>
               ))}
           </div>
-          <div className={styles.footer} onClick={() => safelyNavigate('/setting',{ state: { tab:'about' } })}>
+          <div className={styles.footer} onClick={() => safelyNavigate('/setting', { state: { tab: 'about' } })}>
             「原神助手」 使用 MIT 协议开源，数据来源于 「米游社」，可能存在延迟，请以游戏内为准，详情点此打开 「关于」 页面。
           </div>
         </div>
