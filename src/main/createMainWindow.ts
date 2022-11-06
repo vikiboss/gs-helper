@@ -1,14 +1,15 @@
-import { BrowserWindow, BrowserWindowConstructorOptions, shell } from 'electron';
-
-// 声明内置常量
-declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
-declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+import type { BrowserWindowConstructorOptions } from 'electron';
+import { BrowserWindow, shell } from 'electron';
 
 import { registerHotkey } from './handleHotkeys';
 import bindIPC from './IPC';
 import icon from '../assets/icon.ico';
 import initTray from './initTray';
 import restoreSettings from './restoreSettings';
+
+// 声明内置常量
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 
 /** 配置窗口的选项参数 */
 const winOptions: BrowserWindowConstructorOptions = {
@@ -21,7 +22,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   // 不可手动调整大小
   resizable: false,
   // 窗口 icon
-  icon: icon,
+  icon,
   // 禁止最大化
   maximizable: false,
   // 禁止全屏
@@ -29,7 +30,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   // 加载时的背景颜色
   backgroundColor: '#F9F6F2',
   // 设置 web 页面的 preload，用于 IPC 通信
-  webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY }
+  webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY },
 };
 
 /** 创建主窗口的函数 */

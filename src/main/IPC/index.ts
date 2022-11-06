@@ -1,4 +1,6 @@
-import { app, BrowserWindow, clipboard, ipcMain as IPC } from 'electron';
+import { app, clipboard, ipcMain as IPC } from 'electron';
+
+import type { BrowserWindow } from 'electron';
 
 import { store } from '..';
 import { AppName, IpcEvents } from '../../constants';
@@ -48,84 +50,53 @@ const bindIPC = (win: BrowserWindow) => {
   IPC.on(IpcEvents.minimizeApp, () => win.minimize());
   IPC.on(IpcEvents.openWindow, openWindow);
 
-  IPC.on(IpcEvents.setStoreKey, (_, key: string, value: any) =>
-    store.set(key, value)
-  );
+  IPC.on(IpcEvents.setStoreKey, (_, key: string, value: any) => store.set(key, value));
 
-  IPC.on(IpcEvents.writeClipboardText, (_, text: string) =>
-    clipboard.writeText(text)
-  );
+  IPC.on(IpcEvents.writeClipboardText, (_, text: string) => clipboard.writeText(text));
 
-  IPC.handle(
-    IpcEvents.changeUser,
-    async (_, uid: string) => await changeUser(uid)
-  );
+  IPC.handle(IpcEvents.changeUser, async (_, uid: string) => changeUser(uid));
 
-  IPC.handle(IpcEvents.clearData, async () => await clearData());
-  IPC.handle(IpcEvents.doBBSSign, async () => await doBBSSign());
+  IPC.handle(IpcEvents.clearData, async () => clearData());
+  IPC.handle(IpcEvents.doBBSSign, async () => doBBSSign());
 
-  IPC.handle(
-    IpcEvents.exportGacha,
-    async (_, uid: string) => await exportGacha(uid)
-  );
+  IPC.handle(IpcEvents.exportGacha, async (_, uid: string) => exportGacha(uid));
 
   IPC.handle(IpcEvents.getAppInfo, () => AppicationInfo);
-  IPC.handle(IpcEvents.getBBSSignData, async () => await getBBSSignData());
-  IPC.handle(IpcEvents.getBBSSignInfo, async () => await getBBSSignInfo());
-  IPC.handle(IpcEvents.getCabinetRoleList, async (_, uid: string) => await getCabinetRoleList(uid));
-  IPC.handle(IpcEvents.getCalenderList, async () => await getCalenderList());
+  IPC.handle(IpcEvents.getBBSSignData, async () => getBBSSignData());
+  IPC.handle(IpcEvents.getBBSSignInfo, async () => getBBSSignInfo());
+  IPC.handle(IpcEvents.getCabinetRoleList, async (_, uid: string) => getCabinetRoleList(uid));
+  IPC.handle(IpcEvents.getCalenderList, async () => getCalenderList());
   IPC.handle(IpcEvents.getCurrentUser, () => getCurrentUser());
-  IPC.handle(IpcEvents.getDailyNotes, async () => await getDailyNotes());
-  IPC.handle(IpcEvents.getGachaUrl, async () => await getGachaUrl());
+  IPC.handle(IpcEvents.getDailyNotes, async () => getDailyNotes());
+  IPC.handle(IpcEvents.getGachaUrl, async () => getGachaUrl());
 
-  IPC.handle(
-    IpcEvents.getGameRoleCard,
-    async (_, uid?: string) => await getGameRoleCard(uid)
-  );
+  IPC.handle(IpcEvents.getGameRoleCard, async (_, uid?: string) => getGameRoleCard(uid));
 
-  IPC.handle(IpcEvents.getGameRoleInfo, async () => await getGameRoleInfo());
-  IPC.handle(IpcEvents.getHitokoto, async () => await getHitokoto());
+  IPC.handle(IpcEvents.getGameRoleInfo, async () => getGameRoleInfo());
+  IPC.handle(IpcEvents.getHitokoto, async () => getHitokoto());
   IPC.handle(IpcEvents.getLocalGachaDatas, () => getLocalGachaDatas());
 
-  IPC.handle(
-    IpcEvents.getMonthInfo,
-    async (_, month?: number) => await getMonthInfo(month)
-  );
+  IPC.handle(IpcEvents.getMonthInfo, async (_, month?: number) => getMonthInfo(month));
 
-  IPC.handle(
-    IpcEvents.getOwnedRoleList,
-    async (_, uid?: string) => await getOwnedRoleList(uid)
-  );
+  IPC.handle(IpcEvents.getOwnedRoleList, async (_, uid?: string) => getOwnedRoleList(uid));
 
-  IPC.handle(
-    IpcEvents.getPublicRoleList,
-    async () => await getPublicRoleList()
-  );
+  IPC.handle(IpcEvents.getPublicRoleList, async () => getPublicRoleList());
 
-  IPC.handle(
-    IpcEvents.getSpiralAbyss,
-    async (_, uid?: string, last?: boolean) => await getSpiralAbyss(uid, last)
-  );
+  IPC.handle(IpcEvents.getSpiralAbyss, async (_, uid?: string, last?: boolean) => {
+    const result = await getSpiralAbyss(uid, last);
+    return result;
+  });
 
   IPC.handle(IpcEvents.getStoreKey, (_, key: string) => store.get(key));
-  IPC.handle(IpcEvents.importGacha, async () => await importConfig());
+  IPC.handle(IpcEvents.importGacha, async () => importConfig());
   IPC.handle(IpcEvents.readClipboardText, () => clipboard.readText());
 
-  IPC.handle(
-    IpcEvents.getRepoData,
-    async (_, filename: string) => await getRepoData(filename)
-  );
+  IPC.handle(IpcEvents.getRepoData, async (_, filename: string) => getRepoData(filename));
 
-  IPC.handle(
-    IpcEvents.getGachaListByUrl,
-    async (_, url: string) => await handleGetGachaListByUrl(url)
-  );
+  IPC.handle(IpcEvents.getGachaListByUrl, async (_, url: string) => handleGetGachaListByUrl(url));
 
-  IPC.handle(
-    IpcEvents.getGameRecordCard,
-    async (_, bbsId?: string) => await getGameRecordCard(bbsId)
-  );
-  IPC.handle(IpcEvents.openGame, async () => await openGame());
+  IPC.handle(IpcEvents.getGameRecordCard, async (_, bbsId?: string) => getGameRecordCard(bbsId));
+  IPC.handle(IpcEvents.openGame, async () => openGame());
 };
 
 export default bindIPC;

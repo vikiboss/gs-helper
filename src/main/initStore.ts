@@ -14,12 +14,6 @@ export const DefaultAppData: AppData = {
   },
 };
 
-/** 初始化 Store */
-const initStore = () => {
-  const options = { schema, defaults: DefaultAppData };
-  return new Store<AppData>(options);
-};
-
 /** 定义 Store 的 JSON schema */
 const schema: Schema<AppData> = {
   currentUid: { type: 'string' },
@@ -50,6 +44,12 @@ const schema: Schema<AppData> = {
       },
     },
   },
+};
+
+/** 初始化 Store */
+const initStore = () => {
+  const options = { schema, defaults: DefaultAppData };
+  return new Store<AppData>(options);
 };
 
 export default initStore;

@@ -13,7 +13,9 @@ interface NumberDescriptionProp {
 }
 
 const NumberDescription: React.FC<NumberDescriptionProp> = (props) => {
-  const { value, sub, description, className } = props;
+  const {
+    value, sub, description, className,
+  } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>

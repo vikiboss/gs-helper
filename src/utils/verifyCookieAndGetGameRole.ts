@@ -1,7 +1,7 @@
+import type { Cookies } from 'electron';
 import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '../constants';
 import request from './request';
 
-import type { Cookies } from 'electron';
 import type { GameRole, BaseRes, GameRolesData } from '../typings';
 
 export interface AuthResState {
@@ -15,7 +15,7 @@ const transferCookiesToString = async (cookies: Cookies) => {
   // 获取所有 Cookie
   const cks = await cookies.get({});
   // 拼接 Cookie
-  return cks.reduce((p, n) => p + `${n.name}=${n.value}; `, '').trim();
+  return cks.reduce((p, n) => `${p}${n.name}=${n.value}; `, '').trim();
 };
 
 /** 通过 Cookie 获取绑定的角色信息列表 */

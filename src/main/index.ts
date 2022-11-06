@@ -1,5 +1,5 @@
 import { app, BrowserWindow } from 'electron';
-import Store from 'electron-store';
+import type Store from 'electron-store';
 
 import { unregisterHotkey } from './handleHotkeys';
 import createMainWindow from './createMainWindow';

@@ -9,10 +9,10 @@ import nativeApi from '../../utils/nativeApi';
 import SelectButton from '../../components/SelectButton';
 import useApi from '../../hooks/useApi';
 import useNotice from '../../hooks/useNotice';
-import WeekMaterial  from './WeekMaterial';
+import WeekMaterial from './WeekMaterial';
 
 import type { CalenderEvent } from '../../../services/getCalenderList';
-import type { RepoRole }  from './WeekMaterial';
+import type { RepoRole } from './WeekMaterial';
 
 import styles from './index.less';
 
@@ -30,7 +30,10 @@ const Calender: React.FC = () => {
     await fetchRepo('roles.json');
   };
 
-  useEffect(() => void fetchData(), []);
+  useEffect(() => {
+    fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -54,7 +57,12 @@ const Calender: React.FC = () => {
           <Loading />
         )}
 
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate('/')}
+        />
       </div>
       {notice.holder}
     </>

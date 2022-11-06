@@ -13,13 +13,13 @@ function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
     let isOK = false;
 
     try {
-      const data = await fetchApi(...args);
+      const resonse = await fetchApi(...args);
 
-      console.log('useApi:', data);
+      console.log('useApi:', resonse);
 
-      if (data) {
+      if (resonse) {
         isOK = true;
-        setData(data);
+        setData(resonse);
       }
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo');

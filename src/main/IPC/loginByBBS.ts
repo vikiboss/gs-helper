@@ -1,7 +1,9 @@
 import { app, BrowserWindow, session } from 'electron';
 
+import {
+  mainWin, store, isDev, isAppleDevice,
+} from '..';
 import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from '../../constants';
-import { mainWin, store, isDev, isAppleDevice } from '..';
 import verifyCookieAndGetGameRole from '../../utils/verifyCookieAndGetGameRole';
 
 import type { UserData } from '../../typings';
@@ -20,7 +22,7 @@ const loginByBBS = async () => {
     alwaysOnTop: true,
     fullscreenable: false,
     autoHideMenuBar: true,
-    backgroundColor: '#F9F6F2'
+    backgroundColor: '#F9F6F2',
   });
 
   // 生产环境下移除窗口顶部的默认菜单
@@ -40,7 +42,7 @@ const loginByBBS = async () => {
   // 监听登录窗口被关闭事件
   bbsWin.on('close', async () => {
     // 获取 cookie
-    const cookies = session.defaultSession.cookies;
+    const { cookies } = session.defaultSession;
     // 验证 cookie 有效性（是否成功登录）
     const { valid, cookie, roleInfo } = await verifyCookieAndGetGameRole(cookies);
     // 设置当前 uid，有效登录时 uid 设置正常，未登录则置空

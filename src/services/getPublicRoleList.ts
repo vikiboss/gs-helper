@@ -3,31 +3,6 @@ import request from '../utils/request';
 
 import type { BaseRes } from '../typings';
 
-interface PublicRoleListData {
-  total: number;
-  list: PublicRoleRaw[];
-}
-
-interface PublicRoleRaw {
-  contentId: string;
-  channelId: string[];
-  title: string;
-  author: string | null;
-  type: string | null;
-  tag: string | null;
-  intro: string | null;
-  url: string | null;
-  ext: Ext[];
-  start_time: string;
-  id: string;
-}
-
-interface Ext {
-  arrtName: string;
-  keyId: number;
-  value: ExtValue[] | string;
-}
-
 interface ExtValue {
   name: string;
   url: string;
@@ -61,12 +36,37 @@ export interface PublicRole {
   CVs: CV[];
 }
 
+interface Ext {
+  arrtName: string;
+  keyId: number;
+  value: ExtValue[] | string;
+}
+
+interface PublicRoleRaw {
+  contentId: string;
+  channelId: string[];
+  title: string;
+  author: string | null;
+  type: string | null;
+  tag: string | null;
+  intro: string | null;
+  url: string | null;
+  ext: Ext[];
+  start_time: string;
+  id: string;
+}
+
+interface PublicRoleListData {
+  total: number;
+  list: PublicRoleRaw[];
+}
+
 /** 将获取的信息处理成需要的信息字段 PublicRoleRaw => PublicRole */
 const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
   const res = [];
 
   for (const role of publicRoles) {
-    const _role: PublicRole = {
+    const publicRole: PublicRole = {
       name: role.title,
       icon: '',
       startTime: role.start_time,
@@ -78,67 +78,50 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
     for (const e of role.ext) {
       const type = e.arrtName.split('-')[1] || '';
       if (type === '简介') {
-        _role.introduction = (e.value as string)
+        publicRole.introduction = (e.value as string)
           .replace(/<p(.*?)>/g, '')
           .replace(/<\/p>/g, '')
           .replace(/<br \/>/g, '')
           .replace(/\n/g, '')
           .replace(/&(.*?);/g, '');
-        continue;
-      }
-
-      if (type === 'ICON') {
-        _role.icon = (e.value as ExtValue[])[0]?.url;
-        continue;
-      }
-
-      if (type === '台词') {
-        _role.line = (e.value as ExtValue[])[0]?.url;
-        continue;
-      }
-
-      if (type === '音频语言') {
-        if (!_role.CVs.length) {
-          _role.CVs = (e.value as string)
+      } else if (type === 'ICON') {
+        publicRole.icon = (e.value as ExtValue[])[0]?.url;
+      } else if (type === '台词') {
+        publicRole.line = (e.value as ExtValue[])[0]?.url;
+      } else if (type === '音频语言') {
+        if (!publicRole.CVs.length) {
+          publicRole.CVs = (e.value as string)
             .split('/')
-            .map((e) => ({ name: '', type: e, vos: [] }));
+            .map((f) => ({ name: '', type: f, vos: [] }));
         } else {
           const langs = (e.value as string).split('/');
           for (const [k, v] of langs.entries()) {
-            _role.CVs[k].type = v;
+            publicRole.CVs[k].type = v;
           }
         }
-        continue;
-      }
-
-      if (type.startsWith('声优')) {
+      } else if (type.startsWith('声优')) {
         const indexs = type.replace('声优', '').split('-');
         const i = Number(indexs[0]) - 1 || 0;
 
-        if (!_role.CVs[i]) {
-          _role.CVs[i] = { name: '', type: '', vos: [] };
+        if (!publicRole.CVs[i]) {
+          publicRole.CVs[i] = { name: '', type: '', vos: [] };
         }
 
-        _role.CVs[i].name = _role.CVs[i].name
-          ? _role.CVs[i].name
+        publicRole.CVs[i].name = publicRole.CVs[i].name
+          ? publicRole.CVs[i].name
           : (e.value as string);
-
-        continue;
-      }
-
-      if (type.startsWith('音频')) {
+      } else if (type.startsWith('音频')) {
         const indexs = type.replace('音频', '').split('-');
         const i = Number(indexs[0]) - 1 || 0;
 
-        if (!_role.CVs[i]) {
-          _role.CVs[i] = { name: '', type: '', vos: [] };
+        if (!publicRole.CVs[i]) {
+          publicRole.CVs[i] = { name: '', type: '', vos: [] };
         }
 
-        _role.CVs[i].vos.push(e.value as string);
-        continue;
+        publicRole.CVs[i].vos.push(e.value as string);
       }
     }
-    res.push(_role);
+    res.push(publicRole);
   }
 
   return res;
@@ -160,7 +143,7 @@ const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
 
   const res = getNeededRoleInfo(data?.data?.list);
 
-  return isOK ? res.length ? res : null : null;
+  return isOK ? (res.length ? res : null) : null;
 };
 
 export default getPublicRoleList;

@@ -1,12 +1,10 @@
+import type { BrowserWindow, MenuItemConstructorOptions } from 'electron';
+
 import {
-  app,
-  Menu,
-  Tray,
-  BrowserWindow,
-  MenuItemConstructorOptions,
-  nativeImage,
+  app, Menu, Tray, nativeImage,
 } from 'electron';
-import path from 'path';
+
+import path from 'node:path';
 
 import { AppName } from '../constants';
 import { store, isAppleDevice, isWindows } from '.';
@@ -33,7 +31,9 @@ const initTray = (win: BrowserWindow) => {
   const image = nativeImage.createFromPath(dir);
 
   // 设置图片为自动适应模式的黑白图标
-  isAppleDevice && image.setTemplateImage(true);
+  if (isAppleDevice) {
+    image.setTemplateImage(true);
+  }
 
   // 初始化托盘图标
   const tray = new Tray(image);
@@ -74,7 +74,7 @@ const initTray = (win: BrowserWindow) => {
       // visible: isDev,
       click: () => {
         const url = web.getURL();
-        const target = url.split('#')[0] + '#/setting';
+        const target = `${url.split('#')[0]}#/setting`;
         win.loadURL(target);
         win.show();
       },
@@ -97,13 +97,13 @@ const initTray = (win: BrowserWindow) => {
   // 监听点击事件，绑定程序的显示与隐藏操作
   // tray.on("click", () => (win.isVisible() && !win.isMinimized() ? win.hide() : win.show()));
   tray.on('click', () => isWindows && win.show());
-  
+
   // 双击显示主界面
   tray.on('double-click', () => win.show());
-  
+
   // 加载托盘右键菜单
   tray.setContextMenu(contextMenu);
-  
+
   // 监听即将退出的事件，销毁托盘图标与菜单
   app.on('before-quit', () => tray.destroy());
 

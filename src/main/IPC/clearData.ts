@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { app } from 'electron';
 
 import { isFileExist } from '../../utils/nodeUtils';
@@ -12,15 +12,14 @@ const clearData = async () => {
   const GachaDataDirPath = path.join(AppPath, 'config.json');
   if (!isFileExist(GachaDataDirPath)) {
     return true;
-  } else {
-    try {
-      await fs.promises.unlink(GachaDataDirPath);
-      const data = JSON.stringify(DefaultAppData, undefined, 2);
-      await fs.promises.writeFile(GachaDataDirPath, data, { encoding: 'utf-8' });
-      return true;
-    } catch {
-      return false;
-    }
+  }
+  try {
+    await fs.promises.unlink(GachaDataDirPath);
+    const data = JSON.stringify(DefaultAppData, undefined, 2);
+    await fs.promises.writeFile(GachaDataDirPath, data, { encoding: 'utf-8' });
+    return true;
+  } catch {
+    return false;
   }
 };
 

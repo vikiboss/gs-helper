@@ -1,6 +1,6 @@
+import fs from 'node:fs/promises';
 import dayjs from 'dayjs';
 import { app, dialog } from 'electron';
-import fs from 'fs/promises';
 
 import { mainWin } from '..';
 import { AppName } from '../../constants';
@@ -15,8 +15,8 @@ const exportGacha = async (uid: string): Promise<BaseIPCRes<null | GachaData>> =
   // 保存文件对话框
   const { filePath } = await dialog.showSaveDialog(mainWin, {
     title: `导出 UID ${uid} 的祈愿记录数据文件`,
-    defaultPath: app.getPath('desktop') + `/${uid}-${now}.json`,
-    buttonLabel: '导出'
+    defaultPath: `${app.getPath('desktop')}/${uid}-${now}.json`,
+    buttonLabel: '导出',
   });
 
   if (!filePath || !filePath.length) {

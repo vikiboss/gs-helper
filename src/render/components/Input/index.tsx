@@ -7,8 +7,6 @@ export type InputProp = React.DetailedHTMLProps<
   HTMLInputElement
 >;
 
-const Input: React.FC<InputProp> = (props) => {
-  return <input {...props} />;
-};
+const Input: React.FC<InputProp> = (props) => <input {...props} />;
 
 export default Input;

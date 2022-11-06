@@ -57,21 +57,30 @@ const Month: React.FC = () => {
 
   const init = async () => {
     try {
-      const initMonth = await nativeApi.getMonthInfo();
+      const initMonthData = await nativeApi.getMonthInfo();
 
-      setInitMonth(initMonth.data_month);
-      setMonth(initMonth.data_month);
+      setInitMonth(initMonthData.data_month);
+      setMonth(initMonthData.data_month);
 
-      const data = [];
+      const data: MonthInfo[] = [];
 
-      for (const e of initMonth.optional_month) {
+      const months = initMonthData.optional_month;
+
+      months.forEach(async (e, i) => {
         await wait(50);
-        const res = await nativeApi.getMonthInfo(e);
-        if (res) data.push(res);
-        else notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' });
-      }
 
-      setMonthInfos(data);
+        const res = await nativeApi.getMonthInfo(e);
+
+        if (res) {
+          data.push(res);
+
+          if (i + 1 === months.length) {
+            setMonthInfos(data);
+          }
+        } else {
+          notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' });
+        }
+      });
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo');
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T';
@@ -79,7 +88,10 @@ const Month: React.FC = () => {
     }
   };
 
-  useEffect(() => void init(), []);
+  useEffect(() => {
+    init();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const initData = monthInfos.filter((e) => e.data_month === initMonth)[0] || DefaultMonthInfo;
   const monthInfo = monthInfos.filter((e) => e.data_month === month)[0] || DefaultMonthInfo;
@@ -89,6 +101,8 @@ const Month: React.FC = () => {
   const mSign = monthData.mora_rate >= 0;
 
   const greeting = getGreetingMsg(undefined, true);
+
+  const diffMessage = `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`;
 
   return (
     <>
@@ -105,18 +119,30 @@ const Month: React.FC = () => {
                   <span>今日</span>
                   <div className={styles.item}>
                     <img src={primogem} />
-                    <BounceNumber number={initData.day_data.current_primogems} wrapperStyle={{ width: '40px' }} />
+                    <BounceNumber
+                      number={initData.day_data.current_primogems}
+                      wrapperStyle={{ width: '40px' }}
+                    />
                     <img src={mora} />
-                    <BounceNumber number={initData.day_data.current_mora} wrapperStyle={{ width: '80px' }} />
+                    <BounceNumber
+                      number={initData.day_data.current_mora}
+                      wrapperStyle={{ width: '80px' }}
+                    />
                   </div>
                 </div>
                 <div className={styles.itemBg}>
                   <span>昨日</span>
                   <div className={styles.item}>
                     <img src={primogem} />
-                    <BounceNumber number={initData.day_data.last_primogems} wrapperStyle={{ width: '40px' }} />
+                    <BounceNumber
+                      number={initData.day_data.last_primogems}
+                      wrapperStyle={{ width: '40px' }}
+                    />
                     <img src={mora} />
-                    <BounceNumber number={initData.day_data.last_mora} wrapperStyle={{ width: '80px' }} />
+                    <BounceNumber
+                      number={initData.day_data.last_mora}
+                      wrapperStyle={{ width: '80px' }}
+                    />
                   </div>
                 </div>
               </div>
@@ -125,7 +151,11 @@ const Month: React.FC = () => {
                 {initData.optional_month.length === 0 ? (
                   <span>暂无数据</span>
                 ) : (
-                  <SelectButton value={month} changeItem={setMonth} items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))} />
+                  <SelectButton
+                    value={month}
+                    changeItem={setMonth}
+                    items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))}
+                  />
                 )}
               </div>
 
@@ -135,15 +165,21 @@ const Month: React.FC = () => {
                   <div className={styles.monthDesc}>当月累计获取资源</div>
                   <div className={styles.monthItem}>
                     <img src={primogem} />
-                    <BounceNumber number={monthData.current_primogems} wrapperStyle={{ width: '80px' }} />
+                    <BounceNumber
+                      number={monthData.current_primogems}
+                      wrapperStyle={{ width: '80px' }}
+                    />
                     <span>
                       相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
-                      {monthData.last_primogems > 0 && `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`}
+                      {monthData.last_primogems > 0 && diffMessage}
                     </span>
                   </div>
                   <div className={styles.monthItem}>
                     <img src={mora} />
-                    <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: '80px' }} />
+                    <BounceNumber
+                      number={monthData.current_mora}
+                      wrapperStyle={{ width: '80px' }}
+                    />
                     {monthData.last_mora > 0 && (
                       <span>
                         相比上月 {mSign ? '+' : '-'}
@@ -163,13 +199,20 @@ const Month: React.FC = () => {
                   />
                 </div>
               </div>
-              <div className={styles.tip}>※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。</div>
+              <div className={styles.tip}>
+                ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
+              </div>
             </div>
           </>
         ) : (
           <Loading />
         )}
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate('/')}
+        />
       </div>
       {notice.holder}
     </>

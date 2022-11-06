@@ -39,11 +39,12 @@ const Sign: React.FC = () => {
   const { month } = signData;
   const { total_sign_day: total, sign_cnt_missed: missed } = signInfo;
 
-  useEffect(() => void updateInfo(), []);
-
   const updateInfo = async () => {
     try {
-      const [data, info] = await Promise.all([nativeApi.getBBSSignData(), nativeApi.getBBSSignInfo()]);
+      const [data, info] = await Promise.all([
+        nativeApi.getBBSSignData(),
+        nativeApi.getBBSSignInfo(),
+      ]);
 
       if (!data.month || !info.today) {
         return;
@@ -58,6 +59,11 @@ const Sign: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    updateInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const handleSign = async () => {
     if (signInfo.is_sign) {
       notice.warning({ message: '今天已经签过到啦~ 不要重复签到哦' });
@@ -69,19 +75,20 @@ const Sign: React.FC = () => {
         const info: SignInfo = await nativeApi.getBBSSignInfo();
 
         if (isSignDone && info.is_sign) {
-          const total = signInfo.total_sign_day;
-          const award = signData.awards[total];
+          const totalSignDay = signInfo.total_sign_day;
+          const award = signData.awards[totalSignDay];
           const todayAward = `${award.name}x${award.cnt}`;
 
-          notice.success({ message: `签到成功！获得 ${todayAward}，本月累计签到 ${total + 1} 天` });
-         
+          notice.success({
+            message: `签到成功！获得 ${todayAward}，本月累计签到 ${totalSignDay + 1} 天`,
+          });
+
           await updateInfo();
         } else if (isSignDone) {
           notice.faild({ message: '无法绕过验证码，签到失败 T_T，请尝试手动签到' });
         } else {
           notice.faild({ message: '网络异常，签到失败 T_T' });
         }
-        
       } catch {
         notice.faild({ message: '加载超时，请检查网络连接 T_T' });
       }
@@ -92,7 +99,7 @@ const Sign: React.FC = () => {
     const signed = i + 1 <= total;
     const signText = signed ? '奖励已领取' : '未达到领取要求';
     const message = `本月累签 ${i + 1} 天可领取，当前 ${total} 天，${signText}`;
-    notice[signed ? 'success' : 'faild']({ message: message });
+    notice[signed ? 'success' : 'faild']({ message });
   };
 
   return (
@@ -103,7 +110,9 @@ const Sign: React.FC = () => {
             <div className={styles.title}>{`米游社·原神 ${month} 月签到日历`}</div>
             <div className={styles.tip}>
               今日{signInfo.is_sign ? '已签' : '未签'}，签到进度：{total}/{signData.awards.length}
-              {missed ? `，错过 ${missed} 天。冒险再忙，也要记得签到哦~` : '。冒险者太勤奋啦，一天都没有漏呢！'}
+              {missed
+                ? `，错过 ${missed} 天。冒险再忙，也要记得签到哦~`
+                : '。冒险者太勤奋啦，一天都没有漏呢！'}
             </div>
             <div className={styles.signTable}>
               {signData.awards.map((e, i) => {
@@ -128,7 +137,12 @@ const Sign: React.FC = () => {
         ) : (
           <Loading />
         )}
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={navigate.bind(null, '/')} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={navigate.bind(null, '/')}
+        />
       </div>
       {notice.holder}
     </>

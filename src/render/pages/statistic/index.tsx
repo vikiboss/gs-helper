@@ -17,7 +17,7 @@ import withAuth from '../../auth/withAuth';
 
 import styles from './index.less';
 
-export type TypeState = 'statistic' | 'roles' | 'abyss'| 'lastAbyss';
+export type TypeState = 'statistic' | 'roles' | 'abyss' | 'lastAbyss';
 
 const { getGameRoleCard, getOwnedRoleList, getSpiralAbyss } = nativeApi;
 
@@ -40,6 +40,16 @@ const Statistic: React.FC = () => {
 
   const loaded = !(l1 || l2 || l3 || l4) && card && roles && abyss && lastAbyss;
 
+  const updateInfo = async (uid?: string) => {
+    const results = await Promise.all([
+      fetchCard(uid),
+      fetchRoles(uid),
+      fetchAbyss(uid),
+      fetchLastAbyss(uid, true),
+    ]);
+    return results.every(Boolean);
+  };
+
   useEffect(() => {
     (async () => {
       const { uid } = await nativeApi.getCurrentUser();
@@ -48,12 +58,8 @@ const Statistic: React.FC = () => {
 
       await updateInfo(uid);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  const updateInfo = async (uid?: string) => {
-    const results = await Promise.all([fetchCard(uid), fetchRoles(uid), fetchAbyss(uid), fetchLastAbyss(uid, true)]);
-    return results.every(Boolean);
-  };
 
   const handleQuery = async () => {
     if (!inputUid) {
@@ -61,13 +67,15 @@ const Statistic: React.FC = () => {
       const text = clipboardText.replace(/\s/g, '').trim();
 
       if (!text.match(/^[1-9][0-9]{7,9}$/)) {
-        return notice.warning({ message: '剪切板内容无效' });
+        notice.warning({ message: '剪切板内容无效' });
+        return;
       }
 
       setInputUid(text.trim());
     } else {
       if (!inputUid.match(/^[1-9][0-9]{7,9}$/)) {
-        return notice.warning({ message: 'UID 无效，请检查' });
+        notice.warning({ message: 'UID 无效，请检查' });
+        return;
       }
 
       notice.info({ message: '小派蒙努力查询中...', autoHide: false });
@@ -105,13 +113,19 @@ const Statistic: React.FC = () => {
                 <div>{card.role.nickname}</div>
                 <div>{`Lv.${card.role.level} ${currentUid}`}</div>
               </div>
-              <SelectButton className={styles.selectBtns} items={items} value={type} changeItem={setType} />
-              {accountUid !== currentUid && <Button className={styles.btn} text='返回' onClick={backToMyProfile} />}
+              <SelectButton
+                className={styles.selectBtns}
+                items={items}
+                value={type}
+                changeItem={setType}
+              />
+              {accountUid !== currentUid && (
+                <Button className={styles.btn} text='返回' onClick={backToMyProfile} />
+              )}
               <div className={styles.inputArea}>
                 <Input
                   value={inputUid}
                   onChange={(e) => setInputUid(e.target.value)}
-                  autoFocus
                   type='number'
                   placeholder='查询 UID'
                   onKeyDown={(e) => e.key === 'Enter' && handleQuery()}
@@ -129,7 +143,12 @@ const Statistic: React.FC = () => {
         ) : (
           <Loading />
         )}
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate('/')}
+        />
       </div>
       {notice.holder}
     </>

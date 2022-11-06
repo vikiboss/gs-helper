@@ -35,7 +35,12 @@ const Setting: React.FC = () => {
           {tab === 'general' && <General notice={notice} />}
           {tab === 'about' && <About notice={notice} />}
         </div>
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={() => navigate('/')}
+        />
       </div>
       {notice.holder}
     </>

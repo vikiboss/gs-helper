@@ -1,51 +1,13 @@
 import getCurrentUser from '../main/IPC/getCurrentUser';
 import request from '../utils/request';
 
-export interface EnkaUserData {
-  playerInfo: PlayerInfo;
-  avatarInfoList: AvatarInfoList[];
-  ttl: number;
-  uid: string;
-}
-
-export interface PlayerInfo {
-  nickname: string;
-  level: number;
-  signature: string;
-  worldLevel: number;
-  nameCardId: number;
-  finishAchievementNum: number;
-  towerFloorIndex: number;
-  towerLevelIndex: number;
-  showAvatarInfoList: ShowAvatarInfoList[];
-  showNameCardIdList: number[];
-  profilePicture: ProfilePicture;
-}
-
-export interface ProfilePicture {
-  avatarId: number;
-}
-
-export interface AvatarInfoList {
-  avatarId: number;
-  propMap: PropMap;
-  fightPropMap: Record<number, number>;
-  skillDepotId: number;
-  inherentProudSkillList: number[];
-  skillLevelMap: Record<number, number>;
-  equipList: EquipList[];
-  fetterInfo: FetterInfo;
-  talentIdList?: number[];
-  proudSkillExtraLevelMap?: Record<number, number>;
-}
-
 export interface ShowAvatarInfoList {
   avatarId: number;
   level: number;
 }
 
-export interface FetterInfo {
-  expLevel: number;
+export interface ProfilePicture {
+  avatarId: number;
 }
 
 export interface PropMap {
@@ -54,17 +16,25 @@ export interface PropMap {
   val?: string;
 }
 
-export interface EquipList {
-  itemId: number;
-  reliquary?: Reliquary;
-  flat: Flat;
-  weapon?: Weapon;
-}
-
 export interface Reliquary {
   level: number;
   mainPropId: number;
   appendPropIdList: number[];
+}
+
+export interface ReliquaryMainstat {
+  mainPropId: string;
+  statValue: number;
+}
+
+export interface ReliquarySubstats {
+  appendPropId: string;
+  statValue: number;
+}
+
+export interface WeaponStats {
+  appendPropId: string;
+  statValue: number;
 }
 
 export interface Flat {
@@ -85,19 +55,49 @@ export interface Weapon {
   affixMap: Record<number, number>;
 }
 
-export interface ReliquaryMainstat {
-  mainPropId: string;
-  statValue: number;
+export interface EquipList {
+  itemId: number;
+  reliquary?: Reliquary;
+  flat: Flat;
+  weapon?: Weapon;
 }
 
-export interface ReliquarySubstats {
-  appendPropId: string;
-  statValue: number;
+export interface FetterInfo {
+  expLevel: number;
 }
 
-export interface WeaponStats {
-  appendPropId: string;
-  statValue: number;
+export interface AvatarInfoList {
+  avatarId: number;
+  propMap: PropMap;
+  fightPropMap: Record<number, number>;
+  skillDepotId: number;
+  inherentProudSkillList: number[];
+  skillLevelMap: Record<number, number>;
+  equipList: EquipList[];
+  fetterInfo: FetterInfo;
+  talentIdList?: number[];
+  proudSkillExtraLevelMap?: Record<number, number>;
+}
+
+export interface PlayerInfo {
+  nickname: string;
+  level: number;
+  signature: string;
+  worldLevel: number;
+  nameCardId: number;
+  finishAchievementNum: number;
+  towerFloorIndex: number;
+  towerLevelIndex: number;
+  showAvatarInfoList: ShowAvatarInfoList[];
+  showNameCardIdList: number[];
+  profilePicture: ProfilePicture;
+}
+
+export interface EnkaUserData {
+  playerInfo: PlayerInfo;
+  avatarInfoList: AvatarInfoList[];
+  ttl: number;
+  uid: string;
 }
 
 const api = (uid: string) => `https://enka.network/u/${uid}/__data.json`;
@@ -110,9 +110,9 @@ const getCabinetRoleList = async (uid?: string): Promise<EnkaUserData> => {
     return null;
   }
 
-  uid = uid ?? currentUser.uid;
+  const targetUid = uid ?? currentUser.uid;
 
-  const { status, data } = await request.get<EnkaUserData>(api(uid));
+  const { status, data } = await request.get<EnkaUserData>(api(targetUid));
 
   const isOK = status === 200 && data && data.playerInfo;
 

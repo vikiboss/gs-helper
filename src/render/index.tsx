@@ -19,7 +19,7 @@ const render = async () => {
       <AuthProvider isLogin={isLogin}>
         <AppRouter />
       </AuthProvider>
-    </WinFrame>
+    </WinFrame>,
   );
 };
 

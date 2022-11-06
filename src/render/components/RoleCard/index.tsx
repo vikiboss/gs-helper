@@ -1,5 +1,6 @@
 import cn from 'classnames';
-import React, { MouseEventHandler } from 'react';
+import type { MouseEventHandler } from 'react';
+import React from 'react';
 
 import star1 from '../../../assets/star1.png';
 import star2 from '../../../assets/star2.png';
@@ -36,7 +37,15 @@ export interface RoleCardProp {
 }
 
 const StarImgs: string[] = [star1, star2, star3, star4, star5];
-const ElementImgs: Record<string, string> = { Pyro, Hydro, Anemo, Electro, Geo, Cryo, Dendro };
+const ElementImgs: Record<string, string> = {
+  Pyro,
+  Hydro,
+  Anemo,
+  Electro,
+  Geo,
+  Cryo,
+  Dendro,
+};
 
 const RoleCard: React.FC<RoleCardProp> = ({
   className,
@@ -44,7 +53,7 @@ const RoleCard: React.FC<RoleCardProp> = ({
   role,
   style,
   withBorder = true,
-  withName = true
+  withName = true,
 }) => {
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`];
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1];

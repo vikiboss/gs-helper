@@ -21,14 +21,11 @@ const Loading: React.FC<LoadingProp> = (props) => {
     alignItems: 'center',
     justifyContent: 'center',
     alignSelf: 'center',
-    justifySelf: 'center'
+    justifySelf: 'center',
   };
   return (
     <div style={style} className={className}>
-      <img
-        src={isEmpty ? paimon2 : paimon}
-        style={{ width: '120px', marginBottom: '12px' }}
-      />
+      <img src={isEmpty ? paimon2 : paimon} style={{ width: '120px', marginBottom: '12px' }} />
       <div style={{ marginBottom: '12px' }}>{props.text || text}</div>
     </div>
   );

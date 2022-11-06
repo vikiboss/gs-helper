@@ -1,7 +1,6 @@
-import { EXPOSED_API_FROM_ELECTRON } from './constants';
-
 import type { AxiosRequestConfig as Config, AxiosResponse } from 'axios';
 import type { BrowserWindowConstructorOptions as WinOptions } from 'electron';
+import type { EXPOSED_API_FROM_ELECTRON } from './constants';
 import type { CalenderEvent } from './services/getCalenderList';
 import type { DailyNotesData } from './services/getDailyNotes';
 import type { GameRecordCardData } from './services/getGameRecordCard';
@@ -15,54 +14,15 @@ import type { SignData } from './services/getBBSSignData';
 import type { SignInfo } from './services/getBBSSignInfo';
 import type { SpiralAbyssData } from './services/getSpiralAbyss';
 
-export interface NativeApi {
-  changeUser: (uid: string) => Promise<void>;
-  clearData: () => Promise<boolean>;
-  closeApp: () => void;
-  deleteUser: (uid: string) => void;
-  doBBSSign: () => Promise<boolean>;
-  exportGacha: (uid: string) => Promise<BaseIPCRes<null | GachaData>>;
-  getAppInfo: () => Promise<AppInfo>;
-  getBBSSignData: () => Promise<SignData | null>;
-  getBBSSignInfo: () => Promise<SignInfo | null>;
-  getCalenderList: () => Promise<CalenderEvent[] | null>;
-  getCabinetRoleList: (uid?: string) => Promise<EnkaUserData | null>;
-  getCurrentUser: () => Promise<UserData | null>;
-  getDailyNotes: () => Promise<DailyNotesData | null>;
-  getGachaListByUrl: (url: string) => Promise<GachaData>;
-  getGachaUrl: () => Promise<string>;
-  getGameRecordCard: (bbsId?: string) => Promise<GameRecordCardData | null>;
-  getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
-  getSpiralAbyss: (uid?: string, last?: boolean) => Promise<SpiralAbyssData | null>;
-  getRepoData: (filename: string) => Promise<any>;
-  getGameRoleInfo: () => Promise<GameRole | null>;
-  getHitokoto: () => Promise<string>;
-  getLocalGachaDatas: () => Promise<GachaData[]>;
-  getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
-  getOwnedRoleList: (uid?: string) => Promise<Role[] | null>;
-  getPublicRoleList: () => Promise<PublicRole[] | null>;
-  getStoreKey: (key: string) => Promise<any>;
-  hideApp: () => void;
-  importGacha: () => Promise<BaseIPCRes<null | GachaData>>;
-  loginByBBS: () => void;
-  minimizeApp: () => void;
-  openGame: () => Promise<BaseIPCRes<boolean>>;
-  openWindow: (url: string, options?: WinOptions, UA?: string) => void;
-  readClipboardText: () => Promise<string>;
-  request: <T>(config: Config) => Promise<AxiosResponse<T>>;
-  setStoreKey: (key: string, value: any) => void;
-  writeClipboardText: (text: string) => void;
-}
-
-export type GachaType = 'activity' | 'normal' | 'weapon' | 'newer';
-export type GachaItemType = 'weapon' | 'role';
-export type StarType = 1 | 2 | 3 | 4 | 5;
-
 export interface BaseIPCRes<T> {
   ok: boolean;
   data: T | null;
   message: string;
 }
+
+export type GachaType = 'activity' | 'normal' | 'weapon' | 'newer';
+export type GachaItemType = 'weapon' | 'role';
+export type StarType = 1 | 2 | 3 | 4 | 5;
 
 export interface AppInfo {
   name: string;
@@ -142,4 +102,44 @@ export interface AppData {
   };
 }
 
-export type ElectronWindow = Window & typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };
+export interface NativeApi {
+  changeUser: (uid: string) => Promise<void>;
+  clearData: () => Promise<boolean>;
+  closeApp: () => void;
+  deleteUser: (uid: string) => void;
+  doBBSSign: () => Promise<boolean>;
+  exportGacha: (uid: string) => Promise<BaseIPCRes<null | GachaData>>;
+  getAppInfo: () => Promise<AppInfo>;
+  getBBSSignData: () => Promise<SignData | null>;
+  getBBSSignInfo: () => Promise<SignInfo | null>;
+  getCalenderList: () => Promise<CalenderEvent[] | null>;
+  getCabinetRoleList: (uid?: string) => Promise<EnkaUserData | null>;
+  getCurrentUser: () => Promise<UserData | null>;
+  getDailyNotes: () => Promise<DailyNotesData | null>;
+  getGachaListByUrl: (url: string) => Promise<GachaData>;
+  getGachaUrl: () => Promise<string>;
+  getGameRecordCard: (bbsId?: string) => Promise<GameRecordCardData | null>;
+  getGameRoleCard: (uid?: string) => Promise<GameRoleCardData | null>;
+  getSpiralAbyss: (uid?: string, last?: boolean) => Promise<SpiralAbyssData | null>;
+  getRepoData: (filename: string) => Promise<any>;
+  getGameRoleInfo: () => Promise<GameRole | null>;
+  getHitokoto: () => Promise<string>;
+  getLocalGachaDatas: () => Promise<GachaData[]>;
+  getMonthInfo: (month?: number) => Promise<MonthInfo | null>;
+  getOwnedRoleList: (uid?: string) => Promise<Role[] | null>;
+  getPublicRoleList: () => Promise<PublicRole[] | null>;
+  getStoreKey: (key: string) => Promise<any>;
+  hideApp: () => void;
+  importGacha: () => Promise<BaseIPCRes<null | GachaData>>;
+  loginByBBS: () => void;
+  minimizeApp: () => void;
+  openGame: () => Promise<BaseIPCRes<boolean>>;
+  openWindow: (url: string, options?: WinOptions, UA?: string) => void;
+  readClipboardText: () => Promise<string>;
+  request: <T>(config: Config) => Promise<AxiosResponse<T>>;
+  setStoreKey: (key: string, value: any) => void;
+  writeClipboardText: (text: string) => void;
+}
+
+export type ElectronWindow = Window &
+  typeof globalThis & { [EXPOSED_API_FROM_ELECTRON]: NativeApi };

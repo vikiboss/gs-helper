@@ -4,13 +4,12 @@ import D from 'dayjs';
 import request from '../utils/request';
 import { deepClone, wait } from '../utils/utils';
 import {
-  API_HK4E,
-  AppName,
-  GachaTypeMap,
-  TypeToUIGFTypeMap,
+  API_HK4E, AppName, GachaTypeMap, TypeToUIGFTypeMap,
 } from '../constants';
 
-import type { BaseRes, GachaData, GachaItem, RawGachaItem } from '../typings';
+import type {
+  BaseRes, GachaData, GachaItem, RawGachaItem,
+} from '../typings';
 
 interface RawGachaData {
   page: string;
@@ -34,10 +33,10 @@ export const DefaultGachaData: GachaData = {
   list: [],
 };
 
-const getGachaListByUrl = async (url: string): Promise<GachaData> => {
+const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
   try {
     // 获取 URL 中的参数
-    const urlParams = new URLSearchParams(/\?(.*?)(#.+)?$/i.exec(url)[1]);
+    const urlParams = new URLSearchParams(/\?(.*?)(#.+)?$/i.exec(gachaUrl)[1]);
 
     // 默认的空数据
     const gacha: GachaData = deepClone(DefaultGachaData);
@@ -93,8 +92,13 @@ const getGachaListByUrl = async (url: string): Promise<GachaData> => {
 
           // 对返回的 list 列表进行数据处理（删除 uid 和 lang 字段）
           const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
-            e.uid && delete e.uid;
-            e.lang && delete e.lang;
+            if (e.uid) {
+              delete e.uid;
+            }
+
+            if (e.lang) {
+              delete e.lang;
+            }
 
             return Object.assign(e, {
               uigf_gacha_type: TypeToUIGFTypeMap[type],

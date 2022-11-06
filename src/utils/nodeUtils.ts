@@ -1,5 +1,5 @@
-import fs from 'fs';
-import crypto from 'crypto';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
 
 // MD5 加密算法
 export const md5 = (value: string) => crypto.createHash('md5').update(value).digest('hex');

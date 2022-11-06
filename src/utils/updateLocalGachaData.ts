@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { app } from 'electron';
 
 import { DefaultGachaData } from '../services/getGachaListByUrl';
@@ -11,7 +11,7 @@ import type { GachaData } from '../typings';
 // 通过新的抽卡数据来更新配置文件里的抽卡数据
 const updateLocalGachaData = (gacha: GachaData): GachaData => {
   // 获取新的数据的 UID
-  const uid = gacha.info.uid;
+  const { uid } = gacha.info;
 
   // 获取当前的软件目录
   const AppPath = app.getPath('userData');
@@ -39,27 +39,26 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
 
     // 直接返回参数里的祈愿数据
     return data;
-  } else {
-    // 如果该 UID 数据存在，则先读取旧数据，然后做合并处理
-    try {
-      // 读取旧数据
-      const LocalGachaStr = fs.readFileSync(GachaFilePath, { encoding: 'utf-8' });
-      const LocalGacha = JSON.parse(LocalGachaStr) as GachaData;
+  }
+  // 如果该 UID 数据存在，则先读取旧数据，然后做合并处理
+  try {
+    // 读取旧数据
+    const LocalGachaStr = fs.readFileSync(GachaFilePath, { encoding: 'utf-8' });
+    const LocalGacha = JSON.parse(LocalGachaStr) as GachaData;
 
-      // 合并处理
-      const list = mergeGachaList(LocalGacha.list, gacha.list);
+    // 合并处理
+    const list = mergeGachaList(LocalGacha.list, gacha.list);
 
-      // 写入新数据
-      const data = { info: gacha.info, list };
-      const fileContent = JSON.stringify(data);
-      fs.writeFileSync(GachaFilePath, fileContent, { encoding: 'utf-8' });
+    // 写入新数据
+    const data = { info: gacha.info, list };
+    const fileContent = JSON.stringify(data);
+    fs.writeFileSync(GachaFilePath, fileContent, { encoding: 'utf-8' });
 
-      // 返回合并后的祈愿数据
-      return data;
-    } catch {
-      // JSON 解析出错时，返回空数据
-      return DefaultGachaData;
-    }
+    // 返回合并后的祈愿数据
+    return data;
+  } catch {
+    // JSON 解析出错时，返回空数据
+    return DefaultGachaData;
   }
 };
 

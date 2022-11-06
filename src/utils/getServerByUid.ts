@@ -7,7 +7,7 @@ export const Servers: string[] = [
   'os_usa', // 6 开头，美国服
   'os_euro', // 7 开头，欧洲服
   'os_aisa', // 8 开头，亚洲服
-  'os_cht' // 9 开头，港澳台服
+  'os_cht', // 9 开头，港澳台服
 ];
 
 const getServerByUid = (uid: string): string => {

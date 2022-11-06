@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import { IconType } from 'react-icons';
+import type { IconType } from 'react-icons';
 import { FaExpandArrowsAlt, FaMinus } from 'react-icons/fa';
 import styles from './index.less';
 
@@ -12,7 +12,7 @@ export interface WinButtonProp {
 
 const TYPE_MAP: Record<string, IconType> = {
   close: FaExpandArrowsAlt,
-  minimize: FaMinus
+  minimize: FaMinus,
 };
 
 const WinButton: React.FC<WinButtonProp> = (props) => {

@@ -5,12 +5,12 @@ import type { GachaData } from '../typings';
 // 新旧祈愿数据列表合并算法
 const mergeGachaList = (pre: GachaData['list'], list: GachaData['list']) => {
   // 先把新旧数据合并到同一个数组
-  pre = pre.concat(list);
+  let results = pre.concat(list);
   // 创建一个 Set，它的值具有唯一性
   const ids = new Set<string>();
 
   // 通过 id 过滤掉重复的单条数据
-  pre = pre.filter((e) => {
+  results = results.filter((e) => {
     if (ids.has(e.id)) {
       return false;
     }
@@ -18,10 +18,10 @@ const mergeGachaList = (pre: GachaData['list'], list: GachaData['list']) => {
   });
 
   // 数据排序
-  pre = sortGachaList(pre);
+  results = sortGachaList(results);
 
   // 返回合并后的数据
-  return pre;
+  return results;
 };
 
 export default mergeGachaList;

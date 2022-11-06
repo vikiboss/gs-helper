@@ -17,10 +17,10 @@ export interface SignData {
 }
 
 const getBBSSignData = async (): Promise<SignData | null> => {
-  const act_id = await getBBSSignActId();
+  const actId = await getBBSSignActId();
 
   const url = `${API_TAKUMI}/event/bbs_sign_reward/home`;
-  const config = { params: { act_id }, headers: { referer: LINK_BBS_REFERER } };
+  const config = { params: { act_id: actId }, headers: { referer: LINK_BBS_REFERER } };
 
   const { status, data } = await request.get<BaseRes<SignData>>(url, config);
 

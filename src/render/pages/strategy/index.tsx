@@ -21,11 +21,12 @@ interface StrategyItem {
 const Strategy: React.FC = () => {
   const navigate = useNavigate();
   const notice = useNotice();
-  const [request, data = [], loading] = useApi<StrategyItem[]>(
-    nativeApi.getRepoData
-  );
+  const [request, data = [], loading] = useApi<StrategyItem[]>(nativeApi.getRepoData);
 
-  useEffect(() => void request('strategies.json'), []);
+  useEffect(() => {
+    request('strategies.json');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleWindowOpen = (link: string) => {
     notice.success({
@@ -39,7 +40,7 @@ const Strategy: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading ? 
+        {!loading ? (
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
@@ -59,9 +60,9 @@ const Strategy: React.FC = () => {
               })}
             </div>
           </>
-         : 
+        ) : (
           <Loading />
-        }
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

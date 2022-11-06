@@ -6,19 +6,19 @@ const getMostInfo = (gacha: GachaData) => {
   const predestined = { name: '', count: 0, valid: false };
   const luckest = { name: '', count: 999, valid: false };
   const unluckest = { name: '', count: 0, valid: false };
-  const i_5 = [] as { count: number; name: string }[];
+  const i5 = [] as { count: number; name: string }[];
   for (const type of ['activity', 'weapon', 'normal'] as GachaType[]) {
     const list = getListByType(gacha.list, type);
     let lastIndex = -1;
     for (const [i, e] of list.entries()) {
       if (e.rank_type === '5') {
-        i_5.push({ count: i - lastIndex, name: e.name });
+        i5.push({ count: i - lastIndex, name: e.name });
         lastIndex = i;
       }
     }
   }
   const memo: Record<string, number> = {};
-  for (const e of i_5) {
+  for (const e of i5) {
     if (e.count < luckest.count) {
       luckest.name = e.name;
       luckest.count = e.count;
@@ -31,7 +31,11 @@ const getMostInfo = (gacha: GachaData) => {
       unluckest.valid = true;
     }
 
-    memo[e.name] ? memo[e.name]++ : memo[e.name] = 1;
+    if (memo[e.name]) {
+      memo[e.name]++;
+    } else {
+      memo[e.name] = 1;
+    }
   }
   for (const [k, v] of Object.entries(memo)) {
     if (Number(v) > predestined.count) {

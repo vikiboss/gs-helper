@@ -1,15 +1,15 @@
-import path from 'path';
-import util from 'util';
-import child_process from 'child_process';
+import path from 'node:path';
+import util from 'node:util';
+import cp from 'node:child_process';
 import { app } from 'electron';
-
-const exec = util.promisify(child_process.exec);
 
 import { isAppleDevice } from '..';
 import { isFileExist } from '../../utils/nodeUtils';
 import getGameDir from '../../utils/getGameDir';
 
 import type { BaseIPCRes } from '../../typings';
+
+const exec = util.promisify(cp.exec);
 
 const dirs = [
   'C:\\Program Files\\Genshin Impact\\Genshin Impact Game',
@@ -35,17 +35,20 @@ const openGame = async (): Promise<BaseIPCRes<boolean>> => {
 
     if (!gameDir) {
       // 如果找不到游戏安装目录，尝试这几个默认位置
-      for (const dir of dirs) {
+      dirs.forEach((dir) => {
         if (isFileExist(path.join(dir, name))) {
           console.log('dir found in presets:', gameDir);
           gameDir = dir;
-          break;
         }
-      }
+      });
     }
 
     if (!gameDir) {
-      return { ok: false, data: false, message: '原神安装目录检测失败，请先尝试打开一次祈愿历史记录页' };
+      return {
+        ok: false,
+        data: false,
+        message: '原神安装目录检测失败，请先尝试打开一次祈愿历史记录页',
+      };
     }
 
     try {

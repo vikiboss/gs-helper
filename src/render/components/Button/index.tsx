@@ -20,16 +20,18 @@ export interface ButtonProp {
 const SIZE_MAP = {
   small: 12,
   middle: 20,
-  large: 30
+  large: 30,
 };
 
 const TYPE_MAP: Record<string, IconType> = {
   confirm: BiCircle,
-  cancel: BsXLg
+  cancel: BsXLg,
 };
 
 const Button: React.FC<ButtonProp> = (props) => {
-  const { onClick, className = '', size = 'small', theme = 'dark', style = {}, type, text } = props;
+  const {
+    onClick, className = '', size = 'small', theme = 'dark', style = {}, type, text,
+  } = props;
   const Icon = type ? TYPE_MAP[type] : null;
   return (
     <div

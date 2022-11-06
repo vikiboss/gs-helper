@@ -5,6 +5,7 @@ import type { Notice } from '../../../hooks/useNotice';
 import type { CalenderEvent } from '../../../../services/getCalenderList';
 
 import styles from './index.less';
+
 type Type = 'roles' | 'weapons' | 'materials';
 
 interface DailyProp {
@@ -32,13 +33,14 @@ const Tips = [
 
 const getUniqueArray = (arr: any[], key: string) => {
   const set = new Set();
-  const results = [];
-  for (const e of arr) {
+  const results: CalenderEvent[] = [];
+  arr.forEach((e) => {
     if (!set.has(e[key])) {
       set.add(e[key]);
       results.push(e);
     }
-  }
+  });
+
   return results;
 };
 
@@ -48,21 +50,21 @@ const getMaterialList = (list: CalenderEvent[]) => {
 
   const materials: CalenderEvent[] = [];
 
-  for (const e of kind2) {
+  kind2.forEach((e) => {
     const infos = e.contentInfos;
     const len = infos.length;
 
     if (len) {
-      const talent = infos.find((e) => e.title.includes('哲学'));
+      const talent = infos.find((f) => f.title.includes('哲学'));
 
       if (talent) {
         const item = infos[0].title.includes('「') ? talent : infos[len - 1];
-        const title = item.title.slice(0, 4) + '系列';
+        const title = `${item.title.slice(0, 4)}系列`;
 
         materials.push({ ...e, title, img_url: item.icon });
       }
     }
-  }
+  });
 
   return getUniqueArray(materials, 'title');
 };
@@ -92,7 +94,7 @@ const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
   const handleItemClick = (e: CalenderEvent) => {
     let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : '';
 
-    const contents = `${e.contentInfos.map((e) => e.title).join('、')}`;
+    const contents = `${e.contentInfos.map((f) => f.title).join('、')}`;
 
     message += type !== 'materials' ? contents : e.title;
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`;
@@ -138,7 +140,10 @@ const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
           </div>
         ))}
       </div>
-      <span className={styles.tip}>※ {Tips[week]}秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。</span>
+      <span className={styles.tip}>
+        ※ {Tips[week]}
+        秘境在每天的凌晨四点刷新，若当前时间超过零点但未过凌晨四点，请以前一日数据为准。
+      </span>
     </div>
   );
 };

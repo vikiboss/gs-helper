@@ -16,7 +16,7 @@ const getDS = (query = '', body = '') => {
     t: String(Math.floor(Date.now() / 1000)),
     r: String(random(100000, 1000000)),
     b: body,
-    q: query
+    q: query,
   };
   const DS = `${params.t},${params.r},${md5(qs(params))}`;
   console.log('getDS: ', DS);
@@ -28,7 +28,7 @@ export const getSignDS = () => {
   const params = {
     salt: 'Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29',
     t: String(Math.floor(Date.now() / 1000)),
-    r: getRandomStr(6)
+    r: getRandomStr(6),
   };
   const DS = `${params.t},${params.r},${md5(qs(params))}`;
   console.log('getSignDS: ', DS);

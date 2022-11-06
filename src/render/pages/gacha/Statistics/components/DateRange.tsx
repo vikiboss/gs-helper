@@ -1,10 +1,6 @@
 import React from 'react';
-import {
-  CalendarDatum,
-  CalendarLegendProps,
-  ResponsiveTimeRange,
-  TimeRangeDayData
-} from '@nivo/calendar';
+import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar';
+import { ResponsiveTimeRange } from '@nivo/calendar';
 
 import { ChartTheme } from '../../../../../constants';
 
@@ -27,19 +23,27 @@ const legends: CalendarLegendProps[] = [
     itemsSpacing: 32,
     itemWidth: 24,
     translateX: 32,
-    translateY: -36
-  }
+    translateY: -36,
+  },
 ];
 
 const DateRange: React.FC<DateRangeProp> = (props) => {
-  const { data, range, style, width, height, onClick, className = '' } = props;
+  const {
+    data, range, style, width, height, onClick, className = '',
+  } = props;
   return (
     <div
       className={className}
-      style={{ ...style, height, minHeight: height, width, minWidth: width }}
+      style={{
+        ...style,
+        height,
+        minHeight: height,
+        width,
+        minWidth: width,
+      }}
     >
       <ResponsiveTimeRange
-        legendFormat={(e) => e + '次'}
+        legendFormat={(e) => `${e}次`}
         onClick={onClick}
         colors={['#FFEEE1', '#FFDFC8', '#FFCEAA', '#FFA564', '#FF9142']}
         data={data}

@@ -1,6 +1,6 @@
+import path from 'node:path';
+import { promises as fs } from 'node:fs';
 import { app } from 'electron';
-import { promises as fs } from 'fs';
-import path from 'path';
 
 import { isDev, isAppleDevice } from '..';
 import { isFileExist } from '../../utils/nodeUtils';
@@ -40,7 +40,7 @@ const getGachaUrl = async () => {
     const url = urlMatches[urlMatches.length - 1];
 
     if (isDev) {
-      console.log('getGachaUrl: ', url.split('?')[0] + '?...');
+      console.log('getGachaUrl: ', `${url.split('?')[0]}?...`);
     }
 
     return url;

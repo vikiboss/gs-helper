@@ -26,6 +26,7 @@ const Portal: React.FC = () => {
 
   useEffect(() => {
     request('portals.json');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleWindowOpen = (link: PortalItem) => {
@@ -40,28 +41,24 @@ const Portal: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading ? 
+        {!loading ? (
           <>
             <div className={styles.title}>传送门</div>
             <div className={styles.cards}>
-              {data.map((e) => 
-                <div
-                  key={e.name}
-                  className={styles.card}
-                  onClick={() => handleWindowOpen(e)}
-                >
+              {data.map((e) => (
+                <div key={e.name} className={styles.card} onClick={() => handleWindowOpen(e)}>
                   <div>
                     <img src={e.icon} />
                     <div>{e.name}</div>
                   </div>
                   <div>{e.description}</div>
                 </div>
-              )}
+              ))}
             </div>
           </>
-         : 
+        ) : (
           <Loading />
-        }
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

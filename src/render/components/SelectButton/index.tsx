@@ -29,7 +29,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
   style,
   selectedStyle,
   value,
-  width
+  width,
 }) => {
   const isHori = direction === 'horizontal';
   return (
@@ -38,10 +38,10 @@ const SelectButton: React.FC<SelectButtonProp> = ({
       style={{
         width,
         height,
-        ...style
+        ...style,
       }}
     >
-      {items.map((e) => 
+      {items.map((e) => (
         <div
           key={e.value}
           style={e.value === value ? selectedStyle : undefined}
@@ -50,7 +50,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
         >
           {e.label}
         </div>
-      )}
+      ))}
     </div>
   );
 };

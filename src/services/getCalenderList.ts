@@ -3,8 +3,24 @@ import request from '../utils/request';
 
 import type { BaseRes } from '../typings';
 
-export interface CalenderData {
-  list: CalenderEvent[];
+export interface ContentSource {
+  /** 秘境名称 */
+  title: string;
+  /** 秘境 icon 链接 */
+  icon: string;
+
+  bbs_url: string;
+  content_id: number;
+}
+
+export interface ContentInfo {
+  /** 材料名称 */
+  title: string;
+  /** 材料 icon 链接 */
+  icon: string;
+
+  bbs_url: string;
+  content_id: number;
 }
 
 export interface CalenderEvent {
@@ -36,24 +52,8 @@ export interface CalenderEvent {
   title: string;
 }
 
-export interface ContentInfo {
-  /** 材料名称 */
-  title: string;
-  /** 材料 icon 链接 */
-  icon: string;
-
-  bbs_url: string;
-  content_id: number;
-}
-
-export interface ContentSource {
-  /** 秘境名称 */
-  title: string;
-  /** 秘境 icon 链接 */
-  icon: string;
-
-  bbs_url: string;
-  content_id: number;
+export interface CalenderData {
+  list: CalenderEvent[];
 }
 
 const getCalenderList = async (): Promise<CalenderEvent[] | null> => {

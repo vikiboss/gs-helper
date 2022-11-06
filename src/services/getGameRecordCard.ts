@@ -6,7 +6,17 @@ import request from '../utils/request';
 
 import type { BaseRes } from '../typings';
 
-export type GameRecordCardData = GameRecordCardItem[];
+export interface Data {
+  name: string;
+  type: number;
+  value: string;
+}
+
+export interface Data_switches {
+  switch_name: string;
+  switch_id: number;
+  is_public: boolean;
+}
 
 export interface GameRecordCardItem {
   region_name: string;
@@ -24,35 +34,23 @@ export interface GameRecordCardItem {
   background_image: string;
 }
 
-export interface Data {
-  name: string;
-  type: number;
-  value: string;
-}
-
-export interface Data_switches {
-  switch_name: string;
-  switch_id: number;
-  is_public: boolean;
-}
+export type GameRecordCardData = GameRecordCardItem[];
 
 interface GameRecordCardRawData {
   list: GameRecordCardData;
 }
 
-const getGameRecordCard = async (
-  bbsId?: string
-): Promise<GameRecordCardData | null> => {
+const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | null> => {
   const currentUser = getCurrentUser();
 
   if (!currentUser) {
     return null;
   }
 
-  bbsId = bbsId || currentUser.uid;
+  const targetBbsId = bbsId || currentUser.uid;
 
   const url = `${API_TAKUMI_RECORD}/game_record/app/card/wapi/getGameRecordCard`;
-  const params = { uid: bbsId };
+  const params = { uid: targetBbsId };
   const headers = {
     referer: LINK_BBS_REFERER,
     DS: getDS(qs(params)),
@@ -64,10 +62,7 @@ const getGameRecordCard = async (
     params,
   };
 
-  const { status, data } = await request.get<BaseRes<GameRecordCardRawData>>(
-    url,
-    config
-  );
+  const { status, data } = await request.get<BaseRes<GameRecordCardRawData>>(url, config);
 
   const isOK = status === 200 && data.retcode === 0;
 

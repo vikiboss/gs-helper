@@ -57,7 +57,7 @@ export const APP_USER_AGENT_DESKTOP = 'Mozilla/5.0 GenshinHelper/';
 export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/';
 export const GAME_BIZ = 'hk4e_cn';
 
-export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com/bbs/event/signin-ys/index.html';
+export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com';
 export const LINK_GITHUB_REPO = 'https://github.com/vikiboss/genshin-helper';
 export const LINK_MIHOYO_BBS_LOGIN = 'https://m.bbs.mihoyo.com/ys/#/login';
 export const LINK_GENSHIN_MAP = 'https://webstatic.mihoyo.com/ys/app/interactive-map';
@@ -81,19 +81,19 @@ export const ElementTypes: Record<string, string> = {
 };
 
 export const GachaTypeMap: Record<string, string> = {
-  '301': '角色活动祈愿',
-  '400': '角色活动祈愿2',
-  '302': '武器活动祈愿',
-  '200': '常驻祈愿',
-  '100': '新手祈愿',
+  301: '角色活动祈愿',
+  400: '角色活动祈愿2',
+  302: '武器活动祈愿',
+  200: '常驻祈愿',
+  100: '新手祈愿',
 };
 
 export const TypeToUIGFTypeMap: Record<string, string> = {
-  '100': '100',
-  '200': '200',
-  '301': '301',
-  '400': '301',
-  '302': '302',
+  100: '100',
+  200: '200',
+  301: '301',
+  400: '301',
+  302: '302',
 };
 
 export const NormalItemList: string[] = [

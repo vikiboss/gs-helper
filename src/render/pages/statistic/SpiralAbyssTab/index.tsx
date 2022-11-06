@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 import D from 'dayjs';
 
@@ -18,9 +19,7 @@ interface SpiralAbyssProp {
   data: SpiralAbyssData;
 }
 
-const formatTime = (timestamp: string) => {
-  return D(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm');
-};
+const formatTime = (timestamp: string) => D(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm');
 
 const starMap = ['', star1, star2, star3];
 
@@ -79,45 +78,43 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
               floors
                 .sort((a, b) => b.index - a.index)
                 .slice(0, 4)
-                .map((e) => {
-                  return (
-                    <div key={e.index} className={styles.abyssItem}>
-                      <div className={styles.abyssIndex}>
-                        <span>{e.index}</span>
-                      </div>
-                      <div className={styles.zones}>
-                        {e.levels.map((f) => {
-                          const [start, end] = f.battles.map((e) => {
-                            return D(Number(e.timestamp) * 1000).format('M月D日 HH:mm');
-                          });
+                .map((e) => (
+                  <div key={e.index} className={styles.abyssItem}>
+                    <div className={styles.abyssIndex}>
+                      <span>{e.index}</span>
+                    </div>
+                    <div className={styles.zones}>
+                      {e.levels.map((f) => {
+                        const [start, end] = f.battles.map((g) => D(Number(g.timestamp) * 1000).format('M月D日 HH:mm'));
 
-                          return (
-                            <div className={styles.zone} key={f.index}>
-                              <div className={styles.stars}>
-                                <div>第 {f.index} 间</div>
-                                <div>
-                                  <img src={starMap[f.star]} className={styles.star} />
-                                  {start && <span>上半：{start}</span>}
-                                  {end && <span>下半：{end}</span>}
-                                </div>
-                              </div>
-                              <div className={styles.roles}>
-                                {f.battles.map((g) => (
-                                  <div className={styles.rolesRow} key={g.index}>
-                                    {g.avatars.map((e) => {
-                                      const backgroundColor = e.rarity === 4 ? '#9677b3' : '#c08d4b';
-                                      return <img src={e.icon} key={e.id} style={{ backgroundColor }} />;
-                                    })}
-                                  </div>
-                                ))}
+                        return (
+                          <div className={styles.zone} key={f.index}>
+                            <div className={styles.stars}>
+                              <div>第 {f.index} 间</div>
+                              <div>
+                                <img src={starMap[f.star]} className={styles.star} />
+                                {start && <span>上半：{start}</span>}
+                                {end && <span>下半：{end}</span>}
                               </div>
                             </div>
-                          );
-                        })}
-                      </div>
+                            <div className={styles.roles}>
+                              {f.battles.map((g) => (
+                                <div className={styles.rolesRow} key={g.index}>
+                                  {g.avatars.map((h) => {
+                                    const backgroundColor = h.rarity === 4 ? '#9677b3' : '#c08d4b';
+                                    return (
+                                      <img src={h.icon} key={h.id} style={{ backgroundColor }} />
+                                    );
+                                  })}
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
-                  );
-                })
+                  </div>
+                ))
             ) : (
               <Loading isEmpty style={{ height: '100%' }} text='TA 好像还没有开始打深境螺旋' />
             )}

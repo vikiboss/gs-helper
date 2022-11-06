@@ -22,14 +22,14 @@ export const clearSessionCookie = async () => {
   // 获取所有米哈游相关 Cookie
   const mihoyoCks = await ses.cookies.get({ domain: 'mihoyo.com' });
   // 遍历清空
-  for (const ck of mihoyoCks) {
+  mihoyoCks.forEach((ck) => {
     // 判断协议
     const protocal = ck.secure ? 'https://' : 'http://';
     // 拼接域
     const link = ck.domain + ck.path;
     // 按照域和名称移除 Cookie
     ses.cookies.remove(protocal + link, ck.name);
-  }
+  });
 };
 
 /** 切换账号，为防止 Session 冲突，切换时清空 Seession 的缓存 */

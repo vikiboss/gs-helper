@@ -15,12 +15,16 @@ const getLuckInfo = (gacha: GachaData) => {
       } else {
         const isMiss = NormalItemList.includes(e.name);
         count++;
-        isMiss && miss++;
+
+        if (isMiss) {
+          miss++;
+        }
+
         status = isMiss ? 1 : 0;
       }
     }
   }
-  return { count, miss, rate: (100 * miss / (count || 1)).toFixed(2) };
+  return { count, miss, rate: ((100 * miss) / (count || 1)).toFixed(2) };
 };
 
 export default getLuckInfo;

@@ -28,7 +28,10 @@ const Roles: React.FC<RolesProp> = ({ data = [], uid }) => {
         ))}
       </div>
       <Button text='查看角色展示柜' className={styles.btn} onClick={openCabinet} />
-      <div className={styles.tip}>※ 以上展示角色信息来源于米游社个人主页，如需查看游戏内「角色展示柜」的详细数据，请点击「查看角色展示柜」按钮。</div>
+      <div className={styles.tip}>
+        ※
+        以上展示角色信息来源于米游社个人主页，如需查看游戏内「角色展示柜」的详细数据，请点击「查看角色展示柜」按钮。
+      </div>
     </div>
   );
 };

@@ -4,7 +4,14 @@ import { FaHeart } from 'react-icons/fa';
 import { TiArrowBack } from 'react-icons/ti';
 import { useNavigate } from 'react-router-dom';
 
-import { ElementImgs, ElementOptions, RarityOptions, TabMap, tabs, WeaponOptions } from './constants';
+import {
+  ElementImgs,
+  ElementOptions,
+  RarityOptions,
+  TabMap,
+  tabs,
+  WeaponOptions,
+} from './constants';
 import { ElementTypes } from '../../../constants';
 import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils';
 import Button from '../../components/Button';
@@ -45,37 +52,36 @@ const Role: React.FC = () => {
   const [publicRoles, setPublicRolos] = useState<PublicRole[]>([]);
   const [roles, setRoles] = useState<RoleInfo[]>([]);
 
-  useEffect(() => {
-    (async () => await updateInfo())();
-  }, []);
-
   const updateInfo = async (): Promise<void> => {
     try {
       // 获取官网公开的全部角色列表，包含介绍、图片、声优、语音等数据
       const pbRoles = await nativeApi.getPublicRoleList();
-      if (!pbRoles.length) return updateInfo();
+
+      if (!pbRoles.length) {
+        updateInfo();
+        return;
+      }
+
       setPublicRolos(pbRoles);
 
       // 获取用户的角色列表
-      const roles = await nativeApi.getOwnedRoleList();
+      const ownedRoles = await nativeApi.getOwnedRoleList();
       // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
 
-      console.log(roles);
+      console.log(ownedRoles);
 
-      roles.sort((p, n) => {
-        return (
-          n.level - p.level ||
-          n.rarity - p.rarity ||
-          n.actived_constellation_num - p.actived_constellation_num ||
-          n.weapon.rarity - p.weapon.rarity ||
-          n.weapon.level - p.weapon.level
-        );
-      });
+      ownedRoles.sort(
+        (p, n) => n.level - p.level
+          || n.rarity - p.rarity
+          || n.actived_constellation_num - p.actived_constellation_num
+          || n.weapon.rarity - p.weapon.rarity
+          || n.weapon.level - p.weapon.level,
+      );
 
-      if (roles.length) {
-        setRoles(roles);
+      if (ownedRoles.length) {
+        setRoles(ownedRoles);
       }
-      
+
       // if (roles.length) setRoles([...roles, ...roles]);
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo');
@@ -84,15 +90,20 @@ const Role: React.FC = () => {
     }
   };
 
-  const _roles = getFullRoleInfo(roles, publicRoles).filter((e) => {
+  useEffect(() => {
+    updateInfo();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const fullRoles = getFullRoleInfo(roles, publicRoles).filter((e) => {
     const isRarityOK = filters[0] === 0 || e.rarity === filters[0];
     const isElementOK = filters[1] === 'all' || e.element === filters[1];
     const isWeaponOK = filters[2] === 0 || e.weapon.type === filters[2];
     return isElementOK && isWeaponOK && isRarityOK;
   });
-  const isDetail = mode === 'detail' && _roles.length > 0;
-  const currentRole = _roles[index];
-  const reliquaryEffects = isDetail ? getReliquaryEffects(_roles[index].reliquaries) : [];
+  const isDetail = mode === 'detail' && fullRoles.length > 0;
+  const currentRole = fullRoles[index];
+  const reliquaryEffects = isDetail ? getReliquaryEffects(fullRoles[index].reliquaries) : [];
 
   const toggleMode = () => {
     setInfoTab('weapon');
@@ -101,7 +112,7 @@ const Role: React.FC = () => {
 
   const handleArrowClick = (direction: 'left' | 'right') => {
     const isLeft = direction === 'left';
-    const i = (index + (isLeft ? -1 : 1) + _roles.length) % _roles.length;
+    const i = (index + (isLeft ? -1 : 1) + fullRoles.length) % fullRoles.length;
     setIndex(i);
     setIsRoleChanging(false);
     setTimeout(() => setIsRoleChanging(true), 0);
@@ -109,7 +120,13 @@ const Role: React.FC = () => {
 
   return (
     <>
-      <div className={cn(styles.container, isDetail ? styles[currentRole.element.toLowerCase()] : '', isDetail && isRoleChanging ? styles.bgAni : '')}>
+      <div
+        className={cn(
+          styles.container,
+          isDetail ? styles[currentRole.element.toLowerCase()] : '',
+          isDetail && isRoleChanging ? styles.bgAni : '',
+        )}
+      >
         <div className={styles.topZone}>
           {!isDetail && roles.length > 0 && (
             <>
@@ -154,13 +171,20 @@ const Role: React.FC = () => {
               </div>
             </>
           )}
-          {isDetail && <Button className={cn(styles.allRoleBtn, styles.allRoleBtnAni)} text='所有角色' theme='light' onClick={toggleMode} />}
+          {isDetail && (
+            <Button
+              className={cn(styles.allRoleBtn, styles.allRoleBtnAni)}
+              text='所有角色'
+              theme='light'
+              onClick={toggleMode}
+            />
+          )}
         </div>
         {roles.length > 0 ? (
           <>
             {!isDetail && (
               <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : '')}>
-                {_roles.map((e, i) => (
+                {fullRoles.map((e, i) => (
                   <RoleCard
                     key={e.id}
                     style={{ margin: '4px' }}
@@ -171,7 +195,9 @@ const Role: React.FC = () => {
                     }}
                   />
                 ))}
-                {roles.length > 0 && _roles.length === 0 && <div className={styles.empty}>筛选结果为空</div>}
+                {roles.length > 0 && fullRoles.length === 0 && (
+                  <div className={styles.empty}>筛选结果为空</div>
+                )}
               </div>
             )}
             {/* 渲染角色详情页 */}
@@ -194,15 +220,22 @@ const Role: React.FC = () => {
                         )}
                         {currentRole.actived_constellation_num > 0 && (
                           <span>
-                            {currentRole.actived_constellation_num}命{currentRole.actived_constellation_num >= 6 ? ' （满命）' : ''}
+                            {currentRole.actived_constellation_num}命
+                            {currentRole.actived_constellation_num >= 6 ? ' （满命）' : ''}
                           </span>
                         )}
                       </div>
                     </div>
-                    <div className={cn(styles.tabContainer, isRoleChanging ? styles.contentAni : '')}>
+                    <div
+                      className={cn(styles.tabContainer, isRoleChanging ? styles.contentAni : '')}
+                    >
                       <div className={styles.tab}>
                         {tabs.map((e) => (
-                          <div className={e === infoTab ? styles.tabActive : ''} key={e} onClick={() => setInfoTab(e)}>
+                          <div
+                            className={e === infoTab ? styles.tabActive : ''}
+                            key={e}
+                            onClick={() => setInfoTab(e)}
+                          >
                             {TabMap[e]}
                           </div>
                         ))}
@@ -218,7 +251,8 @@ const Role: React.FC = () => {
                               <span>{currentRole.weapon.desc}</span>
                               <span>
                                 Lv.{currentRole.weapon.level}
-                                {currentRole.weapon.affix_level > 1 && ` / 精炼${currentRole.weapon.affix_level}阶`}
+                                {currentRole.weapon.affix_level > 1
+                                  && ` / 精炼${currentRole.weapon.affix_level}阶`}
                               </span>
                             </div>
                           </div>
@@ -243,15 +277,17 @@ const Role: React.FC = () => {
                                     <Fragment key={e.name}>
                                       <span>{e.name}</span>
                                       <div>
-                                        {e.effects.map((e) => (
-                                          <span key={e.num}>
-                                            ·{e.num}件套：{e.effect}
+                                        {e.effects.map((f) => (
+                                          <span key={f.num}>
+                                            ·{f.num}件套：{f.effect}
                                           </span>
                                         ))}
                                       </div>
                                     </Fragment>
-                                  ))
-                                : currentRole.reliquaries.length > 0 && <div>当前圣遗物没有套装效果</div>}
+                                ))
+                                : currentRole.reliquaries.length > 0 && (
+                                    <div>当前圣遗物没有套装效果</div>
+                                )}
                             </div>
                           </div>
                         )}
@@ -259,21 +295,21 @@ const Role: React.FC = () => {
                         {infoTab === 'constellation' && (
                           <div className={styles.constellation}>
                             <div>
-                              {currentRole.constellations.map((e, i) => {
-                                return (
-                                  <img
-                                    className={constellIndex === i ? styles.constelllActive : ''}
-                                    key={e.name + i}
-                                    src={e.is_actived ? e.icon : lock}
-                                    onClick={() => setConstellIndex(i)}
-                                  />
-                                );
-                              })}
+                              {currentRole.constellations.map((e, i) => (
+                                <img
+                                  className={constellIndex === i ? styles.constelllActive : ''}
+                                  key={e.name + i}
+                                  src={e.is_actived ? e.icon : lock}
+                                  onClick={() => setConstellIndex(i)}
+                                />
+                              ))}
                             </div>
                             <div>
                               <span>
                                 {currentRole.constellations[constellIndex].name}
-                                {currentRole.constellations[constellIndex].is_actived ? '' : ' （未激活）'}
+                                {currentRole.constellations[constellIndex].is_actived
+                                  ? ''
+                                  : ' （未激活）'}
                               </span>
                               <span>命之座·第{constellIndex + 1}层</span>
                               <div>
@@ -293,7 +329,7 @@ const Role: React.FC = () => {
                             <span className={styles.introduction}>{currentRole.introduction}</span>
                             <span className={styles.CV}>
                               CV：
-                              {currentRole.CVs.map((e) => e.name + `(${e.type})`).join('、')}
+                              {currentRole.CVs.map((e) => `${e.name}(${e.type})`).join('、')}
                             </span>
                           </div>
                         )}
@@ -302,8 +338,13 @@ const Role: React.FC = () => {
                   </div>
                 </div>
                 <div className={cn(styles.mask, isRoleChanging ? styles.imgAni : '')} />
-                <img className={cn(styles.img, isRoleChanging ? styles.imgAni : '')} src={currentRole.image} />
-                <div className={cn(styles.extInfo, isRoleChanging ? styles.imgAni : '')}>{currentRole.line && <img src={currentRole.line} />}</div>
+                <img
+                  className={cn(styles.img, isRoleChanging ? styles.imgAni : '')}
+                  src={currentRole.image}
+                />
+                <div className={cn(styles.extInfo, isRoleChanging ? styles.imgAni : '')}>
+                  {currentRole.line && <img src={currentRole.line} />}
+                </div>
               </div>
             )}
           </>
@@ -311,11 +352,21 @@ const Role: React.FC = () => {
           <Loading className={styles.loading} />
         )}
 
-        {!isDetail && <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={() => navigate('/')} />}
+        {!isDetail && (
+          <CircleButton
+            Icon={TiArrowBack}
+            size='middle'
+            className={styles.backBtn}
+            onClick={() => navigate('/')}
+          />
+        )}
 
         {isDetail && (
           <>
-            <img className={cn(styles.bgElement, isRoleChanging ? styles.elementAni : '')} src={ElementImgs[currentRole.element]} />
+            <img
+              className={cn(styles.bgElement, isRoleChanging ? styles.elementAni : '')}
+              src={ElementImgs[currentRole.element]}
+            />
             <div className={styles.arrowLeft} onClick={handleArrowClick.bind(null, 'left')} />
             <div className={styles.arrowRight} onClick={handleArrowClick.bind(null, 'right')} />
           </>

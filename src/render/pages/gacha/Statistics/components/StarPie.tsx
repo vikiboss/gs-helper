@@ -1,5 +1,6 @@
 import React from 'react';
-import { CommonPieProps, MouseEventHandler, ResponsivePie } from '@nivo/pie';
+import type { CommonPieProps, MouseEventHandler } from '@nivo/pie';
+import { ResponsivePie } from '@nivo/pie';
 
 import { ChartTheme } from '../../../../../constants';
 import { Colors } from '../../utils/getPieData';
@@ -27,14 +28,14 @@ const defs = [
     color: 'rgba(255, 255, 255, 0.3)',
     rotation: -45,
     lineWidth: 6,
-    spacing: 10
-  }
+    spacing: 10,
+  },
 ];
 
 const fill = [
   { match: { id: '3星' }, id: 'lines' },
   { match: { id: '4星' }, id: 'lines' },
-  { match: { id: '5星' }, id: 'lines' }
+  { match: { id: '5星' }, id: 'lines' },
 ];
 
 const legends: CommonPieProps<StarPieProp['data']>['legends'] = [
@@ -51,19 +52,27 @@ const legends: CommonPieProps<StarPieProp['data']>['legends'] = [
       {
         on: 'hover',
         style: {
-          itemTextColor: '#ffa564'
-        }
-      }
-    ]
-  }
+          itemTextColor: '#ffa564',
+        },
+      },
+    ],
+  },
 ];
 
 const ItemPie: React.FC<StarPieProp> = (props) => {
-  const { data, style, width, height, onClick, className = '' } = props;
+  const {
+    data, style, width, height, onClick, className = '',
+  } = props;
   return (
     <div
       className={className}
-      style={{ ...style, height, minHeight: height, width, minWidth: width }}
+      style={{
+        ...style,
+        height,
+        minHeight: height,
+        width,
+        minWidth: width,
+      }}
     >
       <ResponsivePie
         onClick={onClick}
@@ -83,7 +92,12 @@ const ItemPie: React.FC<StarPieProp> = (props) => {
         fill={fill}
         innerRadius={0.5}
         legends={legends}
-        margin={{ top: 24, right: 24, bottom: 60, left: 24 }}
+        margin={{
+          top: 24,
+          right: 24,
+          bottom: 60,
+          left: 24,
+        }}
         padAngle={0.7}
         theme={ChartTheme}
       />

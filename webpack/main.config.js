@@ -1,18 +1,20 @@
+const rules = require('./rules');
+
 module.exports = {
   entry: './src/main/index.ts',
   module: {
     rules: [
-      ...require('./rules'),
+      ...rules,
       {
         test: /\.(svg|jpg|jpeg|png|ico|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/[hash][ext][query]'
-        }
-      }
-    ]
+          filename: 'assets/[hash][ext][query]',
+        },
+      },
+    ],
   },
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json']
-  }
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.json'],
+  },
 };

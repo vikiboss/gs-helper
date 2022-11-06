@@ -13,7 +13,9 @@ interface RoleNumberProp {
 }
 
 const RoleNumber: React.FC<RoleNumberProp> = (props) => {
-  const { value, avatar, className, description } = props;
+  const {
+    value, avatar, className, description,
+  } = props;
 
   return (
     <div className={cn(styles.wrapper, className)}>

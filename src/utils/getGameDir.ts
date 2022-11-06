@@ -1,5 +1,5 @@
-import { promises as fs } from 'fs';
-import path from 'path';
+import { promises as fs } from 'node:fs';
+import path from 'node:path';
 import { app } from 'electron';
 
 import { GAME_NAME } from '../constants';
@@ -18,9 +18,8 @@ const getGameDir = async (): Promise<string> => {
     if (dir) {
       if (isDirExist(dir)) {
         return path.join(dir, 'Genshin Impact Game');
-      } else {
-        store.set('settings.gameDir', '');
       }
+      store.set('settings.gameDir', '');
     }
 
     // 获取系统语言
@@ -45,9 +44,8 @@ const getGameDir = async (): Promise<string> => {
     if (gameDir && isDirExist(gameDir)) {
       store.set('settings.gameDir', gameDir);
       return path.join(gameDir, 'Genshin Impact Game');
-    } else {
-      return '';
     }
+    return '';
   } catch (e) {
     console.log(e);
     return '';

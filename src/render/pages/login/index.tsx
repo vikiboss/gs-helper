@@ -47,16 +47,17 @@ const Login: React.FC<LoginProp> = (props) => {
     }
 
     (async () => {
-      const users: UserData[] = await nativeApi.getStoreKey('users');
+      const storeUsers: UserData[] = await nativeApi.getStoreKey('users');
 
-      if (users.length > 0) {
+      if (storeUsers.length > 0) {
         // if (isSwitching) notice.info({ message: "点击页面底部已登录 UID 可快速切换本地账号" });
-        users.sort((p, n) => Number(p.uid) - Number(n.uid));
-        setUsers(users);
+        storeUsers.sort((p, n) => Number(p.uid) - Number(n.uid));
+        setUsers(storeUsers);
       }
       // setUsers([...users, ...users]);
       // setUsers([...users, ...users, ...users, ...users, ...users, ...users]);
     })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleLogin = () => {
@@ -137,13 +138,22 @@ const Login: React.FC<LoginProp> = (props) => {
                 }}
               >
                 {users.map((e, i) => (
-                  <Button key={e.uid + i} text={e.uid} onClick={handleUserSwitch.bind(null, e.uid)} />
+                  <Button
+                    key={e.uid + i}
+                    text={e.uid}
+                    onClick={handleUserSwitch.bind(null, e.uid)}
+                  />
                 ))}
               </div>
             </div>
           )}
         </div>
-        <CircleButton Icon={TiArrowBack} size='middle' className={styles.backBtn} onClick={handleBack} />
+        <CircleButton
+          Icon={TiArrowBack}
+          size='middle'
+          className={styles.backBtn}
+          onClick={handleBack}
+        />
       </div>
       {notice.holder}
     </>

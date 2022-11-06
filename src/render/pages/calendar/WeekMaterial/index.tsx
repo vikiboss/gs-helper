@@ -5,17 +5,63 @@ import type { Notice } from '../../../hooks/useNotice';
 
 import styles from './index.less';
 
+interface WeekItem {
+  icon: string;
+  name: string;
+}
+
+interface Nomal extends WeekItem {
+  drop: number[];
+  domain: WeekItem;
+}
+
+interface Advance extends WeekItem {
+  domain: WeekItem;
+}
+
+interface Talent {
+  advance: Advance;
+  nomal: Nomal;
+}
+
+interface Material {
+  talent: Talent;
+}
+
+interface Avatar {
+  basic: string;
+  side: string;
+  full: string;
+}
+
+interface Poster {
+  mobile: string;
+}
+
+interface WeekBaseRole {
+  name: string;
+  enname: string;
+  element: string;
+  rarity: number;
+  avatar: Avatar;
+  poster: Poster;
+}
+
+export interface RepoRole extends WeekBaseRole {
+  material: Material;
+}
+
 interface WeekMaterialProp {
   notice: Notice;
   roles: RepoRole[];
 }
 
-interface WeekBoss extends WeekItem {
-  materials: WeekMaterial[];
-}
-
 interface WeekMaterial extends WeekItem {
   roles: WeekBaseRole[];
+}
+
+interface WeekBoss extends WeekItem {
+  materials: WeekMaterial[];
 }
 
 const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
@@ -27,26 +73,33 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
   const bosses = allBosses.filter((e, i) => allBosses.findIndex((f) => f.name === e.name) === i);
 
   // 所有材料（包含重复项）
-  const allMaterials = roles.map((e) => e.material.talent.advance);
+  const all = roles.map((e) => e.material.talent.advance);
   // 材料去重
-  const materials = allMaterials.filter((e, i) => allMaterials.findIndex((f) => f.name === e.name) === i);
+  const materials = all.filter((e, i) => all.findIndex((f) => f.name === e.name) === i);
 
-  const list: WeekBoss[] = bosses.map((e) => {
+  const list: WeekBoss[] = bosses.map((boss) => {
     const matchMaterials: WeekMaterial[] = materials
-      .filter((f) => f.domain.name === e.name)
-      .map((e) => {
-        const matchRoles = roles.filter((f) => f.material.talent.advance.name === e.name);
+      .filter((material) => material.domain.name === boss.name)
+      .map((material) => {
+        const matchRoles = roles.filter(
+          (role) => role.material.talent.advance.name === material.name,
+        );
 
-        return { ...e, roles: matchRoles };
+        return { ...material, roles: matchRoles };
       });
 
-    return { ...e, materials: matchMaterials };
+    return { ...boss, materials: matchMaterials };
   });
 
   return (
     <div className={styles.weekMaterial}>
       <div className={styles.top}>
-        <SelectButton style={{ height: '28px' }} value={idx} changeItem={setIdx} items={list.map((e, i) => ({ label: e.name, value: i }))} />
+        <SelectButton
+          style={{ height: '28px' }}
+          value={idx}
+          changeItem={setIdx}
+          items={list.map((e, i) => ({ label: e.name, value: i }))}
+        />
       </div>
 
       <div className={styles.bossItem}>
@@ -62,10 +115,10 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
                 <span>{e.name}</span>
               </div>
               <div>
-                {e.roles.map((e) => (
-                  <div key={e.name} className={styles.role}>
-                    <img src={e.avatar.full} title={e.name} />
-                    <span>{e.name}</span>
+                {e.roles.map((f) => (
+                  <div key={f.name} className={styles.role}>
+                    <img src={f.avatar.full} title={f.name} />
+                    <span>{f.name}</span>
                   </div>
                 ))}
               </div>
@@ -73,55 +126,12 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
           ))}
         </div>
       </div>
-      <span className={styles.tip}>※ 每周有三次挑战「值得铭记的强敌」并在收取奖励时树脂消耗减半的次数，不同的角色升级高级天赋时需要这些对应的周本材料</span>
+      <span className={styles.tip}>
+        ※
+        每周有三次挑战「值得铭记的强敌」并在收取奖励时树脂消耗减半的次数，不同的角色升级高级天赋时需要这些对应的周本材料
+      </span>
     </div>
   );
 };
 
 export default WeekMaterial;
-
-interface WeekBaseRole {
-  name: string;
-  enname: string;
-  element: string;
-  rarity: number;
-  avatar: Avatar;
-  poster: Poster;
-}
-
-export interface RepoRole extends WeekBaseRole {
-  material: Material;
-}
-
-interface Avatar {
-  basic: string;
-  side: string;
-  full: string;
-}
-
-interface Poster {
-  mobile: string;
-}
-
-interface Material {
-  talent: Talent;
-}
-
-interface WeekItem {
-  icon: string;
-  name: string;
-}
-
-interface Talent {
-  advance: Advance;
-  nomal: Nomal;
-}
-
-interface Advance extends WeekItem {
-  domain: WeekItem;
-}
-
-interface Nomal extends WeekItem {
-  drop: number[];
-  domain: WeekItem;
-}

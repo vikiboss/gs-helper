@@ -1,5 +1,6 @@
 import cn from 'classnames';
-import React, { MouseEventHandler } from 'react';
+import type { MouseEventHandler } from 'react';
+import React from 'react';
 
 import star1 from '../../../assets/star1.png';
 import star2 from '../../../assets/star2.png';
@@ -35,7 +36,7 @@ const WeaponCard: React.FC<WeaponCardProp> = ({
   onClick,
   weapon,
   style,
-  withName = true
+  withName = true,
 }) => {
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`];
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1];

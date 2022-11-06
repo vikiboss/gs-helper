@@ -7,6 +7,73 @@ import request from '../utils/request';
 
 import type { BaseRes } from '../typings';
 
+interface Avatars {
+  id: number;
+  icon: string;
+  level: number;
+  rarity: number;
+}
+interface Battles {
+  index: number;
+  timestamp: string;
+  avatars: Avatars[];
+}
+interface Levels {
+  index: number;
+  star: number;
+  max_star: number;
+  battles: Battles[];
+}
+interface Floors {
+  index: number;
+  icon: string;
+  is_unlock: boolean;
+  settle_time: string;
+  star: number;
+  max_star: number;
+  levels: Levels[];
+}
+interface Energy_skill_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+interface Normal_skill_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+
+interface Take_damage_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+
+interface Damage_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+
+interface Defeat_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+
+interface Reveal_rank {
+  avatar_id: number;
+  avatar_icon: string;
+  value: number;
+  rarity: number;
+}
+
 export interface SpiralAbyssData {
   schedule_id: number;
   start_time: string;
@@ -25,94 +92,20 @@ export interface SpiralAbyssData {
   is_unlock: boolean;
 }
 
-interface Reveal_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Defeat_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Damage_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Take_damage_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Normal_skill_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Energy_skill_rank {
-  avatar_id: number;
-  avatar_icon: string;
-  value: number;
-  rarity: number;
-}
-
-interface Floors {
-  index: number;
-  icon: string;
-  is_unlock: boolean;
-  settle_time: string;
-  star: number;
-  max_star: number;
-  levels: Levels[];
-}
-
-interface Levels {
-  index: number;
-  star: number;
-  max_star: number;
-  battles: Battles[];
-}
-
-interface Battles {
-  index: number;
-  timestamp: string;
-  avatars: Avatars[];
-}
-
-interface Avatars {
-  id: number;
-  icon: string;
-  level: number;
-  rarity: number;
-}
-
-const getSpiralAbyss = async (
-  uid?: string, last = false
-): Promise<SpiralAbyssData | null> => {
+const getSpiralAbyss = async (uid?: string, last = false): Promise<SpiralAbyssData | null> => {
   const currentUser = getCurrentUser();
 
   if (!currentUser) {
     return null;
   }
 
-  uid = uid || currentUser.uid;
+  const targetUid = uid || currentUser.uid;
 
   const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/spiralAbyss`;
   const params = {
-    role_id: uid,
+    role_id: targetUid,
     schedule_type: last ? '2' : '1',
-    server: getServerByUid(uid),
+    server: getServerByUid(targetUid),
   };
   const headers = {
     referer: LINK_BBS_REFERER,

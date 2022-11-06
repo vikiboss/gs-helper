@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import React from 'react';
 
 import { deepClone } from '../../../../utils/utils';
@@ -51,68 +52,37 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
             <NumberDescription value={avatar_number} description='角色' />
             <NumberDescription value={way_point_number} description='传送点' />
             <NumberDescription value={domain_number} description='秘境' />
-            <NumberDescription
-              value={luxurious_chest_number}
-              description='华丽宝箱'
-            />
-            <NumberDescription
-              value={precious_chest_number}
-              description='珍贵宝箱'
-            />
-            <NumberDescription
-              value={exquisite_chest_number}
-              description='精致宝箱'
-            />
-            <NumberDescription
-              value={common_chest_number}
-              description='普通宝箱'
-            />
-            <NumberDescription
-              value={magic_chest_number}
-              description='奇馈宝箱'
-            />
+            <NumberDescription value={luxurious_chest_number} description='华丽宝箱' />
+            <NumberDescription value={precious_chest_number} description='珍贵宝箱' />
+            <NumberDescription value={exquisite_chest_number} description='精致宝箱' />
+            <NumberDescription value={common_chest_number} description='普通宝箱' />
+            <NumberDescription value={magic_chest_number} description='奇馈宝箱' />
             <AbyssNumber values={[floor, zone]} />
-            <NumberDescription
-              value={anemoculus_number}
-              description='风神瞳'
-              sub='/66'
-            />
-            <NumberDescription
-              value={geoculus_number}
-              description='岩神瞳'
-              sub='/131'
-            />
-            <NumberDescription
-              value={electroculus_number}
-              description='雷神瞳'
-              sub='/181'
-            />
-            <NumberDescription
-              value={dendroculus_number}
-              description='草神瞳'
-              sub='/271'
-            />
+            <NumberDescription value={anemoculus_number} description='风神瞳' sub='/66' />
+            <NumberDescription value={geoculus_number} description='岩神瞳' sub='/131' />
+            <NumberDescription value={electroculus_number} description='雷神瞳' sub='/181' />
+            <NumberDescription value={dendroculus_number} description='草神瞳' sub='/271' />
           </div>
         </div>
         <div className={styles.homes}>
           <div>
             <span>〓尘歌壶〓</span>
-            {data.homes.length > 0 && 
+            {data.homes.length > 0 && (
               <div>
                 <img src={homes[0].comfort_level_icon} />
                 <span>{homes[0].comfort_level_name}</span>
               </div>
-            }
+            )}
           </div>
-          {data.homes.length > 0 ? 
+          {data.homes.length > 0 ? (
             <>
               <div>
-                {data.homes.map((e) => 
+                {data.homes.map((e) => (
                   <div key={e.name}>
                     <img src={e.icon} />
                     <span>{e.name}</span>
                   </div>
-                )}
+                ))}
               </div>
               <div>
                 <div>
@@ -135,9 +105,9 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 </div>
               </div>
             </>
-           : 
+          ) : (
             <div className={styles.off}>尘歌壶未开启</div>
-          }
+          )}
         </div>
       </div>
       <div className={styles.column}>
@@ -146,8 +116,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
           <div>
             {we.map((e) => {
               const isR = e.type === 'Reputation';
-              const name =
-                !isR && (e.offerings[0]?.name || '').replaceAll('等级', '');
+              const name = !isR && (e.offerings[0]?.name || '').replaceAll('等级', '');
               const text = isR ? '声望' : name || '';
               const level = text ? `·${text} ${e.level} 级` : '';
               return (

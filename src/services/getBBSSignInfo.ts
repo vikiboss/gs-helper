@@ -24,9 +24,9 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   }
 
   const { cookie, uid } = currentUser;
-  const act_id = await getBBSSignActId();
+  const actId = await getBBSSignActId();
 
-  const params = { act_id, uid, region: getServerByUid(uid) };
+  const params = { act_id: actId, uid, region: getServerByUid(uid) };
   const url = `${API_TAKUMI}/event/bbs_sign_reward/info`;
   const config = { params, headers: { referer: LINK_BBS_REFERER, cookie } };
 

@@ -19,9 +19,9 @@ const doBBSSign = async (): Promise<boolean> => {
   }
 
   const { cookie, uid } = currentUser;
-  const act_id = await getBBSSignActId();
+  const actId = await getBBSSignActId();
 
-  const postData = { act_id, region: getServerByUid(uid), uid };
+  const postData = { act_id: actId, region: getServerByUid(uid), uid };
 
   const headers = {
     referer: LINK_BBS_REFERER,
@@ -31,11 +31,7 @@ const doBBSSign = async (): Promise<boolean> => {
 
   const url = `${API_TAKUMI}/event/bbs_sign_reward/sign`;
 
-  const { status, data } = await request.post<BaseRes<DoSignData>>(
-    url,
-    postData,
-    { headers }
-  );
+  const { status, data } = await request.post<BaseRes<DoSignData>>(url, postData, { headers });
 
   const isOK = status === 200 && data.retcode === 0;
 

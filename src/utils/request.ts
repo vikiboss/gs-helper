@@ -15,8 +15,8 @@ const request = axios.create({
     'x-rpc-device_model': 'iPhone12,8',
     'x-rpc-device_name': 'iPhone',
     'x-rpc-platform': 'ios',
-    'x-rpc-sys_version': '15.6'
-  }
+    'x-rpc-sys_version': '15.6',
+  },
 });
 
 // x-rpc-client_type 字段的说明：
@@ -35,7 +35,7 @@ request.interceptors.request.use(
   (error) => {
     console.log(error);
     return Promise.reject(error);
-  }
+  },
 );
 
 request.interceptors.response.use(
@@ -48,7 +48,7 @@ request.interceptors.response.use(
   (error) => {
     console.log(error);
     return Promise.reject(error);
-  }
+  },
 );
 
 export default request;

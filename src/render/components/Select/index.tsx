@@ -33,7 +33,7 @@ const Select: React.FC<SelectProp> = (props) => {
     selectStyle,
     title,
     value,
-    wrapperStyle
+    wrapperStyle,
   } = props;
   return (
     <div title={title} className={styles.wrapper} key={key} style={wrapperStyle}>
@@ -45,12 +45,12 @@ const Select: React.FC<SelectProp> = (props) => {
         onChange={onChange}
         style={selectStyle}
       >
-        {Array.isArray(options) &&
-          options.map((e) => 
+        {Array.isArray(options)
+          && options.map((e) => (
             <option key={e.label} value={e.value} style={optionStyle}>
               {e.label}
             </option>
-          )}
+          ))}
       </select>
     </div>
   );
