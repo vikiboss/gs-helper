@@ -11,7 +11,7 @@ const restoreSettings = (win: BrowserWindow) => {
   // console.log(settings);
   const { alwaysOnTop } = settings
 
-  win.setAlwaysOnTop(isDev ? true : alwaysOnTop)
+  win.setAlwaysOnTop(isDev || alwaysOnTop)
 }
 
 export default restoreSettings

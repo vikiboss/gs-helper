@@ -7,6 +7,7 @@ import useAuth from '../../../hooks/useAuth'
 import type { Notice } from '../../../hooks/useNotice'
 
 import styles from './index.less'
+import { useNavigate } from 'react-router-dom'
 
 interface GeneralProp {
   notice: Notice
@@ -14,6 +15,7 @@ interface GeneralProp {
 
 const General: React.FC<GeneralProp> = ({ notice }) => {
   const auth = useAuth()
+  const navigate = useNavigate()
 
   const handleClearData = async () => {
     const isOK = await nativeApi.clearData()
@@ -23,6 +25,8 @@ const General: React.FC<GeneralProp> = ({ notice }) => {
     }
 
     notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' })
+
+    setTimeout(() => navigate('/'), 1600)
   }
 
   return (

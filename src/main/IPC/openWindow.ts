@@ -17,7 +17,7 @@ const openWindow = async (
     height: 803,
     autoHideMenuBar: true,
     backgroundColor: '#F9F6F2',
-    alwaysOnTop: store.get('settings').alwaysOnTop ?? false,
+    alwaysOnTop: isDev || store.get('settings').alwaysOnTop,
     ...options
   })
 
