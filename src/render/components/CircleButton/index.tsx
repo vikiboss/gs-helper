@@ -21,8 +21,11 @@ const SIZE_MAP = {
 
 const CircleButton: React.FC<CircleButtonProp> = (props) => {
   const { onClick, className = '', size = 'small', Icon, tip = '' } = props
+
+  const divClass = classnames(styles.btn, styles[size], className)
+
   return (
-    <div className={classnames(styles.btn, styles[size], className)} onClick={onClick} title={tip}>
+    <div className={divClass} onClick={onClick} title={tip}>
       <Icon size={SIZE_MAP[size]} className={styles.icon} />
     </div>
   )

@@ -79,11 +79,11 @@ const Gacha: React.FC = () => {
       setLink(url)
 
       if (isUserTrriger) {
-        notice.success({ message: '本地 「祈愿记录链接」 获取成功' })
+        notice.success('本地 「祈愿记录链接」 获取成功')
       }
     } else if (isUserTrriger) {
       const message = '本地缓存中不存在有效链接，请先在游戏内打开 「祈愿历史记录」 页面'
-      notice.faild({ message })
+      notice.faild(message)
     }
     return !!url
   }
@@ -106,9 +106,9 @@ const Gacha: React.FC = () => {
       setUid(localGachas[0].info.uid)
 
       // if (currentUid) {
-      //   notice.warning({ message: '当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID' })
+      //   notice.warning('当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID')
       // } else {
-      //   notice.warning({ message: '当前未登录米游社账号，已自动选择本地首个 UID' })
+      //   notice.warning('当前未登录米游社账号，已自动选择本地首个 UID')
       // }
     }
 
@@ -128,18 +128,18 @@ const Gacha: React.FC = () => {
 
   const updateGachaData = async () => {
     if (loading) {
-      return notice.faild({ message: '派蒙正在努力获取，请不要重复点击啦！' })
+      return notice.faild('派蒙正在努力获取，请不要重复点击啦！')
     }
 
     if (!link) {
       const message = isWindows
         ? '请先 「获取本地链接」 或 「手动输入祈愿链接」'
         : '请先输入祈愿链接后再尝试更新祈愿数据'
-      return notice.warning({ message })
+      return notice.warning(message)
     }
 
     if (!link.match(/^https?:\/\//)) {
-      return notice.faild({ message: '输入的祈愿链接无效，请检查后重试' })
+      return notice.faild('输入的祈愿链接无效，请检查后重试')
     }
 
     notice.info({
@@ -154,7 +154,7 @@ const Gacha: React.FC = () => {
     console.log('updateGachaData: ', data.list.length)
 
     if (data.list.length) {
-      notice.success({ message: `更新完成，共获取到 ${data.list.length} 条数据` })
+      notice.success(`更新完成，共获取到 ${data.list.length} 条数据`)
 
       await initGachaData(data.info.uid)
     } else {
@@ -186,7 +186,7 @@ const Gacha: React.FC = () => {
 
   const copyLink = () => {
     nativeApi.writeClipboardText(link)
-    notice.success({ message: '已将 「祈愿记录链接」 复制到剪切板，可供其他软件和平台使用' })
+    notice.success('已将 「祈愿记录链接」 复制到剪切板，可供其他软件和平台使用')
   }
 
   const gacha = gachas.find((e) => e.info.uid === uid) || DefaultGachaData
@@ -198,21 +198,24 @@ const Gacha: React.FC = () => {
 
   const handleImport = async () => {
     const { ok, message, data } = await nativeApi.importGacha()
-    notice[ok ? 'success' : 'warning']({ message })
 
     if (ok) {
+      notice.success(message)
       await initGachaData(data.info.uid)
     }
   }
 
   const handleExport = async () => {
     const { ok, message } = await nativeApi.exportGacha(uid)
-    notice[ok ? 'success' : 'warning']({ message })
+
+    if (ok) {
+      notice.success(message)
+    }
   }
 
   const handleBack = () => {
     if (loading) {
-      notice.warning({ message: '请耐心等待数据加载完成...' })
+      notice.warning('请耐心等待数据加载完成...')
     } else {
       navigate('/')
     }

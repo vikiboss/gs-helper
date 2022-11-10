@@ -39,23 +39,23 @@ const Login: React.FC<LoginProp> = (props) => {
 
   useEffect(() => {
     if (props?.from) {
-      notice.faild({ message: '请登录以使用全部功能' })
+      notice.faild('请登录以使用全部功能')
     }
 
     if (state?.isExpired) {
-      notice.faild({ message: '验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定' })
+      notice.faild('验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定')
     }
 
     (async () => {
       const storeUsers: UserData[] = await nativeApi.getStoreKey('users')
 
       if (storeUsers.length > 0) {
-        // if (isSwitching) notice.info({ message: "点击页面底部已登录 UID 可快速切换本地账号" });
+        // if (isSwitching) notice.info("点击页面底部已登录 UID 可快速切换本地账号")
         storeUsers.sort((p, n) => Number(p.uid) - Number(n.uid))
         setUsers(storeUsers)
       }
-      // setUsers([...users, ...users]);
-      // setUsers([...users, ...users, ...users, ...users, ...users, ...users]);
+      // setUsers([...users, ...users])
+      // setUsers([...users, ...users, ...users, ...users, ...users, ...users])
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -70,9 +70,9 @@ const Login: React.FC<LoginProp> = (props) => {
 
     if (!user) {
       auth.logout()
-      notice.faild({ message: '未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID' })
+      notice.faild('未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID')
     } else {
-      notice.success({ message: '登录成功，正在前往首页登录前页面...' })
+      notice.success('登录成功，正在前往首页登录前页面...')
       setTimeout(() => {
         setIsSwitching(false)
         auth.login()
@@ -82,7 +82,7 @@ const Login: React.FC<LoginProp> = (props) => {
 
   const handleUserSwitch = async (uid: string) => {
     await nativeApi.changeUser(uid)
-    notice.success({ message: `已切换到 UID ${uid}，正在前往首页...` })
+    notice.success(`已切换到 UID ${uid}，正在前往首页...`)
     setTimeout(() => {
       setIsSwitching(false)
       auth.login()

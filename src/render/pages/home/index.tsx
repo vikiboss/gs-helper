@@ -1,5 +1,4 @@
 import D from 'dayjs'
-import type { NavigateOptions } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 
@@ -20,6 +19,7 @@ import useAuth from '../../hooks/useAuth'
 import useNotice from '../../hooks/useNotice'
 import UserCard from './UserCard'
 
+import type { NavigateOptions } from 'react-router-dom'
 import type { CalenderEvent } from '../../../services/getCalenderList'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
 import type { GameRole } from '../../../typings'
@@ -149,14 +149,14 @@ const Home: React.FC = () => {
     const noAuth = noLogin && !isPublicPath
 
     if (noAuth) {
-      notice.warning({ message: '这个功能需要登录才能正常使用' })
+      notice.warning('这个功能需要登录才能正常使用')
       return
     }
 
     const notNotOpen = path === '/note' && (user?.level ?? 1) < 10
 
     if (notNotOpen) {
-      notice.warning({ message: '旅行者还没有达到札记开放等级（10级）' })
+      notice.warning('旅行者还没有达到札记开放等级（10级）')
       return
     }
 

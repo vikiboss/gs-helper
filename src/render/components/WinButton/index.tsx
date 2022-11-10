@@ -1,7 +1,9 @@
 import React from 'react'
-import classnames from 'classnames'
-import type { IconType } from 'react-icons'
+import cn from 'classnames'
 import { FaExpandArrowsAlt, FaMinus } from 'react-icons/fa'
+
+import type { IconType } from 'react-icons'
+
 import styles from './index.less'
 
 export interface WinButtonProp {
@@ -17,9 +19,13 @@ const TYPE_MAP: Record<string, IconType> = {
 
 const WinButton: React.FC<WinButtonProp> = (props) => {
   const { onClick, className = '', type } = props
+
   const Icon = TYPE_MAP[type]
+
+  const divClass = cn(styles.btn, styles.size, className)
+
   return (
-    <div className={classnames(styles.btn, styles.size, className)} onClick={onClick}>
+    <div className={divClass} onClick={onClick}>
       <Icon size={12} className={styles.icon} />
     </div>
   )

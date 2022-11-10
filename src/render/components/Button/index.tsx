@@ -30,15 +30,17 @@ const TYPE_MAP: Record<string, IconType> = {
 
 const Button: React.FC<ButtonProp> = (props) => {
   const { onClick, className = '', size = 'small', theme = 'dark', style = {}, type, text } = props
+
   const Icon = type ? TYPE_MAP[type] : null
+
+  const divClass = cn(styles.btn, styles[theme], styles[size], className)
+  const iconClass = Icon ? cn(styles.icon, type ? styles[type] : '') : ''
+  const textClass = cn(styles.text, Icon ? styles.withIcon : styles.noIcon)
+
   return (
-    <div
-      style={{ zIndex: 1, ...style }}
-      className={cn(styles.btn, styles[theme], styles[size], className)}
-      onClick={onClick}
-    >
-      {Icon && <Icon size={SIZE_MAP[size]} className={cn(styles.icon, type ? styles[type] : '')} />}
-      <div className={cn(styles.text, Icon ? styles.withIcon : styles.noIcon)}>{text}</div>
+    <div style={{ zIndex: 1, ...style }} className={divClass} onClick={onClick}>
+      {Icon && <Icon size={SIZE_MAP[size]} className={iconClass} />}
+      <div className={textClass}>{text}</div>
     </div>
   )
 }

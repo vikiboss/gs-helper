@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import Button from '../../../components/Button'
 import nativeApi from '../../../utils/nativeApi'
@@ -7,7 +8,6 @@ import useAuth from '../../../hooks/useAuth'
 import type { Notice } from '../../../hooks/useNotice'
 
 import styles from './index.less'
-import { useNavigate } from 'react-router-dom'
 
 interface GeneralProp {
   notice: Notice
@@ -24,9 +24,9 @@ const General: React.FC<GeneralProp> = ({ notice }) => {
       auth.logout(undefined, true)
     }
 
-    notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' })
+    notice[isOK ? 'success' : 'faild'](isOK ? '重置成功，建议重启软件' : '无读写权限')
 
-    setTimeout(() => navigate('/'), 1600)
+    setTimeout(() => navigate('/'), 1000)
   }
 
   return (

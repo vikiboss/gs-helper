@@ -1,12 +1,13 @@
 import cn from 'classnames'
 import React, { useMemo } from 'react'
 
-import type { PageProp } from '..'
 import getAverageTimes from '../utils/getAverageTimes'
 import getGachaStatictics from '../utils/getGachaStatictics'
 import getLuckInfo from '../utils/getLuckInfo'
 import getMostInfo from '../utils/getMostInfo'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
+
+import type { PageProp } from '..'
 
 import styles from './index.less'
 

@@ -35,6 +35,7 @@ const Select: React.FC<SelectProp> = (props) => {
     value,
     wrapperStyle
   } = props
+
   return (
     <div title={title} className={styles.wrapper} key={key} style={wrapperStyle}>
       {label && <label htmlFor={name}>{label}</label>}

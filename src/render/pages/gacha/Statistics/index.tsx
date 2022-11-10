@@ -1,7 +1,6 @@
 import cn from 'classnames'
 import D from 'dayjs'
 import React from 'react'
-import type { TimeRangeDayData } from '@nivo/calendar'
 
 import DateRange from './components/DateRange'
 import ItemPie from './components/ItemPie'
@@ -12,6 +11,7 @@ import getPieData from '../utils/getPieData'
 import filterGachaList from '../utils/filterGachaList'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
 
+import type { TimeRangeDayData } from '@nivo/calendar'
 import type { GachaData, GachaItemType, GachaType, StarType } from '../../../../typings'
 import type { PageProp } from '..'
 
@@ -94,7 +94,7 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     style: { alignSelf: 'center' },
     width: 300,
     onClick: (e: { id: string | number; value: number }) => {
-      notice.success({ message: `${e.id}数：${e.value}` })
+      notice.success(`${e.id}数：${e.value}`)
     }
   }
 
@@ -107,7 +107,10 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     onClick: (e: TimeRangeDayData) => {
       const limitedList = list.filter((item) => item.time.slice(0, 10) === e.day)
       const message = getListTypeInfo(limitedList)
-      if (message) notice.success({ message })
+
+      if (message) {
+        notice.success(message)
+      }
     }
   }
 

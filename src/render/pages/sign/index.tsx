@@ -55,7 +55,7 @@ const Sign: React.FC = () => {
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      notice.faild({ message: msg })
+      notice.faild(msg)
     }
   }
 
@@ -66,9 +66,9 @@ const Sign: React.FC = () => {
 
   const handleSign = async () => {
     if (signInfo.is_sign) {
-      notice.warning({ message: '今天已经签过到啦~ 不要重复签到哦' })
+      notice.warning('今天已经签过到啦~ 不要重复签到哦')
     } else if (signInfo.first_bind) {
-      notice.warning({ message: '旅行者是第一次绑定游戏账号，请先到米游社手动签到一次吧~' })
+      notice.warning('旅行者是第一次绑定游戏账号，请先到米游社手动签到一次吧~')
     } else {
       try {
         const isSignDone = await nativeApi.doBBSSign()
@@ -79,18 +79,16 @@ const Sign: React.FC = () => {
           const award = signData.awards[totalSignDay]
           const todayAward = `${award.name}x${award.cnt}`
 
-          notice.success({
-            message: `签到成功！获得 ${todayAward}，本月累计签到 ${totalSignDay + 1} 天`
-          })
+          notice.success(`签到成功！获得 ${todayAward}，本月累计签到 ${totalSignDay + 1} 天`)
 
           await updateInfo()
         } else if (isSignDone) {
-          notice.faild({ message: '无法绕过验证码，签到失败 T_T，请尝试手动签到' })
+          notice.faild('无法绕过验证码，签到失败 T_T，请尝试手动签到')
         } else {
-          notice.faild({ message: '网络异常，签到失败 T_T' })
+          notice.faild('网络异常，签到失败 T_T')
         }
       } catch {
-        notice.faild({ message: '加载超时，请检查网络连接 T_T' })
+        notice.faild('加载超时，请检查网络连接 T_T')
       }
     }
   }
@@ -99,7 +97,7 @@ const Sign: React.FC = () => {
     const signed = i + 1 <= total
     const signText = signed ? '奖励已领取' : '未达到领取要求'
     const message = `本月累签 ${i + 1} 天可领取，当前 ${total} 天，${signText}`
-    notice[signed ? 'success' : 'faild']({ message })
+    notice[signed ? 'success' : 'faild'](message)
   }
 
   return (

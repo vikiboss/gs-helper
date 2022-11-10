@@ -1,5 +1,4 @@
 import cn from 'classnames'
-import type { MouseEventHandler } from 'react'
 import React from 'react'
 
 import star1 from '../../../assets/star1.png'
@@ -15,6 +14,8 @@ import Electro from '../../../assets/electro.png'
 import Geo from '../../../assets/geo.png'
 import Cryo from '../../../assets/cryo.png'
 import Dendro from '../../../assets/dendro.png'
+
+import type { MouseEventHandler } from 'react'
 
 import styles from './index.less'
 

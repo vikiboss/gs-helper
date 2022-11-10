@@ -11,8 +11,9 @@ export interface BounceNumberProp {
 const nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const BounceNumber: React.FC<BounceNumberProp> = (props) => {
-  const [transforms, setTransforms] = useState<string[]>([])
   const { number, style = {}, duration = 1, size = 16, wrapperStyle = {} } = props
+
+  const [transforms, setTransforms] = useState<string[]>([])
   const numbers = String(number).split('')
 
   useEffect(() => {
@@ -37,22 +38,19 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
         fontWeight: 'bold'
       }}
     >
-      {numbers.map((e, i) => (
-        <div key={`${e}${i}`} style={{ ...numsStyle, transform: transforms[i] || 'none' }}>
-          {nums.map((f) => (
-            <span
-              style={{
-                ...style,
-                height: `${size}px`,
-                fontSize: `${size}px`
-              }}
-              key={f}
-            >
-              {e}
-            </span>
-          ))}
-        </div>
-      ))}
+      {numbers.map((e, i) => {
+        const divStyle = { ...numsStyle, transform: transforms[i] || 'none' }
+        const spanStyle = { ...style, height: `${size}px`, fontSize: `${size}px` }
+        return (
+          <div key={`${e}${i}`} style={divStyle}>
+            {nums.map((f) => (
+              <span style={spanStyle} key={f}>
+                {e}
+              </span>
+            ))}
+          </div>
+        )
+      })}
     </div>
   )
 }

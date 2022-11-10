@@ -20,27 +20,25 @@ export interface SelectButtonProp {
   width?: number
 }
 
-const SelectButton: React.FC<SelectButtonProp> = ({
-  changeItem,
-  className,
-  direction = 'horizontal',
-  height,
-  items,
-  style,
-  selectedStyle,
-  value,
-  width
-}) => {
+const SelectButton: React.FC<SelectButtonProp> = (props) => {
+  const {
+    changeItem,
+    className,
+    direction = 'horizontal',
+    height,
+    items,
+    style,
+    selectedStyle,
+    value,
+    width
+  } = props
+
   const isHori = direction === 'horizontal'
+  const divClass = cn(styles.wrapper, className, isHori ? '' : styles.vertical)
+  const divStyle = { width, height, ...style }
+
   return (
-    <div
-      className={cn(styles.wrapper, className, isHori ? '' : styles.vertical)}
-      style={{
-        width,
-        height,
-        ...style
-      }}
-    >
+    <div className={divClass} style={divStyle}>
       {items.map((e) => (
         <div
           key={e.value}

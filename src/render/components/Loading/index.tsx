@@ -11,10 +11,12 @@ export interface LoadingProp {
 }
 
 const Loading: React.FC<LoadingProp> = (props) => {
-  const { isEmpty = false, className, style: _style = {} } = props
+  const { isEmpty = false, className, style = {} } = props
+
   const text = isEmpty ? '没有内容' : '小派蒙正在努力加载中...'
-  const style: React.CSSProperties = {
-    ..._style,
+
+  const divStyle: React.CSSProperties = {
+    ...style,
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
@@ -23,8 +25,9 @@ const Loading: React.FC<LoadingProp> = (props) => {
     alignSelf: 'center',
     justifySelf: 'center'
   }
+
   return (
-    <div style={style} className={className}>
+    <div style={divStyle} className={className}>
       <img src={isEmpty ? paimon2 : paimon} style={{ width: '120px', marginBottom: '12px' }} />
       <div style={{ marginBottom: '12px' }}>{props.text || text}</div>
     </div>

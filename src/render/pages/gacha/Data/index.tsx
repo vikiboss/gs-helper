@@ -22,11 +22,14 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
     (async () => {
       try {
         const list = await nativeApi.getCalenderList()
-        if (list.length > 0) setCalenderList(list)
+
+        if (list.length > 0) {
+          setCalenderList(list)
+        }
       } catch (e) {
         const isOffline = e?.message?.includes('getaddrinfo')
         const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-        notice.faild({ message: msg })
+        notice.faild(msg)
       }
     })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -121,7 +124,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                         const pn = _item.times * 160
                         const name = (isLimit ? '限定五星' : '五星') + _item.name
                         const msg = `${name}，累计消耗 ${_item.times} 次祈愿，价值 ${pn} 原石`
-                        notice.success({ message: msg })
+                        notice.success(msg)
                       }
 
                       const isLimit = !NormalItemList.includes(item.name)

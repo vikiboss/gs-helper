@@ -48,7 +48,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
 
   const handleCopy = (str: string, msg: string) => {
     nativeApi.writeClipboardText(str)
-    notice.success({ message: msg })
+    notice.success(msg)
   }
 
   const infos = [
@@ -249,7 +249,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
                 if (e.name === 'sign') {
                   safelyNavigate('/sign')
                 } else {
-                  notice.info({ message: e.title })
+                  notice.info(e.title)
                 }
               }}
             >
@@ -260,7 +260,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
         <div
           className={styles.noteItem}
           title={dispatcTitle}
-          onClick={() => notice.info({ message: dispatcTitle })}
+          onClick={() => notice.info(dispatcTitle)}
         >
           <div className={styles.noteDetail}>
             <img src={prestigeIcon} className={cn(styles.noteIcon)} />
@@ -275,7 +275,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
                 className={cn(styles.dispatch, e.done ? styles.done : '')}
                 title={e.title}
                 key={e.avatar}
-                onClick={() => notice.info({ message: e.title })}
+                onClick={() => notice.info(e.title)}
               >
                 <img src={e.avatar} className={styles.dispatchAvatar} />
               </div>

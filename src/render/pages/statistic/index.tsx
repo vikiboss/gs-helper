@@ -67,14 +67,14 @@ const Statistic: React.FC = () => {
       const text = clipboardText.replace(/\s/g, '').trim()
 
       if (!text.match(/^[1-9][0-9]{7,9}$/)) {
-        notice.warning({ message: '剪切板内容无效' })
+        notice.warning('剪切板内容无效')
         return
       }
 
       setInputUid(text.trim())
     } else {
       if (!inputUid.match(/^[1-9][0-9]{7,9}$/)) {
-        notice.warning({ message: 'UID 无效，请检查' })
+        notice.warning('UID 无效，请检查')
         return
       }
 
@@ -83,7 +83,7 @@ const Statistic: React.FC = () => {
       const isOK = await updateInfo(inputUid)
 
       if (!isOK) {
-        notice.faild({ message: '该 UID 不存在、未绑定米游社或数据未公开' })
+        notice.faild('该 UID 不存在、未绑定米游社或数据未公开')
       } else {
         setCurrentUid(inputUid)
         notice.success({ message: '数据获取成功', duration: 1000 })

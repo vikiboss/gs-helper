@@ -99,7 +99,7 @@ const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
     message += type !== 'materials' ? contents : e.title
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`
 
-    notice.info({ message })
+    notice.info(message)
   }
 
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : '')

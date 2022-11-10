@@ -42,8 +42,8 @@ const defaultFilters: Filters = [0, 'all', 0]
 const Role: React.FC = () => {
   const navigate = useNavigate()
   const notice = useNotice()
-  const [filters, setFilters] = useState<Filters>(defaultFilters)
 
+  const [filters, setFilters] = useState<Filters>(defaultFilters)
   const [index, setIndex] = useState<number>(0)
   const [constellIndex, setConstellIndex] = useState<number>(0)
   const [infoTab, setInfoTab] = useState<TabType>('weapon')
@@ -87,7 +87,7 @@ const Role: React.FC = () => {
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      notice.faild({ message: msg })
+      notice.faild(msg)
     }
   }
 
