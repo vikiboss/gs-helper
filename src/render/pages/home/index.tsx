@@ -153,9 +153,9 @@ const Home: React.FC = () => {
       return
     }
 
-    const dailyNotOpen = path === '/calendar' && user.level < 10
+    const notNotOpen = path === '/note' && (user?.level ?? 1) < 10
 
-    if (dailyNotOpen) {
+    if (notNotOpen) {
       notice.warning({ message: '旅行者还没有达到札记开放等级（10级）' })
       return
     }
