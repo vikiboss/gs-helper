@@ -145,7 +145,7 @@ const Home: React.FC = () => {
 
   const handlePageSwitch = (path: string) => {
     const noLogin = !auth.isLogin
-    const isPublicPath = ['/gacha', '/strategy', '/calendar'].includes(path)
+    const isPublicPath = ['/gacha', '/strategy', '/calendar', '/portal'].includes(path)
     const noAuth = noLogin && !isPublicPath
 
     if (noAuth) {
