@@ -105,11 +105,11 @@ const Gacha: React.FC = () => {
     } else if (localGachas.length) {
       setUid(localGachas[0].info.uid)
 
-      if (currentUid) {
-        notice.warning({ message: '当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID' })
-      } else {
-        notice.warning({ message: '当前未登录米游社账号，已自动选择本地首个 UID' })
-      }
+      // if (currentUid) {
+      //   notice.warning({ message: '当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID' })
+      // } else {
+      //   notice.warning({ message: '当前未登录米游社账号，已自动选择本地首个 UID' })
+      // }
     }
 
     const appInfo = await nativeApi.getAppInfo()
