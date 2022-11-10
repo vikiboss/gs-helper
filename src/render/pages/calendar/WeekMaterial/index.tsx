@@ -1,95 +1,95 @@
-import React, { useState } from 'react';
-import SelectButton from '../../../components/SelectButton';
+import React, { useState } from 'react'
+import SelectButton from '../../../components/SelectButton'
 
-import type { Notice } from '../../../hooks/useNotice';
+import type { Notice } from '../../../hooks/useNotice'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface WeekItem {
-  icon: string;
-  name: string;
+  icon: string
+  name: string
 }
 
 interface Nomal extends WeekItem {
-  drop: number[];
-  domain: WeekItem;
+  drop: number[]
+  domain: WeekItem
 }
 
 interface Advance extends WeekItem {
-  domain: WeekItem;
+  domain: WeekItem
 }
 
 interface Talent {
-  advance: Advance;
-  nomal: Nomal;
+  advance: Advance
+  nomal: Nomal
 }
 
 interface Material {
-  talent: Talent;
+  talent: Talent
 }
 
 interface Avatar {
-  basic: string;
-  side: string;
-  full: string;
+  basic: string
+  side: string
+  full: string
 }
 
 interface Poster {
-  mobile: string;
+  mobile: string
 }
 
 interface WeekBaseRole {
-  name: string;
-  enname: string;
-  element: string;
-  rarity: number;
-  avatar: Avatar;
-  poster: Poster;
+  name: string
+  enname: string
+  element: string
+  rarity: number
+  avatar: Avatar
+  poster: Poster
 }
 
 export interface RepoRole extends WeekBaseRole {
-  material: Material;
+  material: Material
 }
 
 interface WeekMaterialProp {
-  notice: Notice;
-  roles: RepoRole[];
+  notice: Notice
+  roles: RepoRole[]
 }
 
 interface WeekMaterial extends WeekItem {
-  roles: WeekBaseRole[];
+  roles: WeekBaseRole[]
 }
 
 interface WeekBoss extends WeekItem {
-  materials: WeekMaterial[];
+  materials: WeekMaterial[]
 }
 
 const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
-  const [idx, setIdx] = useState(0);
+  const [idx, setIdx] = useState(0)
 
   // 所有材料对应的周本 Boss（包含重复项）
-  const allBosses = roles.map((e) => e.material.talent.advance.domain);
+  const allBosses = roles.map((e) => e.material.talent.advance.domain)
   // Boss 去重
-  const bosses = allBosses.filter((e, i) => allBosses.findIndex((f) => f.name === e.name) === i);
+  const bosses = allBosses.filter((e, i) => allBosses.findIndex((f) => f.name === e.name) === i)
 
   // 所有材料（包含重复项）
-  const all = roles.map((e) => e.material.talent.advance);
+  const all = roles.map((e) => e.material.talent.advance)
   // 材料去重
-  const materials = all.filter((e, i) => all.findIndex((f) => f.name === e.name) === i);
+  const materials = all.filter((e, i) => all.findIndex((f) => f.name === e.name) === i)
 
   const list: WeekBoss[] = bosses.map((boss) => {
     const matchMaterials: WeekMaterial[] = materials
       .filter((material) => material.domain.name === boss.name)
       .map((material) => {
         const matchRoles = roles.filter(
-          (role) => role.material.talent.advance.name === material.name,
-        );
+          (role) => role.material.talent.advance.name === material.name
+        )
 
-        return { ...material, roles: matchRoles };
-      });
+        return { ...material, roles: matchRoles }
+      })
 
-    return { ...boss, materials: matchMaterials };
-  });
+    return { ...boss, materials: matchMaterials }
+  })
 
   return (
     <div className={styles.weekMaterial}>
@@ -131,7 +131,7 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
         每周有三次挑战「值得铭记的强敌」并在收取奖励时树脂消耗减半的次数，不同的角色升级高级天赋时需要这些对应的周本材料
       </span>
     </div>
-  );
-};
+  )
+}
 
-export default WeekMaterial;
+export default WeekMaterial

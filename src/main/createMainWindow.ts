@@ -1,15 +1,15 @@
-import type { BrowserWindowConstructorOptions } from 'electron';
-import { BrowserWindow, shell } from 'electron';
+import type { BrowserWindowConstructorOptions } from 'electron'
+import { BrowserWindow, shell } from 'electron'
 
-import { registerHotkey } from './handleHotkeys';
-import bindIPC from './IPC';
-import icon from '../assets/icon.ico';
-import initTray from './initTray';
-import restoreSettings from './restoreSettings';
+import { registerHotkey } from './handleHotkeys'
+import bindIPC from './IPC'
+import icon from '../assets/icon.ico'
+import initTray from './initTray'
+import restoreSettings from './restoreSettings'
 
 // 声明内置常量
-declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
-declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
+declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
+declare const MAIN_WINDOW_WEBPACK_ENTRY: string
 
 /** 配置窗口的选项参数 */
 const winOptions: BrowserWindowConstructorOptions = {
@@ -30,40 +30,40 @@ const winOptions: BrowserWindowConstructorOptions = {
   // 加载时的背景颜色
   backgroundColor: '#F9F6F2',
   // 设置 web 页面的 preload，用于 IPC 通信
-  webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY },
-};
+  webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY }
+}
 
 /** 创建主窗口的函数 */
 const createMainWindow = () => {
-  const win = new BrowserWindow(winOptions);
+  const win = new BrowserWindow(winOptions)
 
   // 移除窗口顶部的默认菜单栏
-  win.removeMenu();
+  win.removeMenu()
   // 监听准备好了的事件，当就绪时显示主窗口
-  win.once('ready-to-show', () => win.show());
+  win.once('ready-to-show', () => win.show())
   // 阻止窗口边框右键单击
-  win.once('system-context-menu', (e) => e.preventDefault());
+  win.once('system-context-menu', (e) => e.preventDefault())
 
   // 处理跳转，默认使用外部浏览器打开（比如 target 为 _blank 的 a 链接）
   win.webContents.setWindowOpenHandler((details) => {
-    shell.openExternal(details.url);
-    return { action: 'deny' };
-  });
+    shell.openExternal(details.url)
+    return { action: 'deny' }
+  })
 
   // 加载入口文件，这个入口常量是由 electron-forge 和 webpack 内置的
-  win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
+  win.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
 
   // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
-  bindIPC(win);
+  bindIPC(win)
   // 初始化托盘图标与菜单
-  initTray(win);
+  initTray(win)
   // 恢复设置
-  restoreSettings(win);
+  restoreSettings(win)
   // 注册全局热键
-  registerHotkey(win);
+  registerHotkey(win)
 
   // 返回创建的窗口实例
-  return win;
-};
+  return win
+}
 
-export default createMainWindow;
+export default createMainWindow

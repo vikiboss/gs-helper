@@ -1,24 +1,24 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './index.less';
+import styles from './index.less'
 
 export interface Option {
-  value: string | number;
-  label: string;
+  value: string | number
+  label: string
 }
 
 interface SelectProp {
-  defaultValue?: React.HTMLAttributes<HTMLSelectElement>['defaultValue'];
-  key?: React.Attributes['key'];
-  label?: string;
-  name?: string;
-  onChange?: React.ChangeEventHandler<HTMLSelectElement>;
-  options?: Option[];
-  optionStyle?: React.CSSProperties;
-  selectStyle?: React.CSSProperties;
-  title?: string;
-  value?: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
-  wrapperStyle?: React.CSSProperties;
+  defaultValue?: React.HTMLAttributes<HTMLSelectElement>['defaultValue']
+  key?: React.Attributes['key']
+  label?: string
+  name?: string
+  onChange?: React.ChangeEventHandler<HTMLSelectElement>
+  options?: Option[]
+  optionStyle?: React.CSSProperties
+  selectStyle?: React.CSSProperties
+  title?: string
+  value?: React.SelectHTMLAttributes<HTMLSelectElement>['value']
+  wrapperStyle?: React.CSSProperties
 }
 
 const Select: React.FC<SelectProp> = (props) => {
@@ -33,8 +33,8 @@ const Select: React.FC<SelectProp> = (props) => {
     selectStyle,
     title,
     value,
-    wrapperStyle,
-  } = props;
+    wrapperStyle
+  } = props
   return (
     <div title={title} className={styles.wrapper} key={key} style={wrapperStyle}>
       {label && <label htmlFor={name}>{label}</label>}
@@ -45,15 +45,15 @@ const Select: React.FC<SelectProp> = (props) => {
         onChange={onChange}
         style={selectStyle}
       >
-        {Array.isArray(options)
-          && options.map((e) => (
+        {Array.isArray(options) &&
+          options.map((e) => (
             <option key={e.label} value={e.value} style={optionStyle}>
               {e.label}
             </option>
           ))}
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default Select;
+export default Select

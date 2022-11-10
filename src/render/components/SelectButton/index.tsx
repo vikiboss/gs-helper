@@ -1,23 +1,23 @@
-import React from 'react';
-import cn from 'classnames';
+import React from 'react'
+import cn from 'classnames'
 
-import styles from './index.less';
+import styles from './index.less'
 
 export type SelectItem = {
-  label: string;
-  value: string | number;
-};
+  label: string
+  value: string | number
+}
 
 export interface SelectButtonProp {
-  changeItem?: (...args: any[]) => any;
-  className?: string;
-  direction?: 'vertical' | 'horizontal';
-  height?: number;
-  items: SelectItem[];
-  style?: React.CSSProperties;
-  selectedStyle?: React.CSSProperties;
-  value?: string | number;
-  width?: number;
+  changeItem?: (...args: any[]) => any
+  className?: string
+  direction?: 'vertical' | 'horizontal'
+  height?: number
+  items: SelectItem[]
+  style?: React.CSSProperties
+  selectedStyle?: React.CSSProperties
+  value?: string | number
+  width?: number
 }
 
 const SelectButton: React.FC<SelectButtonProp> = ({
@@ -29,16 +29,16 @@ const SelectButton: React.FC<SelectButtonProp> = ({
   style,
   selectedStyle,
   value,
-  width,
+  width
 }) => {
-  const isHori = direction === 'horizontal';
+  const isHori = direction === 'horizontal'
   return (
     <div
       className={cn(styles.wrapper, className, isHori ? '' : styles.vertical)}
       style={{
         width,
         height,
-        ...style,
+        ...style
       }}
     >
       {items.map((e) => (
@@ -52,7 +52,7 @@ const SelectButton: React.FC<SelectButtonProp> = ({
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default SelectButton;
+export default SelectButton

@@ -1,21 +1,19 @@
-import React from 'react';
-import cn from 'classnames';
+import React from 'react'
+import cn from 'classnames'
 
-import BounceNumber from '../BounceNumber';
+import BounceNumber from '../BounceNumber'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface RoleNumberProp {
-  className?: string;
-  avatar: string;
-  value: number;
-  description: string;
+  className?: string
+  avatar: string
+  value: number
+  description: string
 }
 
 const RoleNumber: React.FC<RoleNumberProp> = (props) => {
-  const {
-    value, avatar, className, description,
-  } = props;
+  const { value, avatar, className, description } = props
 
   return (
     <div className={cn(styles.wrapper, className)}>
@@ -25,7 +23,7 @@ const RoleNumber: React.FC<RoleNumberProp> = (props) => {
       </div>
       <span>{description}</span>
     </div>
-  );
-};
+  )
+}
 
-export default RoleNumber;
+export default RoleNumber

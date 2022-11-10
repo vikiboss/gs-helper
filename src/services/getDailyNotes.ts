@@ -1,71 +1,71 @@
-import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants';
-import { qs } from '../utils/utils';
-import getCurrentUser from '../main/IPC/getCurrentUser';
-import getDS from '../utils/getDS';
-import getServerByUid from '../utils/getServerByUid';
-import request from '../utils/request';
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
+import { qs } from '../utils/utils'
+import getCurrentUser from '../main/IPC/getCurrentUser'
+import getDS from '../utils/getDS'
+import getServerByUid from '../utils/getServerByUid'
+import request from '../utils/request'
 
-import type { BaseRes } from '../typings';
+import type { BaseRes } from '../typings'
 
 export type DispatchItem = {
-  avatar_side_icon: string;
-  remained_time: string;
-  status: string;
-};
+  avatar_side_icon: string
+  remained_time: string
+  status: string
+}
 
 export type DailyNotesData = {
-  current_expedition_num: number;
-  current_home_coin: number;
-  current_resin: number;
-  expeditions: DispatchItem[];
-  finished_task_num: number;
-  home_coin_recovery_time: string;
-  is_extra_task_reward_received: boolean;
-  max_expedition_num: number;
-  max_home_coin: number;
-  max_resin: number;
-  remain_resin_discount_num: number;
-  resin_discount_num_limit: number;
-  resin_recovery_time: string;
-  total_task_num: number;
+  current_expedition_num: number
+  current_home_coin: number
+  current_resin: number
+  expeditions: DispatchItem[]
+  finished_task_num: number
+  home_coin_recovery_time: string
+  is_extra_task_reward_received: boolean
+  max_expedition_num: number
+  max_home_coin: number
+  max_resin: number
+  remain_resin_discount_num: number
+  resin_discount_num_limit: number
+  resin_recovery_time: string
+  total_task_num: number
   transformer: {
-    obtained: boolean;
+    obtained: boolean
     recovery_time: {
-      Day: number;
-      Hour: number;
-      Minute: number;
-      Second: number;
-      reached: true;
-    };
-  };
-};
+      Day: number
+      Hour: number
+      Minute: number
+      Second: number
+      reached: true
+    }
+  }
+}
 
 const getDailyNotes = async (): Promise<DailyNotesData | null> => {
-  const currentUser = getCurrentUser();
+  const currentUser = getCurrentUser()
 
   if (!currentUser) {
-    return null;
+    return null
   }
 
-  const { cookie, uid } = currentUser;
-  const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`;
+  const { cookie, uid } = currentUser
+  const url = `${API_TAKUMI_RECORD}/game_record/app/genshin/api/dailyNote`
 
-  const params = { role_id: uid, server: getServerByUid(uid) };
-  const headers = { referer: LINK_BBS_REFERER, cookie, DS: getDS(qs(params)) };
+  const params = { role_id: uid, server: getServerByUid(uid) }
+  const headers = { referer: LINK_BBS_REFERER, cookie, DS: getDS(qs(params)) }
 
   const { status, data } = await request.get<BaseRes<DailyNotesData>>(url, {
     params,
-    headers,
-  });
+    headers
+  })
 
   // { data: null, message: 'Please login', retcode: 10001 }
-  const isOK = status === 200 && data.retcode === 0;
+  const isOK = status === 200 && data.retcode === 0
 
   if (!isOK) {
-    console.log('getDailyNotes: ', data);
+    console.log('getDailyNotes: ', data)
   }
 
-  return isOK ? data?.data || null : null;
-};
+  return isOK ? data?.data || null : null
+}
 
-export default getDailyNotes;
+export default getDailyNotes

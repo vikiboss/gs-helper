@@ -1,18 +1,18 @@
-import React from 'react';
+import React from 'react'
 
-import icon from '../../../assets/icon.png';
-import nativeApi from '../../utils/nativeApi';
-import WinButton from '../WinButton';
+import icon from '../../../assets/icon.png'
+import nativeApi from '../../utils/nativeApi'
+import WinButton from '../WinButton'
 
-import styles from './index.less';
+import styles from './index.less'
 
 export interface WinFrameProp {
-  title?: string;
-  children?: JSX.Element;
+  title?: string
+  children?: JSX.Element
 }
 
 const WinFrame: React.FC<WinFrameProp> = (props) => {
-  const { title = '' } = props;
+  const { title = '' } = props
   return (
     <div className={styles.frame}>
       <div className={styles.topBar}>
@@ -25,7 +25,7 @@ const WinFrame: React.FC<WinFrameProp> = (props) => {
       </div>
       <div className={styles.content}>{props.children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default WinFrame;
+export default WinFrame

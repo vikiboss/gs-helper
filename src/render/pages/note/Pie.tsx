@@ -1,17 +1,17 @@
-import React from 'react';
-import type { CommonPieProps } from '@nivo/pie';
-import { ResponsivePie } from '@nivo/pie';
+import React from 'react'
+import type { CommonPieProps } from '@nivo/pie'
+import { ResponsivePie } from '@nivo/pie'
 
-import { ChartTheme } from '../../../constants';
-import { Colors } from '../gacha/utils/getPieData';
+import { ChartTheme } from '../../../constants'
+import { Colors } from '../gacha/utils/getPieData'
 
 type NotePieProp = {
-  width: React.CSSProperties['width'];
-  height: React.CSSProperties['height'];
-  style?: React.CSSProperties;
-  className?: string;
-  data: { id: string | number; value: number }[];
-};
+  width: React.CSSProperties['width']
+  height: React.CSSProperties['height']
+  style?: React.CSSProperties
+  className?: string
+  data: { id: string | number; value: number }[]
+}
 
 const defs = [
   {
@@ -21,9 +21,9 @@ const defs = [
     color: 'rgba(255, 255, 255, 0.3)',
     rotation: -45,
     lineWidth: 6,
-    spacing: 10,
-  },
-];
+    spacing: 10
+  }
+]
 
 const fill = [
   { match: { id: '冒险奖励' }, id: 'lines' },
@@ -32,8 +32,8 @@ const fill = [
   { match: { id: '深境螺旋' }, id: 'lines' },
   { match: { id: '邮件奖励' }, id: 'lines' },
   { match: { id: '活动奖励' }, id: 'lines' },
-  { match: { id: '其他' }, id: 'lines' },
-];
+  { match: { id: '其他' }, id: 'lines' }
+]
 
 const legends: CommonPieProps<NotePieProp['data']>['legends'] = [
   {
@@ -49,17 +49,15 @@ const legends: CommonPieProps<NotePieProp['data']>['legends'] = [
       {
         on: 'hover',
         style: {
-          itemTextColor: '#ffa564',
-        },
-      },
-    ],
-  },
-];
+          itemTextColor: '#ffa564'
+        }
+      }
+    ]
+  }
+]
 
 const GachaPie: React.FC<NotePieProp> = (props) => {
-  const {
-    data, style, width, height, className = '',
-  } = props;
+  const { data, style, width, height, className = '' } = props
   return (
     <div
       className={className}
@@ -68,7 +66,7 @@ const GachaPie: React.FC<NotePieProp> = (props) => {
         height,
         minHeight: height,
         width,
-        minWidth: width,
+        minWidth: width
       }}
     >
       <ResponsivePie
@@ -92,13 +90,13 @@ const GachaPie: React.FC<NotePieProp> = (props) => {
           top: 40,
           right: 80,
           bottom: 40,
-          left: 40,
+          left: 40
         }}
         padAngle={0.7}
         theme={ChartTheme}
       />
     </div>
-  );
-};
+  )
+}
 
-export default GachaPie;
+export default GachaPie

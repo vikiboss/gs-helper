@@ -1,38 +1,38 @@
-import cn from 'classnames';
-import React, { useMemo } from 'react';
+import cn from 'classnames'
+import React, { useMemo } from 'react'
 
-import type { PageProp } from '..';
-import getAverageTimes from '../utils/getAverageTimes';
-import getGachaStatictics from '../utils/getGachaStatictics';
-import getLuckInfo from '../utils/getLuckInfo';
-import getMostInfo from '../utils/getMostInfo';
-import transformGachaDataDate from '../utils/transformGachaDataDate';
+import type { PageProp } from '..'
+import getAverageTimes from '../utils/getAverageTimes'
+import getGachaStatictics from '../utils/getGachaStatictics'
+import getLuckInfo from '../utils/getLuckInfo'
+import getMostInfo from '../utils/getMostInfo'
+import transformGachaDataDate from '../utils/transformGachaDataDate'
 
-import styles from './index.less';
+import styles from './index.less'
 
-const LevelMap = ['虚位以待', '欧', '吉', '平', '凶', '非'];
+const LevelMap = ['虚位以待', '欧', '吉', '平', '凶', '非']
 
 const Overview: React.FC<PageProp> = ({ gacha }) => {
-  const MostInfo = useMemo(() => getMostInfo(gacha), [gacha]);
-  const statictics = useMemo(() => getGachaStatictics(gacha), [gacha]);
-  const luckInfo = useMemo(() => getLuckInfo(gacha), [gacha]);
-  const limitRoleTimes = useMemo(() => getAverageTimes(gacha, 'role'), [gacha]);
-  const limitWeaponTimes = useMemo(() => getAverageTimes(gacha, 'weapon'), [gacha]);
-  const dateInfo = transformGachaDataDate(gacha.list);
-  const maxTimes = Math.max(...dateInfo.map((e) => e.value));
-  const days = dateInfo.filter((e) => e.value === maxTimes);
-  const maxDay = days.length && days[days.length - 1].day;
+  const MostInfo = useMemo(() => getMostInfo(gacha), [gacha])
+  const statictics = useMemo(() => getGachaStatictics(gacha), [gacha])
+  const luckInfo = useMemo(() => getLuckInfo(gacha), [gacha])
+  const limitRoleTimes = useMemo(() => getAverageTimes(gacha, 'role'), [gacha])
+  const limitWeaponTimes = useMemo(() => getAverageTimes(gacha, 'weapon'), [gacha])
+  const dateInfo = transformGachaDataDate(gacha.list)
+  const maxTimes = Math.max(...dateInfo.map((e) => e.value))
+  const days = dateInfo.filter((e) => e.value === maxTimes)
+  const maxDay = days.length && days[days.length - 1].day
 
   const getLevel = (times: number) => {
-    if (times === 0) return 0;
-    if (times >= 72) return 5;
-    if (times >= 68) return 4;
-    if (times >= 60) return 3;
-    if (times >= 54) return 2;
-    return 1;
-  };
+    if (times === 0) return 0
+    if (times >= 72) return 5
+    if (times >= 68) return 4
+    if (times >= 60) return 3
+    if (times >= 54) return 2
+    return 1
+  }
 
-  const updateTime = gacha.info.update_time;
+  const updateTime = gacha.info.update_time
 
   return (
     <div className={styles.content}>
@@ -77,7 +77,8 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
             {"※ 小保底歪的概率："}
             <span className={styles.star5}>{luckInfo.rate}%</span>
           </div> */}
-          {limitRoleTimes > 0 ? (
+          {limitRoleTimes > 0
+            ? (
             <div>
               {'※ 平均每个'}
               <span className={styles.star4}>{'限定五星角色'}</span>
@@ -87,13 +88,15 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{limitRoleTimes}</span>
               {' 抽）'}
             </div>
-          ) : (
+              )
+            : (
             <div>
               ※ 暂未获得<span className={styles.star4}>{'限定五星角色'}</span>
             </div>
-          )}
+              )}
 
-          {limitWeaponTimes > 0 ? (
+          {limitWeaponTimes > 0
+            ? (
             <div>
               {'※ 平均每把'}
               <span className={styles.star4}>{'限定五星武器'}</span>
@@ -103,13 +106,15 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{limitWeaponTimes}</span>
               {' 抽）'}
             </div>
-          ) : (
+              )
+            : (
             <div>
               ※ 暂未获得<span className={styles.star4}>{'限定五星武器'}</span>
             </div>
-          )}
+              )}
 
-          {gacha.list.length > 0 ? (
+          {gacha.list.length > 0
+            ? (
             <div>
               {'※ 共计祈愿 '}
               <span className={styles.star4}>{gacha.list.length}</span>
@@ -117,9 +122,10 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{gacha.list.length * 160}</span>
               {' 原石'}
             </div>
-          ) : (
+              )
+            : (
             <div>※ 没有祈愿记录</div>
-          )}
+              )}
         </div>
         <div>
           {MostInfo.unluckest.valid && (
@@ -145,7 +151,7 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Overview;
+export default Overview

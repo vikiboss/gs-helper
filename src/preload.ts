@@ -1,6 +1,6 @@
-import { contextBridge, ipcRenderer as IPC } from 'electron';
-import type { BrowserWindowConstructorOptions as WinOptions } from 'electron';
-import { IpcEvents, EXPOSED_API_FROM_ELECTRON } from './constants';
+import { contextBridge, ipcRenderer as IPC } from 'electron'
+import type { BrowserWindowConstructorOptions as WinOptions } from 'electron'
+import { IpcEvents, EXPOSED_API_FROM_ELECTRON } from './constants'
 
 // 通过 IPC 实现 main 进程与 render 进程相互通信
 // 通过 contextBridge 将 API 安全的挂载到 render 进程的全局变量 window 中
@@ -39,7 +39,7 @@ contextBridge.exposeInMainWorld(EXPOSED_API_FROM_ELECTRON, {
   setStoreKey: (key: string, value: any) => IPC.send(IpcEvents.setStoreKey, key, value),
   writeClipboardText: (text: string) => IPC.send(IpcEvents.writeClipboardText, text),
   openWindow: (url: string, options?: WinOptions, UA?: string) => {
-    IPC.send(IpcEvents.openWindow, url, options, UA);
+    IPC.send(IpcEvents.openWindow, url, options, UA)
   },
-  getGachaListByUrl: (url: string) => IPC.invoke(IpcEvents.getGachaListByUrl, url),
-});
+  getGachaListByUrl: (url: string) => IPC.invoke(IpcEvents.getGachaListByUrl, url)
+})

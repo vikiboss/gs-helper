@@ -1,18 +1,18 @@
-import React from 'react';
-import cn from 'classnames';
+import React from 'react'
+import cn from 'classnames'
 
-import BounceNumber from '../BounceNumber';
+import BounceNumber from '../BounceNumber'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface AbyssNumberProp {
-  className?: string;
-  values: [number, number];
-  description?: string;
+  className?: string
+  values: [number, number]
+  description?: string
 }
 
 const AbyssNumber: React.FC<AbyssNumberProp> = (props) => {
-  const { values, className, description = '深境螺旋' } = props;
+  const { values, className, description = '深境螺旋' } = props
 
   return (
     <div className={cn(styles.wrapper, className)}>
@@ -23,7 +23,7 @@ const AbyssNumber: React.FC<AbyssNumberProp> = (props) => {
       </div>
       <span>{description}</span>
     </div>
-  );
-};
+  )
+}
 
-export default AbyssNumber;
+export default AbyssNumber

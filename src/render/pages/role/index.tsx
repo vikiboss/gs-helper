@@ -1,8 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import cn from 'classnames';
-import { FaHeart } from 'react-icons/fa';
-import { TiArrowBack } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
+import React, { Fragment, useEffect, useState } from 'react'
+import cn from 'classnames'
+import { FaHeart } from 'react-icons/fa'
+import { TiArrowBack } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
 import {
   ElementImgs,
@@ -10,113 +10,114 @@ import {
   RarityOptions,
   TabMap,
   tabs,
-  WeaponOptions,
-} from './constants';
-import { ElementTypes } from '../../../constants';
-import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils';
-import Button from '../../components/Button';
-import CircleButton from '../../components/CircleButton';
-import ItemCard from '../../components/ItemCard';
-import Loading from '../../components/Loading';
-import nativeApi from '../../utils/nativeApi';
-import RoleCard from '../../components/RoleCard';
-import Select from '../../components/Select';
-import useNotice from '../../hooks/useNotice';
-import WeaponCard from '../../components/WeaponCard';
-import withAuth from '../../auth/withAuth';
+  WeaponOptions
+} from './constants'
+import { ElementTypes } from '../../../constants'
+import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils'
+import Button from '../../components/Button'
+import CircleButton from '../../components/CircleButton'
+import ItemCard from '../../components/ItemCard'
+import Loading from '../../components/Loading'
+import nativeApi from '../../utils/nativeApi'
+import RoleCard from '../../components/RoleCard'
+import Select from '../../components/Select'
+import useNotice from '../../hooks/useNotice'
+import WeaponCard from '../../components/WeaponCard'
+import withAuth from '../../auth/withAuth'
 
-import lock from '../../../assets/lock.png';
+import lock from '../../../assets/lock.png'
 
-import type { PublicRole } from '../../../services/getPublicRoleList';
-import type { Role as RoleInfo } from '../../../services/getOwnedRoleList';
+import type { PublicRole } from '../../../services/getPublicRoleList'
+import type { Role as RoleInfo } from '../../../services/getOwnedRoleList'
 
-import styles from './index.less';
+import styles from './index.less'
 
-export type RenderRoleInfo = RoleInfo & PublicRole;
-export type TabType = 'weapon' | 'reliquary' | 'constellation' | 'profile';
+export type RenderRoleInfo = RoleInfo & PublicRole
+export type TabType = 'weapon' | 'reliquary' | 'constellation' | 'profile'
 
-type Filters = [number, string, number];
+type Filters = [number, string, number]
 
-const defaultFilters: Filters = [0, 'all', 0];
+const defaultFilters: Filters = [0, 'all', 0]
 
 const Role: React.FC = () => {
-  const navigate = useNavigate();
-  const notice = useNotice();
-  const [filters, setFilters] = useState<Filters>(defaultFilters);
+  const navigate = useNavigate()
+  const notice = useNotice()
+  const [filters, setFilters] = useState<Filters>(defaultFilters)
 
-  const [index, setIndex] = useState<number>(0);
-  const [constellIndex, setConstellIndex] = useState<number>(0);
-  const [infoTab, setInfoTab] = useState<TabType>('weapon');
-  const [isRoleChanging, setIsRoleChanging] = useState<boolean>(true);
-  const [mode, setMode] = useState<'detail' | 'list'>('list');
-  const [publicRoles, setPublicRolos] = useState<PublicRole[]>([]);
-  const [roles, setRoles] = useState<RoleInfo[]>([]);
+  const [index, setIndex] = useState<number>(0)
+  const [constellIndex, setConstellIndex] = useState<number>(0)
+  const [infoTab, setInfoTab] = useState<TabType>('weapon')
+  const [isRoleChanging, setIsRoleChanging] = useState<boolean>(true)
+  const [mode, setMode] = useState<'detail' | 'list'>('list')
+  const [publicRoles, setPublicRolos] = useState<PublicRole[]>([])
+  const [roles, setRoles] = useState<RoleInfo[]>([])
 
   const updateInfo = async (): Promise<void> => {
     try {
       // 获取官网公开的全部角色列表，包含介绍、图片、声优、语音等数据
-      const pbRoles = await nativeApi.getPublicRoleList();
+      const pbRoles = await nativeApi.getPublicRoleList()
 
       if (!pbRoles.length) {
-        updateInfo();
-        return;
+        updateInfo()
+        return
       }
 
-      setPublicRolos(pbRoles);
+      setPublicRolos(pbRoles)
 
       // 获取用户的角色列表
-      const ownedRoles = await nativeApi.getOwnedRoleList();
+      const ownedRoles = await nativeApi.getOwnedRoleList()
       // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
 
-      console.log(ownedRoles);
+      console.log(ownedRoles)
 
       ownedRoles.sort(
-        (p, n) => n.level - p.level
-          || n.rarity - p.rarity
-          || n.actived_constellation_num - p.actived_constellation_num
-          || n.weapon.rarity - p.weapon.rarity
-          || n.weapon.level - p.weapon.level,
-      );
+        (p, n) =>
+          n.level - p.level ||
+          n.rarity - p.rarity ||
+          n.actived_constellation_num - p.actived_constellation_num ||
+          n.weapon.rarity - p.weapon.rarity ||
+          n.weapon.level - p.weapon.level
+      )
 
       if (ownedRoles.length) {
-        setRoles(ownedRoles);
+        setRoles(ownedRoles)
       }
 
       // if (roles.length) setRoles([...roles, ...roles]);
     } catch (e) {
-      const isOffline = e?.message?.includes('getaddrinfo');
-      const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T';
-      notice.faild({ message: msg });
+      const isOffline = e?.message?.includes('getaddrinfo')
+      const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
+      notice.faild({ message: msg })
     }
-  };
+  }
 
   useEffect(() => {
-    updateInfo();
+    updateInfo()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const fullRoles = getFullRoleInfo(roles, publicRoles).filter((e) => {
-    const isRarityOK = filters[0] === 0 || e.rarity === filters[0];
-    const isElementOK = filters[1] === 'all' || e.element === filters[1];
-    const isWeaponOK = filters[2] === 0 || e.weapon.type === filters[2];
-    return isElementOK && isWeaponOK && isRarityOK;
-  });
-  const isDetail = mode === 'detail' && fullRoles.length > 0;
-  const currentRole = fullRoles[index];
-  const reliquaryEffects = isDetail ? getReliquaryEffects(fullRoles[index].reliquaries) : [];
+    const isRarityOK = filters[0] === 0 || e.rarity === filters[0]
+    const isElementOK = filters[1] === 'all' || e.element === filters[1]
+    const isWeaponOK = filters[2] === 0 || e.weapon.type === filters[2]
+    return isElementOK && isWeaponOK && isRarityOK
+  })
+  const isDetail = mode === 'detail' && fullRoles.length > 0
+  const currentRole = fullRoles[index]
+  const reliquaryEffects = isDetail ? getReliquaryEffects(fullRoles[index].reliquaries) : []
 
   const toggleMode = () => {
-    setInfoTab('weapon');
-    setMode(isDetail ? 'list' : 'detail');
-  };
+    setInfoTab('weapon')
+    setMode(isDetail ? 'list' : 'detail')
+  }
 
   const handleArrowClick = (direction: 'left' | 'right') => {
-    const isLeft = direction === 'left';
-    const i = (index + (isLeft ? -1 : 1) + fullRoles.length) % fullRoles.length;
-    setIndex(i);
-    setIsRoleChanging(false);
-    setTimeout(() => setIsRoleChanging(true), 0);
-  };
+    const isLeft = direction === 'left'
+    const i = (index + (isLeft ? -1 : 1) + fullRoles.length) % fullRoles.length
+    setIndex(i)
+    setIsRoleChanging(false)
+    setTimeout(() => setIsRoleChanging(true), 0)
+  }
 
   return (
     <>
@@ -124,7 +125,7 @@ const Role: React.FC = () => {
         className={cn(
           styles.container,
           isDetail ? styles[currentRole.element.toLowerCase()] : '',
-          isDetail && isRoleChanging ? styles.bgAni : '',
+          isDetail && isRoleChanging ? styles.bgAni : ''
         )}
       >
         <div className={styles.topZone}>
@@ -136,11 +137,11 @@ const Role: React.FC = () => {
                   name='rarityFilter'
                   value={filters[0]}
                   onChange={(e) => {
-                    setFilters([Number(e.target.value), filters[1], filters[2]]);
-                    setIsRoleChanging(false);
+                    setFilters([Number(e.target.value), filters[1], filters[2]])
+                    setIsRoleChanging(false)
                     setTimeout(() => {
-                      setIsRoleChanging(true);
-                    }, 0);
+                      setIsRoleChanging(true)
+                    }, 0)
                   }}
                   options={RarityOptions}
                 />
@@ -148,11 +149,11 @@ const Role: React.FC = () => {
                   name='elementFilter'
                   value={filters[1]}
                   onChange={(e) => {
-                    setFilters([filters[0], e.target.value, filters[2]]);
-                    setIsRoleChanging(false);
+                    setFilters([filters[0], e.target.value, filters[2]])
+                    setIsRoleChanging(false)
                     setTimeout(() => {
-                      setIsRoleChanging(true);
-                    }, 0);
+                      setIsRoleChanging(true)
+                    }, 0)
                   }}
                   options={ElementOptions}
                 />
@@ -160,11 +161,11 @@ const Role: React.FC = () => {
                   name='weaponFilter'
                   value={filters[2]}
                   onChange={(e) => {
-                    setFilters([filters[0], filters[1], Number(e.target.value)]);
-                    setIsRoleChanging(false);
+                    setFilters([filters[0], filters[1], Number(e.target.value)])
+                    setIsRoleChanging(false)
                     setTimeout(() => {
-                      setIsRoleChanging(true);
-                    }, 0);
+                      setIsRoleChanging(true)
+                    }, 0)
                   }}
                   options={WeaponOptions}
                 />
@@ -180,7 +181,8 @@ const Role: React.FC = () => {
             />
           )}
         </div>
-        {roles.length > 0 ? (
+        {roles.length > 0
+          ? (
           <>
             {!isDetail && (
               <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : '')}>
@@ -190,8 +192,8 @@ const Role: React.FC = () => {
                     style={{ margin: '4px' }}
                     role={e}
                     onClick={() => {
-                      setIndex(i);
-                      setMode('detail');
+                      setIndex(i)
+                      setMode('detail')
                     }}
                   />
                 ))}
@@ -251,8 +253,8 @@ const Role: React.FC = () => {
                               <span>{currentRole.weapon.desc}</span>
                               <span>
                                 Lv.{currentRole.weapon.level}
-                                {currentRole.weapon.affix_level > 1
-                                  && ` / 精炼${currentRole.weapon.affix_level}阶`}
+                                {currentRole.weapon.affix_level > 1 &&
+                                  ` / 精炼${currentRole.weapon.affix_level}阶`}
                               </span>
                             </div>
                           </div>
@@ -261,15 +263,17 @@ const Role: React.FC = () => {
                         {infoTab === 'reliquary' && (
                           <div className={styles.reliquary}>
                             <div>
-                              {currentRole.reliquaries.length ? (
+                              {currentRole.reliquaries.length
+                                ? (
                                 <>
                                   {currentRole.reliquaries.map((e) => (
                                     <ItemCard key={e.pos} item={e} />
                                   ))}
                                 </>
-                              ) : (
+                                  )
+                                : (
                                 <div>未装配任何圣遗物</div>
-                              )}
+                                  )}
                             </div>
                             <div>
                               {reliquaryEffects.length
@@ -348,9 +352,10 @@ const Role: React.FC = () => {
               </div>
             )}
           </>
-        ) : (
+            )
+          : (
           <Loading className={styles.loading} />
-        )}
+            )}
 
         {!isDetail && (
           <CircleButton
@@ -374,7 +379,7 @@ const Role: React.FC = () => {
       </div>
       {notice.holder}
     </>
-  );
-};
+  )
+}
 
-export default withAuth(Role);
+export default withAuth(Role)

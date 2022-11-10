@@ -1,24 +1,24 @@
-import React from 'react';
-import type { CommonPieProps, MouseEventHandler } from '@nivo/pie';
-import { ResponsivePie } from '@nivo/pie';
+import React from 'react'
+import type { CommonPieProps, MouseEventHandler } from '@nivo/pie'
+import { ResponsivePie } from '@nivo/pie'
 
-import { ChartTheme } from '../../../../../constants';
-import { Colors } from '../../utils/getPieData';
+import { ChartTheme } from '../../../../../constants'
+import { Colors } from '../../utils/getPieData'
 
 type ItemPieProp = {
-  width: React.CSSProperties['width'];
-  height: React.CSSProperties['height'];
-  style?: React.CSSProperties;
+  width: React.CSSProperties['width']
+  height: React.CSSProperties['height']
+  style?: React.CSSProperties
   onClick?: MouseEventHandler<
     {
-      id: string | number;
-      value: number;
+      id: string | number
+      value: number
     },
     SVGPathElement
-  >;
-  className?: string;
-  data: { id: string | number; value: number }[];
-};
+  >
+  className?: string
+  data: { id: string | number; value: number }[]
+}
 
 const defs = [
   {
@@ -28,14 +28,14 @@ const defs = [
     color: 'rgba(255, 255, 255, 0.3)',
     rotation: -45,
     lineWidth: 6,
-    spacing: 10,
-  },
-];
+    spacing: 10
+  }
+]
 
 const fill = [
   { match: { id: '武器' }, id: 'lines' },
-  { match: { id: '角色' }, id: 'lines' },
-];
+  { match: { id: '角色' }, id: 'lines' }
+]
 
 const legends: CommonPieProps<ItemPieProp['data']>['legends'] = [
   {
@@ -51,17 +51,15 @@ const legends: CommonPieProps<ItemPieProp['data']>['legends'] = [
       {
         on: 'hover',
         style: {
-          itemTextColor: '#ffa564',
-        },
-      },
-    ],
-  },
-];
+          itemTextColor: '#ffa564'
+        }
+      }
+    ]
+  }
+]
 
 const ItemPie: React.FC<ItemPieProp> = (props) => {
-  const {
-    data, style, width, height, onClick, className = '',
-  } = props;
+  const { data, style, width, height, onClick, className = '' } = props
   return (
     <div
       className={className}
@@ -70,7 +68,7 @@ const ItemPie: React.FC<ItemPieProp> = (props) => {
         height,
         minHeight: height,
         width,
-        minWidth: width,
+        minWidth: width
       }}
     >
       <ResponsivePie
@@ -95,13 +93,13 @@ const ItemPie: React.FC<ItemPieProp> = (props) => {
           top: 24,
           right: 24,
           bottom: 60,
-          left: 24,
+          left: 24
         }}
         padAngle={0.7}
         theme={ChartTheme}
       />
     </div>
-  );
-};
+  )
+}
 
-export default ItemPie;
+export default ItemPie

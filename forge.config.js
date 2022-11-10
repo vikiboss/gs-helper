@@ -2,13 +2,13 @@ module.exports = {
   packagerConfig: {
     appBundleId: 'org.viki.genshin.helper',
     appCopyright: 'Viki. MIT licese',
-    icon: './src/assets/icon.ico',
+    icon: './src/assets/icon.ico'
   },
   makers: [
     {
       name: '@electron-forge/maker-zip',
-      platforms: ['win32', 'linux', 'darwin'],
-    },
+      platforms: ['win32', 'linux', 'darwin']
+    }
   ],
   plugins: [
     [
@@ -25,12 +25,12 @@ module.exports = {
               js: './src/render/index.tsx',
               name: 'main_window',
               preload: {
-                js: './src/preload.ts',
-              },
-            },
-          ],
-        },
-      },
-    ],
-  ],
-};
+                js: './src/preload.ts'
+              }
+            }
+          ]
+        }
+      }
+    ]
+  ]
+}

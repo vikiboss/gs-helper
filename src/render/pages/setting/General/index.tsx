@@ -1,29 +1,29 @@
-import React from 'react';
+import React from 'react'
 
-import Button from '../../../components/Button';
-import nativeApi from '../../../utils/nativeApi';
-import useAuth from '../../../hooks/useAuth';
+import Button from '../../../components/Button'
+import nativeApi from '../../../utils/nativeApi'
+import useAuth from '../../../hooks/useAuth'
 
-import type { Notice } from '../../../hooks/useNotice';
+import type { Notice } from '../../../hooks/useNotice'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface GeneralProp {
-  notice: Notice;
+  notice: Notice
 }
 
 const General: React.FC<GeneralProp> = ({ notice }) => {
-  const auth = useAuth();
+  const auth = useAuth()
 
   const handleClearData = async () => {
-    const isOK = await nativeApi.clearData();
+    const isOK = await nativeApi.clearData()
 
     if (isOK) {
-      auth.logout(undefined, true);
+      auth.logout(undefined, true)
     }
 
-    notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' });
-  };
+    notice[isOK ? 'success' : 'faild']({ message: isOK ? '重置成功，建议重启软件' : '无读写权限' })
+  }
 
   return (
     <div className={styles.main}>
@@ -35,7 +35,7 @@ const General: React.FC<GeneralProp> = ({ notice }) => {
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default General;
+export default General

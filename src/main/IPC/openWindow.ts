@@ -1,16 +1,16 @@
-import type { BrowserWindowConstructorOptions } from 'electron';
-import { app, BrowserWindow } from 'electron';
+import type { BrowserWindowConstructorOptions } from 'electron'
+import { app, BrowserWindow } from 'electron'
 
-import { APP_USER_AGENT_DESKTOP } from '../../constants';
-import { isDev, store } from '..';
+import { APP_USER_AGENT_DESKTOP } from '../../constants'
+import { isDev, store } from '..'
 
-export const subWins: Set<BrowserWindow> = new Set();
+export const subWins: Set<BrowserWindow> = new Set()
 
 const openWindow = async (
   _: Electron.IpcMainEvent,
   url: string,
   options: BrowserWindowConstructorOptions = {},
-  UA = '',
+  UA = ''
 ): Promise<void> => {
   const win = new BrowserWindow({
     width: 1300,
@@ -18,37 +18,37 @@ const openWindow = async (
     autoHideMenuBar: true,
     backgroundColor: '#F9F6F2',
     alwaysOnTop: store.get('settings').alwaysOnTop ?? false,
-    ...options,
-  });
+    ...options
+  })
 
   if (!isDev) {
-    win.removeMenu();
+    win.removeMenu()
   }
 
-  subWins.add(win);
+  subWins.add(win)
 
-  win.addListener('close', () => subWins.delete(win));
+  win.addListener('close', () => subWins.delete(win))
 
-  const dom = win.webContents;
+  const dom = win.webContents
 
   // 在窗口内跳转
   dom.setWindowOpenHandler((details) => {
-    dom.loadURL(details.url);
-    return { action: 'deny' };
-  });
+    dom.loadURL(details.url)
+    return { action: 'deny' }
+  })
 
   // 设置 UA
-  dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP + app.getVersion());
+  dom.setUserAgent(UA || APP_USER_AGENT_DESKTOP + app.getVersion())
 
   // 加载页面
-  dom.loadURL(url);
+  dom.loadURL(url)
 
   // 鼠标右键返回上一页面
   dom.addListener('context-menu', () => {
     if (dom.canGoBack()) {
-      dom.goBack();
+      dom.goBack()
     }
-  });
-};
+  })
+}
 
-export default openWindow;
+export default openWindow

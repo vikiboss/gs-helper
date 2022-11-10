@@ -1,6 +1,6 @@
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-const rules = require('./rules');
+const rules = require('./rules')
 
 module.exports = {
   module: {
@@ -8,7 +8,7 @@ module.exports = {
       ...rules,
       {
         test: /\.(svg|jpg|jpeg|png|ico|gif|woff2)$/i,
-        type: 'asset/inline',
+        type: 'asset/inline'
       },
       {
         test: /\.less$/i,
@@ -19,21 +19,21 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: '[name]__[local]--[hash:base64:5]',
-                exportLocalsConvention: 'camelCase',
-              },
-            },
+                exportLocalsConvention: 'camelCase'
+              }
+            }
           },
-          'less-loader',
-        ],
+          'less-loader'
+        ]
       },
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
-      },
-    ],
+        use: ['style-loader', 'css-loader']
+      }
+    ]
   },
   plugins: [new ForkTsCheckerWebpackPlugin()],
   resolve: {
-    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
-  },
-};
+    extensions: ['.js', '.ts', '.jsx', '.tsx', '.css']
+  }
+}

@@ -1,8 +1,8 @@
-import Store from 'electron-store';
-import { v4 as uuid } from 'uuid';
+import Store from 'electron-store'
+import { v4 as uuid } from 'uuid'
 
-import type { Schema } from 'electron-store';
-import type { AppData } from '../typings';
+import type { Schema } from 'electron-store'
+import type { AppData } from '../typings'
 
 export const DefaultAppData: AppData = {
   currentUid: '',
@@ -10,9 +10,9 @@ export const DefaultAppData: AppData = {
   settings: {
     alwaysOnTop: false,
     deviceId: '',
-    gameDir: '',
-  },
-};
+    gameDir: ''
+  }
+}
 
 /** 定义 Store 的 JSON schema */
 const schema: Schema<AppData> = {
@@ -23,33 +23,33 @@ const schema: Schema<AppData> = {
       type: 'object',
       properties: {
         uid: { type: 'string', pattern: '^[0-9]{0,10}$' },
-        cookie: { type: 'string' },
-      },
-    },
+        cookie: { type: 'string' }
+      }
+    }
   },
   settings: {
     type: 'object',
     properties: {
       alwaysOnTop: {
         type: 'boolean',
-        default: false,
+        default: false
       },
       deviceId: {
         type: 'string',
-        default: uuid().replace('-', '').toUpperCase(),
+        default: uuid().replace('-', '').toUpperCase()
       },
       gameDir: {
         type: 'string',
-        default: '',
-      },
-    },
-  },
-};
+        default: ''
+      }
+    }
+  }
+}
 
 /** 初始化 Store */
 const initStore = () => {
-  const options = { schema, defaults: DefaultAppData };
-  return new Store<AppData>(options);
-};
+  const options = { schema, defaults: DefaultAppData }
+  return new Store<AppData>(options)
+}
 
-export default initStore;
+export default initStore

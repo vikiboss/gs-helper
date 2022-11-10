@@ -1,107 +1,105 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
-import { LINK_GITHUB_REPO } from '../../../../constants';
-import groupQRCode from '../../../../assets/group-qrcode.png';
-import nativeApi from '../../../utils/nativeApi';
-import useApi from '../../../hooks/useApi';
-import wxRewardCode from '../../../../assets/wx-reward.jpg';
+import { LINK_GITHUB_REPO } from '../../../../constants'
+import groupQRCode from '../../../../assets/group-qrcode.png'
+import nativeApi from '../../../utils/nativeApi'
+import useApi from '../../../hooks/useApi'
+import wxRewardCode from '../../../../assets/wx-reward.jpg'
 
-import type { AppInfo } from '../../../../typings';
-import type { Notice } from '../../../hooks/useNotice';
+import type { AppInfo } from '../../../../typings'
+import type { Notice } from '../../../hooks/useNotice'
 
-import styles from './index.less';
-import Loading from '../../../components/Loading';
+import styles from './index.less'
+import Loading from '../../../components/Loading'
 
 interface AboutProp {
-  notice: Notice;
+  notice: Notice
 }
 
 interface Group {
-  title: string;
-  number: string;
-  img: string;
-  url: string;
+  title: string
+  number: string
+  img: string
+  url: string
 }
 
 interface Award {
-  title: string;
-  img: string;
-  url: string;
+  title: string
+  img: string
+  url: string
 }
 interface Qrcode {
-  group: Group;
-  award: Award;
+  group: Group
+  award: Award
 }
 
 interface RepoInfo {
-  version: string;
-  qrcode: Qrcode;
+  version: string
+  qrcode: Qrcode
 }
 
-const LINK_LICENSE = 'https://github.com/vikiboss/genshin-helper/blob/main/LICENCE';
-const LINK_AUTHOR_GITHUB = 'https://github.com/vikiboss';
-const LINK_GROUP_QQ = 'https://jq.qq.com/?_wv=1027&k=InHF9niP';
-const LINK_ELECTRON = 'https://www.electronjs.org';
-const LINK_PACKAGE_JSON = 'https://github.com/vikiboss/genshin-helper/blob/main/package.json';
-const LINK_REACT = 'https://reactjs.org';
-const LINK_MIHOYO = 'https://www.mihoyo.com/';
-const LINK_AWARD_WX = 'https://s2.loli.net/2022/11/03/CIHUnX1u5r8GkKS.jpg';
+const LINK_LICENSE = 'https://github.com/vikiboss/genshin-helper/blob/main/LICENCE'
+const LINK_AUTHOR_GITHUB = 'https://github.com/vikiboss'
+const LINK_GROUP_QQ = 'https://jq.qq.com/?_wv=1027&k=InHF9niP'
+const LINK_ELECTRON = 'https://www.electronjs.org'
+const LINK_PACKAGE_JSON = 'https://github.com/vikiboss/genshin-helper/blob/main/package.json'
+const LINK_REACT = 'https://reactjs.org'
+const LINK_MIHOYO = 'https://www.mihoyo.com/'
+const LINK_AWARD_WX = 'https://s2.loli.net/2022/11/03/CIHUnX1u5r8GkKS.jpg'
 
 const GROUP: Group = {
   title: 'QQ交流群（快进来玩！）',
   url: LINK_GROUP_QQ,
   number: '176593098',
-  img: groupQRCode,
-};
-const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AWARD_WX, img: wxRewardCode };
+  img: groupQRCode
+}
+const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AWARD_WX, img: wxRewardCode }
 
 const About: React.FC<AboutProp> = ({ notice }) => {
-  const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({});
-  const [show, setShow] = useState(false);
-  const [request, repoInfo, loading] = useApi<RepoInfo>(nativeApi.getRepoData);
+  const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({})
+  const [show, setShow] = useState(false)
+  const [request, repoInfo, loading] = useApi<RepoInfo>(nativeApi.getRepoData)
 
-  const appName = appInfo?.zhName ?? '原神助手';
-  const version = appInfo?.version ?? '未知';
-  const group = repoInfo?.qrcode?.group ?? GROUP;
-  const award = repoInfo?.qrcode?.award ?? AWARD;
-  const latestVersion = repoInfo?.version ?? '';
+  const appName = appInfo?.zhName ?? '原神助手'
+  const version = appInfo?.version ?? '未知'
+  const group = repoInfo?.qrcode?.group ?? GROUP
+  const award = repoInfo?.qrcode?.award ?? AWARD
+  const latestVersion = repoInfo?.version ?? ''
 
   const init = async () => {
-    setAppInfo(await nativeApi.getAppInfo());
-    await request('info.json');
-  };
+    setAppInfo(await nativeApi.getAppInfo())
+    await request('info.json')
+  }
 
   useEffect(() => {
-    init();
+    init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  function Link(href: string, text?: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
-    return (
-      <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text || ''} `}</a>
-    );
+  function Link (href: string, text?: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
+    return <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text || ''} `}</a>
   }
 
   const checkUpdate: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    notice.info({ message: '正在检查更新，请稍后...', autoHide: false });
+    notice.info({ message: '正在检查更新，请稍后...', autoHide: false })
 
     setTimeout(() => {
       if (latestVersion === version) {
-        notice.success({ message: '恭喜，当前使用版本为最新版本。' });
+        notice.success({ message: '恭喜，当前使用版本为最新版本。' })
       } else {
         notice.success({
-          message: `新版本 v${latestVersion} 已发布，请前往项目主页或交流群下载。`,
-        });
-        setShow(true);
+          message: `新版本 v${latestVersion} 已发布，请前往项目主页或交流群下载。`
+        })
+        setShow(true)
       }
-    }, 600);
-  };
+    }, 600)
+  }
 
   const goDownloadPage = () => {
-    window.open(`${LINK_GITHUB_REPO}#下载`);
-  };
+    window.open(`${LINK_GITHUB_REPO}#下载`)
+  }
 
   const P1 = (
     <p>
@@ -111,7 +109,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
       次/分钟），
       <b>可能存在延迟，请以游戏内实时数据为准。</b>
     </p>
-  );
+  )
 
   const P2 = (
     <p>
@@ -119,7 +117,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
       「{Link(LINK_MIHOYO, '米哈游')}或原作者」 所有。
       <b>如有发现任何实质性的侵权行为，请联系开发者对相关内容进行删除</b>。
     </p>
-  );
+  )
 
   const P3 = (
     <p>
@@ -128,11 +126,12 @@ const About: React.FC<AboutProp> = ({ notice }) => {
       {Link(LINK_LICENSE, 'MIT')}协议开放源代码，仅供个人学习交流使用，
       <b>请勿用于任何商业或违法违规用途</b>。
     </p>
-  );
+  )
 
   return (
     <div className={styles.container}>
-      {!loading ? (
+      {!loading
+        ? (
         <>
           <div className={styles.declaration}>
             {P1}
@@ -176,12 +175,13 @@ const About: React.FC<AboutProp> = ({ notice }) => {
             </div>
           </div>
         </>
-      ) : (
+          )
+        : (
         <Loading style={{ flex: 1 }} />
-      )}
+          )}
       <div className={styles.thank}>{'※ 开发不易 ❤ 感谢支持 ※'}</div>
     </div>
-  );
-};
+  )
+}
 
-export default About;
+export default About

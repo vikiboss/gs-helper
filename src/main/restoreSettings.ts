@@ -1,17 +1,17 @@
-import type { BrowserWindow } from 'electron';
+import type { BrowserWindow } from 'electron'
 
-import { isDev, store } from '.';
+import { isDev, store } from '.'
 
-import type { AppData } from '../typings';
+import type { AppData } from '../typings'
 
 /** 恢复用户偏好设置 */
 const restoreSettings = (win: BrowserWindow) => {
-  const settings = store.get('settings') as AppData['settings'];
+  const settings = store.get('settings') as AppData['settings']
 
   // console.log(settings);
-  const { alwaysOnTop } = settings;
+  const { alwaysOnTop } = settings
 
-  win.setAlwaysOnTop(isDev ? true : alwaysOnTop);
-};
+  win.setAlwaysOnTop(isDev ? true : alwaysOnTop)
+}
 
-export default restoreSettings;
+export default restoreSettings

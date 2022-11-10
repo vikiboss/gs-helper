@@ -1,112 +1,112 @@
-import React, { useEffect, useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
-import { TiArrowBack } from 'react-icons/ti';
+import React, { useEffect, useState } from 'react'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { TiArrowBack } from 'react-icons/ti'
 
 // import element from "../../../assets/element.png";
-import useNotice from '../../hooks/useNotice';
-import useAuth from '../../hooks/useAuth';
-import nativeApi from '../../utils/nativeApi';
-import Button from '../../components/Button';
-import CircleButton from '../../components/CircleButton';
+import useNotice from '../../hooks/useNotice'
+import useAuth from '../../hooks/useAuth'
+import nativeApi from '../../utils/nativeApi'
+import Button from '../../components/Button'
+import CircleButton from '../../components/CircleButton'
 
-import type { UserData } from '../../../typings';
+import type { UserData } from '../../../typings'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface LoginProp {
-  from?: string;
+  from?: string
 }
 
 interface LocationState {
-  changeAccount?: boolean;
-  isExpired?: boolean;
+  changeAccount?: boolean
+  isExpired?: boolean
 }
 
 const LoginGuides = [
   '① 点击 「登录米游社」 按钮打开登录窗口',
   '② 在登录窗口中登录 「米游社」 账号',
   '③ 成功登录后关闭登录窗口',
-  '④ 点击 「验证账号」 按钮完成登录',
-];
+  '④ 点击 「验证账号」 按钮完成登录'
+]
 
 const Login: React.FC<LoginProp> = (props) => {
-  const notice = useNotice();
-  const auth = useAuth();
-  const navigate = useNavigate();
-  const state = useLocation().state as LocationState;
-  const [users, setUsers] = useState<UserData[]>([]);
-  const [isSwitching, setIsSwitching] = useState<boolean>(state?.changeAccount);
+  const notice = useNotice()
+  const auth = useAuth()
+  const navigate = useNavigate()
+  const state = useLocation().state as LocationState
+  const [users, setUsers] = useState<UserData[]>([])
+  const [isSwitching, setIsSwitching] = useState<boolean>(state?.changeAccount)
 
   useEffect(() => {
     if (props?.from) {
-      notice.faild({ message: '请登录以使用全部功能' });
+      notice.faild({ message: '请登录以使用全部功能' })
     }
 
     if (state?.isExpired) {
-      notice.faild({ message: '验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定' });
+      notice.faild({ message: '验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定' })
     }
 
     (async () => {
-      const storeUsers: UserData[] = await nativeApi.getStoreKey('users');
+      const storeUsers: UserData[] = await nativeApi.getStoreKey('users')
 
       if (storeUsers.length > 0) {
         // if (isSwitching) notice.info({ message: "点击页面底部已登录 UID 可快速切换本地账号" });
-        storeUsers.sort((p, n) => Number(p.uid) - Number(n.uid));
-        setUsers(storeUsers);
+        storeUsers.sort((p, n) => Number(p.uid) - Number(n.uid))
+        setUsers(storeUsers)
       }
       // setUsers([...users, ...users]);
       // setUsers([...users, ...users, ...users, ...users, ...users, ...users]);
-    })();
+    })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const handleLogin = () => {
-    notice.success({ message: '正在打开登录页面...', duration: 1200 });
-    nativeApi.loginByBBS();
-  };
+    notice.success({ message: '正在打开登录页面...', duration: 1200 })
+    nativeApi.loginByBBS()
+  }
 
   const handleRefresh = async () => {
-    const user = await nativeApi.getCurrentUser();
+    const user = await nativeApi.getCurrentUser()
 
     if (!user) {
-      auth.logout();
-      notice.faild({ message: '未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID' });
+      auth.logout()
+      notice.faild({ message: '未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID' })
     } else {
-      notice.success({ message: '登录成功，正在前往首页登录前页面...' });
+      notice.success({ message: '登录成功，正在前往首页登录前页面...' })
       setTimeout(() => {
-        setIsSwitching(false);
-        auth.login();
-      }, 1200);
+        setIsSwitching(false)
+        auth.login()
+      }, 1200)
     }
-  };
+  }
 
   const handleUserSwitch = async (uid: string) => {
-    await nativeApi.changeUser(uid);
-    notice.success({ message: `已切换到 UID ${uid}，正在前往首页...` });
+    await nativeApi.changeUser(uid)
+    notice.success({ message: `已切换到 UID ${uid}，正在前往首页...` })
     setTimeout(() => {
-      setIsSwitching(false);
-      auth.login();
-    }, 1000);
-  };
+      setIsSwitching(false)
+      auth.login()
+    }, 1000)
+  }
 
   const naviProps = {
     to: props?.from || '/',
-    replace: true,
-  };
+    replace: true
+  }
 
   if (auth.isLogin && !isSwitching) {
-    return <Navigate {...naviProps} />;
+    return <Navigate {...naviProps} />
   }
 
   const handleBack = async () => {
-    const user = await nativeApi.getCurrentUser();
+    const user = await nativeApi.getCurrentUser()
 
     if (!user) {
-      auth.logout();
+      auth.logout()
     }
 
-    navigate('/');
-  };
+    navigate('/')
+  }
 
   return (
     <>
@@ -134,7 +134,7 @@ const Login: React.FC<LoginProp> = (props) => {
               <div
                 style={{
                   justifyContent: users.length > 6 ? 'flex-start' : 'center',
-                  overflow: users.length > 6 ? 'auto' : 'hidden',
+                  overflow: users.length > 6 ? 'auto' : 'hidden'
                 }}
               >
                 {users.map((e, i) => (
@@ -157,7 +157,7 @@ const Login: React.FC<LoginProp> = (props) => {
       </div>
       {notice.holder}
     </>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

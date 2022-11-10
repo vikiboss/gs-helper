@@ -1,52 +1,53 @@
-import React, { useEffect } from 'react';
-import { TiArrowBack } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
-import cn from 'classnames';
+import React, { useEffect } from 'react'
+import { TiArrowBack } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
+import cn from 'classnames'
 
-import CircleButton from '../../components/CircleButton';
-import Loading from '../../components/Loading';
-import nativeApi from '../../utils/nativeApi';
-import useApi from '../../hooks/useApi';
-import useNotice from '../../hooks/useNotice';
+import CircleButton from '../../components/CircleButton'
+import Loading from '../../components/Loading'
+import nativeApi from '../../utils/nativeApi'
+import useApi from '../../hooks/useApi'
+import useNotice from '../../hooks/useNotice'
 
-import styles from './index.less';
+import styles from './index.less'
 
 interface StrategyItem {
-  name: string;
-  url: string;
-  hightlight?: boolean;
-  alt?: string;
+  name: string
+  url: string
+  hightlight?: boolean
+  alt?: string
 }
 
 const Strategy: React.FC = () => {
-  const navigate = useNavigate();
-  const notice = useNotice();
-  const [request, data = [], loading] = useApi<StrategyItem[]>(nativeApi.getRepoData);
+  const navigate = useNavigate()
+  const notice = useNotice()
+  const [request, data = [], loading] = useApi<StrategyItem[]>(nativeApi.getRepoData)
 
   useEffect(() => {
-    request('strategies.json');
+    request('strategies.json')
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   const handleWindowOpen = (link: string) => {
     notice.success({
       message: '正在打开页面...',
-      duration: 1000,
-    });
+      duration: 1000
+    })
 
-    nativeApi.openWindow(link);
-  };
+    nativeApi.openWindow(link)
+  }
 
   return (
     <>
       <div className={styles.container}>
-        {!loading ? (
+        {!loading
+          ? (
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
               {data.map((e) => {
-                const extra = e.hightlight ? styles.hightlight : '';
-                const className = cn(styles.btn, extra);
+                const extra = e.hightlight ? styles.hightlight : ''
+                const className = cn(styles.btn, extra)
 
                 return (
                   <div
@@ -56,13 +57,14 @@ const Strategy: React.FC = () => {
                   >
                     <span>{e.name}</span>
                   </div>
-                );
+                )
               })}
             </div>
           </>
-        ) : (
+            )
+          : (
           <Loading />
-        )}
+            )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'
@@ -72,7 +74,7 @@ const Strategy: React.FC = () => {
       </div>
       {notice.holder}
     </>
-  );
-};
+  )
+}
 
-export default Strategy;
+export default Strategy

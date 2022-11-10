@@ -1,6 +1,6 @@
-const { builtinModules } = require('node:module');
+const { builtinModules } = require('node:module')
 
-const modules = builtinModules.map((mod) => `node:${mod}`);
+const modules = builtinModules.map((mod) => `node:${mod}`)
 
 module.exports = {
   extends: ['plugin:import/electron', 'viki-react'],
@@ -18,6 +18,6 @@ module.exports = {
     'no-console': 'off',
     'no-restricted-syntax': 'off',
     'no-nested-ternary': 'off',
-    'no-await-in-loop': 'off',
-  },
-};
+    'no-await-in-loop': 'off'
+  }
+}

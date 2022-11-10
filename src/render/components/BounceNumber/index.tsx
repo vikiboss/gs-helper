@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'
 
 export interface BounceNumberProp {
-  number: number;
-  size?: number;
-  duration?: number;
-  style?: React.CSSProperties;
-  wrapperStyle?: React.CSSProperties;
+  number: number
+  size?: number
+  duration?: number
+  style?: React.CSSProperties
+  wrapperStyle?: React.CSSProperties
 }
 
-const nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+const nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
 const BounceNumber: React.FC<BounceNumberProp> = (props) => {
-  const [transforms, setTransforms] = useState<string[]>([]);
-  const {
-    number, style = {}, duration = 1, size = 16, wrapperStyle = {},
-  } = props;
-  const numbers = String(number).split('');
+  const [transforms, setTransforms] = useState<string[]>([])
+  const { number, style = {}, duration = 1, size = 16, wrapperStyle = {} } = props
+  const numbers = String(number).split('')
 
   useEffect(() => {
-    const trans = numbers.map((e) => `translateY(-${Number(e) * size}px)`);
-    setTimeout(() => setTransforms(trans), 20);
-  }, [numbers, size]);
+    const trans = numbers.map((e) => `translateY(-${Number(e) * size}px)`)
+    setTimeout(() => setTransforms(trans), 20)
+  }, [numbers, size])
 
   const numsStyle: React.CSSProperties = {
     display: 'flex',
     flexDirection: 'column',
     height: `${size}px`,
-    transition: `all ${duration}s ease-in-out`,
-  };
+    transition: `all ${duration}s ease-in-out`
+  }
 
   return (
     <div
@@ -36,7 +34,7 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
         display: 'flex',
         overflow: 'hidden',
         fontFamily: 'arial',
-        fontWeight: 'bold',
+        fontWeight: 'bold'
       }}
     >
       {numbers.map((e, i) => (
@@ -46,7 +44,7 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
               style={{
                 ...style,
                 height: `${size}px`,
-                fontSize: `${size}px`,
+                fontSize: `${size}px`
               }}
               key={f}
             >
@@ -56,7 +54,7 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
         </div>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default BounceNumber;
+export default BounceNumber

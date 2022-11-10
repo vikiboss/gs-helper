@@ -1,18 +1,18 @@
-import React from 'react';
-import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar';
-import { ResponsiveTimeRange } from '@nivo/calendar';
+import React from 'react'
+import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar'
+import { ResponsiveTimeRange } from '@nivo/calendar'
 
-import { ChartTheme } from '../../../../../constants';
+import { ChartTheme } from '../../../../../constants'
 
 type DateRangeProp = {
-  width: React.CSSProperties['width'];
-  height: React.CSSProperties['height'];
-  style?: React.CSSProperties;
-  className?: string;
-  onClick?: (datum: TimeRangeDayData, event: React.MouseEvent<SVGRectElement, MouseEvent>) => void;
-  data: CalendarDatum[];
-  range: (Date | string)[];
-};
+  width: React.CSSProperties['width']
+  height: React.CSSProperties['height']
+  style?: React.CSSProperties
+  className?: string
+  onClick?: (datum: TimeRangeDayData, event: React.MouseEvent<SVGRectElement, MouseEvent>) => void
+  data: CalendarDatum[]
+  range: (Date | string)[]
+}
 
 const legends: CalendarLegendProps[] = [
   {
@@ -23,14 +23,12 @@ const legends: CalendarLegendProps[] = [
     itemsSpacing: 32,
     itemWidth: 24,
     translateX: 32,
-    translateY: -36,
-  },
-];
+    translateY: -36
+  }
+]
 
 const DateRange: React.FC<DateRangeProp> = (props) => {
-  const {
-    data, range, style, width, height, onClick, className = '',
-  } = props;
+  const { data, range, style, width, height, onClick, className = '' } = props
   return (
     <div
       className={className}
@@ -39,7 +37,7 @@ const DateRange: React.FC<DateRangeProp> = (props) => {
         height,
         minHeight: height,
         width,
-        minWidth: width,
+        minWidth: width
       }}
     >
       <ResponsiveTimeRange
@@ -58,7 +56,7 @@ const DateRange: React.FC<DateRangeProp> = (props) => {
         weekdayTicks={[]}
       />
     </div>
-  );
-};
+  )
+}
 
-export default DateRange;
+export default DateRange

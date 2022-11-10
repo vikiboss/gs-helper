@@ -43,6 +43,6 @@
 //   return params.get('act_id') || 'e202009291139501';
 // };
 
-const getBBSSignActId = async () => 'e202009291139501';
+const getBBSSignActId = async () => 'e202009291139501'
 
-export default getBBSSignActId;
+export default getBBSSignActId

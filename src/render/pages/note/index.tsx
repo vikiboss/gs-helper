@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { TiArrowBack } from 'react-icons/ti';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react'
+import { TiArrowBack } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
-import { wait } from '../../../utils/utils';
-import BounceNumber from '../../components/BounceNumber';
-import CircleButton from '../../components/CircleButton';
-import getGreetingMsg from '../../../utils/getGreetingMsg';
-import Loading from '../../components/Loading';
-import mora from '../../../assets/mora.png';
-import nativeApi from '../../utils/nativeApi';
-import Pie from './Pie';
-import primogem from '../../../assets/primogem.png';
-import SelectButton from '../../components/SelectButton';
-import useNotice from '../../hooks/useNotice';
-import withAuth from '../../auth/withAuth';
+import { wait } from '../../../utils/utils'
+import BounceNumber from '../../components/BounceNumber'
+import CircleButton from '../../components/CircleButton'
+import getGreetingMsg from '../../../utils/getGreetingMsg'
+import Loading from '../../components/Loading'
+import mora from '../../../assets/mora.png'
+import nativeApi from '../../utils/nativeApi'
+import Pie from './Pie'
+import primogem from '../../../assets/primogem.png'
+import SelectButton from '../../components/SelectButton'
+import useNotice from '../../hooks/useNotice'
+import withAuth from '../../auth/withAuth'
 
-import type { MonthInfo } from '../../../services/getMonthInfo';
+import type { MonthInfo } from '../../../services/getMonthInfo'
 
-import styles from './index.less';
+import styles from './index.less'
 
 export const DefaultMonthInfo: MonthInfo = {
   uid: 0,
@@ -33,7 +33,7 @@ export const DefaultMonthInfo: MonthInfo = {
     current_primogems: 0,
     current_mora: 0,
     last_primogems: 0,
-    last_mora: 0,
+    last_mora: 0
   },
   month_data: {
     current_primogems: 0,
@@ -43,71 +43,72 @@ export const DefaultMonthInfo: MonthInfo = {
     current_primogems_level: 0,
     primogems_rate: 0,
     mora_rate: 0,
-    group_by: [],
+    group_by: []
   },
-  lantern: false,
-};
+  lantern: false
+}
 
 const Month: React.FC = () => {
-  const navigate = useNavigate();
-  const notice = useNotice();
-  const [initMonth, setInitMonth] = useState<number>(0);
-  const [month, setMonth] = useState<number>(0);
-  const [monthInfos, setMonthInfos] = useState<MonthInfo[]>([DefaultMonthInfo]);
+  const navigate = useNavigate()
+  const notice = useNotice()
+  const [initMonth, setInitMonth] = useState<number>(0)
+  const [month, setMonth] = useState<number>(0)
+  const [monthInfos, setMonthInfos] = useState<MonthInfo[]>([DefaultMonthInfo])
 
   const init = async () => {
     try {
-      const initMonthData = await nativeApi.getMonthInfo();
+      const initMonthData = await nativeApi.getMonthInfo()
 
-      setInitMonth(initMonthData.data_month);
-      setMonth(initMonthData.data_month);
+      setInitMonth(initMonthData.data_month)
+      setMonth(initMonthData.data_month)
 
-      const data: MonthInfo[] = [];
+      const data: MonthInfo[] = []
 
-      const months = initMonthData.optional_month;
+      const months = initMonthData.optional_month
 
       months.forEach(async (e, i) => {
-        await wait(50);
+        await wait(50)
 
-        const res = await nativeApi.getMonthInfo(e);
+        const res = await nativeApi.getMonthInfo(e)
 
         if (res) {
-          data.push(res);
+          data.push(res)
 
           if (i + 1 === months.length) {
-            setMonthInfos(data);
+            setMonthInfos(data)
           }
         } else {
-          notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' });
+          notice.faild({ message: '网络异常，部分月份数据获取失败，请重试' })
         }
-      });
+      })
     } catch (e) {
-      const isOffline = e?.message?.includes('getaddrinfo');
-      const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T';
-      notice.faild({ message: msg });
+      const isOffline = e?.message?.includes('getaddrinfo')
+      const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
+      notice.faild({ message: msg })
     }
-  };
+  }
 
   useEffect(() => {
-    init();
+    init()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
-  const initData = monthInfos.filter((e) => e.data_month === initMonth)[0] || DefaultMonthInfo;
-  const monthInfo = monthInfos.filter((e) => e.data_month === month)[0] || DefaultMonthInfo;
+  const initData = monthInfos.filter((e) => e.data_month === initMonth)[0] || DefaultMonthInfo
+  const monthInfo = monthInfos.filter((e) => e.data_month === month)[0] || DefaultMonthInfo
 
-  const monthData = monthInfo.month_data;
-  const pSign = monthData.primogems_rate >= 0;
-  const mSign = monthData.mora_rate >= 0;
+  const monthData = monthInfo.month_data
+  const pSign = monthData.primogems_rate >= 0
+  const mSign = monthData.mora_rate >= 0
 
-  const greeting = getGreetingMsg(undefined, true);
+  const greeting = getGreetingMsg(undefined, true)
 
-  const diffMessage = `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`;
+  const diffMessage = `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`
 
   return (
     <>
       <div className={styles.container}>
-        {monthInfos[0]?.account_id ? (
+        {monthInfos[0]?.account_id
+          ? (
           <>
             <div className={styles.title}>冒险札记</div>
             <div className={styles.content}>
@@ -148,15 +149,17 @@ const Month: React.FC = () => {
               </div>
 
               <div className={styles.filter}>
-                {initData.optional_month.length === 0 ? (
+                {initData.optional_month.length === 0
+                  ? (
                   <span>暂无数据</span>
-                ) : (
+                    )
+                  : (
                   <SelectButton
                     value={month}
                     changeItem={setMonth}
                     items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))}
                   />
-                )}
+                    )}
               </div>
 
               <div className={styles.monthContent}>
@@ -192,7 +195,7 @@ const Month: React.FC = () => {
                   <Pie
                     data={monthData.group_by.map((e) => ({
                       id: e.action,
-                      value: e.num,
+                      value: e.num
                     }))}
                     width={480}
                     height={240}
@@ -204,9 +207,10 @@ const Month: React.FC = () => {
               </div>
             </div>
           </>
-        ) : (
+            )
+          : (
           <Loading />
-        )}
+            )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'
@@ -216,7 +220,7 @@ const Month: React.FC = () => {
       </div>
       {notice.holder}
     </>
-  );
-};
+  )
+}
 
-export default withAuth(Month);
+export default withAuth(Month)

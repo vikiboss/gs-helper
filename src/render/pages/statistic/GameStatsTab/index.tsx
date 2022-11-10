@@ -1,23 +1,23 @@
 /* eslint-disable camelcase */
-import React from 'react';
+import React from 'react'
 
-import { deepClone } from '../../../../utils/utils';
-import BounceNumber from '../../../components/BounceNumber';
+import { deepClone } from '../../../../utils/utils'
+import BounceNumber from '../../../components/BounceNumber'
 
-import type { GameRoleCardData } from '../../../../services/getGameRoleCard';
+import type { GameRoleCardData } from '../../../../services/getGameRoleCard'
 
-import styles from './index.less';
-import AbyssNumber from '../../../components/AbyssNumber';
-import NumberDescription from '../../../components/NumberDescription';
+import styles from './index.less'
+import AbyssNumber from '../../../components/AbyssNumber'
+import NumberDescription from '../../../components/NumberDescription'
 
 export interface StatisticCardProp {
-  data: GameRoleCardData;
+  data: GameRoleCardData
 }
 
 const StatisticCard: React.FC<StatisticCardProp> = (props) => {
-  const { data } = props;
+  const { data } = props
 
-  const we = deepClone(data.world_explorations).reverse();
+  const we = deepClone(data.world_explorations).reverse()
 
   const {
     stats: {
@@ -35,12 +35,12 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
       anemoculus_number,
       geoculus_number,
       electroculus_number,
-      dendroculus_number,
+      dendroculus_number
     },
-    homes,
-  } = data;
+    homes
+  } = data
 
-  const [floor, zone] = spiral_abyss.split('-').map(Number);
+  const [floor, zone] = spiral_abyss.split('-').map(Number)
 
   return (
     <div className={styles.statisticCard}>
@@ -74,7 +74,8 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               </div>
             )}
           </div>
-          {data.homes.length > 0 ? (
+          {data.homes.length > 0
+            ? (
             <>
               <div>
                 {data.homes.map((e) => (
@@ -105,9 +106,10 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 </div>
               </div>
             </>
-          ) : (
+              )
+            : (
             <div className={styles.off}>尘歌壶未开启</div>
-          )}
+              )}
         </div>
       </div>
       <div className={styles.column}>
@@ -115,10 +117,10 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
           <div>〓世界探索〓</div>
           <div>
             {we.map((e) => {
-              const isR = e.type === 'Reputation';
-              const name = !isR && (e.offerings[0]?.name || '').replaceAll('等级', '');
-              const text = isR ? '声望' : name || '';
-              const level = text ? `·${text} ${e.level} 级` : '';
+              const isR = e.type === 'Reputation'
+              const name = !isR && (e.offerings[0]?.name || '').replaceAll('等级', '')
+              const text = isR ? '声望' : name || ''
+              const level = text ? `·${text} ${e.level} 级` : ''
               return (
                 <div key={e.id}>
                   <img src={e.background_image} />
@@ -132,13 +134,13 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                     </div>
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StatisticCard;
+export default StatisticCard
