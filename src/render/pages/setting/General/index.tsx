@@ -31,7 +31,7 @@ const General: React.FC<GeneralProp> = ({ notice }) => {
       <div className={styles.clearCache}>
         <Button text='重置配置文件' onClick={handleClearData} />
         <span>
-          此操作会清空本地所有账号信息和配置文件（不包括祈愿记录数据），清空后需要重新登录，请谨慎操作！
+          此操作会清空本地所有账号信息并重置配置文件（不包括祈愿记录数据），清空后需要重新登录，请谨慎操作！
         </span>
       </div>
     </div>
