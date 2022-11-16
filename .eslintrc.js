@@ -3,7 +3,7 @@ const { builtinModules } = require('node:module')
 const modules = builtinModules.map((mod) => `node:${mod}`)
 
 module.exports = {
-  extends: ['plugin:import/electron', 'viki-react'],
+  extends: ['plugin:import/electron', 'viki-react', 'plugin:prettier/recommended'],
   rules: {
     '@typescript-eslint/triple-slash-reference': 'off',
 
