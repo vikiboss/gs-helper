@@ -24,8 +24,8 @@ interface LocationState {
 
 const LoginGuides = [
   '① 点击 「登录米游社」 按钮打开登录窗口',
-  '② 在登录窗口中登录 「米游社」 账号',
-  '③ 成功登录后关闭登录窗口',
+  '② 点击登录窗口右上角头像登录 「米游社」 账号',
+  '③ 登录成功后，关闭登录窗口',
   '④ 点击 「验证账号」 按钮完成登录'
 ]
 
@@ -43,7 +43,7 @@ const Login: React.FC<LoginProp> = (props) => {
     }
 
     if (state?.isExpired) {
-      notice.faild('验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定')
+      notice.faild('验证信息已过期或未绑定 UID，请重新登录，或前往米游社绑定')
     }
 
     ;(async () => {

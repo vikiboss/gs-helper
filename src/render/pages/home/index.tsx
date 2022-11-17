@@ -34,16 +34,16 @@ const Home: React.FC = () => {
   const notice = useNotice()
   const navigate = useNavigate()
   const [tip, setTip] = useState<string>('')
-  const [heart, setHeart] = useState<NodeJS.Timer>(null)
+  const [heart, setHeart] = useState<NodeJS.Timer | null>(null)
   const [url, setUrl] = useState<string>('')
+  const [loaded, setLoaded] = useState(false)
 
-  const [getUser, user, l1, e1, d1] = useApi<GameRole | null>(getGameRoleInfo)
-  const [getSign, sign, l2, e2, d2] = useApi<SignInfo | null>(getBBSSignInfo)
-  const [getNote, note, l3, e3, d3] = useApi<DailyNotesData | null>(getDailyNotes)
+  const [getUser, user, l1, e1] = useApi<GameRole | null>(getGameRoleInfo)
+  const [getSign, sign, l2, e2] = useApi<SignInfo | null>(getBBSSignInfo)
+  const [getNote, note, l3, e3] = useApi<DailyNotesData | null>(getDailyNotes)
 
   const loading = l1 || l2 || l3
   const error = e1 || e2 || e3
-  const done = d1 && d2 && d3
 
   const updateInfo = async (isUserTrriger = true) => {
     if (!auth.isLogin) {
@@ -70,19 +70,21 @@ const Home: React.FC = () => {
       setHeart(setInterval(() => updateInfo(false), UPDATE_INTERVAL))
     }
 
-    await Promise.all([getUser(), getNote(), getSign()])
+    const res = await Promise.all([getUser(), getNote(), getSign()])
 
-    const hasError = !loading && (!user?.game_uid || !note?.max_resin || !sign?.today)
+    setLoaded(res.every((isOK) => isOK))
+
+    const hasError = !loading && loaded && (!user?.game_uid || !note?.max_resin || !sign?.today)
     const isExpired = !user?.game_uid && !note?.max_resin && !sign?.today
 
-    if (done) {
+    if (loaded) {
       if (isExpired) {
         const currentUser = await nativeApi.getCurrentUser()
         auth.logout(currentUser.uid)
         navigate('/login', { state: { isExpired: true } })
       } else if (hasError || error) {
-        notice.faild('米游社数据请求失败，请重试。若多次出现此条消息，请联系开发者反馈。')
-      } else {
+        notice.faild('无法绕过验证码，请到米游社战绩页验证后重试')
+      } else if (isUserTrriger) {
         notice.success('游戏状态更新成功')
       }
     }
@@ -153,7 +155,14 @@ const Home: React.FC = () => {
       return
     }
 
-    const notNotOpen = path === '/note' && (user?.level ?? 1) < 10
+    const isNote = path === '/note'
+
+    if (!loaded && isNote) {
+      notice.warning('请等待旅行者信息加载完毕后再试')
+      return
+    }
+
+    const notNotOpen = isNote && (user?.level ?? 1) < 10
 
     if (notNotOpen) {
       notice.warning('旅行者还没有达到札记开放等级（10级）')
