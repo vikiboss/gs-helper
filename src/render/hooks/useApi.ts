@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-function useApi<T = any> (fetchApi: (...args: any[]) => Promise<T>) {
+function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
   const [loading, setLoading] = useState<boolean>(false)
   const [done, setDone] = useState<boolean>(false)
   const [data, setData] = useState<T>()
   const [error, setError] = useState<string>('')
 
-  async function request (...args: any[]): Promise<boolean> {
+  async function request(...args: any[]): Promise<boolean> {
     setLoading(true)
     setError(null)
     setDone(false)

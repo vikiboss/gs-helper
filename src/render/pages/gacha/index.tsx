@@ -317,13 +317,11 @@ const Gacha: React.FC = () => {
           </div>
         </>
 
-        {gacha.info.uid && !loading
-          ? (
+        {gacha.info.uid && !loading ? (
           <Page gacha={gacha} filter={filter} notice={notice} toggleFilter={toggleFilter} />
-            )
-          : (
+        ) : (
           <Loading text={link === null ? '' : loadingText} isEmpty={isEmpty} style={{ flex: 1 }} />
-            )}
+        )}
         {gacha.list.length > 0 && !loading && <span className={styles.dateTip}>{tip}</span>}
       </div>
       {notice.holder}

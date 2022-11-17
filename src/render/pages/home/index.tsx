@@ -223,10 +223,8 @@ const Home: React.FC = () => {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          {auth.isLogin
-            ? (
-                isHomeDataLoaded
-                  ? (
+          {auth.isLogin ? (
+            isHomeDataLoaded ? (
               <UserCard
                 sign={sign}
                 user={user}
@@ -234,12 +232,10 @@ const Home: React.FC = () => {
                 notice={notice}
                 safelyNavigate={safelyNavigate}
               />
-                    )
-                  : (
+            ) : (
               <Loading className={styles.loading} />
-                    )
-              )
-            : (
+            )
+          ) : (
             <div className={styles.noLoginContainer}>
               <div className={styles.noLoginText}>
                 <span>欢迎你，旅行者。👋</span>
@@ -252,7 +248,7 @@ const Home: React.FC = () => {
                 onClick={() => safelyNavigate('/login')}
               />
             </div>
-              )}
+          )}
           <div className={styles.topGreeting}>{tip}</div>
           <div className={styles.topBtns}>
             {auth.isLogin && (
@@ -281,19 +277,17 @@ const Home: React.FC = () => {
                 })
               }
             >
-              {auth.isLogin
-                ? (
+              {auth.isLogin ? (
                 <>
                   <AiOutlineUserSwitch size={20} />
                   <span>切换账号</span>
                 </>
-                  )
-                : (
+              ) : (
                 <>
                   <AiOutlineUserAdd size={20} />
                   <span>登录米游社</span>
                 </>
-                  )}
+              )}
             </div>
             |
             <div className={styles.topBtn} onClick={() => safelyNavigate('/setting')}>

@@ -103,8 +103,7 @@ const Sign: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {signData.awards.length
-          ? (
+        {signData.awards.length ? (
           <div className={styles.signContainer}>
             <div className={styles.title}>{`米游社·原神 ${month} 月签到日历`}</div>
             <div className={styles.tip}>
@@ -133,10 +132,9 @@ const Sign: React.FC = () => {
               })}
             </div>
           </div>
-            )
-          : (
+        ) : (
           <Loading />
-            )}
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

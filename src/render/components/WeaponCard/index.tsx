@@ -33,13 +33,7 @@ export interface WeaponCardProp {
 const StarImgs: string[] = [star1, star2, star3, star4, star5]
 
 const WeaponCard: React.FC<WeaponCardProp> = (props) => {
-  const {
-    className,
-    onClick,
-    weapon,
-    style,
-    withName = true
-  } = props
+  const { className, onClick, weapon, style, withName = true } = props
 
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`]
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1]

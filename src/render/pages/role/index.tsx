@@ -181,8 +181,7 @@ const Role: React.FC = () => {
             />
           )}
         </div>
-        {roles.length > 0
-          ? (
+        {roles.length > 0 ? (
           <>
             {!isDetail && (
               <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : '')}>
@@ -263,17 +262,15 @@ const Role: React.FC = () => {
                         {infoTab === 'reliquary' && (
                           <div className={styles.reliquary}>
                             <div>
-                              {currentRole.reliquaries.length
-                                ? (
+                              {currentRole.reliquaries.length ? (
                                 <>
                                   {currentRole.reliquaries.map((e) => (
                                     <ItemCard key={e.pos} item={e} />
                                   ))}
                                 </>
-                                  )
-                                : (
+                              ) : (
                                 <div>未装配任何圣遗物</div>
-                                  )}
+                              )}
                             </div>
                             <div>
                               {reliquaryEffects.length
@@ -288,10 +285,10 @@ const Role: React.FC = () => {
                                         ))}
                                       </div>
                                     </Fragment>
-                                ))
+                                  ))
                                 : currentRole.reliquaries.length > 0 && (
                                     <div>当前圣遗物没有套装效果</div>
-                                )}
+                                  )}
                             </div>
                           </div>
                         )}
@@ -352,10 +349,9 @@ const Role: React.FC = () => {
               </div>
             )}
           </>
-            )
-          : (
+        ) : (
           <Loading className={styles.loading} />
-            )}
+        )}
 
         {!isDetail && (
           <CircleButton

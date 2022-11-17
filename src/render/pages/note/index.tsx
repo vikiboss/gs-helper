@@ -107,8 +107,7 @@ const Month: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {monthInfos[0]?.account_id
-          ? (
+        {monthInfos[0]?.account_id ? (
           <>
             <div className={styles.title}>冒险札记</div>
             <div className={styles.content}>
@@ -149,17 +148,15 @@ const Month: React.FC = () => {
               </div>
 
               <div className={styles.filter}>
-                {initData.optional_month.length === 0
-                  ? (
+                {initData.optional_month.length === 0 ? (
                   <span>暂无数据</span>
-                    )
-                  : (
+                ) : (
                   <SelectButton
                     value={month}
                     changeItem={setMonth}
                     items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))}
                   />
-                    )}
+                )}
               </div>
 
               <div className={styles.monthContent}>
@@ -207,10 +204,9 @@ const Month: React.FC = () => {
               </div>
             </div>
           </>
-            )
-          : (
+        ) : (
           <Loading />
-            )}
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

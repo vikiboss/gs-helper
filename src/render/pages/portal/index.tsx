@@ -41,8 +41,7 @@ const Portal: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading
-          ? (
+        {!loading ? (
           <>
             <div className={styles.title}>传送门</div>
             <div className={styles.cards}>
@@ -57,10 +56,9 @@ const Portal: React.FC = () => {
               ))}
             </div>
           </>
-            )
-          : (
+        ) : (
           <Loading />
-            )}
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

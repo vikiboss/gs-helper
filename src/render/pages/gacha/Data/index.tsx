@@ -19,7 +19,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([])
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         const list = await nativeApi.getCalenderList()
 
@@ -97,13 +97,11 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
             ))}
           </div>
         </div>
-        {calenderList.length > 0
-          ? (
+        {calenderList.length > 0 ? (
           <div>
             <div className={styles.poolName}>〓五星出货详情〓</div>
-            {pools.length > 0
-              ? (
-                  pools.map((e) => (
+            {pools.length > 0 ? (
+              pools.map((e) => (
                 <div key={e.title} className={styles.poolList}>
                   <div>
                     <span>{e.title}</span>
@@ -129,7 +127,7 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
 
                       const isLimit = !NormalItemList.includes(item.name)
 
-                      function getColor (times: number) {
+                      function getColor(times: number) {
                         if (times > 72) {
                           return 'red'
                         }
@@ -158,16 +156,14 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     })}
                   </div>
                 </div>
-                  ))
-                )
-              : (
+              ))
+            ) : (
               <div className={styles.tip}>暂无五星数据</div>
-                )}
-          </div>
-            )
-          : (
-          <div className={styles.tip}>正在获取角色图片...</div>
             )}
+          </div>
+        ) : (
+          <div className={styles.tip}>正在获取角色图片...</div>
+        )}
       </div>
     </div>
   )

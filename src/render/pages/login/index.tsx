@@ -46,7 +46,7 @@ const Login: React.FC<LoginProp> = (props) => {
       notice.faild('验证信息已过期或未绑定 UID，请重新登录或前往米游社绑定')
     }
 
-    (async () => {
+    ;(async () => {
       const storeUsers: UserData[] = await nativeApi.getStoreKey('users')
 
       if (storeUsers.length > 0) {

@@ -74,8 +74,7 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
               </div>
             )}
           </div>
-          {data.homes.length > 0
-            ? (
+          {data.homes.length > 0 ? (
             <>
               <div>
                 {data.homes.map((e) => (
@@ -106,10 +105,9 @@ const StatisticCard: React.FC<StatisticCardProp> = (props) => {
                 </div>
               </div>
             </>
-              )
-            : (
+          ) : (
             <div className={styles.off}>尘歌壶未开启</div>
-              )}
+          )}
         </div>
       </div>
       <div className={styles.column}>

@@ -60,8 +60,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
 
   return (
     <div className={styles.spiralAbyss}>
-      {hasData
-        ? (
+      {hasData ? (
         <>
           <div className={styles.row}>
             <AbyssNumber values={[floor, zone]} description='本期最深抵达' />
@@ -75,12 +74,11 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
           </div>
 
           <div className={styles.detail}>
-            {floors.length > 0
-              ? (
-                  floors
-                    .sort((a, b) => b.index - a.index)
-                    .slice(0, 4)
-                    .map((e) => (
+            {floors.length > 0 ? (
+              floors
+                .sort((a, b) => b.index - a.index)
+                .slice(0, 4)
+                .map((e) => (
                   <div key={e.index} className={styles.abyssItem}>
                     <div className={styles.abyssIndex}>
                       <span>{e.index}</span>
@@ -118,18 +116,16 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                       })}
                     </div>
                   </div>
-                    ))
-                )
-              : (
+                ))
+            ) : (
               <Loading isEmpty style={{ height: '100%' }} text='TA 好像还没有开始打深境螺旋' />
-                )}
+            )}
           </div>
           <div className={styles.tip}>{`统计周期：${period} （总第 ${schedule_id} 期）`}</div>
         </>
-          )
-        : (
+      ) : (
         <span className={styles.none}>暂无当期数据</span>
-          )}
+      )}
     </div>
   )
 }

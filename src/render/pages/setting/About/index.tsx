@@ -76,7 +76,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  function Link (href: string, text?: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
+  function Link(href: string, text?: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
     return <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text || ''} `}</a>
   }
 
@@ -104,7 +104,8 @@ const About: React.FC<AboutProp> = ({ notice }) => {
   const P1 = (
     <p>
       「{Link(LINK_GITHUB_REPO, appName)}」 由个人独立开发，基于
-      {Link(LINK_ELECTRON, 'Electron')}与{Link(LINK_REACT, 'React')}，支持多平台。开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。首页便签数据采取自动更新策略（1
+      {Link(LINK_ELECTRON, 'Electron')}与{Link(LINK_REACT, 'React')}
+      ，支持多平台。开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。首页便签数据采取自动更新策略（1
       次/分钟），
       <b>可能存在延迟，请以游戏内实时数据为准。</b>
     </p>
@@ -112,8 +113,12 @@ const About: React.FC<AboutProp> = ({ notice }) => {
 
   const P2 = (
     <p>
-      软件界面设计参考了原神游戏本体及米游社， <b>不收集任何用户数据，所有产生的数据（包括但不限于祈愿数据、使用数据、账户信息等）均保存在用户本地，源码公开，请放心使用。</b>软件内的大部分内容与素材来源于「米游社」，仅用于学习交流使用，版权归
-      「{Link(LINK_MIHOYO, '米哈游')}或原作者」 所有。
+      软件界面设计参考了原神游戏本体及米游社，{' '}
+      <b>
+        不收集任何用户数据，所有产生的数据（包括但不限于祈愿数据、使用数据、账户信息等）均保存在用户本地，源码公开，请放心使用。
+      </b>
+      软件内的大部分内容与素材来源于「米游社」，仅用于学习交流使用，版权归 「
+      {Link(LINK_MIHOYO, '米哈游')}或原作者」 所有。
       <b>如有发现任何实质性的侵权行为，请联系开发者对相关内容进行删除</b>。
     </p>
   )
@@ -129,8 +134,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
 
   return (
     <div className={styles.container}>
-      {!loading
-        ? (
+      {!loading ? (
         <>
           <div className={styles.declaration}>
             {P1}
@@ -174,10 +178,9 @@ const About: React.FC<AboutProp> = ({ notice }) => {
             </div>
           </div>
         </>
-          )
-        : (
+      ) : (
         <Loading style={{ flex: 1 }} />
-          )}
+      )}
       <div className={styles.thank}>{'※ 开发不易 ❤ 感谢支持 ※'}</div>
     </div>
   )

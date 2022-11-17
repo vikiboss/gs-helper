@@ -47,31 +47,31 @@ const useNotice = (): Notice => {
   }
 
   return {
-    show (optons: AlertOptions) {
+    show(optons: AlertOptions) {
       showAlert(optons)
     },
-    hide () {
+    hide() {
       setVisible(false)
     },
-    info (optons: AlertOptions | string) {
+    info(optons: AlertOptions | string) {
       if (typeof optons === 'string') {
         optons = { message: optons }
       }
       showAlert({ ...optons, type: 'info' })
     },
-    warning (optons: AlertOptions | string) {
+    warning(optons: AlertOptions | string) {
       if (typeof optons === 'string') {
         optons = { message: optons }
       }
       showAlert({ ...optons, type: 'warning' })
     },
-    success (optons: AlertOptions | string) {
+    success(optons: AlertOptions | string) {
       if (typeof optons === 'string') {
         optons = { message: optons }
       }
       showAlert({ ...optons, type: 'success' })
     },
-    faild (optons: AlertOptions | string) {
+    faild(optons: AlertOptions | string) {
       if (typeof optons === 'string') {
         optons = { message: optons }
       }

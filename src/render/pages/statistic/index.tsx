@@ -51,7 +51,7 @@ const Statistic: React.FC = () => {
   }
 
   useEffect(() => {
-    (async () => {
+    ;(async () => {
       const { uid } = await nativeApi.getCurrentUser()
       setAccountUid(uid)
       setCurrentUid(uid)
@@ -106,8 +106,7 @@ const Statistic: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {loaded
-          ? (
+        {loaded ? (
           <>
             <div className={styles.top}>
               <div className={styles.user}>
@@ -141,10 +140,9 @@ const Statistic: React.FC = () => {
               {type === 'lastAbyss' && <SpiralAbyssTab data={lastAbyss} />}
             </div>
           </>
-            )
-          : (
+        ) : (
           <Loading />
-            )}
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

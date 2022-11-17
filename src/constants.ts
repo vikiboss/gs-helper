@@ -39,7 +39,7 @@ export const IpcEvents: Record<string, string> = {
 }
 
 export const EXPOSED_API_FROM_ELECTRON = 'nativeApi'
-export const BBS_VERSION = '2.37.1'
+export const BBS_VERSION = '2.40.1'
 export const UPDATE_INTERVAL = 60000
 
 export const AppName = {

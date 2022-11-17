@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth'
 import Login from '../pages/login'
 
 const withAuth = (Component: React.ComponentType) =>
-  function Auth () {
+  function Auth() {
     const { isLogin } = useAuth()
     const location = useLocation()
 

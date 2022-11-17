@@ -38,8 +38,8 @@ const Calender: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {loaded && cals?.length
-          ? <>
+        {loaded && cals?.length ? (
+          <>
             <div className={styles.top}>
               <SelectButton
                 value={tab}
@@ -53,7 +53,9 @@ const Calender: React.FC = () => {
             {tab === 'daily' && <DailyMaterial cals={cals} notice={notice} />}
             {tab === 'week' && <WeekMaterial roles={roles} notice={notice} />}
           </>
-          : <Loading />}
+        ) : (
+          <Loading />
+        )}
 
         <CircleButton
           Icon={TiArrowBack}

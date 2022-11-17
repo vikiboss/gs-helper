@@ -78,8 +78,7 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
             {"※ 小保底歪的概率："}
             <span className={styles.star5}>{luckInfo.rate}%</span>
           </div> */}
-          {limitRoleTimes > 0
-            ? (
+          {limitRoleTimes > 0 ? (
             <div>
               {'※ 平均每个'}
               <span className={styles.star4}>{'限定五星角色'}</span>
@@ -89,15 +88,13 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{limitRoleTimes}</span>
               {' 抽）'}
             </div>
-              )
-            : (
+          ) : (
             <div>
               ※ 暂未获得<span className={styles.star4}>{'限定五星角色'}</span>
             </div>
-              )}
+          )}
 
-          {limitWeaponTimes > 0
-            ? (
+          {limitWeaponTimes > 0 ? (
             <div>
               {'※ 平均每把'}
               <span className={styles.star4}>{'限定五星武器'}</span>
@@ -107,15 +104,13 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{limitWeaponTimes}</span>
               {' 抽）'}
             </div>
-              )
-            : (
+          ) : (
             <div>
               ※ 暂未获得<span className={styles.star4}>{'限定五星武器'}</span>
             </div>
-              )}
+          )}
 
-          {gacha.list.length > 0
-            ? (
+          {gacha.list.length > 0 ? (
             <div>
               {'※ 共计祈愿 '}
               <span className={styles.star4}>{gacha.list.length}</span>
@@ -123,10 +118,9 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
               <span className={styles.star5}>{gacha.list.length * 160}</span>
               {' 原石'}
             </div>
-              )
-            : (
+          ) : (
             <div>※ 没有祈愿记录</div>
-              )}
+          )}
         </div>
         <div>
           {MostInfo.unluckest.valid && (

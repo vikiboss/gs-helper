@@ -40,8 +40,7 @@ const Strategy: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {!loading
-          ? (
+        {!loading ? (
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
@@ -61,10 +60,9 @@ const Strategy: React.FC = () => {
               })}
             </div>
           </>
-            )
-          : (
+        ) : (
           <Loading />
-            )}
+        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'

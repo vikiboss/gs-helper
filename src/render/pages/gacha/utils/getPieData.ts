@@ -75,7 +75,7 @@ const t4 = {
 const getPieData = (type: 'star' | 'item' | 'type', list: GachaData['list']) => {
   switch (type) {
     case 'star': {
-      [s5, s4, s3].forEach((e) => {
+      ;[s5, s4, s3].forEach((e) => {
         e.value = 0
       })
       for (const item of list) {
@@ -86,7 +86,7 @@ const getPieData = (type: 'star' | 'item' | 'type', list: GachaData['list']) => 
       return [s3, s4, s5]
     }
     case 'item': {
-      [i1, i2].forEach((e) => {
+      ;[i1, i2].forEach((e) => {
         e.value = 0
       })
       for (const item of list) {
@@ -96,7 +96,7 @@ const getPieData = (type: 'star' | 'item' | 'type', list: GachaData['list']) => 
       return [i1, i2]
     }
     case 'type': {
-      [t1, t2, t3, t4].forEach((e) => {
+      ;[t1, t2, t3, t4].forEach((e) => {
         e.value = 0
       })
       for (const { uigf_gacha_type: _type } of list) {
