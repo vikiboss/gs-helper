@@ -2,6 +2,10 @@
 
 中文 | [English](README-en.md)
 
+### 起因
+
+参考[这篇文章](https://viki.moe/genshin/)
+
 ### 介绍
 
 一个为 _《原神》_ 玩家精心编写的开源小工具，基于 [Electron](https://www.electronjs.org/) 和 [React](https://reactjs.org/)。支持**原神签到**、**祈愿分析**、查看**便签状态**和**游戏详细数据**等。
