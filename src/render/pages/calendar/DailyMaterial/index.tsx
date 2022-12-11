@@ -56,13 +56,9 @@ const getMaterialList = (list: CalenderEvent[]) => {
 
     if (len) {
       const talent = infos.find((f) => f.title.includes('哲学'))
-
-      if (talent) {
-        const item = infos[0].title.includes('「') ? talent : infos[len - 1]
-        const title = `${item.title.slice(0, 4)}系列`
-
-        materials.push({ ...e, title, img_url: item.icon })
-      }
+      const item = infos[0].title.includes('「') ? talent : infos[len - 1]
+      const title = `${item.title.slice(0, 4)}系列`
+      materials.push({ ...e, title, img_url: item.icon })
     }
   })
 
