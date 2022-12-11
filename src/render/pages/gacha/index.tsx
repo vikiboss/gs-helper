@@ -116,9 +116,9 @@ const Gacha: React.FC = () => {
 
     setisWindows(appInfo.isWindows)
 
-    if (isWindows) {
-      await getLocalGachaUrl()
-    }
+    // if (isWindows) {
+    //   await getLocalGachaUrl()
+    // }
   }
 
   useEffect(() => {
