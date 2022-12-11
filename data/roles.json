@@ -1,5 +1,40 @@
 [
   {
+    "name": "流浪者",
+    "enname": "Wanderer",
+    "element": "Anemo",
+    "rarity": 5,
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Wanderer.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Wanderer.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/12/06/4328207/fb1713aa667884c5552452170b5931fa_2453175231688862665.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Wanderer@2x.png"
+    },
+    "material": {
+      "talent": {
+        "advance": {
+          "name": "空行的虚铃",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/10/24/187743934/995d4d209d9314f7339764f89ccde2d8_6382700579117595568.png",
+          "domain": {
+            "name": "正机之神",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/11/01/8797197/b3490c8868f8699d2230a5d6d105be71_8356333016604948321.png"
+          }
+        },
+        "nomal": {
+          "name": "「笃行」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/1b711ad34080e0d1bccc4b06ff167289_8900037121081736299.png",
+          "drop": [3, 6, 7],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
+      }
+    }
+  },
+  {
     "name": "莱依拉",
     "enname": "Layla",
     "element": "Cryo",
