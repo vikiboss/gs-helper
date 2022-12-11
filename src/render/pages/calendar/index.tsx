@@ -50,8 +50,8 @@ const Calender: React.FC = () => {
                 ]}
               />
             </div>
-            {tab === 'daily' && <DailyMaterial cals={cals} notice={notice} />}
-            {tab === 'week' && <WeekMaterial roles={roles} notice={notice} />}
+            {tab === 'daily' && <DailyMaterial cals={cals || []} notice={notice} />}
+            {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
           </>
         ) : (
           <Loading />
