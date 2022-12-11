@@ -1,5 +1,40 @@
 [
   {
+    "name": "珐露珊",
+    "enname": "Faruzan",
+    "element": "Anemo",
+    "rarity": 4,
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Faruzan.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Faruzan.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/12/06/4328207/38a192da1174b705cc6648e854162ab0_6403431489397028121.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Faruzan@2x.png"
+    },
+    "material": {
+      "talent": {
+        "advance": {
+          "name": "傀儡的悬丝",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/11/01/8797197/33b3348f407ee1d2fa550705cea75288_2518119531958092084.png",
+          "domain": {
+            "name": "正机之神",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/11/01/8797197/b3490c8868f8699d2230a5d6d105be71_8356333016604948321.png"
+          }
+        },
+        "nomal": {
+          "name": "「诤言」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/d62bd81605203d46b57ad7bc71357f1e_8614656753128774889.png",
+          "drop": [4, 7, 1],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
+      }
+    }
+  },
+  {
     "name": "流浪者",
     "enname": "Wanderer",
     "element": "Anemo",
