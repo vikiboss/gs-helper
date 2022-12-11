@@ -1,5 +1,40 @@
 [
   {
+    "name": "莱依拉",
+    "enname": "Layla",
+    "element": "Cryo",
+    "rarity": 4,
+    "avatar": {
+      "basic": "https://upload-bbs.mihoyo.com/game_record/genshin/character_icon/UI_AvatarIcon_Layla.png",
+      "side": "https://upload-bbs.mihoyo.com/game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Layla.png",
+      "full": "https://uploadstatic.mihoyo.com/ys-obc/2022/10/24/4328207/f7f5c758e157cc6d6ca7b7a378d665e6_8346107013175588314.png"
+    },
+    "poster": {
+      "mobile": "https://upload-bbs.mihoyo.com/game_record/genshin/character_image/UI_AvatarIcon_Layla@2x.png"
+    },
+    "material": {
+      "talent": {
+        "advance": {
+          "name": "无心的渊镜",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/10/24/187743934/c3ea50171e15dcc3f21b7521545e9fcf_4362782648285472242.png",
+          "domain": {
+            "name": "正机之神",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/11/01/8797197/b3490c8868f8699d2230a5d6d105be71_8356333016604948321.png"
+          }
+        },
+        "nomal": {
+          "name": "「巧思」系列",
+          "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/20/4820086/ad09c0f8b089b2e7b8c54abe4aa149db_3983505189235785710.png",
+          "drop": [7, 2, 5],
+          "domain": {
+            "name": "昏识塔",
+            "icon": "https://uploadstatic.mihoyo.com/ys-obc/2022/08/22/79683714/95fbe83a90e8470c09406aa12b539127_8862160521167969578.png"
+          }
+        }
+      }
+    }
+  },
+  {
     "name": "纳西妲",
     "enname": "Nahida",
     "element": "Dendro",
