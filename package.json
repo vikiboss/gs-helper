@@ -7,8 +7,8 @@
   "main": ".webpack/main",
   "prettier": "@vikiboss/prettier-config",
   "scripts": {
-    "start": "electron-forge start",
-    "start:watch": "electron-forge start --inspect-electron",
+    "dev": "electron-forge start",
+    "dev:watch": "electron-forge start --inspect-electron",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "lint": "pnpm run prettier && pnpm run eslint",
@@ -18,10 +18,9 @@
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "eslint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
-  "author": {
-    "name": "Viki",
-    "email": "hi@viki.moe"
-  },
+  "repository": "vikiboss/genshin-helper",
+  "homepage": "https://github.com/vikiboss/genshin-helper#readme",
+  "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
   "license": "MIT",
   "config": {
     "forge": "./forge.config.js"
