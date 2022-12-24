@@ -1,5 +1,5 @@
 // main 进程 与 render 进程进行 IPC 通信的事件常量
-export const IpcEvents: Record<string, string> = {
+export const IpcEvents = {
   changeUser: 'CHANGE_USER',
   closeApp: 'CLOSE_APP',
   clearData: 'CLEAR_DATA',
@@ -8,8 +8,8 @@ export const IpcEvents: Record<string, string> = {
   getAppInfo: 'GET_APP_INFO',
   getBBSSignData: 'GET_BBS_SIGN_DATA',
   getBBSSignInfo: 'GET_BBS_SIGN_INFO',
-  getCalenderList: 'GET_CALENDER_LIST',
-  getCabinetRoleList: 'GET_CABINET_ROLE_LIST',
+  getCalenderEvents: 'GET_CALENDER_EVENTS',
+  getCabinetRoles: 'GET_CABINET_ROLES',
   getCurrentUser: 'GET_CURRENT_USER',
   getDailyNotes: 'GET_DAILY_NOTES',
   getGachaListByUrl: 'GET_GACHA_LIST_BY_URL',
@@ -20,8 +20,8 @@ export const IpcEvents: Record<string, string> = {
   getHitokoto: 'GET_HITOKOTO',
   getLocalGachaDatas: 'GET_LOCAL_GACHA_DATAS',
   getMonthInfo: 'GET_MONTH_INFO',
-  getOwnedRoleList: 'GET_OWNED_ROLE_LIST',
-  getPublicRoleList: 'GET_PUBLIC_ROLE_LIST',
+  getOwnedRoles: 'GET_OWNED_ROLES',
+  getPublicRoles: 'GET_PUBLIC_ROLES',
   getSpiralAbyss: 'GET_SPIRAL_ABYSS',
   getStoreKey: 'GET_STORE_KEY',
   getRepoData: 'GET_REPO_DATA',
@@ -31,33 +31,32 @@ export const IpcEvents: Record<string, string> = {
   minimizeApp: 'MONIMIZE_APP',
   openGame: 'OPEN_GAME',
   openWindow: 'OPEN_WINDOW',
-  readClipboardText: 'READ_CLIPBOARD_TEXT',
+  readClipboard: 'READ_CLIPBOARD',
   request: 'REQUEST',
   setStoreKey: 'SET_STORE_KEY',
-  writeClipboardText: 'WRITE_CLIPBOARD_TEXT',
+  writeClipboard: 'WRITE_CLIPBOARD',
   exportGacha: 'EXPORT_GACHA'
-}
+} as const
 
 export const EXPOSED_API_FROM_ELECTRON = 'nativeApi'
-export const BBS_VERSION = '2.40.1'
-export const UPDATE_INTERVAL = 60000
+export const BBS_VERSION = '2.42.1'
 
 export const AppName = {
   zh: '原神助手',
   en: 'Genshin Helper'
-}
+} as const
 
-export const GAME_NAME: Record<string, string> = {
+export const GAME_NAME = {
   zh: '原神',
   en: 'Genshin Impact'
-}
+} as const
 
 export const APP_USER_AGENT_BBS = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${BBS_VERSION}`
 export const APP_USER_AGENT_DESKTOP = 'Mozilla/5.0 GenshinHelper/'
 export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/'
 export const GAME_BIZ = 'hk4e_cn'
 
-export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com'
+export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com/'
 export const LINK_GITHUB_REPO = 'https://github.com/vikiboss/genshin-helper'
 export const LINK_MIHOYO_BBS_LOGIN = 'https://m.bbs.mihoyo.com/ys/'
 export const LINK_GENSHIN_MAP = 'https://webstatic.mihoyo.com/ys/app/interactive-map'
@@ -68,7 +67,7 @@ export const API_TAKUMI_RECORD = 'https://api-takumi-record.mihoyo.com'
 export const API_HK4E = 'https://hk4e-api.mihoyo.com'
 export const API_STATIC = 'https://api-static.mihoyo.com'
 export const API_YS_CONTENT = 'https://ys.mihoyo.com/content'
-export const API_REPO_DATA = 'https://gh-raw-proxy.deno.dev/vikiboss/genshin-helper/main/data'
+export const API_REPO_DATA = 'https://gh-raw.deno.dev/vikiboss/genshin-helper/main/data'
 export const API_REPO_DATA_BAK = 'https://raw.fastgit.org/vikiboss/genshin-helper/main/data'
 
 export const ElementTypes: Record<string, string> = {

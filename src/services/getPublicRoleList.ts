@@ -1,5 +1,5 @@
 import { API_YS_CONTENT } from '../constants'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -56,13 +56,13 @@ interface PublicRoleRaw {
   id: string
 }
 
-interface PublicRoleListData {
+export interface PublicRoleListData {
   total: number
   list: PublicRoleRaw[]
 }
 
 /** 将获取的信息处理成需要的信息字段 PublicRoleRaw => PublicRole */
-const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
+export function getNeededRoleInfo(publicRoles: PublicRoleRaw[] = []): PublicRole[] {
   const res = []
 
   for (const role of publicRoles) {
@@ -127,7 +127,7 @@ const getNeededRoleInfo = (publicRoles: PublicRoleRaw[] = []): PublicRole[] => {
   return res
 }
 
-const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
+export async function getPublicRoleList(): Promise<PublicRole[]> {
   const url = `${API_YS_CONTENT}/ysCn/getContentList`
   const params = { pageSize: 1000, pageNum: 1, channelId: 152 }
 
@@ -135,15 +135,9 @@ const getPublicRoleList = async (): Promise<PublicRole[] | null> => {
     params
   })
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
-    console.log('getBBSSignInfo: ', data)
+  if (status !== 200 || data?.retcode !== 0) {
+    console.log('getPublicRoleList: ', data)
   }
 
-  const res = getNeededRoleInfo(data?.data?.list)
-
-  return isOK ? (res.length ? res : null) : null
+  return getNeededRoleInfo(data.data.list)
 }
-
-export default getPublicRoleList

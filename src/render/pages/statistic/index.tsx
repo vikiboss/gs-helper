@@ -19,7 +19,7 @@ import styles from './index.less'
 
 export type TypeState = 'statistic' | 'roles' | 'abyss' | 'lastAbyss'
 
-const { getGameRoleCard, getOwnedRoleList, getSpiralAbyss } = nativeApi
+const { getGameRoleCard, getOwnedRoles, getSpiralAbyss } = nativeApi
 
 const Statistic: React.FC = () => {
   const navigate = useNavigate()
@@ -33,10 +33,10 @@ const Statistic: React.FC = () => {
   const [currentUid, setCurrentUid] = useState<string>('')
   const [inputUid, setInputUid] = useState<string>('')
 
-  const [fetchCard, card, l1] = useApi(getGameRoleCard)
-  const [fetchRoles, roles, l2] = useApi(getOwnedRoleList)
-  const [fetchAbyss, abyss, l3] = useApi(getSpiralAbyss)
-  const [fetchLastAbyss, lastAbyss, l4] = useApi(getSpiralAbyss)
+  const { r: fetchCard, d: card, l: l1 } = useApi(getGameRoleCard, { clear: false })
+  const { r: fetchRoles, d: roles, l: l2 } = useApi(getOwnedRoles, { clear: false })
+  const { r: fetchAbyss, d: abyss, l: l3 } = useApi(getSpiralAbyss, { clear: false })
+  const { r: fetchLastAbyss, d: lastAbyss, l: l4 } = useApi(getSpiralAbyss, { clear: false })
 
   const loaded = !(l1 || l2 || l3 || l4) && card && roles && abyss && lastAbyss
 
@@ -63,8 +63,8 @@ const Statistic: React.FC = () => {
 
   const handleQuery = async () => {
     if (!inputUid) {
-      const clipboardText = await nativeApi.readClipboardText()
-      const text = clipboardText.replace(/\s/g, '').trim()
+      const clipboard = await nativeApi.readClipboard()
+      const text = clipboard.replace(/\s/g, '').trim()
 
       if (!text.match(/^[1-9][0-9]{7,9}$/)) {
         notice.warning('剪切板内容无效')
@@ -110,8 +110,8 @@ const Statistic: React.FC = () => {
           <>
             <div className={styles.top}>
               <div className={styles.user}>
-                <div>{card.role.nickname}</div>
-                <div>{`Lv.${card.role.level} ${currentUid}`}</div>
+                <div>{card.data.role.nickname}</div>
+                <div>{`Lv.${card.data.role.level} ${currentUid}`}</div>
               </div>
               <SelectButton
                 className={styles.selectBtns}
@@ -134,10 +134,10 @@ const Statistic: React.FC = () => {
               </div>
             </div>
             <div className={styles.content}>
-              {type === 'statistic' && <GameStatsTab data={card} />}
-              {type === 'roles' && <RolesTab data={roles} uid={currentUid} />}
-              {type === 'abyss' && <SpiralAbyssTab data={abyss} />}
-              {type === 'lastAbyss' && <SpiralAbyssTab data={lastAbyss} />}
+              {type === 'statistic' && <GameStatsTab data={card.data} />}
+              {type === 'roles' && <RolesTab data={roles.data.avatars} uid={currentUid} />}
+              {type === 'abyss' && <SpiralAbyssTab data={abyss.data} />}
+              {type === 'lastAbyss' && <SpiralAbyssTab data={lastAbyss.data} />}
             </div>
           </>
         ) : (

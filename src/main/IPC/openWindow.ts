@@ -1,17 +1,18 @@
-import type { BrowserWindowConstructorOptions } from 'electron'
 import { app, BrowserWindow } from 'electron'
 
 import { APP_USER_AGENT_DESKTOP } from '../../constants'
 import { isDev, store } from '..'
 
+import type { BrowserWindowConstructorOptions } from 'electron'
+
 export const subWins: Set<BrowserWindow> = new Set()
 
-const openWindow = async (
+export async function openWindow(
   _: Electron.IpcMainEvent,
   url: string,
   options: BrowserWindowConstructorOptions = {},
   UA = ''
-): Promise<void> => {
+) {
   const win = new BrowserWindow({
     width: 1300,
     height: 803,
@@ -50,5 +51,3 @@ const openWindow = async (
     }
   })
 }
-
-export default openWindow

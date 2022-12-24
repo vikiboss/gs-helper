@@ -1,24 +1,23 @@
-import fs from 'node:fs'
+import fs from 'fs-extra'
 import path from 'node:path'
 import { app } from 'electron'
 
 import { AppName } from '../../constants'
-import { isDirExist } from '../../utils/nodeUtils'
 
 import type { GachaData } from '../../typings'
 
 // 尝试获取本地所有祈愿数据
-const getLocalGachaDatas = (): GachaData[] => {
+export function getLocalGachaDatas() {
   // 获取当前的软件目录
   const AppPath = app.getPath('userData')
   // 获取存放所有祈愿数据的目录
   const gachaDataDirPath = path.join(AppPath, 'GachaDatas')
   // 若该目录不存在
-  if (!isDirExist(gachaDataDirPath)) {
+  if (!fs.existsSync(gachaDataDirPath)) {
     // 旧版的祈愿数据目录
     const fallbackPath = path.join(AppPath.replace(app.getName(), AppName.zh), 'GachaDatas')
     // 判断旧版的目录是否存在
-    if (isDirExist(fallbackPath)) {
+    if (fs.existsSync(fallbackPath)) {
       // 如果存在则迁移
       fs.cpSync(`${fallbackPath}/`, `${gachaDataDirPath}/`, { force: true, recursive: true })
     } else {
@@ -60,5 +59,3 @@ const getLocalGachaDatas = (): GachaData[] => {
   // 返回数据
   return gachas
 }
-
-export default getLocalGachaDatas

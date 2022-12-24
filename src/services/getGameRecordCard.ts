@@ -1,8 +1,8 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getDS } from '../utils/getDS'
 import { qs } from '../utils/utils'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getDS from '../utils/getDS'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -36,11 +36,11 @@ export interface GameRecordCardItem {
 
 export type GameRecordCardData = GameRecordCardItem[]
 
-interface GameRecordCardRawData {
+export interface GameRecordCardRawData {
   list: GameRecordCardData
 }
 
-const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | null> => {
+export async function getGameRecordCard(bbsId?: string) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -64,13 +64,9 @@ const getGameRecordCard = async (bbsId?: string): Promise<GameRecordCardData | n
 
   const { status, data } = await request.get<BaseRes<GameRecordCardRawData>>(url, config)
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getGameRecordCard: ', data)
   }
 
-  return isOK ? data?.data?.list || null : null
+  return data
 }
-
-export default getGameRecordCard

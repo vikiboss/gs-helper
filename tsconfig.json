@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "commonjs",
+    "module": "CommonJS",
     "target": "ESNEXT",
     "skipLibCheck": true,
     "esModuleInterop": true,

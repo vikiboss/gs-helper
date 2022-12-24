@@ -1,7 +1,7 @@
-import request from '../utils/request'
 import { API_REPO_DATA, API_REPO_DATA_BAK } from '../constants'
+import { request } from '../utils/request'
 
-const getRepoData = async (filename: string): Promise<any> => {
+export async function getRepoData(filename: string): Promise<any> {
   try {
     const api = `${API_REPO_DATA}/${filename}`
     const { status, data } = await request.get<any>(api)
@@ -16,5 +16,3 @@ const getRepoData = async (filename: string): Promise<any> => {
     }
   }
 }
-
-export default getRepoData

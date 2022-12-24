@@ -1,11 +1,10 @@
-import fs from 'node:fs/promises'
-import path from 'node:path'
 import { app } from 'electron'
+import fs from 'fs-extra'
+import path from 'node:path'
 
-import { isFileExist } from '../../utils/nodeUtils'
 import { DefaultAppData } from '../initStore'
 
-const clearData = async () => {
+export async function clearData() {
   // 获取当前的软件目录
   const AppPath = app.getPath('userData')
 
@@ -13,25 +12,20 @@ const clearData = async () => {
   const GachaDataDirPath = path.join(AppPath, 'config.json')
 
   // 配置文件不存在则返回
-  if (!isFileExist(GachaDataDirPath)) {
+  if (!fs.existsSync(GachaDataDirPath)) {
     return true
   }
 
   // 当配置文件存在
   try {
     // 尝试删除配置文件
-    await fs.unlink(GachaDataDirPath)
-
-    // 读取默认配置
-    const data = JSON.stringify(DefaultAppData, undefined, 2)
+    fs.unlinkSync(GachaDataDirPath)
 
     // 写入默认配置
-    await fs.writeFile(GachaDataDirPath, data, { encoding: 'utf-8' })
+    fs.writeJsonSync(GachaDataDirPath, DefaultAppData, { spaces: 2 })
 
     return true
   } catch {
     return false
   }
 }
-
-export default clearData

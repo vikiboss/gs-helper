@@ -22,10 +22,10 @@ interface PortalItem {
 const Portal: React.FC = () => {
   const navigate = useNavigate()
   const notice = useNotice()
-  const [request, data = [], loading] = useApi<PortalItem[]>(nativeApi.getRepoData)
+  const { r: fetchRepo, data, loading } = useApi<PortalItem[], [string]>(nativeApi.getRepoData)
 
   useEffect(() => {
-    request('portals.json')
+    fetchRepo('portals.json')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -45,7 +45,7 @@ const Portal: React.FC = () => {
           <>
             <div className={styles.title}>传送门</div>
             <div className={styles.cards}>
-              {data.map((e) => (
+              {data?.map((e) => (
                 <div key={e.name} className={styles.card} onClick={() => handleWindowOpen(e)}>
                   <div>
                     <img src={e.icon} />

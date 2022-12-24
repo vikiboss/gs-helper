@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import D from 'dayjs'
+import dayjs from 'dayjs'
 import React from 'react'
 
 import type { NavigateOptions } from 'react-router-dom'
@@ -47,7 +47,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const { notice, user, sign, note, safelyNavigate } = props
 
   const handleCopy = (str: string, msg: string) => {
-    nativeApi.writeClipboardText(str)
+    nativeApi.writeClipboard(str)
     notice.success(msg)
   }
 
@@ -78,7 +78,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const isResinFull = note?.current_resin === note?.max_resin
   const resinStatus = `${note?.current_resin}/${note?.max_resin}`
   const resinTime = Number(note?.resin_recovery_time) || 0
-  const targetTime = D(Date.now() + resinTime * 1000).format('HH:mm:ss')
+  const targetTime = dayjs(Date.now() + resinTime * 1000).format('HH:mm:ss')
   const nextTime = formatTime(resinTime % (8 * 60))
   const isResinToday = new Date(Date.now() + resinTime * 1000).getDay() === new Date().getDay()
   const resinTimeText = `将于${isResinToday ? '今日' : '明日'} ${targetTime} `
@@ -90,7 +90,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const isHomeFull = note?.current_home_coin === note?.max_home_coin
   const homeStatus = isHomeOk ? `${note?.current_home_coin}/${note?.max_home_coin}` : '暂未开启'
   const homeTime = Number(note?.home_coin_recovery_time) || 0
-  const homeTimeText = D(Date.now() + homeTime * 1000).format('M月D日 HH:mm:ss')
+  const homeTimeText = dayjs(Date.now() + homeTime * 1000).format('M月D日 HH:mm:ss')
   const homeTitle = isHomeOk
     ? isHomeFull
       ? '洞天宝钱已存满'
@@ -120,7 +120,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const transformerTime = _.Day * 86400 + _.Hour * 3600 + _.Minute * 60 + _.Second
   const isTransformerReady = hasTransformer && transformerTime === 0
   const formatText = _.Second > 0 ? 'M月D日 HH:mm:ss' : 'M月D日'
-  const transformerReadyTime = D(Date.now() + transformerTime * 1000).format(formatText)
+  const transformerReadyTime = dayjs(Date.now() + transformerTime * 1000).format(formatText)
   const transformerStatus = hasTransformer ? (isTransformerReady ? '已就绪' : '冷却中') : '暂未获得'
   const transformerTitle = isTransformerReady
     ? '已就绪'
@@ -155,7 +155,7 @@ const UserCard: React.FC<UserCardProp> = (props) => {
   const isDispatchToday = todayDay === new Date().getDay()
   const isDispatchAllReady = lastDispatchTime === 0
   const dispatchTime = formatTime(lastDispatchTime)
-  const dispatchReadyTime = D(Date.now() + lastDispatchTime * 1000).format('HH:mm:ss')
+  const dispatchReadyTime = dayjs(Date.now() + lastDispatchTime * 1000).format('HH:mm:ss')
   const dispatchTimeText = (isDispatchToday ? '今日 ' : '明日 ') + dispatchReadyTime
   const dispatcTitle =
     dispatchs.length > 0

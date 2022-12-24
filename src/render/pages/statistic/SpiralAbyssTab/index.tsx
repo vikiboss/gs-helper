@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import React from 'react'
-import D from 'dayjs'
+import dayjs from 'dayjs'
 
 import AbyssNumber from '../../../components/AbyssNumber'
 import Loading from '../../../components/Loading'
@@ -19,7 +19,7 @@ interface SpiralAbyssProp {
   data: SpiralAbyssData
 }
 
-const formatTime = (timestamp: string) => D(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm')
+const formatTime = (timestamp: string) => dayjs(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm')
 
 const starMap = ['', star1, star2, star3]
 
@@ -86,7 +86,7 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                     <div className={styles.zones}>
                       {e.levels.map((f) => {
                         const [start, end] = f.battles.map((g) =>
-                          D(Number(g.timestamp) * 1000).format('M月D日 HH:mm')
+                          dayjs(Number(g.timestamp) * 1000).format('M月D日 HH:mm')
                         )
 
                         return (

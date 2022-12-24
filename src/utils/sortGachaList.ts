@@ -1,7 +1,7 @@
 import type { GachaData } from '../typings'
 
 // 通过 id （时间）进行列表排序
-const sortGachaList = (list: GachaData['list']) => {
+export function sortGachaList(list: GachaData['list']) {
   list.sort((p, n) => {
     // 前九位代表一个时间段，每个小时过六分
     const time = Number(p.id.slice(0, 9)) - Number(n.id.slice(0, 9))
@@ -12,5 +12,3 @@ const sortGachaList = (list: GachaData['list']) => {
   })
   return list
 }
-
-export default sortGachaList

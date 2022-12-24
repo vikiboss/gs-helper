@@ -1,15 +1,13 @@
-import type { BrowserWindow, MenuItemConstructorOptions } from 'electron'
-
 import { app, Menu, Tray, nativeImage } from 'electron'
-
 import path from 'node:path'
 
 import { AppName } from '../constants'
 import { store, isAppleDevice, isWindows } from '.'
 import { subWins } from './IPC/openWindow'
-
 import icon from '../assets/icon.ico'
 import macicon from '../assets/macicon.png'
+
+import type { BrowserWindow, MenuItemConstructorOptions } from 'electron'
 
 export const Menus: Record<string, string> = {
   openMainWindow: '打开助手',
@@ -21,7 +19,7 @@ export const Menus: Record<string, string> = {
 }
 
 /** 初始化托盘图标与菜单 */
-const initTray = (win: BrowserWindow) => {
+export function initTray(win: BrowserWindow) {
   // 图标路径
   const dir = path.join(__dirname, isAppleDevice ? macicon : icon)
 
@@ -113,5 +111,3 @@ const initTray = (win: BrowserWindow) => {
     store.set('settings.alwaysOnTop', onTop)
   })
 }
-
-export default initTray

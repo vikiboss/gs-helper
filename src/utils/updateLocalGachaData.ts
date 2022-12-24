@@ -1,15 +1,14 @@
-import fs from 'node:fs'
+import fs from 'fs-extra'
 import path from 'node:path'
 import { app } from 'electron'
 
 import { DefaultGachaData } from '../services/getGachaListByUrl'
-import { isDirExist, isFileExist } from './nodeUtils'
-import mergeGachaList from './mergeGachaList'
+import { mergeGachaList } from './mergeGachaList'
 
 import type { GachaData } from '../typings'
 
 // 通过新的抽卡数据来更新配置文件里的抽卡数据
-const updateLocalGachaData = (gacha: GachaData): GachaData => {
+export function updateLocalGachaData(gacha: GachaData) {
   // 获取新的数据的 UID
   const { uid } = gacha.info
 
@@ -19,13 +18,13 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
   const GachaDataDirPath = path.join(AppPath, 'GachaDatas')
 
   // 若该文件夹不存在，则创建
-  if (!isDirExist(GachaDataDirPath)) {
+  if (!fs.existsSync(GachaDataDirPath)) {
     fs.mkdirSync(GachaDataDirPath)
   }
 
   // 获取该 UID 的数据文件路径
   const GachaFilePath = path.join(GachaDataDirPath, `${uid}.json`)
-  const isNewData = !isFileExist(GachaFilePath)
+  const isNewData = !fs.existsSync(GachaFilePath)
 
   if (isNewData) {
     // 如果该 UID 数据不存在，则说明是第一次获取
@@ -35,7 +34,7 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
     const data = { info: gacha.info, list }
 
     // 写入本地文件
-    fs.writeFileSync(GachaFilePath, JSON.stringify(data), { encoding: 'utf-8' })
+    fs.writeFileSync(GachaFilePath, JSON.stringify(data))
 
     // 直接返回参数里的祈愿数据
     return data
@@ -52,7 +51,7 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
     // 写入新数据
     const data = { info: gacha.info, list }
     const fileContent = JSON.stringify(data)
-    fs.writeFileSync(GachaFilePath, fileContent, { encoding: 'utf-8' })
+    fs.writeFileSync(GachaFilePath, fileContent)
 
     // 返回合并后的祈愿数据
     return data
@@ -61,5 +60,3 @@ const updateLocalGachaData = (gacha: GachaData): GachaData => {
     return DefaultGachaData
   }
 }
-
-export default updateLocalGachaData

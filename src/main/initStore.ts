@@ -47,9 +47,7 @@ const schema: Schema<AppData> = {
 }
 
 /** 初始化 Store */
-const initStore = () => {
+export function initStore() {
   const options = { schema, defaults: DefaultAppData }
   return new Store<AppData>(options)
 }
-
-export default initStore

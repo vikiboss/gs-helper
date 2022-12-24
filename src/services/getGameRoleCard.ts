@@ -1,9 +1,9 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getDS } from '../utils/getDS'
+import { getServerByUid } from '../utils/getServerByUid'
 import { qs } from '../utils/utils'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getDS from '../utils/getDS'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -87,7 +87,7 @@ export interface GameRoleCardData {
   homes: Homes[]
 }
 
-const getGameRoleCard = async (uid?: string): Promise<GameRoleCardData | null> => {
+export async function getGameRoleCard(uid?: string) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -108,13 +108,9 @@ const getGameRoleCard = async (uid?: string): Promise<GameRoleCardData | null> =
 
   const { status, data } = await request.get<BaseRes<GameRoleCardData>>(url, config)
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getGameRoleCard: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getGameRoleCard

@@ -1,25 +1,25 @@
 import { API_TAKUMI, LINK_BBS_REFERER } from '../constants'
+import { getBBSSignActId } from './getBBSSignActId'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getServerByUid } from '../utils/getServerByUid'
 import { getSignDS } from '../utils/getDS'
-import getBBSSignActId from './getBBSSignActId'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
-interface DoSignData {
+export interface DoSignData {
   code: string
 }
 
-const doBBSSign = async (): Promise<boolean> => {
+export async function doBBSSign() {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
-    return false
+    throw new Error('current user is empty')
   }
 
   const { cookie, uid } = currentUser
-  const actId = await getBBSSignActId()
+  const actId = getBBSSignActId()
 
   const postData = { act_id: actId, region: getServerByUid(uid), uid }
 
@@ -33,13 +33,9 @@ const doBBSSign = async (): Promise<boolean> => {
 
   const { status, data } = await request.post<BaseRes<DoSignData>>(url, postData, { headers })
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('doBBSSign: ', data)
   }
 
-  return isOK
+  return data
 }
-
-export default doBBSSign

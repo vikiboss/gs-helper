@@ -17,7 +17,7 @@ export interface StatisticCardProp {
 const StatisticCard: React.FC<StatisticCardProp> = (props) => {
   const { data } = props
 
-  const we = deepClone(data.world_explorations).reverse()
+  const we = deepClone(data.world_explorations).reverse() as GameRoleCardData['world_explorations']
 
   const {
     stats: {

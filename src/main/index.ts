@@ -1,16 +1,18 @@
 import { app, BrowserWindow } from 'electron'
-import type Store from 'electron-store'
 
+import { createMainWindow } from './createMainWindow'
+import { initStore } from './initStore'
 import { unregisterHotkey } from './handleHotkeys'
-import createMainWindow from './createMainWindow'
-import initStore from './initStore'
 
+import type Store from 'electron-store'
 import type { AppData } from '../typings'
 
+// 导出 主窗口 与 Store 方便其他部分进行引用
+
 // 在外层定义主窗口，并导出，方便其他子窗口创建时进行引用
-let mainWin: BrowserWindow = null
+export let mainWin: BrowserWindow = null
 // Store 用于存储与恢复软件数据（配置、状态等）
-let store: Store<AppData>
+export let store: Store<AppData>
 
 // 禁用硬件加速
 app.disableHardwareAcceleration()
@@ -67,6 +69,3 @@ app.on('activate', () => {
 
 // 监听程序退出的事件，善后，取消注册全局热键
 app.on('before-quit', () => isWindows && unregisterHotkey())
-
-// 导出 主窗口 与 Store 方便其他部分进行引用
-export { mainWin, store }

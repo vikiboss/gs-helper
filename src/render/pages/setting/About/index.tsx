@@ -58,7 +58,7 @@ const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AW
 const About: React.FC<AboutProp> = ({ notice }) => {
   const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({})
   const [show, setShow] = useState(false)
-  const [request, repoInfo, loading] = useApi<RepoInfo>(nativeApi.getRepoData)
+  const { r: request, d: repoInfo, loading } = useApi<RepoInfo, [string]>(nativeApi.getRepoData)
 
   const appName = appInfo?.zhName ?? '原神助手'
   const version = appInfo?.version ?? '未知'
@@ -161,7 +161,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
                 <span>（点个 star 就是最大的支持 QAQ）</span>
               </div>
               <div className={styles.item}>
-                ※ 感谢开源社区：{Link(LINK_PACKAGE_JSON, 'package.json')}
+                ※ 引用的开源库：参阅 {Link(LINK_PACKAGE_JSON, 'package.json')}
               </div>
               <div className={styles.item}>※ 交流群：{Link(group?.url, group?.number)}</div>
             </div>

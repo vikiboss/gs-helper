@@ -64,7 +64,7 @@
       text-overflow: ellipsis;
       top: 0;
       white-space: nowrap;
-      width: 500px;
+      width: 520px;
 
       &:active {
         color: @color-second;
@@ -85,7 +85,7 @@
         .flex-center-y();
         .transition-quick();
 
-        margin: 0 16px;
+        margin: 0 10px;
 
         .loading {
           .rotate();
@@ -138,53 +138,7 @@
       flex: 1;
       padding: 0 32px;
       width: calc(100vw - 64px);
-
-      .title-zone {
-        width: 100%;
-        display: flex;
-
-        .title {
-          .flex-center();
-
-          color: @color-white;
-          font-size: 32px;
-          padding: 8px;
-          text-align: center;
-          width: 100%;
-
-          .arrow {
-            background-repeat: no-repeat;
-            background-size: $width $height;
-            content: '';
-            display: inline-block;
-            height: $width;
-            margin: 0 20px;
-            width: 24px;
-          }
-
-          span::before {
-            // .ani-slide-left();
-            .arrow();
-
-            background-image: url('../../../assets/arrow-left.png');
-          }
-
-          span::after {
-            // .ani-slide-right();
-            .arrow();
-
-            background-image: url('../../../assets/arrow-right.png');
-          }
-        }
-
-        .title-btns {
-          .flex-center-y();
-
-          flex: 1;
-          justify-content: flex-end;
-          margin-right: 8px;
-        }
-      }
+      max-height: 305px;
 
       .ps {
         color: @color-white;

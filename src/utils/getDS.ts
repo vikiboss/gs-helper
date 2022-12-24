@@ -1,8 +1,8 @@
-import { md5 } from './nodeUtils'
+import { md5 } from './md5'
 import { qs, random } from './utils'
 
 // 获取只包含数字与字母的指定位数的随机字符串
-const getRandomStr = (n: number) => {
+function getRandomStr(n: number) {
   const chars = 'abcdefghijklmnopqrstuvwxyz0123456789'
   let str = ''
   for (let i = 0; i < n; i++) str += chars.charAt(random(0, chars.length - 1))
@@ -10,7 +10,7 @@ const getRandomStr = (n: number) => {
 }
 
 // ver 2.34.1
-const getDS = (query = '', body = '') => {
+export function getDS(query = '', body = '') {
   const params = {
     salt: 'xV8v4Qu54lUKrEYFZkJhB8cuOh9Asafs',
     t: String(Math.floor(Date.now() / 1000)),
@@ -24,7 +24,7 @@ const getDS = (query = '', body = '') => {
 }
 
 // ver 2.37.1
-export const getSignDS = () => {
+export function getSignDS() {
   const params = {
     salt: 'Qqx8cyv7kuyD8fTw11SmvXSFHp7iZD29',
     t: String(Math.floor(Date.now() / 1000)),
@@ -34,5 +34,3 @@ export const getSignDS = () => {
   console.log('getSignDS: ', DS)
   return DS
 }
-
-export default getDS

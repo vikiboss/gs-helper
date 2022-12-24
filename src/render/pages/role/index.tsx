@@ -1,8 +1,9 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import cn from 'classnames'
 import { FaHeart } from 'react-icons/fa'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
+import cn from 'classnames'
+import dti from 'dom-to-image'
+import React, { Fragment, useEffect, useRef, useState } from 'react'
 
 import {
   ElementImgs,
@@ -31,6 +32,7 @@ import type { PublicRole } from '../../../services/getPublicRoleList'
 import type { Role as RoleInfo } from '../../../services/getOwnedRoleList'
 
 import styles from './index.less'
+import { wait } from '../../../utils/utils'
 
 export type RenderRoleInfo = RoleInfo & PublicRole
 export type TabType = 'weapon' | 'reliquary' | 'constellation' | 'profile'
@@ -42,6 +44,8 @@ const defaultFilters: Filters = [0, 'all', 0]
 const Role: React.FC = () => {
   const navigate = useNavigate()
   const notice = useNotice()
+
+  const roleListRef = useRef(null)
 
   const [filters, setFilters] = useState<Filters>(defaultFilters)
   const [index, setIndex] = useState<number>(0)
@@ -55,7 +59,7 @@ const Role: React.FC = () => {
   const updateInfo = async (): Promise<void> => {
     try {
       // 获取官网公开的全部角色列表，包含介绍、图片、声优、语音等数据
-      const pbRoles = await nativeApi.getPublicRoleList()
+      const pbRoles = await nativeApi.getPublicRoles()
 
       if (!pbRoles.length) {
         updateInfo()
@@ -65,7 +69,9 @@ const Role: React.FC = () => {
       setPublicRolos(pbRoles)
 
       // 获取用户的角色列表
-      const ownedRoles = await nativeApi.getOwnedRoleList()
+      const {
+        data: { avatars: ownedRoles }
+      } = await nativeApi.getOwnedRoles()
       // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
 
       console.log(ownedRoles)
@@ -119,6 +125,26 @@ const Role: React.FC = () => {
     setTimeout(() => setIsRoleChanging(true), 0)
   }
 
+  async function test() {
+    notice.info({ message: '正在截取角色列表，请勿离开界面...', autoHide: false })
+    await wait(320)
+
+    try {
+      const blob = await dti.toBlob(roleListRef.current, {
+        bgcolor: '#f9f6f2',
+        quality: 1,
+        style: { overflow: 'unset' }
+      })
+
+      const data = [new ClipboardItem({ [blob.type]: blob })]
+      await navigator.clipboard.write(data)
+
+      notice.success('截取成功，已复制到剪切板')
+    } catch {
+      notice.faild('截取失败，请勿在操作完成前离开界面')
+    }
+  }
+
   return (
     <>
       <div
@@ -131,7 +157,9 @@ const Role: React.FC = () => {
         <div className={styles.topZone}>
           {!isDetail && roles.length > 0 && (
             <>
-              <span className={cn(styles.title)}>我的角色</span>
+              <span className={cn(styles.title)} onClick={test}>
+                我的角色
+              </span>
               <div className={styles.selects}>
                 <Select
                   name='rarityFilter'
@@ -184,7 +212,11 @@ const Role: React.FC = () => {
         {roles.length > 0 ? (
           <>
             {!isDetail && (
-              <div className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : '')}>
+              <div
+                id='role-list'
+                ref={roleListRef}
+                className={cn(styles.roleTable, isRoleChanging ? styles.roleTableAni : '')}
+              >
                 {fullRoles.map((e, i) => (
                   <RoleCard
                     key={e.id}

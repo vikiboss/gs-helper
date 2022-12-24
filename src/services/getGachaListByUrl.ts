@@ -1,9 +1,14 @@
 import { app } from 'electron'
-import D from 'dayjs'
+import dayjs from 'dayjs'
 
-import request from '../utils/request'
+import {
+  API_HK4E,
+  AppName,
+  GachaTypeMap,
+  TypeToUIGFTypeMap as TypeToUigfTypeMap
+} from '../constants'
 import { deepClone, wait } from '../utils/utils'
-import { API_HK4E, AppName, GachaTypeMap, TypeToUIGFTypeMap } from '../constants'
+import { request } from '../utils/request'
 
 import type { BaseRes, GachaData, GachaItem, RawGachaItem } from '../typings'
 
@@ -29,10 +34,10 @@ export const DefaultGachaData: GachaData = {
   list: []
 }
 
-const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
+export async function getGachaListByUrl(gachaUrl: string) {
   try {
     // 获取 URL 中的参数
-    const urlParams = new URLSearchParams(/\?(.*?)(#.+)?$/i.exec(gachaUrl)[1])
+    const urlParams = new URL(gachaUrl).searchParams
 
     // 默认的空数据
     const gacha: GachaData = deepClone(DefaultGachaData)
@@ -40,7 +45,7 @@ const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
     // 填充 UIGF v2.2 格式数据的基本信息
     gacha.info.export_app = AppName.en
     gacha.info.export_app_version = app.getVersion()
-    gacha.info.update_time = D(new Date()).format('YYYY-MM-DD HH:mm:ss')
+    gacha.info.update_time = dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss')
 
     // 是否已获取 UID
     let hasUidSet = false
@@ -55,20 +60,24 @@ const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
       urlParams.set('end_id', '0')
 
       // 用于判断是否获取完成的标志
-      let [hasMore, times] = [true, 0]
+      let hasMore = true
+      let times = 0
 
       // do while 循环，不断加载这个类型每一页的数据
       do {
         if (times > 0) {
-          console.log('getGachaListByUrl: ', `开始重试第 ${times} 次...`)
+          console.log('getGachaListByUrl: ', `retry the ${times}^th time...`)
         }
 
         // 拼接每一页数据的 URL
         const url = `${API_HK4E}/event/gacha_info/api/getGachaLog?${urlParams.toString()}`
+
         const { data, status } = await request.get<BaseRes<RawGachaData>>(url)
 
         // 如果返回状态异常，打印返回的内容
-        if (data.retcode !== 0) console.log('getGachaListByUrl: ', data)
+        if (data.retcode !== 0) {
+          console.log('getGachaListByUrl: ', data)
+        }
 
         // 如果返回状态正常
         if (status === 200 && data.retcode === 0) {
@@ -87,17 +96,17 @@ const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
           }
 
           // 对返回的 list 列表进行数据处理（删除 uid 和 lang 字段）
-          const list: GachaItem[] = data.data.list.map((e: RawGachaItem) => {
-            if (e.uid) {
-              delete e.uid
+          const list: GachaItem[] = data.data.list.map((item: RawGachaItem) => {
+            if (item.uid) {
+              delete item.uid
             }
 
-            if (e.lang) {
-              delete e.lang
+            if (item.lang) {
+              delete item.lang
             }
 
-            return Object.assign(e, {
-              uigf_gacha_type: TypeToUIGFTypeMap[type]
+            return Object.assign(item, {
+              uigf_gacha_type: TypeToUigfTypeMap[type]
             })
           })
 
@@ -110,14 +119,16 @@ const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
         } else {
           times++
           // 出错时打印异常
-          console.log('getGachaListByUrl: ', data.data, status)
+          console.log('getGachaListByUrl: ', data.data, data.retcode)
+
           const idx = urlParams.get('page')
-          const error = `获取${GachaTypeMap[type]}第${idx}页失败`
+          const error = `faild to fetch page ${idx} in type ${type}`
+
           console.log('getGachaListByUrl: ', error)
         }
 
-        // 每加载一次数据，等待 300 毫秒，减轻米哈游服务器负担
-        await wait(300)
+        // 每加载一次数据，等待 500 毫秒，减轻米哈游服务器负担
+        await wait(500)
       } while (hasMore && times <= 2)
     }
 
@@ -127,5 +138,3 @@ const getGachaListByUrl = async (gachaUrl: string): Promise<GachaData> => {
     return DefaultGachaData
   }
 }
-
-export default getGachaListByUrl

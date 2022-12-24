@@ -1,14 +1,16 @@
 import path from 'node:path'
-import { promises as fs } from 'node:fs'
+import fs from 'fs-extra'
 import { app } from 'electron'
 
 import { isDev, isAppleDevice } from '..'
-import { isFileExist } from '../../utils/nodeUtils'
-import getGameDir from '../../utils/getGameDir'
+import { getGameDir } from '../../utils/getGameDir'
 
 /** 获取原神游戏在本地缓存里的祈愿记录链接，只有在游戏里打开过祈愿记录页面，缓存里才会有祈愿链接 */
-const getGachaUrl = async () => {
-  if (isAppleDevice) return ''
+export async function getGachaUrl() {
+  if (isAppleDevice) {
+    return ''
+  }
+
   try {
     // 获取游戏安装目录
     const gameDir = await getGameDir()
@@ -26,12 +28,12 @@ const getGachaUrl = async () => {
     // web 缓存文件路径
     const cacheFilePath = path.join(gameDir, subDir)
 
-    if (!isFileExist(cacheFilePath)) {
+    if (!fs.existsSync(cacheFilePath)) {
       return ''
     }
 
     // 读取 web 缓存文件
-    const content = await fs.readFile(cacheFilePath, { encoding: 'utf-8' })
+    const content = fs.readFileSync(cacheFilePath, { encoding: 'utf8' })
     // 祈愿链接正则
     const UrlReg = /https.+?game_biz=hk4e_\w+/g
     // 正则匹配祈愿链接
@@ -49,5 +51,3 @@ const getGachaUrl = async () => {
     return ''
   }
 }
-
-export default getGachaUrl

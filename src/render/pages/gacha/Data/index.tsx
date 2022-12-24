@@ -21,7 +21,9 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
   useEffect(() => {
     ;(async () => {
       try {
-        const list = await nativeApi.getCalenderList()
+        const {
+          data: { list }
+        } = await nativeApi.getCalenderEvents()
 
         if (list.length > 0) {
           setCalenderList(list)

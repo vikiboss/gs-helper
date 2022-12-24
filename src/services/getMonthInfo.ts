@@ -1,7 +1,7 @@
 import { API_HK4E, LINK_BBS_REFERER } from '../constants'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getServerByUid } from '../utils/getServerByUid'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -45,7 +45,7 @@ export interface MonthInfo {
   lantern: boolean
 }
 
-const getMonthInfo = async (month = 0): Promise<MonthInfo | null> => {
+export async function getMonthInfo(month = 0) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -60,13 +60,9 @@ const getMonthInfo = async (month = 0): Promise<MonthInfo | null> => {
 
   const { status, data } = await request.get<BaseRes<MonthInfo>>(url, config)
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getMonthInfo: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getMonthInfo

@@ -1,8 +1,8 @@
 import { API_TAKUMI, LINK_BBS_REFERER } from '../constants'
-import getBBSSignActId from './getBBSSignActId'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { getBBSSignActId } from './getBBSSignActId'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getServerByUid } from '../utils/getServerByUid'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -16,7 +16,7 @@ export interface SignInfo {
   total_sign_day: number
 }
 
-const getBBSSignInfo = async (): Promise<SignInfo | null> => {
+export async function getBBSSignInfo() {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -24,7 +24,7 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
   }
 
   const { cookie, uid } = currentUser
-  const actId = await getBBSSignActId()
+  const actId = getBBSSignActId()
 
   const params = { act_id: actId, uid, region: getServerByUid(uid) }
   const url = `${API_TAKUMI}/event/bbs_sign_reward/info`
@@ -32,14 +32,9 @@ const getBBSSignInfo = async (): Promise<SignInfo | null> => {
 
   const { status, data } = await request.get<BaseRes<SignInfo>>(url, config)
 
-  // { data: null, message: '尚未登录', retcode: -100 }
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getBBSSignInfo: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getBBSSignInfo

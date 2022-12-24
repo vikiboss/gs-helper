@@ -4,7 +4,7 @@ import useLatest from './useLatest'
 /**
  * @from https://github.com/alibaba/hooks/blob/master/packages/hooks/src/useTimeout/index.ts
  */
-function useTimeout(fn: () => void, delay: number | undefined) {
+function useTimeout(fn: () => void, delay?: number) {
   const fnRef = useLatest(fn)
   const timerRef = useRef<NodeJS.Timer | null>(null)
 

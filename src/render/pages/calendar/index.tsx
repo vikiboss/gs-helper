@@ -11,8 +11,9 @@ import useApi from '../../hooks/useApi'
 import useNotice from '../../hooks/useNotice'
 import WeekMaterial from './WeekMaterial'
 
-import type { CalenderEvent } from '../../../services/getCalenderList'
+import type { CalenderData } from '../../../services/getCalenderList'
 import type { RepoRole } from './WeekMaterial'
+import type { BaseRes } from '../../../typings'
 
 import styles from './index.less'
 
@@ -20,13 +21,13 @@ const Calender: React.FC = () => {
   const navigate = useNavigate()
   const notice = useNotice()
   const [tab, setTab] = useState<'daily' | 'week'>('daily')
-  const [fetchCalendar, cals = [], l1] = useApi<CalenderEvent[]>(nativeApi.getCalenderList)
-  const [fetchRepo, roles = [], l2] = useApi<RepoRole[]>(nativeApi.getRepoData)
+  const { r: fetchCal, d: cals, l: l1 } = useApi<BaseRes<CalenderData>>(nativeApi.getCalenderEvents)
+  const { r: fetchRepo, d: roles = [], l: l2 } = useApi<RepoRole[], [string]>(nativeApi.getRepoData)
 
   const loaded = !(l1 || l2)
 
   const fetchData = async () => {
-    await fetchCalendar()
+    await fetchCal()
     await fetchRepo('roles.json')
   }
 
@@ -38,7 +39,7 @@ const Calender: React.FC = () => {
   return (
     <>
       <div className={styles.container}>
-        {loaded && cals?.length ? (
+        {loaded && cals?.data?.list?.length ? (
           <>
             <div className={styles.top}>
               <SelectButton
@@ -50,7 +51,7 @@ const Calender: React.FC = () => {
                 ]}
               />
             </div>
-            {tab === 'daily' && <DailyMaterial cals={cals || []} notice={notice} />}
+            {tab === 'daily' && <DailyMaterial cals={cals?.data?.list || []} notice={notice} />}
             {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
           </>
         ) : (

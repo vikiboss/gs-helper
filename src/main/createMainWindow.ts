@@ -1,11 +1,12 @@
-import type { BrowserWindowConstructorOptions } from 'electron'
 import { BrowserWindow, shell } from 'electron'
 
+import { bindIPC } from './IPC'
+import { initTray } from './initTray'
 import { registerHotkey } from './handleHotkeys'
-import bindIPC from './IPC'
+import { restoreSettings } from './restoreSettings'
 import icon from '../assets/icon.ico'
-import initTray from './initTray'
-import restoreSettings from './restoreSettings'
+
+import type { BrowserWindowConstructorOptions } from 'electron'
 
 // 声明内置常量
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string
@@ -34,7 +35,7 @@ const winOptions: BrowserWindowConstructorOptions = {
 }
 
 /** 创建主窗口的函数 */
-const createMainWindow = () => {
+export function createMainWindow() {
   const win = new BrowserWindow(winOptions)
 
   // 移除窗口顶部的默认菜单栏
@@ -65,5 +66,3 @@ const createMainWindow = () => {
   // 返回创建的窗口实例
   return win
 }
-
-export default createMainWindow

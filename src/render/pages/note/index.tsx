@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
+import { getGreetingMsg } from '../../../utils/getGreetingMsg'
 import { wait } from '../../../utils/utils'
 import BounceNumber from '../../components/BounceNumber'
 import CircleButton from '../../components/CircleButton'
-import getGreetingMsg from '../../../utils/getGreetingMsg'
 import Loading from '../../components/Loading'
 import mora from '../../../assets/mora.png'
 import nativeApi from '../../utils/nativeApi'
@@ -57,7 +57,7 @@ const Month: React.FC = () => {
 
   const init = async () => {
     try {
-      const initMonthData = await nativeApi.getMonthInfo()
+      const { data: initMonthData } = await nativeApi.getMonthInfo()
 
       setInitMonth(initMonthData.data_month)
       setMonth(initMonthData.data_month)
@@ -67,9 +67,9 @@ const Month: React.FC = () => {
       const months = initMonthData.optional_month
 
       months.forEach(async (e, i) => {
-        await wait(50)
+        await wait(360)
 
-        const res = await nativeApi.getMonthInfo(e)
+        const { data: res } = await nativeApi.getMonthInfo(e)
 
         if (res) {
           data.push(res)

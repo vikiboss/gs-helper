@@ -1,5 +1,5 @@
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import request from '../utils/request'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { request } from '../utils/request'
 
 export interface ShowAvatarInfoList {
   avatarId: number
@@ -103,7 +103,7 @@ export interface EnkaUserData {
 const api = (uid: string) => `https://enka.network/u/${uid}/__data.json`
 
 /** 获取游戏内展示柜的角色详情，来自 enka.network */
-const getCabinetRoleList = async (uid?: string): Promise<EnkaUserData> => {
+export async function getCabinetRoleList(uid?: string) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -114,13 +114,9 @@ const getCabinetRoleList = async (uid?: string): Promise<EnkaUserData> => {
 
   const { status, data } = await request.get<EnkaUserData>(api(targetUid))
 
-  const isOK = status === 200 && data && data.playerInfo
-
-  if (!isOK) {
-    console.log(data)
+  if (status !== 200) {
+    console.log('getCabinetRoleList: ', data)
   }
 
-  return isOK ? data : null
+  return data
 }
-
-export default getCabinetRoleList

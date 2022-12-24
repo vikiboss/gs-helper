@@ -21,10 +21,11 @@ interface StrategyItem {
 const Strategy: React.FC = () => {
   const navigate = useNavigate()
   const notice = useNotice()
-  const [request, data = [], loading] = useApi<StrategyItem[]>(nativeApi.getRepoData)
+
+  const { r: fetchRepo, d = [], loading } = useApi<StrategyItem[], [string]>(nativeApi.getRepoData)
 
   useEffect(() => {
-    request('strategies.json')
+    fetchRepo('strategies.json')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -44,7 +45,7 @@ const Strategy: React.FC = () => {
           <>
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
-              {data.map((e) => {
+              {d.map((e) => {
                 const extra = e.hightlight ? styles.hightlight : ''
                 const className = cn(styles.btn, extra)
 

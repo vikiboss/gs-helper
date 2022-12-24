@@ -1,34 +1,49 @@
+// part of inspiration comes from https://github.com/alibaba/hooks/blob/master/packages/hooks/src/useRequest/src/useRequest.ts
+
 import { useState } from 'react'
 
-function useApi<T = any>(fetchApi: (...args: any[]) => Promise<T>) {
+export type Service<TData, TParams extends any[]> = (...args: TParams) => Promise<TData>
+
+function useApi<TData = any, TParams extends any[] = []>(
+  service: Service<TData, TParams>,
+  options = { clear: true }
+) {
   const [loading, setLoading] = useState<boolean>(false)
-  const [data, setData] = useState<T>()
+  const [data, setData] = useState<TData | undefined>()
   const [error, setError] = useState<string>('')
 
-  async function request(...args: any[]): Promise<boolean> {
+  async function run(...args: TParams) {
     setLoading(true)
-    setError(null)
-
-    let isOK = false
+    setError('')
 
     try {
-      const resonse = await fetchApi(...args)
+      const res = await service(...args)
 
-      console.log('useApi:', resonse)
-      setData(resonse)
+      console.log('useApi: ', res)
 
-      isOK = true
+      if (res) {
+        setData(res)
+      } else {
+        if (options.clear) {
+          setData(undefined)
+        }
+      }
+
+      setLoading(false)
+
+      return res
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      setError(msg)
-    }
 
-    setLoading(false)
-    return isOK
+      setError(msg)
+      setLoading(false)
+
+      return false
+    }
   }
 
-  return [request, data, loading, error] as const
+  return { run, r: run, data, d: data, error, e: error, loading, l: loading } as const
 }
 
 export default useApi

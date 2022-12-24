@@ -1,6 +1,6 @@
 import { API_TAKUMI, LINK_BBS_REFERER } from '../constants'
-import getBBSSignActId from './getBBSSignActId'
-import request from '../utils/request'
+import { getBBSSignActId } from './getBBSSignActId'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -16,21 +16,17 @@ export interface SignData {
   resign: boolean
 }
 
-const getBBSSignData = async (): Promise<SignData | null> => {
-  const actId = await getBBSSignActId()
+export async function getBBSSignData() {
+  const actId = getBBSSignActId()
 
   const url = `${API_TAKUMI}/event/bbs_sign_reward/home`
   const config = { params: { act_id: actId }, headers: { referer: LINK_BBS_REFERER } }
 
   const { status, data } = await request.get<BaseRes<SignData>>(url, config)
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getBBSSignData: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getBBSSignData

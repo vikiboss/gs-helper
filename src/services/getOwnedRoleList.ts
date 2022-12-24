@@ -1,8 +1,8 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getDS from '../utils/getDS'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getDS } from '../utils/getDS'
+import { getServerByUid } from '../utils/getServerByUid'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -82,7 +82,7 @@ export interface RoleData {
   avatars: Role[]
 }
 
-const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
+export async function getOwnedRoleList(uid?: string) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -103,13 +103,9 @@ const getOwnedRoleList = async (uid?: string): Promise<Role[] | null> => {
 
   const { status, data } = await request.post<BaseRes<RoleData>>(url, postData, { headers })
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getOwnedRoleList: ', data)
   }
 
-  return isOK ? data?.data?.avatars || null : null
+  return data
 }
-
-export default getOwnedRoleList

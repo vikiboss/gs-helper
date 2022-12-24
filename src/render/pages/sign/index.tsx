@@ -41,7 +41,7 @@ const Sign: React.FC = () => {
 
   const updateInfo = async () => {
     try {
-      const [data, info] = await Promise.all([
+      const [{ data }, { data: info }] = await Promise.all([
         nativeApi.getBBSSignData(),
         nativeApi.getBBSSignInfo()
       ])
@@ -65,6 +65,8 @@ const Sign: React.FC = () => {
   }, [])
 
   const handleSign = async () => {
+    return notice.success('由于米游社限制，签到功能不再维护，请前往米游社手动签到')
+
     if (signInfo.is_sign) {
       notice.warning('今天已经签过到啦~ 不要重复签到哦')
     } else if (signInfo.first_bind) {
@@ -72,7 +74,7 @@ const Sign: React.FC = () => {
     } else {
       try {
         const isSignDone = await nativeApi.doBBSSign()
-        const info: SignInfo = await nativeApi.getBBSSignInfo()
+        const { data: info } = await nativeApi.getBBSSignInfo()
 
         if (isSignDone && info.is_sign) {
           const totalSignDay = signInfo.total_sign_day

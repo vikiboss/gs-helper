@@ -1,18 +1,9 @@
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getUserRolesByCookie from './getUserRoleListByCookie'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getUserRolesByCookie } from './getUserRoleList'
 
-import type { GameRole } from '../typings'
+export async function getGameRoleInfo() {
+  const { cookie } = getCurrentUser()
+  const { data } = await getUserRolesByCookie(cookie)
 
-const getGameRoleInfo = async (): Promise<GameRole | null> => {
-  const currentUser = getCurrentUser()
-
-  if (!currentUser) {
-    return null
-  }
-
-  const roles = await getUserRolesByCookie(currentUser.cookie)
-
-  return roles.length > 0 ? roles[0] : null
+  return data.list[0]
 }
-
-export default getGameRoleInfo

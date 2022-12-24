@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import D from 'dayjs'
+import dayjs from 'dayjs'
 import { BiImport, BiExport } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
@@ -45,12 +45,12 @@ export interface PageProp {
   notice: Notice
 }
 
-export const GachaMap: Record<GachaType, string> = {
+export const GachaMap = {
   activity: '活动祈愿',
   weapon: '武器祈愿',
   normal: '常驻祈愿',
   newer: '新手祈愿'
-}
+} as const
 
 const DefaultFilters: FilterType = {
   gacha: ['activity', 'normal', 'weapon', 'newer'],
@@ -185,7 +185,7 @@ const Gacha: React.FC = () => {
   }
 
   const copyLink = () => {
-    nativeApi.writeClipboardText(link)
+    nativeApi.writeClipboard(link)
     notice.success('已将 「祈愿记录链接」 复制到剪切板，可供其他软件和平台使用')
   }
 
@@ -193,22 +193,22 @@ const Gacha: React.FC = () => {
 
   const firsteDate = gacha.list.length ? gacha.list[0].time : ''
   const lastDate = gacha.list.length ? gacha.list[gacha.list.length - 1].time : ''
-  const format = (str: string) => D(str).format('YYYY/M/D HH:mm')
+  const format = (str: string) => dayjs(str).format('YYYY/M/D HH:mm')
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`
 
   const handleImport = async () => {
-    const { ok, message, data } = await nativeApi.importGacha()
+    const { code, message, data } = await nativeApi.importGacha()
 
-    if (ok) {
+    if (code === 0) {
       notice.success(message)
       await initGachaData(data.info.uid)
     }
   }
 
   const handleExport = async () => {
-    const { ok, message } = await nativeApi.exportGacha(uid)
+    const { code, message } = await nativeApi.exportGacha(uid)
 
-    if (ok) {
+    if (code === 0) {
       notice.success(message)
     }
   }

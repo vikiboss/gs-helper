@@ -1,9 +1,9 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getDS } from '../utils/getDS'
+import { getServerByUid } from '../utils/getServerByUid'
 import { qs } from '../utils/utils'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getDS from '../utils/getDS'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -40,7 +40,7 @@ export type DailyNotesData = {
   }
 }
 
-const getDailyNotes = async (): Promise<DailyNotesData | null> => {
+export async function getDailyNotes() {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -59,13 +59,9 @@ const getDailyNotes = async (): Promise<DailyNotesData | null> => {
   })
 
   // { data: null, message: 'Please login', retcode: 10001 }
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getDailyNotes: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getDailyNotes

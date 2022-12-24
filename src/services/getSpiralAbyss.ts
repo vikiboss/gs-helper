@@ -1,9 +1,9 @@
 import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
+import { getDS } from '../utils/getDS'
+import { getServerByUid } from '../utils/getServerByUid'
 import { qs } from '../utils/utils'
-import getCurrentUser from '../main/IPC/getCurrentUser'
-import getDS from '../utils/getDS'
-import getServerByUid from '../utils/getServerByUid'
-import request from '../utils/request'
+import { request } from '../utils/request'
 
 import type { BaseRes } from '../typings'
 
@@ -92,7 +92,7 @@ export interface SpiralAbyssData {
   is_unlock: boolean
 }
 
-const getSpiralAbyss = async (uid?: string, last = false): Promise<SpiralAbyssData | null> => {
+export async function getSpiralAbyss(uid?: string, last = false) {
   const currentUser = getCurrentUser()
 
   if (!currentUser) {
@@ -118,13 +118,9 @@ const getSpiralAbyss = async (uid?: string, last = false): Promise<SpiralAbyssDa
     params
   })
 
-  const isOK = status === 200 && data.retcode === 0
-
-  if (!isOK) {
+  if (status !== 200 || data?.retcode !== 0) {
     console.log('getSpiralAbyss: ', data)
   }
 
-  return isOK ? data?.data || null : null
+  return data
 }
-
-export default getSpiralAbyss

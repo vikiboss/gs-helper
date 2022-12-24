@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import D from 'dayjs'
+import dayjs from 'dayjs'
 import React from 'react'
 
 import DateRange from './components/DateRange'
@@ -87,7 +87,7 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
   const updateTime = gacha.info.update_time
   const list = filterGachaList(gacha.list, filter)
   const now = new Date()
-  const dateRange = [D(now).subtract(8, 'M').toDate(), now]
+  const dateRange = [dayjs(now).subtract(8, 'M').toDate(), now]
 
   const PieProps = {
     height: 248,

@@ -4,12 +4,15 @@ import { APP_USER_AGENT_BBS, BBS_VERSION } from '../constants'
 import { store } from '../main'
 
 // 创建 Axios 实例并设置默认配置、请求头等
-const request = axios.create({
+export const request = axios.create({
   timeout: 10000,
   headers: {
+    'Accept-Encoding': '*',
+    Accept: 'application/json, text/plain, */*',
     'User-Agent': APP_USER_AGENT_BBS,
     'x-requested-with': 'com.mihoyo.hyperion',
     'x-rpc-app_version': BBS_VERSION,
+    'x-rpc-page': '3.1.3_#/ys',
     'x-rpc-channel': 'appstore',
     'x-rpc-client_type': '5',
     'x-rpc-device_model': 'iPhone12,8',
@@ -41,8 +44,10 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     const { url, method } = response.config
-    const path = `/${url.split('/').reverse()[0].split('?')[0]}`
-    console.log(`${method.toUpperCase()}: ${response.status} ${path}`)
+    const { hostname } = new URL(url)
+
+    console.log(`${method.toUpperCase()}: ${response.status} => ${hostname}`)
+
     return response
   },
   (error) => {
@@ -50,5 +55,3 @@ request.interceptors.response.use(
     return Promise.reject(error)
   }
 )
-
-export default request

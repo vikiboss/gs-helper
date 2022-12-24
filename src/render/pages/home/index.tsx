@@ -1,4 +1,4 @@
-import D from 'dayjs'
+import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 
@@ -10,7 +10,7 @@ import { IoMdRefresh } from 'react-icons/io'
 import { IoGameControllerOutline, IoSettingsOutline } from 'react-icons/io5'
 import { MdOutlineLocalFireDepartment, MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md'
 
-import { LINK_GENSHIN_MAP, UPDATE_INTERVAL } from '../../../constants'
+import { LINK_GENSHIN_MAP } from '../../../constants'
 import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
@@ -19,10 +19,9 @@ import useAuth from '../../hooks/useAuth'
 import useNotice from '../../hooks/useNotice'
 import UserCard from './UserCard'
 
-import type { NavigateOptions } from 'react-router-dom'
 import type { CalenderEvent } from '../../../services/getCalenderList'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
-import type { GameRole } from '../../../typings'
+import type { BaseRes, GameRole } from '../../../typings'
 import type { SignInfo } from '../../../services/getBBSSignInfo'
 
 import styles from './index.less'
@@ -34,23 +33,20 @@ const Home: React.FC = () => {
   const notice = useNotice()
   const navigate = useNavigate()
   const [tip, setTip] = useState<string>('')
-  const [heart, setHeart] = useState<NodeJS.Timer | null>(null)
   const [url, setUrl] = useState<string>('')
-  const [loaded, setLoaded] = useState(false)
 
-  const [getUser, user, l1, e1] = useApi<GameRole | null>(getGameRoleInfo)
-  const [getSign, sign, l2, e2] = useApi<SignInfo | null>(getBBSSignInfo)
-  const [getNote, note, l3, e3] = useApi<DailyNotesData | null>(getDailyNotes)
+  const { r: getUser, d: user, l: l1 } = useApi<GameRole | null>(getGameRoleInfo)
+  const { r: getSign, d: sign, l: l2 } = useApi<BaseRes<SignInfo> | null>(getBBSSignInfo)
+  const { r: getNote, d: note, l: l3 } = useApi<BaseRes<DailyNotesData> | null>(getDailyNotes)
 
   const loading = l1 || l2 || l3
-  const error = e1 || e2 || e3
 
-  const updateInfo = async (isUserTrriger = true) => {
+  const updateInfo = async () => {
     if (!auth.isLogin) {
       return
     }
 
-    if (loading && isUserTrriger) {
+    if (loading) {
       notice.warning({
         message: '小派蒙正在努力加载，请不要重复点击啦！',
         autoHide: false
@@ -59,34 +55,21 @@ const Home: React.FC = () => {
       return
     }
 
-    if (isUserTrriger) {
-      clearInterval(heart)
+    const [user] = await Promise.all([getUser(), getSign()])
 
-      notice.info({
-        message: '小派蒙正在努力获取最新数据...',
-        autoHide: false
-      })
+    const note = await getNote()
 
-      setHeart(setInterval(() => updateInfo(false), UPDATE_INTERVAL))
-    }
+    const isExpired = !user || !user?.game_uid
+    const meetCaptcha = (note as BaseRes<DailyNotesData>).retcode === 1034
 
-    const res = await Promise.all([getUser(), getNote(), getSign()])
+    if (isExpired) {
+      const currentUser = await nativeApi.getCurrentUser()
 
-    setLoaded(res.every((isOK) => isOK))
+      auth.logout(currentUser.uid)
 
-    const hasError = !loading && loaded && (!user?.game_uid || !note?.max_resin || !sign?.today)
-    const isExpired = !user?.game_uid && !note?.max_resin && !sign?.today
-
-    if (loaded) {
-      if (isExpired) {
-        const currentUser = await nativeApi.getCurrentUser()
-        auth.logout(currentUser.uid)
-        navigate('/login', { state: { isExpired: true } })
-      } else if (hasError || error) {
-        notice.faild('无法绕过验证码，请到米游社战绩页验证后重试')
-      } else if (isUserTrriger) {
-        notice.success('游戏状态更新成功')
-      }
+      navigate('/login', { state: { isExpired: true } })
+    } else if (meetCaptcha) {
+      notice.faild('无法绕过验证码，请到米游社战绩页验证后重试')
     }
   }
 
@@ -98,51 +81,35 @@ const Home: React.FC = () => {
 
   const getTip = async () => {
     const BirthType = '4'
-    const list = await nativeApi.getCalenderList()
+    const {
+      data: { list }
+    } = await nativeApi.getCalenderEvents()
     const event = list.find((e) => e.kind === BirthType && isToday(e))
 
     if (event) {
       const now = new Date()
       const WeekMap = ['日', '一', '二', '三', '四', '五', '六']
-      const timeStr = `${D(now).format('YYYY年M月D日')} 星期${WeekMap[now.getDay()]}`
+      const timeStr = `${dayjs(now).format('YYYY年M月D日')} 星期${WeekMap[now.getDay()]}`
       return `${timeStr} ${event.title}`
     }
-    const hitokoto = await nativeApi.getHitokoto()
-    return hitokoto
+
+    return await nativeApi.getHitokoto()
   }
 
   const init = async () => {
     setUrl(await getGachaUrl())
-    updateInfo(false)
+    await updateInfo()
     setTip(await getTip())
-
-    const timer = setInterval(async () => {
-      updateInfo(false)
-      setTip(await getTip())
-    }, UPDATE_INTERVAL)
-
-    setHeart(timer)
   }
 
   useEffect(() => {
     init()
-
-    return () => {
-      clearInterval(heart)
-      setHeart(null)
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const safelyNavigate = (path: string, options?: NavigateOptions) => {
-    clearInterval(heart)
-    setHeart(null)
-    navigate(path, options)
-  }
-
   const handleOpenGame = async () => {
-    const { ok, message } = await nativeApi.openGame()
-    notice[ok ? 'success' : 'faild']({ message, duration: 8000 })
+    const { code, message } = await nativeApi.openGame()
+    notice[code === 0 ? 'success' : 'faild']({ message, duration: code === 0 ? 8000 : 3000 })
   }
 
   const handlePageSwitch = (path: string) => {
@@ -157,11 +124,6 @@ const Home: React.FC = () => {
 
     const isNote = path === '/note'
 
-    if (!loaded && isNote) {
-      notice.warning('请等待旅行者信息加载完毕后再试')
-      return
-    }
-
     const notNotOpen = isNote && (user?.level ?? 1) < 10
 
     if (notNotOpen) {
@@ -169,12 +131,18 @@ const Home: React.FC = () => {
       return
     }
 
-    safelyNavigate(path)
+    navigate(path)
   }
 
   const handleWindowOpen = (link: string) => {
     notice.success({ message: '正在打开页面...', duration: 1000 })
     nativeApi.openWindow(link)
+  }
+
+  async function handleTipClick() {
+    setTip('更新中...')
+
+    setTip(await nativeApi.getHitokoto())
   }
 
   const btns = [
@@ -226,7 +194,7 @@ const Home: React.FC = () => {
   ]
 
   // const isHomeDataLoaded = false;
-  const isHomeDataLoaded = !loading && note && user && sign
+  const isHomeDataLoaded = !loading && note?.data && user && sign?.data
 
   return (
     <>
@@ -235,11 +203,11 @@ const Home: React.FC = () => {
           {auth.isLogin ? (
             isHomeDataLoaded ? (
               <UserCard
-                sign={sign}
+                sign={sign.data}
                 user={user}
-                note={note}
+                note={note.data}
                 notice={notice}
-                safelyNavigate={safelyNavigate}
+                safelyNavigate={navigate}
               />
             ) : (
               <Loading className={styles.loading} />
@@ -248,17 +216,19 @@ const Home: React.FC = () => {
             <div className={styles.noLoginContainer}>
               <div className={styles.noLoginText}>
                 <span>欢迎你，旅行者。👋</span>
-                <span>建议登录 「米游社」 账号以获得最佳使用体验。</span>
+                <span>登录 「米游社」 账号以获得最佳使用体验。</span>
               </div>
               <Button
                 text='前往登录'
                 size='middle'
                 type='confirm'
-                onClick={() => safelyNavigate('/login')}
+                onClick={() => navigate('/login')}
               />
             </div>
           )}
-          <div className={styles.topGreeting}>{tip}</div>
+          <div className={styles.topGreeting} title={tip} onClick={handleTipClick}>
+            {tip}
+          </div>
           <div className={styles.topBtns}>
             {auth.isLogin && (
               <>
@@ -281,7 +251,7 @@ const Home: React.FC = () => {
             <div
               className={styles.topBtn}
               onClick={() =>
-                safelyNavigate('/login', {
+                navigate('/login', {
                   state: { changeAccount: auth.isLogin }
                 })
               }
@@ -299,24 +269,15 @@ const Home: React.FC = () => {
               )}
             </div>
             |
-            <div className={styles.topBtn} onClick={() => safelyNavigate('/setting')}>
+            <div className={styles.topBtn} onClick={() => navigate('/setting')}>
               <IoSettingsOutline size={20} />
               <span>设置</span>
             </div>
-            {/* |
-            <div className={styles.topBtn} onClick={() => safelyNavigate('/about')}>
-              <BiInfoCircle size={20} />
-              <span>关于</span>
-            </div> */}
           </div>
         </div>
         <div className={styles.content}>
+          <div className={styles.searchBar}></div>
           <div className={styles.btnList}>
-            <div className={styles.titleZone}>
-              <div className={styles.title}>
-                <span>旅行者工具</span>
-              </div>
-            </div>
             {btns.length &&
               btns.map(({ name, handler, Icon }) => (
                 <div className={styles.btn} onClick={handler} key={name}>
@@ -327,7 +288,7 @@ const Home: React.FC = () => {
           </div>
           <div
             className={styles.footer}
-            onClick={() => safelyNavigate('/setting', { state: { tab: 'about' } })}
+            onClick={() => navigate('/setting', { state: { tab: 'about' } })}
           >
             「原神助手」 使用 MIT 协议开源，数据来源于
             「米游社」，可能存在延迟，请以游戏内为准，详情点此打开 「关于」 页面。

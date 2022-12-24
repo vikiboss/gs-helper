@@ -6,7 +6,7 @@ import type { UserData } from '../typings'
 // 一系列用户操作的函数
 
 /** 按 UID 删除已登录用户 */
-export const deleteUser = async (uid: string) => {
+export async function deleteUser(uid: string) {
   // 读取本地已登录用户列表
   const users: UserData[] = store.get('users')
   // 过滤掉待删除用户
@@ -16,7 +16,7 @@ export const deleteUser = async (uid: string) => {
 }
 
 /** 清空 Session 中所有有关米哈游的 Cookie 信息 */
-export const clearSessionCookie = async () => {
+export async function clearSessionCookie() {
   // 获取默认 Session
   const ses = session.defaultSession
   // 获取所有米哈游相关 Cookie
@@ -33,7 +33,7 @@ export const clearSessionCookie = async () => {
 }
 
 /** 切换账号，为防止 Session 冲突，切换时清空 Seession 的缓存 */
-export const changeUser = async (uid: string) => {
+export async function changeUser(uid: string) {
   // 配置当前 uid 字段
   store.set('currentUid', uid)
   // 清空 Seession 有关米哈游的 Cookie 缓存
