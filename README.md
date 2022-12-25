@@ -12,6 +12,33 @@
 
 开发初衷是**将原神玩家所需要的多数功能整合到一起，提升游戏效率与体验**。软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
 
+### 关于祈愿链接
+
+#### 什么是祈愿链接
+
+所谓祈愿链接，就是原神在**查询历史抽卡记录时请求的网址**，它包含了具有时效性（通常是**仅当天有效**）的验证信息，通过这个链接就可以拿到你近六个月的所有抽卡记录，原神助手就是通过这个验证信息（链接里的 `authkey`）来**获取所有的抽卡信息以达到分析祈愿记录的目的**。
+
+#### 如何获取祈愿链接
+
+如果你是在 Windows 平台上游玩原神并且当前使用的电脑上安装了原神，那么你可以：
+
+1. 打开原神，进入祈愿页面，点击历史记录，并往后翻几页等待数据加载完
+2. 重新进入原神助手的祈愿分析页，顺利的话，会自动填充祈愿链接
+3. 如果没有自动填充，继续按照以下步骤进行操作：
+
+- 打开 Windows 的 “开始” 菜单，搜索 PowerShell
+- 打开 Windows PowerShell，接着复制下方的脚本并粘贴到 PowerShell 里执行
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235/raw/702e34117b07294e6959928963b76cfdafdd94f3/getlink.ps1'))} china"
+```
+
+> 要查看这个脚本的具体内容，点击[这里](https://gist.github.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235)
+
+顺利的话，会自动检索链接并复制到剪切板。
+
+如果你电脑没有安装原神或者你习惯在其他平台游玩，请自行搜索链接获取方式。（其他平台都比较繁琐，建议在 PC 端获取）
+
 ### 界面展示
 
 > 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
@@ -32,8 +59,8 @@
 ### 下载
 
 - `v1.1.4` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
-  - GitHub：https://github.com/vikiboss/genshin-helper/releases/download/1.1.4/GenshinHelper-win32-x64-1.1.4.zip
-  - 蓝奏云：https://viki.lanzout.com/ionBJ0f436la
+  - [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.4/GenshinHelper-win32-x64-1.1.4.zip)
+  - [蓝奏云](https://viki.lanzout.com/ionBJ0f436la)
 
 ### Star 历史
 
