@@ -8,10 +8,6 @@ function getComment(times: number) {
     return '欧皇正在酝酿'
   }
 
-  if (times >= 80) {
-    return '最强超级无敌大非酋'
-  }
-
   if (times >= 76) {
     return '超级无敌大非酋'
   }
@@ -43,12 +39,6 @@ function getComment(times: number) {
   if (times >= 48) {
     return '超级无敌大欧皇'
   }
-
-  if (times >= 32) {
-    return '最强超级无敌大欧皇'
-  }
-
-  return '宇宙最强超级无敌大欧皇'
 }
 
 export default function getGachaStatictics(gacha: GachaData) {
@@ -62,7 +52,7 @@ export default function getGachaStatictics(gacha: GachaData) {
     times: number
     // 未出金的抽数
     unluckyDays?: number
-    // 未出紫及以上的抽数
+    // 未出紫的抽数
     unluckyDays_4?: number
     name: string
   }[] = []
@@ -81,7 +71,7 @@ export default function getGachaStatictics(gacha: GachaData) {
     const i4 = []
 
     for (const [i, e] of list.entries()) {
-      if (Number(e.rank_type) >= 4) i4.push(i + 1)
+      if (Number(e.rank_type) === 4) i4.push(i + 1)
     }
 
     // 5 星平均出货次数
