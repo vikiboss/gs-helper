@@ -1,6 +1,6 @@
 module.exports = {
   packagerConfig: {
-    appBundleId: 'org.viki.genshin.helper',
+    appBundleId: 'moe.viki.genshin-helper',
     appCopyright: 'Viki. MIT licese',
     icon: './src/assets/icon.ico'
   },

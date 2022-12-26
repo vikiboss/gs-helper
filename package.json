@@ -2,7 +2,7 @@
   "name": "genshin-helper",
   "productName": "GenshinHelper",
   "private": true,
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "PC 端小工具，支持原神签到、祈愿分析、查看便签状态和游戏详细数据等。基于 Electron 和 React。",
   "main": ".webpack/main",
   "prettier": "@vikiboss/prettier-config",
