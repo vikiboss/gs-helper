@@ -2,24 +2,24 @@ name: Build Electron APP
 
 on:
   push:
-    branches: ["main"]
+    branches: [main]
   pull_request:
-    branches: ["main"]
+    branches: [main]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-app:
+    runs-on: windows-latest
 
     strategy:
       matrix:
+        os: [windows-latest, macos-latest, ubuntu-latest]
         node-version: [18.x]
-        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v3
 
-      - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
+      - name: Setup Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
@@ -29,13 +29,14 @@ jobs:
         with:
           version: 7.14.0
 
-      - name: Build genshin helper
-        run: |
-          pnpm install
-          pnpm run make
+      - name: Install Dependencies
+        run: pnpm install
 
-      - name: Output
+      - name: Build Genshin Helper
+        run: pnpm run make
+
+      - name: Upload Output
         uses: actions/upload-artifact@v3
         with:
-          name: ${{ matrix.os }} output
+          name: GenshinHelper_${{ matrix.os }}
           path: ./out/make/*
