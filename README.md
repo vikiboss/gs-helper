@@ -58,9 +58,12 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 ### 下载
 
-- `v1.1.4` 测试版，[各版本更新日志](https://github.com/vikiboss/genshin-helper/releases)
-  - [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.4/GenshinHelper-win32-x64-1.1.4.zip)
-  - [蓝奏云](https://viki.lanzout.com/ionBJ0f436la)
+当前最新版本为 v1.1.5 Beta，你可以[点此](<(https://github.com/vikiboss/genshin-helper/releases)>)查看各版本更新日志。
+
+**下载 v1.1.5 Beta（压缩包约 97 MB）**
+
+- [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.5/GenshinHelper-win32-x64-1.1.5.zip)
+- [蓝奏云](https://viki.lanzout.com/i0bG80jfxp7a)
 
 ### Star 历史
 
