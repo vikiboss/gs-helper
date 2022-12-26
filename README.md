@@ -58,7 +58,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 ### 下载
 
-当前最新版本为 v1.1.5 Beta，你可以[点此](<(https://github.com/vikiboss/genshin-helper/releases)>)查看各版本更新日志。
+当前最新版本为 v1.1.5 Beta，你可以[点此](https://github.com/vikiboss/genshin-helper/releases)查看各版本更新日志。
 
 **下载 v1.1.5 Beta（压缩包约 97 MB）**
 
