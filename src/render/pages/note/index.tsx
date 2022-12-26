@@ -62,119 +62,120 @@ export default withAuth(function Month() {
   }
 
   const initData = monthInfos.find((e) => e.data_month === initMonth)
-  const monthInfo = monthInfos.find((e) => e.data_month === month)
 
-  const monthData = monthInfo?.month_data
-  const pSign = monthData?.primogems_rate >= 0
-  const mSign = monthData?.mora_rate >= 0
+  function main(initData: MonthInfo) {
+    const monthInfo = monthInfos.find((e) => e.data_month === month)
 
-  const greeting = getGreetingMsg(undefined, true)
+    const monthData = monthInfo.month_data
+    const pSign = monthData.primogems_rate >= 0
+    const mSign = monthData.mora_rate >= 0
 
-  const diffMessage = `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`
+    const greeting = getGreetingMsg(undefined, true)
+
+    const diffMessage = `，相比上月 ${pSign ? '+' : '-'}${Math.abs(monthData.primogems_rate)}%`
+
+    return (
+      <>
+        <div className={styles.title}>冒险札记</div>
+        <div className={styles.content}>
+          <div className={styles.greeting}>
+            {initData.nickname}，{greeting}
+          </div>
+          <div className={styles.today}>
+            <div className={styles.itemBg}>
+              <span>今日</span>
+              <div className={styles.item}>
+                <img src={primogem} />
+                <BounceNumber
+                  number={initData.day_data.current_primogems}
+                  wrapperStyle={{ width: '40px' }}
+                />
+                <img src={mora} />
+                <BounceNumber
+                  number={initData.day_data.current_mora}
+                  wrapperStyle={{ width: '80px' }}
+                />
+              </div>
+            </div>
+            <div className={styles.itemBg}>
+              <span>昨日</span>
+              <div className={styles.item}>
+                <img src={primogem} />
+                <BounceNumber
+                  number={initData.day_data.last_primogems}
+                  wrapperStyle={{ width: '40px' }}
+                />
+                <img src={mora} />
+                <BounceNumber
+                  number={initData.day_data.last_mora}
+                  wrapperStyle={{ width: '80px' }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.filter}>
+            {initData.optional_month.length === 0 ? (
+              <span>暂无数据</span>
+            ) : (
+              <SelectButton
+                value={month}
+                changeItem={setMonth}
+                items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))}
+              />
+            )}
+          </div>
+
+          <div className={styles.monthContent}>
+            <div>
+              <div className={styles.monthTitle}>{monthInfo.data_month}月冒险札记</div>
+              <div className={styles.monthDesc}>当月累计获取资源</div>
+              <div className={styles.monthItem}>
+                <img src={primogem} />
+                <BounceNumber
+                  number={monthData.current_primogems}
+                  wrapperStyle={{ width: '80px' }}
+                />
+                <span>
+                  相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
+                  {monthData.last_primogems > 0 && diffMessage}
+                </span>
+              </div>
+              <div className={styles.monthItem}>
+                <img src={mora} />
+                <BounceNumber number={monthData.current_mora} wrapperStyle={{ width: '80px' }} />
+                {monthData.last_mora > 0 && (
+                  <span>
+                    相比上月 {mSign ? '+' : '-'}
+                    {Math.abs(monthData.mora_rate)}%
+                  </span>
+                )}
+              </div>
+            </div>
+            <div>
+              <Pie
+                data={monthData.group_by.map((e) => ({
+                  id: e.action,
+                  value: e.num
+                }))}
+                width={480}
+                height={240}
+              />
+            </div>
+          </div>
+          <div className={styles.tip}>
+            ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
+          </div>
+        </div>
+      </>
+    )
+  }
 
   return (
     <>
       <div className={styles.container}>
-        {monthInfos[0]?.account_id ? (
-          <>
-            <div className={styles.title}>冒险札记</div>
-            <div className={styles.content}>
-              <div className={styles.greeting}>
-                {initData.nickname}，{greeting}
-              </div>
-              <div className={styles.today}>
-                <div className={styles.itemBg}>
-                  <span>今日</span>
-                  <div className={styles.item}>
-                    <img src={primogem} />
-                    <BounceNumber
-                      number={initData.day_data.current_primogems}
-                      wrapperStyle={{ width: '40px' }}
-                    />
-                    <img src={mora} />
-                    <BounceNumber
-                      number={initData.day_data.current_mora}
-                      wrapperStyle={{ width: '80px' }}
-                    />
-                  </div>
-                </div>
-                <div className={styles.itemBg}>
-                  <span>昨日</span>
-                  <div className={styles.item}>
-                    <img src={primogem} />
-                    <BounceNumber
-                      number={initData.day_data.last_primogems}
-                      wrapperStyle={{ width: '40px' }}
-                    />
-                    <img src={mora} />
-                    <BounceNumber
-                      number={initData.day_data.last_mora}
-                      wrapperStyle={{ width: '80px' }}
-                    />
-                  </div>
-                </div>
-              </div>
+        {monthInfos.length ? main(initData) : <Loading />}
 
-              <div className={styles.filter}>
-                {initData.optional_month.length === 0 ? (
-                  <span>暂无数据</span>
-                ) : (
-                  <SelectButton
-                    value={month}
-                    changeItem={setMonth}
-                    items={initData.optional_month.map((e) => ({ label: `${e}月`, value: e }))}
-                  />
-                )}
-              </div>
-
-              <div className={styles.monthContent}>
-                <div>
-                  <div className={styles.monthTitle}>{monthInfo.data_month}月冒险札记</div>
-                  <div className={styles.monthDesc}>当月累计获取资源</div>
-                  <div className={styles.monthItem}>
-                    <img src={primogem} />
-                    <BounceNumber
-                      number={monthData.current_primogems}
-                      wrapperStyle={{ width: '80px' }}
-                    />
-                    <span>
-                      相当于 {Math.floor(monthData.current_primogems / 160)} 次祈愿
-                      {monthData.last_primogems > 0 && diffMessage}
-                    </span>
-                  </div>
-                  <div className={styles.monthItem}>
-                    <img src={mora} />
-                    <BounceNumber
-                      number={monthData.current_mora}
-                      wrapperStyle={{ width: '80px' }}
-                    />
-                    {monthData.last_mora > 0 && (
-                      <span>
-                        相比上月 {mSign ? '+' : '-'}
-                        {Math.abs(monthData.mora_rate)}%
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div>
-                  <Pie
-                    data={monthData.group_by.map((e) => ({
-                      id: e.action,
-                      value: e.num
-                    }))}
-                    width={480}
-                    height={240}
-                  />
-                </div>
-              </div>
-              <div className={styles.tip}>
-                ※ 仅统计 「充值途径」 之外获取的资源，可能存在延迟，请以游戏内为准，此处仅供参考。
-              </div>
-            </div>
-          </>
-        ) : (
-          <Loading />
-        )}
         <CircleButton
           Icon={TiArrowBack}
           size='middle'
