@@ -1,4 +1,4 @@
-name: NodeJS with Webpack
+name: Build on different platfroms
 
 on:
   push:
@@ -8,16 +8,17 @@ on:
 
 jobs:
   build:
-    runs-on: [windows-latest, ubuntu-latest, macos-latest]
+    runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [18.x]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node-version }} on ${{ matrix.os }}
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
