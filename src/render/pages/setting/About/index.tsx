@@ -97,7 +97,7 @@ export default function About({ notice }: AboutProp) {
   }
 
   function goDownloadPage() {
-    window.open(`${LINK_GITHUB_REPO}#下载`)
+    window.open(`${LINK_GITHUB_REPO}/releases`)
   }
 
   const P1 = (
