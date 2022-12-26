@@ -41,7 +41,7 @@ export default function Home() {
 
   const loading = l1 || l2 || l3
 
-  let first = true
+  // let first = true
 
   async function updateInfo() {
     if (!auth.isLogin) {
@@ -57,12 +57,12 @@ export default function Home() {
       return
     }
 
-    const { isDev } = await nativeApi.getAppInfo()
+    // const { isDev } = await nativeApi.getAppInfo()
 
-    if (isDev && first) {
-      first = false
-      return
-    }
+    // if (isDev && first) {
+    //   first = false
+    //   return
+    // }
 
     const [user] = await Promise.all([getUser(), getSign()])
 

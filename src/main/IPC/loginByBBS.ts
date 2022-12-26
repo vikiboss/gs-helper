@@ -1,7 +1,7 @@
 import { BrowserWindow, session } from 'electron'
 
 import { mainWin, store, isDev, isAppleDevice } from '..'
-import { APP_USER_AGENT_BBS, LINK_MIHOYO_BBS_LOGIN } from '../../constants'
+import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from '../../constants'
 import { verifyCookieAndGetGameRole } from '../../utils/verifyCookieAndGetGameRole'
 
 import type { UserData } from '../../typings'
@@ -33,7 +33,7 @@ export async function loginByBBS() {
   // 阻止弹出新窗口
   dom.setWindowOpenHandler(() => ({ action: 'deny' }))
   // 设置 UA 为手机版本
-  dom.setUserAgent(APP_USER_AGENT_BBS)
+  dom.setUserAgent(APP_USER_AGENT_MOBILE)
   // 加载米游社登录页面
   dom.loadURL(LINK_MIHOYO_BBS_LOGIN)
 
