@@ -2,11 +2,12 @@ import getListByType from './getListByType'
 
 import type { GachaData, GachaType } from '../../../../typings'
 
-const getMostInfo = (gacha: GachaData) => {
+export default function getMostInfo(gacha: GachaData) {
   const predestined = { name: '', count: 0, valid: false }
   const luckest = { name: '', count: 999, valid: false }
   const unluckest = { name: '', count: 0, valid: false }
   const i5 = [] as { count: number; name: string }[]
+
   for (const type of ['activity', 'weapon', 'normal'] as GachaType[]) {
     const list = getListByType(gacha.list, type)
     let lastIndex = -1
@@ -17,7 +18,9 @@ const getMostInfo = (gacha: GachaData) => {
       }
     }
   }
+
   const memo: Record<string, number> = {}
+
   for (const e of i5) {
     if (e.count < luckest.count) {
       luckest.name = e.name
@@ -37,6 +40,7 @@ const getMostInfo = (gacha: GachaData) => {
       memo[e.name] = 1
     }
   }
+
   for (const [k, v] of Object.entries(memo)) {
     if (Number(v) > predestined.count) {
       predestined.name = k
@@ -44,7 +48,6 @@ const getMostInfo = (gacha: GachaData) => {
       predestined.valid = true
     }
   }
+
   return { predestined, luckest, unluckest }
 }
-
-export default getMostInfo

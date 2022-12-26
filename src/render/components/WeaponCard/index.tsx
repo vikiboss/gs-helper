@@ -32,7 +32,7 @@ export interface WeaponCardProp {
 
 const StarImgs: string[] = [star1, star2, star3, star4, star5]
 
-const WeaponCard: React.FC<WeaponCardProp> = (props) => {
+export default function WeaponCard(props: WeaponCardProp) {
   const { className, onClick, weapon, style, withName = true } = props
 
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`]
@@ -51,5 +51,3 @@ const WeaponCard: React.FC<WeaponCardProp> = (props) => {
     </div>
   )
 }
-
-export default WeaponCard

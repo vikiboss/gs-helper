@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { LINK_GITHUB_REPO } from '../../../../constants'
 import groupQRCode from '../../../../assets/group-qrcode.png'
+import Loading from '../../../components/Loading'
 import nativeApi from '../../../utils/nativeApi'
 import useApi from '../../../hooks/useApi'
+import useMount from '../../../hooks/useMount'
 import wxRewardCode from '../../../../assets/wx-reward.jpg'
 
 import type { AppInfo } from '../../../../typings'
 import type { Notice } from '../../../hooks/useNotice'
 
 import styles from './index.less'
-import Loading from '../../../components/Loading'
 
 interface AboutProp {
   notice: Notice
@@ -53,9 +54,10 @@ const GROUP: Group = {
   number: '176593098',
   img: groupQRCode
 }
+
 const AWARD: Award = { title: '请我喝杯咖啡ヾ(≧▽≦*)o', url: LINK_AWARD_WX, img: wxRewardCode }
 
-const About: React.FC<AboutProp> = ({ notice }) => {
+export default function About({ notice }: AboutProp) {
   const [appInfo, setAppInfo] = useState<Partial<AppInfo>>({})
   const [show, setShow] = useState(false)
   const { r: request, d: repoInfo, loading } = useApi<RepoInfo, [string]>(nativeApi.getRepoData)
@@ -66,21 +68,18 @@ const About: React.FC<AboutProp> = ({ notice }) => {
   const award = repoInfo?.qrcode?.award ?? AWARD
   const latestVersion = repoInfo?.version ?? ''
 
-  const init = async () => {
+  useMount(init)
+
+  async function init() {
     setAppInfo(await nativeApi.getAppInfo())
     await request('info.json')
   }
-
-  useEffect(() => {
-    init()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
 
   function Link(href: string, text?: string, onClick?: React.MouseEventHandler<HTMLAnchorElement>) {
     return <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text || ''} `}</a>
   }
 
-  const checkUpdate: React.MouseEventHandler<HTMLAnchorElement> = (e) => {
+  function checkUpdate(e: React.MouseEvent) {
     e.preventDefault()
 
     notice.info({ message: '正在检查更新，请稍后...', autoHide: false })
@@ -97,7 +96,7 @@ const About: React.FC<AboutProp> = ({ notice }) => {
     }, 600)
   }
 
-  const goDownloadPage = () => {
+  function goDownloadPage() {
     window.open(`${LINK_GITHUB_REPO}#下载`)
   }
 
@@ -105,15 +104,14 @@ const About: React.FC<AboutProp> = ({ notice }) => {
     <p>
       「{Link(LINK_GITHUB_REPO, appName)}」 由个人独立开发，基于
       {Link(LINK_ELECTRON, 'Electron')}与{Link(LINK_REACT, 'React')}
-      ，支持多平台。开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。首页便签数据采取自动更新策略（1
-      次/分钟），
+      ，支持多平台。开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。首页便签数据
       <b>可能存在延迟，请以游戏内实时数据为准。</b>
     </p>
   )
 
   const P2 = (
     <p>
-      软件界面设计参考了原神游戏本体及米游社，{' '}
+      软件界面设计参考了原神游戏本体及米游社，
       <b>
         不收集任何用户数据，所有产生的数据（包括但不限于祈愿数据、使用数据、账户信息等）均保存在用户本地，源码公开，请放心使用。
       </b>
@@ -157,11 +155,11 @@ const About: React.FC<AboutProp> = ({ notice }) => {
                 <span>（整个项目的💩代码和 BUG 都是他写的）</span>
               </div>
               <div className={styles.item}>
-                ※ 源码：{Link(LINK_GITHUB_REPO, '前往 GitHub')}
+                ※ 开源地址：{Link(LINK_GITHUB_REPO, '前往 GitHub')}
                 <span>（点个 star 就是最大的支持 QAQ）</span>
               </div>
               <div className={styles.item}>
-                ※ 引用的开源库：参阅 {Link(LINK_PACKAGE_JSON, 'package.json')}
+                ※ 引用开源库：参阅 {Link(LINK_PACKAGE_JSON, 'package.json')}
               </div>
               <div className={styles.item}>※ 交流群：{Link(group?.url, group?.number)}</div>
             </div>
@@ -185,5 +183,3 @@ const About: React.FC<AboutProp> = ({ notice }) => {
     </div>
   )
 }
-
-export default About

@@ -19,7 +19,7 @@ const SIZE_MAP = {
   large: 42
 }
 
-const CircleButton: React.FC<CircleButtonProp> = (props) => {
+export default function CircleButton(props: CircleButtonProp) {
   const { onClick, className = '', size = 'small', Icon, tip = '' } = props
 
   const divClass = classnames(styles.btn, styles[size], className)
@@ -30,5 +30,3 @@ const CircleButton: React.FC<CircleButtonProp> = (props) => {
     </div>
   )
 }
-
-export default CircleButton

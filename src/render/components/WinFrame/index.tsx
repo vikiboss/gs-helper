@@ -11,7 +11,7 @@ export interface WinFrameProp {
   children?: JSX.Element
 }
 
-const WinFrame: React.FC<WinFrameProp> = (props) => {
+export default function WinFrame(props: WinFrameProp) {
   const { title = '' } = props
   return (
     <div className={styles.frame}>
@@ -27,5 +27,3 @@ const WinFrame: React.FC<WinFrameProp> = (props) => {
     </div>
   )
 }
-
-export default WinFrame

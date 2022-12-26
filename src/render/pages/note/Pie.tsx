@@ -1,9 +1,10 @@
 import React from 'react'
-import type { CommonPieProps } from '@nivo/pie'
 import { ResponsivePie } from '@nivo/pie'
 
 import { ChartTheme } from '../../../constants'
 import { Colors } from '../gacha/utils/getPieData'
+
+import type { CommonPieProps } from '@nivo/pie'
 
 type NotePieProp = {
   width: React.CSSProperties['width']
@@ -56,8 +57,9 @@ const legends: CommonPieProps<NotePieProp['data']>['legends'] = [
   }
 ]
 
-const GachaPie: React.FC<NotePieProp> = (props) => {
+export default function GachaPie(props: NotePieProp) {
   const { data, style, width, height, className = '' } = props
+
   return (
     <div
       className={className}
@@ -98,5 +100,3 @@ const GachaPie: React.FC<NotePieProp> = (props) => {
     </div>
   )
 }
-
-export default GachaPie

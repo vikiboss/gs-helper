@@ -17,7 +17,7 @@ const TYPE_MAP: Record<string, IconType> = {
   minimize: FaMinus
 }
 
-const WinButton: React.FC<WinButtonProp> = (props) => {
+export default function WinButton(props: WinButtonProp) {
   const { onClick, className = '', type } = props
 
   const Icon = TYPE_MAP[type]
@@ -30,5 +30,3 @@ const WinButton: React.FC<WinButtonProp> = (props) => {
     </div>
   )
 }
-
-export default WinButton

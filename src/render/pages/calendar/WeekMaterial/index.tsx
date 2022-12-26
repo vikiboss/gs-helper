@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+
 import SelectButton from '../../../components/SelectButton'
 
 import type { Notice } from '../../../hooks/useNotice'
@@ -64,7 +65,7 @@ interface WeekBoss extends WeekItem {
   materials: WeekMaterial[]
 }
 
-const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
+export default function WeekMaterial({ roles }: WeekMaterialProp) {
   const [idx, setIdx] = useState(0)
 
   // 所有材料对应的周本 Boss（包含重复项）
@@ -105,7 +106,6 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
       <div className={styles.bossItem}>
         <div>
           <img src={list[idx]?.icon} />
-          {/* <span>{list[idx]?.name}</span> */}
         </div>
         <div>
           {list[idx]?.materials.map((e) => (
@@ -133,5 +133,3 @@ const WeekMaterial: React.FC<WeekMaterialProp> = ({ roles }) => {
     </div>
   )
 }
-
-export default WeekMaterial

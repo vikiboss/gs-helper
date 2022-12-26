@@ -13,11 +13,11 @@ interface GeneralProp {
   notice: Notice
 }
 
-const General: React.FC<GeneralProp> = ({ notice }) => {
+export default function General({ notice }: GeneralProp) {
   const auth = useAuth()
   const navigate = useNavigate()
 
-  const handleClearData = async () => {
+  async function handleClearData() {
     const isOK = await nativeApi.clearData()
 
     if (isOK) {
@@ -41,5 +41,3 @@ const General: React.FC<GeneralProp> = ({ notice }) => {
     </div>
   )
 }
-
-export default General

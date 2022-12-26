@@ -9,10 +9,8 @@ export interface AlertProp {
   type: 'info' | 'warning' | 'success' | 'faild'
 }
 
-const Alert: React.FC<AlertProp> = (props) => {
+export default function Alert(props: AlertProp) {
   const { visible, type, message } = props
   const visibleClass = visible ? styles.show : styles.hide
   return <div className={cn(styles.alert, styles[type], visibleClass)}>{message}</div>
 }
-
-export default Alert

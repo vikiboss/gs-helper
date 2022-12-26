@@ -13,13 +13,19 @@ export const ItemTypeMap: Record<GachaItemType, string> = {
   role: '角色'
 }
 
-const transformGachaType = (type: FilterType['gacha']): string[] => type.map((e) => GachaTypeMap[e])
+function transformGachaType(type: FilterType['gacha']): string[] {
+  return type.map((e) => GachaTypeMap[e])
+}
 
-const transformItemType = (type: FilterType['item']): string[] => type.map((e) => ItemTypeMap[e])
+function transformItemType(type: FilterType['item']): string[] {
+  return type.map((e) => ItemTypeMap[e])
+}
 
-const transformStarType = (type: FilterType['star']): string[] => type.map((e) => String(e))
+function transformStarType(type: FilterType['star']): string[] {
+  return type.map((e) => String(e))
+}
 
-const filterGachaList = (list: GachaData['list'], type: FilterType) => {
+export default function filterGachaList(list: GachaData['list'], type: FilterType) {
   const { item: itemType, gacha: gachaType, star: starType } = type
 
   let result = [...list]
@@ -30,5 +36,3 @@ const filterGachaList = (list: GachaData['list'], type: FilterType) => {
 
   return result
 }
-
-export default filterGachaList

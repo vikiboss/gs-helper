@@ -31,9 +31,10 @@ const Tips = [
   '「周三」 与 「周六」 开放的秘境和可获取的材料相同。'
 ]
 
-const getUniqueArray = (arr: any[], key: string) => {
+function getUniqueArray(arr: any[], key: string) {
   const set = new Set()
   const results: CalenderEvent[] = []
+
   arr.forEach((e) => {
     if (!set.has(e[key])) {
       set.add(e[key])
@@ -44,9 +45,9 @@ const getUniqueArray = (arr: any[], key: string) => {
   return results
 }
 
-const getMaterialList = (list: CalenderEvent[]) => {
-  const isMaterial = (event: CalenderEvent) => event.kind === '2'
-  const kind2 = list.filter(isMaterial)
+function getMaterialList(list: CalenderEvent[]) {
+  const matirialKink = '2'
+  const kind2 = list.filter((event) => event.kind === matirialKink)
 
   const materials: CalenderEvent[] = []
 
@@ -65,7 +66,7 @@ const getMaterialList = (list: CalenderEvent[]) => {
   return getUniqueArray(materials, 'title')
 }
 
-const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
+export default function DailyMaterial({ cals, notice }: DailyProp) {
   const todayWeek = new Date().getDay()
   const [type, setType] = useState<Type>('roles')
   const [week, setWeek] = useState<number>(todayWeek)
@@ -87,7 +88,7 @@ const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
   const isToday = (arr: string[]) => arr.includes(String(((week + 6) % 7) + 1))
   const list = EventMap[type].filter((e) => isToday(e.drop_day))
 
-  const handleItemClick = (e: CalenderEvent) => {
+  function handleItemClick(e: CalenderEvent) {
     let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : ''
 
     const contents = `${e.contentInfos.map((f) => f.title).join('、')}`
@@ -143,5 +144,3 @@ const DailyMaterial: React.FC<DailyProp> = ({ cals, notice }) => {
     </div>
   )
 }
-
-export default DailyMaterial

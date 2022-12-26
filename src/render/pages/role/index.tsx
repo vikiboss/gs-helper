@@ -3,7 +3,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import dti from 'dom-to-image'
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 
 import {
   ElementImgs,
@@ -15,6 +15,7 @@ import {
 } from './constants'
 import { ElementTypes } from '../../../constants'
 import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils'
+import { wait } from '../../../utils/utils'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
 import ItemCard from '../../components/ItemCard'
@@ -22,6 +23,7 @@ import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
 import RoleCard from '../../components/RoleCard'
 import Select from '../../components/Select'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import WeaponCard from '../../components/WeaponCard'
 import withAuth from '../../auth/withAuth'
@@ -32,7 +34,6 @@ import type { PublicRole } from '../../../services/getPublicRoleList'
 import type { Role as RoleInfo } from '../../../services/getOwnedRoleList'
 
 import styles from './index.less'
-import { wait } from '../../../utils/utils'
 
 export type RenderRoleInfo = RoleInfo & PublicRole
 export type TabType = 'weapon' | 'reliquary' | 'constellation' | 'profile'
@@ -41,7 +42,7 @@ type Filters = [number, string, number]
 
 const defaultFilters: Filters = [0, 'all', 0]
 
-const Role: React.FC = () => {
+export default withAuth(function Role() {
   const navigate = useNavigate()
   const notice = useNotice()
 
@@ -56,15 +57,12 @@ const Role: React.FC = () => {
   const [publicRoles, setPublicRolos] = useState<PublicRole[]>([])
   const [roles, setRoles] = useState<RoleInfo[]>([])
 
-  const updateInfo = async (): Promise<void> => {
+  useMount(updateInfo)
+
+  async function updateInfo() {
     try {
       // 获取官网公开的全部角色列表，包含介绍、图片、声优、语音等数据
       const pbRoles = await nativeApi.getPublicRoles()
-
-      if (!pbRoles.length) {
-        updateInfo()
-        return
-      }
 
       setPublicRolos(pbRoles)
 
@@ -72,10 +70,10 @@ const Role: React.FC = () => {
       const {
         data: { avatars: ownedRoles }
       } = await nativeApi.getOwnedRoles()
-      // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
 
       console.log(ownedRoles)
 
+      // 角色排序先后依据：角色等级、角色星级、角色命座数、武器星级、武器等级
       ownedRoles.sort(
         (p, n) =>
           n.level - p.level ||
@@ -88,8 +86,6 @@ const Role: React.FC = () => {
       if (ownedRoles.length) {
         setRoles(ownedRoles)
       }
-
-      // if (roles.length) setRoles([...roles, ...roles]);
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
@@ -97,27 +93,24 @@ const Role: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    updateInfo()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
   const fullRoles = getFullRoleInfo(roles, publicRoles).filter((e) => {
     const isRarityOK = filters[0] === 0 || e.rarity === filters[0]
     const isElementOK = filters[1] === 'all' || e.element === filters[1]
     const isWeaponOK = filters[2] === 0 || e.weapon.type === filters[2]
+
     return isElementOK && isWeaponOK && isRarityOK
   })
+
   const isDetail = mode === 'detail' && fullRoles.length > 0
   const currentRole = fullRoles[index]
   const reliquaryEffects = isDetail ? getReliquaryEffects(fullRoles[index].reliquaries) : []
 
-  const toggleMode = () => {
+  function toggleMode() {
     setInfoTab('weapon')
     setMode(isDetail ? 'list' : 'detail')
   }
 
-  const handleArrowClick = (direction: 'left' | 'right') => {
+  function handleArrowClick(direction: 'left' | 'right') {
     const isLeft = direction === 'left'
     const i = (index + (isLeft ? -1 : 1) + fullRoles.length) % fullRoles.length
     setIndex(i)
@@ -125,7 +118,7 @@ const Role: React.FC = () => {
     setTimeout(() => setIsRoleChanging(true), 0)
   }
 
-  async function test() {
+  async function handleScreenShot() {
     notice.info({ message: '正在截取角色列表，请勿离开界面...', autoHide: false })
     await wait(320)
 
@@ -157,7 +150,7 @@ const Role: React.FC = () => {
         <div className={styles.topZone}>
           {!isDetail && roles.length > 0 && (
             <>
-              <span className={cn(styles.title)} onClick={test}>
+              <span className={cn(styles.title)} onClick={handleScreenShot}>
                 我的角色
               </span>
               <div className={styles.selects}>
@@ -242,7 +235,7 @@ const Role: React.FC = () => {
                       <div className={cn(styles.name)}>{currentRole.name}</div>
                       <img src={getStarImage(currentRole.rarity)} />
                       <div className={styles.roleAttr}>
-                        <span>Lv. {currentRole.level}</span>
+                        <span>Lv.{currentRole.level}</span>
                         <span>{ElementTypes[currentRole.element]}</span>
                         {!currentRole.name.includes('旅行者') && (
                           <>
@@ -408,6 +401,4 @@ const Role: React.FC = () => {
       {notice.holder}
     </>
   )
-}
-
-export default withAuth(Role)
+})

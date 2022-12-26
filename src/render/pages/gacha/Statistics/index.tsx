@@ -6,7 +6,6 @@ import DateRange from './components/DateRange'
 import ItemPie from './components/ItemPie'
 import StarPie from './components/StarPie'
 import TypePie from './components/TypePie'
-
 import getPieData from '../utils/getPieData'
 import filterGachaList from '../utils/filterGachaList'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
@@ -63,7 +62,7 @@ const filterLines: FilterLine[] = [
   }
 ]
 
-const getListTypeInfo = (list: GachaData['list']) => {
+function getListTypeInfo(list: GachaData['list']) {
   const roles = list.filter((item) => item.item_type === '角色')
   const weapons = list.filter((item) => item.item_type === '武器')
   const r5 = roles.filter((item) => item.rank_type === '5')
@@ -83,7 +82,7 @@ const getListTypeInfo = (list: GachaData['list']) => {
   return message
 }
 
-const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice }) => {
+export default function Statistics({ gacha, filter, toggleFilter, notice }: PageProp) {
   const updateTime = gacha.info.update_time
   const list = filterGachaList(gacha.list, filter)
   const now = new Date()
@@ -170,5 +169,3 @@ const Statistics: React.FC<PageProp> = ({ gacha, filter, toggleFilter, notice })
     </div>
   )
 }
-
-export default Statistics

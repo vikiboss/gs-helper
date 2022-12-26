@@ -1,21 +1,16 @@
 import React from 'react'
-import type { CommonPieProps, MouseEventHandler } from '@nivo/pie'
 import { ResponsivePie } from '@nivo/pie'
 
 import { ChartTheme } from '../../../../../constants'
 import { Colors } from '../../utils/getPieData'
 
+import type { CommonPieProps, MouseEventHandler } from '@nivo/pie'
+
 type ItemPieProp = {
   width: React.CSSProperties['width']
   height: React.CSSProperties['height']
   style?: React.CSSProperties
-  onClick?: MouseEventHandler<
-    {
-      id: string | number
-      value: number
-    },
-    SVGPathElement
-  >
+  onClick?: MouseEventHandler<{ id: string | number; value: number }, SVGPathElement>
   className?: string
   data: { id: string | number; value: number }[]
 }
@@ -58,8 +53,9 @@ const legends: CommonPieProps<ItemPieProp['data']>['legends'] = [
   }
 ]
 
-const ItemPie: React.FC<ItemPieProp> = (props) => {
+export default function ItemPie(props: ItemPieProp) {
   const { data, style, width, height, onClick, className = '' } = props
+
   return (
     <div
       className={className}
@@ -101,5 +97,3 @@ const ItemPie: React.FC<ItemPieProp> = (props) => {
     </div>
   )
 }
-
-export default ItemPie

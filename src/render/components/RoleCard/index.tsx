@@ -48,14 +48,14 @@ const ElementImgs: Record<string, string> = {
   Dendro
 }
 
-const RoleCard: React.FC<RoleCardProp> = ({
+export default function RoleCard({
   className,
   onClick,
   role,
   style,
   withBorder = true,
   withName = true
-}) => {
+}: RoleCardProp) {
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`]
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1]
 
@@ -65,12 +65,10 @@ const RoleCard: React.FC<RoleCardProp> = ({
         <img src={role.icon} />
         <img src={getStarImage(role.rarity)} />
         <img src={ElementImgs[role.element]} />
-        <span>Lv. {role.level}</span>
+        <span>Lv.{role.level}</span>
         {role.actived_constellation_num > 0 && <div>{role.actived_constellation_num}</div>}
       </div>
       {withName && <span>{role.name}</span>}
     </div>
   )
 }
-
-export default RoleCard

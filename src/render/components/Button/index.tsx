@@ -28,7 +28,7 @@ const TYPE_MAP: Record<string, IconType> = {
   cancel: BsXLg
 }
 
-const Button: React.FC<ButtonProp> = (props) => {
+export default function Button(props: ButtonProp) {
   const { onClick, className = '', size = 'small', theme = 'dark', style = {}, type, text } = props
 
   const Icon = type ? TYPE_MAP[type] : null
@@ -44,5 +44,3 @@ const Button: React.FC<ButtonProp> = (props) => {
     </div>
   )
 }
-
-export default Button

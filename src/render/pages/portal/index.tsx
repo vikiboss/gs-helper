@@ -1,14 +1,15 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
 import CircleButton from '../../components/CircleButton'
 import nativeApi from '../../utils/nativeApi'
-
-import styles from './index.less'
 import useNotice from '../../hooks/useNotice'
 import useApi from '../../hooks/useApi'
 import Loading from '../../components/Loading'
+import useMount from '../../hooks/useMount'
+
+import styles from './index.less'
 
 interface PortalItem {
   name: string
@@ -19,17 +20,14 @@ interface PortalItem {
   browser: false
 }
 
-const Portal: React.FC = () => {
+export default function Portal() {
   const navigate = useNavigate()
   const notice = useNotice()
   const { r: fetchRepo, data, loading } = useApi<PortalItem[], [string]>(nativeApi.getRepoData)
 
-  useEffect(() => {
-    fetchRepo('portals.json')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  useMount(() => fetchRepo('portals.json'))
 
-  const handleWindowOpen = (link: PortalItem) => {
+  function handleWindowOpen(link: PortalItem) {
     if (link.browser) {
       window.open(link.url)
     } else {
@@ -70,5 +68,3 @@ const Portal: React.FC = () => {
     </>
   )
 }
-
-export default Portal

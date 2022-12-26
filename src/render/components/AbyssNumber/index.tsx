@@ -11,7 +11,7 @@ interface AbyssNumberProp {
   description?: string
 }
 
-const AbyssNumber: React.FC<AbyssNumberProp> = (props) => {
+export default function AbyssNumber(props: AbyssNumberProp) {
   const { values, className, description = '深境螺旋' } = props
 
   return (
@@ -25,5 +25,3 @@ const AbyssNumber: React.FC<AbyssNumberProp> = (props) => {
     </div>
   )
 }
-
-export default AbyssNumber

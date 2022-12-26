@@ -19,11 +19,13 @@ interface SpiralAbyssProp {
   data: SpiralAbyssData
 }
 
-const formatTime = (timestamp: string) => dayjs(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm')
+function formatTime(timestamp: string) {
+  return dayjs(Number(timestamp) * 1000).format('YYYY/MM/DD HH:mm')
+}
 
 const starMap = ['', star1, star2, star3]
 
-const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
+export default function SpiralAbyss(props: SpiralAbyssProp) {
   const {
     data: {
       schedule_id,
@@ -81,7 +83,11 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
                 .map((e) => (
                   <div key={e.index} className={styles.abyssItem}>
                     <div className={styles.abyssIndex}>
-                      <span>{e.index}</span>
+                      <div>
+                        <span>第</span>
+                        <span>{e.index}</span>
+                        <span>层</span>
+                      </div>
                     </div>
                     <div className={styles.zones}>
                       {e.levels.map((f) => {
@@ -129,5 +135,3 @@ const SpiralAbyss: React.FC<SpiralAbyssProp> = (props) => {
     </div>
   )
 }
-
-export default SpiralAbyss

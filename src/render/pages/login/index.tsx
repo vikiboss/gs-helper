@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { TiArrowBack } from 'react-icons/ti'
 
 // import element from "../../../assets/element.png";
-import useNotice from '../../hooks/useNotice'
-import useAuth from '../../hooks/useAuth'
-import nativeApi from '../../utils/nativeApi'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
+import nativeApi from '../../utils/nativeApi'
+import useAuth from '../../hooks/useAuth'
+import useMount from '../../hooks/useMount'
+import useNotice from '../../hooks/useNotice'
 
 import type { UserData } from '../../../typings'
 
@@ -29,7 +30,7 @@ const LoginGuides = [
   '④ 点击 「验证账号」 按钮完成登录'
 ]
 
-const Login: React.FC<LoginProp> = (props) => {
+export default function Login(props: LoginProp) {
   const notice = useNotice()
   const auth = useAuth()
   const navigate = useNavigate()
@@ -37,7 +38,7 @@ const Login: React.FC<LoginProp> = (props) => {
   const [users, setUsers] = useState<UserData[]>([])
   const [isSwitching, setIsSwitching] = useState<boolean>(state?.changeAccount)
 
-  useEffect(() => {
+  useMount(() => {
     if (props?.from) {
       notice.faild('请登录以使用全部功能')
     }
@@ -50,22 +51,18 @@ const Login: React.FC<LoginProp> = (props) => {
       const storeUsers: UserData[] = await nativeApi.getStoreKey('users')
 
       if (storeUsers.length > 0) {
-        // if (isSwitching) notice.info("点击页面底部已登录 UID 可快速切换本地账号")
         storeUsers.sort((p, n) => Number(p.uid) - Number(n.uid))
         setUsers(storeUsers)
       }
-      // setUsers([...users, ...users])
-      // setUsers([...users, ...users, ...users, ...users, ...users, ...users])
     })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
-  const handleLogin = () => {
+  function handleLogin() {
     notice.success({ message: '正在打开登录页面...', duration: 1200 })
     nativeApi.loginByBBS()
   }
 
-  const handleRefresh = async () => {
+  async function handleRefresh() {
     const user = await nativeApi.getCurrentUser()
 
     if (!user) {
@@ -80,7 +77,7 @@ const Login: React.FC<LoginProp> = (props) => {
     }
   }
 
-  const handleUserSwitch = async (uid: string) => {
+  async function handleUserSwitch(uid: string) {
     await nativeApi.changeUser(uid)
     notice.success(`已切换到 UID ${uid}，正在前往首页...`)
     setTimeout(() => {
@@ -98,7 +95,7 @@ const Login: React.FC<LoginProp> = (props) => {
     return <Navigate {...naviProps} />
   }
 
-  const handleBack = async () => {
+  async function handleBack() {
     const user = await nativeApi.getCurrentUser()
 
     if (!user) {
@@ -159,5 +156,3 @@ const Login: React.FC<LoginProp> = (props) => {
     </>
   )
 }
-
-export default Login

@@ -10,7 +10,7 @@ export interface BounceNumberProp {
 
 const nums: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-const BounceNumber: React.FC<BounceNumberProp> = (props) => {
+export default function BounceNumber(props: BounceNumberProp) {
   const { number, style = {}, duration = 1, size = 16, wrapperStyle = {} } = props
 
   const [transforms, setTransforms] = useState<string[]>([])
@@ -54,5 +54,3 @@ const BounceNumber: React.FC<BounceNumberProp> = (props) => {
     </div>
   )
 }
-
-export default BounceNumber

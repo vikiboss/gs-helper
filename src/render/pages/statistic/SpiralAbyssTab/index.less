@@ -44,24 +44,37 @@
         border-color: @color-primary;
         background-color: rgba(232, 232, 232, 0.6);
 
-        .abyssIndex {
+        .abyss-index {
           border-color: @color-primary;
         }
       }
 
-      .abyssIndex {
+      .abyss-index {
         .transition-quick();
         .flex-center();
 
-        // border-bottom-right-radius: 8px;
-        // border-top-right-radius: 8px;
         border: 3px solid @color-second;
         border-left: none;
-        color: @color-primary;
-        font-size: 32px;
-        font-weight: bold;
         height: 80px;
         width: $height;
+
+        & > div {
+          .flex();
+
+          justify-content: center;
+          align-items: baseline;
+
+          & > span {
+            color: @color-second;
+            margin: 0 2px;
+          }
+
+          & > span:nth-child(2) {
+            color: @color-primary;
+            font-size: 32px;
+            font-weight: bold;
+          }
+        }
       }
 
       .zones {

@@ -12,7 +12,7 @@ interface NumberDescriptionProp {
   description: string
 }
 
-const NumberDescription: React.FC<NumberDescriptionProp> = (props) => {
+export default function NumberDescription(props: NumberDescriptionProp) {
   const { value, sub, description, className } = props
 
   return (
@@ -25,5 +25,3 @@ const NumberDescription: React.FC<NumberDescriptionProp> = (props) => {
     </div>
   )
 }
-
-export default NumberDescription

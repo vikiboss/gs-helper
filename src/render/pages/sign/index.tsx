@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import cn from 'classnames'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import withAuth from '../../auth/withAuth'
 
@@ -30,7 +31,7 @@ export const DefaultSignInfo: SignInfo = {
   sign_cnt_missed: 0
 }
 
-const Sign: React.FC = () => {
+export default withAuth(function Sign() {
   const navigate = useNavigate()
   const notice = useNotice()
   const [signInfo, setSignInfo] = useState<SignInfo>(DefaultSignInfo)
@@ -39,18 +40,20 @@ const Sign: React.FC = () => {
   const { month } = signData
   const { total_sign_day: total, sign_cnt_missed: missed } = signInfo
 
-  const updateInfo = async () => {
+  useMount(updateInfo)
+
+  async function updateInfo() {
     try {
-      const [{ data }, { data: info }] = await Promise.all([
+      const [{ data: signData }, { data: info }] = await Promise.all([
         nativeApi.getBBSSignData(),
         nativeApi.getBBSSignInfo()
       ])
 
-      if (!data.month || !info.today) {
+      if (!signData.month || !info.today) {
         return
       }
 
-      setSignData(data)
+      setSignData(signData)
       setSignInfo(info)
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
@@ -59,43 +62,15 @@ const Sign: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    updateInfo()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleSign = async () => {
-    return notice.success('由于米游社限制，签到功能不再维护，请前往米游社手动签到')
-
+  async function handleSign() {
     if (signInfo.is_sign) {
-      notice.warning('今天已经签过到啦~ 不要重复签到哦')
-    } else if (signInfo.first_bind) {
-      notice.warning('旅行者是第一次绑定游戏账号，请先到米游社手动签到一次吧~')
-    } else {
-      try {
-        const isSignDone = await nativeApi.doBBSSign()
-        const { data: info } = await nativeApi.getBBSSignInfo()
-
-        if (isSignDone && info.is_sign) {
-          const totalSignDay = signInfo.total_sign_day
-          const award = signData.awards[totalSignDay]
-          const todayAward = `${award.name}x${award.cnt}`
-
-          notice.success(`签到成功！获得 ${todayAward}，本月累计签到 ${totalSignDay + 1} 天`)
-
-          await updateInfo()
-        } else if (isSignDone) {
-          notice.faild('无法绕过验证码，签到失败 T_T，请尝试手动签到')
-        } else {
-          notice.faild('网络异常，签到失败 T_T')
-        }
-      } catch {
-        notice.faild('加载超时，请检查网络连接 T_T')
-      }
+      return notice.warning('今天已经签过到啦~ 不要重复签到哦')
     }
+
+    return notice.success('由于米游社限制，签到功能不再维护，请前往米游社手动签到')
   }
 
-  const handleInfo = (i: number) => {
+  function handleInfo(i: number) {
     const signed = i + 1 <= total
     const signText = signed ? '奖励已领取' : '未达到领取要求'
     const message = `本月累签 ${i + 1} 天可领取，当前 ${total} 天，${signText}`
@@ -147,6 +122,4 @@ const Sign: React.FC = () => {
       {notice.holder}
     </>
   )
-}
-
-export default withAuth(Sign)
+})

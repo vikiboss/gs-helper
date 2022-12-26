@@ -28,7 +28,13 @@ export interface ItemCardProp {
 
 const StarImgs: string[] = [star1, star2, star3, star4, star5]
 
-const ItemCard: React.FC<ItemCardProp> = ({ className, onClick, item, style, withName = true }) => {
+export default function ItemCard({
+  className,
+  onClick,
+  item,
+  style,
+  withName = true
+}: ItemCardProp) {
   const getStarClass = (rarity: number) => styles[`star${rarity > 5 ? 6 : rarity}`]
   const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1]
 
@@ -43,5 +49,3 @@ const ItemCard: React.FC<ItemCardProp> = ({ className, onClick, item, style, wit
     </div>
   )
 }
-
-export default ItemCard

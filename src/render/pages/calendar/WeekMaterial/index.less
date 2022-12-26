@@ -2,7 +2,6 @@
 @import '../../../utils/utils.less';
 
 .week-material {
-  .ani-show-right();
   .flex-center-x-column-wrap();
 
   height: 428px;
@@ -17,33 +16,22 @@
 
   img {
     .transition();
-    .shadow();
 
     width: 48px;
     height: $width;
     border-radius: 4px;
     object-fit: cover;
-
-    &:hover {
-      .shadow-deep();
-    }
   }
 
   .boss-item {
-    .shadow-shallow();
+    .ani-show-right();
     .transition();
     .flex-center-x-column();
 
-    border: 1px solid #d1d1d1;
+    border: 2px solid @color-bg-second;
     border-radius: 8px;
     margin-top: 20px;
     padding-top: 10px;
-
-    &:hover {
-      .shadow();
-
-      // transform: translateY(-1px);
-    }
 
     & > div:first-child {
       .flex-center();

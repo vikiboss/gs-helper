@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
@@ -8,6 +8,7 @@ import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
 import SelectButton from '../../components/SelectButton'
 import useApi from '../../hooks/useApi'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import WeekMaterial from './WeekMaterial'
 
@@ -17,46 +18,44 @@ import type { BaseRes } from '../../../typings'
 
 import styles from './index.less'
 
-const Calender: React.FC = () => {
+export default function Calender() {
   const navigate = useNavigate()
   const notice = useNotice()
   const [tab, setTab] = useState<'daily' | 'week'>('daily')
+
   const { r: fetchCal, d: cals, l: l1 } = useApi<BaseRes<CalenderData>>(nativeApi.getCalenderEvents)
-  const { r: fetchRepo, d: roles = [], l: l2 } = useApi<RepoRole[], [string]>(nativeApi.getRepoData)
+  const { r: fetchRepo, d: roles, l: l2 } = useApi<RepoRole[], [string]>(nativeApi.getRepoData)
 
-  const loaded = !(l1 || l2)
+  const loaded = !l1 && !l2
 
-  const fetchData = async () => {
+  useMount(async () => {
     await fetchCal()
     await fetchRepo('roles.json')
-  }
+  })
 
-  useEffect(() => {
-    fetchData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const items = [
+    { label: '日常材料', value: 'daily' },
+    { label: '周本材料', value: 'week' }
+  ]
+
+  const { list } = cals?.data ?? {}
+
+  function Main() {
+    return (
+      <>
+        <div className={styles.top}>
+          <SelectButton value={tab} changeItem={setTab} items={items} />
+        </div>
+        {tab === 'daily' && <DailyMaterial cals={list} notice={notice} />}
+        {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
+      </>
+    )
+  }
 
   return (
     <>
       <div className={styles.container}>
-        {loaded && cals?.data?.list?.length ? (
-          <>
-            <div className={styles.top}>
-              <SelectButton
-                value={tab}
-                changeItem={setTab}
-                items={[
-                  { label: '日常材料', value: 'daily' },
-                  { label: '周本材料', value: 'week' }
-                ]}
-              />
-            </div>
-            {tab === 'daily' && <DailyMaterial cals={cals?.data?.list || []} notice={notice} />}
-            {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
-          </>
-        ) : (
-          <Loading />
-        )}
+        {loaded && list && roles ? <Main /> : <Loading />}
 
         <CircleButton
           Icon={TiArrowBack}
@@ -69,5 +68,3 @@ const Calender: React.FC = () => {
     </>
   )
 }
-
-export default Calender

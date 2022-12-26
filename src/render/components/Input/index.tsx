@@ -7,6 +7,6 @@ export type InputProp = React.DetailedHTMLProps<
   HTMLInputElement
 >
 
-const Input: React.FC<InputProp> = (props) => <input {...props} />
-
-export default Input
+export default function Input(props: InputProp) {
+  return <input {...props} />
+}

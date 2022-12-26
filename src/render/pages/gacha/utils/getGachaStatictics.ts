@@ -3,7 +3,7 @@ import getListByType from './getListByType'
 
 import type { GachaData, GachaType } from '../../../../typings'
 
-const getComment = (times: number) => {
+function getComment(times: number) {
   if (times === 0) {
     return '欧皇正在酝酿'
   }
@@ -51,8 +51,9 @@ const getComment = (times: number) => {
   return '宇宙最强超级无敌大欧皇'
 }
 
-const getGachaStatictics = (gacha: GachaData) => {
+export default function getGachaStatictics(gacha: GachaData) {
   const map = Object.keys(GachaMap).filter((e) => e !== 'newer') as GachaType[]
+
   const res: {
     all: number
     prestige: number
@@ -65,21 +66,31 @@ const getGachaStatictics = (gacha: GachaData) => {
     unluckyDays_4?: number
     name: string
   }[] = []
+
   for (const type of map) {
     // 获取相应祈愿分类的所有数据
     const list = getListByType(gacha.list, type)
     // 存放所有 5 星的索引（1 开始）
     const i5 = []
-    for (const [i, e] of list.entries()) if (e.rank_type === '5') i5.push(i + 1)
+
+    for (const [i, e] of list.entries()) {
+      if (e.rank_type === '5') i5.push(i + 1)
+    }
+
     // 存放所有 4 星及以上的索引（1 开始）
     const i4 = []
-    for (const [i, e] of list.entries()) if (Number(e.rank_type) >= 4) i4.push(i + 1)
+
+    for (const [i, e] of list.entries()) {
+      if (Number(e.rank_type) >= 4) i4.push(i + 1)
+    }
+
     // 5 星平均出货次数
     const times = i5.length ? i5[i5.length - 1] / i5.length : 0
     // 累计未出 5 星的次数
     const unluckyDays = list.length - (i5.length ? i5[i5.length - 1] : 0)
     // 累计未出 4 星的次数
     const unluckyDays4 = list.length - (i4.length ? i4[i4.length - 1] : 0)
+
     res.push({
       all: list.length,
       number: i5.length,
@@ -91,12 +102,14 @@ const getGachaStatictics = (gacha: GachaData) => {
       name: GachaMap[type]
     })
   }
+
   const all = res.reduce((p, n) => p + n.all, 0)
   const number = res.reduce((p, n) => p + n.number, 0)
   const validList = res.filter((e) => e.number !== 0)
   const times = validList.reduce((p, n) => p + Number(n.times) * n.number, 0)
   const count = validList.reduce((p, n) => p + n.number, 0)
   const allAverageTimes = times / (count || 1)
+
   res.push({
     name: '合计',
     all,
@@ -105,7 +118,6 @@ const getGachaStatictics = (gacha: GachaData) => {
     number,
     prestige: Math.round(allAverageTimes * 160)
   })
+
   return res
 }
-
-export default getGachaStatictics

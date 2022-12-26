@@ -10,7 +10,7 @@ export interface LoadingProp {
   className?: React.HTMLAttributes<HTMLDivElement>['className']
 }
 
-const Loading: React.FC<LoadingProp> = (props) => {
+export default function Loading(props: LoadingProp) {
   const { isEmpty = false, className, style = {} } = props
 
   const text = isEmpty ? '没有内容' : '小派蒙正在努力加载中...'
@@ -33,5 +33,3 @@ const Loading: React.FC<LoadingProp> = (props) => {
     </div>
   )
 }
-
-export default Loading

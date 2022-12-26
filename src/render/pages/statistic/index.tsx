@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ import RolesTab from './RolesTab'
 import SelectButton from '../../components/SelectButton'
 import SpiralAbyssTab from './SpiralAbyssTab'
 import useApi from '../../hooks/useApi'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import withAuth from '../../auth/withAuth'
 
@@ -21,14 +22,13 @@ export type TypeState = 'statistic' | 'roles' | 'abyss' | 'lastAbyss'
 
 const { getGameRoleCard, getOwnedRoles, getSpiralAbyss } = nativeApi
 
-const Statistic: React.FC = () => {
+export default withAuth(function Statistic() {
   const navigate = useNavigate()
   const notice = useNotice()
 
   const [type, setType] = useState<TypeState>('statistic')
   // const [type, setType] = useState<TypeState>('roles');
   // const [type, setType] = useState<TypeState>('abyss');
-
   const [accountUid, setAccountUid] = useState<string>('')
   const [currentUid, setCurrentUid] = useState<string>('')
   const [inputUid, setInputUid] = useState<string>('')
@@ -40,7 +40,7 @@ const Statistic: React.FC = () => {
 
   const loaded = !(l1 || l2 || l3 || l4) && card && roles && abyss && lastAbyss
 
-  const updateInfo = async (uid?: string) => {
+  async function updateInfo(uid?: string) {
     const results = await Promise.all([
       fetchCard(uid),
       fetchRoles(uid),
@@ -50,7 +50,7 @@ const Statistic: React.FC = () => {
     return results.every(Boolean)
   }
 
-  useEffect(() => {
+  useMount(() => {
     ;(async () => {
       const { uid } = await nativeApi.getCurrentUser()
       setAccountUid(uid)
@@ -58,10 +58,9 @@ const Statistic: React.FC = () => {
 
       await updateInfo(uid)
     })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
-  const handleQuery = async () => {
+  async function handleQuery() {
     if (!inputUid) {
       const clipboard = await nativeApi.readClipboard()
       const text = clipboard.replace(/\s/g, '').trim()
@@ -98,7 +97,7 @@ const Statistic: React.FC = () => {
     { label: '上期深渊', value: 'lastAbyss' }
   ]
 
-  const backToMyProfile = async () => {
+  async function backToMyProfile() {
     setCurrentUid(accountUid)
     await updateInfo(accountUid)
   }
@@ -153,6 +152,4 @@ const Statistic: React.FC = () => {
       {notice.holder}
     </>
   )
-}
-
-export default withAuth(Statistic)
+})

@@ -20,7 +20,7 @@ export interface SelectButtonProp {
   width?: number
 }
 
-const SelectButton: React.FC<SelectButtonProp> = (props) => {
+export default function SelectButton(props: SelectButtonProp) {
   const {
     changeItem,
     className,
@@ -52,5 +52,3 @@ const SelectButton: React.FC<SelectButtonProp> = (props) => {
     </div>
   )
 }
-
-export default SelectButton

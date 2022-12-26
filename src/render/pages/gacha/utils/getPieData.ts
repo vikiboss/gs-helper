@@ -72,7 +72,7 @@ const t4 = {
   color: Colors.purple
 }
 
-const getPieData = (type: 'star' | 'item' | 'type', list: GachaData['list']) => {
+export default function getPieData(type: 'star' | 'item' | 'type', list: GachaData['list']) {
   switch (type) {
     case 'star': {
       ;[s5, s4, s3].forEach((e) => {
@@ -124,5 +124,3 @@ const getPieData = (type: 'star' | 'item' | 'type', list: GachaData['list']) => 
     }
   }
 }
-
-export default getPieData

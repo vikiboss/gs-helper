@@ -1,10 +1,11 @@
 import cn from 'classnames'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 import { GachaMap } from '..'
 import { NormalItemList } from '../../../../constants'
 import getListByType from '../utils/getListByType'
 import nativeApi from '../../../utils/nativeApi'
+import useMount from '../../../hooks/useMount'
 
 import type { GachaData, GachaType } from '../../../../typings'
 import type { PageProp } from '..'
@@ -15,18 +16,16 @@ import styles from './index.less'
 type TableRow = '3' | '4' | '5' | '合计'
 type TableColumn = GachaType | '合计'
 
-const Data: React.FC<PageProp> = ({ gacha, notice }) => {
+export default function Data({ gacha, notice }: PageProp) {
   const [calenderList, setCalenderList] = useState<CalenderEvent[]>([])
 
-  useEffect(() => {
-    ;(async () => {
+  useMount(() => {
+    ;(async function () {
       try {
-        const {
-          data: { list }
-        } = await nativeApi.getCalenderEvents()
+        const { data } = await nativeApi.getCalenderEvents()
 
-        if (list.length > 0) {
-          setCalenderList(list)
+        if (data?.list.length > 0) {
+          setCalenderList(data.list)
         }
       } catch (e) {
         const isOffline = e?.message?.includes('getaddrinfo')
@@ -34,10 +33,9 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
         notice.faild(msg)
       }
     })()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  })
 
-  const getGachaNumsAndRates = (rank: TableRow, type: TableColumn) => {
+  function getGachaNumsAndRates(rank: TableRow, type: TableColumn) {
     const isAllStar = rank === '合计'
     const isAllType = type === '合计'
     const starList = isAllStar ? gacha.list : gacha.list.filter((e) => e.rank_type === rank)
@@ -46,14 +44,13 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
     return `${itemList.length} / ${((itemList.length * 100) / (gachaList.length || 1)).toFixed(2)}%`
   }
 
-  const getPoolsNamesByList = (list: GachaData['list']) => {
+  function getPoolsNamesByList(list: GachaData['list']) {
     const data: { title: string; name: GachaType; list: { name: string; times: number }[] }[] = [
       { title: '角色池', name: 'activity', list: [] },
       { title: '武器池', name: 'weapon', list: [] },
       { title: '常驻池', name: 'normal', list: [] },
       { title: '新手池', name: 'newer', list: [] }
     ]
-
     ;['activity', 'normal', 'weapon', 'newer'].forEach((type: GachaType) => {
       const filteredList = getListByType(list, type)
       for (const [i, e] of filteredList.entries()) {
@@ -117,10 +114,10 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
                     {e.list.map((item, i) => {
                       const role = calenderList.filter((f) => f.title === item.name)[0]
 
-                      const showDetail = (
+                      function showDetail(
                         _item: { name: string; times: number },
                         isLimit: boolean
-                      ) => {
+                      ) {
                         const pn = _item.times * 160
                         const name = (isLimit ? '限定五星' : '五星') + _item.name
                         const msg = `${name}，累计消耗 ${_item.times} 次祈愿，价值 ${pn} 原石`
@@ -170,5 +167,3 @@ const Data: React.FC<PageProp> = ({ gacha, notice }) => {
     </div>
   )
 }
-
-export default Data

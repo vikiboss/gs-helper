@@ -1,8 +1,9 @@
 import React from 'react'
-import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar'
 import { ResponsiveTimeRange } from '@nivo/calendar'
 
 import { ChartTheme } from '../../../../../constants'
+
+import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar'
 
 type DateRangeProp = {
   width: React.CSSProperties['width']
@@ -27,8 +28,9 @@ const legends: CalendarLegendProps[] = [
   }
 ]
 
-const DateRange: React.FC<DateRangeProp> = (props) => {
+export default function DateRange(props: DateRangeProp) {
   const { data, range, style, width, height, onClick, className = '' } = props
+
   return (
     <div
       className={className}
@@ -58,5 +60,3 @@ const DateRange: React.FC<DateRangeProp> = (props) => {
     </div>
   )
 }
-
-export default DateRange

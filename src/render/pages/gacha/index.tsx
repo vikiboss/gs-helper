@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import dayjs from 'dayjs'
 import { BiImport, BiExport } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
@@ -13,8 +13,10 @@ import Overview from './Overview'
 import Select from '../../components/Select'
 import SelectButton from '../../components/SelectButton'
 import Statistics from './Statistics'
-import useNotice, { type Notice } from '../../hooks/useNotice'
+import useMount from '../../hooks/useMount'
+import useNotice from '../../hooks/useNotice'
 
+import type { Notice } from '../../hooks/useNotice'
 import type { GachaData, GachaType, GachaItemType, StarType } from '../../../typings'
 
 import styles from './index.less'
@@ -60,7 +62,7 @@ const DefaultFilters: FilterType = {
 
 type Pages = 'overview' | 'data' | 'statistics'
 
-const Gacha: React.FC = () => {
+export default function Gacha() {
   const notice = useNotice()
   const navigate = useNavigate()
 
@@ -72,7 +74,9 @@ const Gacha: React.FC = () => {
   const [link, setLink] = useState<string>('')
   const [loading, setLoading] = useState<boolean>(false)
 
-  const getLocalGachaUrl = async (isUserTrriger = false) => {
+  useMount(initGachaData)
+
+  async function getLocalGachaUrl(isUserTrriger = false) {
     const url = await nativeApi.getGachaUrl()
 
     if (url) {
@@ -88,7 +92,7 @@ const Gacha: React.FC = () => {
     return !!url
   }
 
-  const initGachaData = async (newUid?: string) => {
+  async function initGachaData(newUid?: string) {
     const localGachas: GachaData[] = await nativeApi.getLocalGachaDatas()
     setGachas(localGachas)
 
@@ -104,29 +108,14 @@ const Gacha: React.FC = () => {
       setUid(currentUid)
     } else if (localGachas.length) {
       setUid(localGachas[0].info.uid)
-
-      // if (currentUid) {
-      //   notice.warning('当前 UID 的祈愿数据不存在，已自动切换到本地其他 UID')
-      // } else {
-      //   notice.warning('当前未登录米游社账号，已自动选择本地首个 UID')
-      // }
     }
 
     const appInfo = await nativeApi.getAppInfo()
 
     setisWindows(appInfo.isWindows)
-
-    // if (isWindows) {
-    //   await getLocalGachaUrl()
-    // }
   }
 
-  useEffect(() => {
-    initGachaData()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const updateGachaData = async () => {
+  async function updateGachaData() {
     if (loading) {
       return notice.faild('派蒙正在努力获取，请不要重复点击啦！')
     }
@@ -167,7 +156,7 @@ const Gacha: React.FC = () => {
     return setLoading(false)
   }
 
-  const toggleFilter = (filterType: keyof FilterType, target?: any) => {
+  function toggleFilter(filterType: keyof FilterType, target?: any) {
     if (!target) {
       const defaultFilter = DefaultFilters[filterType]
       const isAll = filter[filterType].length === defaultFilter.length
@@ -184,7 +173,7 @@ const Gacha: React.FC = () => {
     }
   }
 
-  const copyLink = () => {
+  function copyLink() {
     nativeApi.writeClipboard(link)
     notice.success('已将 「祈愿记录链接」 复制到剪切板，可供其他软件和平台使用')
   }
@@ -196,7 +185,7 @@ const Gacha: React.FC = () => {
   const format = (str: string) => dayjs(str).format('YYYY/M/D HH:mm')
   const dateRangeText = `${format(firsteDate)} ~ ${format(lastDate)}`
 
-  const handleImport = async () => {
+  async function handleImport() {
     const { code, message, data } = await nativeApi.importGacha()
 
     if (code === 0) {
@@ -205,7 +194,7 @@ const Gacha: React.FC = () => {
     }
   }
 
-  const handleExport = async () => {
+  async function handleExport() {
     const { code, message } = await nativeApi.exportGacha(uid)
 
     if (code === 0) {
@@ -213,7 +202,7 @@ const Gacha: React.FC = () => {
     }
   }
 
-  const handleBack = () => {
+  function handleBack() {
     if (loading) {
       notice.warning('请耐心等待数据加载完成...')
     } else {
@@ -290,7 +279,7 @@ const Gacha: React.FC = () => {
                 title='从本地导入 UIGF 规范的祈愿数据（JSON 格式）'
                 onClick={handleImport}
               >
-                <BiImport size={20} />
+                <BiExport size={20} />
               </div>
 
               {gachas.length !== 0 && (
@@ -299,7 +288,7 @@ const Gacha: React.FC = () => {
                   title='将当前 UID 祈愿数据按 UIGF 规范进行导出（JSON 格式）'
                   onClick={handleExport}
                 >
-                  <BiExport size={20} />
+                  <BiImport size={20} />
                 </div>
               )}
 
@@ -328,5 +317,3 @@ const Gacha: React.FC = () => {
     </>
   )
 }
-
-export default Gacha

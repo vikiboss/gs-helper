@@ -13,7 +13,7 @@ import styles from './index.less'
 
 const LevelMap = ['虚位以待', '欧', '吉', '平', '凶', '非']
 
-const Overview: React.FC<PageProp> = ({ gacha }) => {
+export default function Overview({ gacha }: PageProp) {
   const MostInfo = useMemo(() => getMostInfo(gacha), [gacha])
   const statictics = useMemo(() => getGachaStatictics(gacha), [gacha])
   const luckInfo = useMemo(() => getLuckInfo(gacha), [gacha])
@@ -24,7 +24,7 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
   const days = dateInfo.filter((e) => e.value === maxTimes)
   const maxDay = days.length && days[days.length - 1].day
 
-  const getLevel = (times: number) => {
+  function getLevel(times: number) {
     if (times === 0) return 0
     if (times >= 72) return 5
     if (times >= 68) return 4
@@ -75,9 +75,9 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
             <span className={styles.star5}>{luckInfo.rate}%</span>
           </div>
           {/* <div>
-            {"※ 小保底歪的概率："}
-            <span className={styles.star5}>{luckInfo.rate}%</span>
-          </div> */}
+              {"※ 小保底歪的概率："}
+              <span className={styles.star5}>{luckInfo.rate}%</span>
+            </div> */}
           {limitRoleTimes > 0 ? (
             <div>
               {'※ 平均每个'}
@@ -148,5 +148,3 @@ const Overview: React.FC<PageProp> = ({ gacha }) => {
     </div>
   )
 }
-
-export default Overview

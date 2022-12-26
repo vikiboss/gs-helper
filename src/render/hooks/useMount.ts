@@ -5,7 +5,7 @@ import { useEffect } from 'react'
  */
 const useMount = (func: () => void, callback?: () => void) => {
   useEffect(() => {
-    func?.()
+    func()
 
     if (callback) {
       return callback

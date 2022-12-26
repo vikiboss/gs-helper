@@ -29,24 +29,27 @@ interface UserCardProp {
   user: GameRole
 }
 
-const formatTime = (seconds: number) => {
+function formatTime(seconds: number) {
   if (seconds <= 60) return `${seconds}秒`
   if (seconds <= 3600) return `${Math.ceil(seconds / 60)}分钟`
+
   if (seconds <= 86400) {
     const hour = `${Math.floor(seconds / 3600)}小时`
     const minute = Math.ceil((seconds % 3600) / 60)
     return hour + (minute ? `${minute}分钟` : '')
   }
+
   const day = `${Math.floor(seconds / 86400)}天`
   const hour = Math.ceil((seconds % 86400) / 3600)
   const timeStr = day + (hour ? `${hour}小时` : '')
+
   return timeStr.trim()
 }
 
-const UserCard: React.FC<UserCardProp> = (props) => {
+export default function UserCard(props: UserCardProp) {
   const { notice, user, sign, note, safelyNavigate } = props
 
-  const handleCopy = (str: string, msg: string) => {
+  function handleCopy(str: string, msg: string) {
     nativeApi.writeClipboard(str)
     notice.success(msg)
   }
@@ -286,5 +289,3 @@ const UserCard: React.FC<UserCardProp> = (props) => {
     </>
   )
 }
-
-export default UserCard

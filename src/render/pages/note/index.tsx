@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,6 +12,7 @@ import nativeApi from '../../utils/nativeApi'
 import Pie from './Pie'
 import primogem from '../../../assets/primogem.png'
 import SelectButton from '../../components/SelectButton'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import withAuth from '../../auth/withAuth'
 
@@ -19,43 +20,16 @@ import type { MonthInfo } from '../../../services/getMonthInfo'
 
 import styles from './index.less'
 
-export const DefaultMonthInfo: MonthInfo = {
-  uid: 0,
-  region: 'cn_gf01',
-  account_id: 0,
-  nickname: '旅行者',
-  date: '2022-01-01',
-  month: 0,
-  optional_month: [],
-  data_month: 1,
-  data_last_month: 12,
-  day_data: {
-    current_primogems: 0,
-    current_mora: 0,
-    last_primogems: 0,
-    last_mora: 0
-  },
-  month_data: {
-    current_primogems: 0,
-    current_mora: 0,
-    last_primogems: 0,
-    last_mora: 0,
-    current_primogems_level: 0,
-    primogems_rate: 0,
-    mora_rate: 0,
-    group_by: []
-  },
-  lantern: false
-}
-
-const Month: React.FC = () => {
+export default withAuth(function Month() {
   const navigate = useNavigate()
   const notice = useNotice()
   const [initMonth, setInitMonth] = useState<number>(0)
   const [month, setMonth] = useState<number>(0)
-  const [monthInfos, setMonthInfos] = useState<MonthInfo[]>([DefaultMonthInfo])
+  const [monthInfos, setMonthInfos] = useState<MonthInfo[]>([])
 
-  const init = async () => {
+  useMount(init)
+
+  async function init() {
     try {
       const { data: initMonthData } = await nativeApi.getMonthInfo()
 
@@ -63,7 +37,6 @@ const Month: React.FC = () => {
       setMonth(initMonthData.data_month)
 
       const data: MonthInfo[] = []
-
       const months = initMonthData.optional_month
 
       months.forEach(async (e, i) => {
@@ -88,17 +61,12 @@ const Month: React.FC = () => {
     }
   }
 
-  useEffect(() => {
-    init()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  const initData = monthInfos.find((e) => e.data_month === initMonth)
+  const monthInfo = monthInfos.find((e) => e.data_month === month)
 
-  const initData = monthInfos.filter((e) => e.data_month === initMonth)[0] || DefaultMonthInfo
-  const monthInfo = monthInfos.filter((e) => e.data_month === month)[0] || DefaultMonthInfo
-
-  const monthData = monthInfo.month_data
-  const pSign = monthData.primogems_rate >= 0
-  const mSign = monthData.mora_rate >= 0
+  const monthData = monthInfo?.month_data
+  const pSign = monthData?.primogems_rate >= 0
+  const mSign = monthData?.mora_rate >= 0
 
   const greeting = getGreetingMsg(undefined, true)
 
@@ -217,6 +185,4 @@ const Month: React.FC = () => {
       {notice.holder}
     </>
   )
-}
-
-export default withAuth(Month)
+})

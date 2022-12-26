@@ -13,8 +13,8 @@ interface RolesProp {
   uid: string
 }
 
-const Roles: React.FC<RolesProp> = ({ data = [], uid }) => {
-  const openCabinet = () => {
+export default function Roles({ data = [], uid }: RolesProp) {
+  function openCabinet() {
     nativeApi.openWindow(`https://enka.network/u/${uid}`)
   }
 
@@ -35,5 +35,3 @@ const Roles: React.FC<RolesProp> = ({ data = [], uid }) => {
     </div>
   )
 }
-
-export default Roles

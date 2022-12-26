@@ -1,7 +1,6 @@
 import dayjs from 'dayjs'
 import { useNavigate } from 'react-router-dom'
-import React, { useEffect, useState } from 'react'
-
+import React, { useState } from 'react'
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from 'react-icons/ai'
 import { BiNotepad, BiMap } from 'react-icons/bi'
 import { FaRegCompass } from 'react-icons/fa'
@@ -16,19 +15,20 @@ import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
 import useApi from '../../hooks/useApi'
 import useAuth from '../../hooks/useAuth'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import UserCard from './UserCard'
 
+import type { BaseRes, GameRole } from '../../../typings'
 import type { CalenderEvent } from '../../../services/getCalenderList'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
-import type { BaseRes, GameRole } from '../../../typings'
 import type { SignInfo } from '../../../services/getBBSSignInfo'
 
 import styles from './index.less'
 
 const { getGameRoleInfo, getBBSSignInfo, getDailyNotes, getGachaUrl } = nativeApi
 
-const Home: React.FC = () => {
+export default function Home() {
   const auth = useAuth()
   const notice = useNotice()
   const navigate = useNavigate()
@@ -41,7 +41,9 @@ const Home: React.FC = () => {
 
   const loading = l1 || l2 || l3
 
-  const updateInfo = async () => {
+  let first = true
+
+  async function updateInfo() {
     if (!auth.isLogin) {
       return
     }
@@ -52,6 +54,13 @@ const Home: React.FC = () => {
         autoHide: false
       })
 
+      return
+    }
+
+    const { isDev } = await nativeApi.getAppInfo()
+
+    if (isDev && first) {
+      first = false
       return
     }
 
@@ -73,18 +82,17 @@ const Home: React.FC = () => {
     }
   }
 
-  const isToday = (e: CalenderEvent) => {
+  function isToday(e: CalenderEvent) {
     const now = Number(String(Date.now()).slice(0, 10))
     // const now = 1627315220;
     return Number(e.end_time) > now && Number(e.start_time) < now
   }
 
-  const getTip = async () => {
+  async function getTip() {
     const BirthType = '4'
-    const {
-      data: { list }
-    } = await nativeApi.getCalenderEvents()
-    const event = list.find((e) => e.kind === BirthType && isToday(e))
+
+    const { data } = await nativeApi.getCalenderEvents()
+    const event = data?.list.find((e) => e.kind === BirthType && isToday(e))
 
     if (event) {
       const now = new Date()
@@ -96,23 +104,18 @@ const Home: React.FC = () => {
     return await nativeApi.getHitokoto()
   }
 
-  const init = async () => {
+  useMount(async () => {
     setUrl(await getGachaUrl())
     await updateInfo()
     setTip(await getTip())
-  }
+  })
 
-  useEffect(() => {
-    init()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  const handleOpenGame = async () => {
+  async function handleOpenGame() {
     const { code, message } = await nativeApi.openGame()
     notice[code === 0 ? 'success' : 'faild']({ message, duration: code === 0 ? 8000 : 3000 })
   }
 
-  const handlePageSwitch = (path: string) => {
+  function handlePageSwitch(path: string) {
     const noLogin = !auth.isLogin
     const isPublicPath = ['/gacha', '/strategy', '/calendar', '/portal'].includes(path)
     const noAuth = noLogin && !isPublicPath
@@ -134,13 +137,13 @@ const Home: React.FC = () => {
     navigate(path)
   }
 
-  const handleWindowOpen = (link: string) => {
+  function handleWindowOpen(link: string) {
     notice.success({ message: '正在打开页面...', duration: 1000 })
     nativeApi.openWindow(link)
   }
 
   async function handleTipClick() {
-    setTip('更新中...')
+    setTip('loading...')
 
     setTip(await nativeApi.getHitokoto())
   }
@@ -299,5 +302,3 @@ const Home: React.FC = () => {
     </>
   )
 }
-
-export default Home

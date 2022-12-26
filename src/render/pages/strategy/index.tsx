@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
+import React from 'react'
 
 import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'
 import nativeApi from '../../utils/nativeApi'
 import useApi from '../../hooks/useApi'
+import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 
 import styles from './index.less'
@@ -18,18 +19,15 @@ interface StrategyItem {
   alt?: string
 }
 
-const Strategy: React.FC = () => {
+export default function Strategy() {
   const navigate = useNavigate()
   const notice = useNotice()
 
   const { r: fetchRepo, d = [], loading } = useApi<StrategyItem[], [string]>(nativeApi.getRepoData)
 
-  useEffect(() => {
-    fetchRepo('strategies.json')
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  useMount(() => fetchRepo('strategies.json'))
 
-  const handleWindowOpen = (link: string) => {
+  function handleWindowOpen(link: string) {
     notice.success({
       message: '正在打开页面...',
       duration: 1000
@@ -75,5 +73,3 @@ const Strategy: React.FC = () => {
     </>
   )
 }
-
-export default Strategy

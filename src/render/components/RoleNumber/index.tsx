@@ -12,7 +12,7 @@ interface RoleNumberProp {
   description: string
 }
 
-const RoleNumber: React.FC<RoleNumberProp> = (props) => {
+export default function RoleNumber(props: RoleNumberProp) {
   const { value, avatar, className, description } = props
 
   return (
@@ -25,5 +25,3 @@ const RoleNumber: React.FC<RoleNumberProp> = (props) => {
     </div>
   )
 }
-
-export default RoleNumber

@@ -21,7 +21,7 @@ interface SelectProp {
   wrapperStyle?: React.CSSProperties
 }
 
-const Select: React.FC<SelectProp> = (props) => {
+export default function Select(props: SelectProp) {
   const {
     defaultValue,
     key,
@@ -56,5 +56,3 @@ const Select: React.FC<SelectProp> = (props) => {
     </div>
   )
 }
-
-export default Select

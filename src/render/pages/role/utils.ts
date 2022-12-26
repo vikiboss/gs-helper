@@ -10,13 +10,12 @@ export interface ReliquaryEffect {
   effects: { num: number; effect: string }[]
 }
 
-export const getStarImage = (rarity: number) => StarImgs[(rarity > 5 ? 5 : rarity) - 1]
+export function getStarImage(rarity: number) {
+  return StarImgs[(rarity > 5 ? 5 : rarity) - 1]
+}
 
 // 将获取的个人角色信息和公开的角色的信息合并
-export const getFullRoleInfo = (
-  roles: RoleInfo[],
-  publickRoles: PublicRole[]
-): RenderRoleInfo[] => {
+export function getFullRoleInfo(roles: RoleInfo[], publickRoles: PublicRole[]): RenderRoleInfo[] {
   const res = []
   for (const role of roles) {
     if (role.name === '旅行者') {
@@ -51,7 +50,7 @@ export const getFullRoleInfo = (
 }
 
 // 圣遗物套装效果转换算法
-export const getReliquaryEffects = (reliquaries: Reliquarie[]): ReliquaryEffect[] => {
+export function getReliquaryEffects(reliquaries: Reliquarie[]): ReliquaryEffect[] {
   const effects: ReliquaryEffect[] = []
   // 对每一个圣遗物进行遍历
   for (const e of reliquaries) {

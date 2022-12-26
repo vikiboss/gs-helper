@@ -14,7 +14,7 @@ interface LocationState {
   tab?: 'general' | 'about'
 }
 
-const Setting: React.FC = () => {
+export default function Setting() {
   const notice = useNotice()
   const navigate = useNavigate()
   const state = useLocation().state as LocationState
@@ -46,5 +46,3 @@ const Setting: React.FC = () => {
     </>
   )
 }
-
-export default Setting

@@ -29,7 +29,7 @@ export async function openGame() {
   const name = lang.includes('zh') ? 'YuanShen.exe' : 'GenshinImpact.exe'
 
   // 游戏安装目录
-  let gameDir = await getGameDir()
+  let gameDir = getGameDir()
 
   if (!gameDir) {
     // 如果找不到游戏安装目录，尝试这几个默认位置
