@@ -76,8 +76,7 @@ export async function importGacha() {
     }
   }
 
-  const content = fs.readJsonSync(filePaths[0], { encoding: 'utf8' })
-  const config = JSON.parse(content) as GachaData
+  const config = fs.readJsonSync(filePaths[0], { encoding: 'utf8' }) as GachaData
 
   if (!config.info || !config.list) {
     return {
