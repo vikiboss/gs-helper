@@ -89,14 +89,19 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
   const list = EventMap[type].filter((e) => isToday(e.drop_day))
 
   function handleItemClick(e: CalenderEvent) {
-    let message = type === 'roles' ? `「${e.title}」 天赋培养需要：` : ''
+    let message =
+      type === 'roles'
+        ? `「${e.title}」 天赋培养需要`
+        : type === 'weapons'
+        ? `「${e.title}」 突破需要`
+        : ''
 
-    const contents = `${e.contentInfos.map((f) => f.title).join('、')}`
+    const contents = ` ${e.contentInfos[0].title.slice(0, 4)} 系列`
 
     message += type !== 'materials' ? contents : e.title
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`
 
-    notice.info(message)
+    notice.success(message)
   }
 
   const todayClass = cn(styles.btn, todayWeek === week ? styles.active : '')

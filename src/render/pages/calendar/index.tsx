@@ -40,22 +40,20 @@ export default function Calender() {
 
   const { list } = cals?.data ?? {}
 
-  function Main() {
-    return (
-      <>
-        <div className={styles.top}>
-          <SelectButton value={tab} changeItem={setTab} items={items} />
-        </div>
-        {tab === 'daily' && <DailyMaterial cals={list} notice={notice} />}
-        {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
-      </>
-    )
-  }
+  const main = (
+    <>
+      <div className={styles.top}>
+        <SelectButton value={tab} changeItem={setTab} items={items} />
+      </div>
+      {tab === 'daily' && <DailyMaterial cals={list} notice={notice} />}
+      {tab === 'week' && <WeekMaterial roles={roles || []} notice={notice} />}
+    </>
+  )
 
   return (
     <>
       <div className={styles.container}>
-        {loaded && list && roles ? <Main /> : <Loading />}
+        {loaded && list && roles ? main : <Loading />}
 
         <CircleButton
           Icon={TiArrowBack}
