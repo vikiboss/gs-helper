@@ -67,8 +67,8 @@ export const API_TAKUMI_RECORD = 'https://api-takumi-record.mihoyo.com'
 export const API_HK4E = 'https://hk4e-api.mihoyo.com'
 export const API_STATIC = 'https://api-static.mihoyo.com'
 export const API_YS_CONTENT = 'https://ys.mihoyo.com/content'
-export const API_REPO_DATA = 'https://gh-raw.deno.dev/vikiboss/genshin-helper/main/data'
-export const API_REPO_DATA_BAK = 'https://raw.fastgit.org/vikiboss/genshin-helper/main/data'
+export const API_DATA = 'https://gia.deno.dev'
+export const API_DATA_BAK = 'https://gia.deno.dev'
 
 export const ElementTypes: Record<string, string> = {
   Cryo: '冰',
