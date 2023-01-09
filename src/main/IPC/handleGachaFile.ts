@@ -1,6 +1,7 @@
 import fs from 'fs-extra'
 import dayjs from 'dayjs'
 import { app, dialog } from 'electron'
+import json from 'json-bigint'
 
 import { AppName } from '../../constants'
 import { getLocalGachaDatas } from './getLocalGachaDatas'
@@ -76,7 +77,15 @@ export async function importGacha() {
     }
   }
 
-  const config = fs.readJsonSync(filePaths[0], { encoding: 'utf8' }) as GachaData
+  // 处理 js 整数溢出问题
+  const raw = fs.readFileSync(filePaths[0], { encoding: 'utf8' })
+  const config = json.parse(raw) as GachaData
+
+  if (config.list.length && typeof config.list[0]?.id === 'bigint') {
+    for (let i = 0; i < config.list.length; i++) {
+      config.list[i].id = String(config.list[i].id)
+    }
+  }
 
   if (!config.info || !config.list) {
     return {

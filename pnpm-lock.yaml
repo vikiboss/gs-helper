@@ -11,6 +11,7 @@ specifiers:
   '@nivo/tooltip': 0.80.0
   '@types/dom-to-image': ^2.6.4
   '@types/fs-extra': ^9.0.13
+  '@types/json-bigint': ^1.0.1
   '@types/node': ^18.11.9
   '@types/react': ^18.0.25
   '@types/react-dom': ^18.0.8
@@ -33,6 +34,7 @@ specifiers:
   eslint-plugin-promise: ^6.1.1
   fork-ts-checker-webpack-plugin: ^6.5.2
   fs-extra: ^11.1.0
+  json-bigint: ^1.0.0
   json-schema-typed: ^8.0.1
   less: ^4.1.3
   less-loader: ^10.2.0
@@ -62,6 +64,7 @@ dependencies:
   dom-to-image: 2.6.0
   electron-store: 8.1.0
   fs-extra: 11.1.0
+  json-bigint: 1.0.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.6.0_react@18.2.0
@@ -74,6 +77,7 @@ devDependencies:
   '@electron-forge/plugin-webpack': 6.0.4
   '@types/dom-to-image': 2.6.4
   '@types/fs-extra': 9.0.13
+  '@types/json-bigint': 1.0.1
   '@types/node': 18.11.9
   '@types/react': 18.0.25
   '@types/react-dom': 18.0.8
@@ -1003,6 +1007,10 @@ packages:
       '@types/node': 18.11.9
     dev: true
 
+  /@types/json-bigint/1.0.1:
+    resolution: {integrity: sha512-zpchZLNsNuzJHi6v64UBoFWAvQlPhch7XAi36FkH6tL1bbbmimIF+cS7vwkzY4u5RaSWMoflQfu+TshMPPw8uw==}
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
@@ -1643,6 +1651,10 @@ packages:
   /big.js/5.2.2:
     resolution: {integrity: sha512-vyL2OymJxmarO8gxMr0mhChsO9QGwhynfuu4+MHTAW6czfq9humCB7rKpUjDd9YUiDPU4mzpyupFSvOClAwbmQ==}
     dev: true
+
+  /bignumber.js/9.1.1:
+    resolution: {integrity: sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==}
+    dev: false
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==}
@@ -4294,6 +4306,12 @@ packages:
     dependencies:
       argparse: 2.0.1
     dev: true
+
+  /json-bigint/1.0.0:
+    resolution: {integrity: sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ==}
+    dependencies:
+      bignumber.js: 9.1.1
+    dev: false
 
   /json-buffer/3.0.0:
     resolution: {integrity: sha512-CuUqjv0FUZIdXkHPI8MezCnFCdaTAacej1TZYulLoAg1h/PhwkdXFN4V/gzY4g+fMBCOV2xF+rp7t2XD2ns/NQ==}
