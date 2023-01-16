@@ -24,7 +24,7 @@ export default function General({ notice }: GeneralProp) {
       auth.logout(undefined, true)
     }
 
-    notice[isOK ? 'success' : 'faild'](isOK ? '重置成功，建议重启软件' : '无读写权限')
+    notice[isOK ? 'success' : 'failed'](isOK ? '重置成功，建议重启软件' : '无读写权限')
 
     setTimeout(() => navigate('/'), 1000)
   }

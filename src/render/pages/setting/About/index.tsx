@@ -39,11 +39,11 @@ interface RepoInfo {
   qrcode: Qrcode
 }
 
-const LINK_LICENSE = 'https://github.com/vikiboss/genshin-helper/blob/main/LICENCE'
+const LINK_LICENSE = 'https://github.com/vikiboss/gs-helper/blob/main/LICENCE'
 const LINK_AUTHOR_GITHUB = 'https://github.com/vikiboss'
 const LINK_GROUP_QQ = 'https://jq.qq.com/?_wv=1027&k=InHF9niP'
 const LINK_ELECTRON = 'https://www.electronjs.org'
-const LINK_PACKAGE_JSON = 'https://github.com/vikiboss/genshin-helper/blob/main/package.json'
+const LINK_PACKAGE_JSON = 'https://github.com/vikiboss/gs-helper/blob/main/package.json'
 const LINK_REACT = 'https://reactjs.org'
 const LINK_MIHOYO = 'https://www.mihoyo.com/'
 const LINK_AWARD_WX = 'https://s2.loli.net/2022/11/03/CIHUnX1u5r8GkKS.jpg'

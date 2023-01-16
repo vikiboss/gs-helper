@@ -78,7 +78,7 @@ export default function Home() {
 
       navigate('/login', { state: { isExpired: true } })
     } else if (meetCaptcha) {
-      notice.faild('无法绕过验证码，请到米游社战绩页验证后重试')
+      notice.failed('无法绕过验证码，请到米游社战绩页验证后重试')
     }
   }
 
@@ -112,7 +112,7 @@ export default function Home() {
 
   async function handleOpenGame() {
     const { code, message } = await nativeApi.openGame()
-    notice[code === 0 ? 'success' : 'faild']({ message, duration: code === 0 ? 8000 : 3000 })
+    notice[code === 0 ? 'success' : 'failed']({ message, duration: code === 0 ? 8000 : 3000 })
   }
 
   function handlePageSwitch(path: string) {

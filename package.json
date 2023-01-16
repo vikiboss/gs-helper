@@ -1,5 +1,5 @@
 {
-  "name": "genshin-helper",
+  "name": "gs-helper",
   "productName": "GenshinHelper",
   "private": true,
   "version": "1.2.1",
@@ -18,8 +18,8 @@
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "eslint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
   },
-  "repository": "vikiboss/genshin-helper",
-  "homepage": "https://github.com/vikiboss/genshin-helper#readme",
+  "repository": "vikiboss/gs-helper",
+  "homepage": "https://github.com/vikiboss/gs-helper#readme",
   "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
   "license": "MIT",
   "config": {

@@ -89,7 +89,7 @@ export default withAuth(function Role() {
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      notice.faild(msg)
+      notice.failed(msg)
     }
   }
 
@@ -134,7 +134,7 @@ export default withAuth(function Role() {
 
       notice.success('截取成功，已复制到剪切板')
     } catch {
-      notice.faild('截取失败，请勿在操作完成前离开界面')
+      notice.failed('截取失败，请勿在操作完成前离开界面')
     }
   }
 

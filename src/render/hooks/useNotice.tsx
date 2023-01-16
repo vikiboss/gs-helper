@@ -18,7 +18,7 @@ export interface Notice {
   info: (optons: AlertOptions | string) => void
   warning: (optons: AlertOptions | string) => void
   success: (optons: AlertOptions | string) => void
-  faild: (optons: AlertOptions | string) => void
+  failed: (optons: AlertOptions | string) => void
   holder: ReactElement<AlertProp, any>
 }
 
@@ -71,11 +71,11 @@ const useNotice = (): Notice => {
       }
       showAlert({ ...optons, type: 'success' })
     },
-    faild(optons: AlertOptions | string) {
+    failed(optons: AlertOptions | string) {
       if (typeof optons === 'string') {
         optons = { message: optons }
       }
-      showAlert({ ...optons, type: 'faild' })
+      showAlert({ ...optons, type: 'failed' })
     },
     holder: <Alert visible={visible} type={aType} message={aMessage} />
   }

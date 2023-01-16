@@ -51,13 +51,13 @@ export default withAuth(function Month() {
             setMonthInfos(data)
           }
         } else {
-          notice.faild('网络异常，部分月份数据获取失败，请重试')
+          notice.failed('网络异常，部分月份数据获取失败，请重试')
         }
       })
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      notice.faild(msg)
+      notice.failed(msg)
     }
   }
 

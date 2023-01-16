@@ -6,7 +6,7 @@ import styles from './index.less'
 export interface AlertProp {
   visible: boolean
   message: string
-  type: 'info' | 'warning' | 'success' | 'faild'
+  type: 'info' | 'warning' | 'success' | 'failed'
 }
 
 export default function Alert(props: AlertProp) {

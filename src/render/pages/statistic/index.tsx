@@ -82,7 +82,7 @@ export default withAuth(function Statistic() {
       const isOK = await updateInfo(inputUid)
 
       if (!isOK) {
-        notice.faild('该 UID 不存在、未绑定米游社或数据未公开')
+        notice.failed('该 UID 不存在、未绑定米游社或数据未公开')
       } else {
         setCurrentUid(inputUid)
         notice.success({ message: '数据获取成功', duration: 1000 })

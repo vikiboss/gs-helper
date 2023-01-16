@@ -58,7 +58,7 @@ export default withAuth(function Sign() {
     } catch (e) {
       const isOffline = e?.message?.includes('getaddrinfo')
       const msg = isOffline ? '网络状况不佳，请检查后重试 T_T' : '加载超时，请检查网络连接 T_T'
-      notice.faild(msg)
+      notice.failed(msg)
     }
   }
 
@@ -74,7 +74,7 @@ export default withAuth(function Sign() {
     const signed = i + 1 <= total
     const signText = signed ? '奖励已领取' : '未达到领取要求'
     const message = `本月累签 ${i + 1} 天可领取，当前 ${total} 天，${signText}`
-    notice[signed ? 'success' : 'faild'](message)
+    notice[signed ? 'success' : 'failed'](message)
   }
 
   return (

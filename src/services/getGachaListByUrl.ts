@@ -122,7 +122,7 @@ export async function getGachaListByUrl(gachaUrl: string) {
           console.log('getGachaListByUrl: ', data.data, data.retcode)
 
           const idx = urlParams.get('page')
-          const error = `faild to fetch page ${idx} in type ${type}`
+          const error = `failed to fetch page ${idx} in type ${type}`
 
           console.log('getGachaListByUrl: ', error)
         }

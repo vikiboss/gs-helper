@@ -40,11 +40,11 @@ export default function Login(props: LoginProp) {
 
   useMount(() => {
     if (props?.from) {
-      notice.faild('请登录以使用全部功能')
+      notice.failed('请登录以使用全部功能')
     }
 
     if (state?.isExpired) {
-      notice.faild('验证信息已过期或未绑定 UID，请重新登录，或前往米游社绑定')
+      notice.failed('验证信息已过期或未绑定 UID，请重新登录，或前往米游社绑定')
     }
 
     ;(async () => {
@@ -67,7 +67,7 @@ export default function Login(props: LoginProp) {
 
     if (!user) {
       auth.logout()
-      notice.faild('未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID')
+      notice.failed('未获取到 UID 信息，请确保登录成功且在米游社绑定过 UID')
     } else {
       notice.success('登录成功，正在前往首页登录前页面...')
       setTimeout(() => {

@@ -87,7 +87,7 @@ export default function Gacha() {
       }
     } else if (isUserTrriger) {
       const message = '本地缓存中不存在有效链接，请先在游戏内打开 「祈愿历史记录」 页面'
-      notice.faild(message)
+      notice.failed(message)
     }
     return !!url
   }
@@ -117,7 +117,7 @@ export default function Gacha() {
 
   async function updateGachaData() {
     if (loading) {
-      return notice.faild('派蒙正在努力获取，请不要重复点击啦！')
+      return notice.failed('派蒙正在努力获取，请不要重复点击啦！')
     }
 
     if (!link) {
@@ -128,7 +128,7 @@ export default function Gacha() {
     }
 
     if (!link.match(/^https?:\/\//)) {
-      return notice.faild('输入的祈愿链接无效，请检查后重试')
+      return notice.failed('输入的祈愿链接无效，请检查后重试')
     }
 
     notice.info({
@@ -147,7 +147,7 @@ export default function Gacha() {
 
       await initGachaData(data.info.uid)
     } else {
-      notice.faild({
+      notice.failed({
         message: '数据拉取异常，链接可能已失效，请打开祈愿记录页并重新获取链接后重试',
         duration: 10000
       })

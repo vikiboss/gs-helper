@@ -57,7 +57,7 @@ export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/'
 export const GAME_BIZ = 'hk4e_cn'
 
 export const LINK_BBS_REFERER = 'https://webstatic.mihoyo.com/'
-export const LINK_GITHUB_REPO = 'https://github.com/vikiboss/genshin-helper'
+export const LINK_GITHUB_REPO = 'https://github.com/vikiboss/gs-helper'
 export const LINK_MIHOYO_BBS_LOGIN = 'https://m.bbs.mihoyo.com/ys/'
 export const LINK_GENSHIN_MAP = 'https://webstatic.mihoyo.com/ys/app/interactive-map'
 
