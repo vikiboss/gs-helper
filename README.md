@@ -62,7 +62,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 **下载 v1.2.1 Beta（压缩包约 97 MB）**
 
-- [蓝奏云](https://viki.lanzout.com/i0bG80jfxp7a)
+- [蓝奏云](https://viki.lanzout.com/ibTdR0l600be)
 
 ### 本地开发
 
