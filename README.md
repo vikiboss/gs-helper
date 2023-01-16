@@ -1,4 +1,4 @@
-![genshin-helper](https://socialify.git.ci/vikiboss/genshin-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2Fvikiboss%2Fgenshin-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
+![gs-helper](https://socialify.git.ci/vikiboss/gs-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2Fvikiboss%2Fgs-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
 
 中文 | [English](README-en.md)
 
@@ -58,16 +58,11 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 ### 下载
 
-当前最新版本为 v1.1.5 Beta，你可以[点此](https://github.com/vikiboss/genshin-helper/releases)查看各版本更新日志。
+当前最新版本为 v1.2.1 Beta。
 
-**下载 v1.1.5 Beta（压缩包约 97 MB）**
+**下载 v1.2.1 Beta（压缩包约 97 MB）**
 
-- [GitHub](https://github.com/vikiboss/genshin-helper/releases/download/1.1.5/GenshinHelper-win32-x64-1.1.5.zip)
 - [蓝奏云](https://viki.lanzout.com/i0bG80jfxp7a)
-
-### Star 历史
-
-[![Star History Chart](https://api.star-history.com/svg?repos=vikiboss/genshin-helper&type=Date)](https://star-history.com/#vikiboss/genshin-helper&Date)
 
 ### 本地开发
 
@@ -81,9 +76,9 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 # 使用 npm 从国内镜像全局安装 pnpm (如果没有安装 pnpm)
 npm i -g pnpm --registry=https://registry.npmmirror.com/
 # 使用 Git 将本项目 clone 到本地
-git clone git@github.com:vikiboss/genshin-helper.git
+git clone git@github.com:vikiboss/gs-helper.git
 # 切换到项目目录
-cd genshin-helper
+cd gs-helper
 # 安装项目依赖（React、Electron、webpack 等）
 pnpm install
 # 启动本地开发环境
@@ -97,4 +92,4 @@ pnpm run make
 
 ### License
 
-- [MIT](LICENCE) License © 2022-PRESENT Viki
+- [MIT](LICENSE) License © 2022-PRESENT Viki
