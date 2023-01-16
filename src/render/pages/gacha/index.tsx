@@ -93,7 +93,7 @@ export default function Gacha() {
   }
 
   async function initGachaData(newUid?: string) {
-    const localGachas: GachaData[] = await nativeApi.getLocalGachaDatas()
+    const localGachas: GachaData[] = await nativeApi.getLocalGachaData()
     setGachas(localGachas)
 
     if (newUid) {

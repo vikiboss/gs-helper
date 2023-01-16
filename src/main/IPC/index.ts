@@ -16,7 +16,7 @@ import { getGameRecordCard } from '../../services/getGameRecordCard'
 import { getGameRoleCard } from '../../services/getGameRoleCard'
 import { getGameRoleInfo } from '../../services/getGameRoleInfo'
 import { getHitokoto } from '../../services/getHitokoto'
-import { getLocalGachaDatas } from './getLocalGachaDatas'
+import { getLocalGachaData } from './getLocalGachaData'
 import { getMonthInfo } from '../../services/getMonthInfo'
 import { getOwnedRoleList } from '../../services/getOwnedRoleList'
 import { getPublicRoleList } from '../../services/getPublicRoleList'
@@ -67,7 +67,7 @@ export function bindIPC(win: BrowserWindow) {
   ipc.handle(ies.getGameRoleCard, async (_, uid?: string) => getGameRoleCard(uid))
   ipc.handle(ies.getGameRoleInfo, async () => getGameRoleInfo())
   ipc.handle(ies.getHitokoto, async () => getHitokoto())
-  ipc.handle(ies.getLocalGachaDatas, () => getLocalGachaDatas())
+  ipc.handle(ies.getLocalGachaData, () => getLocalGachaData())
   ipc.handle(ies.getMonthInfo, async (_, month?: number) => getMonthInfo(month))
   ipc.handle(ies.getOwnedRoles, async (_, uid?: string) => getOwnedRoleList(uid))
   ipc.handle(ies.getPublicRoles, async () => getPublicRoleList())

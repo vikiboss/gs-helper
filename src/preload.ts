@@ -78,8 +78,8 @@ export const apis = {
   getHitokoto: function () {
     return <Promise<string>>ipc.invoke(IpcEvents.getHitokoto)
   },
-  getLocalGachaDatas: function () {
-    return <Promise<GachaData[]>>ipc.invoke(IpcEvents.getLocalGachaDatas)
+  getLocalGachaData: function () {
+    return <Promise<GachaData[]>>ipc.invoke(IpcEvents.getLocalGachaData)
   },
   getMonthInfo: function (month?: number) {
     return <Promise<BaseRes<MonthInfo>>>ipc.invoke(IpcEvents.getMonthInfo, month)

@@ -4,7 +4,7 @@ import { app, dialog } from 'electron'
 import json from 'json-bigint'
 
 import { AppName } from '../../constants'
-import { getLocalGachaDatas } from './getLocalGachaDatas'
+import { getLocalGachaData } from './getLocalGachaData'
 import { mainWin } from '..'
 import { updateLocalGachaData } from '../../utils/updateLocalGachaData'
 
@@ -30,7 +30,7 @@ export async function exportGacha(uid: string) {
   }
 
   // 找到对应的 uid 祈愿数据文件
-  const data = getLocalGachaDatas().find((e) => e.info.uid === uid)
+  const data = getLocalGachaData().find((e) => e.info.uid === uid)
 
   if (!data) {
     return {

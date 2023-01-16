@@ -7,7 +7,7 @@ import { AppName } from '../../constants'
 import type { GachaData } from '../../typings'
 
 // 尝试获取本地所有祈愿数据
-export function getLocalGachaDatas() {
+export function getLocalGachaData() {
   // 获取当前的软件目录
   const AppPath = app.getPath('userData')
   // 获取存放所有祈愿数据的目录

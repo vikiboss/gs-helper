@@ -18,7 +18,7 @@ export const IpcEvents = {
   getGameRoleCard: 'GET_GAME_ROLE_CARD',
   getGameRoleInfo: 'GET_GAME_ROLE_INFO',
   getHitokoto: 'GET_HITOKOTO',
-  getLocalGachaDatas: 'GET_LOCAL_GACHA_DATAS',
+  getLocalGachaData: 'GET_LOCAL_GACHA_DATA',
   getMonthInfo: 'GET_MONTH_INFO',
   getOwnedRoles: 'GET_OWNED_ROLES',
   getPublicRoles: 'GET_PUBLIC_ROLES',
@@ -28,7 +28,7 @@ export const IpcEvents = {
   hideApp: 'HIDE_APP',
   importGacha: 'IMPORT_GACHA',
   loginByBBS: 'LOGIN_BY_BBS',
-  minimizeApp: 'MONIMIZE_APP',
+  minimizeApp: 'MINIMIZE_APP',
   openGame: 'OPEN_GAME',
   openWindow: 'OPEN_WINDOW',
   readClipboard: 'READ_CLIPBOARD',
@@ -67,8 +67,8 @@ export const API_TAKUMI_RECORD = 'https://api-takumi-record.mihoyo.com'
 export const API_HK4E = 'https://hk4e-api.mihoyo.com'
 export const API_STATIC = 'https://api-static.mihoyo.com'
 export const API_YS_CONTENT = 'https://ys.mihoyo.com/content'
-export const API_DATA = 'https://gia.deno.dev'
-export const API_DATA_BAK = 'https://gia.deno.dev'
+export const API_DATA = 'https://ys.viki.moe'
+export const API_DATA_BAK = 'https://ys.viki.moe'
 
 export const ElementTypes: Record<string, string> = {
   Cryo: '冰',
