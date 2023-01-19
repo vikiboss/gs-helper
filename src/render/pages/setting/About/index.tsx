@@ -79,15 +79,34 @@ export default function About({ notice }: AboutProp) {
     return <a href={href} target='_blank' rel='noreferrer' onClick={onClick}>{` ${text || ''} `}</a>
   }
 
+  /** 版本号比较，前者大时返回 1，后者大返回 -1，相同返回 0 */
+  function compareVersion(v1: string, v2: string) {
+    const v1s = v1.split('.')
+    const v2s = v2.split('.')
+
+    const length = Math.max(v1s.length, v2s.length)
+
+    for (let i = 0; i < length; i++) {
+      const n1 = Number(v1s[i] || 0)
+      const n2 = Number(v2s[i] || 0)
+
+      if (n1 > n2) return 1
+      if (n1 < n2) return -1
+    }
+
+    return 0
+  }
+
   function checkUpdate(e: React.MouseEvent) {
     e.preventDefault()
 
     notice.info({ message: '正在检查更新，请稍后...', autoHide: false })
 
     setTimeout(() => {
-      if (latestVersion === version) {
+      const status = compareVersion(latestVersion, version)
+      if (status === 0 || status === -1) {
         notice.success({ message: '恭喜，当前使用版本为最新版本。' })
-      } else {
+      } else if (status === 1) {
         notice.success({
           message: `新版本 v${latestVersion} 已发布，请前往项目主页或交流群下载。`
         })

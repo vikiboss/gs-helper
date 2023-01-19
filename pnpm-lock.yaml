@@ -18,7 +18,7 @@ specifiers:
   '@types/uuid': ^8.3.4
   '@vercel/webpack-asset-relocator-loader': 1.7.0
   '@vikiboss/prettier-config': ^0.2.2
-  axios: ^1.2.1
+  axios: ^1.2.2
   classnames: ^2.3.2
   conf: ^10.2.0
   css-loader: ^6.7.1
@@ -58,7 +58,7 @@ dependencies:
   '@nivo/core': 0.80.0_g5kln477lwx3caqucf3exzf3du
   '@nivo/pie': 0.80.0_6zomopewppbkd5eeu2nbbcio3i
   '@nivo/tooltip': 0.80.0_wyuiu3ihipn7hpncy62nqhyrji
-  axios: 1.2.1
+  axios: 1.2.3
   classnames: 2.3.2
   dayjs: 1.11.7
   dom-to-image: 2.6.0
@@ -1622,8 +1622,8 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /axios/1.2.1:
-    resolution: {integrity: sha512-I88cFiGu9ryt/tfVEi4kX2SITsvDddTajXTOFmt2uK1ZVA8LytjtdeyefdQWEf5PU8w+4SSJDoYnggflB5tW4A==}
+  /axios/1.2.3:
+    resolution: {integrity: sha512-pdDkMYJeuXLZ6Xj/Q5J3Phpe+jbGdsSzlQaFVkMQzRUL05+6+tetX8TV3p4HrU4kzuO9bt+io/yGQxuyxA/xcw==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0

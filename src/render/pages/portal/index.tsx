@@ -27,8 +27,8 @@ export default function Portal() {
 
   useMount(() => fetchRepo('portals.json'))
 
-  function handleWindowOpen(link: PortalItem) {
-    if (link.browser) {
+  function handleClick(link: PortalItem, openInDefaultBrowser = false) {
+    if (link?.browser || openInDefaultBrowser) {
       window.open(link.url)
     } else {
       notice.success({ message: '正在打开页面...', duration: 1000 })
@@ -44,7 +44,12 @@ export default function Portal() {
             <div className={styles.title}>传送门</div>
             <div className={styles.cards}>
               {data?.map((e) => (
-                <div key={e.name} className={styles.card} onClick={() => handleWindowOpen(e)}>
+                <div
+                  key={e.name}
+                  className={styles.card}
+                  onClick={() => handleClick(e)}
+                  onContextMenu={() => handleClick(e, true)}
+                >
                   <div>
                     <img src={e.icon} />
                     <div>{e.name}</div>
@@ -53,6 +58,7 @@ export default function Portal() {
                 </div>
               ))}
             </div>
+            <div className={styles.tip}>※ 使用鼠标右键，可以在系统默认浏览器中打开。</div>
           </>
         ) : (
           <Loading />

@@ -1,5 +1,4 @@
 import Store from 'electron-store'
-import { v4 as uuid } from 'uuid'
 
 import type { Schema } from 'electron-store'
 import type { AppData } from '../typings'
@@ -36,7 +35,7 @@ const schema: Schema<AppData> = {
       },
       deviceId: {
         type: 'string',
-        default: uuid().replace('-', '').toUpperCase()
+        default: ''
       },
       gameDir: {
         type: 'string',

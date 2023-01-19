@@ -1,15 +1,15 @@
 import axios from 'axios'
+import { v4 as uuid } from 'uuid'
 
 import { APP_USER_AGENT_BBS, BBS_VERSION } from '../constants'
 import { store } from '../main'
 
 // 创建 Axios 实例并设置默认配置、请求头等
 export const request = axios.create({
-  timeout: 10000,
+  timeout: 12000,
   headers: {
-    'Accept-Encoding': '*',
-    Accept: 'application/json, text/plain, */*',
-    'User-Agent': APP_USER_AGENT_BBS,
+    'user-agent': APP_USER_AGENT_BBS,
+    'content-type': 'application/json; charset=utf-8',
     'x-requested-with': 'com.mihoyo.hyperion',
     'x-rpc-app_version': BBS_VERSION,
     'x-rpc-page': '3.1.3_#/ys',
@@ -31,12 +31,18 @@ export const request = axios.create({
 
 request.interceptors.request.use(
   (config) => {
-    const deviceId = store.get('settings.deviceId', '')
-    Object.assign(config.headers, { 'x-rpc-device_id': deviceId })
+    const id = store.get('settings.deviceId', '')
+
+    if (!id) {
+      const did = uuid().replace('-', '').toUpperCase()
+      store.set('settings.deviceId', did)
+      Object.assign(config.headers, { 'x-rpc-device_id': did })
+    }
+
     return config
   },
   (error) => {
-    console.log(error)
+    console.log(error?.message || error)
     return Promise.reject(error)
   }
 )
@@ -51,7 +57,7 @@ request.interceptors.response.use(
     return response
   },
   (error) => {
-    console.log(error)
+    console.log(error?.message || error)
     return Promise.reject(error)
   }
 )
