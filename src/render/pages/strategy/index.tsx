@@ -15,7 +15,7 @@ import styles from './index.less'
 interface StrategyItem {
   name: string
   url: string
-  hightlight?: boolean
+  highlight?: boolean
   alt?: string
 }
 
@@ -44,7 +44,7 @@ export default function Strategy() {
             <div className={styles.title}>小窗攻略</div>
             <div className={styles.btns}>
               {d.map((e) => {
-                const extra = e.hightlight ? styles.hightlight : ''
+                const extra = e.highlight ? styles.highlight : ''
                 const className = cn(styles.btn, extra)
 
                 return (

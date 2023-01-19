@@ -16,7 +16,7 @@ interface PortalItem {
   description: string
   url: string
   icon: string
-  hightlight: false
+  highlight: false
   browser: false
 }
 
