@@ -49,11 +49,7 @@ export default function Home() {
     }
 
     if (loading) {
-      notice.warning({
-        message: '小派蒙正在努力加载，请不要重复点击啦！',
-        autoHide: false
-      })
-
+      notice.warning({ message: '小派蒙正在努力加载，请不要重复点击啦！' })
       return
     }
 
@@ -64,11 +60,11 @@ export default function Home() {
     //   return
     // }
 
-    const [user] = await Promise.all([getUser(), getSign()])
+    const [user, sign] = await Promise.all([getUser(), getSign()])
 
     const note = await getNote()
 
-    const isExpired = !user || !user?.game_uid
+    const isExpired = !user || !user?.game_uid || !sign || sign.retcode !== 0
     const meetCaptcha = (note as BaseRes<DailyNotesData>).retcode === 1034
 
     if (isExpired) {
@@ -78,7 +74,7 @@ export default function Home() {
 
       navigate('/login', { state: { isExpired: true } })
     } else if (meetCaptcha) {
-      notice.failed('无法绕过验证码，请到米游社战绩页验证后重试')
+      notice.failed('无法绕过验证码，请到「米游社APP->我的->我的角色」手动验证后重试')
     }
   }
 

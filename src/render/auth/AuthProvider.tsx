@@ -26,9 +26,9 @@ export default function AuthProvider(props: AuthProviderProp) {
 
     if (uid) {
       nativeApi.deleteUser(uid)
-    } else {
-      nativeApi.setStoreKey('currentUid', '')
     }
+
+    nativeApi.setStoreKey('currentUid', '')
   }
 
   useMount(() => {
