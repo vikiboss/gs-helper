@@ -190,7 +190,7 @@ export default function UserCard(props: UserCardProp) {
       name: 'transformer'
     },
     {
-      detail: `米游社 ${signStatus} ${!sign.is_sign ? '◀' : ''}`,
+      detail: `米游社原神区 ${signStatus} ${!sign.is_sign ? '◀' : ''}`,
       icon: bbsIcon,
       title: signTitle,
       ok: sign.is_sign,
