@@ -39,8 +39,8 @@
 
 **下载 v1.2.3 Beta（压缩包大约 100 MB）**
 
-- [GitHub release](#)
-- [蓝奏云](https://viki.lanzout.com/ibTdR0l600be)
+- [GitHub release](https://github.com/vikiboss/gs-helper/releases/download/v1.2.3/GenshinHelper-win32-x64-1.2.3.zip)
+- [蓝奏云](https://viki.lanzout.com/iAwqo0n8lfad)
 
 ### 关于祈愿链接
 
@@ -101,6 +101,12 @@ pnpm run make
 - 软件界面设计参考了原神游戏本体及米游社，引用的素材版权归 「米哈游或原作者」 所有。
 - 软件完全免费，使用 [GPL-3.0](LICENSE) 协议开放源代码，禁止用于任何商业行为。
 - 如有发现任何实质性的侵权行为，请联系开发者（hi#viki.moe）对相关内容进行删除。
+
+## 欢迎加入原神助手 QQ 群
+
+打不过就进来摇人，吹水也欢迎~
+
+![group](./src/assets/group-qrcode.png)
 
 ### License
 
