@@ -145,7 +145,7 @@ export default function About({ notice }: AboutProp) {
     <p>
       本工具仅提供 Windows
       成品版本，其他版本需自行在对应平台编译使用，不保证一致性。本工具完全免费，使用
-      {Link(LINK_LICENSE, 'MIT')}协议开放源代码，仅供个人学习交流使用，
+      {Link(LINK_LICENSE, 'GPL-3.0')}协议开放源代码，仅供个人学习交流使用，
       <b>请勿用于任何商业或违法违规用途</b>。
     </p>
   )

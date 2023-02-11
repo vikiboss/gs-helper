@@ -1,4 +1,4 @@
-![gs-helper](https://socialify.git.ci/vikiboss/gs-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2Fvikiboss%2Fgs-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Light)
+![gs-helper](https://socialify.git.ci/vikiboss/gs-helper/image?description=1&font=Source%20Code%20Pro&forks=1&issues=1&language=1&logo=https%3A%2F%2Fgithub.com%2Fvikiboss%2Fgs-helper%2Fblob%2Fmain%2Fsrc%2Fassets%2Ficon.png%3Fraw%3Dtrue&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=light)
 
 中文 | [English](README-en.md)
 
@@ -11,6 +11,36 @@
 一个为 _《原神》_ 玩家精心编写的开源小工具，基于 [Electron](https://www.electronjs.org/) 和 [React](https://reactjs.org/)。支持**祈愿分析**、查看**便签状态**和获取**游戏详细数据**等。
 
 开发初衷是**将原神玩家所需要的多数功能整合到一起，提升游戏效率与体验**。软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。
+
+### 软件界面展示
+
+> 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
+
+![PZqtSPy5Ca.png](https://s2.loli.net/2023/02/11/OinYvrGqefE8Rd2.png)
+![e3Dp6132rI.png](https://s2.loli.net/2023/02/11/uKc5wJnPlsVRE8Y.png)
+![6p4KkYnDDf.png](https://s2.loli.net/2023/02/11/97PImfcqGN1AxgD.png)
+![oNRKjoEVio.png](https://s2.loli.net/2023/02/11/rtyZMUVmpQ9slD3.png)
+![9jrhUSARhR.png](https://s2.loli.net/2023/02/11/GgmDrFtSui423XW.png)
+![SGIqUsmBjp.png](https://s2.loli.net/2023/02/11/JndFciuOhslzkqR.png)
+![7dsrhUSARhR.png](https://s2.loli.net/2023/02/11/SfQtOEy2aknjo96.png)
+![uI192VhQWQ.png](https://s2.loli.net/2023/02/11/RWSN3vGYfAJPhi5.png)
+![QeDdlF0t6b.png](https://s2.loli.net/2023/02/11/Y7NkoOtsumfTi1C.png)
+![4rsF5eV4bc.png](https://s2.loli.net/2023/02/11/2GIJUgDhXxi3ROc.png)
+![vVFN3cqICK.png](https://s2.loli.net/2023/02/11/Mtvj8XVsSOouA13.png)
+![3evdEeXEY4.png](https://s2.loli.net/2023/02/11/RVnsHvfzDXMhZet.png)
+![p2ie9z9H1F.png](https://s2.loli.net/2023/02/11/kWp78ioanJfyB2G.png)
+![yBqHkxRI4S.png](https://s2.loli.net/2023/02/11/GJQkIAeEjyKFMiz.png)
+
+> 待补充...
+
+### 下载
+
+当前最新版本为 v1.2.3 Beta，[点击查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
+
+**下载 v1.2.3 Beta（压缩包大约 100 MB）**
+
+- [GitHub release](#)
+- [蓝奏云](https://viki.lanzout.com/ibTdR0l600be)
 
 ### 关于祈愿链接
 
@@ -39,34 +69,19 @@ iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubus
 
 如果你电脑没有安装原神或者你习惯在其他平台游玩，请自行搜索链接获取方式。（其他平台都比较繁琐，建议在 PC 端获取）
 
-### 界面展示
-
-> 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
-
-> 待补充...
-
-### 下载
-
-当前最新版本为 v1.2.3 Beta，[点此](https://github.com/vikiboss/gs-helper/releases)查看**更新日志**。
-
-**下载 v1.2.3 Beta（压缩包约 97 MB）**
-
-- [GitHub release](#)
-- [蓝奏云](https://viki.lanzout.com/ibTdR0l600be)
-
 ### 本地开发
 
-环境要求：
+开发环境要求：
 
 - 建议 `Node.js` >= 16
-- `Git`
+- 已安装 `Git`
 - 推荐使用 `pnpm` 包管理器来管理 `Node.js` 依赖
 
 ```bash
-# 使用 npm 从国内镜像全局安装 pnpm (如果没有安装 pnpm)
-npm i -g pnpm --registry=https://registry.npmmirror.com/
 # 使用 Git 将本项目 clone 到本地
 git clone git@github.com:vikiboss/gs-helper.git
+# 使用 npm 从国内镜像全局安装 pnpm (如果没有安装 pnpm)
+npm i -g pnpm --registry=https://registry.npmmirror.com/
 # 切换到项目目录
 cd gs-helper
 # 安装项目依赖（React、Electron、webpack 等）
@@ -76,10 +91,20 @@ pnpm run start
 
 # 构建项目
 pnpm run package
-# 构建并打包项目
+# 构建并打包项目为 zip 压缩包
 pnpm run make
 ```
 
+## 声明
+
+「原神助手」 由[个人](https://github.com/vikiboss)独立开发，基于 [Electron](https://www.electronjs.org) 与 [React](https://reactjs.org)，支持多平台。
+
+开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。首页便签数据可能存在延迟，请以游戏内实时数据为准。本工具仅提供 Windows 成品版本，其他版本需自行在对应平台编译使用，不保证一致性。
+
+软件界面设计参考了原神游戏本体及米游社，不收集任何用户数据，所有产生的数据（包括但不限于祈愿数据、使用数据、账户信息等）均保存在用户本地，源码公开，请放心使用。软件内的大部分内容与素材来源于「米游社」，仅用于学习交流使用，版权归「米哈游或原作者」所有。如有发现任何实质性的侵权行为，请联系开发者对相关内容进行删除。
+
+本工具完全免费，使用 [GPL-3.0](LICENSE) 协议开放源代码，仅供个人学习交流使用，请勿用于任何商业或违法违规用途。
+
 ### License
 
-- [MIT](LICENSE) License © 2022-PRESENT Viki
+- [GPL-3.0](LICENSE) License © 2022-PRESENT Viki

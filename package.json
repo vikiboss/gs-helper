@@ -21,7 +21,7 @@
   "repository": "vikiboss/gs-helper",
   "homepage": "https://github.com/vikiboss/gs-helper#readme",
   "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
-  "license": "MIT",
+  "license": "GPL-3.0",
   "config": {
     "forge": "./forge.config.js"
   },
