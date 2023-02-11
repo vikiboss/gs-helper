@@ -87,7 +87,7 @@ export default withAuth(function Sign() {
               今日{signInfo.is_sign ? '已签' : '未签'}，签到进度：{total}/{signData.awards.length}
               {missed
                 ? `，错过 ${missed} 天。冒险再忙，也要记得签到哦~`
-                : '。冒险者太勤奋啦，一天都没有漏呢！'}
+                : '。旅行者太勤奋啦，一天都没有漏呢！'}
             </div>
             <div className={styles.signTable}>
               {signData.awards.map((e, i) => {
