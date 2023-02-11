@@ -58,7 +58,9 @@ export default function Portal() {
                 </div>
               ))}
             </div>
-            <div className={styles.tip}>※ 使用鼠标右键，可以在系统默认浏览器中打开。</div>
+            <div className={styles.tip}>
+              ※ 小提示：在任意链接上右键，可以使用系统「默认浏览器」打开页面。
+            </div>
           </>
         ) : (
           <Loading />

@@ -104,8 +104,9 @@ export default function About({ notice }: AboutProp) {
 
     setTimeout(() => {
       const status = compareVersion(latestVersion, version)
+
       if (status === 0 || status === -1) {
-        notice.success({ message: '恭喜，当前使用版本为最新版本。' })
+        notice.success({ message: '恭喜，当前使用的版本为最新版本。' })
       } else if (status === 1) {
         notice.success({
           message: `新版本 v${latestVersion} 已发布，请前往项目主页或交流群下载。`

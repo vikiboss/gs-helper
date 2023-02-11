@@ -2,7 +2,7 @@ import cn from 'classnames'
 import React, { useMemo } from 'react'
 
 import getAverageTimes from '../utils/getAverageTimes'
-import getGachaStatictics from '../utils/getGachaStatictics'
+import getGachaStatistics from '../utils/getGachaStatistics'
 import getLuckInfo from '../utils/getLuckInfo'
 import getMostInfo from '../utils/getMostInfo'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
@@ -11,11 +11,11 @@ import type { PageProp } from '..'
 
 import styles from './index.less'
 
-const LevelMap = ['虚位以待', '欧', '吉', '平', '凶', '非']
+const LevelMap = ['虚位以待', '欧皇就是我', '运气还不错', '==平==', '有点非啊', '纯纯非洲人']
 
 export default function Overview({ gacha }: PageProp) {
   const MostInfo = useMemo(() => getMostInfo(gacha), [gacha])
-  const statictics = useMemo(() => getGachaStatictics(gacha), [gacha])
+  const statistics = useMemo(() => getGachaStatistics(gacha), [gacha])
   const luckInfo = useMemo(() => getLuckInfo(gacha), [gacha])
   const limitRoleTimes = useMemo(() => getAverageTimes(gacha, 'role'), [gacha])
   const limitWeaponTimes = useMemo(() => getAverageTimes(gacha, 'weapon'), [gacha])
@@ -24,13 +24,22 @@ export default function Overview({ gacha }: PageProp) {
   const days = dateInfo.filter((e) => e.value === maxTimes)
   const maxDay = days.length && days[days.length - 1].day
 
+  // // 抽卡期望 62 抽
   function getLevel(times: number) {
-    if (times === 0) return 0
-    if (times >= 72) return 5
-    if (times >= 68) return 4
-    if (times >= 60) return 3
-    if (times >= 54) return 2
-    return 1
+    switch (true) {
+      case times >= 72:
+        return 5
+      case times >= 64:
+        return 4
+      case times >= 60:
+        return 3
+      case times >= 52:
+        return 2
+      case times >= 1:
+        return 1
+      default:
+        return 0
+    }
   }
 
   const updateTime = gacha.info.update_time
@@ -39,10 +48,10 @@ export default function Overview({ gacha }: PageProp) {
     <div className={styles.content}>
       <div className={styles.tip}>上次数据更新时间：{updateTime}</div>
       <div className={styles.cards}>
-        {statictics.map((e) => (
+        {statistics.map((e) => (
           <div key={e.name} className={cn(styles.luck, styles[`luck-${getLevel(e.times)}`])}>
-            <div className={styles.name}>{e.name}</div>
-            <div className={styles.sumary}>
+            <div className={cn([styles.name, styles[e.name]])}>{e.name}</div>
+            <div className={styles.summary}>
               <div className={styles.count}>{e.times}</div>
               <div className={styles.title}>{LevelMap[getLevel(e.times)]}</div>
             </div>
@@ -57,7 +66,7 @@ export default function Overview({ gacha }: PageProp) {
               <span className={styles.tag}>{e.number ? `已出 ${e.number} 金` : '至今未出金'}</span>
               {e.times > 0 && <span className={styles.tag}>{`平均每金 ${e.times} 抽`}</span>}{' '}
               {e.times > 0 && (
-                <span className={styles.tag}>{`平均每金消耗 ${e.times * 160} 原石`}</span>
+                <span className={styles.tag}>{`平均每金 ${e.times * 160} 原石`}</span>
               )}
               <span className={styles.tag}>{e.comment}</span>
             </div>

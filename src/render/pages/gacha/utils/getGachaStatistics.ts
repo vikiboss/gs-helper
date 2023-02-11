@@ -3,45 +3,35 @@ import getListByType from './getListByType'
 
 import type { GachaData, GachaType } from '../../../../typings'
 
-function getComment(times: number) {
-  if (times === 0) {
-    return '欧皇正在酝酿'
-  }
+function getComment(count: number) {
+  // 抽卡期望 62 抽，以此为分界线，上下展开, 分为九个区间
+  // >=80, 79-76, 75-70, 69-65, 64-60, 59-53, 53-48, 47-18, <=17
 
-  if (times >= 76) {
-    return '超级无敌大非酋'
-  }
-
-  if (times >= 72) {
-    return '无敌大非酋'
-  }
-
-  if (times >= 68) {
-    return '大非酋'
-  }
-
-  if (times >= 64) {
-    return '非酋本酋'
-  }
-
-  if (times >= 60) {
-    return '欧皇本皇'
-  }
-
-  if (times >= 56) {
-    return '大欧皇'
-  }
-
-  if (times >= 52) {
-    return '无敌大欧皇'
-  }
-
-  if (times >= 48) {
-    return '超级无敌大欧皇'
+  switch (true) {
+    case count >= 80:
+      return '超级无敌大非酋'
+    case count >= 76:
+      return '无敌大非酋'
+    case count >= 70:
+      return '大非酋'
+    case count >= 65:
+      return '非酋'
+    case count >= 60:
+      return '中规中矩'
+    case count >= 53:
+      return '欧皇'
+    case count >= 48:
+      return '大欧皇'
+    case count >= 18:
+      return '大欧皇'
+    case count >= 1:
+      return '超级无敌大欧皇'
+    default: // <= 0
+      return '欧皇正在酝酿'
   }
 }
 
-export default function getGachaStatictics(gacha: GachaData) {
+export default function getGachaStatistics(gacha: GachaData) {
   const map = Object.keys(GachaMap).filter((e) => e !== 'newer') as GachaType[]
 
   const res: {

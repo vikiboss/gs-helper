@@ -13,12 +13,12 @@ export interface AlertOptions {
 }
 
 export interface Notice {
-  show: (optons: AlertOptions | string) => void
+  failed: (options: AlertOptions | string) => void
+  info: (options: AlertOptions | string) => void
+  show: (options: AlertOptions | string) => void
+  success: (options: AlertOptions | string) => void
+  warning: (options: AlertOptions | string) => void
   hide: () => void
-  info: (optons: AlertOptions | string) => void
-  warning: (optons: AlertOptions | string) => void
-  success: (optons: AlertOptions | string) => void
-  failed: (optons: AlertOptions | string) => void
   holder: ReactElement<AlertProp, any>
 }
 
@@ -28,8 +28,8 @@ const useNotice = (): Notice => {
   const [aType, setAType] = useState<AlertProp['type']>('info')
   const [visible, setVisible] = useState<boolean>(false)
 
-  const showAlert = (optons: AlertOptions) => {
-    const { duration = 3000, type = 'info', message, autoHide = true } = optons
+  const showAlert = (options: AlertOptions) => {
+    const { duration = 3000, type = 'info', message, autoHide = true } = options
 
     setAType(type)
     setAMessage(message)
@@ -47,35 +47,35 @@ const useNotice = (): Notice => {
   }
 
   return {
-    show(optons: AlertOptions) {
-      showAlert(optons)
+    show(options: AlertOptions) {
+      showAlert(options)
     },
     hide() {
       setVisible(false)
     },
-    info(optons: AlertOptions | string) {
-      if (typeof optons === 'string') {
-        optons = { message: optons }
+    info(options: AlertOptions | string) {
+      if (typeof options === 'string') {
+        options = { message: options }
       }
-      showAlert({ ...optons, type: 'info' })
+      showAlert({ ...options, type: 'info' })
     },
-    warning(optons: AlertOptions | string) {
-      if (typeof optons === 'string') {
-        optons = { message: optons }
+    warning(options: AlertOptions | string) {
+      if (typeof options === 'string') {
+        options = { message: options }
       }
-      showAlert({ ...optons, type: 'warning' })
+      showAlert({ ...options, type: 'warning' })
     },
-    success(optons: AlertOptions | string) {
-      if (typeof optons === 'string') {
-        optons = { message: optons }
+    success(options: AlertOptions | string) {
+      if (typeof options === 'string') {
+        options = { message: options }
       }
-      showAlert({ ...optons, type: 'success' })
+      showAlert({ ...options, type: 'success' })
     },
-    failed(optons: AlertOptions | string) {
-      if (typeof optons === 'string') {
-        optons = { message: optons }
+    failed(options: AlertOptions | string) {
+      if (typeof options === 'string') {
+        options = { message: options }
       }
-      showAlert({ ...optons, type: 'failed' })
+      showAlert({ ...options, type: 'failed' })
     },
     holder: <Alert visible={visible} type={aType} message={aMessage} />
   }

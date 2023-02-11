@@ -136,7 +136,7 @@ export default function UserCard(props: UserCardProp) {
   const signTitle = `本月累计签到 ${sign.total_sign_day} 天，${missText}`
 
   // 处理探索派遣
-  const dispatchs = (note?.expeditions || []).map((e) => {
+  const dispatches = (note?.expeditions || []).map((e) => {
     const done = e.status === 'Finished'
     const disDoneText = '探索派遣任务已完成，等待领取'
     const pendingText = `探险中，距离探险结束还剩${formatTime(Number(e.remained_time))}`
@@ -150,9 +150,9 @@ export default function UserCard(props: UserCardProp) {
     }
   })
 
-  const doneNum = dispatchs.filter((e) => e.done).length
-  const dispatchDetail = `探索派遣 ${doneNum}/${dispatchs.length}`
-  const lastDispatchTimes = dispatchs.filter((e) => !e.done).sort((p, n) => n.remain - p.remain)
+  const doneNum = dispatches.filter((e) => e.done).length
+  const dispatchDetail = `探索派遣 ${doneNum}/${dispatches.length}`
+  const lastDispatchTimes = dispatches.filter((e) => !e.done).sort((p, n) => n.remain - p.remain)
   const lastDispatchTime = lastDispatchTimes[0]?.remain || 0
   const todayDay = new Date(Date.now() + lastDispatchTime * 1000).getDay()
   const isDispatchToday = todayDay === new Date().getDay()
@@ -160,8 +160,8 @@ export default function UserCard(props: UserCardProp) {
   const dispatchTime = formatTime(lastDispatchTime)
   const dispatchReadyTime = dayjs(Date.now() + lastDispatchTime * 1000).format('HH:mm:ss')
   const dispatchTimeText = (isDispatchToday ? '今日 ' : '明日 ') + dispatchReadyTime
-  const dispatcTitle =
-    dispatchs.length > 0
+  const dispatchTitle =
+    dispatches.length > 0
       ? isDispatchAllReady
         ? '已全部完成，等待领取'
         : `将于${dispatchTimeText} 全部完成，还剩${dispatchTime}`
@@ -262,8 +262,8 @@ export default function UserCard(props: UserCardProp) {
           ))}
         <div
           className={styles.noteItem}
-          title={dispatcTitle}
-          onClick={() => notice.info(dispatcTitle)}
+          title={dispatchTitle}
+          onClick={() => notice.info(dispatchTitle)}
         >
           <div className={styles.noteDetail}>
             <img src={prestigeIcon} className={cn(styles.noteIcon)} />
@@ -273,7 +273,7 @@ export default function UserCard(props: UserCardProp) {
         </div>
         <div className={styles.noteItem}>
           <div className={styles.noteDetail}>
-            {dispatchs.map((e) => (
+            {dispatches.map((e) => (
               <div
                 className={cn(styles.dispatch, e.done ? styles.done : '')}
                 title={e.title}

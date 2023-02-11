@@ -27,13 +27,17 @@ export default function Strategy() {
 
   useMount(() => fetchRepo('strategies.json'))
 
-  function handleWindowOpen(link: string) {
+  function handleWindowOpen(link: string, external = false) {
     notice.success({
       message: '正在打开页面...',
       duration: 1000
     })
 
-    nativeApi.openWindow(link)
+    if (external) {
+      open(link)
+    } else {
+      nativeApi.openWindow(link)
+    }
   }
 
   return (
@@ -52,6 +56,7 @@ export default function Strategy() {
                     className={className}
                     key={e.name}
                     onClick={handleWindowOpen.bind(null, e.url)}
+                    onContextMenu={handleWindowOpen.bind(null, e.url, true)}
                   >
                     <span>{e.name}</span>
                   </div>

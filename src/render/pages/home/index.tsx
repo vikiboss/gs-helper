@@ -74,7 +74,12 @@ export default function Home() {
 
       navigate('/login', { state: { isExpired: true } })
     } else if (meetCaptcha) {
-      notice.failed('无法绕过验证码，请到「米游社APP->我的->我的角色」手动验证后重试')
+      notice.failed({
+        message: '无法绕过米游社验证码，请到 「米游社APP => 我的 => 我的角色」 手动验证后重试',
+        autoHide: false
+      })
+    } else {
+      notice.hide()
     }
   }
 
@@ -138,6 +143,11 @@ export default function Home() {
     nativeApi.openWindow(link)
   }
 
+  function handleCopy() {
+    nativeApi.writeClipboard(tip)
+    notice.success({ message: '已将内容复制到剪切板', duration: 1000 })
+  }
+
   async function handleTipClick() {
     setTip('loading...')
 
@@ -199,33 +209,12 @@ export default function Home() {
     <>
       <div className={styles.container}>
         <div className={styles.user}>
-          {auth.isLogin ? (
-            isHomeDataLoaded ? (
-              <UserCard
-                sign={sign.data}
-                user={user}
-                note={note.data}
-                notice={notice}
-                safelyNavigate={navigate}
-              />
-            ) : (
-              <Loading className={styles.loading} />
-            )
-          ) : (
-            <div className={styles.noLoginContainer}>
-              <div className={styles.noLoginText}>
-                <span>欢迎你，旅行者。👋</span>
-                <span>登录 「米游社」 账号以获得最佳使用体验。</span>
-              </div>
-              <Button
-                text='前往登录'
-                size='middle'
-                type='confirm'
-                onClick={() => navigate('/login')}
-              />
-            </div>
-          )}
-          <div className={styles.topGreeting} title={tip} onClick={handleTipClick}>
+          <div
+            className={styles.topGreeting}
+            title={tip}
+            onClick={handleTipClick}
+            onContextMenu={handleCopy}
+          >
             {tip}
           </div>
           <div className={styles.topBtns}>
@@ -273,6 +262,32 @@ export default function Home() {
               <span>设置</span>
             </div>
           </div>
+          {auth.isLogin ? (
+            isHomeDataLoaded ? (
+              <UserCard
+                sign={sign.data}
+                user={user}
+                note={note.data}
+                notice={notice}
+                safelyNavigate={navigate}
+              />
+            ) : (
+              <Loading className={styles.loading} />
+            )
+          ) : (
+            <div className={styles.noLoginContainer}>
+              <div className={styles.noLoginText}>
+                <span>欢迎你，旅行者。👋</span>
+                <span>登录 「米游社」 账号以获得最佳使用体验。</span>
+              </div>
+              <Button
+                text='前往登录'
+                size='middle'
+                type='confirm'
+                onClick={() => navigate('/login')}
+              />
+            </div>
+          )}
         </div>
         <div className={styles.content}>
           <div className={styles.searchBar}></div>
@@ -289,7 +304,7 @@ export default function Home() {
             className={styles.footer}
             onClick={() => navigate('/setting', { state: { tab: 'about' } })}
           >
-            「原神助手」 使用 MIT 协议开源，数据来源于
+            ※ 「原神助手」 使用 MIT 协议开源，数据来源于
             「米游社」，可能存在延迟，请以游戏内为准，详情点此打开 「关于」 页面。
           </div>
         </div>
