@@ -41,11 +41,11 @@ export async function verifyCookieAndGetGameRole(cks: Cookies) {
   }
 
   const roles = await getUserRolesByCookie(cookie)
-  const valid = Boolean(roles[0]?.game_uid)
+  const valid = Boolean(roles.find((e) => e.is_chosen)?.game_uid)
 
   if (!valid) {
     console.log('verifyCookie: ', cookie)
   }
 
-  return { valid: true, cookie, roleInfo: valid ? roles[0] : null }
+  return { valid: true, cookie, roleInfo: valid ? roles.find((e) => e.is_chosen) : null }
 }

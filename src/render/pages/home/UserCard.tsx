@@ -68,7 +68,7 @@ export default function UserCard(props: UserCardProp) {
     {
       key: 'region',
       name: '区服',
-      content: `${user.region_name} （${user.is_official ? '官服' : '渠道服'}）`
+      content: `${user.region_name} （${user.is_official ? '官服' : '渠道'}）`
     },
     {
       key: 'uid',
