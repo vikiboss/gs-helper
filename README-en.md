@@ -12,4 +12,4 @@ A small open source tool written for _Genshin Impact_ player, based on [Electron
 
 ### License
 
-- [MIT](LICENSE)
+- [GPL-3.0](LICENSE)

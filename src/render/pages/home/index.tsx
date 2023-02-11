@@ -304,7 +304,7 @@ export default function Home() {
             className={styles.footer}
             onClick={() => navigate('/setting', { state: { tab: 'about' } })}
           >
-            ※ 「原神助手」 使用 MIT 协议开源，数据来源于
+            ※ 「原神助手」 使用 GPL-3.0 协议开源，数据来源于
             「米游社」，可能存在延迟，请以游戏内为准，详情点此打开 「关于」 页面。
           </div>
         </div>
