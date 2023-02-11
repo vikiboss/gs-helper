@@ -12,6 +12,15 @@
 
 开发初衷是希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验。软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社，仅用于学习交流使用，版权归米哈游或原作者所有。本工具仅提供 Windows 成品版本，其他版本需自行在对应平台编译使用，不保证一致性。
 
+### 下载
+
+当前最新版本为 v1.2.3 Beta，[点击查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
+
+**下载 v1.2.3 Beta（压缩包大约 100 MB）**
+
+- [GitHub release](https://github.com/vikiboss/gs-helper/releases/download/v1.2.3/GenshinHelper-win32-x64-1.2.3.zip)
+- [蓝奏云](https://viki.lanzout.com/iAwqo0n8lfad)
+
 ### 软件界面展示
 
 > 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
@@ -29,18 +38,9 @@
 ![vVFN3cqICK.png](https://s2.loli.net/2023/02/11/Mtvj8XVsSOouA13.png)
 ![3evdEeXEY4.png](https://s2.loli.net/2023/02/11/RVnsHvfzDXMhZet.png)
 ![p2ie9z9H1F.png](https://s2.loli.net/2023/02/11/kWp78ioanJfyB2G.png)
-![yBqHkxRI4S.png](https://s2.loli.net/2023/02/11/GJQkIAeEjyKFMiz.png)
+![yBqHkxRI4S.png](https://s2.loli.net/2023/02/11/TDnP8BLfWRKai1k.png)
 
 > 待补充...
-
-### 下载
-
-当前最新版本为 v1.2.3 Beta，[点击查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
-
-**下载 v1.2.3 Beta（压缩包大约 100 MB）**
-
-- [GitHub release](https://github.com/vikiboss/gs-helper/releases/download/v1.2.3/GenshinHelper-win32-x64-1.2.3.zip)
-- [蓝奏云](https://viki.lanzout.com/iAwqo0n8lfad)
 
 ### 关于祈愿链接
 
