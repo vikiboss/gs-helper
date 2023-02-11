@@ -26,11 +26,11 @@
 2. 进入原神助手的祈愿分析页，点击**读取链接**按钮，顺利的话，会自动填充祈愿链接
 3. 如果点击完按钮没有填充，请继续按照以下步骤进行操作：
 
-- 打开 Windows 的 “开始” 菜单，搜索 PowerShell
-- 打开 Windows PowerShell，接着复制下方的脚本并粘贴到 PowerShell 里执行
+- 打开 Windows 的 “开始” 菜单，搜索 cmd。
+- 打开 cmd 控制台（一个黑框），接着复制下方的脚本并粘贴到 cmd 里，按回车执行
 
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235/raw/702e34117b07294e6959928963b76cfdafdd94f3/getlink.ps1'))} china"
+```shell
+iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235/raw/702e34117b07294e6959928963b76cfdafdd94f3/getlink.ps1'))} china"
 ```
 
 > 要查看这个脚本的具体内容，点击[这里](https://gist.github.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235)
@@ -43,25 +43,15 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 
 > 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
 
-![QmLFZdccLz.png](https://s2.loli.net/2022/11/03/ycCK9j6usTDGw4x.png)
-![I57GlfU2Lz.png](https://s2.loli.net/2022/11/03/naYy6ErA2I9Hime.png)
-![ZrqXfwAM4T.png](https://s2.loli.net/2022/11/03/pTusGBjILriAtU5.png)
-![j69gtZpbv7.png](https://s2.loli.net/2022/11/03/OBNsou9JqgXykx5.png)
-![2F1bql0fwj.png](https://s2.loli.net/2022/11/03/6i4VsAbJCGtXNoa.png)
-![zoFlauKiRE.png](https://s2.loli.net/2022/11/03/oUQGOvCNzsIPy6j.png)
-![jb1qxLm734.png](https://s2.loli.net/2022/11/03/IoHdYgAtLa7r8x3.png)
-![z1IC1Uxffs.png](https://s2.loli.net/2022/11/03/wforK6cJRZ5VuHB.png)
-![4R91zrWYHc.png](https://s2.loli.net/2022/11/03/uOmrsJxFtWnCSpU.png)
-![SdXwgPm9cq.png](https://s2.loli.net/2022/11/03/5oqsmURpLTAXi7E.png)
-
 > 待补充...
 
 ### 下载
 
-当前最新版本为 v1.2.1 Beta。
+当前最新版本为 v1.2.3 Beta，[点此](https://github.com/vikiboss/gs-helper/releases)查看**更新日志**。
 
-**下载 v1.2.1 Beta（压缩包约 97 MB）**
+**下载 v1.2.3 Beta（压缩包约 97 MB）**
 
+- [GitHub release](#)
 - [蓝奏云](https://viki.lanzout.com/ibTdR0l600be)
 
 ### 本地开发
