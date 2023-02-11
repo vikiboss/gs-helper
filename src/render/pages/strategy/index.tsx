@@ -55,8 +55,8 @@ export default function Strategy() {
                   <div
                     className={className}
                     key={e.name}
-                    onClick={handleWindowOpen.bind(null, e.url)}
-                    onContextMenu={handleWindowOpen.bind(null, e.url, true)}
+                    onClick={() => handleWindowOpen(e.url)}
+                    onContextMenu={() => handleWindowOpen(e.url, true)}
                   >
                     <span>{e.name}</span>
                   </div>
