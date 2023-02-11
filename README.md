@@ -19,7 +19,7 @@
 **下载 v1.2.3 Beta（压缩包大约 100 MB）**
 
 - [GitHub release](https://github.com/vikiboss/gs-helper/releases/download/v1.2.3/GenshinHelper-win32-x64-1.2.3.zip)
-- [蓝奏云](https://viki.lanzout.com/iAwqo0n8lfad)
+- [蓝奏云](https://viki.lanzout.com/iF09Z0n8uzmj)
 
 ### 软件界面展示
 
