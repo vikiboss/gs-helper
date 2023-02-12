@@ -1,4 +1,5 @@
 import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '../constants'
+import { getCurrentRole } from './getCurrentRole'
 import { request } from './request'
 
 import type { Cookies } from 'electron'
@@ -41,11 +42,13 @@ export async function verifyCookieAndGetGameRole(cks: Cookies) {
   }
 
   const roles = await getUserRolesByCookie(cookie)
-  const valid = Boolean(roles.find((e) => e.is_chosen)?.game_uid)
+  const chosenRole = getCurrentRole(roles)
+
+  const valid = chosenRole?.game_uid
 
   if (!valid) {
     console.log('verifyCookie: ', cookie)
   }
 
-  return { valid: true, cookie, roleInfo: valid ? roles.find((e) => e.is_chosen) : null }
+  return { valid: true, cookie, roleInfo: valid ? chosenRole : null }
 }

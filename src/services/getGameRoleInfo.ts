@@ -1,7 +1,6 @@
 import { getCurrentUser } from '../main/IPC/getCurrentUser'
 import { getUserRolesByCookie } from './getUserRoleList'
-
-import type { GameRole } from '../typings'
+import { getCurrentRole } from '../utils/getCurrentRole'
 
 export async function getGameRoleInfo() {
   const user = getCurrentUser()
@@ -10,8 +9,7 @@ export async function getGameRoleInfo() {
     return null
   }
 
-  const { cookie } = user
-  const { data } = await getUserRolesByCookie(cookie)
+  const { data } = await getUserRolesByCookie(user.cookie)
 
-  return data.list.find((e: GameRole) => e.is_chosen) || null
+  return getCurrentRole(data?.list ?? []) || null
 }
