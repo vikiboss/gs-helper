@@ -56,11 +56,11 @@
 2. 进入原神助手的祈愿分析页，点击**读取链接**按钮，顺利的话，会自动填充祈愿链接
 3. 如果点击完按钮没有填充，请继续按照以下步骤进行操作：
 
-- 打开 Windows 的 “开始” 菜单，搜索 cmd。
-- 打开 cmd 控制台（一个黑框），接着复制下方的脚本并粘贴到 cmd 里，按回车执行
+- 打开 Windows 的 “开始” 菜单，搜索 PowerShell
+- 打开 Windows PowerShell，接着复制下方的脚本并粘贴到 PowerShell 里执行
 
-```shell
-iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235/raw/702e34117b07294e6959928963b76cfdafdd94f3/getlink.ps1'))} china"
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex "&{$((New-Object System.Net.WebClient).DownloadString('https://gist.githubusercontent.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235/raw/702e34117b07294e6959928963b76cfdafdd94f3/getlink.ps1'))} china"
 ```
 
 > 要查看这个脚本的具体内容，点击[这里](https://gist.github.com/MadeBaruna/1d75c1d37d19eca71591ec8a31178235)
