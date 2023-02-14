@@ -14,12 +14,10 @@
 
 ### 下载
 
-当前最新版本为 v1.2.3 Beta，[点击查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
+[点此查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
 
-**下载 v1.2.3 Beta（压缩包大约 100 MB）**
-
-- [GitHub release](https://github.com/vikiboss/gs-helper/releases/download/v1.2.3/GenshinHelper-win32-x64-1.2.3.zip)
-- [蓝奏云](https://viki.lanzout.com/idw250n9437c)
+- [GitHub](https://github.com/vikiboss/gs-helper/releases/download/v1.2.4/GenshinHelper-win32-x64-1.2.4.zip)
+- [蓝奏云（国内推荐）](https://viki.lanzout.com/idkaC0nj5nmd)
 
 ### 软件界面展示
 
