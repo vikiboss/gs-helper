@@ -45,9 +45,11 @@ function getUniqueArray(arr: any[], key: string) {
   return results
 }
 
+const MATERIAL_TYPE = '2'
+const WEAPON_TYPE = '1'
+
 function getMaterialList(list: CalenderEvent[]) {
-  const matirialKink = '2'
-  const kind2 = list.filter((event) => event.kind === matirialKink)
+  const kind2 = list.filter((event) => event.kind === MATERIAL_TYPE)
 
   const materials: CalenderEvent[] = []
 
@@ -71,17 +73,21 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
   const [type, setType] = useState<Type>('roles')
   const [week, setWeek] = useState<number>(todayWeek)
 
+  function sort(p: CalenderEvent, n: CalenderEvent) {
+    return JSON.parse(p.sort || '{"0": 999}')[0] - JSON.parse(n.sort || '{"0": 999}')[0]
+  }
+
   // 角色
-  const roles = cals.filter((e) => e.break_type === '2')
-  roles.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0])
+  const roles = cals.filter((e) => e.break_type === MATERIAL_TYPE)
+  roles.sort(sort)
 
   // 武器
-  const weapons = cals.filter((e) => e.break_type === '1')
-  weapons.sort((p, n) => JSON.parse(p.sort)[0] - JSON.parse(n.sort)[0])
+  const weapons = cals.filter((e) => e.break_type === WEAPON_TYPE)
+  weapons.sort(sort)
 
   // 材料
   const materials = getMaterialList(cals)
-  materials.sort((p, n) => JSON.parse(n.sort)[0] - JSON.parse(p.sort)[0])
+  materials.sort(sort)
 
   const EventMap: Record<string, CalenderEvent[]> = { roles, weapons, materials }
 
@@ -96,7 +102,7 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
         ? `「${e.title}」 突破需要`
         : ''
 
-    const contents = ` ${e.contentInfos[0].title.slice(0, 4)} 系列`
+    const contents = ` ${e.contentInfos[0]?.title.slice(0, 4)} 系列`
 
     message += type !== 'materials' ? contents : e.title
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`
