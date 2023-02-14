@@ -14,10 +14,10 @@
 
 ### 下载
 
-[点此查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
+当前最新版本：v1.2.4，[点此查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
 
 - [GitHub](https://github.com/vikiboss/gs-helper/releases/download/v1.2.4/GenshinHelper-win32-x64-1.2.4.zip)
-- [蓝奏云（国内推荐）](https://viki.lanzout.com/idkaC0nj5nmd)
+- [蓝奏网盘（国内推荐）](https://viki.lanzout.com/idkaC0nj5nmd)
 
 ### 软件界面展示
 
