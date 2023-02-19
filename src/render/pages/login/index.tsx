@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { TiArrowBack } from 'react-icons/ti'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 // import element from "../../../assets/element.png";
+import styles from './index.less'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
-import nativeApi from '../../utils/nativeApi'
 import useAuth from '../../hooks/useAuth'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
+import nativeApi from '../../utils/nativeApi'
 
 import type { UserData } from '../../../typings'
-
-import styles from './index.less'
 
 interface LoginProp {
   from?: string

@@ -1,5 +1,5 @@
-import { getCurrentUser } from '../main/IPC/getCurrentUser'
 import { getUserRolesByCookie } from './getUserRoleList'
+import { getCurrentUser } from '../main/IPC/getCurrentUser'
 import { getCurrentRole } from '../utils/getCurrentRole'
 
 export async function getGameRoleInfo() {

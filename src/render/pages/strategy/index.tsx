@@ -1,16 +1,15 @@
-import { TiArrowBack } from 'react-icons/ti'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import React from 'react'
+import { TiArrowBack } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
+import styles from './index.less'
 import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'
-import nativeApi from '../../utils/nativeApi'
 import useApi from '../../hooks/useApi'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
-
-import styles from './index.less'
+import nativeApi from '../../utils/nativeApi'
 
 interface StrategyItem {
   name: string

@@ -1,5 +1,5 @@
-import { app } from 'electron'
 import dayjs from 'dayjs'
+import { app } from 'electron'
 
 import {
   API_HK4E,
@@ -7,8 +7,8 @@ import {
   GachaTypeMap,
   TypeToUIGFTypeMap as TypeToUigfTypeMap
 } from '../constants'
-import { deepClone, wait } from '../utils/utils'
 import { request } from '../utils/request'
+import { deepClone, wait } from '../utils/utils'
 
 import type { BaseRes, GachaData, GachaItem, RawGachaItem } from '../typings'
 

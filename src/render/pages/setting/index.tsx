@@ -3,12 +3,11 @@ import { TiArrowBack } from 'react-icons/ti'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import About from './About'
-import CircleButton from '../../components/CircleButton'
 import General from './General'
+import styles from './index.less'
+import CircleButton from '../../components/CircleButton'
 import SelectButton from '../../components/SelectButton'
 import useNotice from '../../hooks/useNotice'
-
-import styles from './index.less'
 
 interface LocationState {
   tab?: 'general' | 'about'

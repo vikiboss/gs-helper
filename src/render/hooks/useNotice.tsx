@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 
 import Alert from '../components/Alert'
 
-import type { ReactElement } from 'react'
 import type { AlertProp } from '../components/Alert'
+import type { ReactElement } from 'react'
 
 export interface AlertOptions {
   autoHide?: boolean

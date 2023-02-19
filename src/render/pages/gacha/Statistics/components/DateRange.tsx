@@ -1,5 +1,5 @@
-import React from 'react'
 import { ResponsiveTimeRange } from '@nivo/calendar'
+import React from 'react'
 
 import { ChartTheme } from '../../../../../constants'
 

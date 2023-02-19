@@ -2,24 +2,22 @@ import cn from 'classnames'
 import dayjs from 'dayjs'
 import React from 'react'
 
-import type { NavigateOptions } from 'react-router-dom'
-import nativeApi from '../../utils/nativeApi'
-
-import avatar from '../../../assets/icon.png'
+import styles from './index.less'
 import bbsIcon from '../../../assets/bbs.png'
 import discountIcon from '../../../assets/discount.png'
 import homeIcon from '../../../assets/home.png'
+import avatar from '../../../assets/icon.png'
 import prestigeIcon from '../../../assets/prestige.png'
 import resinIcon from '../../../assets/resin.png'
 import taskIcon from '../../../assets/task.png'
 import transformerIcon from '../../../assets/transformer.png'
+import nativeApi from '../../utils/nativeApi'
 
+import type { SignInfo } from '../../../services/getBBSSignInfo'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
 import type { GameRole } from '../../../typings'
 import type { Notice } from '../../hooks/useNotice'
-import type { SignInfo } from '../../../services/getBBSSignInfo'
-
-import styles from './index.less'
+import type { NavigateOptions } from 'react-router-dom'
 
 interface UserCardProp {
   safelyNavigate: (path: string, options?: NavigateOptions) => void

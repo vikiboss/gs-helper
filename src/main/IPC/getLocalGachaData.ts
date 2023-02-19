@@ -1,6 +1,6 @@
+import { app } from 'electron'
 import fs from 'fs-extra'
 import path from 'node:path'
-import { app } from 'electron'
 
 import { AppName } from '../../constants'
 

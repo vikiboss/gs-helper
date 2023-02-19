@@ -1,7 +1,7 @@
 import { store } from '.'
 
-import type { BrowserWindow } from 'electron'
 import type { AppData } from '../typings'
+import type { BrowserWindow } from 'electron'
 
 /** 恢复用户偏好设置 */
 export function restoreSettings(win: BrowserWindow) {

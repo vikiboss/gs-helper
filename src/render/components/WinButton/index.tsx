@@ -1,10 +1,10 @@
-import React from 'react'
 import cn from 'classnames'
+import React from 'react'
 import { FaExpandArrowsAlt, FaMinus } from 'react-icons/fa'
 
-import type { IconType } from 'react-icons'
-
 import styles from './index.less'
+
+import type { IconType } from 'react-icons'
 
 export interface WinButtonProp {
   type: 'close' | 'minimize'

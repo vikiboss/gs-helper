@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import React from 'react'
 
+import styles from './index.less'
 import star1 from '../../../assets/star1.png'
 import star2 from '../../../assets/star2.png'
 import star3 from '../../../assets/star3.png'
@@ -8,8 +9,6 @@ import star4 from '../../../assets/star4.png'
 import star5 from '../../../assets/star5.png'
 
 import type { MouseEventHandler } from 'react'
-
-import styles from './index.less'
 
 type CardItemInfo = {
   rarity: number

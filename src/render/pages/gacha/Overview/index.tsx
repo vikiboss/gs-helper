@@ -1,6 +1,7 @@
 import cn from 'classnames'
 import React, { useMemo } from 'react'
 
+import styles from './index.less'
 import getAverageTimes from '../utils/getAverageTimes'
 import getGachaStatistics from '../utils/getGachaStatistics'
 import getLuckInfo from '../utils/getLuckInfo'
@@ -8,8 +9,6 @@ import getMostInfo from '../utils/getMostInfo'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
 
 import type { PageProp } from '..'
-
-import styles from './index.less'
 
 const LevelMap = ['虚位以待', '欧皇就是我', '运气还不错', '==平==', '有点非啊', '纯纯非洲人']
 

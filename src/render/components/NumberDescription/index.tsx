@@ -1,9 +1,8 @@
-import React from 'react'
 import cn from 'classnames'
-
-import BounceNumber from '../BounceNumber'
+import React from 'react'
 
 import styles from './index.less'
+import BounceNumber from '../BounceNumber'
 
 interface NumberDescriptionProp {
   className?: string

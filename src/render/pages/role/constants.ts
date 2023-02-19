@@ -1,16 +1,15 @@
+import Anemo from '../../../assets/anemo.png'
+import Cryo from '../../../assets/cryo.png'
+import Dendro from '../../../assets/dendro.png'
+import Electro from '../../../assets/electro.png'
+import Geo from '../../../assets/geo.png'
+import Hydro from '../../../assets/hydro.png'
+import Pyro from '../../../assets/pyro.png'
 import star1 from '../../../assets/star1.png'
 import star2 from '../../../assets/star2.png'
 import star3 from '../../../assets/star3.png'
 import star4 from '../../../assets/star4.png'
 import star5 from '../../../assets/star5.png'
-
-import Pyro from '../../../assets/pyro.png'
-import Hydro from '../../../assets/hydro.png'
-import Anemo from '../../../assets/anemo.png'
-import Electro from '../../../assets/electro.png'
-import Geo from '../../../assets/geo.png'
-import Cryo from '../../../assets/cryo.png'
-import Dendro from '../../../assets/dendro.png'
 
 import type { TabType } from '.'
 

@@ -16,7 +16,7 @@
     "prettier": "prettier ./**/*.{sass,less,css,html,md,json}",
     "prettier:fix": "prettier --write ./**/*.{sass,less,css,html,md,json}",
     "eslint": "eslint --ext .js,.jsx,.ts,.tsx .",
-    "eslint:fix": "eslint --fix --ext .js,.jsx,.ts,.tsx ."
+    "eslint:fix": "eslint --ext .js,.jsx,.ts,.tsx . --fix"
   },
   "repository": "vikiboss/gs-helper",
   "homepage": "https://github.com/vikiboss/gs-helper#readme",

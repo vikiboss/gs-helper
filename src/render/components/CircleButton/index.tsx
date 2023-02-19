@@ -1,9 +1,9 @@
-import React from 'react'
 import classnames from 'classnames'
-
-import type { IconType } from 'react-icons'
+import React from 'react'
 
 import styles from './index.less'
+
+import type { IconType } from 'react-icons'
 
 export interface CircleButtonProp {
   Icon: IconType

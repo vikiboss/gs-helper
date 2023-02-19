@@ -1,6 +1,6 @@
-import path from 'node:path'
-import fs from 'fs-extra'
 import { app } from 'electron'
+import fs from 'fs-extra'
+import path from 'node:path'
 
 import { isDev, isAppleDevice } from '..'
 import { getGameDir } from '../../utils/getGameDir'

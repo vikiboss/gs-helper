@@ -1,8 +1,8 @@
 import { BrowserWindow, shell } from 'electron'
 
-import { bindIPC } from './IPC'
-import { initTray } from './initTray'
 import { registerHotkey } from './handleHotkeys'
+import { initTray } from './initTray'
+import { bindIPC } from './IPC'
 import { restoreSettings } from './restoreSettings'
 import icon from '../assets/icon.ico'
 

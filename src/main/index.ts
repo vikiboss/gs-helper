@@ -1,11 +1,11 @@
 import { app, BrowserWindow } from 'electron'
 
 import { createMainWindow } from './createMainWindow'
-import { initStore } from './initStore'
 import { unregisterHotkey } from './handleHotkeys'
+import { initStore } from './initStore'
 
-import type Store from 'electron-store'
 import type { AppData } from '../typings'
+import type Store from 'electron-store'
 
 // 导出 主窗口 与 Store 方便其他部分进行引用
 

@@ -2,14 +2,13 @@ import React from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
-import CircleButton from '../../components/CircleButton'
-import nativeApi from '../../utils/nativeApi'
-import useNotice from '../../hooks/useNotice'
-import useApi from '../../hooks/useApi'
-import Loading from '../../components/Loading'
-import useMount from '../../hooks/useMount'
-
 import styles from './index.less'
+import CircleButton from '../../components/CircleButton'
+import Loading from '../../components/Loading'
+import useApi from '../../hooks/useApi'
+import useMount from '../../hooks/useMount'
+import useNotice from '../../hooks/useNotice'
+import nativeApi from '../../utils/nativeApi'
 
 interface PortalItem {
   name: string

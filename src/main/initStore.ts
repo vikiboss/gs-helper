@@ -1,7 +1,7 @@
 import Store from 'electron-store'
 
-import type { Schema } from 'electron-store'
 import type { AppData } from '../typings'
+import type { Schema } from 'electron-store'
 
 export const DefaultAppData: AppData = {
   currentUid: '',

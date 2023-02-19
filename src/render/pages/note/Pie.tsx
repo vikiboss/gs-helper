@@ -1,5 +1,5 @@
-import React from 'react'
 import { ResponsivePie } from '@nivo/pie'
+import React from 'react'
 
 import { ChartTheme } from '../../../constants'
 import { Colors } from '../gacha/utils/getPieData'

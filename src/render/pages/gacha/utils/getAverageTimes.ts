@@ -1,6 +1,6 @@
 import { ItemTypeMap } from './filterGachaList'
-import { NormalItemList } from '../../../../constants'
 import getListByType from './getListByType'
+import { NormalItemList } from '../../../../constants'
 
 import type { GachaData, GachaItemType } from '../../../../typings'
 

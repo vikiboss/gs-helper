@@ -2,21 +2,20 @@ import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
-import CircleButton from '../../components/CircleButton'
 import DailyMaterial from './DailyMaterial'
+import styles from './index.less'
+import WeekMaterial from './WeekMaterial'
+import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'
-import nativeApi from '../../utils/nativeApi'
 import SelectButton from '../../components/SelectButton'
 import useApi from '../../hooks/useApi'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
-import WeekMaterial from './WeekMaterial'
+import nativeApi from '../../utils/nativeApi'
 
-import type { CalenderData } from '../../../services/getCalenderList'
 import type { RepoRole } from './WeekMaterial'
+import type { CalenderData } from '../../../services/getCalenderList'
 import type { BaseRes } from '../../../typings'
-
-import styles from './index.less'
 
 export default function Calender() {
   const navigate = useNavigate()

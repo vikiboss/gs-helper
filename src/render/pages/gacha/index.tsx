@@ -1,25 +1,24 @@
-import React, { useState } from 'react'
 import dayjs from 'dayjs'
+import React, { useState } from 'react'
 import { BiImport, BiExport } from 'react-icons/bi'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
+import Data from './Data'
+import styles from './index.less'
+import Overview from './Overview'
+import Statistics from './Statistics'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
-import Data from './Data'
 import Loading from '../../components/Loading'
-import nativeApi from '../../utils/nativeApi'
-import Overview from './Overview'
 import Select from '../../components/Select'
 import SelectButton from '../../components/SelectButton'
-import Statistics from './Statistics'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
+import nativeApi from '../../utils/nativeApi'
 
-import type { Notice } from '../../hooks/useNotice'
 import type { GachaData, GachaType, GachaItemType, StarType } from '../../../typings'
-
-import styles from './index.less'
+import type { Notice } from '../../hooks/useNotice'
 
 const DefaultGachaData: GachaData = {
   info: {

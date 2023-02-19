@@ -1,4 +1,5 @@
 import { session } from 'electron'
+
 import { store } from '.'
 
 import type { UserData } from '../typings'

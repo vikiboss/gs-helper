@@ -1,8 +1,8 @@
 import React from 'react'
 
+import AuthContext from './AuthContext'
 import useMount from '../hooks/useMount'
 import nativeApi from '../utils/nativeApi'
-import AuthContext from './AuthContext'
 
 const { Provider } = AuthContext
 

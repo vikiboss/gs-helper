@@ -1,5 +1,5 @@
-import { GachaMap } from '..'
 import getListByType from './getListByType'
+import { GachaMap } from '..'
 
 import type { GachaData, GachaType } from '../../../../typings'
 

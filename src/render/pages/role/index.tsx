@@ -1,9 +1,9 @@
-import { FaHeart } from 'react-icons/fa'
-import { TiArrowBack } from 'react-icons/ti'
-import { useNavigate } from 'react-router-dom'
 import cn from 'classnames'
 import dti from 'dom-to-image'
 import React, { Fragment, useRef, useState } from 'react'
+import { FaHeart } from 'react-icons/fa'
+import { TiArrowBack } from 'react-icons/ti'
+import { useNavigate } from 'react-router-dom'
 
 import {
   ElementImgs,
@@ -13,27 +13,25 @@ import {
   tabs,
   WeaponOptions
 } from './constants'
-import { ElementTypes } from '../../../constants'
+import styles from './index.less'
 import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils'
+import lock from '../../../assets/lock.png'
+import { ElementTypes } from '../../../constants'
 import { wait } from '../../../utils/utils'
+import withAuth from '../../auth/withAuth'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
 import ItemCard from '../../components/ItemCard'
 import Loading from '../../components/Loading'
-import nativeApi from '../../utils/nativeApi'
 import RoleCard from '../../components/RoleCard'
 import Select from '../../components/Select'
+import WeaponCard from '../../components/WeaponCard'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
-import WeaponCard from '../../components/WeaponCard'
-import withAuth from '../../auth/withAuth'
+import nativeApi from '../../utils/nativeApi'
 
-import lock from '../../../assets/lock.png'
-
-import type { PublicRole } from '../../../services/getPublicRoleList'
 import type { Role as RoleInfo } from '../../../services/getOwnedRoleList'
-
-import styles from './index.less'
+import type { PublicRole } from '../../../services/getPublicRoleList'
 
 export type RenderRoleInfo = RoleInfo & PublicRole
 export type TabType = 'weapon' | 'reliquary' | 'constellation' | 'profile'

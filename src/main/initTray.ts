@@ -1,11 +1,11 @@
 import { app, Menu, Tray, nativeImage } from 'electron'
 import path from 'node:path'
 
-import { AppName } from '../constants'
 import { store, isAppleDevice, isWindows } from '.'
 import { subWins } from './IPC/openWindow'
 import icon from '../assets/icon.ico'
 import macicon from '../assets/macicon.png'
+import { AppName } from '../constants'
 
 import type { BrowserWindow, MenuItemConstructorOptions } from 'electron'
 

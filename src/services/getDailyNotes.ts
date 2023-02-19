@@ -2,8 +2,8 @@ import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../constants'
 import { getCurrentUser } from '../main/IPC/getCurrentUser'
 import { getDS } from '../utils/getDS'
 import { getServerByUid } from '../utils/getServerByUid'
-import { qs } from '../utils/utils'
 import { request } from '../utils/request'
+import { qs } from '../utils/utils'
 
 import type { BaseRes } from '../typings'
 

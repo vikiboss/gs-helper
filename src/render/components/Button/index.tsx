@@ -1,11 +1,11 @@
-import React from 'react'
 import cn from 'classnames'
+import React from 'react'
 import { BiCircle } from 'react-icons/bi'
 import { BsXLg } from 'react-icons/bs'
 
-import type { IconType } from 'react-icons'
-
 import styles from './index.less'
+
+import type { IconType } from 'react-icons'
 
 export interface ButtonProp {
   type?: 'confirm' | 'cancel'

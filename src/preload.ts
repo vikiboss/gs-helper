@@ -2,12 +2,11 @@ import { contextBridge, ipcRenderer as ipc } from 'electron'
 
 import { IpcEvents, EXPOSED_API_FROM_ELECTRON } from './constants'
 
-import type { BrowserWindowConstructorOptions as WinOptions } from 'electron'
-import type { AppInfo, BaseRes, GachaData, GameRole, UserData } from './typings'
 import type { DoSignData } from './services/doBBSSign'
+import type { SignData } from './services/getBBSSignData'
 import type { SignInfo } from './services/getBBSSignInfo'
-import type { CalenderData } from './services/getCalenderList'
 import type { EnkaUserData } from './services/getCabinetRoleList'
+import type { CalenderData } from './services/getCalenderList'
 import type { DailyNotesData } from './services/getDailyNotes'
 import type { GameRecordCardRawData } from './services/getGameRecordCard'
 import type { GameRoleCardData } from './services/getGameRoleCard'
@@ -15,7 +14,8 @@ import type { MonthInfo } from './services/getMonthInfo'
 import type { RoleData } from './services/getOwnedRoleList'
 import type { PublicRole } from './services/getPublicRoleList'
 import type { SpiralAbyssData } from './services/getSpiralAbyss'
-import type { SignData } from './services/getBBSSignData'
+import type { AppInfo, BaseRes, GachaData, GameRole, UserData } from './typings'
+import type { BrowserWindowConstructorOptions as WinOptions } from 'electron'
 
 export const apis = {
   changeUser: function (uid: string) {

@@ -1,7 +1,7 @@
 import { app, BrowserWindow } from 'electron'
 
-import { APP_USER_AGENT_DESKTOP } from '../../constants'
 import { isDev, store } from '..'
+import { APP_USER_AGENT_DESKTOP } from '../../constants'
 
 import type { BrowserWindowConstructorOptions } from 'electron'
 

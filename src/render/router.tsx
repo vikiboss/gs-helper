@@ -2,15 +2,15 @@ import React from 'react'
 import { HashRouter, Route, Routes } from 'react-router-dom'
 
 import Calendar from './pages/calendar'
-import Portal from './pages/portal'
 import Gacha from './pages/gacha'
-import Statistic from './pages/statistic'
 import Home from './pages/home'
 import Login from './pages/login'
 import Note from './pages/note'
+import Portal from './pages/portal'
 import Role from './pages/role'
 import Setting from './pages/setting'
 import Sign from './pages/sign'
+import Statistic from './pages/statistic'
 import Strategy from './pages/strategy'
 
 const AppRouter: React.FC = () => (

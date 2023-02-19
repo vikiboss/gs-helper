@@ -1,5 +1,5 @@
-import { API_TAKUMI, LINK_BBS_REFERER } from '../constants'
 import { getBBSSignActId } from './getBBSSignActId'
+import { API_TAKUMI, LINK_BBS_REFERER } from '../constants'
 import { getCurrentUser } from '../main/IPC/getCurrentUser'
 import { getServerByUid } from '../utils/getServerByUid'
 import { request } from '../utils/request'

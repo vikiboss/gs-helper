@@ -1,12 +1,11 @@
 import React from 'react'
 import { createRoot } from 'react-dom/client'
 
-import AppRouter from './router'
-import nativeApi from './utils/nativeApi'
 import AuthProvider from './auth/AuthProvider'
 import WinFrame from './components/WinFrame'
-
 import './index.less'
+import AppRouter from './router'
+import nativeApi from './utils/nativeApi'
 
 const root = createRoot(document.getElementById('app'))
 

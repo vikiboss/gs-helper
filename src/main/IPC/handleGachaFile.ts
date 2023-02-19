@@ -1,11 +1,11 @@
-import fs from 'fs-extra'
 import dayjs from 'dayjs'
 import { app, dialog } from 'electron'
+import fs from 'fs-extra'
 import json from 'json-bigint'
 
-import { AppName } from '../../constants'
 import { getLocalGachaData } from './getLocalGachaData'
 import { mainWin } from '..'
+import { AppName } from '../../constants'
 import { updateLocalGachaData } from '../../utils/updateLocalGachaData'
 
 import type { GachaData } from '../../typings'

@@ -1,9 +1,9 @@
+import { app } from 'electron'
 import fs from 'fs-extra'
 import path from 'node:path'
-import { app } from 'electron'
 
-import { DefaultGachaData } from '../services/getGachaListByUrl'
 import { mergeGachaList } from './mergeGachaList'
+import { DefaultGachaData } from '../services/getGachaListByUrl'
 
 import type { GachaData } from '../typings'
 

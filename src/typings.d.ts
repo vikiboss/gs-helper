@@ -1,6 +1,5 @@
-import type { apis } from './preload'
-
 import type { EXPOSED_API_FROM_ELECTRON } from './constants'
+import type { apis } from './preload'
 import type { GameRole } from './services/getGameRoleInfo'
 
 export interface BaseIPCRes<T> {

@@ -1,14 +1,13 @@
 /* eslint-disable camelcase */
 import React from 'react'
 
+import styles from './index.less'
 import { deepClone } from '../../../../utils/utils'
 import AbyssNumber from '../../../components/AbyssNumber'
 import BounceNumber from '../../../components/BounceNumber'
 import NumberDescription from '../../../components/NumberDescription'
 
 import type { GameRoleCardData } from '../../../../services/getGameRoleCard'
-
-import styles from './index.less'
 
 export interface StatisticCardProp {
   data: GameRoleCardData

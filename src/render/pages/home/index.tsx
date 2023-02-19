@@ -1,5 +1,4 @@
 import dayjs from 'dayjs'
-import { useNavigate } from 'react-router-dom'
 import React, { useState } from 'react'
 import { AiOutlineUserSwitch, AiOutlineUserAdd } from 'react-icons/ai'
 import { BiNotepad, BiMap } from 'react-icons/bi'
@@ -8,23 +7,23 @@ import { HiOutlineChartPie, HiCubeTransparent } from 'react-icons/hi'
 import { IoMdRefresh } from 'react-icons/io'
 import { IoGameControllerOutline, IoSettingsOutline } from 'react-icons/io5'
 import { MdOutlineLocalFireDepartment, MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md'
+import { useNavigate } from 'react-router-dom'
 
+import styles from './index.less'
+import UserCard from './UserCard'
 import { LINK_GENSHIN_MAP } from '../../../constants'
 import Button from '../../components/Button'
 import Loading from '../../components/Loading'
-import nativeApi from '../../utils/nativeApi'
 import useApi from '../../hooks/useApi'
 import useAuth from '../../hooks/useAuth'
 import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
-import UserCard from './UserCard'
+import nativeApi from '../../utils/nativeApi'
 
-import type { BaseRes, GameRole } from '../../../typings'
+import type { SignInfo } from '../../../services/getBBSSignInfo'
 import type { CalenderEvent } from '../../../services/getCalenderList'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
-import type { SignInfo } from '../../../services/getBBSSignInfo'
-
-import styles from './index.less'
+import type { BaseRes, GameRole } from '../../../typings'
 
 const { getGameRoleInfo, getBBSSignInfo, getDailyNotes, getGachaUrl } = nativeApi
 

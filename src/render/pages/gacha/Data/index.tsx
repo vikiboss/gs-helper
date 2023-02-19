@@ -1,17 +1,16 @@
 import cn from 'classnames'
 import React, { useState } from 'react'
 
+import styles from './index.less'
 import { GachaMap } from '..'
 import { NormalItemList } from '../../../../constants'
-import getListByType from '../utils/getListByType'
-import nativeApi from '../../../utils/nativeApi'
 import useMount from '../../../hooks/useMount'
+import nativeApi from '../../../utils/nativeApi'
+import getListByType from '../utils/getListByType'
 
-import type { GachaData, GachaType } from '../../../../typings'
 import type { PageProp } from '..'
 import type { CalenderEvent } from '../../../../services/getCalenderList'
-
-import styles from './index.less'
+import type { GachaData, GachaType } from '../../../../typings'
 
 type TableRow = '3' | '4' | '5' | '合计'
 type TableColumn = GachaType | '合计'
