@@ -102,7 +102,7 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
         ? `「${e.title}」 突破需要`
         : ''
 
-    const contents = ` ${e.contentInfos[0]?.title.slice(0, 4)} 系列`
+    const contents = ` 「${e.contentInfos[0]?.title.slice(0, 4)}」 系列`
 
     message += type !== 'materials' ? contents : e.title
     message += `，可在 「${e.contentSource[0]?.title || '忘却之峡'}」 获取`
