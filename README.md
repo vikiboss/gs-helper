@@ -19,6 +19,8 @@
 - [GitHub](https://github.com/vikiboss/gs-helper/releases/download/v1.2.4/GenshinHelper-win32-x64-1.2.4.zip)
 - [蓝奏网盘（国内推荐）](https://viki.lanzout.com/idkaC0nj5nmd)
 
+> 如果有帮助到你，还望能点个不要钱的 star，这对我很重要，阿里嘎多~
+
 ### 软件界面展示
 
 > 注意：此处截图仅供参考，不代表最终结果，随着版本更新可能会有差异。
