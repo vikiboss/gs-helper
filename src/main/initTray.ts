@@ -79,8 +79,7 @@ export function initTray(win: BrowserWindow) {
     {
       label: Menus.quit,
       role: 'close',
-      click: () => app.exit(),
-      accelerator: 'CommandOrControl+Alt+Q'
+      click: () => app.exit()
     }
   ]
 

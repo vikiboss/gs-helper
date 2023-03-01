@@ -46,6 +46,7 @@ export default withAuth(function Statistic() {
       fetchAbyss(uid),
       fetchLastAbyss(uid, true)
     ])
+    // TODO: 异常数据判断
     return results.every(Boolean)
   }
 
