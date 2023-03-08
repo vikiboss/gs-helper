@@ -6,7 +6,7 @@ import type { DoSignData } from './services/doBBSSign'
 import type { SignData } from './services/getBBSSignData'
 import type { SignInfo } from './services/getBBSSignInfo'
 import type { EnkaUserData } from './services/getCabinetRoleList'
-import type { CalenderData } from './services/getCalenderList'
+import type { CalendarData } from './services/getCalendarList'
 import type { DailyNotesData } from './services/getDailyNotes'
 import type { GameRecordCardRawData } from './services/getGameRecordCard'
 import type { GameRoleCardData } from './services/getGameRoleCard'
@@ -51,8 +51,8 @@ export const apis = {
   getBBSSignInfo: function () {
     return <Promise<BaseRes<SignInfo>>>ipc.invoke(IpcEvents.getBBSSignInfo)
   },
-  getCalenderEvents: function () {
-    return <Promise<BaseRes<CalenderData>>>ipc.invoke(IpcEvents.getCalenderEvents)
+  getCalendarEvents: function () {
+    return <Promise<BaseRes<CalendarData>>>ipc.invoke(IpcEvents.getCalendarEvents)
   },
   getCabinetRoles: function (uid?: string) {
     return <Promise<EnkaUserData>>ipc.invoke(IpcEvents.getCabinetRoles, uid)

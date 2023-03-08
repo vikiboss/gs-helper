@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 
 import styles from './index.less'
 
-import type { CalenderEvent } from '../../../../services/getCalenderList'
+import type { CalendarEvent } from '../../../../services/getCalendarList'
 import type { Notice } from '../../../hooks/useNotice'
 
 type Type = 'roles' | 'weapons' | 'materials'
 
 interface DailyProp {
-  cals: CalenderEvent[]
+  cals: CalendarEvent[]
   notice: Notice
 }
 
@@ -33,7 +33,7 @@ const Tips = [
 
 function getUniqueArray(arr: any[], key: string) {
   const set = new Set()
-  const results: CalenderEvent[] = []
+  const results: CalendarEvent[] = []
 
   arr.forEach((e) => {
     if (!set.has(e[key])) {
@@ -48,10 +48,10 @@ function getUniqueArray(arr: any[], key: string) {
 const MATERIAL_TYPE = '2'
 const WEAPON_TYPE = '1'
 
-function getMaterialList(list: CalenderEvent[]) {
+function getMaterialList(list: CalendarEvent[]) {
   const kind2 = list.filter((event) => event.kind === MATERIAL_TYPE)
 
-  const materials: CalenderEvent[] = []
+  const materials: CalendarEvent[] = []
 
   kind2.forEach((e) => {
     const infos = e.contentInfos
@@ -73,7 +73,7 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
   const [type, setType] = useState<Type>('roles')
   const [week, setWeek] = useState<number>(todayWeek)
 
-  function sort(p: CalenderEvent, n: CalenderEvent) {
+  function sort(p: CalendarEvent, n: CalendarEvent) {
     return JSON.parse(p.sort || '{"0": 999}')[0] - JSON.parse(n.sort || '{"0": 999}')[0]
   }
 
@@ -89,12 +89,12 @@ export default function DailyMaterial({ cals, notice }: DailyProp) {
   const materials = getMaterialList(cals)
   materials.sort(sort)
 
-  const EventMap: Record<string, CalenderEvent[]> = { roles, weapons, materials }
+  const EventMap: Record<string, CalendarEvent[]> = { roles, weapons, materials }
 
   const isToday = (arr: string[]) => arr.includes(String(((week + 6) % 7) + 1))
   const list = EventMap[type].filter((e) => isToday(e.drop_day))
 
-  function handleItemClick(e: CalenderEvent) {
+  function handleItemClick(e: CalendarEvent) {
     let message =
       type === 'roles'
         ? `「${e.title}」 天赋培养需要`

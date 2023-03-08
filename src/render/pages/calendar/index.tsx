@@ -14,15 +14,15 @@ import useNotice from '../../hooks/useNotice'
 import nativeApi from '../../utils/nativeApi'
 
 import type { RepoRole } from './WeekMaterial'
-import type { CalenderData } from '../../../services/getCalenderList'
+import type { CalendarData } from '../../../services/getCalendarList'
 import type { BaseRes } from '../../../typings'
 
-export default function Calender() {
+export default function Calendar() {
   const navigate = useNavigate()
   const notice = useNotice()
   const [tab, setTab] = useState<'daily' | 'week'>('daily')
 
-  const { r: fetchCal, d: cals, l: l1 } = useApi<BaseRes<CalenderData>>(nativeApi.getCalenderEvents)
+  const { r: fetchCal, d: cals, l: l1 } = useApi<BaseRes<CalendarData>>(nativeApi.getCalendarEvents)
   const { r: fetchRepo, d: roles, l: l2 } = useApi<RepoRole[], [string]>(nativeApi.getRepoData)
 
   const loaded = !l1 && !l2

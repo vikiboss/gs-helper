@@ -8,7 +8,7 @@ export const IpcEvents = {
   getAppInfo: 'GET_APP_INFO',
   getBBSSignData: 'GET_BBS_SIGN_DATA',
   getBBSSignInfo: 'GET_BBS_SIGN_INFO',
-  getCalenderEvents: 'GET_CALENDER_EVENTS',
+  getCalendarEvents: 'GET_CALENDAR_EVENTS',
   getCabinetRoles: 'GET_CABINET_ROLES',
   getCurrentUser: 'GET_CURRENT_USER',
   getDailyNotes: 'GET_DAILY_NOTES',

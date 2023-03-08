@@ -15,7 +15,7 @@ import { doBBSSign } from '../../services/doBBSSign'
 import { getBBSSignData } from '../../services/getBBSSignData'
 import { getBBSSignInfo } from '../../services/getBBSSignInfo'
 import { getCabinetRoleList } from '../../services/getCabinetRoleList'
-import { getCalenderList } from '../../services/getCalenderList'
+import { getCalendarList } from '../../services/getCalendarList'
 import { getDailyNotes } from '../../services/getDailyNotes'
 import { getGameRecordCard } from '../../services/getGameRecordCard'
 import { getGameRoleCard } from '../../services/getGameRoleCard'
@@ -58,7 +58,7 @@ export function bindIPC(win: BrowserWindow) {
   ipc.handle(ies.getBBSSignData, async () => getBBSSignData())
   ipc.handle(ies.getBBSSignInfo, async () => getBBSSignInfo())
   ipc.handle(ies.getCabinetRoles, async (_, uid: string) => getCabinetRoleList(uid))
-  ipc.handle(ies.getCalenderEvents, async () => getCalenderList())
+  ipc.handle(ies.getCalendarEvents, async () => getCalendarList())
   ipc.handle(ies.getCurrentUser, () => getCurrentUser())
   ipc.handle(ies.getDailyNotes, async () => getDailyNotes())
   ipc.handle(ies.getGachaListByUrl, async (_, url: string) => handleGetGachaListByUrl(url))

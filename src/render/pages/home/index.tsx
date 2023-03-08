@@ -21,7 +21,7 @@ import useNotice from '../../hooks/useNotice'
 import nativeApi from '../../utils/nativeApi'
 
 import type { SignInfo } from '../../../services/getBBSSignInfo'
-import type { CalenderEvent } from '../../../services/getCalenderList'
+import type { CalendarEvent } from '../../../services/getCalendarList'
 import type { DailyNotesData } from '../../../services/getDailyNotes'
 import type { BaseRes, GameRole } from '../../../typings'
 
@@ -82,7 +82,7 @@ export default function Home() {
     }
   }
 
-  function isToday(e: CalenderEvent) {
+  function isToday(e: CalendarEvent) {
     const now = Number(String(Date.now()).slice(0, 10))
     // const now = 1627315220;
     return Number(e.end_time) > now && Number(e.start_time) < now
@@ -91,7 +91,7 @@ export default function Home() {
   async function getTip() {
     const BirthType = '4'
 
-    const { data } = await nativeApi.getCalenderEvents()
+    const { data } = await nativeApi.getCalendarEvents()
     const event = data?.list.find((e) => e.kind === BirthType && isToday(e))
 
     if (event) {

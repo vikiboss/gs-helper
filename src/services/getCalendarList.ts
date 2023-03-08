@@ -23,7 +23,7 @@ export interface ContentInfo {
   content_id: number
 }
 
-export interface CalenderEvent {
+export interface CalendarEvent {
   /** 生日与限时活动0，武器突破材料1，角色天赋突破材料2 */
   break_type: string
   /** 限时活动1，突破材料（武器和角色天赋）2，生日4 */
@@ -52,19 +52,19 @@ export interface CalenderEvent {
   title: string
 }
 
-export interface CalenderData {
-  list: CalenderEvent[]
+export interface CalendarData {
+  list: CalendarEvent[]
 }
 
-export async function getCalenderList() {
+export async function getCalendarList() {
   const url = `${API_STATIC}/common/blackboard/ys_obc/v1/get_activity_calendar`
 
-  const { status, data } = await request.get<BaseRes<CalenderData>>(url, {
+  const { status, data } = await request.get<BaseRes<CalendarData>>(url, {
     params: { app_sn: 'ys_obc' }
   })
 
   if (status !== 200 || data?.retcode !== 0) {
-    console.log('getCalenderList: ', data)
+    console.log('getCalendarList: ', data)
   }
 
   return data

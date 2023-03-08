@@ -9,22 +9,22 @@ import nativeApi from '../../../utils/nativeApi'
 import getListByType from '../utils/getListByType'
 
 import type { PageProp } from '..'
-import type { CalenderEvent } from '../../../../services/getCalenderList'
+import type { CalendarEvent } from '../../../../services/getCalendarList'
 import type { GachaData, GachaType } from '../../../../typings'
 
 type TableRow = '3' | '4' | '5' | '合计'
 type TableColumn = GachaType | '合计'
 
 export default function Data({ gacha, notice }: PageProp) {
-  const [calenderList, setCalenderList] = useState<CalenderEvent[]>([])
+  const [CalendarList, setCalendarList] = useState<CalendarEvent[]>([])
 
   useMount(() => {
     ;(async function () {
       try {
-        const { data } = await nativeApi.getCalenderEvents()
+        const { data } = await nativeApi.getCalendarEvents()
 
         if (data?.list.length > 0) {
-          setCalenderList(data.list)
+          setCalendarList(data.list)
         }
       } catch (e) {
         const isOffline = e?.message?.includes('getaddrinfo')
@@ -95,7 +95,7 @@ export default function Data({ gacha, notice }: PageProp) {
             ))}
           </div>
         </div>
-        {calenderList.length > 0 ? (
+        {CalendarList.length > 0 ? (
           <div>
             <div className={styles.poolName}>〓五星出货详情〓</div>
             {pools.length > 0 ? (
@@ -111,7 +111,7 @@ export default function Data({ gacha, notice }: PageProp) {
                   </div>
                   <div>
                     {e.list.map((item, i) => {
-                      const role = calenderList.filter((f) => f.title === item.name)[0]
+                      const role = CalendarList.filter((f) => f.title === item.name)[0]
 
                       function showDetail(
                         _item: { name: string; times: number },
