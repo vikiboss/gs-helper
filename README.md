@@ -12,14 +12,20 @@
 
 这个小工具的开发初衷是**希望将原神玩家需要的多数功能进行整合，提升游戏效率与游戏体验**。软件界面设计参考了**原神**游戏本体及**米游社**，大部分内容与素材来源于米游社。
 
-本工具仅提供 Windows 成品版本，其他版本需自行在对应平台编译使用，不保证一致性。
+本工具仅提供 Windows 和 macOS 的成品版本，其他版本需自行在对应平台编译使用，不保证一致性。
 
 ### 下载
 
 当前最新版本：v1.2.4，[点此查看更新日志](https://github.com/vikiboss/gs-helper/releases)。
 
+**Windows 版：**
+
 - [GitHub](https://github.com/vikiboss/gs-helper/releases/download/v1.2.4/GenshinHelper-win32-x64-1.2.4.zip)
 - [蓝奏网盘（国内推荐）](https://viki.lanzout.com/idkaC0nj5nmd)
+
+**macOS 版：**
+
+- [GitHub](https://github.com/vikiboss/gs-helper/releases/download/v1.2.4/GenshinHelper-darwin-arm64-1.2.4.zip)
 
 > 如果对你有帮助，希望能点个不要钱的 star，这对我很重要，阿里嘎多~
 
