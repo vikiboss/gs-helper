@@ -1,7 +1,7 @@
 module.exports = {
   packagerConfig: {
     appBundleId: 'moe.viki.genshin-helper',
-    appCopyright: 'Viki. GPL-3.0 licese',
+    appCopyright: 'Viki. GPL-3.0 license',
     icon: './src/assets/icon.ico'
   },
   makers: [
