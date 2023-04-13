@@ -1,10 +1,11 @@
 import { BrowserWindow, session } from 'electron'
 
 import { mainWin, store, isDev, isAppleDevice } from '..'
-import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from '../../../constants'
 import { verifyCookieAndGetGameRole } from '../utils/verifyCookieAndGetGameRole'
 
-import type { UserData } from '../../../types'
+import type { UserData } from '@/types'
+
+import { APP_USER_AGENT_MOBILE, LINK_MIHOYO_BBS_LOGIN } from '@/constants'
 
 /** 通过米游社登录的函数，会打开一个窗口用于登录 */
 export async function loginByBBS() {

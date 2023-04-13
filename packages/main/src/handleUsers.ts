@@ -2,7 +2,7 @@ import { session } from 'electron'
 
 import { store } from '.'
 
-import type { UserData } from '../../types'
+import type { UserData } from '@/types'
 
 // 一系列用户操作的函数
 

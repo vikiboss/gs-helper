@@ -1,4 +1,4 @@
-import type { GachaData } from '../../../types'
+import type { GachaData } from '@/types'
 
 // 通过 id （时间）进行列表排序
 export function sortGachaList(list: GachaData['list']) {

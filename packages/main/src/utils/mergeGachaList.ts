@@ -1,6 +1,6 @@
 import { sortGachaList } from './sortGachaList'
 
-import type { GachaData } from '../../../types'
+import type { GachaData } from '@/types'
 
 // 新旧祈愿数据列表合并算法
 export function mergeGachaList(pre: GachaData['list'], list: GachaData['list']) {

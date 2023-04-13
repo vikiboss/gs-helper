@@ -1,5 +1,5 @@
 import type { FilterType } from '..'
-import type { GachaData, GachaItemType, GachaType } from '../../../../../types'
+import type { GachaData, GachaItemType, GachaType } from '@/types'
 
 export const GachaTypeMap: Record<GachaType, string> = {
   weapon: '302',

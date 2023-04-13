@@ -5,10 +5,11 @@ import json from 'json-bigint'
 
 import { getLocalGachaData } from './getLocalGachaData'
 import { mainWin } from '..'
-import { AppName } from '../../../constants'
 import { updateLocalGachaData } from '../utils/updateLocalGachaData'
 
-import type { GachaData } from '../../../types'
+import type { GachaData } from '@/types'
+
+import { AppName } from '@/constants'
 
 /** 通过 UID 导出本地的 JSON 祈愿数据 */
 export async function exportGacha(uid: string) {

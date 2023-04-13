@@ -1,9 +1,10 @@
-import { API_HK4E, LINK_BBS_REFERER } from '../../../constants'
 import { getCurrentUser } from '../ipc/getCurrentUser'
 import { getServerByUid } from '../utils/getServerByUid'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_HK4E, LINK_BBS_REFERER } from '@/constants'
 
 interface DayData {
   current_primogems: number

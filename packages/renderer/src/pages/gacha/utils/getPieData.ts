@@ -1,6 +1,6 @@
 import { GachaTypeMap, ItemTypeMap } from './filterGachaList'
 
-import type { GachaData } from '../../../../typings'
+import type { GachaData } from '@/types'
 
 export const Colors: Record<string, string> = {
   blue: '#73abcd',

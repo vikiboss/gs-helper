@@ -1,10 +1,11 @@
-import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../../../constants'
 import { getCurrentUser } from '../ipc/getCurrentUser'
 import { getDS } from '../utils/getDS'
 import { request } from '../utils/request'
 import { qs } from '../utils/utils'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '@/constants'
 
 export interface Data {
   name: string

@@ -1,7 +1,7 @@
 import { StarImgs } from './constants'
 
-import type { Reliquarie, Role as RoleInfo } from '../../../services/getOwnedRoleList'
-import type { PublicRole } from '../../../services/getPublicRoleList'
+import type { Reliquarie, Role as RoleInfo } from '@/services/getOwnedRoleList'
+import type { PublicRole } from '@/services/getPublicRoleList'
 
 type RenderRoleInfo = RoleInfo & PublicRole
 
@@ -14,8 +14,12 @@ export function getStarImage(rarity: number) {
   return StarImgs[(rarity > 5 ? 5 : rarity) - 1]
 }
 
+export async function wait(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
 // 将获取的个人角色信息和公开的角色的信息合并
-export function getFullRoleInfo(roles: RoleInfo[], publickRoles: PublicRole[]): RenderRoleInfo[] {
+export function getFullRoleInfo(roles: RoleInfo[], publicRoles: PublicRole[]): RenderRoleInfo[] {
   const res = []
   for (const role of roles) {
     if (role.name === '旅行者') {
@@ -39,9 +43,9 @@ export function getFullRoleInfo(roles: RoleInfo[], publickRoles: PublicRole[]): 
         ]
       })
     } else {
-      for (const publickRole of publickRoles) {
-        if (role.name === publickRole.name) {
-          res.push({ ...role, ...publickRole })
+      for (const publicRole of publicRoles) {
+        if (role.name === publicRole.name) {
+          res.push({ ...role, ...publicRole })
         }
       }
     }

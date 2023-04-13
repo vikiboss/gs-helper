@@ -3,11 +3,12 @@ import path from 'node:path'
 
 import { store, isAppleDevice, isWindows } from '.'
 import { subWins } from './ipc/openWindow'
-import { AppName } from '../../constants'
 import icon from '../../resources/icon.ico'
 import macIcon from '../../resources/mac-icon.png'
 
 import type { BrowserWindow, MenuItemConstructorOptions } from 'electron'
+
+import { AppName } from '@/constants'
 
 export const Menus: Record<string, string> = {
   openMainWindow: '打开助手',

@@ -1,11 +1,12 @@
 import { getBBSSignActId } from './getBBSSignActId'
-import { API_TAKUMI, LINK_BBS_REFERER } from '../../../constants'
 import { getCurrentUser } from '../ipc/getCurrentUser'
 import { getSignDS } from '../utils/getDS'
 import { getServerByUid } from '../utils/getServerByUid'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_TAKUMI, LINK_BBS_REFERER } from '@/constants'
 
 export interface DoSignData {
   code: string

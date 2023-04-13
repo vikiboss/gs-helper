@@ -4,7 +4,7 @@ import { createMainWindow } from './createMainWindow'
 import { unregisterHotkey } from './handleHotkeys'
 import { initStore } from './initStore'
 
-import type { AppData } from '../../types'
+import type { AppData } from '@/types'
 import type Store from 'electron-store'
 
 // 导出 主窗口 与 Store 方便其他部分进行引用

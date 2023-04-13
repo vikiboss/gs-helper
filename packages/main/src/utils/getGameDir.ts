@@ -3,7 +3,8 @@ import fs from 'fs-extra'
 import path from 'node:path'
 
 import { store } from '..'
-import { GAME_NAME } from '../../../constants'
+
+import { GAME_NAME } from '@/constants'
 
 /** 获取原神游戏在本地启动日志里的安装目录 */
 export function getGameDir() {

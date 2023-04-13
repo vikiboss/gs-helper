@@ -1,7 +1,8 @@
-import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '../../../constants'
 import { request } from '../utils/request'
 
-import type { BaseRes, GameRolesData } from '../../../types'
+import type { BaseRes, GameRolesData } from '@/types'
+
+import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '@/constants'
 
 /** 通过 Cookie 获取绑定的角色信息列表 */
 export async function getUserRolesByCookie(cookie: string) {

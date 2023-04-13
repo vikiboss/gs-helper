@@ -12,7 +12,7 @@ import getPieData from '../utils/getPieData'
 import transformGachaDataDate from '../utils/transformGachaDataDate'
 
 import type { PageProp } from '..'
-import type { GachaData, GachaItemType, GachaType, StarType } from '../../../../typings'
+import type { GachaData, GachaItemType, GachaType, StarType } from '@/types'
 import type { TimeRangeDayData } from '@nivo/calendar'
 
 type FilterBtn = { name: string; type: StarType | GachaType | GachaItemType }

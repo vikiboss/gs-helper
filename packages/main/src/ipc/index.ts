@@ -10,7 +10,6 @@ import { loginByBBS } from './loginByBBS'
 import { openGame } from './openGame'
 import { openWindow } from './openWindow'
 import { store } from '..'
-import { AppName, IpcEvents as ies } from '../../../constants'
 import { changeUser, deleteUser } from '../handleUsers'
 import { doBBSSign } from '../services/doBBSSign'
 import { getBBSSignData } from '../services/getBBSSignData'
@@ -28,8 +27,10 @@ import { getPublicRoleList } from '../services/getPublicRoleList'
 import { getRepoData } from '../services/getRepoData'
 import { getSpiralAbyss } from '../services/getSpiralAbyss'
 
-import type { AppInfo } from '../../../types'
+import type { AppInfo } from '@/types'
 import type { BrowserWindow } from 'electron'
+
+import { AppName, IpcEvents as ies } from '@/constants'
 
 const ApplicationInfo: AppInfo = {
   name: AppName.en,

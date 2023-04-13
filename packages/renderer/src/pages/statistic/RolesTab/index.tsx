@@ -1,11 +1,12 @@
 import React from 'react'
 
 import styles from './index.module.less'
-import Button from '../../../components/Button'
-import RoleCard from '../../../components/RoleCard'
-import nativeApi from '../utils/nativeApi'
 
-import type { Role } from '../../../../services/getOwnedRoleList'
+import type { Role } from '@/services/getOwnedRoleList'
+
+import Button from '@/components/Button'
+import RoleCard from '@/components/RoleCard'
+import nativeApi from '@/utils/nativeApi'
 
 interface RolesProp {
   data?: Role[]

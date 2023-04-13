@@ -11,19 +11,20 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './index.module.less'
 import UserCard from './UserCard'
-import { LINK_GENSHIN_MAP } from '../../../../constants'
-import Button from '../../components/Button'
-import Loading from '../../components/Loading'
-import useApi from '../../hooks/useApi'
-import useAuth from '../../hooks/useAuth'
-import useMount from '../../hooks/useMount'
-import useNotice from '../../hooks/useNotice'
-import nativeApi from '../../utils/nativeApi'
 
-import type { SignInfo } from '../../../../main/src/services/getBBSSignInfo'
-import type { CalendarEvent } from '../../../../main/src/services/getCalendarList'
-import type { DailyNotesData } from '../../../../main/src/services/getDailyNotes'
-import type { BaseRes, GameRole } from '../../../../types'
+import type { SignInfo } from '@/services/getBBSSignInfo'
+import type { CalendarEvent } from '@/services/getCalendarList'
+import type { DailyNotesData } from '@/services/getDailyNotes'
+import type { BaseRes, GameRole } from '@/types'
+
+import Button from '@/components/Button'
+import Loading from '@/components/Loading'
+import { LINK_GENSHIN_MAP } from '@/constants'
+import useApi from '@/hooks/useApi'
+import useAuth from '@/hooks/useAuth'
+import useMount from '@/hooks/useMount'
+import useNotice from '@/hooks/useNotice'
+import nativeApi from '@/utils/nativeApi'
 
 const { getGameRoleInfo, getBBSSignInfo, getDailyNotes, getGachaUrl } = nativeApi
 

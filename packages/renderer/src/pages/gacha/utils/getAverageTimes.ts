@@ -1,8 +1,9 @@
 import { ItemTypeMap } from './filterGachaList'
 import getListByType from './getListByType'
-import { NormalItemList } from '../../../../constants'
 
-import type { GachaData, GachaItemType } from '../../../../typings'
+import type { GachaData, GachaItemType } from '@/types'
+
+import { NormalItemList } from '@/constants'
 
 export default function getAverageTimes(gacha: GachaData, type: GachaItemType, isLimit = true) {
   const list = getListByType(gacha.list, type === 'role' ? 'activity' : 'weapon')

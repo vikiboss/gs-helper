@@ -2,7 +2,8 @@ import axios from 'axios'
 import { v4 as uuid } from 'uuid'
 
 import { store } from '..'
-import { APP_USER_AGENT_BBS, BBS_VERSION } from '../../../constants'
+
+import { APP_USER_AGENT_BBS, BBS_VERSION } from '@/constants'
 
 // 创建 Axios 实例并设置默认配置、请求头等
 export const request = axios.create({

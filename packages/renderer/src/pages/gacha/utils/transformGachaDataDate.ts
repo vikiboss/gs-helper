@@ -1,4 +1,4 @@
-import type { GachaData } from '../../../../typings'
+import type { GachaData } from '@/types'
 
 export default function transformGachaDataDate(list: GachaData['list']) {
   const dateMap = new Map<string, number>()

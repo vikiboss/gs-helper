@@ -3,15 +3,16 @@ import dayjs from 'dayjs'
 import React from 'react'
 
 import styles from './index.module.less'
+
+import type { SpiralAbyssData } from '@/services/getSpiralAbyss'
+
 import star1 from '@/assets/star1.png'
 import star2 from '@/assets/star2.png'
 import star3 from '@/assets/star3.png'
-import AbyssNumber from '../../../components/AbyssNumber'
-import Loading from '../../../components/Loading'
-import NumberDescription from '../../../components/NumberDescription'
-import RoleNumber from '../../../components/RoleNumber'
-
-import type { SpiralAbyssData } from '../../../../services/getSpiralAbyss'
+import AbyssNumber from '@/components/AbyssNumber'
+import Loading from '@/components/Loading'
+import NumberDescription from '@/components/NumberDescription'
+import RoleNumber from '@/components/RoleNumber'
 
 interface SpiralAbyssProp {
   data: SpiralAbyssData

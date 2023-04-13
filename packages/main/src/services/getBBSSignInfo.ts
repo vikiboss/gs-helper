@@ -1,10 +1,11 @@
 import { getBBSSignActId } from './getBBSSignActId'
-import { API_TAKUMI, LINK_BBS_REFERER } from '../../../constants'
 import { getCurrentUser } from '../ipc/getCurrentUser'
 import { getServerByUid } from '../utils/getServerByUid'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_TAKUMI, LINK_BBS_REFERER } from '@/constants'
 
 export interface SignInfo {
   first_bind: boolean

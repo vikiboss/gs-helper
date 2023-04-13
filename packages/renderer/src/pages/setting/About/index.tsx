@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 
 import styles from './index.module.less'
+
+import type { Notice } from '@/hooks/useNotice'
+import type { AppInfo } from '@/types'
+
 import groupQRCode from '@/assets/group-qrcode.png'
 import wxRewardCode from '@/assets/wx-reward.jpg'
-import { LINK_GITHUB_REPO } from '../../../../constants'
-import Loading from '../../../components/Loading'
-import useApi from '../../../hooks/useApi'
-import useMount from '../../../hooks/useMount'
-import nativeApi from '../utils/nativeApi'
-
-import type { AppInfo } from '../../../../typings'
-import type { Notice } from '../../../hooks/useNotice'
+import Loading from '@/components/Loading'
+import { LINK_GITHUB_REPO } from '@/constants'
+import useApi from '@/hooks/useApi'
+import useMount from '@/hooks/useMount'
+import nativeApi from '@/utils/nativeApi'
 
 interface AboutProp {
   notice: Notice

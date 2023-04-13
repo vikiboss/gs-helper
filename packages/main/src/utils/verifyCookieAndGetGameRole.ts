@@ -1,9 +1,10 @@
 import { getCurrentRole } from './getCurrentRole'
 import { request } from './request'
-import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '../../../constants'
 
-import type { GameRole, BaseRes, GameRolesData } from '../../../types'
+import type { GameRole, BaseRes, GameRolesData } from '@/types'
 import type { Cookies } from 'electron'
+
+import { API_TAKUMI, GAME_BIZ, LINK_BBS_REFERER } from '@/constants'
 
 export interface AuthResState {
   cookie: string

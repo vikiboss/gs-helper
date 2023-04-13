@@ -15,7 +15,8 @@ export default {
   envDir: PROJECT_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/'
+      '@/constants': join(PACKAGE_ROOT, '..', 'constants'),
+      '@/': join(PACKAGE_ROOT, 'src') + '/'
     }
   },
   build: {

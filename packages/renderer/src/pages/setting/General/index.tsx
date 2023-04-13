@@ -2,11 +2,12 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import styles from './index.module.less'
-import Button from '../../../components/Button'
-import useAuth from '../../../hooks/useAuth'
-import nativeApi from '../utils/nativeApi'
 
-import type { Notice } from '../../../hooks/useNotice'
+import type { Notice } from '@/hooks/useNotice'
+
+import Button from '@/components/Button'
+import useAuth from '@/hooks/useAuth'
+import nativeApi from '@/utils/nativeApi'
 
 interface GeneralProp {
   notice: Notice

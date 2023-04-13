@@ -1,6 +1,6 @@
 import Store from 'electron-store'
 
-import type { AppData } from '../../types'
+import type { AppData } from '@/types'
 import type { Schema } from 'electron-store'
 
 export const DefaultAppData: AppData = {

@@ -2,12 +2,13 @@
 import React from 'react'
 
 import styles from './index.module.less'
-import { deepClone } from '../../utils/utils'
-import AbyssNumber from '../../../components/AbyssNumber'
-import BounceNumber from '../../../components/BounceNumber'
-import NumberDescription from '../../../components/NumberDescription'
+import { deepClone } from '../utils'
 
-import type { GameRoleCardData } from '../../../../services/getGameRoleCard'
+import type { GameRoleCardData } from '@/services/getGameRoleCard'
+
+import AbyssNumber from '@/components/AbyssNumber'
+import BounceNumber from '@/components/BounceNumber'
+import NumberDescription from '@/components/NumberDescription'
 
 export interface StatisticCardProp {
   data: GameRoleCardData

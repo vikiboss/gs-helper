@@ -1,10 +1,11 @@
-import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '../../../constants'
 import { getCurrentUser } from '../ipc/getCurrentUser'
 import { getDS } from '../utils/getDS'
 import { getServerByUid } from '../utils/getServerByUid'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_TAKUMI_RECORD, LINK_BBS_REFERER } from '@/constants'
 
 // 圣遗物词缀
 export interface Affixes {

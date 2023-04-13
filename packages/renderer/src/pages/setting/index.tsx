@@ -5,9 +5,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import About from './About'
 import General from './General'
 import styles from './index.module.less'
-import CircleButton from '../../components/CircleButton'
-import SelectButton from '../../components/SelectButton'
-import useNotice from '../../hooks/useNotice'
+import CircleButton from '@/components/CircleButton'
+import SelectButton from '@/components/SelectButton'
+import useNotice from '@/hooks/useNotice'
 
 interface LocationState {
   tab?: 'general' | 'about'

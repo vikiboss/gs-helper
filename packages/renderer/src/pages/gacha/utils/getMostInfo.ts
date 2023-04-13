@@ -1,6 +1,6 @@
 import getListByType from './getListByType'
 
-import type { GachaData, GachaType } from '../../../../typings'
+import type { GachaData, GachaType } from '@/types'
 
 export default function getMostInfo(gacha: GachaData) {
   const predestined = { name: '', count: 0, valid: false }

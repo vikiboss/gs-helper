@@ -4,14 +4,15 @@ import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 // import element from "../../../assets/element.png";
 import styles from './index.module.less'
-import Button from '../../components/Button'
-import CircleButton from '../../components/CircleButton'
-import useAuth from '../../hooks/useAuth'
-import useMount from '../../hooks/useMount'
-import useNotice from '../../hooks/useNotice'
-import nativeApi from '../../utils/nativeApi'
 
-import type { UserData } from '../../../typings'
+import type { UserData } from '@/types'
+
+import Button from '@/components/Button'
+import CircleButton from '@/components/CircleButton'
+import useAuth from '@/hooks/useAuth'
+import useMount from '@/hooks/useMount'
+import useNotice from '@/hooks/useNotice'
+import nativeApi from '@/utils/nativeApi'
 
 interface LoginProp {
   from?: string

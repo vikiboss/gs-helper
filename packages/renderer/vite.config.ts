@@ -16,10 +16,10 @@ export default {
   envDir: PROJECT_ROOT,
   resolve: {
     alias: {
-      '@/': join(PACKAGE_ROOT, 'src') + '/',
       '@/types': join(PACKAGE_ROOT, '..', 'types'),
       '@/constants': join(PACKAGE_ROOT, '..', 'constants'),
-      '@/service': join(PACKAGE_ROOT, '..', 'main', 'src', 'services')
+      '@/service': join(PACKAGE_ROOT, '..', 'main', 'src', 'services'),
+      '@/': join(PACKAGE_ROOT, 'src') + '/'
     }
   },
   base: '',

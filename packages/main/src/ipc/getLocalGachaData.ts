@@ -2,9 +2,9 @@ import { app } from 'electron'
 import fs from 'fs-extra'
 import path from 'node:path'
 
-import { AppName } from '../../../constants'
+import type { GachaData } from '@/types'
 
-import type { GachaData } from '../../../types'
+import { AppName } from '@/constants'
 
 // 尝试获取本地所有祈愿数据
 export function getLocalGachaData() {

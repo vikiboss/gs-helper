@@ -1,6 +1,6 @@
 import React from 'react'
 
-import './index.less'
+import './index.module.less'
 
 export type InputProp = React.DetailedHTMLProps<
   React.InputHTMLAttributes<HTMLInputElement>,

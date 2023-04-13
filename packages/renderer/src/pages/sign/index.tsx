@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './index.module.less'
 import withAuth from '../../auth/withAuth'
-import CircleButton from '../../components/CircleButton'
-import Loading from '../../components/Loading'
-import useMount from '../../hooks/useMount'
-import useNotice from '../../hooks/useNotice'
-import nativeApi from '../../utils/nativeApi'
+import CircleButton from '@/components/CircleButton'
+import Loading from '@/components/Loading'
+import useMount from '@/hooks/useMount'
+import useNotice from '@/hooks/useNotice'
+import nativeApi from '@/utils/nativeApi'
 
-import type { SignData } from '../../../services/getBBSSignData'
-import type { SignInfo } from '../../../services/getBBSSignInfo'
+import type { SignData } from '@/services/getBBSSignData'
+import type { SignInfo } from '@/services/getBBSSignInfo'
 
 export const DefaultSignData: SignData = {
   month: 1,

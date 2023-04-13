@@ -1,7 +1,8 @@
-import { API_YS_CONTENT } from '../../../constants'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_YS_CONTENT } from '@/constants'
 
 interface ExtValue {
   name: string

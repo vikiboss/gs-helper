@@ -1,5 +1,6 @@
-import { API_DATA, API_DATA_BAK } from '../../../constants'
 import { request } from '../utils/request'
+
+import { API_DATA, API_DATA_BAK } from '@/constants'
 
 export async function getRepoData(filename: string): Promise<any> {
   try {

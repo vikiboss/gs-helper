@@ -1,7 +1,7 @@
 import { ResponsivePie } from '@nivo/pie'
 import React from 'react'
 
-import { ChartTheme } from '../../../constants'
+import { ChartTheme } from '@/constants'
 import { Colors } from '../gacha/utils/getPieData'
 
 import type { CommonPieProps } from '@nivo/pie'

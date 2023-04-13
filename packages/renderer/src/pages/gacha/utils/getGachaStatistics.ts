@@ -1,7 +1,7 @@
 import getListByType from './getListByType'
 import { GachaMap } from '..'
 
-import type { GachaData, GachaType } from '../../../../typings'
+import type { GachaData, GachaType } from '@/types'
 
 function getComment(count: number) {
   // 抽卡期望 62 抽，以此为分界线，上下展开, 分为九个区间

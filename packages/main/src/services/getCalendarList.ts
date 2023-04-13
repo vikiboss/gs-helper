@@ -1,7 +1,8 @@
-import { API_STATIC } from '../../../constants'
 import { request } from '../utils/request'
 
-import type { BaseRes } from '../../../types'
+import type { BaseRes } from '@/types'
+
+import { API_STATIC } from '@/constants'
 
 export interface ContentSource {
   /** 秘境名称 */

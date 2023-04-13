@@ -1,9 +1,9 @@
 import { ResponsiveTimeRange } from '@nivo/calendar'
 import React from 'react'
 
-import { ChartTheme } from '../../../../../../constants'
-
 import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar'
+
+import { ChartTheme } from '@/constants'
 
 type DateRangeProp = {
   width: React.CSSProperties['width']

@@ -5,7 +5,7 @@
     "paths": {
       "@/*": ["src/*"],
       "@/types": ["../types"],
-      "@/service": ["../main/src/services"],
+      "@/services/*": ["../main/src/services/*"],
       "@/constants": ["../constants"]
     },
     "lib": ["esnext", "dom", "dom.iterable"]

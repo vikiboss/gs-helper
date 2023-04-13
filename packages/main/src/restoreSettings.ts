@@ -1,6 +1,6 @@
 import { store } from '.'
 
-import type { AppData } from '../../types'
+import type { AppData } from '@/types'
 import type { BrowserWindow } from 'electron'
 
 /** 恢复用户偏好设置 */

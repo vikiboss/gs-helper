@@ -1,16 +1,17 @@
 import dayjs from 'dayjs'
 import { app } from 'electron'
 
+import { request } from '../utils/request'
+import { deepClone, wait } from '../utils/utils'
+
+import type { BaseRes, GachaData, GachaItem, RawGachaItem } from '@/types'
+
 import {
   API_HK4E,
   AppName,
   GachaTypeMap,
   TypeToUIGFTypeMap as TypeToUigfTypeMap
-} from '../../../constants'
-import { request } from '../utils/request'
-import { deepClone, wait } from '../utils/utils'
-
-import type { BaseRes, GachaData, GachaItem, RawGachaItem } from '../../../types'
+} from '@/constants'
 
 interface RawGachaData {
   page: string

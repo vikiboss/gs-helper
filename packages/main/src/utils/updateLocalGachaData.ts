@@ -5,7 +5,7 @@ import path from 'node:path'
 import { mergeGachaList } from './mergeGachaList'
 import { DefaultGachaData } from '../services/getGachaListByUrl'
 
-import type { GachaData } from '../../../types'
+import type { GachaData } from '@/types'
 
 // 通过新的抽卡数据来更新配置文件里的抽卡数据
 export function updateLocalGachaData(gacha: GachaData) {

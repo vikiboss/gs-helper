@@ -1,7 +1,7 @@
-// import { API_BBS, LINK_BBS_REFERER } from '../constants';
+// import { API_BBS, LINK_BBS_REFERER } from '@/constants';
 // import request from '../utils/request';
 
-// import type { BaseRes } from '../typings';
+// import type { BaseRes } from '@/types';
 
 // interface Navigator {
 //   app_path: string;

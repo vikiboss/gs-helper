@@ -1,6 +1,6 @@
 import { GachaTypeMap } from './filterGachaList'
 
-import type { GachaData, GachaType } from '../../../../typings'
+import type { GachaData, GachaType } from '@/types'
 
 function getListByType(list: GachaData['list'], type: GachaType) {
   return list.filter((e) => {

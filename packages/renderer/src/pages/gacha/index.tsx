@@ -8,17 +8,18 @@ import Data from './Data'
 import styles from './index.module.less'
 import Overview from './Overview'
 import Statistics from './Statistics'
-import Button from '../../components/Button'
-import CircleButton from '../../components/CircleButton'
-import Loading from '../../components/Loading'
-import Select from '../../components/Select'
-import SelectButton from '../../components/SelectButton'
-import useMount from '../../hooks/useMount'
-import useNotice from '../../hooks/useNotice'
-import nativeApi from '../../utils/nativeApi'
 
-import type { GachaData, GachaType, GachaItemType, StarType } from '../../../typings'
-import type { Notice } from '../../hooks/useNotice'
+import type { Notice } from '@/hooks/useNotice'
+import type { GachaData, GachaType, GachaItemType, StarType } from '@/types'
+
+import Button from '@/components/Button'
+import CircleButton from '@/components/CircleButton'
+import Loading from '@/components/Loading'
+import Select from '@/components/Select'
+import SelectButton from '@/components/SelectButton'
+import useMount from '@/hooks/useMount'
+import useNotice from '@/hooks/useNotice'
+import nativeApi from '@/utils/nativeApi'
 
 const DefaultGachaData: GachaData = {
   info: {

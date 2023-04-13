@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 
 import styles from './index.module.less'
 
-import type { CalendarEvent } from '../../../../services/getCalendarList'
-import type { Notice } from '../../../hooks/useNotice'
+import type { CalendarEvent } from '@/services/getCalendarList'
+import type { Notice } from '@/hooks/useNotice'
 
 type Type = 'roles' | 'weapons' | 'materials'
 
