@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "allowJs": true,
-    "module": "CommonJS",
-    "target": "ESNEXT",
+    "module": "esnext",
+    "target": "esnext",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
@@ -11,10 +11,17 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "downlevelIteration": true,
-    "jsx": "react",
-    "paths": {
-      "*": ["./node_modules/*"]
-    }
+    "jsx": "react"
   },
-  "include": ["./src/**/*"]
+  "references": [
+    {
+      "path": "./src/main/tsconfig.json"
+    },
+    {
+      "path": "./src/preload/tsconfig.json"
+    },
+    {
+      "path": "./src/render/tsconfig.json"
+    }
+  ]
 }

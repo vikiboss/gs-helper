@@ -1,5 +1,9 @@
-@import './utils/colors.less';
-@import './utils/utils.less';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './utils/colors.css';
+@import './utils/utils.css';
 
 @font-face {
   font-family: HanYiBlack;
