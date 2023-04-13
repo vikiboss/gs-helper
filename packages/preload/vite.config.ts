@@ -19,7 +19,6 @@ export default {
     sourcemap: 'inline',
     target: `chrome${chrome}`,
     outDir: 'dist',
-    assetsDir: '.',
     minify: process.env.MODE !== 'development',
     lib: {
       entry: 'src/index.ts',
@@ -32,7 +31,6 @@ export default {
        */
       preserveEntrySignatures: 'strict',
       output: {
-        exports: 'named',
         preserveModules: true,
         preserveModulesRoot: join(PACKAGE_ROOT, 'src'),
         entryFileNames: (info: { name: string }) => `${info.name}.cjs`
@@ -47,14 +45,10 @@ export default {
         return externalNames.includes(name)
       }
     },
-    commonjsOptions: {
-      ignoreDynamicRequires: true
-    },
-    emptyOutDir: true,
-    reportCompressedSize: false
+    emptyOutDir: true
   },
   ssr: {
     noExternal: true
   },
-  plugins: [preload.vite(), injectAppVersion()]
+  plugins: [injectAppVersion()]
 } satisfies UserConfig
