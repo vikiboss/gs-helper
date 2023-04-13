@@ -1,7 +1,7 @@
 import { builtinModules } from 'node:module'
 import { join } from 'node:path'
 
-// import { node } from '../../.electron-vendors.cache.json'
+import { node } from '../../.electron-vendors.cache.json'
 import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs'
 
 import type { UserConfig } from 'vite'
@@ -21,7 +21,7 @@ export default {
   build: {
     ssr: true,
     sourcemap: 'inline',
-    target: `node18`,
+    target: `node${node}`,
     outDir: 'dist',
     assetsDir: '.',
     minify: process.env.MODE !== 'development',

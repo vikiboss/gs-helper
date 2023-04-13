@@ -2,7 +2,7 @@
 import { join } from 'node:path'
 import { renderer } from 'unplugin-auto-expose'
 
-// import { chrome } from '../../.electron-vendors.cache.json'
+import { chrome } from '../../.electron-vendors.cache.json'
 import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs'
 
 import type { UserConfig } from 'vite'
@@ -16,7 +16,10 @@ export default {
   envDir: PROJECT_ROOT,
   resolve: {
     alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/'
+      '@/': join(PACKAGE_ROOT, 'src') + '/',
+      '@/types': join(PACKAGE_ROOT, '..', 'types'),
+      '@/constants': join(PACKAGE_ROOT, '..', 'constants'),
+      '@/service': join(PACKAGE_ROOT, '..', 'main', 'src', 'services')
     }
   },
   base: '',
@@ -27,7 +30,7 @@ export default {
   },
   build: {
     sourcemap: true,
-    target: `chrome112`,
+    target: `chrome${chrome}`,
     outDir: 'dist',
     assetsDir: '.',
     rollupOptions: {

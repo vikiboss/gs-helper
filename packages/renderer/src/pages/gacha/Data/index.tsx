@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 
 import styles from './index.module.less'
 import { GachaMap } from '..'
-import { NormalItemList } from '../../../../constants'
+import { NormalItemList } from '../../../../../constants'
 import useMount from '../../../hooks/useMount'
-import nativeApi from '../utils/nativeApi'
+import nativeApi from '../../../utils/nativeApi'
 import getListByType from '../utils/getListByType'
 
 import type { PageProp } from '..'
-import type { CalendarEvent } from '../../../../services/getCalendarList'
-import type { GachaData, GachaType } from '../../../../typings'
+import type { CalendarEvent } from '../../../../../main/src/services/getCalendarList'
+import type { GachaData, GachaType } from '../../../../../types'
 
 type TableRow = '3' | '4' | '5' | '合计'
 type TableColumn = GachaType | '合计'

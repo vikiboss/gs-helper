@@ -2,7 +2,7 @@ import { builtinModules } from 'node:module'
 import { join } from 'node:path'
 import { preload } from 'unplugin-auto-expose'
 
-// import { chrome } from '../../.electron-vendors.cache.json'
+import { chrome } from '../../.electron-vendors.cache.json'
 import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs'
 
 import type { UserConfig } from 'vite'
@@ -17,7 +17,7 @@ export default {
   build: {
     ssr: true,
     sourcemap: 'inline',
-    target: `chrome112`,
+    target: `chrome${chrome}`,
     outDir: 'dist',
     assetsDir: '.',
     minify: process.env.MODE !== 'development',

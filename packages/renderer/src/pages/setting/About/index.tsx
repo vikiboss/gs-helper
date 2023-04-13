@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 
 import styles from './index.module.less'
-import groupQRCode from '../../../assets/group-qrcode.png'
-import wxRewardCode from '../../../assets/wx-reward.jpg'
+import groupQRCode from '@/assets/group-qrcode.png'
+import wxRewardCode from '@/assets/wx-reward.jpg'
 import { LINK_GITHUB_REPO } from '../../../../constants'
 import Loading from '../../../components/Loading'
 import useApi from '../../../hooks/useApi'

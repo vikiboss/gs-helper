@@ -1,6 +1,13 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/types": ["../types"],
+      "@/service": ["../main/src/services"],
+      "@/constants": ["../constants"]
+    },
     "lib": ["esnext", "dom", "dom.iterable"]
   },
   "include": ["env.d.ts", "src"]

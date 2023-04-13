@@ -15,7 +15,7 @@ import {
 } from './constants'
 import styles from './index.module.less'
 import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils'
-import lock from '../../../assets/lock.png'
+import lock from '@/assets/lock.png'
 import { ElementTypes } from '../../../constants'
 import { wait } from '../utils/utils'
 import withAuth from '../../auth/withAuth'

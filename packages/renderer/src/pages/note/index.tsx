@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom'
 
 import styles from './index.module.less'
 import Pie from './Pie'
-import primogem from '../../../assets/primogem.png'
 import { getGreetingMsg } from '../../../../main/src/utils/getGreetingMsg'
 import { wait } from '../../../../main/src/utils/utils'
-import mora from '../../../assets/mora.png'
 import withAuth from '../../auth/withAuth'
 import BounceNumber from '../../components/BounceNumber'
 import CircleButton from '../../components/CircleButton'
@@ -18,6 +16,9 @@ import useNotice from '../../hooks/useNotice'
 import nativeApi from '../../utils/nativeApi'
 
 import type { MonthInfo } from '../../../../main/src/services/getMonthInfo'
+
+import mora from '@/assets/mora.png'
+import primogem from '@/assets/primogem.png'
 
 export default withAuth(function Month() {
   const navigate = useNavigate()

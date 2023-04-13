@@ -1,7 +1,7 @@
 import React from 'react'
 
-import paimon from '../../../assets/paimon.gif'
-import paimon2 from '../../../assets/paimon2.gif'
+import paimon from '@/assets/paimon.gif'
+import paimon2 from '@/assets/paimon2.gif'
 
 export interface LoadingProp {
   text?: string
