@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React, { useState } from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import { GachaMap } from '..'
 import { NormalItemList } from '../../../../constants'
 import useMount from '../../../hooks/useMount'

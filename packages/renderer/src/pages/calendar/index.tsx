@@ -3,7 +3,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
 import DailyMaterial from './DailyMaterial'
-import styles from './index.less'
+import styles from './index.module.less'
 import WeekMaterial from './WeekMaterial'
 import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'

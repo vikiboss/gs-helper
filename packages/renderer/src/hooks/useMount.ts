@@ -10,8 +10,6 @@ const useMount = (func: () => void, callback?: () => void) => {
     if (callback) {
       return callback
     }
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 }
 

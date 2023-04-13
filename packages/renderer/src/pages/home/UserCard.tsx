@@ -2,7 +2,7 @@ import cn from 'classnames'
 import dayjs from 'dayjs'
 import React from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import bbsIcon from '../../../assets/bbs.png'
 import discountIcon from '../../../assets/discount.png'
 import homeIcon from '../../../assets/home.png'

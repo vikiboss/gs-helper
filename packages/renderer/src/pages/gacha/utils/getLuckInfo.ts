@@ -1,7 +1,7 @@
 import getListByType from './getListByType'
-import { NormalItemList } from '../../../../constants'
+import { NormalItemList } from '../../../../../constants'
 
-import type { GachaData } from '../../../../typings'
+import type { GachaData } from '../../../../../types'
 
 export default function getLuckInfo(gacha: GachaData) {
   let count = 0

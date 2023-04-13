@@ -1,5 +1,5 @@
 import type { EXPOSED_API_FROM_ELECTRON } from './constants'
-import type { apis } from './preload'
+import type { apis } from './preload/src'
 
 export interface BaseIPCRes<T> {
   ok: boolean

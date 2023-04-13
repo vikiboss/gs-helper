@@ -2,7 +2,7 @@ import cn from 'classnames'
 import React from 'react'
 import { FaExpandArrowsAlt, FaMinus } from 'react-icons/fa'
 
-import styles from './index.less'
+import styles from './index.module.less'
 
 import type { IconType } from 'react-icons'
 

@@ -1,7 +1,7 @@
 import { ResponsiveTimeRange } from '@nivo/calendar'
 import React from 'react'
 
-import { ChartTheme } from '../../../../../constants'
+import { ChartTheme } from '../../../../../../constants'
 
 import type { CalendarDatum, CalendarLegendProps, TimeRangeDayData } from '@nivo/calendar'
 

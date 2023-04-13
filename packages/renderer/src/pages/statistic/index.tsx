@@ -3,7 +3,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
 import GameStatsTab from './GameStatsTab'
-import styles from './index.less'
+import styles from './index.module.less'
 import RolesTab from './RolesTab'
 import SpiralAbyssTab from './SpiralAbyssTab'
 import withAuth from '../../auth/withAuth'

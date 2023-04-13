@@ -1,6 +1,6 @@
 import React from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import Button from '../../../components/Button'
 import RoleCard from '../../../components/RoleCard'
 import nativeApi from '../utils/nativeApi'

@@ -3,7 +3,7 @@ import React from 'react'
 import { BiCircle } from 'react-icons/bi'
 import { BsXLg } from 'react-icons/bs'
 
-import styles from './index.less'
+import styles from './index.module.less'
 
 import type { IconType } from 'react-icons'
 

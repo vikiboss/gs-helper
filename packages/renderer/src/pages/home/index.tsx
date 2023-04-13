@@ -9,9 +9,9 @@ import { IoGameControllerOutline, IoSettingsOutline } from 'react-icons/io5'
 import { MdOutlineLocalFireDepartment, MdOutlineAccountBox, MdOutlineNoteAlt } from 'react-icons/md'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import UserCard from './UserCard'
-import { LINK_GENSHIN_MAP } from '../../../constants'
+import { LINK_GENSHIN_MAP } from '../../../../constants'
 import Button from '../../components/Button'
 import Loading from '../../components/Loading'
 import useApi from '../../hooks/useApi'
@@ -20,10 +20,10 @@ import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import nativeApi from '../../utils/nativeApi'
 
-import type { SignInfo } from '../../../services/getBBSSignInfo'
-import type { CalendarEvent } from '../../../services/getCalendarList'
-import type { DailyNotesData } from '../../../services/getDailyNotes'
-import type { BaseRes, GameRole } from '../../../typings'
+import type { SignInfo } from '../../../../main/src/services/getBBSSignInfo'
+import type { CalendarEvent } from '../../../../main/src/services/getCalendarList'
+import type { DailyNotesData } from '../../../../main/src/services/getDailyNotes'
+import type { BaseRes, GameRole } from '../../../../types'
 
 const { getGameRoleInfo, getBBSSignInfo, getDailyNotes, getGachaUrl } = nativeApi
 

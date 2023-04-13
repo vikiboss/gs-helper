@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 
 export interface AlertProp {
   visible: boolean

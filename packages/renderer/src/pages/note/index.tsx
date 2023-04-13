@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import Pie from './Pie'
-import mora from '../../../assets/mora.png'
 import primogem from '../../../assets/primogem.png'
-import { getGreetingMsg } from '../utils/getGreetingMsg'
-import { wait } from '../utils/utils'
+import { getGreetingMsg } from '../../../../main/src/utils/getGreetingMsg'
+import { wait } from '../../../../main/src/utils/utils'
+import mora from '../../../assets/mora.png'
 import withAuth from '../../auth/withAuth'
 import BounceNumber from '../../components/BounceNumber'
 import CircleButton from '../../components/CircleButton'
@@ -17,7 +17,7 @@ import useMount from '../../hooks/useMount'
 import useNotice from '../../hooks/useNotice'
 import nativeApi from '../../utils/nativeApi'
 
-import type { MonthInfo } from '../../../services/getMonthInfo'
+import type { MonthInfo } from '../../../../main/src/services/getMonthInfo'
 
 export default withAuth(function Month() {
   const navigate = useNavigate()

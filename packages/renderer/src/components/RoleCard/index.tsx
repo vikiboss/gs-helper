@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import Anemo from '../../../assets/anemo.png'
 import Cryo from '../../../assets/cryo.png'
 import Dendro from '../../../assets/dendro.png'

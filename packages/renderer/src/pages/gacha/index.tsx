@@ -5,7 +5,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
 import Data from './Data'
-import styles from './index.less'
+import styles from './index.module.less'
 import Overview from './Overview'
 import Statistics from './Statistics'
 import Button from '../../components/Button'

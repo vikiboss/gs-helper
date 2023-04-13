@@ -1,6 +1,6 @@
-import { EXPOSED_API_FROM_ELECTRON } from '../../constants'
+import { EXPOSED_API_FROM_ELECTRON } from '../../../constants'
 
-import type { ElectronWindow } from '../../typings'
+import type { ElectronWindow } from '../../../types'
 
 const nativeApi = (window as ElectronWindow)[EXPOSED_API_FROM_ELECTRON]
 

@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import star1 from '../../../assets/star1.png'
 import star2 from '../../../assets/star2.png'
 import star3 from '../../../assets/star3.png'

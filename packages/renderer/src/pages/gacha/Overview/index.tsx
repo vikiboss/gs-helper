@@ -1,7 +1,7 @@
 import cn from 'classnames'
 import React, { useMemo } from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import getAverageTimes from '../utils/getAverageTimes'
 import getGachaStatistics from '../utils/getGachaStatistics'
 import getLuckInfo from '../utils/getLuckInfo'

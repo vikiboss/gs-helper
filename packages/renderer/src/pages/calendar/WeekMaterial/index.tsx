@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import SelectButton from '../../../components/SelectButton'
 
 import type { Notice } from '../../../hooks/useNotice'

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import Button from '../../../components/Button'
 import useAuth from '../../../hooks/useAuth'
 import nativeApi from '../utils/nativeApi'

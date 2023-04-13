@@ -3,7 +3,7 @@ import React from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { useNavigate } from 'react-router-dom'
 
-import styles from './index.less'
+import styles from './index.module.less'
 import CircleButton from '../../components/CircleButton'
 import Loading from '../../components/Loading'
 import useApi from '../../hooks/useApi'

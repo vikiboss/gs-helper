@@ -3,7 +3,7 @@ import { TiArrowBack } from 'react-icons/ti'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
 // import element from "../../../assets/element.png";
-import styles from './index.less'
+import styles from './index.module.less'
 import Button from '../../components/Button'
 import CircleButton from '../../components/CircleButton'
 import useAuth from '../../hooks/useAuth'

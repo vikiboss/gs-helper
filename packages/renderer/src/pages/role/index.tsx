@@ -13,7 +13,7 @@ import {
   tabs,
   WeaponOptions
 } from './constants'
-import styles from './index.less'
+import styles from './index.module.less'
 import { getFullRoleInfo, getReliquaryEffects, getStarImage } from './utils'
 import lock from '../../../assets/lock.png'
 import { ElementTypes } from '../../../constants'

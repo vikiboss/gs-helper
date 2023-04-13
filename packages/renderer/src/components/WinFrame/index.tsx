@@ -1,7 +1,7 @@
 import React from 'react'
 
-import styles from './index.less'
-import icon from '../../../assets/icon.png'
+import styles from './index.module.less'
+import icon from '../../assets/icon.png'
 import nativeApi from '../../utils/nativeApi'
 import WinButton from '../WinButton'
 
