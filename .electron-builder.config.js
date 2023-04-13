@@ -14,10 +14,10 @@ module.exports = async function () {
   return {
     directories: {
       output: 'dist',
-      buildResources: 'src/assets'
+      buildResources: 'packages/resources'
     },
-    icon: 'src/assets/icon.png',
-    files: ['src/**/dist/**', '!node_modules/**/*'],
+    icon: 'packages/resources/icon.png',
+    files: ['packages/**/dist/**', '!node_modules/**/*'],
     includeSubNodeModules: true,
     extraMetadata: {
       version: getVersion()

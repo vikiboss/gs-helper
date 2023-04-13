@@ -1,27 +1,18 @@
 {
   "compilerOptions": {
-    "allowJs": true,
     "module": "esnext",
     "target": "esnext",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "noImplicitAny": true,
-    "sourceMap": true,
     "outDir": "dist",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "downlevelIteration": true,
     "jsx": "react"
   },
   "references": [
-    {
-      "path": "./src/main/tsconfig.json"
-    },
-    {
-      "path": "./src/preload/tsconfig.json"
-    },
-    {
-      "path": "./src/render/tsconfig.json"
-    }
+    { "path": "./packages/main/tsconfig.json" },
+    { "path": "./packages/preload/tsconfig.json" },
+    { "path": "./packages/render/tsconfig.json" }
   ]
 }

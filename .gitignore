@@ -75,3 +75,5 @@ node_modules/
 
 # Electron-Forge
 out/
+
+**/dist
