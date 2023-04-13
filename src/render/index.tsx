@@ -7,7 +7,7 @@ import './index.less'
 import AppRouter from './router'
 import nativeApi from './utils/nativeApi'
 
-const root = createRoot(document.getElementById('app'))
+const root = createRoot(document.getElementById('app')!)
 
 const render = async () => {
   const { zhName, version, isBeta } = await nativeApi.getAppInfo()
