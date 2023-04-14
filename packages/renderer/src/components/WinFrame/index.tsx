@@ -2,8 +2,9 @@ import React from 'react'
 
 import styles from './index.module.less'
 import icon from '../../assets/icon.png'
-import nativeApi from '@/utils/nativeApi'
 import WinButton from '../WinButton'
+
+import nativeApi from '@/utils/nativeApi'
 
 export interface WinFrameProp {
   title?: string

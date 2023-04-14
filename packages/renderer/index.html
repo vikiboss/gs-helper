@@ -5,11 +5,14 @@
     <meta content="script-src 'self' blob:" http-equiv="Content-Security-Policy" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>原神助手 - Genshin Helper</title>
+    <style>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
+    </style>
   </head>
-  <body>
-    <div id="app" class="m-0 p-0 h-screen flex items-center justify-center bg-white">
-      loading...
-    </div>
+  <body class="m-0 p-0">
+    <div id="app" class="h-screen flex items-center justify-center bg-white">loading...</div>
     <script src="./src/index.tsx" type="module"></script>
   </body>
 </html>

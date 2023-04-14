@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import electronPath from 'electron'
 import { spawn } from 'node:child_process'
 import { build, createServer } from 'vite'

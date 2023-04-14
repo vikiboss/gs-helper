@@ -16,7 +16,7 @@
     "test": "npm run test:main && npm run test:preload",
     "test:main": "vitest run -r packages/main --passWithNoTests",
     "test:preload": "vitest run -r src/preload --passWithNoTests",
-    "lint": "eslint . --ext js,mjs,cjs,ts,mts,cts --fix && npm run format",
+    "lint": "eslint --fix . --ext js,mjs,cjs,ts,mts,cts && npm run format",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron version/setup-electron-version.mjs",
     "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,tsx,jsx,mts,cts,json}\""
   },

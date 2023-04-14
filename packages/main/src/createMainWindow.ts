@@ -54,14 +54,14 @@ export function createMainWindow() {
   const pageUrl =
     import.meta.env.DEV && import.meta.env.VITE_DEV_SERVER_URL !== undefined
       ? import.meta.env.VITE_DEV_SERVER_URL
-      : new URL('../renderer/dist/index.html', 'file://' + __dirname).toString()
+      : new URL('../../renderer/dist/index.html', 'file://' + __dirname).toString()
 
-  // 加载入口文件，这个入口常量是由 electron-forge 和 webpack 内置的
+  // 加载入口文件
   win.loadURL(pageUrl)
 
   // for debug
   if (isDev) {
-    // win?.webContents.openDevTools({ mode: 'detach' })
+    win?.webContents.openDevTools({ mode: 'detach' })
   }
 
   // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
