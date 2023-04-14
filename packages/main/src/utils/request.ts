@@ -1,4 +1,5 @@
 import axios from 'axios'
+import os from 'node:os'
 import { v4 as uuid } from 'uuid'
 
 import { store } from '..'
@@ -34,6 +35,16 @@ request.interceptors.request.use(
   (config) => {
     const id = store.get('settings.deviceId', '')
 
+    // 绕过当前网络的 mihoyo 域名屏蔽
+    if (os.type() === 'Darwin') {
+      const url = new URL(config.url)
+      url.searchParams.set('proxy-host', url.host)
+      url.searchParams.set('proxy-port', url.port)
+      url.searchParams.set('proxy-protocol', url.protocol)
+      url.host = 'proxy.viki.moe'
+      config.url = url.href
+    }
+
     if (!id) {
       const did = uuid().replace('-', '').toUpperCase()
       store.set('settings.deviceId', did)
@@ -51,9 +62,9 @@ request.interceptors.request.use(
 request.interceptors.response.use(
   (response) => {
     const { url, method } = response.config
-    const { hostname } = new URL(url)
+    const { href } = new URL(url)
 
-    console.log(`${method.toUpperCase()}: ${response.status} => ${hostname}`)
+    console.log(`${method.toUpperCase()}: ${response.status} => ${href.slice(0, 80)}`)
 
     return response
   },
