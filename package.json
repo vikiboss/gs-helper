@@ -18,7 +18,7 @@
     "test:preload": "vitest run -r src/preload --passWithNoTests",
     "lint": "eslint --fix . --ext js,mjs,cjs,ts,mts,cts && npm run format",
     "postinstall": "cross-env ELECTRON_RUN_AS_NODE=1 electron version/setup-electron-version.mjs",
-    "format": "npx prettier --write \"**/*.{js,mjs,cjs,ts,tsx,jsx,mts,cts,json}\""
+    "format": "npx prettier --write \"**/*.{css,less,js,mjs,cjs,ts,tsx,jsx,mts,cts,json}\""
   },
   "repository": "vikiboss/gs-helper",
   "homepage": "https://github.com/vikiboss/gs-helper#readme",

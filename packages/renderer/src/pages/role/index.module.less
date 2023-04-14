@@ -12,7 +12,7 @@
   position: relative;
   width: 100vw;
 
-  .top-zone {
+  .topZone {
     .ani-show-top();
     .transition();
 
@@ -30,7 +30,7 @@
       font-size: 24px;
     }
 
-    .all-role-btn {
+    .allRoleBtn {
       left: 20px;
       position: absolute;
       top: 20px;
@@ -61,11 +61,11 @@
     }
   }
 
-  .role-table-ani {
+  .roleTableAni {
     .ani-show-bottom();
   }
 
-  .role-table {
+  .roleTable {
     .flex();
 
     align-content: flex-start;
@@ -86,24 +86,24 @@
     }
   }
 
-  .role-detail {
+  .roleDetail {
     display: flex;
     flex: 1;
     margin: 20px 80px 0 20px;
     overflow: hidden;
     z-index: 1;
 
-    .detail-content {
+    .detailContent {
       color: @color-white;
       display: flex;
       justify-content: space-between;
       width: 100%;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 
-      .role-info {
+      .roleInfo {
         width: 600px;
 
-        .title-zone {
+        .titleZone {
           .flex-center-y-column();
 
           .name {
@@ -118,7 +118,7 @@
             width: 94px;
           }
 
-          .role-attr {
+          .roleAttr {
             .flex-center-y();
 
             margin-left: 44px;
@@ -133,7 +133,7 @@
           }
         }
 
-        .tab-container {
+        .tabContainer {
           .flex();
 
           margin-top: 20px;
@@ -160,7 +160,7 @@
               }
             }
 
-            .tab-active {
+            .tabActive {
               position: relative;
               background: linear-gradient(to right, rgba(255, 255, 255, 0.3), transparent);
 
@@ -176,7 +176,7 @@
             }
           }
 
-          .tab-content {
+          .tabContent {
             flex: 4;
             margin-top: 6px;
             position: relative;
@@ -277,7 +277,7 @@
                   }
                 }
 
-                .constelll-active {
+                .constelllActive {
                   background-color: rgba(0, 0, 0, 0.3);
                   transform: scale(1.05);
                 }
@@ -328,12 +328,12 @@
     }
 
     // 角色标题区域动画
-    .title-ani {
+    .titleAni {
       .ani-show-right();
     }
 
     // 角色详情区域动画
-    .content-ani {
+    .contentAni {
       .ani-show-bottom();
     }
 
@@ -348,7 +348,7 @@
     }
 
     // 角色图片动画
-    .img-ani {
+    .imgAni {
       .ani-show-right-far();
     }
 
@@ -365,7 +365,7 @@
     }
 
     // 台词图片，图片链接来自官网
-    .ext-info {
+    .extInfo {
       .flex-center-column();
 
       bottom: 24px;
@@ -381,7 +381,7 @@
   }
 
   // 背景元素
-  .bg-element {
+  .bgElement {
     height: 160px;
     left: calc(50vw - 80px);
     opacity: 0.4;
@@ -392,7 +392,7 @@
   }
 
   // 背景元素 icon 动画
-  .element-ani {
+  .elementAni {
     .ani-show-top-no-opacity();
   }
 
@@ -409,7 +409,7 @@
   }
 
   // 详情页切换按钮
-  .arrow-left {
+  .arrowLeft {
     .arrow();
     .bg-image-cover-no-repeat();
 
@@ -422,7 +422,7 @@
   }
 
   // 详情页切换按钮
-  .arrow-right {
+  .arrowRight {
     .arrow();
     .bg-image-cover-no-repeat();
 
@@ -435,7 +435,7 @@
   }
 
   // 返回按钮
-  .back-btn {
+  .backBtn {
     .ani-show-right();
 
     left: 20px;
@@ -450,17 +450,17 @@
 }
 
 // 所有角色按钮动画
-.all-role-btn-ani {
+.allRoleBtnAni {
   .ani-show-left();
 }
 
 // 背景动画
-.bg-ani {
+.bgAni {
   .opacity-show();
 }
 
 // 详情页模式字体样式
-.detail-mode {
+.detailMode {
   .transition();
 
   color: @color-white;
