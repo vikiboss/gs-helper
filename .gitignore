@@ -8,5 +8,5 @@ dist
 .cache
 .webpack
 
-.browserlistrc
+.browserslistrc
 .electron-vendors.cache.json
