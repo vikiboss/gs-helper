@@ -1,6 +1,7 @@
 import { app, BrowserWindow, shell } from 'electron'
 import { join } from 'node:path'
 
+import { isDev } from '.'
 import { registerHotkey } from './handleHotkeys'
 import { initTray } from './initTray'
 import { bindIPC } from './ipc'
@@ -28,7 +29,9 @@ const winOptions: BrowserWindowConstructorOptions = {
   // 加载时的背景颜色
   backgroundColor: '#F9F6F2',
   // 设置 web 页面的 preload，用于 IPC 通信
-  webPreferences: { preload: join(app.getAppPath(), 'packages/preload/dist/index.cjs') }
+  webPreferences: {
+    preload: join(__dirname, '../../preload/dist/index.js')
+  }
 }
 
 /** 创建主窗口的函数 */
@@ -55,6 +58,11 @@ export function createMainWindow() {
 
   // 加载入口文件，这个入口常量是由 electron-forge 和 webpack 内置的
   win.loadURL(pageUrl)
+
+  // for debug
+  if (isDev) {
+    // win?.webContents.openDevTools({ mode: 'detach' })
+  }
 
   // 注册 IPC 事件（用于 main 进程与 render 进程安全通信）
   bindIPC(win)

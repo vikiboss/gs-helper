@@ -1,6 +1,5 @@
 /* eslint-env node */
 import { join } from 'node:path'
-import { renderer } from 'unplugin-auto-expose'
 
 import { chrome } from '../../.electron-vendors.cache.json'
 import { injectAppVersion } from '../../version/inject-app-version-plugin.mjs'
@@ -32,17 +31,12 @@ export default {
     sourcemap: true,
     target: `chrome${chrome}`,
     outDir: 'dist',
-    assetsDir: '.',
+    assetsDir: 'src/assets',
     rollupOptions: {
       input: join(PACKAGE_ROOT, 'index.html')
     },
     emptyOutDir: true,
-    reportCompressedSize: false
+    reportCompressedSize: true
   },
-  plugins: [
-    renderer.vite({
-      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts')
-    }),
-    injectAppVersion()
-  ]
+  plugins: [injectAppVersion()]
 } satisfies UserConfig
