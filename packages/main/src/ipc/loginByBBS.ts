@@ -35,6 +35,7 @@ export async function loginByBBS() {
   dom.setWindowOpenHandler(() => ({ action: 'deny' }))
   // 设置 UA 为手机版本
   dom.setUserAgent(APP_USER_AGENT_MOBILE)
+
   // 加载米游社登录页面
   dom.loadURL(LINK_MIHOYO_BBS_LOGIN)
 

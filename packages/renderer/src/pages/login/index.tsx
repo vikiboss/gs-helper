@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { TiArrowBack } from 'react-icons/ti'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 
-// import element from "../../../assets/element.png";
+// import element from "../../assets/element.png";
 import styles from './index.module.less'
 
 import type { UserData } from '@/types'
