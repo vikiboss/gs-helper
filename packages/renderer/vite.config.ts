@@ -33,10 +33,17 @@ export default {
     outDir: 'dist',
     assetsDir: 'src/assets',
     rollupOptions: {
-      input: join(PACKAGE_ROOT, 'index.html')
+      input: join(PACKAGE_ROOT, 'index.html'),
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+        }
+      }
     },
     emptyOutDir: true,
-    reportCompressedSize: true
+    reportCompressedSize: false
   },
   plugins: [injectAppVersion()]
 } satisfies UserConfig
