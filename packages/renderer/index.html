@@ -6,13 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>原神助手 - Genshin Helper</title>
     <style>
-      @tailwind base;
-      @tailwind components;
-      @tailwind utilities;
+      #app {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        width: 100vw;
+        flex: 1;
+        align-items: center;
+        justify-content: center;
+        border-color: #fefefe;
+      }
     </style>
   </head>
-  <body class="m-0 p-0">
-    <div id="app" class="h-screen flex items-center justify-center bg-white">loading...</div>
+  <body>
+    <div id="app">loading...</div>
     <script src="./src/index.tsx" type="module"></script>
   </body>
 </html>
