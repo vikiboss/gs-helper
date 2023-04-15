@@ -30,7 +30,7 @@ const winOptions: BrowserWindowConstructorOptions = {
   backgroundColor: '#F9F6F2',
   // 设置 web 页面的 preload，用于 IPC 通信
   webPreferences: {
-    preload: join(__dirname, '../../preload/dist/index.js')
+    preload: join(app.getAppPath(), 'packages/preload/dist/index.js')
   }
 }
 
