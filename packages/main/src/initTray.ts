@@ -21,11 +21,10 @@ export const Menus: Record<string, string> = {
 
 /** 初始化托盘图标与菜单 */
 export function initTray(win: BrowserWindow) {
-  // 图标路径
-  const dir = path.join(__dirname, isAppleDevice ? macIcon : icon)
+  const filename = isAppleDevice ? 'mac-icon.png' : 'icon.ico'
+  const filePath = path.join(__dirname, '../../resources', filename)
 
-  // 从路径新建图片
-  const image = nativeImage.createFromPath(dir)
+  const image = nativeImage.createFromPath(filePath)
 
   // 设置图片为自动适应模式的黑白图标
   if (isAppleDevice) {

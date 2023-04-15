@@ -6,7 +6,7 @@ import type { ChildProcess } from 'node:child_process'
 import type { LogLevel, ViteDevServer } from 'vite'
 
 const mode = (process.env.MODE ??= 'development') as 'production' | 'development'
-const logLevel: LogLevel = 'warn'
+const logLevel: LogLevel = 'info'
 
 function setupMainPackageWatcher(server: ViteDevServer) {
   process.env.VITE_DEV_SERVER_URL = server.resolvedUrls!.local[0]
