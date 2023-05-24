@@ -112,7 +112,8 @@ export const NormalItemList: string[] = [
   '天空之傲',
   '天空之刃',
   '风鹰剑',
-  '提纳里'
+  '提纳里',
+  '迪希雅'
 ]
 
 // nivo 图表库的主题数据
