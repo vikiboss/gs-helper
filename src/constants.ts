@@ -39,7 +39,7 @@ export const IpcEvents = {
 } as const
 
 export const EXPOSED_API_FROM_ELECTRON = 'nativeApi'
-export const BBS_VERSION = '2.42.1'
+export const BBS_VERSION = '2.50.1'
 
 export const AppName = {
   zh: '原神助手',
@@ -51,7 +51,7 @@ export const GAME_NAME = {
   en: 'Genshin Impact'
 } as const
 
-export const APP_USER_AGENT_BBS = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_0_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${BBS_VERSION}`
+export const APP_USER_AGENT_BBS = `Mozilla/5.0 (iPhone; CPU iPhone OS 16_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) miHoYoBBS/${BBS_VERSION}`
 export const APP_USER_AGENT_DESKTOP = 'Mozilla/5.0 GenshinHelper/'
 export const APP_USER_AGENT_MOBILE = 'Mozilla/5.0 Mobile/15E148 GenshinHelper/'
 export const GAME_BIZ = 'hk4e_cn'

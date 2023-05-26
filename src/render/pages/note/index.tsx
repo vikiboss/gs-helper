@@ -39,7 +39,7 @@ export default withAuth(function Month() {
       const months = initMonthData.optional_month
 
       months.forEach(async (e, i) => {
-        await wait(360)
+        await wait(1000)
 
         const { data: res } = await nativeApi.getMonthInfo(e)
 

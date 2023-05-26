@@ -10,15 +10,11 @@ export const request = axios.create({
   headers: {
     'user-agent': APP_USER_AGENT_BBS,
     'content-type': 'application/json; charset=utf-8',
-    'x-requested-with': 'com.mihoyo.hyperion',
     'x-rpc-app_version': BBS_VERSION,
-    'x-rpc-page': '3.1.3_#/ys',
-    'x-rpc-channel': 'appstore',
+    'x-rpc-page': 'v3.7.1-ys_#ys',
+    'x-rpc-tool_version': 'v3.7.1-ys',
     'x-rpc-client_type': '5',
-    'x-rpc-device_model': 'iPhone12,8',
-    'x-rpc-device_name': 'iPhone',
-    'x-rpc-platform': 'ios',
-    'x-rpc-sys_version': '15.6'
+    'x-rpc-device_name': 'iPhone'
   }
 })
 
