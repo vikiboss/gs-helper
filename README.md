@@ -2,6 +2,10 @@
 
 中文 | [English](README-en.md)
 
+> 本项目的 CDN 加速与安全防护由腾讯 [EdgeOne](https://edgeone.ai/?from=github) 赞助提供，最佳亚洲 CDN、边缘和安全解决方案.
+> 
+> [![img](https://edgeone.ai/media/34fe3a45-492d-4ea4-ae5d-ea1087ca7b4b.png)](https://edgeone.ai/?from=github)
+
 ### 起因
 
 参考这篇文章：[爆肝数月后，我写了一个开源原神工具《原神助手》](https://blog.viki.moe/genshin/)
